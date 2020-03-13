@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NIO," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,28 +81,18 @@
 
 
 
-<meta name="description" content="目录概览：  ​    NIO 网络编程模型 ​    NIO 网络编程详解 ​    NIO 网络编程实战 ​    NIO 网络编程缺陷  一、NIO网络编程模型1、编程模型定义NIO :  又叫Non-blocking I&#x2F;O或New I&#x2F;O;全新的输入输出标准库； ​            做为原始I&#x2F;O的补充，为了高性能和高并发的场景使用。 模型：对事物共性的抽象； 编程模型：对编程共性">
+<meta name="description" content="​    Java 中提供了很多的集合类，包括，collection的子接口list、set，以及map等。由于它们的底层构成不同，以及数据的构造为单列、多列、可重复、不可重复，导致其扩容机制也不尽相同。  ListArrayList案例： 获取ArrayList 容量大小的方法：  123456789101112131415   public static int getArrayListCap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机网络（一）-深入理解NIO">
-<meta property="og:url" content="http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/index.html">
+<meta property="og:title" content="集合扩容机制(一)Collection-List">
+<meta property="og:url" content="http://wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="目录概览：  ​    NIO 网络编程模型 ​    NIO 网络编程详解 ​    NIO 网络编程实战 ​    NIO 网络编程缺陷  一、NIO网络编程模型1、编程模型定义NIO :  又叫Non-blocking I&#x2F;O或New I&#x2F;O;全新的输入输出标准库； ​            做为原始I&#x2F;O的补充，为了高性能和高并发的场景使用。 模型：对事物共性的抽象； 编程模型：对编程共性">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu74.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu75.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu76.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu77.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu78.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu79.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu80.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu81.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu82.png">
+<meta property="og:description" content="​    Java 中提供了很多的集合类，包括，collection的子接口list、set，以及map等。由于它们的底层构成不同，以及数据的构造为单列、多列、可重复、不可重复，导致其扩容机制也不尽相同。  ListArrayList案例： 获取ArrayList 容量大小的方法：  123456789101112131415   public static int getArrayListCap">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-03-09T13:57:17.000Z">
-<meta property="article:modified_time" content="2020-03-10T15:35:18.319Z">
+<meta property="article:published_time" content="2020-03-13T03:44:20.000Z">
+<meta property="article:modified_time" content="2020-03-13T03:56:56.244Z">
 <meta property="article:author" content="吴少培">
-<meta property="article:tag" content="NIO">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu74.png">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
 
 
 
@@ -132,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/09/网络编程（一）-深入理解NIO/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/13/集合扩容机制(一)Collection-List/"/>
 
 
 
 
 
-  <title>计算机网络（一）-深入理解NIO | 白夜行</title>
+  <title>集合扩容机制(一)Collection-List | 白夜行</title>
   
 
 
@@ -464,7 +454,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -481,7 +471,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">计算机网络（一）-深入理解NIO</h1>
+          <h1 class="post-title" itemprop="name headline">集合扩容机制(一)Collection-List</h1>
         
 
         <div class="post-meta">
@@ -493,8 +483,8 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
-                2020-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-13T11:44:20+08:00">
+                2020-03-13
               </time>
             
 
@@ -516,8 +506,8 @@ window.onmouseout = function () {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
+                  <a href="/categories/springboot%E5%8E%9F%E7%90%86%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot原理篇</span>
                   </a>
                 </span>
 
@@ -534,8 +524,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" itemprop="commentCount"></span>
+                <a href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -543,7 +533,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" class="leancloud_visitors" data-flag-title="计算机网络（一）-深入理解NIO">
+             <span id="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" class="leancloud_visitors" data-flag-title="集合扩容机制(一)Collection-List">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -579,128 +569,70 @@ window.onmouseout = function () {
       
 
       
-        <p><strong>目录概览</strong>：</p>
-<ul>
-<li>​    NIO 网络编程模型</li>
-<li>​    NIO 网络编程详解</li>
-<li>​    NIO 网络编程实战</li>
-<li>​    NIO 网络编程缺陷</li>
-</ul>
-<h2 id="一、NIO网络编程模型"><a href="#一、NIO网络编程模型" class="headerlink" title="一、NIO网络编程模型"></a>一、NIO网络编程模型</h2><h3 id="1、编程模型定义"><a href="#1、编程模型定义" class="headerlink" title="1、编程模型定义"></a>1、编程模型定义</h3><p><strong>NIO :</strong>  又叫<strong>Non-blocking I/O</strong>或<strong>New I/O</strong>;全新的输入输出标准库；</p>
-<p>​            做为原始<strong>I/O</strong>的补充，为了高性能和高并发的场景使用。</p>
-<p><strong>模型：</strong>对事物共性的抽象；</p>
-<p><strong>编程模型：</strong>对编程共性的抽象；</p>
-<h3 id="2、BIO网络模型"><a href="#2、BIO网络模型" class="headerlink" title="2、BIO网络模型"></a>2、BIO网络模型</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu74.png" width="60%">
+        <p>​    Java 中提供了很多的集合类，包括，collection的子接口list、set，以及map等。由于它们的底层构成不同，以及数据的构造为单列、多列、可重复、不可重复，导致其扩容机制也不尽相同。 </p>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List</h1><h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a><strong>ArrayList</strong></h2><p>案例： 获取ArrayList 容量大小的方法： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getArrayListCapacity</span><span class="params">(ArrayList&lt;?&gt; arrayList)</span> </span>&#123;</span><br><span class="line">	Class&lt;ArrayList&gt; arrayListClass = ArrayList<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		Field field = arrayListClass.getDeclaredField(<span class="string">"elementData"</span>);</span><br><span class="line">		field.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">		Object[] objects = (Object[])field.get(arrayList);</span><br><span class="line">		<span class="keyword">return</span> objects.length;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (NoSuchFieldException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125; <span class="keyword">catch</span> (IllegalAccessException e) &#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>服务端启动，开始建立监听客户端的连接请求；</li>
-<li>客户端启动，向服务器端发起建立连接请求；</li>
-<li>服务器在收到客户端的请求后，将会创建一个新的线程；</li>
-<li>服务端新创建的线程会与客户端建立socket连接，用于响应客户端的请求，通知客户端连接建立成功，你随时可以给我发送数据。</li>
-<li>服务器端处理完客户端的请求之后，就会处于等待状态，等待客户端再次发起请求</li>
-</ul>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu75.png" width="60%">
+<p>ArrayList以数组的形式存储。ArrayList中与容量有关的构造器有两个，<strong>代码如下：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>服务端为每一个客户端建一个线程，一旦客户端请求过多，服务端线程数量也会增多，服务端压力增大。 </p>
-<h3 id="3、BIO网络模型缺点"><a href="#3、BIO网络模型缺点" class="headerlink" title="3、BIO网络模型缺点"></a>3、BIO网络模型缺点</h3><ul>
-<li><strong>阻塞式I/O模型</strong>，会导致服务器端的业务线程会因阻塞IO的问题一直阻塞等待客户端发起请求，如果客户端不发起请求，服务端的业务线程会一直存在，就会耗费大量系统资源</li>
-<li><strong>弹性伸缩能力差</strong>：服务器端的线程数与客户端的个数呈1比1的关系</li>
-<li><strong>多线程耗资源</strong> ： 每一个线程都会对CPU的调度资源进行占用，一旦占用而不释放，则会导致资源的紧缺、甚至系统服务的异常宕机</li>
-</ul>
-<h3 id="4、NIO网络模型猜想"><a href="#4、NIO网络模型猜想" class="headerlink" title="4、NIO网络模型猜想"></a>4、NIO网络模型猜想</h3><p><strong>基于非阻塞 I/O ， 设计应对高并发场景编程模型</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu76.png" width="60%">
+<p>由以上代码可知，ArrayList 的容量扩容包含有 ArrayList(int initialCapacity) ，另一个则是 ArrayList() ；</p>
+<p>第一个构造器在初始创建时以形参将容量大小进行定义，由外部自定义；第二个构造器没有传入参数，使用默认初始化的容量大小；<strong>详细解析如下：</strong></p>
+<p><strong>第一个有参构造器：自定长度在后面，这里先看无参有默认容量长度的构造器怎么实现的扩容？</strong></p>
+<p><strong>第二个无参构造器：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>图解分析：<strong>NIO架构中，客户端的个数与服务器端的线程数呈M:1的关系</strong> </p>
-<h3 id="5、NIO-网络模型"><a href="#5、NIO-网络模型" class="headerlink" title="5、NIO 网络模型"></a>5、NIO 网络模型</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu77.png" width="60%">
+<p><strong>代码测试：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">    <span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catapicity</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ArrayList&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">	objects.add(<span class="string">"a"</span>);</span><br><span class="line">	objects.add(<span class="string">"b"</span>);</span><br><span class="line">	objects.add(<span class="string">"c"</span>);</span><br><span class="line">	System.out.println(objects.size() + <span class="string">" "</span> + getArrayListCapacity(objects));</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 增加一个值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">9</span> ; i ++ )&#123;</span><br><span class="line">		objects.add(i);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(objects.size() + <span class="string">" "</span> + getArrayListCapacity(objects));</span><br><span class="line">	<span class="comment">// 增加一个值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">10</span> ; i &lt;<span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">		objects.add(i);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(objects.size() + <span class="string">" "</span> + getArrayListCapacity(objects));</span><br><span class="line">	<span class="comment">// 增加一个值</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">15</span> ; i &lt; <span class="number">20</span> ; i ++ )&#123;</span><br><span class="line">		objects.add(i);</span><br><span class="line">	&#125;</span><br><span class="line">	System.out.println(objects.size() + <span class="string">" "</span> + getArrayListCapacity(objects));</span><br><span class="line"></span><br><span class="line">	objects.add(<span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">	System.out.println(objects.size() + <span class="string">" "</span> + getArrayListCapacity(objects));</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>第一步</strong>：注册连接并提供服务：Selector 中初始化注册并建立连接事件，提供给Client建立连接的服务；client通过Selector连接与AcceptorHandler 发送创建客户端的连接，并又AcceptorHandler方法返回响应结果；同时该AcceptorHandler方法向Selector中注册可读事件（Client连接客户端成功后）</p>
-<p><strong>第二步</strong>：提供服务：client 发送请求，Selector中对注册状态及客户端可读性验证，正常情况下，已通过第一步，所以直接连接到处理器进行读写操作，根据需求执行业务逻辑，并响应给客户；</p>
-<p><strong>第三步</strong> ：客户端连接可读，在向client响应客户端请求后，注册连接可读事件到Selector 中，所注册的是具体执行业务的Handler</p>
-<h3 id="6、NIO网络模型优化"><a href="#6、NIO网络模型优化" class="headerlink" title="6、NIO网络模型优化"></a>6、NIO网络模型优化</h3><ol>
-<li><strong>非阻塞IO模型</strong>，服务器端提供一个单线程的selector来统一管理所有客户端接入的连接，并负责监听每个连接所关心的事件</li>
-<li><strong>弹性伸缩能力加强</strong>，服务器端一个线程处理所有客户端的连接请求，客户端的个数与服务器端的线程数呈M比1的关系</li>
-<li><strong>单线程节省资源</strong>,避免了线程的频繁创建和销毁，同时也避免了多个线程之间上下文的切换，提高了执行效率</li>
-</ol>
-<h2 id="二、NIO网络编程详解"><a href="#二、NIO网络编程详解" class="headerlink" title="二、NIO网络编程详解"></a>二、NIO网络编程详解</h2><p><strong>NIO核心</strong></p>
-<ul>
-<li><strong>Channel：通道</strong></li>
-<li><strong>Buffer ： 缓冲区</strong></li>
-<li><strong>Selector : 选择器 或 多路复用器</strong></li>
-</ul>
-<h3 id="1、NIO核心类之Channel"><a href="#1、NIO核心类之Channel" class="headerlink" title="1、NIO核心类之Channel"></a>1、NIO核心类之Channel</h3><blockquote>
-<p><strong>Channel</strong> 具有<strong>双向性、非阻塞性、操作唯一性。</strong></p>
-</blockquote>
-<p>channel是信息传输的通道，是jdk NIO中对输入输出方法的另一种抽象，类比IO中的流，与流不同之处在于，channel具有双向性，而流是单向传输的，一个流必须是InputStream或OutputStream的子类，而通道可以用于读写或二者同时进行。channel可以工作在非阻塞模式下，构成NIO的基础。在NIO中，操作channel的唯一方式是使用buffer，通过buffer操作channel，实现数据块的传输。</p>
-<p><strong>channel的实现：</strong> </p>
-<blockquote>
-<ol>
-<li>文件类：FileChannel，用于对文件的读写</li>
-<li>UDP类：DatagramChannel， 用于UDP的数据读写</li>
-<li>TCP类：ServerSocketChannel/SocketChannel，用于TCP的数据读写</li>
-</ol>
-</blockquote>
-<p><strong>Socket的使用：</strong> </p>
-<p><strong>服务端：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 监听窗口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">8000</span>);</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">			<span class="comment">// 2. 接受请求、建立链接</span></span><br><span class="line">			Socket socket = serverSocket.accept();</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 3.数据交换</span></span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> BIOServerHandler(socket)).start();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 *  4. 关闭资源</span></span><br><span class="line"><span class="comment">		 * */</span></span><br><span class="line">		serverSocket.close();</span><br></pre></td></tr></table></figure>
+<p>​    在上述单元测试中，创建了一个无参构造的ArrayList 集合，并对其进行元素的添加，以满足对元素添加过程中容量大小的扩张规则。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长度:  <span class="number">3</span> 容量： <span class="number">10</span></span><br><span class="line">长度:  <span class="number">12</span> 容量： <span class="number">15</span></span><br><span class="line">长度:  <span class="number">17</span> 容量： <span class="number">22</span></span><br><span class="line">长度:  <span class="number">22</span> 容量： <span class="number">22</span></span><br><span class="line"><span class="number">2020</span>-<span class="number">01</span>-<span class="number">29</span> <span class="number">11</span>:<span class="number">42</span>:<span class="number">35.260</span>  INFO <span class="number">28488</span> --- [       Thread-<span class="number">2</span>] o.s.w.c.s</span><br></pre></td></tr></table></figure>
 
-<p><strong>客户端：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  1.建立链接</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">Socket socket = <span class="keyword">new</span> Socket(<span class="string">"127.0.0.1"</span>,<span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  获取输入输出流</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">InputStream inputStream = socket.getInputStream();</span><br><span class="line">OutputStream outputStream = socket.getOutputStream();</span><br></pre></td></tr></table></figure>
+<p><strong>上述是单元测试结果，在这里做一番分析：</strong></p>
+<p>在以上的代码中，默认使用ArrayList的初始化容量长度，在ArrayList中，默认初始化容量是 10 ,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Default initial capacity.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
 
-<p><strong>Channel的使用：</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  代码片段1: 服务器端通过服务端socket创建channel</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  代码片段2: 服务器端通绑定端口</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">serverSocketChannel.bind(<span class="keyword">new</span> InetSocketAddress(<span class="number">8000</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  代码片段3: 服务器端监听客户端链接，建立socketChannel链接</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">SocketChannel socketChannel = serverSocketChannel.accept(<span class="string">"127.0.0.1"</span>,<span class="number">8000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  代码片段4: 客户端链接远程主机及端口</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line">SocketChannel socketChannel = SocketChannel.open(<span class="keyword">new</span> InetSocketAddress(<span class="string">""</span>))</span><br></pre></td></tr></table></figure>
+<p>从测试结果可以看到，当元素的长度为3时，其容量为默认的值 10 ； 当添加的元素超过初始容量后，即 12 &gt; 10  时，集合进行了自动扩容，添加每一个元素都会调用  ensureCapacityInternal(int minCapacity)  方法，在该方法中比较长度是否达到当前容量的边缘，将比较的结果 覆盖原来的 minCapacity 参数，该值用于保存当前的容器元素长度；如单元测试中，当元素个数超过默认的 值 10 时，会调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);</span><br></pre></td></tr></table></figure>
 
-<h3 id="2、NIO核心类之Buffer"><a href="#2、NIO核心类之Buffer" class="headerlink" title="2、NIO核心类之Buffer"></a>2、NIO核心类之Buffer</h3><p><strong>Buffer</strong>：缓冲区，它提供唯一与channel进行交互的方式，作用是读写channel中的数据。Buffer从本质上说是一块内存区域，它是一块可以写入数据，读取数据的内存。</p>
-<p><strong>Buffer的属性</strong></p>
-<blockquote>
-<p><strong>Capacity</strong>：分配的buffer容量，一旦写入的最大字节数超过这个容量，需要将其清空之后，才能继续往里面写数据</p>
-<p><strong>Position</strong>：当前操作的位置，初始值为0，最大值：容量值-1</p>
-<p><strong>Limit</strong>：上限，写模式下等于Capacity，读模式下等于最多能读取的数据</p>
-<p><strong>Mark</strong>：标记，记录mark的位置，调用reset方法时position会回到mark的位置</p>
-</blockquote>
-<p><strong>Buffer的使用：</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 初始化长度为10的byte类型 buffer</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ByteBuffer.allocate(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p>方法，并接着调用  <code>ensureExplicitCapacity(minCapacity);</code>方法，该方法会对当前集合长度与最大容量值进行比较，并调用 <code>grow(minCapacity)</code> 方法进行位移扩容： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    modCount++;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">        grow(minCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu78.png" width="60%">
+<p>实现ArrayList 集合扩容的代码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Increases the capacity to ensure that it can hold at least the</span></span><br><span class="line"><span class="comment">  * number of elements specified by the minimum capacity argument.</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> minCapacity the desired minimum capacity</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// overflow-conscious code</span></span><br><span class="line">     <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">     <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">     <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">         newCapacity = minCapacity;</span><br><span class="line">     <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">         newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">     <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">     elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 向byteBuffer中写入三个字节</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">byteBuffer.put(<span class="string">"abc"</span>.getBytes(Charset.forName(<span class="string">"UTF-8"</span>)));</span><br></pre></td></tr></table></figure>
+<p>在集合长度超过初始值或当前最大值时，在   <strong>grow(int minCapacity)</strong> 方法中，进行了扩容，该扩容如代码所示， 声明当前集合的最大容量为 <strong>oldCapacity</strong> ， 新增的长度为 <strong>oldCapacity</strong> 右位移一位数，当容量为 10 时，二进制为  “<strong>8020</strong>” &gt;&gt; 1 右移后为 “<strong>0401</strong>” ，十进制值为 <strong>5</strong> ，此时将 <strong>oldCapacity</strong> + 位移后的值 即   <strong>10 + 5 = 15</strong> 。 </p>
+<p>此时完成扩容，<strong>newCapacity  = 15</strong> 就是 ArrayList 扩容后的最新容量大小。</p>
+<p>根据扩容规则可知，容量的递增可预计为  <strong>0 、10、15、22、33、49</strong>，以此类推。</p>
+<p>注意： <strong>这里对新的容量 newCapacity 和 当前元素长度进行比较，如果元素添加的比较多，超过当次位移扩容的容量大小，则会 直接使用  hugeCapacity 方法进行扩容，</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">hugeCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (minCapacity &lt; <span class="number">0</span>) <span class="comment">// overflow</span></span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> OutOfMemoryError();</span><br><span class="line">      <span class="keyword">return</span> (minCapacity &gt; MAX_ARRAY_SIZE) ?</span><br><span class="line">          Integer.MAX_VALUE :</span><br><span class="line">          MAX_ARRAY_SIZE;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu79.png" width="60%">
+<p><strong>第一个有参构造器：</strong> </p>
+<p><strong>单元测试：</strong></p>
+<p><strong>① 当声明的容量小于默认初始值10 时，会在超过初始容量10 后进行扩容，</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catapicity</span><span class="params">()</span></span>&#123;</span><br><span class="line">		ArrayList&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">5</span>);</span><br><span class="line">		objects.add(<span class="string">"a"</span>);</span><br><span class="line">		objects.add(<span class="string">"b"</span>);</span><br><span class="line">		objects.add(<span class="string">"c"</span>);</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line"> </span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">2</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">3</span>; i &lt;<span class="number">5</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">6</span> ; i &lt; <span class="number">10</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">11</span> ; i &lt; <span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">11</span> ; i &lt; <span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 将byteBuffer从写模式切换成读模式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">byteBuffer.flip():</span><br></pre></td></tr></table></figure>
+<p><strong>测试结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">长度:  <span class="number">3</span> 容量： <span class="number">5</span></span><br><span class="line">长度:  <span class="number">5</span> 容量： <span class="number">5</span></span><br><span class="line">长度:  <span class="number">7</span> 容量： <span class="number">7</span></span><br><span class="line">长度:  <span class="number">11</span> 容量： <span class="number">15</span></span><br><span class="line">长度:  <span class="number">15</span> 容量： <span class="number">15</span></span><br><span class="line">长度:  <span class="number">19</span> 容量： <span class="number">22</span></span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu80.png" width="60%">
+<p><strong>②超过初始化容量的元素增加：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">catapicity</span><span class="params">()</span></span>&#123;</span><br><span class="line">		ArrayList&lt;Object&gt; objects = <span class="keyword">new</span> ArrayList&lt;&gt;(<span class="number">13</span>);</span><br><span class="line"><span class="comment">//		objects.add("a");</span></span><br><span class="line"><span class="comment">//		objects.add("b");</span></span><br><span class="line"><span class="comment">//		objects.add("c");</span></span><br><span class="line"><span class="comment">//		System.out.println("长度:  "+objects.size() + " 容量： " + getArrayListCapacity(objects));</span></span><br><span class="line"> </span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i =<span class="number">3</span>; i &lt;<span class="number">5</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="comment">// 增加一个值</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">6</span> ; i &lt; <span class="number">10</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">11</span> ; i &lt; <span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">11</span> ; i &lt; <span class="number">15</span> ; i ++ )&#123;</span><br><span class="line">			objects.add(i);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"长度:  "</span>+objects.size() + <span class="string">" 容量： "</span> + getArrayListCapacity(objects));</span><br><span class="line"> </span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 将b先调用get方法读取下一个字节</span></span><br><span class="line"><span class="comment"> * 再调用reset方法将position重置到mark位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">byteBuffer.get():</span><br><span class="line">byteBuffer.reset();</span><br></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">长度:  15 容量： 19</span><br><span class="line">长度:  17 容量： 19</span><br><span class="line">长度:  21 容量： 28</span><br><span class="line">长度:  25 容量： 28</span><br><span class="line">长度:  29 容量： 42</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu81.png" width="60%">
+<p>超过初试容量后，<strong>第一次扩容</strong>会直接使用当前集合长度作为 <strong>oldCapacity</strong> 进行扩容</p>
+<h2 id="2、LinkedList"><a href="#2、LinkedList" class="headerlink" title="2、LinkedList"></a><strong>2、LinkedList</strong></h2><p>链表结构，且是是双向链表， 不涉及扩容的问题。</p>
+<h2 id="3、Vector"><a href="#3、Vector" class="headerlink" title="3、Vector"></a><strong>3、Vector</strong></h2><p>Vector与ArrayList一样，是存储在数组结构中。  与扩容机制相关的构造器有三个,分别是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector(<span class="keyword">int</span> initialCapacity, <span class="keyword">int</span> capacityIncrement)，</span><br><span class="line">Vector(<span class="keyword">int</span> initialCapacity)</span><br><span class="line">Vector()</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 调用clear方法，将所有属性重置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">byteBuffer.clear();</span><br></pre></td></tr></table></figure>
+<p>  其实这后两个最终都是调用了第一个构造器，不过是使用了不同的默认参数，initialCapacity是初始容量，默认是10，capacityIncrement 是每次扩容时候的递增数量，如果该数值不等于0则每次扩容的时候是原来的二倍，如果该数值大于0，则每次增长的数量等于该数值</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> newCapacity = oldCapacity + ((capacityIncrement &gt; <span class="number">0</span>) ?</span><br><span class="line">                                 capacityIncrement : oldCapacity);</span><br><span class="line">）。</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu82.png" width="60%">
+<p><strong>比如：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vector&lt;String&gt; v = <span class="keyword">new</span> Vector&lt;String&gt;(); <span class="comment">// 10 20 ,40 80 ，160，320 的速度递增</span></span><br><span class="line"></span><br><span class="line">Vector&lt;String&gt; v2 = <span class="keyword">new</span> Vector&lt;&gt;(<span class="number">5</span>,<span class="number">3</span>);<span class="comment">// 5 8 11 14 17 ，20，23 的速度递增。</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3、NIO核心类之Selector"><a href="#3、NIO核心类之Selector" class="headerlink" title="3、NIO核心类之Selector"></a>3、NIO核心类之Selector</h3><p><strong>Selector 选择器/多路复用器</strong></p>
-<p><strong>作用</strong>：I/O就绪选择</p>
-<p><strong>地位</strong>：NIO网络编程的基础</p>
-<p><strong>SelectionKey 选择键</strong></p>
-<blockquote>
-<p>四种就绪状态常量：<strong>连接就绪、接受就绪、读就绪、写就绪</strong></p>
-</blockquote>
-<p><strong>Selector的使用：</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 代码片段1:创建 Selector </span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"> Selector  selector =  Selector.open();</span><br><span class="line"> </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 代码片段2：将channel注册到selector上，监听读取就绪事件</span></span><br><span class="line"><span class="comment"> * */</span> </span><br><span class="line"> SelectionKey selectionKey = channel.register(SelectionKey.OP_READ);</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * 代码片段3：阻塞等待channel有就绪事件发生</span></span><br><span class="line"><span class="comment">  * */</span></span><br><span class="line"> <span class="keyword">int</span> selectNum = selector.select();</span><br><span class="line"></span><br><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">  * 代码片段4：获取发生就绪事件的channel集合</span></span><br><span class="line"><span class="comment">  * */</span></span><br><span class="line"> Set&lt;SelectionKey&gt; selectedKeys = selector.selectedKeys();</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>最重要的应该就是代码片段3：</strong> 在这一步对就绪事件进行监听，如果一直不通过，就一直阻塞等待，直到有就绪事件发生，并注册通过检测有效，方才放行 </p>
-<h3 id="4、NIO编程实现步骤"><a href="#4、NIO编程实现步骤" class="headerlink" title="4、NIO编程实现步骤"></a>4、NIO编程实现步骤</h3><blockquote>
-<p>第一步：创建Selector</p>
-<p>第二步：创建ServerSocketChannel，并绑定监听端口</p>
-<p>第三步：将Channel设置为非阻塞模式</p>
-<p>第四步：将Channel注册到Selector上，监听连接事件</p>
-<p>第五步：循环调用Selector的select方法，检测就绪情况</p>
-<p>第六步：调用selectedKeys方法获取就绪channel集合</p>
-<p>第七步：判断就绪事件种类，调用业务处理方法</p>
-<p>第八步：根据业务需要决定是否再次注册监听事件，重复执行第三步操作</p>
-</blockquote>
+<p>他的加载因子也是10</p>
+<h2 id="4、Stack"><a href="#4、Stack" class="headerlink" title="4、Stack"></a><strong>4、Stack</strong></h2><p>  继承于Vector，所以他的扩容机制等同于Vector的默认情况，也就是2倍速度扩容，加载因子为1</p>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
@@ -721,7 +653,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" title="计算机网络（一）-深入理解NIO">http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</a>
+    <a href="http://wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" title="集合扩容机制(一)Collection-List">http://wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -734,12 +666,6 @@ window.onmouseout = function () {
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/NIO/" rel="tag"> <i class="fa fa-tag"></i> NIO</a>
-          
-        </div>
-      
 
       
       
@@ -749,8 +675,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" rel="next" title="hexo搭建个人博客（一）博客框架搭建">
-                <i class="fa fa-chevron-left"></i> hexo搭建个人博客（一）博客框架搭建
+              <a href="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/" rel="next" title="SpringBoot原理（二）自动配置原理">
+                <i class="fa fa-chevron-left"></i> SpringBoot原理（二）自动配置原理
               </a>
             
           </div>
@@ -758,10 +684,6 @@ window.onmouseout = function () {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" rel="prev" title="Activity（四）流程设计工具创建流程图">
-                Activity（四）流程设计工具创建流程图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -945,7 +867,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、NIO网络编程模型"><span class="nav-number">1.</span> <span class="nav-text">一、NIO网络编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、编程模型定义"><span class="nav-number">1.1.</span> <span class="nav-text">1、编程模型定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、BIO网络模型"><span class="nav-number">1.2.</span> <span class="nav-text">2、BIO网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、BIO网络模型缺点"><span class="nav-number">1.3.</span> <span class="nav-text">3、BIO网络模型缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、NIO网络模型猜想"><span class="nav-number">1.4.</span> <span class="nav-text">4、NIO网络模型猜想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、NIO-网络模型"><span class="nav-number">1.5.</span> <span class="nav-text">5、NIO 网络模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、NIO网络模型优化"><span class="nav-number">1.6.</span> <span class="nav-text">6、NIO网络模型优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、NIO网络编程详解"><span class="nav-number">2.</span> <span class="nav-text">二、NIO网络编程详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、NIO核心类之Channel"><span class="nav-number">2.1.</span> <span class="nav-text">1、NIO核心类之Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、NIO核心类之Buffer"><span class="nav-number">2.2.</span> <span class="nav-text">2、NIO核心类之Buffer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、NIO核心类之Selector"><span class="nav-number">2.3.</span> <span class="nav-text">3、NIO核心类之Selector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、NIO编程实现步骤"><span class="nav-number">2.4.</span> <span class="nav-text">4、NIO编程实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.4.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-number">1.</span> <span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、LinkedList"><span class="nav-number">1.2.</span> <span class="nav-text">2、LinkedList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Vector"><span class="nav-number">1.3.</span> <span class="nav-text">3、Vector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、Stack"><span class="nav-number">1.4.</span> <span class="nav-text">4、Stack</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
