@@ -844,104 +844,6 @@
       </tags>
   </entry>
   <entry>
-    <title>jdbc(三)预编译-Statement、PreparedStatement</title>
-    <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
-    <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
-<li>数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句</li>
-<li>在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">|-----   Statement</span><br><span class="line"> </span><br><span class="line">       |------PreparedStatement</span><br><span class="line"> </span><br><span class="line">              |------CallableStatement</span><br></pre></td></tr></table></figure>
-
-<p>使用<span style="color:red;">statement</span>进行预编译可能会导致SQL注入的发生 </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu92.png" width="60%">
-
-<h3 id="SQL-注入攻击"><a href="#SQL-注入攻击" class="headerlink" title="SQL 注入攻击"></a><strong>SQL 注入攻击</strong></h3><ul>
-<li>SQL 注入是利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的 SQL 语句段或命令(如：SELECT user, password FROM user_table WHERE user=’a’ OR 1 = ‘ AND password = ‘ OR ‘1’ = ‘1’) ，从而利用系统的 SQL 引擎完成恶意行为的做法</li>
-<li>对于 Java 而言，要防范 SQL 注入，只要用 PreparedStatement(从Statement扩展而来) 取代 Statement 就可以了</li>
-</ul>
-<h3 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a><strong>PreparedStatement</strong></h3><ul>
-<li>可以通过调用 Connection 对象的 preparedStatement() 方法获取 PreparedStatement 对象</li>
-<li>PreparedStatement 接口是 Statement 的子接口，它表示一条预编译过的 SQL 语句</li>
-<li>PreparedStatement 对象所代表的 SQL 语句中的参数用问号(?)来表示，调用 PreparedStatement 对象的 setXxx() 方法来设置这些参数. setXxx() 方法有两个参数，第一个参数是要设置的 SQL 语句中的参数的索引(从 1 开始)，第二个是设置的 SQL 语句中的参数的值</li>
-</ul>
-<h3 id="PreparedStatement-vs-Statement"><a href="#PreparedStatement-vs-Statement" class="headerlink" title="PreparedStatement vs Statement"></a><strong>PreparedStatement vs Statement</strong></h3><ul>
-<li>代码的可读性和可维护性.</li>
-<li>PreparedStatement 能最大可能提高性能：</li>
-</ul>
-<blockquote>
-<ol>
-<li>DBServer会对预编译语句提供性能优化。因为预编译语句有可能被重复调用，所以语句在被DBServer的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中就会得到执行。</li>
-<li>在statement语句中,即使是相同操作但因为数据内容不一样,所以整个语句本身不能匹配,没有缓存语句的意义.事实是没有数据库会对普通语句编译后的执行代码缓存.这样每执行一次都要对传入的语句编译一次.  </li>
-<li>(语法检查，语义检查，翻译成二进制命令，缓存)</li>
-</ol>
-</blockquote>
-<ul>
-<li>PreparedStatement 可以防止 SQL 注入防止 SQL 注入 </li>
-</ul>
-<h3 id="数据类型转换表"><a href="#数据类型转换表" class="headerlink" title="数据类型转换表"></a><strong>数据类型转换表</strong></h3><table>
-<thead>
-<tr>
-<th>java类型</th>
-<th>SQL类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>BIT</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>TINYINT</td>
-</tr>
-<tr>
-<td>short</td>
-<td>SMALLINT</td>
-</tr>
-<tr>
-<td>int</td>
-<td>INTEGER</td>
-</tr>
-<tr>
-<td>long</td>
-<td>BIGINT</td>
-</tr>
-<tr>
-<td>String</td>
-<td>CHAR,VARCHAR,LONGVARCHAR</td>
-</tr>
-<tr>
-<td>byte array</td>
-<td>BINARY , VAR  BINARY</td>
-</tr>
-<tr>
-<td>java.sql.Date</td>
-<td>DATE</td>
-</tr>
-<tr>
-<td>java.sql.Time</td>
-<td>TIME</td>
-</tr>
-<tr>
-<td>java.sql.Timestamp</td>
-<td>TIMESTAMP</td>
-</tr>
-</tbody></table>
-<h3 id="连接数据库、操作表的步骤："><a href="#连接数据库、操作表的步骤：" class="headerlink" title="连接数据库、操作表的步骤："></a><strong>连接数据库、操作表的步骤：</strong></h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu93.png" width="60%">
-
-<p><strong>注意：</strong></p>
-<ul>
-<li>释放ResultSet, Statement,Connection。</li>
-<li>数据库连接（Connection）是非常稀有的资源，用完后必须马上释放，如果Connection不能及时正确的关闭将导致系统宕机。Connection的使用原则是<span style="color:red;">尽量晚创建，尽量早的释放。</span></li>
-</ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(四)ResultSet</title>
     <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
     <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
@@ -1032,6 +934,104 @@
 
 
 
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(三)预编译-Statement、PreparedStatement</title>
+    <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
+    <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
+<li>数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句</li>
+<li>在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">|-----   Statement</span><br><span class="line"> </span><br><span class="line">       |------PreparedStatement</span><br><span class="line"> </span><br><span class="line">              |------CallableStatement</span><br></pre></td></tr></table></figure>
+
+<p>使用<span style="color:red;">statement</span>进行预编译可能会导致SQL注入的发生 </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu92.png" width="60%">
+
+<h3 id="SQL-注入攻击"><a href="#SQL-注入攻击" class="headerlink" title="SQL 注入攻击"></a><strong>SQL 注入攻击</strong></h3><ul>
+<li>SQL 注入是利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的 SQL 语句段或命令(如：SELECT user, password FROM user_table WHERE user=’a’ OR 1 = ‘ AND password = ‘ OR ‘1’ = ‘1’) ，从而利用系统的 SQL 引擎完成恶意行为的做法</li>
+<li>对于 Java 而言，要防范 SQL 注入，只要用 PreparedStatement(从Statement扩展而来) 取代 Statement 就可以了</li>
+</ul>
+<h3 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a><strong>PreparedStatement</strong></h3><ul>
+<li>可以通过调用 Connection 对象的 preparedStatement() 方法获取 PreparedStatement 对象</li>
+<li>PreparedStatement 接口是 Statement 的子接口，它表示一条预编译过的 SQL 语句</li>
+<li>PreparedStatement 对象所代表的 SQL 语句中的参数用问号(?)来表示，调用 PreparedStatement 对象的 setXxx() 方法来设置这些参数. setXxx() 方法有两个参数，第一个参数是要设置的 SQL 语句中的参数的索引(从 1 开始)，第二个是设置的 SQL 语句中的参数的值</li>
+</ul>
+<h3 id="PreparedStatement-vs-Statement"><a href="#PreparedStatement-vs-Statement" class="headerlink" title="PreparedStatement vs Statement"></a><strong>PreparedStatement vs Statement</strong></h3><ul>
+<li>代码的可读性和可维护性.</li>
+<li>PreparedStatement 能最大可能提高性能：</li>
+</ul>
+<blockquote>
+<ol>
+<li>DBServer会对预编译语句提供性能优化。因为预编译语句有可能被重复调用，所以语句在被DBServer的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中就会得到执行。</li>
+<li>在statement语句中,即使是相同操作但因为数据内容不一样,所以整个语句本身不能匹配,没有缓存语句的意义.事实是没有数据库会对普通语句编译后的执行代码缓存.这样每执行一次都要对传入的语句编译一次.  </li>
+<li>(语法检查，语义检查，翻译成二进制命令，缓存)</li>
+</ol>
+</blockquote>
+<ul>
+<li>PreparedStatement 可以防止 SQL 注入防止 SQL 注入 </li>
+</ul>
+<h3 id="数据类型转换表"><a href="#数据类型转换表" class="headerlink" title="数据类型转换表"></a><strong>数据类型转换表</strong></h3><table>
+<thead>
+<tr>
+<th>java类型</th>
+<th>SQL类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>BIT</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>TINYINT</td>
+</tr>
+<tr>
+<td>short</td>
+<td>SMALLINT</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>long</td>
+<td>BIGINT</td>
+</tr>
+<tr>
+<td>String</td>
+<td>CHAR,VARCHAR,LONGVARCHAR</td>
+</tr>
+<tr>
+<td>byte array</td>
+<td>BINARY , VAR  BINARY</td>
+</tr>
+<tr>
+<td>java.sql.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>java.sql.Time</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>java.sql.Timestamp</td>
+<td>TIMESTAMP</td>
+</tr>
+</tbody></table>
+<h3 id="连接数据库、操作表的步骤："><a href="#连接数据库、操作表的步骤：" class="headerlink" title="连接数据库、操作表的步骤："></a><strong>连接数据库、操作表的步骤：</strong></h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu93.png" width="60%">
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>释放ResultSet, Statement,Connection。</li>
+<li>数据库连接（Connection）是非常稀有的资源，用完后必须马上释放，如果Connection不能及时正确的关闭将导致系统宕机。Connection的使用原则是<span style="color:red;">尽量晚创建，尽量早的释放。</span></li>
+</ul>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>jdbc</category>
