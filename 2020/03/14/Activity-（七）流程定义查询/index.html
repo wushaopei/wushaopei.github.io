@@ -81,19 +81,20 @@
 
 
 
-<meta name="description" content="需求：模拟实现一个电商项目中子模块后台管理模块的增删改查。 粗粒度：    功能 细功能    后台管理模块 对商品菜单的增删改查   细粒度    功能 细功能    查 列表分三级，一级查一级   增 商品有spu、sku属性，都需要进行相应的添加，做两级添加操作   改 初步实现对商品的信息进行修改，其次实现对三级分类属性的修改   删 具体商品信息可以删除，三级分类菜单的次一级菜单为空也可">
+<meta name="description" content="流程定义查询本质上就是通过Activiti框架提供的API对act_re_procdef表进行查询操作。    通过Activiti提供的API 把act_re_procdef表的所有列的数据全部查询出来， 在开发系统的时候管理员、用户可以通过用户界面来维护这些数据。 Activiti提供非常丰富的API，可以做SQL查询、对某些字段查询、模糊查询、分页查询和排序等。 查询流程定义 返回流程定义集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">
-<meta property="og:url" content="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/index.html">
+<meta property="og:title" content="Activity-（七）流程定义查询">
+<meta property="og:url" content="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="需求：模拟实现一个电商项目中子模块后台管理模块的增删改查。 粗粒度：    功能 细功能    后台管理模块 对商品菜单的增删改查   细粒度    功能 细功能    查 列表分三级，一级查一级   增 商品有spu、sku属性，都需要进行相应的添加，做两级添加操作   改 初步实现对商品的信息进行修改，其次实现对三级分类属性的修改   删 具体商品信息可以删除，三级分类菜单的次一级菜单为空也可">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png">
+<meta property="og:description" content="流程定义查询本质上就是通过Activiti框架提供的API对act_re_procdef表进行查询操作。    通过Activiti提供的API 把act_re_procdef表的所有列的数据全部查询出来， 在开发系统的时候管理员、用户可以通过用户界面来维护这些数据。 Activiti提供非常丰富的API，可以做SQL查询、对某些字段查询、模糊查询、分页查询和排序等。 查询流程定义 返回流程定义集">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu130.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu124.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-03-14T12:23:16.000Z">
-<meta property="article:modified_time" content="2020-03-14T12:34:41.934Z">
+<meta property="article:published_time" content="2020-03-14T14:10:45.000Z">
+<meta property="article:modified_time" content="2020-03-14T14:27:41.468Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu130.png">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/14/EasyUI笔记（三）案例-后台管理页面-框架与需求确立/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/14/Activity-（七）流程定义查询/"/>
 
 
 
 
 
-  <title>EasyUI笔记（三）案例:后台管理页面-框架与需求确立 | 白夜行</title>
+  <title>Activity-（七）流程定义查询 | 白夜行</title>
   
 
 
@@ -455,7 +456,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -472,7 +473,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">EasyUI笔记（三）案例:后台管理页面-框架与需求确立</h1>
+          <h1 class="post-title" itemprop="name headline">Activity-（七）流程定义查询</h1>
         
 
         <div class="post-meta">
@@ -484,7 +485,7 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T20:23:16+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T22:10:45+08:00">
                 2020-03-14
               </time>
             
@@ -507,8 +508,8 @@ window.onmouseout = function () {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/EasyUI%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">EasyUI前端框架</span>
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
                   </a>
                 </span>
 
@@ -525,8 +526,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" itemprop="commentCount"></span>
+                <a href="/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -534,7 +535,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" class="leancloud_visitors" data-flag-title="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">
+             <span id="/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="Activity-（七）流程定义查询">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -570,55 +571,30 @@ window.onmouseout = function () {
       
 
       
-        <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p><code>模拟实现一个电商项目中子模块后台管理模块的增删改查。</code></p>
-<p>粗粒度：</p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>细功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>后台管理模块</td>
-<td>对商品菜单的增删改查</td>
-</tr>
-</tbody></table>
-<p>细粒度</p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>细功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>查</td>
-<td>列表分三级，一级查一级</td>
-</tr>
-<tr>
-<td>增</td>
-<td>商品有spu、sku属性，都需要进行相应的添加，做两级添加操作</td>
-</tr>
-<tr>
-<td>改</td>
-<td>初步实现对商品的信息进行修改，其次实现对三级分类属性的修改</td>
-</tr>
-<tr>
-<td>删</td>
-<td>具体商品信息可以删除，三级分类菜单的次一级菜单为空也可以</td>
-</tr>
-</tbody></table>
-<h3 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a><strong>技术选型</strong></h3><p>前端：</p>
-<p>​    使用Freemarkr，分模块，每个模块add、update、delete、分页都是单独页面。</p>
-<p>​    后端：</p>
-<p>​        基础框架：SpringBoot、Mybatis 、SpringMVC、Log4j、Lombok、Swagger</p>
-<p>​        数据库：MySQL</p>
-<p>前后端交互：</p>
-<p>​    Json</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png" width="60%">
+        <p>流程定义查询本质上就是通过<code>Activiti</code>框架提供的API对<code>act_re_procdef</code>表进行查询操作。 </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu130.png" width="60%">
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p> 
+<p>通过Activiti提供的API 把act_re_procdef表的所有列的数据全部查询出来，</p>
+<p>在开发系统的时候管理员、用户可以通过用户界面来维护这些数据。</p>
+<p>Activiti提供非常丰富的API，可以做SQL查询、对某些字段查询、模糊查询、分页查询和排序等。</p>
+<h3 id="查询流程定义-返回流程定义集合"><a href="#查询流程定义-返回流程定义集合" class="headerlink" title="查询流程定义 返回流程定义集合"></a>查询流程定义 返回流程定义集合</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 查询流程定义 返回流程定义集合 ---对应act_re_procdef</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">listAll</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;ProcessDefinition&gt; pdList=processEngine.getRepositoryService() <span class="comment">// 获取service类</span></span><br><span class="line">        .createProcessDefinitionQuery() <span class="comment">// 创建流程定义查询</span></span><br><span class="line">        .processDefinitionKey(<span class="string">"myProcess"</span>) <span class="comment">// 通过key查询</span></span><br><span class="line">        .list(); <span class="comment">// 返回一个集合</span></span><br><span class="line">    <span class="keyword">for</span>(ProcessDefinition pd:pdList)&#123;</span><br><span class="line">    	System.out.println(<span class="string">"流程定义ID:"</span>+pd.getId());<span class="comment">//流程定义的key+版本+随机生成数</span></span><br><span class="line">        System.out.println(<span class="string">"流程定义名称:"</span>+pd.getName());<span class="comment">//对应HelloWorld.bpmn文件中的name属性值</span></span><br><span class="line">        System.out.println(<span class="string">"流程定义的key:"</span>+pd.getKey());<span class="comment">//对应HelloWorld.bpmn文件中的id属性值</span></span><br><span class="line">        System.out.println(<span class="string">"流程定义的版本:"</span>+pd.getVersion());<span class="comment">//当流程定义的key值相同的情况下，版本升级，默认从1开始</span></span><br><span class="line">        System.out.println(<span class="string">"资源名称bpmn文件:"</span>+pd.getResourceName());</span><br><span class="line">        System.out.println(<span class="string">"资源名称png文件:"</span>+pd.getDiagramResourceName());</span><br><span class="line">        System.out.println(<span class="string">"部署对象ID:"</span>+pd.getDeploymentId());</span><br><span class="line">        System.out.println(<span class="string">"################################"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>运行输入如下：</strong>  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">流程定义ID:myProcess:<span class="number">10</span>:<span class="number">50004</span></span><br><span class="line">流程定义名称:My process</span><br><span class="line">流程定义的key:myProcess</span><br><span class="line">流程定义的版本:<span class="number">10</span></span><br><span class="line">资源名称bpmn文件:diagrams/MyProcess.bpmn</span><br><span class="line">资源名称png文件:diagrams/MyProcess.myProcess.png</span><br><span class="line">部署对象ID:<span class="number">50001</span></span><br><span class="line">################################</span><br><span class="line">流程定义ID:myProcess:<span class="number">1</span>:<span class="number">22504</span></span><br><span class="line">流程定义名称:My process</span><br><span class="line">流程定义的key:myProcess</span><br><span class="line">流程定义的版本:<span class="number">1</span></span><br><span class="line">资源名称bpmn文件:diagrams/MyProcess.bpmn</span><br><span class="line">资源名称png文件:diagrams/MyProcess.myProcess.png</span><br><span class="line">部署对象ID:<span class="number">22501</span></span><br><span class="line">################################</span><br><span class="line">……省略其他的</span><br></pre></td></tr></table></figure>
+
+
+
+<p>也可以根据某个流程定义ID来查询流程定义信息，返回单个结果（说通俗点就是根据ID查询）： </p>
+<h3 id="通过ID查询当个流程定义"><a href="#通过ID查询当个流程定义" class="headerlink" title="通过ID查询当个流程定义"></a>通过ID查询当个流程定义</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 通过ID查询当个流程定义</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getById</span><span class="params">()</span></span>&#123;</span><br><span class="line">   ProcessDefinition pd=processEngine.getRepositoryService() <span class="comment">// 获取service类</span></span><br><span class="line">            .createProcessDefinitionQuery() <span class="comment">// 创建流程定义查询</span></span><br><span class="line">            .processDefinitionId(<span class="string">"myProcess:10:50004"</span>) <span class="comment">// 通过id查询</span></span><br><span class="line">            .singleResult(); <span class="comment">// 查询返回当个结果</span></span><br><span class="line">	   System.out.println(<span class="string">"流程定义ID:"</span>+pd.getId());<span class="comment">//流程定义的key+版本+随机生成数</span></span><br><span class="line">       System.out.println(<span class="string">"流程定义名称:"</span>+pd.getName());<span class="comment">//对应HelloWorld.bpmn文件中的name属性值</span></span><br><span class="line">       System.out.println(<span class="string">"流程定义的key:"</span>+pd.getKey());<span class="comment">//对应HelloWorld.bpmn文件中的id属性值</span></span><br><span class="line">       System.out.println(<span class="string">"流程定义的版本:"</span>+pd.getVersion());<span class="comment">//当流程定义的key值相同的情况下，版本升级，默认从1开始</span></span><br><span class="line">       System.out.println(<span class="string">"资源名称bpmn文件:"</span>+pd.getResourceName());</span><br><span class="line">       System.out.println(<span class="string">"资源名称png文件:"</span>+pd.getDiagramResourceName());</span><br><span class="line">       System.out.println(<span class="string">"部署对象ID:"</span>+pd.getDeploymentId());</span><br><span class="line">       System.out.println(<span class="string">"################################"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>运行结果如下：</strong>  </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">流程定义ID:myProcess:<span class="number">10</span>:<span class="number">50004</span></span><br><span class="line">流程定义名称:My process</span><br><span class="line">流程定义的key:myProcess</span><br><span class="line">流程定义的版本:<span class="number">10</span></span><br><span class="line">资源名称bpmn文件:diagrams/MyProcess.bpmn</span><br><span class="line">资源名称png文件:diagrams/MyProcess.myProcess.png</span><br><span class="line">部署对象ID:<span class="number">50001</span></span><br><span class="line">################################</span><br></pre></td></tr></table></figure>
+
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu124.png" width="60%">
+
+<p>可以模糊查询，根据某些字段查询，以及分页查询等等。</p>
+<p>整体来说这些操作API的使用就跟Hibernate框架的使用差不多，它内部多封装好了你只需要调用即可。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -638,7 +614,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" title="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/</a>
+    <a href="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/" title="Activity-（七）流程定义查询">http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -660,8 +636,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89-EasyUI%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%95%E5%85%A5%E9%A1%B9%E7%9B%AE%E3%80%81%E7%A4%BA%E4%BE%8B/" rel="next" title="EasyUI笔记（二）--EasyUI下载及引入项目、示例">
-                <i class="fa fa-chevron-left"></i> EasyUI笔记（二）--EasyUI下载及引入项目、示例
+              <a href="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" rel="next" title="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">
+                <i class="fa fa-chevron-left"></i> EasyUI笔记（三）案例:后台管理页面-框架与需求确立
               </a>
             
           </div>
@@ -670,8 +646,8 @@ window.onmouseout = function () {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/" rel="prev" title="Activity-（七）流程定义查询">
-                Activity-（七）流程定义查询 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/14/Activity-%EF%BC%88%E5%85%AB%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E5%88%A0%E9%99%A4/" rel="prev" title="Activity-（八）流程定义删除">
+                Activity-（八）流程定义删除 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -856,7 +832,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求："><span class="nav-number">1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术选型"><span class="nav-number">2.</span> <span class="nav-text">技术选型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询流程定义-返回流程定义集合"><span class="nav-number">1.</span> <span class="nav-text">查询流程定义 返回流程定义集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过ID查询当个流程定义"><span class="nav-number">2.</span> <span class="nav-text">通过ID查询当个流程定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="需求：模拟实现一个电商项目中子模块后台管理模块的增删改查。 粗粒度：    功能 细功能    后台管理模块 对商品菜单的增删改查   细粒度    功能 细功能    查 列表分三级，一级查一级   增 商品有spu、sku属性，都需要进行相应的添加，做两级添加操作   改 初步实现对商品的信息进行修改，其次实现对三级分类属性的修改   删 具体商品信息可以删除，三级分类菜单的次一级菜单为空也可">
+<meta name="description" content="在开发中可能需要查看某个流程的流程图片。 对应操作的数据库表是act_ge_bytearray的Bytes_字段：   Activiti提供了操作接口，可以查询返回一个资源文件输入流， 然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上， 你想干什么多行。 先在pom.xml中添加IO的Jar架包： 12345&lt;dependency&gt;    &lt;groupId&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">
-<meta property="og:url" content="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/index.html">
+<meta property="og:title" content="Activity-（九）查看流程图片">
+<meta property="og:url" content="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="需求：模拟实现一个电商项目中子模块后台管理模块的增删改查。 粗粒度：    功能 细功能    后台管理模块 对商品菜单的增删改查   细粒度    功能 细功能    查 列表分三级，一级查一级   增 商品有spu、sku属性，都需要进行相应的添加，做两级添加操作   改 初步实现对商品的信息进行修改，其次实现对三级分类属性的修改   删 具体商品信息可以删除，三级分类菜单的次一级菜单为空也可">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png">
+<meta property="og:description" content="在开发中可能需要查看某个流程的流程图片。 对应操作的数据库表是act_ge_bytearray的Bytes_字段：   Activiti提供了操作接口，可以查询返回一个资源文件输入流， 然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上， 你想干什么多行。 先在pom.xml中添加IO的Jar架包： 12345&lt;dependency&gt;    &lt;groupId&amp;">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu131.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-03-14T12:23:16.000Z">
-<meta property="article:modified_time" content="2020-03-14T12:34:41.934Z">
+<meta property="article:published_time" content="2020-03-14T14:39:36.000Z">
+<meta property="article:modified_time" content="2020-03-14T14:48:46.461Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu131.png">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/14/EasyUI笔记（三）案例-后台管理页面-框架与需求确立/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/14/Activity-（九）查看流程图片/"/>
 
 
 
 
 
-  <title>EasyUI笔记（三）案例:后台管理页面-框架与需求确立 | 白夜行</title>
+  <title>Activity-（九）查看流程图片 | 白夜行</title>
   
 
 
@@ -455,7 +455,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -472,7 +472,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">EasyUI笔记（三）案例:后台管理页面-框架与需求确立</h1>
+          <h1 class="post-title" itemprop="name headline">Activity-（九）查看流程图片</h1>
         
 
         <div class="post-meta">
@@ -484,7 +484,7 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T20:23:16+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T22:39:36+08:00">
                 2020-03-14
               </time>
             
@@ -507,8 +507,8 @@ window.onmouseout = function () {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/EasyUI%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">EasyUI前端框架</span>
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
                   </a>
                 </span>
 
@@ -525,8 +525,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" itemprop="commentCount"></span>
+                <a href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -534,7 +534,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" class="leancloud_visitors" data-flag-title="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">
+             <span id="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" class="leancloud_visitors" data-flag-title="Activity-（九）查看流程图片">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -570,55 +570,22 @@ window.onmouseout = function () {
       
 
       
-        <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><p><code>模拟实现一个电商项目中子模块后台管理模块的增删改查。</code></p>
-<p>粗粒度：</p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>细功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>后台管理模块</td>
-<td>对商品菜单的增删改查</td>
-</tr>
-</tbody></table>
-<p>细粒度</p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>细功能</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>查</td>
-<td>列表分三级，一级查一级</td>
-</tr>
-<tr>
-<td>增</td>
-<td>商品有spu、sku属性，都需要进行相应的添加，做两级添加操作</td>
-</tr>
-<tr>
-<td>改</td>
-<td>初步实现对商品的信息进行修改，其次实现对三级分类属性的修改</td>
-</tr>
-<tr>
-<td>删</td>
-<td>具体商品信息可以删除，三级分类菜单的次一级菜单为空也可以</td>
-</tr>
-</tbody></table>
-<h3 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a><strong>技术选型</strong></h3><p>前端：</p>
-<p>​    使用Freemarkr，分模块，每个模块add、update、delete、分页都是单独页面。</p>
-<p>​    后端：</p>
-<p>​        基础框架：SpringBoot、Mybatis 、SpringMVC、Log4j、Lombok、Swagger</p>
-<p>​        数据库：MySQL</p>
-<p>前后端交互：</p>
-<p>​    Json</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu129.png" width="60%">
+        <p>在开发中可能需要查看某个流程的流程图片。</p>
+<p>对应操作的数据库表是act_ge_bytearray的Bytes_字段：</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu131.png" width="60%">
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p> 
+<p>Activiti提供了操作接口，可以查询返回一个资源文件输入流，</p>
+<p>然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上，</p>
+<p>你想干什么多行。</p>
+<p>先在pom.xml中添加IO的Jar架包：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后就是代码实现： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过流程部署ID获取流程图图片</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getImageById</span><span class="params">()</span><span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"><span class="comment">//        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()</span></span><br><span class="line"><span class="comment">//        		.processDefinitionId("myProcess.png")</span></span><br><span class="line"><span class="comment">//        		.singleResult();</span></span><br><span class="line">        InputStream inputStream=processEngine.getRepositoryService()</span><br><span class="line">            .getResourceAsStream(<span class="string">"40001"</span>, <span class="string">"myProcess.png"</span>); <span class="comment">// 根据流程部署ID和资源名称获取输入流</span></span><br><span class="line">        FileUtils.copyInputStreamToFile(inputStream, <span class="keyword">new</span> File(<span class="string">"F:/myProcess.png"</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际开发的时候，一般会把图片存到项目路径下，然后名字的话，可以根据当前日期年月日时分秒来命名，</p>
+<p>然后得到路径后，在新的页面，或者是模态窗口里显示图片；</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -638,7 +605,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/" title="EasyUI笔记（三）案例:后台管理页面-框架与需求确立">http://wushaopei.com/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E6%A1%88%E4%BE%8B-%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E9%A1%B5%E9%9D%A2-%E6%A1%86%E6%9E%B6%E4%B8%8E%E9%9C%80%E6%B1%82%E7%A1%AE%E7%AB%8B/</a>
+    <a href="http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" title="Activity-（九）查看流程图片">http://wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -660,8 +627,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/14/EasyUI%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89-EasyUI%E4%B8%8B%E8%BD%BD%E5%8F%8A%E5%BC%95%E5%85%A5%E9%A1%B9%E7%9B%AE%E3%80%81%E7%A4%BA%E4%BE%8B/" rel="next" title="EasyUI笔记（二）--EasyUI下载及引入项目、示例">
-                <i class="fa fa-chevron-left"></i> EasyUI笔记（二）--EasyUI下载及引入项目、示例
+              <a href="/2020/03/14/Activity-%EF%BC%88%E5%85%AB%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E5%88%A0%E9%99%A4/" rel="next" title="Activity-（八）流程定义删除">
+                <i class="fa fa-chevron-left"></i> Activity-（八）流程定义删除
               </a>
             
           </div>
@@ -669,10 +636,6 @@ window.onmouseout = function () {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/14/Activity-%EF%BC%88%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E6%9F%A5%E8%AF%A2/" rel="prev" title="Activity-（七）流程定义查询">
-                Activity-（七）流程定义查询 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -856,7 +819,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求："><span class="nav-number">1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术选型"><span class="nav-number">2.</span> <span class="nav-text">技术选型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></div>
             
 
           </div>
