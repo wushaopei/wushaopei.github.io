@@ -451,6 +451,870 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" itemprop="url">Java对象的值传递问题：传值还是传引用？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T14:29:05+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" class="leancloud_visitors" data-flag-title="Java对象的值传递问题：传值还是传引用？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言：​    在使用Java语言进行开发过程中，涉及到局部变量与方法内部作用域的数据交换与解析的过程，而这一过程，一般都是通过方法形参的方式进行java对象的传递。
+
+ 这里引出一个问题，当对象作为参数传递时，究竟传的是对象的值，还是对象的引用呢？–_–
+
+这是一个保守争议的话题。
+​    假设
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" itemprop="url">计算机网络（二）当你在浏览器地址栏输入一个URL后回车，将会发生的事情？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T22:57:17+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" class="leancloud_visitors" data-flag-title="计算机网络（二）当你在浏览器地址栏输入一个URL后回车，将会发生的事情？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ​    当我们在浏览器的地址栏输入https://www.cnblogs.com/，然后回车，回车到看到页面到底发生了什么呢？
+​    域名解析 –&gt; 发起TCP的3次握手 –&gt; 建立TCP连接后发起http请求 –&gt;  服务器响应http请求，浏览器得到html代码 –&gt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="url">Activity（四）流程设计工具创建流程图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T22:18:33+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="leancloud_visitors" data-flag-title="Activity（四）流程设计工具创建流程图">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1、引言在前面我们知道了怎么创建流程控制引擎，而Activiti 的正常使用还需要进行部署流程，而这就有一个很重要的前提。那就是创建相应的流程图，并让其能被 service 所调用从而实现流程的执行。
+2、流程图创建工具2.1 简述第一种创建方式在这里说明一点，流程图的创建可以使用两种方式，第一种是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="url">hexo搭建个人博客（一）博客框架搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="hexo搭建个人博客（一）博客框架搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前言：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛
+12实验环境:win10前期准备：安装好git和node.js（自行百度下载git和nedo.js）
+
+
+好，话不多说，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" itemprop="url">计算机网络（一）-深入理解NIO</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
+                2020-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" class="leancloud_visitors" data-flag-title="计算机网络（一）-深入理解NIO">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          目录概览：
+
+​    NIO 网络编程模型
+​    NIO 网络编程详解
+​    NIO 网络编程实战
+​    NIO 网络编程缺陷
+
+一、NIO网络编程模型1、编程模型定义NIO :  又叫Non-blocking I/O或New I/O;全新的输入输出标准库；
+​            
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -969,175 +1833,6 @@ Spring Security 的两个目标
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" itemprop="url">SpringBoot功能（一）集成JavaMail实现邮箱认证</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T11:43:22+08:00">
-                2020-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E5%8A%9F%E8%83%BD%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot功能篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" class="leancloud_visitors" data-flag-title="SpringBoot功能（一）集成JavaMail实现邮箱认证">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：spring-boot-starter，也有一些是由 第三方将框架与springboot进行定制整合后提供给我们进行快捷高效开发的，如：MyBatis-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1308,7 +2003,7 @@ Spring Security 的两个目标
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1327,7 +2022,7 @@ Spring Security 的两个目标
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="url">SpringBoot整合（六）集成timer 定时任务</a></h1>
+                <a class="post-title-link" href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" itemprop="url">SpringBoot功能（一）集成JavaMail实现邮箱认证</a></h1>
         
 
         <div class="post-meta">
@@ -1339,8 +2034,8 @@ Spring Security 的两个目标
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T15:05:21+08:00">
-                2020-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T11:43:22+08:00">
+                2020-03-08
               </time>
             
 
@@ -1362,8 +2057,8 @@ Spring Security 的两个目标
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E6%95%B4%E5%90%88%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot整合篇</span>
+                  <a href="/categories/springboot%E5%8A%9F%E8%83%BD%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">springboot功能篇</span>
                   </a>
                 </span>
 
@@ -1380,8 +2075,8 @@ Spring Security 的两个目标
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
+                <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1389,7 +2084,7 @@ Spring Security 的两个目标
 
           
           
-             <span id="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="leancloud_visitors" data-flag-title="SpringBoot整合（六）集成timer 定时任务">
+             <span id="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" class="leancloud_visitors" data-flag-title="SpringBoot功能（一）集成JavaMail实现邮箱认证">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1422,696 +2117,11 @@ Spring Security 的两个目标
       
         
           
-          1、创建具体要执行的任务类12345678910111213141516171819202122232425262728293031323334353637package com.example.poiutis.timer; import org.slf4j.Logger;import org.sl
+          在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：spring-boot-starter，也有一些是由 第三方将框架与springboot进行定制整合后提供给我们进行快捷高效开发的，如：MyBatis-
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/" itemprop="url">SpringBoot整合（五）集成Lombok 插件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T14:56:28+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E6%95%B4%E5%90%88%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot整合篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/" class="leancloud_visitors" data-flag-title="SpringBoot整合（五）集成Lombok 插件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          应用原因：为了减少代码量，为当前项目添加 **lombok** 来优雅编码
-Lombok 插件安装：a . 添加依赖:在 pom.xml 文件中添加相关依赖：
-12345678910&lt;dependencies&gt; &lt;!-- https://mvnrepository.com/arti
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%BA%94%EF%BC%89%E9%9B%86%E6%88%90Lombok-%E6%8F%92%E4%BB%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="url">SpringBoot整合（四）集成@Scheduled 定时任务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T14:39:18+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E6%95%B4%E5%90%88%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot整合篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="leancloud_visitors" data-flag-title="SpringBoot整合（四）集成@Scheduled 定时任务">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、在SpringBoot 项目中使用@Scheduled注解执行定时任务：配置pom.xml 依赖：
-一般情况下，SpringBoot 的 相关依赖，如：
-1234      &lt;dependency&gt;	&lt;groupId&gt;org.springframework.boot&lt
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%9B%9B%EF%BC%89%E9%9B%86%E6%88%90-Scheduled-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="url">SpringBoot整合（三）集成Quartz 定时任务</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T14:24:09+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E6%95%B4%E5%90%88%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot整合篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="leancloud_visitors" data-flag-title="SpringBoot整合（三）集成Quartz 定时任务">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          应用场景：
-将首页所展示的数据存入redis中并且每隔一小时更新一次数据。 
-自动结账 ，票务系统或结算系统进行定时拉取票务或消费数据
-定时加载POI生成 word、 excel 、PDF等，预先提交申请，定时器定时获取请求信息并后台加载到本地
-
-1、在 pom.xml 中 添加 Quartz 所需
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%89%EF%BC%89%E9%9B%86%E6%88%90Quartz-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/" itemprop="url">SpringBoot原理（一）自启动原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-07T11:43:52+08:00">
-                2020-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E5%8E%9F%E7%90%86%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot原理篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="SpringBoot原理（一）自启动原理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          引言​    不论在工作中，亦或是求职面试，Spring Boot 已经成为我们必知必会的技能项。除了比较老旧的政府项目或金融项目依旧使用如 SSM 或 SSH 做单体框架开发项目外，如今的各行各业基于项目的快速开发与发布、迭代更新，都在逐渐替换使用 Spring Boot 框架，而逐步摒弃配置沉重
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/#more" rel="contents">
+            <a class="btn" href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2153,7 +2163,7 @@ Lombok 插件安装：a . 添加依赖:在 pom.xml 文件中添加相关依赖�
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2203,7 +2213,7 @@ Lombok 插件安装：a . 添加依赖:在 pom.xml 文件中添加相关依赖�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2214,7 +2224,7 @@ Lombok 插件安装：a . 添加依赖:在 pom.xml 文件中添加相关依赖�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
