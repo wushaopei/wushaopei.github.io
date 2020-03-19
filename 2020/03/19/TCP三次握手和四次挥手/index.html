@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -81,19 +81,20 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="TCP三次握手所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示：     第一次握手：Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。 第二次握手：Server收到数据包后由标">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://wushaopei.com/2020/02/29/hello-world/index.html">
+<meta property="og:title" content="计算机网络（三）TCP三次握手和四次挥手">
+<meta property="og:url" content="http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="TCP三次握手所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示：     第一次握手：Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。 第二次握手：Server收到数据包后由标">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu136.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu137.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-02-29T03:11:00.000Z">
-<meta property="article:modified_time" content="2020-03-07T07:21:09.298Z">
+<meta property="article:published_time" content="2020-03-19T14:48:09.000Z">
+<meta property="article:modified_time" content="2020-03-19T14:55:47.481Z">
 <meta property="article:author" content="吴少培">
-<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu136.png">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/02/29/hello-world/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/19/TCP三次握手和四次挥手/"/>
 
 
 
 
 
-  <title>Hello World | 白夜行</title>
+  <title>计算机网络（三）TCP三次握手和四次挥手 | 白夜行</title>
   
 
 
@@ -455,7 +456,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/02/29/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -472,7 +473,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">计算机网络（三）TCP三次握手和四次挥手</h1>
         
 
         <div class="post-meta">
@@ -484,8 +485,8 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T11:11:00+08:00">
-                2020-02-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T22:48:09+08:00">
+                2020-03-19
               </time>
             
 
@@ -507,8 +508,8 @@ window.onmouseout = function () {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -525,8 +526,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/02/29/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/29/hello-world/" itemprop="commentCount"></span>
+                <a href="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -534,7 +535,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/02/29/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="leancloud_visitors" data-flag-title="计算机网络（三）TCP三次握手和四次挥手">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -570,19 +571,34 @@ window.onmouseout = function () {
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示： </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu136.png" width="100%">
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ol>
+<li>第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</li>
+<li>第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</li>
+<li>第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</li>
+</ol>
+<h3 id="为什么需要三次握手，而不是二次握手？"><a href="#为什么需要三次握手，而不是二次握手？" class="headerlink" title="为什么需要三次握手，而不是二次握手？"></a>为什么需要三次握手，而不是二次握手？</h3><p>主要是为了防止两次握手情况下已失效的连接请求报文段突然又传送到服务端,而产生的错误。举例如下:</p>
+<p>Client向Server发出TCP连接请求,第一个连接请求报文在网络的某个节点长时间滞留,Client超时后认为报文丢失,于是再重传一次连接请求,Server收到后建立连接。数据传输完毕后双方断开连接。而此时,前一个滞留在网络中的连接请求到达了服务端Server,而Server认为Client又发来连接请求,若采用的是“两次握手”,则这种情况下Server认为传输连接已经建立,并一直等待Client传输数据,而Client此时并无连接请求,因此不予理睬,这样就造成了Server的资源白白浪费了;但此时若是使用“三次握手”,则Server向Client返回确认报文段,由于是一个失效的请求,因此Client不予理睬,建立连接失败。第三次握手的作用:防止已失效的连接请求报文段突然又传送到了服务器。</p>
+<h3 id="第三次握手失败后怎么处理？"><a href="#第三次握手失败后怎么处理？" class="headerlink" title="第三次握手失败后怎么处理？"></a>第三次握手失败后怎么处理？</h3><p>如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便Client重新发送ACK包，以便Client重新发送ACK包。</p>
+<p>Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。</p>
+<p>如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</p>
+<h2 id="TCP四次挥手-Client或Server均可主动发起挥手动作"><a href="#TCP四次挥手-Client或Server均可主动发起挥手动作" class="headerlink" title="TCP四次挥手(Client或Server均可主动发起挥手动作)"></a>TCP四次挥手(Client或Server均可主动发起挥手动作)</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。整个流程如下图所示： </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu137.png" width="100%">
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<ol>
+<li>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</li>
+<li>第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</li>
+<li>第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</li>
+<li>第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</li>
+</ol>
+<h3 id="为什么连接的时候是三次握手，关闭的时候却是四次握手？"><a href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？" class="headerlink" title="为什么连接的时候是三次握手，关闭的时候却是四次握手？"></a>为什么连接的时候是三次握手，关闭的时候却是四次握手？</h3><p>Server在LISTEN状态下，收到建立连接请求的SYN报文后，可以直接把ACK和SYN放在一个报文里发送给Client。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。 </p>
+<h3 id="为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><a href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？" class="headerlink" title="为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？"></a>为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</h3><ol>
+<li>Client的最后一个ACK报文在传输的时候丢失，Server并没有接收到这个报文。这个时候，Server就会超时重传这个FIN消息，然后Client就会重新返回最后一个ACK报文，等待两个时间周期，完成关闭。如果不等待这两个时间周期，Server重传的那条消息就不会收到。Server就因为接收不到Client的信息而无法正常关闭。</li>
+<li>防止“已失效的连接请求报文段”出现在本连接中。在发送完最后一个ACK报文段后,再经过2MSL,就可以使本连接持续的时间内所产生的所有报文段,都从网络中消失。这样就可以使下一个新的连接中不会出现这种就得连接请求报文段。</li>
+</ol>
+<p><strong>声明：</strong>本文转载自： <a href="https://www.cnblogs.com/wupeixuan/p/8639469.html" target="_blank" rel="noopener">https://www.cnblogs.com/wupeixuan/p/8639469.html</a> </p>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
@@ -603,7 +619,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/02/29/hello-world/" title="Hello World">http://wushaopei.com/2020/02/29/hello-world/</a>
+    <a href="http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" title="计算机网络（三）TCP三次握手和四次挥手">http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -616,12 +632,6 @@ window.onmouseout = function () {
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/hexo/" rel="tag"> <i class="fa fa-tag"></i> hexo</a>
-          
-        </div>
-      
 
       
       
@@ -631,15 +641,15 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/" rel="next" title="Activity-（十二）历史流程操作">
+                <i class="fa fa-chevron-left"></i> Activity-（十二）历史流程操作
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/29/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%9Ahashset%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%80%BC%E4%B8%8D%E4%BC%9A%E8%A2%AB%E9%87%8D%E5%A4%8D%E7%9A%84/" rel="prev" title="面试题： hashset如何保证值不会被重复的">
-                面试题： hashset如何保证值不会被重复的 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -823,7 +833,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.4.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手"><span class="nav-number">1.</span> <span class="nav-text">TCP三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要三次握手，而不是二次握手？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要三次握手，而不是二次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三次握手失败后怎么处理？"><span class="nav-number">1.2.</span> <span class="nav-text">第三次握手失败后怎么处理？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP四次挥手-Client或Server均可主动发起挥手动作"><span class="nav-number">2.</span> <span class="nav-text">TCP四次挥手(Client或Server均可主动发起挥手动作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么连接的时候是三次握手，关闭的时候却是四次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><span class="nav-number">2.2.</span> <span class="nav-text">为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
