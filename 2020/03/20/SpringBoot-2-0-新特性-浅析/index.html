@@ -81,19 +81,27 @@
 
 
 
-<meta name="description" content="在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：spring-boot-starter，也有一些是由 第三方将框架与springboot进行定制整合后提供给我们进行快捷高效开发的，如：MyBatis-Spring-Boot-Starter。 在日常开发中，由于项目的要求以及高效开发、部署等，我们可以">
+<meta name="description" content="Spring Boot 概述Spring Boot 的角色 底层：Spring Frameword是 JAVAEE 的框架 中层：Spring Boot 是快速构建Spring框架的应用 顶层：Spring Cloud 是JAVAEE 的分布式  Spring Boot 2.0新特性SpringBoot2.0新特性： 编程语言必须依赖于java 8++(&gt;jdk1.8)，Kotlin 底层框">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot功能（二）定制 starter 启动器">
-<meta property="og:url" content="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/index.html">
+<meta property="og:title" content="SpringBoot 2.0 新特性-浅析">
+<meta property="og:url" content="http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：spring-boot-starter，也有一些是由 第三方将框架与springboot进行定制整合后提供给我们进行快捷高效开发的，如：MyBatis-Spring-Boot-Starter。 在日常开发中，由于项目的要求以及高效开发、部署等，我们可以">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu60.png">
+<meta property="og:description" content="Spring Boot 概述Spring Boot 的角色 底层：Spring Frameword是 JAVAEE 的框架 中层：Spring Boot 是快速构建Spring框架的应用 顶层：Spring Cloud 是JAVAEE 的分布式  Spring Boot 2.0新特性SpringBoot2.0新特性： 编程语言必须依赖于java 8++(&gt;jdk1.8)，Kotlin 底层框">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu142.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu143.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu144.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu145.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu146.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu147.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu148.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu149.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu150.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-03-08T03:43:22.000Z">
-<meta property="article:modified_time" content="2020-03-20T07:04:04.907Z">
+<meta property="article:published_time" content="2020-03-20T07:20:47.000Z">
+<meta property="article:modified_time" content="2020-03-20T07:42:53.418Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu60.png">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu142.png">
 
 
 
@@ -123,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/08/SpringBoot功能（二）定制 starter 启动器/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/20/SpringBoot-2-0-新特性-浅析/"/>
 
 
 
 
 
-  <title>SpringBoot功能（二）定制 starter 启动器 | 白夜行</title>
+  <title>SpringBoot 2.0 新特性-浅析 | 白夜行</title>
   
 
 
@@ -455,7 +463,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -472,7 +480,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot功能（二）定制 starter 启动器</h1>
+          <h1 class="post-title" itemprop="name headline">SpringBoot 2.0 新特性-浅析</h1>
         
 
         <div class="post-meta">
@@ -484,8 +492,8 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T11:43:22+08:00">
-                2020-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T15:20:47+08:00">
+                2020-03-20
               </time>
             
 
@@ -524,7 +532,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" class="leancloud_visitors" data-flag-title="SpringBoot功能（二）定制 starter 启动器">
+             <span id="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/" class="leancloud_visitors" data-flag-title="SpringBoot 2.0 新特性-浅析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -560,59 +568,164 @@ window.onmouseout = function () {
       
 
       
-        <p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
-<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
-<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
-<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
-<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
-<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
-<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Spring-Boot-概述"><a href="#Spring-Boot-概述" class="headerlink" title="Spring Boot 概述"></a>Spring Boot 概述</h2><h3 id="Spring-Boot-的角色"><a href="#Spring-Boot-的角色" class="headerlink" title="Spring Boot 的角色"></a>Spring Boot 的角色</h3><blockquote>
+<p>底层：Spring Frameword是 JAVAEE 的框架</p>
+<p>中层：Spring Boot 是快速构建Spring框架的应用</p>
+<p>顶层：Spring Cloud 是JAVAEE 的分布式</p>
+</blockquote>
+<h3 id="Spring-Boot-2-0新特性"><a href="#Spring-Boot-2-0新特性" class="headerlink" title="Spring Boot 2.0新特性"></a>Spring Boot 2.0新特性</h3><h4 id="SpringBoot2-0新特性："><a href="#SpringBoot2-0新特性：" class="headerlink" title="SpringBoot2.0新特性："></a><strong>SpringBoot2.0新特性：</strong></h4><ul>
+<li>编程语言必须依赖于java 8++(&gt;jdk1.8)，Kotlin</li>
+<li>底层框架：spring Framework 5.0X(必须依赖于java1.8)</li>
+<li>全新特性：Web Flux(全新编程模型，对SpringMVC的补充)</li>
+</ul>
+<h4 id="为什么选择Web-Flux？"><a href="#为什么选择Web-Flux？" class="headerlink" title="为什么选择Web Flux？"></a><strong>为什么选择Web Flux？</strong></h4><ul>
+<li>函数编程：Java8 Lambda</li>
+<li>响应编程：Reactive Streams</li>
+<li>异步编程：Servlet3.1 或 Asyc NIO</li>
+</ul>
+<h2 id="Spring-Boot-项目"><a href="#Spring-Boot-项目" class="headerlink" title="Spring Boot 项目"></a>Spring Boot 项目</h2><h3 id="Spring-Boot-环境准备"><a href="#Spring-Boot-环境准备" class="headerlink" title="Spring Boot 环境准备"></a>Spring Boot 环境准备</h3><ul>
+<li>装配 JDK （<a href="https://java.oracle.com/）" target="_blank" rel="noopener">https://java.oracle.com/）</a></li>
+<li>装配Maven （<a href="http://maven.apache.org）" target="_blank" rel="noopener">http://maven.apache.org）</a></li>
+<li>装配IDEA （<a href="http://www.jetbrains.com/idea/）" target="_blank" rel="noopener">http://www.jetbrains.com/idea/）</a></li>
+</ul>
+<h4 id="具体操作："><a href="#具体操作：" class="headerlink" title="具体操作："></a><strong>具体操作：</strong></h4><ul>
+<li>JDK：JDK1.8</li>
+<li>Maven：配置仓库地址，配置下载镜像</li>
+</ul>
+<p><strong>配置文件路径</strong>: <code>..\apache-maven-3.5.4-bin\apache-maven-3.5.4\conf\settings.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>E:/softwareData/.m2/repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span>      </span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="maven配置环境变量"><a href="#maven配置环境变量" class="headerlink" title="maven配置环境变量"></a><strong>maven配置环境变量</strong></h4><blockquote>
+<p><strong>M2_HOME</strong>   maven安装地址</p>
+<p>PATH 后加上  <strong>;%M2_HOME\bin</strong></p>
+</blockquote>
+<ul>
+<li>IDEA：<a href="http://www.jetbrains.com/idea" target="_blank" rel="noopener">http://www.jetbrains.com/idea</a> </li>
+</ul>
+<p><code>download community version（社区版）</code></p>
+<h3 id="Spring-Boot应用（一）"><a href="#Spring-Boot应用（一）" class="headerlink" title="Spring Boot应用（一）"></a>Spring Boot应用（一）</h3><h4 id="简单应用："><a href="#简单应用：" class="headerlink" title="简单应用："></a>简单应用：</h4><ul>
+<li>编写REST程序</li>
+<li>运行Spring Boot 应用</li>
+<li>使用HTTP请求工具：PostMan</li>
+</ul>
+<h4 id="场景说明："><a href="#场景说明：" class="headerlink" title="场景说明："></a>场景说明：</h4><ul>
+<li>定义用户模型，包括属性：用户ID和名称</li>
+<li>客户端发送POST请求，创建用户（Web MVC）</li>
+<li>客户端发送GET请求，获取所有用户（Web Flux）</li>
+</ul>
+<h4 id="应用创建："><a href="#应用创建：" class="headerlink" title="应用创建："></a>应用创建：</h4><h5 id="创建springboot工程-first-app-demo："><a href="#创建springboot工程-first-app-demo：" class="headerlink" title="创建springboot工程 first-app-demo："></a><strong>创建springboot工程 first-app-demo：</strong></h5><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu142.png" width="60%">
 
-<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="配置依赖："><a href="#配置依赖：" class="headerlink" title="配置依赖："></a>配置依赖：</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-webflux<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&lt;!-- lombok 简化 java 代码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>为大家解释一下这些注解的含义</p>
-<table>
-<thead>
-<tr>
-<th>@SpringBootConfiguration：</th>
-<th>代表这是一个配置类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
-<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass(Jedis.class)：</td>
-<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
-</tr>
-</tbody></table>
-<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
+<h5 id="创建用户模型-User类，并声明-id、-name-两个变量"><a href="#创建用户模型-User类，并声明-id、-name-两个变量" class="headerlink" title="创建用户模型 User类，并声明 id、 name 两个变量"></a><strong>创建用户模型 User类，并声明 id、 name 两个变量</strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
+<p>使用了Lombok优化了代码，不需要手动创建set/get方法 </p>
+<h5 id="创建UserRepository-用户仓库类，用来存储用户的信息"><a href="#创建UserRepository-用户仓库类，用来存储用户的信息" class="headerlink" title="创建UserRepository 用户仓库类，用来存储用户的信息**"></a>创建UserRepository 用户仓库类，用来存储用户的信息**</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*  &#123;@link User&#125; &#123;@link Repository&#125;</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    *  采用内存型的存储方式 -&gt;Map</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    <span class="keyword">private</span> ConcurrentMap&lt;Integer,User&gt; repository = <span class="keyword">new</span> ConcurrentHashMap&lt;Integer, User&gt;() &#123;&#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> AtomicInteger idGenera = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    *  保存用户对象</span></span><br><span class="line"><span class="comment">    *  @param user &#123;@link User&#125; 对象</span></span><br><span class="line"><span class="comment">    *  @return  如果保存成功，返回&lt;code&gt; true&lt;/code&gt;</span></span><br><span class="line"><span class="comment">    *           否则，返回&lt;code&gt;false&lt;/code&gt;</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">save</span> <span class="params">(User user)</span></span>&#123;</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">boolean</span> success = <span class="keyword">false</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">//ID 从 1 开始</span></span><br><span class="line">        Integer id = idGenera.incrementAndGet();</span><br><span class="line"> </span><br><span class="line">        user.setId(id);</span><br><span class="line">        <span class="keyword">return</span>  repository.put(id,user) == <span class="keyword">null</span>;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
-<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="创建用户接口类-UserController-java"><a href="#创建用户接口类-UserController-java" class="headerlink" title="创建用户接口类 UserController.java"></a><strong>创建用户接口类 UserController.java</strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> UserController</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2019/9/6 9:55</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserRepository userRepository;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserController</span><span class="params">(UserRepository userRepository)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userRepository = userRepository;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><strong>使用方式：</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a><strong>注意：</strong></h5><p>构造器形式的注入方式的好处：</p>
+<blockquote>
+<ol>
+<li>不能修改。</li>
+<li>可以更早的进行初始化，相对于字段性的注入方式会好一点。</li>
+<li>但实际开发中，为了节约时间，还是会用字段形式的注入方式</li>
+<li>参数由spring框架传递，@Autowired可以写也可以不写</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> UserRepository userRepository;</span><br></pre></td></tr></table></figure>
 
-<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="创建新增用户接口："><a href="#创建新增用户接口：" class="headerlink" title="创建新增用户接口："></a>创建新增用户接口：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping</span>(<span class="string">"/person/save"</span>)</span><br><span class="line">   <span class="function"><span class="keyword">public</span> User <span class="title">save</span> <span class="params">(@RequestParam String name)</span></span>&#123;</span><br><span class="line">       User user = <span class="keyword">new</span> User();</span><br><span class="line"></span><br><span class="line">       user.setName(name);</span><br><span class="line">       <span class="keyword">if</span>(userRepository.save(user))&#123;</span><br><span class="line">           System.out.println(<span class="string">"用户对象： % 保存成功 ! \n"</span> + user);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span>  user;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="测试接口"><a href="#测试接口" class="headerlink" title="测试接口"></a>测试接口</h5><p>请求接口地址：</p>
+<blockquote>
+<p>localhost:8080/person/save?name=李清照</p>
+</blockquote>
+<blockquote>
+<p>请求方式： <strong>POST 请求</strong></p>
+</blockquote>
+<h5 id="POSTMAN测试响应结果："><a href="#POSTMAN测试响应结果：" class="headerlink" title="POSTMAN测试响应结果："></a><strong>POSTMAN测试响应结果：</strong></h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"李清照"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
+<p><strong>控制台打印：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu60.png" width="60%">
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu143.png" width="60%">  
 
-<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
+
+
+<h3 id="spring-5-0的路由方法器"><a href="#spring-5-0的路由方法器" class="headerlink" title="spring 5.0的路由方法器"></a>spring 5.0的路由方法器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="构建方式、多模块和运行方式"><a href="#构建方式、多模块和运行方式" class="headerlink" title="构建方式、多模块和运行方式"></a>构建方式、多模块和运行方式</h2><h3 id="Spring-Boot-构建应用-命令行方式"><a href="#Spring-Boot-构建应用-命令行方式" class="headerlink" title="Spring Boot  构建应用-命令行方式"></a>Spring Boot  构建应用-命令行方式</h3><p><strong>spring-boot-starter-web的话@Configuration路由无法生效</strong> </p>
+<p>（1）flux内嵌Netty容器，适用于</p>
+<pre><code>@Configuration</code></pre><p>（2）web内嵌tomcat容器，适用于@RestController</p>
+<p>（3）通过Maven的方式构建Spring Boot项目</p>
+<pre><code>mvn archetype:generate -DinteractiveMode=false
+
+-DgroupId=com.imooc  -DartifactId=first-app-by-maven
+
+-Dversion=1.0.0-SNAPSHOT</code></pre><h3 id="Spring-Boot-多模块"><a href="#Spring-Boot-多模块" class="headerlink" title="Spring Boot 多模块"></a>Spring Boot 多模块</h3><blockquote>
+<p>调整主（父）工程类型（<packaging>）</p>
+<p>  创建子模块工程（<module>）</p>
+<p>   模型层：model</p>
+<p>   持久层：persistence</p>
+<p>   表示层：web</p>
+<p>子模块依赖管理（<dependencyManagement>）</p>
+</blockquote>
+<h4 id="将-first-app-demo-中的pom-xml-的打包-由-jar改成-pom"><a href="#将-first-app-demo-中的pom-xml-的打包-由-jar改成-pom" class="headerlink" title="将  first-app-demo 中的pom.xml 的打包 由 jar改成 pom"></a><strong>将  first-app-demo 中的pom.xml 的打包 由 jar改成 pom</strong></h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu144.png" width="60%">  
+
+
+
+<h4 id="右击工程名，-创建一个-artifactId-为-web-的Maven-工程"><a href="#右击工程名，-创建一个-artifactId-为-web-的Maven-工程" class="headerlink" title="*右击工程名， 创建一个 artifactId 为 web 的Maven 工程 *"></a>*<em>右击工程名， 创建一个 artifactId 为 web 的Maven 工程 *</em></h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu145.png" width="60%">  
+
+
+
+<h4 id="将原-first-app-demo-工程下java目录下的-com-包-拖到-web-工程的-java-包下，并删除原工程中的-src-目录"><a href="#将原-first-app-demo-工程下java目录下的-com-包-拖到-web-工程的-java-包下，并删除原工程中的-src-目录" class="headerlink" title="将原 first-app-demo 工程下java目录下的 com 包 拖到 web 工程的 java 包下，并删除原工程中的 src 目录"></a><strong>将原 first-app-demo 工程下java目录下的 com 包 拖到 web 工程的 java 包下，并删除原工程中的 src 目录</strong></h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu146.png" width="60%">  
+
+
+
+<h4 id="右击工程名，-创建一个-artifactId-为-persistence-的Maven-工程，并在java-目录下创建一个-路径为"><a href="#右击工程名，-创建一个-artifactId-为-persistence-的Maven-工程，并在java-目录下创建一个-路径为" class="headerlink" title="右击工程名， 创建一个 artifactId 为 persistence  的Maven 工程，并在java 目录下创建一个 路径为"></a>右击工程名， 创建一个 artifactId 为 persistence  的Maven 工程，并在java 目录下创建一个 路径为</h4><blockquote>
+<p>com.example.demo.model 的包，将web中的 User 模型类 剪切到 model工程 的 com.example.demo.model 包下</p>
+</blockquote>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu147.png" width="60%">
+
+
+
+<h4 id="persistence-中的User-找不到对应的包报错"><a href="#persistence-中的User-找不到对应的包报错" class="headerlink" title="persistence 中的User 找不到对应的包报错"></a>persistence 中的User 找不到对应的包报错</h4><p>解决方法： 修正 多模块之间的 依赖关系，将 User 所在的 model 依赖添加到persistence 的pom.xml 中，同时将 persistence  的 依赖添加到 web 的pom.xml中 </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu148.png" width="60%">
+
+
+
+<h3 id="Spring-Boot-项目打包"><a href="#Spring-Boot-项目打包" class="headerlink" title="Spring Boot 项目打包"></a>Spring Boot 项目打包</h3><h4 id="打包方式："><a href="#打包方式：" class="headerlink" title="打包方式："></a><strong>打包方式：</strong></h4><blockquote>
+<p>  构建 JAR 包</p>
+<p>  构建 WAR 包</p>
+<p>  指定 Main-Class</p>
+</blockquote>
+<h4 id="右击工程名-“copy-path”-获取工程路径，到-cmd-exe-命令行中进入该目录下，输入"><a href="#右击工程名-“copy-path”-获取工程路径，到-cmd-exe-命令行中进入该目录下，输入" class="headerlink" title="右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入"></a><strong>右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入</strong></h4><p><code>mvn -Dmaven.test.skip -U clean package</code></p>
+<h5 id="命令执行打包操作，"><a href="#命令执行打包操作，" class="headerlink" title="命令执行打包操作，"></a>命令执行打包操作，</h5><p>此时执行过程会发生报错，因为 在进行多模块拆分后，需要重新为工程指定 main.class ，也就是 springboot 的启动器入口的位置的明确。这是由于在拆分过后，在父工程下找不到main.class 。</p>
+<h5 id="解决方法："><a href="#解决方法：" class="headerlink" title="解决方法："></a>解决方法：</h5><p>将父工程的pom.xml 中的 <build></build>依赖驱动剪切到 web 子模块中 ，然后再到修改后的web子模块的 pom.xml 中的   <build></build> 中的<plugin></plugin>添加一个 <configuration/>,并为其配置一个<mainClass/>，将 springboot入口启动器的 Reference 路径复制并放入到 <mainClass>中，然后执行打包就可以了。</p>
+<p><strong>注意：</strong> 不要把<build/>放在父工程的pom.xml 下进行打包，那样会有很多错误要进行修正，而且由于主启动器迁移到 了web 中，在父工程下 添加<build/>意义不大<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu149.png" width="60%"></p>
+<h4 id="在-cmd-命令行中启动-jar-包-或者-war-包-的方式："><a href="#在-cmd-命令行中启动-jar-包-或者-war-包-的方式：" class="headerlink" title="在 cmd 命令行中启动 jar 包 或者 war 包 的方式："></a><strong>在 cmd 命令行中启动 jar 包 或者 war 包 的方式：</strong></h4><blockquote>
+<p>java -jar web-0.0.1-SNAPSHOT.jar</p>
+<p>或者</p>
+<p>java -jar web-0.0.1-SNAPSHOT.war</p>
+</blockquote>
+<p><strong>注意：</strong> 要在 当前工程打成 war 包，需要在 web 的mian 目录下创建 “webapp” 和  “WEB-INF”两个目录，并在 “WEB-INF” 目录下创建 一个 web.xml 文件 </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu150.png" width="60%">
+
+
+
+<h3 id="Spring-Boot-运行模式"><a href="#Spring-Boot-运行模式" class="headerlink" title="Spring Boot 运行模式"></a>Spring Boot 运行模式</h3><h4 id="Springboot项目的3种运行模式："><a href="#Springboot项目的3种运行模式：" class="headerlink" title="Springboot项目的3种运行模式："></a>Springboot项目的3种运行模式：</h4><p><strong>idea</strong>方式，<strong>jar/war</strong>方式，<strong>maven</strong>插件方式</p>
+<ol>
+<li>如果是在开发过程中，会使用idea方式</li>
+<li>如果是在线上的服务器上，会使用jar/war方式，作为启动脚本</li>
+<li>如果开发环境是Linux环境，会使用maven插件方式。</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mvn</span> <span class="string">spring-boot:run</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
@@ -633,7 +746,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" title="SpringBoot功能（二）定制 starter 启动器">http://wushaopei.com/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</a>
+    <a href="http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/" title="SpringBoot 2.0 新特性-浅析">http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -655,8 +768,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" rel="next" title="SpringBoot整合（六）集成timer 定时任务">
-                <i class="fa fa-chevron-left"></i> SpringBoot整合（六）集成timer 定时任务
+              <a href="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/" rel="next" title="解析 XML文件">
+                <i class="fa fa-chevron-left"></i> 解析 XML文件
               </a>
             
           </div>
@@ -664,10 +777,6 @@ window.onmouseout = function () {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/" rel="prev" title="SpringBoot功能（一）集成JavaMail实现邮箱认证">
-                SpringBoot功能（一）集成JavaMail实现邮箱认证 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -853,7 +962,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）"><span class="nav-number">1.</span> <span class="nav-text">一、新建一个maven项目spring-boot-starter-redis （启动器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><span class="nav-number">2.</span> <span class="nav-text">二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><span class="nav-number">3.</span> <span class="nav-text">三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、在此项目中resource目录下新建-application-properties-文件"><span class="nav-number">4.</span> <span class="nav-text">四、在此项目中resource目录下新建 application.properties 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Bean-注入方式："><span class="nav-number">5.</span> <span class="nav-text">五、Bean 注入方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种：自动注入，创建-依赖配置-spring-factories"><span class="nav-number">5.1.</span> <span class="nav-text">第一种：自动注入，创建 依赖配置 spring.factories</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种：手动注入，创建EnableRedis类"><span class="nav-number">5.2.</span> <span class="nav-text">第二种：手动注入，创建EnableRedis类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><span class="nav-number">6.</span> <span class="nav-text">六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、在Blog项目中，编写启动类BlogApplication"><span class="nav-number">7.</span> <span class="nav-text">七、在Blog项目中，编写启动类BlogApplication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、启动redis"><span class="nav-number">8.</span> <span class="nav-text">八、启动redis</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">8.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-概述"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-的角色"><span class="nav-number">1.1.</span> <span class="nav-text">Spring Boot 的角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-2-0新特性"><span class="nav-number">1.2.</span> <span class="nav-text">Spring Boot 2.0新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SpringBoot2-0新特性："><span class="nav-number">1.2.1.</span> <span class="nav-text">SpringBoot2.0新特性：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么选择Web-Flux？"><span class="nav-number">1.2.2.</span> <span class="nav-text">为什么选择Web Flux？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot-项目"><span class="nav-number">2.</span> <span class="nav-text">Spring Boot 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-环境准备"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Boot 环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体操作："><span class="nav-number">2.1.1.</span> <span class="nav-text">具体操作：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#maven配置环境变量"><span class="nav-number">2.1.2.</span> <span class="nav-text">maven配置环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot应用（一）"><span class="nav-number">2.2.</span> <span class="nav-text">Spring Boot应用（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单应用："><span class="nav-number">2.2.1.</span> <span class="nav-text">简单应用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景说明："><span class="nav-number">2.2.2.</span> <span class="nav-text">场景说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用创建："><span class="nav-number">2.2.3.</span> <span class="nav-text">应用创建：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建springboot工程-first-app-demo："><span class="nav-number">2.2.3.1.</span> <span class="nav-text">创建springboot工程 first-app-demo：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置依赖："><span class="nav-number">2.2.3.2.</span> <span class="nav-text">配置依赖：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建用户模型-User类，并声明-id、-name-两个变量"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">创建用户模型 User类，并声明 id、 name 两个变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建UserRepository-用户仓库类，用来存储用户的信息"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">创建UserRepository 用户仓库类，用来存储用户的信息**</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建用户接口类-UserController-java"><span class="nav-number">2.2.3.5.</span> <span class="nav-text">创建用户接口类 UserController.java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意："><span class="nav-number">2.2.3.6.</span> <span class="nav-text">注意：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建新增用户接口："><span class="nav-number">2.2.3.7.</span> <span class="nav-text">创建新增用户接口：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试接口"><span class="nav-number">2.2.3.8.</span> <span class="nav-text">测试接口</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POSTMAN测试响应结果："><span class="nav-number">2.2.3.9.</span> <span class="nav-text">POSTMAN测试响应结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-5-0的路由方法器"><span class="nav-number">2.3.</span> <span class="nav-text">spring 5.0的路由方法器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建方式、多模块和运行方式"><span class="nav-number">3.</span> <span class="nav-text">构建方式、多模块和运行方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-构建应用-命令行方式"><span class="nav-number">3.1.</span> <span class="nav-text">Spring Boot  构建应用-命令行方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-多模块"><span class="nav-number">3.2.</span> <span class="nav-text">Spring Boot 多模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将-first-app-demo-中的pom-xml-的打包-由-jar改成-pom"><span class="nav-number">3.2.1.</span> <span class="nav-text">将  first-app-demo 中的pom.xml 的打包 由 jar改成 pom</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右击工程名，-创建一个-artifactId-为-web-的Maven-工程"><span class="nav-number">3.2.2.</span> <span class="nav-text">*右击工程名， 创建一个 artifactId 为 web 的Maven 工程 *</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将原-first-app-demo-工程下java目录下的-com-包-拖到-web-工程的-java-包下，并删除原工程中的-src-目录"><span class="nav-number">3.2.3.</span> <span class="nav-text">将原 first-app-demo 工程下java目录下的 com 包 拖到 web 工程的 java 包下，并删除原工程中的 src 目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右击工程名，-创建一个-artifactId-为-persistence-的Maven-工程，并在java-目录下创建一个-路径为"><span class="nav-number">3.2.4.</span> <span class="nav-text">右击工程名， 创建一个 artifactId 为 persistence  的Maven 工程，并在java 目录下创建一个 路径为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#persistence-中的User-找不到对应的包报错"><span class="nav-number">3.2.5.</span> <span class="nav-text">persistence 中的User 找不到对应的包报错</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-项目打包"><span class="nav-number">3.3.</span> <span class="nav-text">Spring Boot 项目打包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#打包方式："><span class="nav-number">3.3.1.</span> <span class="nav-text">打包方式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#右击工程名-“copy-path”-获取工程路径，到-cmd-exe-命令行中进入该目录下，输入"><span class="nav-number">3.3.2.</span> <span class="nav-text">右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#命令执行打包操作，"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">命令执行打包操作，</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#解决方法："><span class="nav-number">3.3.2.2.</span> <span class="nav-text">解决方法：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在-cmd-命令行中启动-jar-包-或者-war-包-的方式："><span class="nav-number">3.3.3.</span> <span class="nav-text">在 cmd 命令行中启动 jar 包 或者 war 包 的方式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Boot-运行模式"><span class="nav-number">3.4.</span> <span class="nav-text">Spring Boot 运行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Springboot项目的3种运行模式："><span class="nav-number">3.4.1.</span> <span class="nav-text">Springboot项目的3种运行模式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">3.4.2.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
