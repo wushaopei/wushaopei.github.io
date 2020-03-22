@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="虚拟机,Heap堆," />
 
 
 
@@ -81,14 +81,30 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="白夜行">
-<meta property="og:url" content="http://wushaopei.com/tags/%E7%9F%A5%E8%AF%86%E6%A0%91/index.html">
+<meta name="description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述  ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Full">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM(四)GC垃圾回收">
+<meta property="og:url" content="http://wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述  ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Full">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu169.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu170.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu171.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu172.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu173.gif">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu173.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu174.gif">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu174.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu175.png">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu175.gif">
+<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="article:published_time" content="2020-03-22T05:12:42.000Z">
+<meta property="article:modified_time" content="2020-03-22T15:02:23.264Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="虚拟机">
+<meta property="article:tag" content="Heap堆">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu169.png">
 
 
 
@@ -118,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/tags/知识树/"/>
+  <link rel="canonical" href="http://wushaopei.com/2020/03/22/JVM（四）GC垃圾回收/"/>
 
 
 
 
 
-  <title>标签: 知识树 | 白夜行</title>
+  <title>JVM(四)GC垃圾回收 | 白夜行</title>
   
 
 
@@ -270,7 +286,7 @@ window.onmouseout = function () {
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 
@@ -436,54 +452,329 @@ window.onmouseout = function () {
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>知识树<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/03/12/mybatis-%E7%9F%A5%E8%AF%86%E6%A0%91%E7%9B%AE%E5%BD%95/" itemprop="url">
-              
-                <span itemprop="name">mybatis-知识树目录</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">JVM(四)GC垃圾回收</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-12T15:09:29+08:00"
-              content="2020-03-12" >
-          03-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-22T13:12:42+08:00">
+                2020-03-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/Heap%E5%A0%86/" itemprop="url" rel="index">
+                    <span itemprop="name">Heap堆</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" class="leancloud_visitors" data-flag-title="JVM(四)GC垃圾回收">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h2 id="GC是什么"><a href="#GC是什么" class="headerlink" title="GC是什么"></a><strong>GC是什么</strong></h2><p> <strong>定义： 分代收集算法</strong></p>
+<ul>
+<li>次数上频繁收集Young区</li>
+<li>次数上较少收集Old区</li>
+<li>基本不动Perm区</li>
+</ul>
+<h2 id="GC算法总体概述"><a href="#GC算法总体概述" class="headerlink" title="GC算法总体概述"></a><strong>GC算法总体概述</strong></h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu169.png" width="80%">
+
+<p>​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。</p>
+<p>​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC）</p>
+<p><font color=blue>Minor GC和Full GC的区别</font></p>
+<p>​    <font color=blue>普通GC（minor GC）</font>：只针对新生代区域的GC,指发生在新生代的垃圾收集动作，因为大多数Java对象存活率都不高，所以Minor GC非常频繁，一般回收速度也比较快。</p>
+<p>​    <font color=blue>全局GC（major GC or Full GC）</font>：指发生在老年代的垃圾收集动作，出现了Major GC，经常会伴随至少一次的Minor GC（但并不是绝对的）。Major GC的速度一般要比Minor GC慢上10倍以上</p>
+<h2 id="四种算法"><a href="#四种算法" class="headerlink" title="四种算法"></a><strong>四种算法</strong></h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu170.png" width="80%">
+
+<h4 id="Code演示："><a href="#Code演示：" class="headerlink" title="Code演示："></a><strong>Code</strong>演示：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.jvm;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**<span class="doctag">@Description</span>:-verbose:gc*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RefCountGC</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">byte</span>[] bigSize = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>];<span class="comment">//这个成员属性唯一的作用就是占用一点内存</span></span><br><span class="line">  Object instance = <span class="keyword">null</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    RefCountGC objectA = <span class="keyword">new</span> RefCountGC();</span><br><span class="line">    RefCountGC objectB = <span class="keyword">new</span> RefCountGC();</span><br><span class="line">    objectA.instance = objectB;</span><br><span class="line">    objectB.instance = objectA;</span><br><span class="line">    objectA = <span class="keyword">null</span>;</span><br><span class="line">    objectB = <span class="keyword">null</span>;</span><br><span class="line"> </span><br><span class="line">    System.gc();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法(Copying)"></a>复制算法(Copying)</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a><strong>定义</strong>：</h4><p>​    年轻代中使用的是Minor GC，这种GC算法采用的是复制算法(Copying) </p>
+<h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a><strong>原理</strong>：</h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu171.png" width="80%">
+
+<p>​    Minor GC会把Eden中的所有活的对象都移到Survivor区域中，如果Survivor区中放不下，那么剩下的活的对象就被移到Old  generation中，<font color=red>也即一旦收集后，Eden是就变成空的了。</font></p>
+<p>​    当对象在 Eden ( 包括一个 Survivor 区域，这里假设是 from 区域 ) 出生后，在经过一次 Minor GC 后，如果对象还存活，并且能够被另外一块 Survivor 区域所容纳( 上面已经假设为 from 区域，这里应为 to 区域，即 to 区域有足够的内存空间来存储 Eden 和 from 区域中存活的对象 )，则使用<font color=red>复制算法</font>将这些仍然还存活的对象复制到另外一块 Survivor 区域 ( 即 to 区域 ) 中，然后清理所使用过的 Eden 以及 Survivor 区域 ( 即 from 区域 )，并且将这些对象的年龄设置为1，以后对象在 Survivor 区每熬过一次 Minor GC，就将对象的年龄 + 1，当对象的年龄达到某个值时 ( 默认是 15 岁，通过-XX:MaxTenuringThreshold 来设定参数)，这些对象就会成为老年代。</p>
+<p><code>-XX:MaxTenuringThreshold</code> — 设置对象在新生代中存活的次数</p>
+<h4 id="动态演示："><a href="#动态演示：" class="headerlink" title="动态演示："></a><strong>动态演示：</strong></h4><p>​     在GC开始的时候，对象只会存在于Eden区和名为“From”的Survivor区，Survivor区“To”是空的。紧接着进行GC，Eden区中所有存活的对象都会被复制到“To”，而在“From”区中，仍存活的对象会根据他们的年龄值来决定去向。年龄达到一定值(年龄阈值，可以通过-XX:MaxTenuringThreshold来设置)的对象会被移动到年老代中，没有达到阈值的对象会被复制到“To”区域。<font color=red>经过这次GC后，Eden区和From区已经被清空。这个时候，“From”和“To”会交换他们的角色，也就是新的“To”就是上次GC前的“From”，新的“From”就是上次GC前的“To”。</font>不管怎样，都会保证名为To的Survivor区域是空的。Minor GC会一直重复这样的过程，直到“To”区被填满，“To”区被填满之后，会将所有对象移动到年老代中。<br><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu172.png" width="80%"></p>
+<p>​    因为Eden区对象一般存活率较低，一般的，使用两块10%的内存作为空闲和活动区间，而另外80%的内存，则是用来给新建对象分配内存的。一旦发生GC，将10%的from活动区间与另外80%中存活的eden对象转移到10%的to空闲区间，接下来，将之前90%的内存全部释放，以此类推。 </p>
+<h4 id="动态："><a href="#动态：" class="headerlink" title="动态："></a><strong>动态：</strong></h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu173.gif" width="80%">
+
+<h4 id="劣势："><a href="#劣势：" class="headerlink" title="劣势："></a>劣势：</h4><p><code>复制算法它的缺点也是相当明显的。</code></p>
+<ol>
+<li>它浪费了一半的内存，这太要命了。</li>
+<li>如果对象的存活率很高，我们可以极端一点，假设是100%存活，那么我们需要将所有对象都复制一遍，并将所有引用地址重置一遍。复制这一工作所花费的时间，在对象存活率达到一定程度时，将会变的不可忽视。 所以从以上描述不难看出，复制算法要想使用，<font color=blue>最起码对象的存活率要非常低才行</font>，而且最重要的是，我们必须要克服50%内存的浪费。</li>
+</ol>
+<h3 id="标记清除-Mark-Sweep"><a href="#标记清除-Mark-Sweep" class="headerlink" title="标记清除(Mark-Sweep)"></a>标记清除(Mark-Sweep)</h3><h4 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h4><p>​    老年代一般是由标记清除或者是标记清除与标记整理的混合实现 </p>
+<h4 id="原理：-1"><a href="#原理：-1" class="headerlink" title="原理："></a>原理：</h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu173.png" width="80%">
+
+<p>​    当堆中的有效内存空间（available memory）被耗尽的时候，就会停止整个程序（也被称为stop the world），然后进行两项工作，第一项则是标记，第二项则是清除。</p>
+<p> <strong>标记</strong>：从引用根节点开始标记所有被引用的对象。标记的过程其实就是遍历所有的GC Roots，然后将所有GC Roots可达的对象      标记为存活的对象。<br> <strong>清除：</strong>遍历整个堆，把未标记的对象清除。<br> <font color=red><strong>缺点：</strong>此算法需要暂停整个应用，会产生内存碎片</font></p>
+<p>​    用通俗的话解释一下标记/清除算法，就是当程序运行期间，若可以使用的内存被耗尽的时候，GC线程就会被触发并将程序暂停，随后将依旧存活的对象标记一遍，最终再将堆中所有没被标记的对象全部清除掉，接下来便让程序恢复运行。</p>
+<h4 id="动态演示"><a href="#动态演示" class="headerlink" title="动态演示"></a>动态演示</h4><p><strong>动图：</strong> </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu174.gif" width="80%">
+
+<ul>
+<li>回收时,对需要存活的对象进行标记</li>
+<li>回收不是绿色的对象</li>
+</ul>
+<h4 id="劣势"><a href="#劣势" class="headerlink" title="劣势"></a>劣势</h4><ol>
+<li>首先，它的缺点就是效率比较低（递归与全堆对象遍历），而且在进行GC的时候，需要停止应用程序，这会导致用户体验非常差劲</li>
+<li>其次，主要的缺点则是这种方式清理出来的空闲内存是不连续的，这点不难理解，我们的死亡对象都是随即的出现在内存的各个角落的，现在把它们清除之后，内存的布局自然会乱七八糟。而为了应付这一点，JVM就不得不维持一个内存的空闲列表，这又是一种开销。而且在分配数组对象的时候，寻找连续的内存空间会不太好找。</li>
+</ol>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu174.png" width="80%">
+
+<h3 id="标记压缩-Mark-Compact"><a href="#标记压缩-Mark-Compact" class="headerlink" title="标记压缩(Mark-Compact)"></a>标记压缩(Mark-Compact)</h3><h4 id="定义：-2"><a href="#定义：-2" class="headerlink" title="定义："></a>定义：</h4><p>​    <strong>老年代</strong>一般是由标记清除或者是标记清除与标记整理的混合实现 </p>
+<h4 id="原理：-2"><a href="#原理：-2" class="headerlink" title="原理："></a>原理：</h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu175.png" width="80%">
+
+<p>​    在整理压缩阶段，不再对标记的对像做回收，而是通过所有存活对像都向一端移动，然后直接清除边界以外的内存。<br>可以看到，标记的存活对象将会被整理，按照内存地址依次排列，而未被标记的内存会被清理掉。如此一来，当我们需要给新对象分配内存时，JVM只需要持有一个内存的起始地址即可，这比维护一个空闲列表显然少了许多开销。</p>
+<p>​    标记/整理算法不仅可以弥补标记/清除算法当中，内存区域分散的缺点，也消除了复制算法当中，内存减半的高额代价</p>
+<h4 id="劣势-1"><a href="#劣势-1" class="headerlink" title="劣势"></a>劣势</h4><p>​    <strong>标记/整理</strong>算法唯一的缺点就是效率也不高，不仅要标记所有存活对象，还要整理所有存活对象的引用地址。从效率上来说，<strong>标记/整理</strong>算法要低于复制算法。</p>
+<h3 id="标记清除压缩-Mark-Sweep-Compact"><a href="#标记清除压缩-Mark-Sweep-Compact" class="headerlink" title="标记清除压缩(Mark-Sweep-Compact)"></a>标记清除压缩(Mark-Sweep-Compact)</h3><h4 id="原理：-3"><a href="#原理：-3" class="headerlink" title="原理："></a>原理：</h4><pre><code> 1. Mark-Sweep 和 Mark-Compact的结合
+2. 和Mark-Sweep一致，当进行多次GC后才Compact.</code></pre><h4 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h4><p>​    减少移动对象的成本</p>
+<h4 id="动态演示：-1"><a href="#动态演示：-1" class="headerlink" title="动态演示："></a>动态演示：</h4><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu175.gif" width="80%">
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p><strong>内存效率：</strong>    复制算法 &gt; 标记清除算法 &gt; 标记整理算法（<font color=red>此处的效率只是简单的对比时间复杂度，实际情况不一定如此</font>）。<br>内存整齐度：复制算法 = 标记整理算法 &gt; 标记清除算法。<br>内存利用率：标记整理算法 = 标记清除算法 &gt; 复制算法。</p>
+<p>可以看出，效率上来说，复制算法是当之无愧的老大，但是却浪费了太多内存，而为了尽量兼顾上面所提到的三个指标，标记/整理算法相对来说更平滑一些，但效率上依然不尽如人意，它比复制算法多了一个标记的阶段，又比标记/清除多了一个整理内存的过程</p>
+<h2 id="难道就没有一种最优算法吗？-猜猜看，下面还有"><a href="#难道就没有一种最优算法吗？-猜猜看，下面还有" class="headerlink" title="难道就没有一种最优算法吗？ 猜猜看，下面还有"></a><strong>难道就没有一种最优算法吗？ 猜猜看，下面还有</strong></h2><p>回答：无，没有最好的算法，只有最合适的算法。==========&gt;<font color=red>分代收集算法</font>。</p>
+<p><font color=red>年轻代(Young Gen)  </font></p>
+<p><font color=red>年轻代特点是区域相对老年代较小，对像存活率低。</font></p>
+<p>这种情况复制算法的回收整理，速度是最快的。复制算法的效率只和当前存活对像大小有关，因而很适用于年轻代的回收。而复制算法内存利用率不高的问题，通过hotspot中的两个survivor的设计得到缓解。</p>
+<p><font color=red>老年代(Tenure Gen)</font></p>
+<p><font color=red>老年代的特点是区域较大，对像存活率高。</font></p>
+<p>这种情况，存在大量存活率高的对像，复制算法明显变得不合适。一般是由标记清除或者是标记清除与标记整理的混合实现。</p>
+<p><font color=red>Mark阶段的开销与存活对像的数量成正比</font>，这点上说来，对于老年代，标记清除或者标记整理有一些不符，但可以通过多核/线程利用，对并发、并行的形式提标记效率。</p>
+<p><font color=red>Sweep阶段的开销与所管理区域的大小形正相关</font>，但Sweep“就地处决”的特点，回收的过程没有对像的移动。使其相对其它有对像移动步骤的回收算法，仍然是效率最好的。但是需要解决内存碎片问题。</p>
+<p><font color=red>Compact阶段的开销与存活对像的数据成开比</font>，如上一条所描述，对于大量对像的移动是很大开销的，做为老年代的第一选择并不合适。</p>
+<p>基于上面的考虑，<font color=red>老年代一般是由标记清除或者是标记清除与标记整理的混合实现。</font>以hotspot中的CMS回收器为例，CMS是基于Mark-Sweep实现的，对于对像的回收效率很高，而对于碎片问题，CMS采用基于Mark-Compact算法的Serial Old回收器做为补偿措施：当内存回收不佳（碎片导致的Concurrent Mode Failure时），将采用Serial Old执行Full GC以达到对老年代内存的整理。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    吴少培
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" title="JVM(四)GC垃圾回收">http://wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="tag"> <i class="fa fa-tag"></i> 虚拟机</a>
+          
+            <a href="/tags/Heap%E5%A0%86/" rel="tag"> <i class="fa fa-tag"></i> Heap堆</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/" rel="next" title="JVM(三)堆参数微调优入门">
+                <i class="fa fa-chevron-left"></i> JVM(三)堆参数微调优入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -491,6 +782,15 @@ window.onmouseout = function () {
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -512,8 +812,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -583,6 +892,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GC是什么"><span class="nav-number">1.</span> <span class="nav-text">GC是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC算法总体概述"><span class="nav-number">2.</span> <span class="nav-text">GC算法总体概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四种算法"><span class="nav-number">3.</span> <span class="nav-text">四种算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数法"><span class="nav-number">3.1.</span> <span class="nav-text">引用计数法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Code演示："><span class="nav-number">3.1.1.</span> <span class="nav-text">Code演示：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制算法-Copying"><span class="nav-number">3.2.</span> <span class="nav-text">复制算法(Copying)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义："><span class="nav-number">3.2.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理："><span class="nav-number">3.2.2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态演示："><span class="nav-number">3.2.3.</span> <span class="nav-text">动态演示：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态："><span class="nav-number">3.2.4.</span> <span class="nav-text">动态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#劣势："><span class="nav-number">3.2.5.</span> <span class="nav-text">劣势：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记清除-Mark-Sweep"><span class="nav-number">3.3.</span> <span class="nav-text">标记清除(Mark-Sweep)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义：-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态演示"><span class="nav-number">3.3.3.</span> <span class="nav-text">动态演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#劣势"><span class="nav-number">3.3.4.</span> <span class="nav-text">劣势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记压缩-Mark-Compact"><span class="nav-number">3.4.</span> <span class="nav-text">标记压缩(Mark-Compact)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义：-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">定义：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#劣势-1"><span class="nav-number">3.4.3.</span> <span class="nav-text">劣势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记清除压缩-Mark-Sweep-Compact"><span class="nav-number">3.5.</span> <span class="nav-text">标记清除压缩(Mark-Sweep-Compact)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理：-3"><span class="nav-number">3.5.1.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目的："><span class="nav-number">3.5.2.</span> <span class="nav-text">目的：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态演示：-1"><span class="nav-number">3.5.3.</span> <span class="nav-text">动态演示：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#难道就没有一种最优算法吗？-猜猜看，下面还有"><span class="nav-number">5.</span> <span class="nav-text">难道就没有一种最优算法吗？ 猜猜看，下面还有</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">5.0.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -820,6 +1145,10 @@ password();
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -848,6 +1177,17 @@ password();
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
