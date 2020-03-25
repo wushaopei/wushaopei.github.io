@@ -12,6 +12,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
 <meta name="baidu-site-verification" content="s8Pe1TBqyy" />
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 
 
@@ -81,12 +91,12 @@
 
 
 
-<meta name="description" content="常用工具：  Postman : Http请求模拟工具   Apache Bench （AB） ： Apache附带的工具，测试网站性能   JMeter : Apache 组织开发的压力测试工具  代码： Semaphore 、CountDownLatch等  并发模拟——POSTMAN  创建测试接口：123456789101112131415161718&#x2F;** * @ClassName Te">
+<meta name="description" content="并发模拟——工具常用工具：  Postman : Http请求模拟工具   Apache Bench （AB） ： Apache附带的工具，测试网站性能   JMeter : Apache 组织开发的压力测试工具  代码： Semaphore 、CountDownLatch等  并发模拟——POSTMAN  创建测试接口：123456789101112131415161718&#x2F;** * @Clas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发编程（五）并发模拟-工具">
 <meta property="og:url" content="http://wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="常用工具：  Postman : Http请求模拟工具   Apache Bench （AB） ： Apache附带的工具，测试网站性能   JMeter : Apache 组织开发的压力测试工具  代码： Semaphore 、CountDownLatch等  并发模拟——POSTMAN  创建测试接口：123456789101112131415161718&#x2F;** * @ClassName Te">
+<meta property="og:description" content="并发模拟——工具常用工具：  Postman : Http请求模拟工具   Apache Bench （AB） ： Apache附带的工具，测试网站性能   JMeter : Apache 组织开发的压力测试工具  代码： Semaphore 、CountDownLatch等  并发模拟——POSTMAN  创建测试接口：123456789101112131415161718&#x2F;** * @Clas">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu190.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu191.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu192.png">
@@ -113,7 +123,7 @@
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu213.png">
 <meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-24T01:54:50.000Z">
-<meta property="article:modified_time" content="2020-03-24T02:13:00.913Z">
+<meta property="article:modified_time" content="2020-03-24T02:27:54.407Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="并发模拟">
 <meta property="article:tag" content="工具">
@@ -585,7 +595,7 @@ window.onmouseout = function () {
       
 
       
-        <h3 id="常用工具："><a href="#常用工具：" class="headerlink" title="常用工具："></a>常用工具：</h3><p>  <strong>Postman</strong> : Http请求模拟工具</p>
+        <h2 id="并发模拟——工具"><a href="#并发模拟——工具" class="headerlink" title="并发模拟——工具"></a>并发模拟——工具</h2><h3 id="常用工具："><a href="#常用工具：" class="headerlink" title="常用工具："></a>常用工具：</h3><p>  <strong>Postman</strong> : Http请求模拟工具</p>
 <p>  <strong>Apache Bench</strong> （<strong>AB</strong>） ： Apache附带的工具，测试网站性能</p>
 <p>  <strong>JMeter</strong> : Apache 组织开发的压力测试工具</p>
 <blockquote>
@@ -740,6 +750,10 @@ window.onmouseout = function () {
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/" rel="prev" title="mybatis 简介（二）ORM 模型">
+                mybatis 简介（二）ORM 模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -863,7 +877,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -874,7 +888,7 @@ window.onmouseout = function () {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -924,7 +938,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具："><span class="nav-number">1.</span> <span class="nav-text">常用工具：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发模拟——POSTMAN"><span class="nav-number">2.</span> <span class="nav-text">并发模拟——POSTMAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建测试接口："><span class="nav-number">2.1.</span> <span class="nav-text">创建测试接口：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建测试用用户组："><span class="nav-number">2.2.</span> <span class="nav-text">新建测试用用户组：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行Run-Concurrency按钮："><span class="nav-number">2.3.</span> <span class="nav-text">执行Run Concurrency按钮：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用专业并发模拟测试工具——Apache-Bench-AB"><span class="nav-number">3.</span> <span class="nav-text">使用专业并发模拟测试工具——Apache Bench(AB)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压测工具JMeter"><span class="nav-number">4.</span> <span class="nav-text">压测工具JMeter:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发模拟-代码"><span class="nav-number"></span> <span class="nav-text">并发模拟-代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CountDownLatch-计数器向下减的闭锁"><span class="nav-number">1.</span> <span class="nav-text">CountDownLatch (计数器向下减的闭锁)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semaphore"><span class="nav-number">2.</span> <span class="nav-text">Semaphore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发模拟"><span class="nav-number">3.</span> <span class="nav-text">并发模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结："><span class="nav-number">4.</span> <span class="nav-text">小结：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">4.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发模拟——工具"><span class="nav-number">1.</span> <span class="nav-text">并发模拟——工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用工具："><span class="nav-number">1.1.</span> <span class="nav-text">常用工具：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发模拟——POSTMAN"><span class="nav-number">1.2.</span> <span class="nav-text">并发模拟——POSTMAN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建测试接口："><span class="nav-number">1.2.1.</span> <span class="nav-text">创建测试接口：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建测试用用户组："><span class="nav-number">1.2.2.</span> <span class="nav-text">新建测试用用户组：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行Run-Concurrency按钮："><span class="nav-number">1.2.3.</span> <span class="nav-text">执行Run Concurrency按钮：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用专业并发模拟测试工具——Apache-Bench-AB"><span class="nav-number">1.3.</span> <span class="nav-text">使用专业并发模拟测试工具——Apache Bench(AB)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压测工具JMeter"><span class="nav-number">1.4.</span> <span class="nav-text">压测工具JMeter:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发模拟-代码"><span class="nav-number">2.</span> <span class="nav-text">并发模拟-代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CountDownLatch-计数器向下减的闭锁"><span class="nav-number">2.1.</span> <span class="nav-text">CountDownLatch (计数器向下减的闭锁)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semaphore"><span class="nav-number">2.2.</span> <span class="nav-text">Semaphore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发模拟"><span class="nav-number">2.3.</span> <span class="nav-text">并发模拟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结："><span class="nav-number">2.4.</span> <span class="nav-text">小结：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.4.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

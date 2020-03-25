@@ -1,9 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>自动化开发（二）BC代码讲解</title>
+    <url>/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="代码结构包目录图："><a href="#代码结构包目录图：" class="headerlink" title="代码结构包目录图："></a>代码结构包目录图：</h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu217.png" width="80%">
+
+<h2 id="代码分块："><a href="#代码分块：" class="headerlink" title="代码分块："></a>代码分块：</h2><ol>
+<li>api - bundle </li>
+<li>bc-common   </li>
+<li>bc-model-bundle</li>
+<li>service 层： bc-service- * - *   （包括bc-jobdata-service-bundle）</li>
+</ol>
+<p>​        bc-service 开头的是整个BC的逻辑层代码</p>
+<ol start="5">
+<li><p>bc-simulator-bundle  （修改simulator 用的）</p>
+</li>
+<li><p>jar 层</p>
+<p>包含四个模块的功能：</p>
+<pre><code>bc-workflow-bundle
+
+secsgem
+
+plcconnector
+
+rvconnector</code></pre></li>
+<li><p>日志层  </p>
+<p>osgi-logger-common</p>
+<p>osgi-loglistener</p>
+</li>
+<li><p>数据转换层</p>
+<p>oee-datatransmitter-bundle</p>
+<p>mes-datatransmitter-bundle</p>
+<p>eq-datatransmitter-bundle</p>
+<p>edc-datatransmitter-bundle</p>
+</li>
+</ol>
+<p>​        secs-datatransmitter-bundle</p>
+<p>​    fdc-datatransmitter-bundle</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu221.png" width="80%">
+
+<p>   这一层的功能模块只做数据转换处理，转换完成后；数据会先经过bc-workflow-bundle，之后再转到bc-service- * -bundle 这一层，最终会在service层中根据 bc-model-bundle 中给定的模型将数据进行包装处理成bean形式的数据后存储起来（主要在bc-service-line-bundle中处理）。</p>
+<ol start="9">
+<li><p>view 层 （客户端）</p>
+<p>client-common-bundle</p>
+<p>client-service-bundle</p>
+</li>
+</ol>
+<p>在客户端主要是通过http协议对请求进行解析，在项目中内嵌了 jetty 容器，所以项目不需要打包放到tomcat中，客户端的页面资源则需要放置到 tomcat 的webapp目录下才能访问。</p>
+<h2 id="api-bundle"><a href="#api-bundle" class="headerlink" title="api - bundle"></a>api - bundle</h2><h3 id="基本原则："><a href="#基本原则：" class="headerlink" title="基本原则："></a><strong>基本原则：</strong></h3><ol>
+<li><h4 id="Port的获取"><a href="#Port的获取" class="headerlink" title="Port的获取"></a><strong>Port的获取</strong></h4></li>
+</ol>
+<p>一条线上可能有多个设备，每个设备上有unit，每个unit或设备上有job。如果要找PORT，就直接找PortDAO。</p>
+<p>Port通过属性和EQP关联起来，****</p>
+<ol start="2">
+<li><h4 id="捞取数据"><a href="#捞取数据" class="headerlink" title="捞取数据"></a><strong>捞取数据</strong></h4></li>
+</ol>
+<p>有一部分数据是从DB捞的，有一部分是从实时运行中捞的数据；从DB上捞的数据也就是我们做的BC工具里面的数据，我们都是放在 Data 中的。</p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p> 凡是以BC * 开头的参数都是可以从Data中获取数据的，例如： BcPort、BcEquiment、BcUnit等。</p>
+<p>这些数据都是在DB里面捞的，这些数据都是在我们 set Off 之前，key 的数据库里面的数据。</p>
+<h4 id="应用："><a href="#应用：" class="headerlink" title="应用："></a>应用：</h4><p>如果要查找Port的一些属性，比如： Port属于哪个设备、哪条线，都可以通过 getData 去取里面的属性就可以了。</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu218.png" width="80%">
+
+<h3 id="数据实体对应关系"><a href="#数据实体对应关系" class="headerlink" title="数据实体对应关系"></a>数据实体对应关系</h3><p><strong>DB对应实体：</strong>  </p>
+<p>BcPort、BcEquiment 等Bc开头的实体都对应数据库的表，主要放在 com.glorysoft.bc.db.entity包</p>
+<p><strong>逻辑层对应实体：</strong><br>放置在com.glorysoft.bc.entity包下</p>
+<h3 id="接口的两种类型："><a href="#接口的两种类型：" class="headerlink" title="接口的两种类型："></a>接口的两种类型：</h3><ol>
+<li>外部系统调用BC逻辑的接口；</li>
+<li>BC逻辑处理完了给外部发送消息的接口</li>
+</ol>
+<h4 id="BC调用外部的接口包有："><a href="#BC调用外部的接口包有：" class="headerlink" title="BC调用外部的接口包有："></a>BC调用外部的接口包有：</h4><p>​    com.glorysoft.bc.api.client</p>
+<p>​    com.glorysoft.bc.api.connection</p>
+<p>​    com.glorysoft.bc.api.dao</p>
+<p>​    com.glorysoft.bc.api.eqtransmitter</p>
+<p>​    com.glorysoft.bc.api.host </p>
+<h4 id="外部调用BC接口的包："><a href="#外部调用BC接口的包：" class="headerlink" title="外部调用BC接口的包："></a>外部调用BC接口的包：</h4><p>​    com.glorysoft.bc.api.line</p>
+<p>​    com.glorysoft.bc.api.linespecial</p>
+<p>​    com.glorysoft.bc.api.linksignal</p>
+<p>​    com.glorysoft.bc.api.machine</p>
+<p>​    com.glorysoft.bc.api.material</p>
+<p>​    com.glorysoft.bc.api.mes</p>
+<p>​    com.glorysoft.bc.api.mesevent</p>
+<p>​    com.glorysoft.bc.api.port</p>
+<p>​    com.glorysoft.bc.api.service</p>
+<h2 id="bc-model-bundle"><a href="#bc-model-bundle" class="headerlink" title="bc-model-bundle"></a>bc-model-bundle</h2><p>前面我们知道了，API对实体的定义方式以及接口的开放类型。但那些主要还是为了给bc-model类做准备。</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><h4 id="EQP"><a href="#EQP" class="headerlink" title="EQP"></a>EQP</h4><hr>
+<p>比如我们在API中只定义了一个EQP的对象，那么在 model 启动之后，如果这条线配了四个设备，那么在model中就会有四个EQP的实体；这些实体存在于 model 中的Dao中；如下图：</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu219.png" width="80%">
+
+<p>在EquipmentDaoImpl 类中，存在一个 Map&lt;String,Equipment&gt;的集合类。如果一条线中存在有四个设备，那么这个 equipmentmap 中就有四个Equipment 。</p>
+<h5 id="更多的接口开放："><a href="#更多的接口开放：" class="headerlink" title="更多的接口开放："></a>更多的接口开放：</h5><p>除了map 这一个用于存放 EQP的集合容器外，该接口类中还开放了多个给外部调用的接口，比如load（） 、getEquipmentByNo()等；</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu220.png" width="80%">
+
+
+
+<h4 id="JOB"><a href="#JOB" class="headerlink" title="JOB"></a>JOB</h4><hr>
+<p>在捞取数据时，不一定就要去DB中取，也可能仅仅是从Redis中去获取。</p>
+<p>以下是 JobDaoImpl(Job对外开放的接口)的读数据的接口reload（）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 启动是读取Job Data From File</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018年1月18日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Map&lt;String, Job&gt; <span class="title">reload</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Map&lt;String, Job&gt; map = <span class="keyword">new</span> HashMap&lt;String, Job&gt;();</span><br><span class="line">	Set&lt;String&gt; keys = RedisHelper.getKeys(redisPrefix + <span class="string">"*"</span>);</span><br><span class="line">	<span class="keyword">if</span> (keys != <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> (String key : keys) &#123;</span><br><span class="line">				<span class="keyword">byte</span>[] a = RedisHelper.get(key.getBytes());</span><br><span class="line">				<span class="keyword">if</span> (a != <span class="keyword">null</span>) &#123;</span><br><span class="line">					Job job = (Job) SerializeUtils.deSerialize(a);</span><br><span class="line">					<span class="keyword">if</span> (job != <span class="keyword">null</span>) &#123;</span><br><span class="line">						<span class="keyword">if</span>(<span class="keyword">this</span>.serverName.equals(job.getLineId()) || job.isCrossLine())</span><br><span class="line">						&#123;</span><br><span class="line">							String jobNo = job.getCassetteSeqNo() + <span class="string">"_"</span> + job.getJobSeqNo();</span><br><span class="line">							map.put(jobNo, job);</span><br><span class="line">						&#125;</span><br><span class="line">					&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">						<span class="comment">// 2017-4-5 序列化失败则直接从Redis中删除</span></span><br><span class="line">						RedisHelper.del(key);</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123; </span><br><span class="line">			BCLogService.traceError(LogTag.Exception, BundleNameDefine.BC_MODEL_NAME, <span class="string">"JobDaoImpl-reload"</span>, e);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> map;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="业务场景"><a href="#业务场景" class="headerlink" title="业务场景"></a>业务场景</h3><p>当所有的卡夹都全部被取出后，checkout结束后就会抛一个状态出来，这个时候我们就会把内存里面的数据包括Redis里面的数据全部删掉，该删除操作会调用JobDaoImpl中的deleteJob（） 接口。</p>
+<p><strong>内存问题-指南</strong> </p>
+<p>如果程序存在内存的问题，要查看是否有glass的数据没有及时清除、残留而导致的。</p>
+<h3 id="Dao的封装"><a href="#Dao的封装" class="headerlink" title="Dao的封装"></a>Dao的封装</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu222.png" width="80%">
+
+<p>如图所示，所有对外提供的Dao接口类都在LineModelServiceImpl类中进行了整合，可以直接通过LineModelServiceImpl类获取所要调用的对外接口。</p>
+<h3 id="增量数据"><a href="#增量数据" class="headerlink" title="增量数据"></a>增量数据</h3><p>如果针对某一个实体要增加属性，只需要直接对相应的实体进行修改就行了。这里以Equipment为例，假如我们要给EQP添加一个状态 status ，可以直接在 Equipment.java中直接添加</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu223.png" width="80%">
+
+<p>在pojo中添加后，就不需要对 model 层进行修改了。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>自动化开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>自动化开发（一）BC架构讲解</title>
+    <url>/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="BC项目架构图"><a href="#BC项目架构图" class="headerlink" title="BC项目架构图"></a>BC项目架构图</h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu215.png" width="100%">
+
+<h2 id="整个BC项目的架构层次分别为："><a href="#整个BC项目的架构层次分别为：" class="headerlink" title="整个BC项目的架构层次分别为："></a>整个BC项目的架构层次分别为：</h2><ul>
+<li>前端      (BC Client(WEB)  、 BC Monitor(WEB))</li>
+<li>服务        ( OSGI Bundles服务)</li>
+<li>Workflow   (WorkflowRuntime，整体包括 Workflow API and Interchange Formats)</li>
+<li>接口层     (BC Server ，从Redis DB中加载产线Run货数据与 Host/EQP端交互、分发)</li>
+<li>数据源  (分为Redis DB 、Postgresql DB)</li>
+<li>硬件      (下游设备： 包含但不限于 HSMS 、EIP、Cclink板卡、设备PLC)</li>
+</ul>
+<h2 id="数据发布流程："><a href="#数据发布流程：" class="headerlink" title="数据发布流程："></a>数据发布流程：</h2><h3 id="数据的入口："><a href="#数据的入口：" class="headerlink" title="数据的入口："></a>数据的入口：</h3><p>数据从<strong>WEB</strong>层进入后，首先进入到的是<strong>Workflow</strong> </p>
+<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><ol>
+<li>怎么和workflow串起来？</li>
+<li>怎么定位到workflow的？</li>
+</ol>
+<h4 id="Workflow-的主要功能："><a href="#Workflow-的主要功能：" class="headerlink" title="Workflow 的主要功能："></a>Workflow 的主要功能：</h4><pre><code>`将各个逻辑给串起来`,Workflow 将各个服务的接口给串连起来。</code></pre><h3 id="数据的处理："><a href="#数据的处理：" class="headerlink" title="数据的处理："></a>数据的处理：</h3><p>数据从上层发布到下层，都是通过接口实现的。然后再经由接口的实现类方法将数据写入到底层的DB(Redis或Postgre)中去。</p>
+<h3 id="前后端关系："><a href="#前后端关系：" class="headerlink" title="前后端关系："></a>前后端关系：</h3><p>前后端是分离开的，后端在没有使用前端的情况下是可以独立运行的。</p>
+<h2 id="交互结构："><a href="#交互结构：" class="headerlink" title="交互结构："></a>交互结构：</h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu216.png" width="100%">
+
+<p><strong>上游</strong>： MES Simulator</p>
+<p><strong>中间层</strong>： BC </p>
+<p><strong>下游</strong>： PLC Simulator  </p>
+<p>​             HSMS Simulator</p>
+<p><strong>模拟器：</strong>  测试环境与开发环境中，MES 和PLC 都使用模拟器（Simulator）。</p>
+<p><strong>模拟规则：</strong> </p>
+<p>PLC 将数据写入到Redis数据库中，BC到Redis数据库中去取数据，从而实现对PLC硬件的模拟。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+
+]]></content>
+      <categories>
+        <category>自动化开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mybatis 简介（三）Hibernate</title>
+    <url>/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mybatis 简介（二）ORM 模型</title>
+    <url>/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/</url>
+    <content><![CDATA[<p>​    由于JDBC存在的缺陷，在实际工作中我们很少使用JDBC进行编程，于是提出了对 象关系映射(0可ect Relational Mapping,简称 0RM,或者 O/RM,或者 0/R mapping)。那 什么是ORM模型呢？ </p>
+<p>​    简单地说，ORM模型就是数据库的表和简单Java对象(Plain Ordinary Java Object, 简称POJO)的映射关系模型，它主要解决数据库数据和POJO对象的相互映射。我们通过 这层映射关系就可以简单迅速地把数据库表的数据转化为POJO,以便程序员更加容易理解 和应用Java程序，如下图所示。</p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu214.png" width="80%">
+
+<p>有了 ORM模型，在大部分情况下，程序员只需要了解 java 应用而无需对数据库相关 知识深入了解，便可以写出通俗易懂的程序。此外，ORM模型提供了统一的规则使得数据 库的数据通过配置便可轻易映射到POJO上。</p>
+<p>其好处有以下几点：</p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>体现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>易用性</td>
+<td>使用ORM做数据库的开发可以有效的减少重复SQL语句的概率，写出来的模型也更加直观、清晰。</td>
+</tr>
+<tr>
+<td>性能损耗小</td>
+<td>ORM转换成底层数据库操作指令确实会有一些开销。但从实际的情况来看，这种性能损耗很少（不足5%），只要不是对性能有严苛的要求，综合考虑开发效率、代码的阅读性，带来的好处要远远大于性能损耗，而且项目越大作用越明显。</td>
+</tr>
+<tr>
+<td>设计灵活</td>
+<td>可以轻松的写出复杂的查询。</td>
+</tr>
+<tr>
+<td>可移植性</td>
+<td>mybatis封装了底层的数据库实现，支持多个关系数据库引擎，包括流行的MySQL、PostgreSQL和SQServer。可以非常轻松的切换数据库。</td>
+</tr>
+</tbody></table>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>简介</tag>
+        <tag>mybatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>并发编程（五）并发模拟-工具</title>
     <url>/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<h3 id="常用工具："><a href="#常用工具：" class="headerlink" title="常用工具："></a>常用工具：</h3><p>  <strong>Postman</strong> : Http请求模拟工具</p>
+    <content><![CDATA[<h2 id="并发模拟——工具"><a href="#并发模拟——工具" class="headerlink" title="并发模拟——工具"></a>并发模拟——工具</h2><h3 id="常用工具："><a href="#常用工具：" class="headerlink" title="常用工具："></a>常用工具：</h3><p>  <strong>Postman</strong> : Http请求模拟工具</p>
 <p>  <strong>Apache Bench</strong> （<strong>AB</strong>） ： Apache附带的工具，测试网站性能</p>
 <p>  <strong>JMeter</strong> : Apache 组织开发的压力测试工具</p>
 <blockquote>
@@ -260,7 +456,7 @@
 <h3 id="CPU多级缓存-缓存一致性（MESI）"><a href="#CPU多级缓存-缓存一致性（MESI）" class="headerlink" title="CPU多级缓存 - 缓存一致性（MESI）"></a>CPU多级缓存 - 缓存一致性（MESI）</h3><p><strong>用于保证多个CPU cache之间缓存共享数据的一致</strong> </p>
 <img src="http://q6iswrm4f.bkt.clouddn.com/qiniu180.png" width="60%">
 
-<p>*<em>M *</em>代表 <code>modify</code>  ,表示被修改；指的是该缓存行只被缓存在该CPU的缓存中，并且是被修改过的，因此，它与主存中的数据是不一致的，该缓存中的内存需要在未来的某个时间点写回主存；这个时间点我们是允许其他CPU读取主存中相应的内存之间的值，当这里的值被写回主存之后，该缓存行的状态会变成E的状态；</p>
+<p>*<em>M *</em> 代表 <code>modify</code>  ,表示被修改；指的是该缓存行只被缓存在该CPU的缓存中，并且是被修改过的，因此，它与主存中的数据是不一致的，该缓存中的内存需要在未来的某个时间点写回主存；这个时间点我们是允许其他CPU读取主存中相应的内存之间的值，当这里的值被写回主存之后，该缓存行的状态会变成E的状态；</p>
 <p><strong>E</strong> 代表 <code>Exclusive</code>  ,表示独享状态；该状态下的缓存行只被缓存在该CPU的缓存中，它是未被修改过的，是与主存中的数据一直的，这个状态可以在任意时刻，当有其他读取该内存时，变成共享状态，即S;    同样，当CPU修改该缓存行时，该缓存行状态可以被修改为M 的状态。</p>
 <p><strong>S</strong> 代表  <code>share</code>，代表共享的意思；该状态意味着该缓存行可能被多个CPU进行缓存，并且各个缓存数据和主存数据是一致的，当有一个CPU修改该缓存行时，其他CPU所有的缓存行是可以被作废的，变成I 的状态；</p>
 <p><strong>I</strong> 代表 <code>invalid</code>，表示无效的；代表该缓存行是无效的，有其他CPU修改了该缓存行。</p>
@@ -313,11 +509,12 @@
 
 
 
-<h3 id="并发编程的基本概念"><a href="#并发编程的基本概念" class="headerlink" title="并发编程的基本概念"></a>并发编程的基本概念</h3><pre><code>**并发**：同时拥有两个或者多个线程，如果程序在单核处理器上运行，多个线程将交替地换入或换出内存，这些线程是同时 “ 存在” 的 ，每个线程都处于执行过程中的某个状态，如果运行在多核处理器上，此时，程序中的每个线程都将分配到一个处理器核上，因此可以同时运行。</code></pre><p>​     <strong>高并发：</strong>并发（High Concurrency） 是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
+<h3 id="并发编程的基本概念"><a href="#并发编程的基本概念" class="headerlink" title="并发编程的基本概念"></a>并发编程的基本概念</h3><p> <strong>并发</strong>： 同时拥有两个或者多个线程，如果程序在单核处理器上运行，多个线程将交替地换入或换出内存，这些线程是同时 “ 存在” 的 ，每个线程都处于执行过程中的某个状态，如果运行在多核处理器上，此时，程序中的每个线程都将分配到一个处理器核上，因此可以同时运行。</p>
+<p><strong>高并发：</strong> 并发（High Concurrency） 是互联网分布式系统架构设计中必须考虑的因素之一，它通常是指，通过设计保证系统能够同时并行处理很多请求。</p>
 <p><strong>并发与高并发的区别：</strong></p>
-<pre><code>**并发：** 多个线程操作相同的资源，保证线程安全，合理使用资源
-
-**高并发：**服务能同时处理很多请求，提高程序性能</code></pre><h3 id="简单的并发业务场景"><a href="#简单的并发业务场景" class="headerlink" title="简单的并发业务场景"></a>简单的并发业务场景</h3><h4 id="实现一个计数功能"><a href="#实现一个计数功能" class="headerlink" title="实现一个计数功能"></a>实现一个计数功能</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mmall.concurrency.example.count;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.mmall.concurrency.annoations.NotThreadSafe;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample1</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 创建可缓存线程池</span></span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="comment">// 使用countDownLatch计数管理并发请求数</span></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.error(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <strong>并发：</strong>  多个线程操作相同的资源，保证线程安全，合理使用资源</p>
+<p>  <strong>高并发：</strong> 服务能同时处理很多请求，提高程序性能</p>
+<h3 id="简单的并发业务场景"><a href="#简单的并发业务场景" class="headerlink" title="简单的并发业务场景"></a>简单的并发业务场景</h3><h4 id="实现一个计数功能"><a href="#实现一个计数功能" class="headerlink" title="实现一个计数功能"></a>实现一个计数功能</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mmall.concurrency.example.count;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.mmall.concurrency.annoations.NotThreadSafe;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Semaphore;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample1</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 创建可缓存线程池</span></span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="comment">// 使用countDownLatch计数管理并发请求数</span></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.error(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>执行结果：</strong> </p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">10</span>:<span class="number">00</span>:<span class="number">37.322</span> [main] INFO com.mmall.concurrency.example.count.CountExample1 - count:<span class="number">4994</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
@@ -2107,105 +2304,6 @@
       </categories>
   </entry>
   <entry>
-    <title>jdbc(二)获取数据库连接的五种方式</title>
-    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
-<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
-<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
-<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
-<ul>
-<li><span style="color:red;">jdbc:子协议:子名称</span></li>
-<li>协议：JDBC URL中的协议总是jdbc</li>
-<li>子协议：子协议用于标识一个数据库驱动程序</li>
-<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
-</ul>
-<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu92.png" width="60%">
-
-<ul>
-<li><p>对于Oracle 数据库连接，采用如下形式：</p>
-<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
-</li>
-<li><p>对于SQLServer数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
-</li>
-<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
-</li>
-</ul>
-<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
-<ol>
-<li>安装数据库 - 服务必须开启</li>
-<li>需要导入数据库的驱动</li>
-</ol>
-<p>连接数据库的<strong>五种方式</strong>： </p>
-<p><strong>代码：</strong> </p>
-<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(三)预编译-Statement、PreparedStatement</title>
     <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
     <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
@@ -2335,6 +2433,105 @@
       </categories>
       <tags>
         <tag>jdbc增删改查</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(二)获取数据库连接的五种方式</title>
+    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
+<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
+<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
+<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
+<ul>
+<li><span style="color:red;">jdbc:子协议:子名称</span></li>
+<li>协议：JDBC URL中的协议总是jdbc</li>
+<li>子协议：子协议用于标识一个数据库驱动程序</li>
+<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
+</ul>
+<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu92.png" width="60%">
+
+<ul>
+<li><p>对于Oracle 数据库连接，采用如下形式：</p>
+<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
+</li>
+<li><p>对于SQLServer数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
+</li>
+<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
+</li>
+</ul>
+<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
+<ol>
+<li>安装数据库 - 服务必须开启</li>
+<li>需要导入数据库的驱动</li>
+</ol>
+<p>连接数据库的<strong>五种方式</strong>： </p>
+<p><strong>代码：</strong> </p>
+<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
       </tags>
   </entry>
   <entry>
