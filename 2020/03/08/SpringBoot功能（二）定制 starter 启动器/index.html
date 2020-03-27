@@ -530,6 +530,16 @@ window.onmouseout = function () {
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -665,8 +675,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/07/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E5%85%AD%EF%BC%89%E9%9B%86%E6%88%90timer-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" rel="next" title="SpringBoot整合（六）集成timer 定时任务">
-                <i class="fa fa-chevron-left"></i> SpringBoot整合（六）集成timer 定时任务
+              <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/" rel="next" title="SpringBoot功能（一）集成JavaMail实现邮箱认证">
+                <i class="fa fa-chevron-left"></i> SpringBoot功能（一）集成JavaMail实现邮箱认证
               </a>
             
           </div>
@@ -675,8 +685,8 @@ window.onmouseout = function () {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/" rel="prev" title="SpringBoot功能（一）集成JavaMail实现邮箱认证">
-                SpringBoot功能（一）集成JavaMail实现邮箱认证 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/08/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%83%EF%BC%89%E6%95%B4%E5%90%88ApacheShiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6/" rel="prev" title="SpringBoot框架（一）整合ApacheShiro权限管理框架">
+                SpringBoot框架（一）整合ApacheShiro权限管理框架 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1162,6 +1172,28 @@ password();
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
+        appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
+        placeholder: '说点什么吧',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
