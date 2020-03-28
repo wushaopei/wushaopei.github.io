@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wushaopei.com/"/>
-  <updated>2020-03-27T06:23:35.303Z</updated>
+  <updated>2020-03-28T04:10:42.608Z</updated>
   <id>http://wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发编程（八）线程安全性-内存可见性-synchronized、volatile</title>
+    <link href="http://wushaopei.com/2020/03/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%81%E6%80%A7-synchronized%E3%80%81volatile/"/>
+    <id>http://wushaopei.com/2020/03/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%81%E6%80%A7-synchronized%E3%80%81volatile/</id>
+    <published>2020-03-28T03:46:18.000Z</published>
+    <updated>2020-03-28T04:10:42.608Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="内存可见性" scheme="http://wushaopei.com/tags/%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%81%E6%80%A7/"/>
+    
+      <category term="synchronized" scheme="http://wushaopei.com/tags/synchronized/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发编程（七）线程安全性-原子性-synchronized</title>
+    <link href="http://wushaopei.com/2020/03/27/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%83%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E5%8E%9F%E5%AD%90%E6%80%A7-synchronized/"/>
+    <id>http://wushaopei.com/2020/03/27/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%83%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E5%8E%9F%E5%AD%90%E6%80%A7-synchronized/</id>
+    <published>2020-03-27T08:16:20.000Z</published>
+    <updated>2020-03-27T08:28:46.706Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="synchronized" scheme="http://wushaopei.com/tags/synchronized/"/>
+    
+      <category term="原子性" scheme="http://wushaopei.com/tags/%E5%8E%9F%E5%AD%90%E6%80%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>并发编程（六）线程安全性-原子性-atomic</title>
@@ -125,9 +183,17 @@
     <link href="http://wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/"/>
     <id>http://wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/</id>
     <published>2020-03-24T02:32:52.000Z</published>
-    <updated>2020-03-24T02:51:02.943Z</updated>
+    <updated>2020-03-28T03:42:53.105Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
@@ -158,9 +224,9 @@
       <category term="mybatis" scheme="http://wushaopei.com/categories/mybatis/"/>
     
     
-      <category term="mybatis" scheme="http://wushaopei.com/tags/mybatis/"/>
-    
       <category term="简介" scheme="http://wushaopei.com/tags/%E7%AE%80%E4%BB%8B/"/>
+    
+      <category term="mybatis" scheme="http://wushaopei.com/tags/mybatis/"/>
     
   </entry>
   
@@ -459,7 +525,7 @@
     <link href="http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/"/>
     <id>http://wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/</id>
     <published>2020-03-20T07:20:47.000Z</published>
-    <updated>2020-03-20T07:51:02.810Z</updated>
+    <updated>2020-03-27T08:13:03.941Z</updated>
     
     <summary type="html">
     
@@ -500,56 +566,6 @@
     
     
       <category term="JavaWeb" scheme="http://wushaopei.com/categories/JavaWeb/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>计算机网络（三）TCP三次握手和四次挥手</title>
-    <link href="http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/"/>
-    <id>http://wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/</id>
-    <published>2020-03-19T14:48:09.000Z</published>
-    <updated>2020-03-19T14:55:47.481Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="计算机网络" scheme="http://wushaopei.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Activity-（十二）历史流程操作</title>
-    <link href="http://wushaopei.com/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/"/>
-    <id>http://wushaopei.com/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/</id>
-    <published>2020-03-19T13:45:08.000Z</published>
-    <updated>2020-03-19T13:50:08.984Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="workflower" scheme="http://wushaopei.com/categories/workflower/"/>
     
     
   </entry>
