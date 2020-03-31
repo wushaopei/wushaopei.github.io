@@ -94,29 +94,29 @@
 <meta name="description" content="引言​    不论在工作中，亦或是求职面试，Spring Boot 已经成为我们必知必会的技能项。除了比较老旧的政府项目或金融项目依旧使用如 SSM 或 SSH 做单体框架开发项目外，如今的各行各业基于项目的快速开发与发布、迭代更新，都在逐渐替换使用 Spring Boot 框架，而逐步摒弃配置沉重和效率低下的 Spring 启动框架。 ​    使用一门新的技术，立足于对它足够了解的基础上，能够">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringBoot原理（一）自启动原理">
-<meta property="og:url" content="http://wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="白夜行">
 <meta property="og:description" content="引言​    不论在工作中，亦或是求职面试，Spring Boot 已经成为我们必知必会的技能项。除了比较老旧的政府项目或金融项目依旧使用如 SSM 或 SSH 做单体框架开发项目外，如今的各行各业基于项目的快速开发与发布、迭代更新，都在逐渐替换使用 Spring Boot 框架，而逐步摒弃配置沉重和效率低下的 Spring 启动框架。 ​    使用一门新的技术，立足于对它足够了解的基础上，能够">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu29.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu30.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu31.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu32.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu33.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu34.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu35.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu36.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu37.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu38.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu39.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu40.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu41.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu42.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu29.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu30.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu31.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu32.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu33.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu34.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu35.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu36.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu37.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu38.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu39.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu40.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu41.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu42.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-07T03:43:52.000Z">
-<meta property="article:modified_time" content="2020-03-07T07:20:05.879Z">
+<meta property="article:modified_time" content="2020-03-31T15:10:19.322Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu29.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu29.png">
 
 
 
@@ -146,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/07/SpringBoot原理（一）自启动原理/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/07/SpringBoot原理（一）自启动原理/"/>
 
 
 
@@ -478,7 +478,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -606,12 +606,12 @@ window.onmouseout = function () {
 <p><strong>（1）编码更简单</strong></p>
 <pre><code>Spring 框架由于超重量级的 XML，annotation 配置，使得系统变得很笨重，难以维护
 SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现代码的开发</code></pre><p><strong>（2）配置更简单</strong></p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu29.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu29.png" width="60%">
 
 <p><strong>Xml</strong>文件使用<strong>javaConfig</strong>代替，<strong>XML</strong>中<strong>bean</strong>的创建，使用@<strong>bean</strong>代替后可以直接注入。</p>
 <p>配置文件变少很多，只保留 <strong>application</strong>.<strong>yml</strong></p>
 <p><strong>（3）部署更简单</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu30.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu30.png" width="60%">
 
 <p><strong>（4）监控更简单</strong> </p>
 <blockquote>
@@ -636,16 +636,16 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.mmall;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoApplication</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(DemoApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在这里为项目创建一个接口，并分别在接口和主启动类<strong>main</strong>方法上打断点， </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu31.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu31.png" width="60%">
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu32.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu32.png" width="60%">
 
 <p>在<strong>Spring Boot</strong> 项目中每次调用接口前都会先启动 主启动类，这里对主启动类的 <strong>main</strong> 方法入口进行分析；</p>
 <p>在上图中，主启动类启动后会进入<strong>main</strong> 方法中，并在方法中由 <strong>SpringApplication</strong> 调用 <strong>run （）</strong>方法，方法中形参传入当前类的 <strong>class</strong> 对象以及<strong>main</strong> 方法的 <strong>args</strong>  参数。</p>
 <p>下一步进入 <strong>run()</strong> 方法中，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ConfigurableApplicationContext <span class="title">run</span><span class="params">(Object source, String... args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> run(<span class="keyword">new</span> Object[]&#123;source&#125;, args);</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu33.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu33.png" width="60%">
 
 <p>由截图可知，传入的<strong>class</strong> 对象被用来创建 <strong>SpringApplication</strong>实例对象，并由生成的实例调用 <strong>run （args）</strong> 方法做启动操作，方法形参为 <strong>args</strong> 参数。</p>
 <p><strong>①创建 SpringApplication 实例，进行初始化对象：</strong></p>
@@ -656,23 +656,23 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 <p>在 该构造函数的 方法体中，对当前类进行了初始化， </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(Object[] sources)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">if</span> (sources != <span class="keyword">null</span> &amp;&amp; sources.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">         </span><br><span class="line">         <span class="keyword">this</span>.sources.addAll(Arrays.asList(sources));   <span class="comment">// 添加启动类 DemoApplication.class 到 set 集合中，以备后用</span></span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">     <span class="keyword">this</span>.webEnvironment = <span class="keyword">this</span>.deduceWebEnvironment();  <span class="comment">// 重点：检测当前是否为 web 环境      </span></span><br><span class="line">                                                     <span class="keyword">this</span>.setInitializers(<span class="keyword">this</span>.getSpringFactoriesInstances(ApplicationContextInitializer<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line">  </span><br><span class="line">     <span class="keyword">this</span>.setListeners(<span class="keyword">this</span>.getSpringFactoriesInstances(ApplicationListener<span class="class">.<span class="keyword">class</span>))</span>;</span><br><span class="line">    </span><br><span class="line">     <span class="keyword">this</span>.mainApplicationClass = <span class="keyword">this</span>.deduceMainApplicationClass();</span><br><span class="line">    </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu34.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu34.png" width="60%">
 
 <p>上图中的 webEnvironment 用于检测当前环境是否为 web 环境，如果是，则返回true.</p>
 <p>具体如何判断当前环境是否为 web 环境，后面再做分析.</p>
 <p><strong>获取初始化器：</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu35.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu35.png" width="60%">
 
 <p>在确定是否为web环境后，会根据 <strong>ApplicationContextInitializer</strong>.<strong>class</strong> 获取<strong>工厂实例参数</strong>从而<strong>设置初始化器的参数</strong>；</p>
 <p>随后 用<strong>setListeners</strong> 设置监听器</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu36.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu36.png" width="60%">
 
 <p>判断并获取主启动类的类型，通过获取jvm运行时的栈（StackTraceElement[]）中的多个加载的类，判断类中方法是否符合  <strong>main</strong> 方法 的类即为当前启动类，</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu37.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu37.png" width="60%">
 
 <p>   到这里，<strong>SpringApplication</strong> 的初始化过程就执行完毕了；此时的<strong>SpringApplication</strong> 实例的启动需要调用<strong>run()</strong> 方法来实现，下一节进行分析；</p>
 <p>以下是初始化过程的重要环节的关系图：    </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu38.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu38.png" width="60%">
 
 <p>判断当前环境是否为 web 环境： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.webEnvironment = <span class="keyword">this</span>.deduceWebEnvironment();  <span class="comment">// 重点：检测当前是否为 web 环境</span></span><br></pre></td></tr></table></figure>
@@ -684,10 +684,10 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String[] WEB_ENVIRONMENT_CLASSES = <span class="keyword">new</span> String[]&#123;<span class="string">"javax.servlet.Servlet"</span>, <span class="string">"org.springframework.web.context.ConfigurableWebApplicationContext"</span>&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>该私有变量数组有两个参数构成，第一个参数是 “javax.servlet.Servlet”，第二个参数是  “ConfigurableWebApplicationContext”，这里对“ConfigurableWebApplicationContext”进行分析： </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu39.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu39.png" width="60%">
 
 <p>进入ConfigurableWebApplicationContext类中，我们看到该类继承自 WebApplicationContext 和 ConfigurableApplicationContext两个类，再往下看：</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu40.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu40.png" width="60%">
 
 <p>我们看到 WebApplicationContext 继承自 ApplicationContext 类，而我们知道 ApplicationContext 是可以用来创建IOC 容器的对象的，如： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicatioonContext context = <span class="keyword">new</span> ClasspathXmlApplicationContext();</span><br></pre></td></tr></table></figure>
@@ -713,7 +713,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 
 <p>② <strong>SpringApplication</strong>实例的启动过程：</p>
 <p>在获取到SpringApplication的实例并初始化完成后，其启动使用<strong>run()</strong> 方法实现，</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu41.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu41.png" width="80%">
 
 <p>进入 run(args）方法中， </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ConfigurableApplicationContext <span class="title">run</span><span class="params">(String... args)</span> </span>&#123;</span><br><span class="line">        StopWatch stopWatch = <span class="keyword">new</span> StopWatch();</span><br><span class="line">        stopWatch.start();</span><br><span class="line">        ConfigurableApplicationContext context = <span class="keyword">null</span>;</span><br><span class="line">        FailureAnalyzers analyzers = <span class="keyword">null</span>;   <span class="comment">// 失败分析器</span></span><br><span class="line">        <span class="keyword">this</span>.configureHeadlessProperty();    <span class="comment">// 读取property 文件</span></span><br><span class="line">        SpringApplicationRunListeners listeners = <span class="keyword">this</span>.getRunListeners(args); <span class="comment">// 加载监听器</span></span><br><span class="line">        listeners.starting();</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ApplicationArguments applicationArguments = <span class="keyword">new</span> DefaultApplicationArguments(args);       <span class="comment">// 应用参数</span></span><br><span class="line">            ConfigurableEnvironment environment = <span class="keyword">this</span>.prepareEnvironment(listeners, applicationArguments);                   <span class="comment">// 配置文件参数（有默认值，可读取自定义配置文件），用于配置当前环境</span></span><br><span class="line">            Banner printedBanner = <span class="keyword">this</span>.printBanner(environment);   <span class="comment">// banner的自定义机制</span></span><br><span class="line">            context = <span class="keyword">this</span>.createApplicationContext();              <span class="comment">// 创建可配置的 IOC 容器</span></span><br><span class="line">            <span class="keyword">new</span> FailureAnalyzers(context);                          <span class="comment">// 传入配置好的 IOC 容器 创建失败分析器对象</span></span><br><span class="line">            <span class="keyword">this</span>.prepareContext(context, environment, listeners, applicationArguments, printedBanner);                              <span class="comment">// 传入失败分析器，环境参数、监听器、banner 配置等进行刷新</span></span><br><span class="line">            <span class="keyword">this</span>.refreshContext(context);                          <span class="comment">// 根据ioc 刷新上下文容器，并打印日志 ，此时TOMCAT / JETTY 容器会被启动</span></span><br><span class="line">            <span class="keyword">this</span>.afterRefresh(context, applicationArguments);      <span class="comment">// 映射 dispatcherServlet 等</span></span><br><span class="line">            listeners.finished(context, (Throwable)<span class="keyword">null</span>);          <span class="comment">// 监听IOC容器上下文</span></span><br><span class="line">            stopWatch.stop();                                       <span class="comment">// 计时结束</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.logStartupInfo) &#123;</span><br><span class="line">                (<span class="keyword">new</span> StartupInfoLogger(<span class="keyword">this</span>.mainApplicationClass)).logStarted(<span class="keyword">this</span>.getApplicationLog(), stopWatch);</span><br><span class="line">            &#125; <span class="comment">// 停止打印日志</span></span><br><span class="line"> </span><br><span class="line">            <span class="keyword">return</span> context;        <span class="comment">// 返回启动成功的结果，以及返回启动消耗的时间</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable var9) &#123;</span><br><span class="line">            <span class="keyword">this</span>.handleRunFailure(context, listeners, (FailureAnalyzers)analyzers, var9);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(var9);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -722,7 +722,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">StopWatch stopWatch = <span class="keyword">new</span> StopWatch();</span><br><span class="line">stopWatch.start();</span><br><span class="line">    </span><br><span class="line">。。。。</span><br><span class="line">stopWatch.stop();</span><br></pre></td></tr></table></figure>
 
 <p>这里的 stopWatch 是一个观察用的表，springboot项目启动后返回的启动花费了多少秒、分的时间就是由 stopWatch() 来提供的。 </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu42.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu42.png" width="80%">
 
 <p>总结： 在public ConfigurableApplicationContext run(String… args)方法中，最终返回的是自定义配置的IOC容器。</p>
 <p>到这里，SpringBoot 的主启动类 Main 方法的初始化和启动过程就结束了。</p>
@@ -741,7 +741,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 
 
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -761,7 +761,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/" title="SpringBoot原理（一）自启动原理">http://wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/</a>
+    <a href="http://blog.wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/" title="SpringBoot原理（一）自启动原理">http://blog.wushaopei.com/2020/03/07/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89%E8%87%AA%E5%90%AF%E5%8A%A8%E5%8E%9F%E7%90%86/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -920,7 +920,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

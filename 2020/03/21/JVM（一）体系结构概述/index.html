@@ -94,25 +94,25 @@
 <meta name="description" content="JVM 与系统、硬件  JVM是运行在操作系统之上的，它与硬件没有直接的交互  JVM 体系结构概览    类装载器ClassLoader 执行原理​    负责加载class文件，class文件在文件开头有特定的文件标示，并且ClassLoader只负责class文件的加载，至于它是否可以运行，则由Execution Engine决定      类装载器ClassLoader装载流程（双亲委派）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM（一）体系结构概述">
-<meta property="og:url" content="http://wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="白夜行">
 <meta property="og:description" content="JVM 与系统、硬件  JVM是运行在操作系统之上的，它与硬件没有直接的交互  JVM 体系结构概览    类装载器ClassLoader 执行原理​    负责加载class文件，class文件在文件开头有特定的文件标示，并且ClassLoader只负责class文件的加载，至于它是否可以运行，则由Execution Engine决定      类装载器ClassLoader装载流程（双亲委派）">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu151.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu152.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu153.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu154.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu155.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu156.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu157.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu158.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu151.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu152.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu153.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu154.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu155.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu156.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu157.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu158.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-21T12:00:12.000Z">
-<meta property="article:modified_time" content="2020-03-22T02:24:34.388Z">
+<meta property="article:modified_time" content="2020-03-31T14:59:44.841Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="虚拟机">
 <meta property="article:tag" content="内存回收机制">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu151.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu151.png">
 
 
 
@@ -142,7 +142,7 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/21/JVM（一）体系结构概述/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/21/JVM（一）体系结构概述/"/>
 
 
 
@@ -474,7 +474,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -600,19 +600,19 @@ window.onmouseout = function () {
       
 
       
-        <h2 id="JVM-与系统、硬件"><a href="#JVM-与系统、硬件" class="headerlink" title="JVM 与系统、硬件"></a><strong>JVM 与系统、硬件</strong></h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu151.png" width="80%">
+        <h2 id="JVM-与系统、硬件"><a href="#JVM-与系统、硬件" class="headerlink" title="JVM 与系统、硬件"></a><strong>JVM 与系统、硬件</strong></h2><img src="http://photo.wushaopei.com/qiniu151.png" width="80%">
 
 <p><strong>JVM</strong>是运行在操作系统之上的，它与硬件没有直接的交互 </p>
-<h2 id="JVM-体系结构概览"><a href="#JVM-体系结构概览" class="headerlink" title="JVM 体系结构概览"></a><strong>JVM 体系结构概览</strong></h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu152.png" width="80%">
+<h2 id="JVM-体系结构概览"><a href="#JVM-体系结构概览" class="headerlink" title="JVM 体系结构概览"></a><strong>JVM 体系结构概览</strong></h2><img src="http://photo.wushaopei.com/qiniu152.png" width="80%">
 
 
 
 <h2 id="类装载器ClassLoader-执行原理"><a href="#类装载器ClassLoader-执行原理" class="headerlink" title="类装载器ClassLoader 执行原理"></a>类装载器ClassLoader 执行原理</h2><p>​    负责加载<strong>class</strong>文件，class文件在文件开头有特定的文件标示，并且<strong>ClassLoader</strong>只负责<strong>class</strong>文件的加载，至于它是否可以运行，则由<strong>Execution Engine</strong>决定 </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu153.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu153.png" width="80%">
 
 
 
-<h2 id="类装载器ClassLoader装载流程（双亲委派）"><a href="#类装载器ClassLoader装载流程（双亲委派）" class="headerlink" title="类装载器ClassLoader装载流程（双亲委派）"></a><strong>类装载器ClassLoader装载流程（双亲委派）</strong></h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu154.png" width="80%">
+<h2 id="类装载器ClassLoader装载流程（双亲委派）"><a href="#类装载器ClassLoader装载流程（双亲委派）" class="headerlink" title="类装载器ClassLoader装载流程（双亲委派）"></a><strong>类装载器ClassLoader装载流程（双亲委派）</strong></h2><img src="http://photo.wushaopei.com/qiniu154.png" width="80%">
 
 <table>
 <thead>
@@ -639,7 +639,7 @@ window.onmouseout = function () {
 </tr>
 </tbody></table>
 <p>注：<strong>Execution Engine</strong>执行引擎负责解释命令，提交操作系统执行。</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu155.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu155.png" width="80%">
 
 
 
@@ -662,7 +662,7 @@ window.onmouseout = function () {
 <h3 id="栈运行原理"><a href="#栈运行原理" class="headerlink" title="栈运行原理"></a>栈运行原理</h3><p>栈中的数据都是以<strong>栈帧</strong>（Stack Frame）的格式存在，栈帧是一个内存区块，是一个数据集，是一个有关方法(Method)和运行期数据的数据集，当一个方法A被调用时就产生了一个栈帧 F1，并被压入到栈中，<br>A方法又调用了 B方法，于是产生栈帧 F2 也被压入栈，<br>B方法又调用了 C方法，于是产生栈帧 F3 也被压入栈，<br>……<br>执行完毕后，先弹出F3栈帧，再弹出F2栈帧，再弹出F1栈帧……</p>
 <p>遵循“先进后出”/“后进先出”原则。</p>
 <p><font color=red>每个方法执行的同时都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接、方法出口等信息</font>，每一个方法从调用直至执行完毕的过程，就对应着一个栈帧在虚拟机中入栈到出栈的过程。<font color=red>栈的大小和具体JVM的实现有关，通常在256K~756K之间</font>。</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu156.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu156.png" width="80%">
 
 <p>图示在一个栈中有两个栈帧：</p>
 <ul>
@@ -672,11 +672,11 @@ window.onmouseout = function () {
 <li>线程结束，栈释放。</li>
 </ul>
 <p>每执行一个方法都会产生一个栈帧，保存到栈(后进先出)的<font color=red>顶部，顶部栈就是当前的方法，该方法执行完毕 后会自动将此栈帧出栈</font>。</p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu157.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu157.png" width="80%">
 
 
 
-<h3 id="栈-堆-方法区的交互关系"><a href="#栈-堆-方法区的交互关系" class="headerlink" title="栈+堆+方法区的交互关系"></a><strong>栈+堆+方法区的交互关系</strong></h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu158.png" width="80%">
+<h3 id="栈-堆-方法区的交互关系"><a href="#栈-堆-方法区的交互关系" class="headerlink" title="栈+堆+方法区的交互关系"></a><strong>栈+堆+方法区的交互关系</strong></h3><img src="http://photo.wushaopei.com/qiniu158.png" width="80%">
 
 <p><strong>HotSpot</strong>是使用<font color=red><strong>指针的方式</strong>来访问对象</font>：<br>         Java堆中会存放访问类元数据的地址，reference存储的就直接是对象的地址</p>
 <h3 id="三种JVM："><a href="#三种JVM：" class="headerlink" title="三种JVM："></a>三种JVM：</h3><ul>
@@ -684,7 +684,7 @@ window.onmouseout = function () {
 <li>BEA公司的JRockit</li>
 <li>IBM公司的J9 VM</li>
 </ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -704,7 +704,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" title="JVM（一）体系结构概述">http://wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/</a>
+    <a href="http://blog.wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" title="JVM（一）体系结构概述">http://blog.wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -871,7 +871,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

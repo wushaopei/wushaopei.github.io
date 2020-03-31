@@ -94,17 +94,17 @@
 <meta name="description" content="BC项目架构图  整个BC项目的架构层次分别为： 前端      (BC Client(WEB)  、 BC Monitor(WEB)) 服务        ( OSGI Bundles服务) Workflow   (WorkflowRuntime，整体包括 Workflow API and Interchange Formats) 接口层     (BC Server ，从Redis DB中加载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动化开发（一）BC架构讲解">
-<meta property="og:url" content="http://wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/index.html">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/index.html">
 <meta property="og:site_name" content="白夜行">
 <meta property="og:description" content="BC项目架构图  整个BC项目的架构层次分别为： 前端      (BC Client(WEB)  、 BC Monitor(WEB)) 服务        ( OSGI Bundles服务) Workflow   (WorkflowRuntime，整体包括 Workflow API and Interchange Formats) 接口层     (BC Server ，从Redis DB中加载">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu215.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu216.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu215.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu216.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-24T07:25:40.000Z">
-<meta property="article:modified_time" content="2020-03-25T13:03:25.561Z">
+<meta property="article:modified_time" content="2020-03-31T14:59:32.959Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu215.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu215.png">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/24/自动化开发（一）BC架构讲解/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/24/自动化开发（一）BC架构讲解/"/>
 
 
 
@@ -466,7 +466,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -581,7 +581,7 @@ window.onmouseout = function () {
       
 
       
-        <h2 id="BC项目架构图"><a href="#BC项目架构图" class="headerlink" title="BC项目架构图"></a>BC项目架构图</h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu215.png" width="100%">
+        <h2 id="BC项目架构图"><a href="#BC项目架构图" class="headerlink" title="BC项目架构图"></a>BC项目架构图</h2><img src="http://photo.wushaopei.com/qiniu215.png" width="100%">
 
 <h2 id="整个BC项目的架构层次分别为："><a href="#整个BC项目的架构层次分别为：" class="headerlink" title="整个BC项目的架构层次分别为："></a>整个BC项目的架构层次分别为：</h2><ul>
 <li>前端      (BC Client(WEB)  、 BC Monitor(WEB))</li>
@@ -598,7 +598,7 @@ window.onmouseout = function () {
 </ol>
 <h4 id="Workflow-的主要功能："><a href="#Workflow-的主要功能：" class="headerlink" title="Workflow 的主要功能："></a>Workflow 的主要功能：</h4><pre><code>`将各个逻辑给串起来`,Workflow 将各个服务的接口给串连起来。</code></pre><h3 id="数据的处理："><a href="#数据的处理：" class="headerlink" title="数据的处理："></a>数据的处理：</h3><p>数据从上层发布到下层，都是通过接口实现的。然后再经由接口的实现类方法将数据写入到底层的DB(Redis或Postgre)中去。</p>
 <h3 id="前后端关系："><a href="#前后端关系：" class="headerlink" title="前后端关系："></a>前后端关系：</h3><p>前后端是分离开的，后端在没有使用前端的情况下是可以独立运行的。</p>
-<h2 id="交互结构："><a href="#交互结构：" class="headerlink" title="交互结构："></a>交互结构：</h2><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu216.png" width="100%">
+<h2 id="交互结构："><a href="#交互结构：" class="headerlink" title="交互结构："></a>交互结构：</h2><img src="http://photo.wushaopei.com/qiniu216.png" width="100%">
 
 <p><strong>上游</strong>： MES Simulator</p>
 <p><strong>中间层</strong>： BC </p>
@@ -607,7 +607,7 @@ window.onmouseout = function () {
 <p><strong>模拟器：</strong>  测试环境与开发环境中，MES 和PLC 都使用模拟器（Simulator）。</p>
 <p><strong>模拟规则：</strong> </p>
 <p>PLC 将数据写入到Redis数据库中，BC到Redis数据库中去取数据，从而实现对PLC硬件的模拟。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
 
 
       
@@ -629,7 +629,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/" title="自动化开发（一）BC架构讲解">http://wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/</a>
+    <a href="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/" title="自动化开发（一）BC架构讲解">http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -788,7 +788,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

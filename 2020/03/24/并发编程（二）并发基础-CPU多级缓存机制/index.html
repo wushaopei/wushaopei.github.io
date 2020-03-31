@@ -94,22 +94,22 @@
 <meta name="description" content="CPU多级缓存-缓存一致性CPU多级缓存  ​    上图展示的是CPU高级缓存的配置，数据的读取和存储都经过高速缓存，CPU核心与高速缓存之间有一条特殊的快速通道；在这个简化的图中，主存和缓存都连接在系统总线上，这条总线同时还用于其他组件的通信。    ​    高速缓存出现后不久，系统变得更加复杂，高速缓存和主存之间的速度差异被拉大，直到加入L1d（又叫一级缓存）的缓存，新加入的这一个缓存比高">
 <meta property="og:type" content="article">
 <meta property="og:title" content="并发编程（二）并发基础-CPU多级缓存机制">
-<meta property="og:url" content="http://wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="白夜行">
 <meta property="og:description" content="CPU多级缓存-缓存一致性CPU多级缓存  ​    上图展示的是CPU高级缓存的配置，数据的读取和存储都经过高速缓存，CPU核心与高速缓存之间有一条特殊的快速通道；在这个简化的图中，主存和缓存都连接在系统总线上，这条总线同时还用于其他组件的通信。    ​    高速缓存出现后不久，系统变得更加复杂，高速缓存和主存之间的速度差异被拉大，直到加入L1d（又叫一级缓存）的缓存，新加入的这一个缓存比高">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu178.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu179.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu180.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu181.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu182.png">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu178.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu179.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu180.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu181.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu182.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-24T01:14:36.000Z">
-<meta property="article:modified_time" content="2020-03-24T02:45:07.193Z">
+<meta property="article:modified_time" content="2020-03-31T15:02:06.865Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="并发编程">
 <meta property="article:tag" content="CPU多级缓存">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/qiniu178.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu178.png">
 
 
 
@@ -139,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/24/并发编程（二）并发基础-CPU多级缓存机制/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/24/并发编程（二）并发基础-CPU多级缓存机制/"/>
 
 
 
@@ -471,7 +471,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -586,10 +586,10 @@ window.onmouseout = function () {
       
 
       
-        <h2 id="CPU多级缓存-缓存一致性"><a href="#CPU多级缓存-缓存一致性" class="headerlink" title="CPU多级缓存-缓存一致性"></a>CPU多级缓存-缓存一致性</h2><h3 id="CPU多级缓存"><a href="#CPU多级缓存" class="headerlink" title="CPU多级缓存"></a>CPU多级缓存</h3><img src="http://q6iswrm4f.bkt.clouddn.com/qiniu178.png" width="60%">
+        <h2 id="CPU多级缓存-缓存一致性"><a href="#CPU多级缓存-缓存一致性" class="headerlink" title="CPU多级缓存-缓存一致性"></a>CPU多级缓存-缓存一致性</h2><h3 id="CPU多级缓存"><a href="#CPU多级缓存" class="headerlink" title="CPU多级缓存"></a>CPU多级缓存</h3><img src="http://photo.wushaopei.com/qiniu178.png" width="60%">
 
 <p>​    上图展示的是CPU高级缓存的配置，数据的读取和存储都经过高速缓存，CPU核心与高速缓存之间有一条特殊的快速通道；在这个简化的图中，主存和缓存都连接在系统总线上，这条总线同时还用于其他组件的通信。 </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu179.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu179.png" width="60%">
 
 <p>​    高速缓存出现后不久，系统变得更加复杂，高速缓存和主存之间的速度差异被拉大，直到加入L1d（又叫一级缓存）的缓存，新加入的这一个缓存比高速缓存更大，但是更慢，由于加大一级缓存的做法从经济上是行不通的。所以有了二级缓存。甚至，现在有些系统有了三级缓存。 </p>
 <h3 id="CPU-cache"><a href="#CPU-cache" class="headerlink" title="CPU cache:"></a>CPU cache:</h3><h4 id="为什么需要CPU-cache？"><a href="#为什么需要CPU-cache？" class="headerlink" title="为什么需要CPU cache？"></a>为什么需要CPU cache？</h4><p>​    CPU的频率太快了，快到主存跟不上，这样在处理器时钟周期内，CPU常常需要等待主存，浪费资源。所以cache的出现，是为了缓解CPU和内存之间速度的不匹配问题（结构： CPU -&gt; cache - &gt;memory ）. </p>
@@ -598,7 +598,7 @@ window.onmouseout = function () {
 <p> 2）空间局部性： 如果某个数据被访问，那么与它相邻的数据很快也可能被访问；</p>
 </blockquote>
 <h3 id="CPU多级缓存-缓存一致性（MESI）"><a href="#CPU多级缓存-缓存一致性（MESI）" class="headerlink" title="CPU多级缓存 - 缓存一致性（MESI）"></a>CPU多级缓存 - 缓存一致性（MESI）</h3><p><strong>用于保证多个CPU cache之间缓存共享数据的一致</strong> </p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu180.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu180.png" width="60%">
 
 <p>*<em>M *</em> 代表 <code>modify</code>  ,表示被修改；指的是该缓存行只被缓存在该CPU的缓存中，并且是被修改过的，因此，它与主存中的数据是不一致的，该缓存中的内存需要在未来的某个时间点写回主存；这个时间点我们是允许其他CPU读取主存中相应的内存之间的值，当这里的值被写回主存之后，该缓存行的状态会变成E的状态；</p>
 <p><strong>E</strong> 代表 <code>Exclusive</code>  ,表示独享状态；该状态下的缓存行只被缓存在该CPU的缓存中，它是未被修改过的，是与主存中的数据一直的，这个状态可以在任意时刻，当有其他读取该内存时，变成共享状态，即S;    同样，当CPU修改该缓存行时，该缓存行状态可以被修改为M 的状态。</p>
@@ -610,19 +610,19 @@ window.onmouseout = function () {
 <p><strong>remote read</strong>   代表将内存中的数据读取过来，</p>
 <p><strong>remote write</strong> 代表将数据写回到主存中</p>
 <p><strong>状态转换示意图：</strong></p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu181.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu181.png" width="60%">
 
 
 
 <h2 id="CPU多级缓存-乱序执行优化"><a href="#CPU多级缓存-乱序执行优化" class="headerlink" title="CPU多级缓存 - 乱序执行优化"></a>CPU多级缓存 - 乱序执行优化</h2><h3 id="意义："><a href="#意义：" class="headerlink" title="意义："></a>意义：</h3><p>​    <code>处理器为提高运算速度而做出违背代码原有顺序的优化</code></p>
-<img src="http://q6iswrm4f.bkt.clouddn.com/qiniu182.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu182.png" width="60%">
 
 <p><strong>a :</strong> 数据写入顺序，先写入a=10，再写入b=200,最后计算a*b的值</p>
 <p><strong>b :</strong> 乱序执行的执行顺序：先执行b=200,再执行a=10，单核情况下不做任何影响。</p>
 <blockquote>
 <p> <font color=red>多核心</font>的情况下，可能由于乱序而导致各个核所写入数据的最终计算结果与预想的结果不一致。 </p>
 </blockquote>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -642,7 +642,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="并发编程（二）并发基础-CPU多级缓存机制">http://wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</a>
+    <a href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" title="并发编程（二）并发基础-CPU多级缓存机制">http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -809,7 +809,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

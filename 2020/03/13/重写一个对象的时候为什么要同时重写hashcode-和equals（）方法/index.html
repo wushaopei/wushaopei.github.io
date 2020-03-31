@@ -94,15 +94,15 @@
 <meta name="description" content="​    在新创建的类不重写hashCode()和equals() 方法时，默认使用 java 提供的 java.lang.Object 下的 hashCode()和equals() 方法。   注意：Object 的public boolean equals(Object obj)方法主要是对非空对象的引用地址的判断相同才返回true，而非对象本身的字符串内容或数值是否相同。   ​    简而">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重写一个对象的时候为什么要同时重写hashcode()和equals（）方法">
-<meta property="og:url" content="http://wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="白夜行">
 <meta property="og:description" content="​    在新创建的类不重写hashCode()和equals() 方法时，默认使用 java 提供的 java.lang.Object 下的 hashCode()和equals() 方法。   注意：Object 的public boolean equals(Object obj)方法主要是对非空对象的引用地址的判断相同才返回true，而非对象本身的字符串内容或数值是否相同。   ​    简而">
-<meta property="og:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-13T06:57:23.000Z">
-<meta property="article:modified_time" content="2020-03-13T07:11:58.798Z">
+<meta property="article:modified_time" content="2020-03-31T15:05:31.649Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg">
+<meta name="twitter:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://wushaopei.com/2020/03/13/重写一个对象的时候为什么要同时重写hashcode-和equals（）方法/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/13/重写一个对象的时候为什么要同时重写hashcode-和equals（）方法/"/>
 
 
 
@@ -464,7 +464,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -600,7 +600,7 @@ window.onmouseout = function () {
 <p><strong>不重写导致的结果案例：</strong></p>
 <p>​    在不重写<strong>hashcode</strong>的情况下，如果 <code>hashset</code>存储两个引用不同但值相同的对象，此时hashcode返回false，认为后者与前者不重复，则会重新 newNode() 创建一个新节点将重复的值添加到集合中，意味着不可重复的单列集合中出现了两个值一样的对象，导致混淆。（假设没有重写）</p>
 <p>所以，需要重写 hashcode()方法。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://q6iswrm4f.bkt.clouddn.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -620,7 +620,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/" title="重写一个对象的时候为什么要同时重写hashcode()和equals（）方法">http://wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/</a>
+    <a href="http://blog.wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/" title="重写一个对象的时候为什么要同时重写hashcode()和equals（）方法">http://blog.wushaopei.com/2020/03/13/%E9%87%8D%E5%86%99%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%97%B6%E5%80%99%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E9%87%8D%E5%86%99hashcode-%E5%92%8Cequals%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -779,7 +779,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
