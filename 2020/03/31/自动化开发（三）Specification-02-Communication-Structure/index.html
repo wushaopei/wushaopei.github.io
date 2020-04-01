@@ -91,16 +91,19 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="Communication Structure - 通讯结构T6BC架构概述Data Communication设备通过CC-Link IE的链路信号与上下游设备进行连接 链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连接，发送&#x2F;接收CIM数据 BC与设备通信的基础是三菱PLC。   ​">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动化开发（三）Specification-02.Communication Structure">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="Communication Structure - 通讯结构T6BC架构概述Data Communication设备通过CC-Link IE的链路信号与上下游设备进行连接 链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连接，发送&#x2F;接收CIM数据 BC与设备通信的基础是三菱PLC。   ​">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu259.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu260.png">
 <meta property="article:published_time" content="2020-03-31T14:46:36.000Z">
-<meta property="article:modified_time" content="2020-03-31T16:19:36.001Z">
+<meta property="article:modified_time" content="2020-04-01T15:04:57.820Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu259.png">
 
 
 
@@ -555,7 +558,26 @@ window.onmouseout = function () {
       
 
       
-        
+        <h2 id="Communication-Structure-通讯结构"><a href="#Communication-Structure-通讯结构" class="headerlink" title="Communication Structure - 通讯结构"></a>Communication Structure - 通讯结构</h2><h3 id="T6BC架构概述"><a href="#T6BC架构概述" class="headerlink" title="T6BC架构概述"></a>T6BC架构概述</h3><h3 id="Data-Communication"><a href="#Data-Communication" class="headerlink" title="Data Communication"></a>Data Communication</h3><p>设备通过CC-Link IE的链路信号与上下游设备进行连接</p>
+<p>链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连接，发送/接收CIM数据</p>
+<p><code>BC与设备通信的基础是三菱PLC。</code></p>
+<img src="http://photo.wushaopei.com/qiniu259.png" width="80%">
+
+<p>​                            图02内联通信结构 </p>
+<p>​    如图所示，<strong>最上层</strong> 是MES，在该架构中所有的数据都需要回复到MES那边的。MES 与 BC 之间是通过Tib/RV 去实现数据传输的。</p>
+<p>​    <strong>中间层</strong>的BC，也就L1是使用板卡。 </p>
+<p>​    <strong>在下层</strong> 的PLC网络中，存在着一个主站，BC（L1）默认是作为PLC网络中的L1存在的。</p>
+<p>​    每一个具体的设备（机台）可以看作是一个PLC，PLC是从L2开始进行连接和起始计算的，在一个PLC网络中，抛去作为主站的BC（L1）之后，可能存在数量不等的多台PLC机台，具体有几个PLC机台要根据每条线自身的具体情况而定。</p>
+<p>​    <strong>最底层</strong> 是机台的示意图，其顺序根据PLC的L{num}从左往右递增而呈现从左往右看的规则。</p>
+<p>​    对应PLC（L2）的机台是loader(装载板卡) ，而对应最右边的PLC(Ln)则是unLoader。</p>
+<h4 id="Loader与unLoader"><a href="#Loader与unLoader" class="headerlink" title="Loader与unLoader"></a>Loader与unLoader</h4><p>Loader与unLoader一般通过连接Stock或者其他搬运的设备（robot等）来将Cassette或者Glass搬上或搬下机台。</p>
+<h4 id="机台间的通讯"><a href="#机台间的通讯" class="headerlink" title="机台间的通讯"></a>机台间的通讯</h4><p>每一台机台之间通过光纤进行连接和数据交互，数据使用cclink IE导入到BC。</p>
+<h3 id="Inline-CC-Link-IE-Concept"><a href="#Inline-CC-Link-IE-Concept" class="headerlink" title="Inline CC-Link IE Concept"></a>Inline CC-Link IE Concept</h3><h4 id="主机台与子机台"><a href="#主机台与子机台" class="headerlink" title="主机台与子机台"></a>主机台与子机台</h4><img src="http://photo.wushaopei.com/qiniu260.png" width="80%">
+
+<p>每个机台都会划分出一个或一个以上的unit，每个unit可以理解为是子机台。每个子机台与PLC网络不会产生直接关系，每个子机台只对自己的主机台负责，这从另一个层面上可以理解为每个主机台与子机台之间构成了以主机台为主导的子机台网络。</p>
+<p>每个unit子机台都会把所处理的数据提交给主机台，并由主机台直接或经过处理后再与PLC网络、BC进行交互。</p>
+<p>  <code>EQP需要监控CCLINK IE光纤网络连接状态。如果EQP检测到任何错误发生，EQP需要火灾报警</code></p>
+
       
     </div>
     
@@ -705,8 +727,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -776,6 +807,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Communication-Structure-通讯结构"><span class="nav-number">1.</span> <span class="nav-text">Communication Structure - 通讯结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T6BC架构概述"><span class="nav-number">1.1.</span> <span class="nav-text">T6BC架构概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Communication"><span class="nav-number">1.2.</span> <span class="nav-text">Data Communication</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Loader与unLoader"><span class="nav-number">1.2.1.</span> <span class="nav-text">Loader与unLoader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#机台间的通讯"><span class="nav-number">1.2.2.</span> <span class="nav-text">机台间的通讯</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inline-CC-Link-IE-Concept"><span class="nav-number">1.3.</span> <span class="nav-text">Inline CC-Link IE Concept</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主机台与子机台"><span class="nav-number">1.3.1.</span> <span class="nav-text">主机台与子机台</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
