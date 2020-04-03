@@ -461,6 +461,531 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" itemprop="url">Activity-（十一）删除Key相同的流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T12:43:26+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Activity-（十一）删除Key相同的流程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+           一个流程定义不需要的，包括所有版本，这时候在用户界面上一个一个删除太麻烦；
+ 有时候有这样的需求，一下子把所有Key相同的流程定义批量删除；
+ 实现步骤是：
+ 1、根据Key查询所有的流程定义
+ 2、遍历集合，取得每个流程的部署ID
+ 3、根据流程部署ID即可删除所有的流程定义
+123456789
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" itemprop="url">Activity-（十）修改流程定义</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T11:47:19+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" class="leancloud_visitors" data-flag-title="Activity-（十）修改流程定义">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          流程定义按本质来说是不能修改的；假如一个流程定义的流程实例在活动运行中。
+假如可以修改，本来要流转到A这个节点，因为流程定义修改了，流转到B这个节点。
+就不符合当时这个流程实例的初衷了；
+所以在开发中，不能修改流程定义，而是通过增加版本号的方式。来实现“修改”的；
+什么是版本号呢?
+ 在设计流程图的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="白夜行">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" itemprop="url">Activity-（九）查看流程图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T22:39:36+08:00">
+                2020-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/workflower/" itemprop="url" rel="index">
+                    <span itemprop="name">workflower</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" class="leancloud_visitors" data-flag-title="Activity-（九）查看流程图片">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在开发中可能需要查看某个流程的流程图片。
+对应操作的数据库表是act_ge_bytearray的Bytes_字段：
+
+
+Activiti提供了操作接口，可以查询返回一个资源文件输入流，
+然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上，
+你想干什么多行。
+先在pom.xml中添
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/14/Activity-%EF%BC%88%E5%85%AB%EF%BC%89%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89%E5%88%A0%E9%99%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1680,519 +2205,6 @@ Activiti提供非常丰富的
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/" itemprop="url">集合扩容机制(二)Collection-Map</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-13T13:14:16+08:00">
-                2020-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%B9%E5%99%A8-%E9%9B%86%E5%90%88/" itemprop="url" rel="index">
-                    <span itemprop="name">容器-集合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/" class="leancloud_visitors" data-flag-title="集合扩容机制(二)Collection-Map">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Map
-获取Map集合容量大小的方法： 
-思路：利用反射获取hashmap里的threshold（扩容上限）除以 负载因子 就得到容器大小了。 
-12345678910111213141516171819202122232425public static int getHashMapCapacity
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%BA%8C)Collection-Map/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" itemprop="url">集合扩容机制(一)Collection-List</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-13T11:44:20+08:00">
-                2020-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%B9%E5%99%A8-%E9%9B%86%E5%90%88/" itemprop="url" rel="index">
-                    <span itemprop="name">容器-集合</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/" class="leancloud_visitors" data-flag-title="集合扩容机制(一)Collection-List">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ​    Java 中提供了很多的集合类，包括，collection的子接口list、set，以及map等。由于它们的底层构成不同，以及数据的构造为单列、多列、可重复、不可重复，导致其扩容机制也不尽相同。 
-ListArrayList案例： 获取ArrayList 容量大小的方法： 
-1234567
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/13/%E9%9B%86%E5%90%88%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6(%E4%B8%80)Collection-List/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="白夜行">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/" itemprop="url">SpringBoot原理（二）自动配置原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-13T10:32:33+08:00">
-                2020-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E5%8E%9F%E7%90%86%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot原理篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="SpringBoot原理（二）自动配置原理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Spring Boot 的自动配置原理本节主要分析Spring Boot 的自动配置原理，主要通过源码进行分析。首先引入一段代码，来开始我们的原理解析步骤：
-12345678910111213package com.mmall; import org.springframework.boot.Spr
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/13/SpringBoot%E5%8E%9F%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2247,7 +2259,7 @@ ListArrayList案例： 获取ArrayList 容量大小的方法：
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2269,7 +2281,7 @@ ListArrayList案例： 获取ArrayList 容量大小的方法：
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
