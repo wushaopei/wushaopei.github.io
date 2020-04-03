@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-01T15:25:58.656Z</updated>
+  <updated>2020-04-03T03:48:06.268Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发编程（九）线程安全性-有序性与总结</title>
+    <link href="http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
+    <id>http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/</id>
+    <published>2020-04-03T03:41:30.000Z</published>
+    <updated>2020-04-03T03:48:06.268Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="内存可见性" scheme="http://blog.wushaopei.com/tags/%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%81%E6%80%A7/"/>
+    
+      <category term="synchronized" scheme="http://blog.wushaopei.com/tags/synchronized/"/>
+    
+      <category term="有序性" scheme="http://blog.wushaopei.com/tags/%E6%9C%89%E5%BA%8F%E6%80%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis 入门（一）开发环境准备</title>
@@ -522,37 +553,6 @@
     <id>http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</id>
     <published>2020-03-22T05:12:42.000Z</published>
     <updated>2020-03-31T15:00:40.970Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://blog.wushaopei.com/categories/JVM/"/>
-    
-      <category term="Heap堆" scheme="http://blog.wushaopei.com/categories/JVM/Heap%E5%A0%86/"/>
-    
-    
-      <category term="虚拟机" scheme="http://blog.wushaopei.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-      <category term="Heap堆" scheme="http://blog.wushaopei.com/tags/Heap%E5%A0%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM(三)堆参数微调优入门</title>
-    <link href="http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/"/>
-    <id>http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/</id>
-    <published>2020-03-22T04:24:59.000Z</published>
-    <updated>2020-03-31T15:00:26.417Z</updated>
     
     <summary type="html">
     
