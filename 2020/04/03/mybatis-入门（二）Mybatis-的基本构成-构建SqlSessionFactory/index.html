@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="hibernate,入门," />
 
 
 
@@ -91,16 +91,23 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="MyBatis 的基本构成认识MyBatis，从它的表面想象，即基本构成进行了解。 关于MyBatis的核心组件：SqlSessionFactoryBuilder(构造器)： 它会根据配置信息或者代码来生成SqlSessionfactory（工厂接口）。 SqlSessionFactory： 依靠工厂来生成SqlSession(会话)。 SqlSession： 是一个既可以发送SQL去执行并返回结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis 入门（二）Mybatis 的基本构成-构建SqlSessionFactory">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="MyBatis 的基本构成认识MyBatis，从它的表面想象，即基本构成进行了解。 关于MyBatis的核心组件：SqlSessionFactoryBuilder(构造器)： 它会根据配置信息或者代码来生成SqlSessionfactory（工厂接口）。 SqlSessionFactory： 依靠工厂来生成SqlSession(会话)。 SqlSession： 是一个既可以发送SQL去执行并返回结">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu265.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu266.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu267.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-03T06:56:21.000Z">
-<meta property="article:modified_time" content="2020-04-03T07:04:17.616Z">
+<meta property="article:modified_time" content="2020-04-05T06:15:01.870Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="hibernate">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu265.png">
 
 
 
@@ -502,6 +509,28 @@ window.onmouseout = function () {
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -555,7 +584,78 @@ window.onmouseout = function () {
       
 
       
-        
+        <h1 id="MyBatis-的基本构成"><a href="#MyBatis-的基本构成" class="headerlink" title="MyBatis 的基本构成"></a>MyBatis 的基本构成</h1><p>认识MyBatis，从它的表面想象，即基本构成进行了解。</p>
+<h2 id="关于MyBatis的核心组件："><a href="#关于MyBatis的核心组件：" class="headerlink" title="关于MyBatis的核心组件："></a>关于MyBatis的核心组件：</h2><p><strong>SqlSessionFactoryBuilder(构造器)：</strong> 它会根据配置信息或者代码来生成SqlSessionfactory（工厂接口）。</p>
+<p><strong>SqlSessionFactory：</strong> 依靠工厂来生成SqlSession(会话)。</p>
+<p><strong>SqlSession：</strong> 是一个既可以发送SQL去执行并返回结果，也可以获取Mapper的接口。</p>
+<p>*<em>SQL Mapper： *</em> 它是MyBatis新设计的组件，它是由一个Java接口和XML文件（或注解）构成的，需要给出对应的SQL和映射规则。它负责发送SQL去执行，并返回结果。</p>
+<img src="http://photo.wushaopei.com/qiniu265.png" width="80%">
+
+<p>上图是MyBatis核心构建之间的关联图。</p>
+<h2 id="构建SqlSessionFactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a>构建SqlSessionFactory</h2><h3 id="概述介绍"><a href="#概述介绍" class="headerlink" title="概述介绍"></a>概述介绍</h3><p>每个MyBatis 的应用都是以SqlSessionFactoy 的实例为中心的。通过SqlSessionFactoryBuilder可以获得SqlSessionFactory。</p>
+<img src="http://photo.wushaopei.com/qiniu266.png" width="80%">
+
+<p>必须注意的一点是，SqlSessionFactory是一个工厂接口二不是现实类，它的任务是创建SqlSession.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an &#123;<span class="doctag">@link</span> SqlSession&#125; out of a connection or a DataSource *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Clinton Begin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlSessionFactory</span> </span>&#123;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(<span class="keyword">boolean</span> autoCommit)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(Connection connection)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(TransactionIsolationLevel level)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, <span class="keyword">boolean</span> autoCommit)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, Connection connection)</span></span>;</span><br><span class="line">  <span class="function">Configuration <span class="title">getConfiguration</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color=red>SqlSession类似是一个JDBC的Connection对象呢。</font></p>
+<p>MyBatis提供 了<strong>两种模式去创建SqlSessionFactory</strong>：</p>
+<pre><code>*  一种是XML配置的方式，这是笔者推荐的方式；
+
+*  另一种是代码实现的方式。</code></pre><p>能够使用配置文件的时候，我们要尽量使用配置文件。</p>
+<p>有<strong>以下两点好处：</strong></p>
+<ul>
+<li>避免硬编码；</li>
+<li>方便后期配置人员进行修改、维护，避免重复编译代码</li>
+</ul>
+<h3 id="SqlSessionFactory的两个实现类"><a href="#SqlSessionFactory的两个实现类" class="headerlink" title="SqlSessionFactory的两个实现类"></a>SqlSessionFactory的两个实现类</h3><p>MyBatis中提供了两个SqlSessionFactory的实现类，DefaultSqlSession 和 SqlSessionManager。目前使用的是DefaultSqlSessionFactory.</p>
+<p><strong>主要关系图如下：</strong></p>
+<img src="http://photo.wushaopei.com/qiniu267.png" width="80%">
+
+
+
+<h3 id="Configuration-类"><a href="#Configuration-类" class="headerlink" title="Configuration 类"></a>Configuration 类</h3><p>Configuration类全限定名为org.apache.ibatis.session.Configuration，它在MyBatis中将以一个Configuration类对象的形式存在，而 <code>这个对象将存在于整个MyBatis应用的生命期中</code>，以便重复读取和使用。</p>
+<p><strong>注意：</strong> ①我们解析配置的XML文件都保存在Configuration类对象中；</p>
+<p>​        ②Configuration类对象存在于内存中</p>
+<h2 id="SqlSessionFactory的两种实现方式"><a href="#SqlSessionFactory的两种实现方式" class="headerlink" title="SqlSessionFactory的两种实现方式"></a>SqlSessionFactory的两种实现方式</h2><h3 id="使用XML方式构建"><a href="#使用XML方式构建" class="headerlink" title="使用XML方式构建"></a>使用XML方式构建</h3><p>这里我们配置一个建议的XML，包含获取数据库连接实例的数据源（DataSource)、决定事务范围和控制方式的事务管理器（TransactionManager)和映射器（SQL  Mapper)。XML配置文件的内容后面会详细探讨，这里先给出一个简单的示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE configuration</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">  &lt;environments <span class="keyword">default</span>=<span class="string">"development"</span>&gt;</span><br><span class="line">    &lt;environment id=<span class="string">"development"</span>&gt;</span><br><span class="line">      &lt;transactionManager type=<span class="string">"JDBC"</span>/&gt;</span><br><span class="line">      &lt;dataSource type=<span class="string">"POOLED"</span>&gt;</span><br><span class="line">        &lt;property name=<span class="string">"driver"</span> value=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"url"</span> value=<span class="string">"jdbc:mysql://localhost:3333/mybatis?characterEncoding=utf8&amp;amp;serverTimezone=UTC"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"username"</span> value=<span class="string">"root"</span>/&gt;</span><br><span class="line">        &lt;property name=<span class="string">"password"</span> value=<span class="string">"root"</span>/&gt;</span><br><span class="line">      &lt;/dataSource&gt;</span><br><span class="line">    &lt;/environment&gt;</span><br><span class="line">  &lt;/environments&gt;</span><br><span class="line">  &lt;mappers&gt;</span><br><span class="line">    &lt;mapper resource=<span class="string">"com/webcode/cn/mapper/UserMapper.xml"</span>/&gt;</span><br><span class="line">  &lt;/mappers&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对上面的配置做一下说明：</p>
+<p>这里配置了一个别名user，它代表com.webcode.cn.entity.User,这样我们就可以在MyBatis上下文中引用它了。</p>
+<ul>
+<li>我们配置了环境内容，它默认使用<strong>id</strong>是development的环境配置，包含以下两方面的内容：</li>
+</ul>
+<p>（1）采用JDBC的事务管理模式</p>
+<p>（2）数据库的连接信息</p>
+<ul>
+<li>配置映射器</li>
+</ul>
+<p>这里在创建SqlSessionFactory时引入了一个XML，它的作用是提供SQL和SQL对POJO的映射规则定义，它包含了映射器里面的信息。MyBatis将解析这个XML，来为我们生成映射器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取指定的资源</span></span><br><span class="line">InputStream is = Resources.getResourceAsStream(<span class="string">"mybatis-config.xml"</span>);</span><br><span class="line"><span class="comment">// 通过sqlSessionFactoryBuilder创建SqlSessionFactory</span></span><br><span class="line">SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br></pre></td></tr></table></figure>
+
+<p>这里我们创建了一个XML文件输入流，用SqlSessionFactoryBuilder读取XML的信息来创建SqlSessionFactory的对象。</p>
+<p>MyBatis的解析程序会将 mybatis-config.xml文件配置的信息解析到Configuration类对象里面，然后利用SqlSessionFactoryBuilder读取这个对象为我们创建SqlSessionFactory</p>
+<p><code>详见代码： TestSqlSessionFactory.java</code></p>
+<h3 id="使用代码方式构建"><a href="#使用代码方式构建" class="headerlink" title="使用代码方式构建"></a>使用代码方式构建</h3><p>前面说过，除了使用XML配置的方式创建代码外，也可以使用Java编码来实现，不过并不推荐这个方式，因为修改环境的时候，我们不得不重新编译代码，这样不利于维护。</p>
+<p>​    不过，在这里我们为了比较两者的区别与实用性，会对该构建方式进行一个示例实现与分析。</p>
+<p>与XML配置构建方式相同的地方在于，MyBatis依旧为我们提供好要使用的对象的类和方法，我们只需要在合适的地方对它进行调用即可。</p>
+<p>​    首先，需要构建Configuration类对象。然后，往对象里面注册我们构建SqlSessionFactory所需要的信息即可。</p>
+<p>​    具体代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取指定的资源</span></span><br><span class="line">		PooledDataSource dataSource = <span class="keyword">new</span> PooledDataSource();</span><br><span class="line">		dataSource.setDriver(<span class="string">"com.mysql.cj.jdbc.Driver"</span>);</span><br><span class="line">		dataSource.setUrl(<span class="string">"jdbc:mysql://localhost:3333/mybatis?characterEncoding=utf8&amp;serverTimezone=UTC"</span>);</span><br><span class="line">		dataSource.setUsername(<span class="string">"root"</span>);</span><br><span class="line">		dataSource.setPassword(<span class="string">"root"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//创建数据库事务方式</span></span><br><span class="line">		TransactionFactory transactionFactory = <span class="keyword">new</span> JdbcTransactionFactory();</span><br><span class="line">		<span class="comment">// 创建数据库运行环境</span></span><br><span class="line">		Environment environment = <span class="keyword">new</span> Environment(<span class="string">"development"</span>, transactionFactory, dataSource);</span><br><span class="line">		<span class="comment">// 构建Configuration对象</span></span><br><span class="line">		Configuration configuration = <span class="keyword">new</span> Configuration(environment);</span><br><span class="line">		<span class="comment">// 加入一个映射器</span></span><br><span class="line">		configuration.addMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">		SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(configuration);</span><br><span class="line">		System.out.println( sqlSessionFactory );</span><br><span class="line">		<span class="comment">// 相当于 以前的Connection对象，每次用来都用关闭</span></span><br><span class="line">		SqlSession openSession = sqlSessionFactory.openSession();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line"><span class="comment">//			selectOne方法用来执行select查询语句，并返回一个对象</span></span><br><span class="line">			<span class="comment">// 放名称空间+id</span></span><br><span class="line">			UserMapper userMapper = openSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;				<span class="comment">// </span></span><br><span class="line">			User user = userMapper.selectUserById(<span class="number">1</span>);</span><br><span class="line">			System.out.println( user );</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			openSession.close();<span class="comment">//释放资源</span></span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体分析一下上述代码都做了些什么：</p>
+<ul>
+<li>初始化了一个数据库连接池</li>
+<li>定义了JDBC的数据库事务管理方式</li>
+<li>用数据库连接池和事务管理方式创建了一个数据库运行环境，并命名为 development</li>
+<li>创建了一个Configuration类对象，并把数据库运行环境注册给它</li>
+<li>注册了一个user的别名</li>
+<li>加入一个映射器</li>
+<li>用SqlSessionFactoryBuilder通过Configuration 对象创建SqlSessionFactory</li>
+</ul>
+<p>由以上分析可以看出，用代码方式实现和用XML方式只是换了个方法实现而已，其本质并无不同。其中采用代码方式一般是在需要加入自己特性的时候才会用到。</p>
+<p>这里唯一需要注意的一点是，通过XML配置实现和代码实现的映射器是不同的，前者使用的是JavaBean，而后者使用UserMapper.java 。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -587,6 +687,14 @@ window.onmouseout = function () {
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hibernate/" rel="tag"> <i class="fa fa-tag"></i> hibernate</a>
+          
+            <a href="/tags/%E5%85%A5%E9%97%A8/" rel="tag"> <i class="fa fa-tag"></i> 入门</a>
+          
+        </div>
       
 
       
@@ -701,8 +809,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -772,6 +889,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MyBatis-的基本构成"><span class="nav-number">1.</span> <span class="nav-text">MyBatis 的基本构成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于MyBatis的核心组件："><span class="nav-number">1.1.</span> <span class="nav-text">关于MyBatis的核心组件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建SqlSessionFactory"><span class="nav-number">1.2.</span> <span class="nav-text">构建SqlSessionFactory</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述介绍"><span class="nav-number">1.2.1.</span> <span class="nav-text">概述介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlSessionFactory的两个实现类"><span class="nav-number">1.2.2.</span> <span class="nav-text">SqlSessionFactory的两个实现类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuration-类"><span class="nav-number">1.2.3.</span> <span class="nav-text">Configuration 类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SqlSessionFactory的两种实现方式"><span class="nav-number">1.3.</span> <span class="nav-text">SqlSessionFactory的两种实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用XML方式构建"><span class="nav-number">1.3.1.</span> <span class="nav-text">使用XML方式构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用代码方式构建"><span class="nav-number">1.3.2.</span> <span class="nav-text">使用代码方式构建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
