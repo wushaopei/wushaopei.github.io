@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="入门,hibernate," />
 
 
 
@@ -91,16 +91,20 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="映射器构成：映射器是由Java接口和XML文件（或注解）共同组成的，它的作用如下。  定义参数类型 描述缓存 描述SQL语句 定义查询结果和POJO的映射关系  两种实现方式 一种是通过XML文件方式实现； 另一种就是通过代码方式实现。  第一种，XML配置实现的方式， 这里需要在mytais-config.xml文件中进行描述一个XML文件的具体路径，它是用来生成Mapper的。 而第二种通过注">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis 入门（四）Mybatis 的基本构成-映射器">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="映射器构成：映射器是由Java接口和XML文件（或注解）共同组成的，它的作用如下。  定义参数类型 描述缓存 描述SQL语句 定义查询结果和POJO的映射关系  两种实现方式 一种是通过XML文件方式实现； 另一种就是通过代码方式实现。  第一种，XML配置实现的方式， 这里需要在mytais-config.xml文件中进行描述一个XML文件的具体路径，它是用来生成Mapper的。 而第二种通过注">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-03T06:59:09.000Z">
-<meta property="article:modified_time" content="2020-04-05T06:23:34.185Z">
+<meta property="article:modified_time" content="2020-04-06T04:15:40.008Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="入门">
+<meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 
 
 
@@ -502,6 +506,28 @@ window.onmouseout = function () {
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -555,7 +581,58 @@ window.onmouseout = function () {
       
 
       
-        
+        <h2 id="映射器"><a href="#映射器" class="headerlink" title="映射器"></a>映射器</h2><h3 id="构成："><a href="#构成：" class="headerlink" title="构成："></a>构成：</h3><p>映射器是由Java接口和XML文件（或注解）共同组成的，它的作用如下。</p>
+<ul>
+<li>定义参数类型</li>
+<li>描述缓存</li>
+<li>描述SQL语句</li>
+<li>定义查询结果和POJO的映射关系</li>
+</ul>
+<h3 id="两种实现方式"><a href="#两种实现方式" class="headerlink" title="两种实现方式"></a>两种实现方式</h3><ul>
+<li>一种是通过XML文件方式实现；</li>
+<li>另一种就是通过代码方式实现。</li>
+</ul>
+<p>第一种，XML配置实现的方式， 这里需要在mytais-config.xml文件中进行描述一个XML文件的具体路径，它是用来生成Mapper的。</p>
+<p>而第二种通过注解实现的方式，在Configuration里面注册Mapper接口（需要添加相应的Java注解）。当然它也是MyBatis的河西内容，同时也是最为复杂的。</p>
+<p>推荐： 在项目开发中，比较推荐使用XML文件配置方式。</p>
+<p>原因：</p>
+<ul>
+<li>Java 注解方式受限较大，功能相对少，而Mapper中内容比较多，功能相对强大一些，使用上也比较灵活。</li>
+<li>Mapper中适合编写复杂，条件较多的SQL，并且有助于进行动态SQL的使用，提高可读性和代码的复用率，降低维护和编码成本</li>
+</ul>
+<h4 id="XML-文件配置方式实现Mapper"><a href="#XML-文件配置方式实现Mapper" class="headerlink" title="XML 文件配置方式实现Mapper"></a>XML 文件配置方式实现Mapper</h4><p>使用XML文件配置是Mybatis实现Mapper的首选方式。其构成主要包括一个Java接口和一个XML文件构成。</p>
+<p>第一步：给出Java 接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.cn.mapper;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> com.webcode.cn.entity.User;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> UserMapper.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月5日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">selectUserById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们定义了一个接口，它由一个方法selectUserById,通过用户ID 找到用户对象</p>
+<p>第二部，给出一个映射XML文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span><br><span class="line">  &lt;!-- </span><br><span class="line">  		namespace名称空间</span><br><span class="line">  		取值一般有两种情况：</span><br><span class="line">  			一种情况是：使用javaBean的全类名</span><br><span class="line">  			二种情况是：使用Mapper接口的全类名</span><br><span class="line">   --&gt;</span><br><span class="line">&lt;!-- &lt;mapper namespace=<span class="string">"com.webcode.cn.mapper.UserMapper"</span>&gt; --&gt;</span><br><span class="line">	&lt;mapper namespace=<span class="string">"com.webcode.cn.entity.User"</span>&gt;	</span><br><span class="line">  &lt;!-- </span><br><span class="line">  	select标签用来配置一个select语句</span><br><span class="line">  		id 用来配置一个唯一的标识</span><br><span class="line">  		resultType 是查询完之后一条记录对应转换成为的javaBean对象</span><br><span class="line">  		#&#123;id&#125;是点位符</span><br><span class="line">   --&gt;</span><br><span class="line">  &lt;select id=<span class="string">"selectUserById"</span> resultType=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span><br><span class="line">    	select id,last_name lastName,sex from t_user where id = #&#123;id&#125;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关于XML文件：</p>
+<ul>
+<li>针对该XML文件，需要现在Mybatis的配置文件 mybatis-config.xml中进行配置，这样MyBatis会读取这个配置文件，生成映射器。</li>
+<li>定义了一个命名空间为com.webcode.cn.entity.User的SQL Mapper，这个名称空间必须和我们定义的接口权限定名一致</li>
+<li>其中的Select方法定义了一个查询SQL，id为selectUserById，与前面的接口方法一致对应。resultType 定义了我们需要返回的数据类型，这里为User，该User是之前定义好的JavaBean实体类。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String lastName;</span><br><span class="line">	<span class="keyword">private</span> Integer sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应的SQL是：</p>
+<p><code>select id,last_name lastName,sex from t_user where id = #{id}</code></p>
+<p><code>#{id}</code> 为这条SQL的参数。而SQL列的列名和POJO的属性名称保持一致。那么MyBatis就会把这条语句查询的结果自动映射到我们需要的POJO属性上，这就是自动映射。我们可以用SqlSession来获取这个Mapper,代码实现如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//			selectOne方法用来执行select查询语句，并返回一个对象</span></span><br><span class="line">			<span class="comment">// 获取映射器Mapper</span></span><br><span class="line">			UserMapper userMapper = openSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;			</span><br><span class="line">			User user = userMapper.selectUserById(<span class="number">1</span>);</span><br><span class="line">			System.out.println( user );</span><br></pre></td></tr></table></figure>
+
+<p>这样就完成了MyBatis的一次完整查询。</p>
+<h4 id="Java注解方式实现Mapper"><a href="#Java注解方式实现Mapper" class="headerlink" title="Java注解方式实现Mapper"></a>Java注解方式实现Mapper</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">@Select</span>(value=<span class="string">"select id,last_name lastName,sex from t_user where id = #&#123;id&#125;</span></span><br><span class="line"><span class="string">"</span>)  </span><br><span class="line">  <span class="function"><span class="keyword">public</span> User <span class="title">selectUserById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里使用@Select注解，注入了和XML一样的select元素，这样MyBatis就会读取这条SQL，并将参数传递进SQL。然后进行自动映射操作，从而得到我们需要的User对象。</p>
+<p>注意： 这种方式虽然相对简单，但是在使用多表关联、查询、级联等情况下会使SQL显得很复杂，不利于阅读和维护。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select u.id as userid,u.username,r.id as roleid,r.role_name </span><br><span class="line">from user u left join user_role ur on u.id &#x3D; ur.user_id </span><br><span class="line">left join role r on ur.role_id &#x3D; r.id</span><br><span class="line">where 1&#x3D;1</span><br><span class="line">and u.username like concat(&#39;%&#39;,#&#123;username&#125;,&#39;%&#39;)</span><br><span class="line">and r.role_name like concat(&#39;%&#39;,#&#123;roleNme&#125;,&#39;%&#39;)</span><br></pre></td></tr></table></figure>
+
+<p>如果还需要在以上的SQL中进行 动态SQL的特性判断功能，那么整条SQL就会显得很复杂和难以阅读（if、trim、foreach等）。</p>
+<h3 id="重点：映射原理"><a href="#重点：映射原理" class="headerlink" title="重点：映射原理"></a><strong>重点</strong>：映射原理</h3><p><strong>提问</strong>： Java接口不是实现类，一个没有实现类的接口是怎么运行的？</p>
+<p><strong>答案</strong>： 这里运用到了Java语言的动态代理机制。</p>
+<p>​    <font color=red>我们会在MyBatis上下文中描述这个接口，而MyBatis会为这个接口生成代理类对象，代理对象会根据 ” 接口全路径 + 方法名“ 去匹配，找到对应的XML文件（或注解）去完成它所需要的任务，返回我们需要的结果。</font></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -588,6 +665,14 @@ window.onmouseout = function () {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%85%A5%E9%97%A8/" rel="tag"> <i class="fa fa-tag"></i> 入门</a>
+          
+            <a href="/tags/hibernate/" rel="tag"> <i class="fa fa-tag"></i> hibernate</a>
+          
+        </div>
+      
 
       
       
@@ -606,6 +691,10 @@ window.onmouseout = function () {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="prev" title="mybatis 入门（五）生命周期">
+                mybatis 入门（五）生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -701,8 +790,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -721,7 +819,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">82</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -772,6 +870,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#映射器"><span class="nav-number">1.</span> <span class="nav-text">映射器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构成："><span class="nav-number">1.1.</span> <span class="nav-text">构成：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种实现方式"><span class="nav-number">1.2.</span> <span class="nav-text">两种实现方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XML-文件配置方式实现Mapper"><span class="nav-number">1.2.1.</span> <span class="nav-text">XML 文件配置方式实现Mapper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java注解方式实现Mapper"><span class="nav-number">1.2.2.</span> <span class="nav-text">Java注解方式实现Mapper</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点：映射原理"><span class="nav-number">1.3.</span> <span class="nav-text">重点：映射原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.3.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
