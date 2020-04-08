@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="入门,hibernate," />
 
 
 
@@ -91,20 +91,21 @@
 
 
 
-<meta name="description" content="1、Spring Boot 项目打包打包方式：   构建 JAR 包 构建 WAR 包 指定 Main-Class  （1）右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入    1mvn -Dmaven.test.skip -U clean package  命令执行打包操作， 此时执行过程会发生报错，因为 在进行多模块拆分后，需要重新为工程指定">
+<meta name="description" content="这里做一个实例，它可以使我们熟悉MyBatis 主要组件的用法。我们需要满足MyBatis各个组件的生命周期。首先需要生成SqlSessionFactory单例，然后让它生成SqlSession，进而拿到映射器来完成我们的业务逻辑。 ​    确定文件所需要放置的路径，以便在上下文中读取配置文件。   各个实例文件的作用，如表所示：    文件 作用    User.java POJO类，符合ja">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SpringBoot基础（五）项目打包">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="mybatis 入门（六）实例">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="1、Spring Boot 项目打包打包方式：   构建 JAR 包 构建 WAR 包 指定 Main-Class  （1）右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入    1mvn -Dmaven.test.skip -U clean package  命令执行打包操作， 此时执行过程会发生报错，因为 在进行多模块拆分后，需要重新为工程指定">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu61.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu62.png">
+<meta property="og:description" content="这里做一个实例，它可以使我们熟悉MyBatis 主要组件的用法。我们需要满足MyBatis各个组件的生命周期。首先需要生成SqlSessionFactory单例，然后让它生成SqlSession，进而拿到映射器来完成我们的业务逻辑。 ​    确定文件所需要放置的路径，以便在上下文中读取配置文件。   各个实例文件的作用，如表所示：    文件 作用    User.java POJO类，符合ja">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu274.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
-<meta property="article:published_time" content="2020-03-08T06:33:59.000Z">
-<meta property="article:modified_time" content="2020-03-31T15:11:16.690Z">
+<meta property="article:published_time" content="2020-04-03T06:59:55.000Z">
+<meta property="article:modified_time" content="2020-04-07T16:12:22.113Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="入门">
+<meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu61.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu274.png">
 
 
 
@@ -134,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/03/08/SpringBoot基础（五）项目打包、运行模式/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/03/mybatis-入门（六）实例/"/>
 
 
 
 
 
-  <title>SpringBoot基础（五）项目打包 | 白夜行</title>
+  <title>mybatis 入门（六）实例 | 白夜行</title>
   
 
 
@@ -466,7 +467,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -483,7 +484,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">SpringBoot基础（五）项目打包</h1>
+          <h1 class="post-title" itemprop="name headline">mybatis 入门（六）实例</h1>
         
 
         <div class="post-meta">
@@ -495,8 +496,8 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T14:33:59+08:00">
-                2020-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:59:55+08:00">
+                2020-04-03
               </time>
             
 
@@ -518,8 +519,8 @@ window.onmouseout = function () {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot入门</span>
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
                   </a>
                 </span>
 
@@ -536,8 +537,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -545,7 +546,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" class="leancloud_visitors" data-flag-title="SpringBoot基础（五）项目打包">
+             <span id="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/" class="leancloud_visitors" data-flag-title="mybatis 入门（六）实例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -581,38 +582,85 @@ window.onmouseout = function () {
       
 
       
-        <h3 id="1、Spring-Boot-项目打包"><a href="#1、Spring-Boot-项目打包" class="headerlink" title="1、Spring Boot 项目打包"></a>1、Spring Boot 项目打包</h3><p><strong>打包方式：</strong> </p>
-<blockquote>
-<p>构建 JAR 包</p>
-<p>构建 WAR 包</p>
-<p>指定 Main-Class</p>
-</blockquote>
-<p><strong>（1）右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入</strong> </p>
-  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -Dmaven.test.skip -U clean <span class="keyword">package</span></span><br></pre></td></tr></table></figure>
+        <p>这里做一个实例，它可以使我们熟悉MyBatis 主要组件的用法。我们需要满足MyBatis各个组件的生命周期。首先需要生成SqlSessionFactory单例，然后让它生成SqlSession，进而拿到映射器来完成我们的业务逻辑。</p>
+<p>​    确定文件所需要放置的路径，以便在上下文中读取配置文件。</p>
+<img src="http://photo.wushaopei.com/qiniu274.png" width="80%">
 
-<p>命令执行打包操作，</p>
-<p>此时执行过程会发生报错，因为 在进行多模块拆分后，需要重新为工程指定 main.class ，也就是 springboot 的启动器入口的位置的明确。这是由于在拆分过后，在父工程下找不到main.class 。</p>
-<p>解决方法：</p>
-<p>将父工程的pom.xml 中的 <build></build>依赖驱动剪切到 web 子模块中 ，然后再到修改后的web子模块的 pom.xml 中的   <build></build> 中的<plugin></plugin>添加一个 <configuration/>,并为其配置一个<mainClass/>，将 springboot入口启动器的 Reference 路径复制并放入到 <mainClass>中，然后执行打包就可以了。</p>
-<p>注意： 不要把<build/>放在父工程的pom.xml 下进行打包，那样会有很多错误要进行修正，而且由于主启动器迁移到 了web 中，在父工程下 添加<build/>意义不大</p>
-<img src="http://photo.wushaopei.com/qiniu61.png" width="60%">
+<p>各个实例文件的作用，如表所示：</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">User.java</td>
+<td align="center">POJO类，符合javaBean的规范</td>
+</tr>
+<tr>
+<td align="center">UserMapper.java</td>
+<td align="center">映射器</td>
+</tr>
+<tr>
+<td align="center">UserMapper.xml</td>
+<td align="center">映射器配置文件</td>
+</tr>
+<tr>
+<td align="center">SqlSessionFactoryUtil.java</td>
+<td align="center">构建SqlSessionFactory,并创建SqlSession</td>
+</tr>
+<tr>
+<td align="center">testMain.java</td>
+<td align="center">运行MyBatis入门程序的入口，包含main方法</td>
+</tr>
+<tr>
+<td align="center">log4j.properties</td>
+<td align="center">配置log4j的属性文件</td>
+</tr>
+<tr>
+<td align="center">mybatis-config.xml</td>
+<td align="center">MyBatis的配置文件</td>
+</tr>
+</tbody></table>
+<p>首先配置log4j 的配置文件，具体代码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Global logging configuration</span><br><span class="line">log4j.rootLogger=DEBUG, stdout</span><br><span class="line"># Console output...</span><br><span class="line">log4j.appender.stdout=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.stdout.layout=org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.stdout.layout.ConversionPattern=%<span class="number">5</span>p [%t] - %m%n</span><br></pre></td></tr></table></figure>
 
-<p><strong>（2）在 cmd 命令行中启动 jar 包 或者 war 包 的方式：</strong> </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -jar web-<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT.jar</span><br><span class="line">或者</span><br><span class="line">java -jar web-<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT.war</span><br></pre></td></tr></table></figure>
+<p>其次，构建SessionFactory，这里主要配置MyBatis 的数据库连接、事务管理等等。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3333/mybatis?characterEncoding=utf8<span class="symbol">&amp;amp;</span>serverTimezone=UTC"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/webcode/cn/mapper/UserMapper.xml"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>注意： 要在 当前工程打成 war 包，需要在 web 的mian 目录下创建 “webapp” 和  “WEB-INF”两个目录，并在 “WEB-INF” 目录下创建 一个 web.xml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu62.png" width="60%">
+<p>最后，构建SqlSessionFactory，并且给出创建SqlSession的方法，这里我们利用配置文件 mybatis-config.xml 完成 SqlSessionFactory的构建。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.cn.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Level;</span><br><span class="line"><span class="keyword">import</span> java.util.logging.Logger;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> SqlSessionFactoryUtil.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月7日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSessionFactoryUtil</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// SqlSessionFactory对象</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory = <span class="keyword">null</span>;</span><br><span class="line">	<span class="comment">// 类线程锁</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Class CLASS_LOCK = SqlSessionFactoryUtil<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 私有化构造参数 </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SqlSessionFactoryUtil</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 构建SqlSessionFactory </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSessionFactory <span class="title">initSqlSessionFactory</span><span class="params">()</span></span>&#123;</span><br><span class="line">		String resource = <span class="string">"mybatis-config.xml"</span>;</span><br><span class="line">		InputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			inputStream = Resources.getResourceAsStream(resource);</span><br><span class="line">		&#125;<span class="keyword">catch</span> (IOException ex)&#123;</span><br><span class="line">			Logger.getLogger(SqlSessionFactoryUtil<span class="class">.<span class="keyword">class</span>.<span class="title">getName</span>()).<span class="title">log</span>(<span class="title">Level</span>.<span class="title">SEVERE</span>,<span class="title">null</span>,<span class="title">ex</span>)</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">synchronized</span>(CLASS_LOCK)&#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSessionFactory == <span class="keyword">null</span>)&#123;</span><br><span class="line">				sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputStream);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sqlSessionFactory;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 打开 SqlSession </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">openSqlSession</span> <span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(sqlSessionFactory == <span class="keyword">null</span>)&#123;</span><br><span class="line">			initSqlSessionFactory();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> sqlSessionFactory.openSession();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="2、Spring-Boot-运行模式"><a href="#2、Spring-Boot-运行模式" class="headerlink" title="2、Spring Boot 运行模式"></a>2、Spring Boot 运行模式</h3><p><strong>Springboot</strong>项目的3种运行模式：</p>
-<p><strong>idea</strong>方式，<strong>jar</strong>/<strong>war</strong>方式，<strong>maven</strong>插件方式</p>
-<blockquote>
-<p>（1）如果是在开发过程中，会使用<strong>idea</strong>方式</p>
-<p>（2）如果是在线上的服务器上，会使用<strong>jar/war</strong>方式，作为启动脚本</p>
-<p>（3）如果开发环境是Linux环境，会使用<strong>maven</strong>插件方式。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+<p>正如生命周期中的描述一样，我们希望SqlSessionFactory 对于一个数据库而言只有一个实例，所以我们希望它是单例的。</p>
+<p><strong>SqlSessionFactory 单例的实现：</strong> </p>
+<p>​    主要通过方法initSqlSessionFactory实现。首先，将构造方法私有化，避免使用者通过构造器多次创建对象。然后对类SqlSessionFactoryUtil进行加锁，避免多线程环境中可能存在的多次初始化对象的问题。</p>
+<p>​    给出一个公共的静态方法对外开放，让其返回唯一单例。当多线程环境下，initSqlSessionFactory方法会因为添加了线程锁而避免类对象被多次初始化。</p>
+<p>定义一个POJO类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> User.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月5日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String lastName;</span><br><span class="line">	<span class="keyword">private</span> Integer sex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<p>编写映射器文件，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span> ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper</span><br><span class="line">  PUBLIC <span class="string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span><br><span class="line">  <span class="string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span><br><span class="line">  &lt;!-- </span><br><span class="line">  		namespace名称空间</span><br><span class="line">  		取值一般有两种情况：</span><br><span class="line">  			一种情况是：使用javaBean的全类名</span><br><span class="line">  			二种情况是：使用Mapper接口的全类名</span><br><span class="line">   --&gt;</span><br><span class="line"> &lt;mapper namespace=<span class="string">"com.webcode.cn.mapper.UserMapper"</span>&gt; </span><br><span class="line"> &lt;!--   &lt;mapper namespace=<span class="string">"com.webcode.cn.entity.User"</span>&gt;	--&gt;</span><br><span class="line">  &lt;!-- </span><br><span class="line">  	select标签用来配置一个select语句</span><br><span class="line">  		id 用来配置一个唯一的标识</span><br><span class="line">  		resultType 是查询完之后一条记录对应转换成为的javaBean对象</span><br><span class="line">  		#&#123;id&#125;是点位符</span><br><span class="line">   --&gt;</span><br><span class="line">  &lt;select id=<span class="string">"selectUserById"</span> resultType=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span><br><span class="line">    	select id,last_name lastName,sex from t_user where id = #&#123;id&#125;</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  &lt;!-- 查询全部的User对象 --&gt;</span><br><span class="line">  &lt;select id=<span class="string">"queryUsers"</span> resultType=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span><br><span class="line">  		select id,last_name lastName,sex from t_user</span><br><span class="line">  &lt;/select&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!--   parameterType 参数类型（可选） --&gt;</span><br><span class="line">  &lt;insert id=<span class="string">"saveUser"</span> parameterType=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span><br><span class="line">  		<span class="function">insert into <span class="title">t_user</span><span class="params">(`last_name`,`sex`)</span> <span class="title">values</span><span class="params">(#&#123;lastName&#125;,#&#123;sex&#125;)</span></span></span><br><span class="line"><span class="function">  &lt;/insert&gt;</span></span><br><span class="line"><span class="function">  </span></span><br><span class="line"><span class="function">  &lt;!--   根据id删除一个用户 --&gt;</span></span><br><span class="line"><span class="function">  &lt;delete id</span>=<span class="string">"deleteUserById"</span> parameterType=<span class="string">"int"</span>&gt;</span><br><span class="line">  		delete from t_user where id = #&#123;id&#125;</span><br><span class="line">  &lt;/delete&gt;</span><br><span class="line">  </span><br><span class="line">   &lt;update id=<span class="string">"updateUser"</span> parameterType=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span><br><span class="line">  		update t_user set last_name = #&#123;lastName&#125;,sex = #&#123;sex&#125; where id = #&#123;id&#125;</span><br><span class="line">  &lt;/update&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里定义了五条SQL，它们的作用有五个。</p>
+<ul>
+<li>根据Id查询用户</li>
+<li>查询所有的用户</li>
+<li>插入用户</li>
+<li>删除用户</li>
+<li>根据用户ID修改用户</li>
+</ul>
+<p>定义一个Mapper接口，接口的方法名和XML映射文件的id保持一致，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.cn.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Select;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.webcode.cn.entity.User;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> UserMapper.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月5日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> User <span class="title">selectUserById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUsers</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">saveUser</span><span class="params">(User user)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">deleteUserById</span><span class="params">(Integer id)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们根据提供的方法和映射器，根据映射规则使用SQL进行对User的CRUD操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.cn.testMain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.webcode.cn.entity.User;</span><br><span class="line"><span class="keyword">import</span> com.webcode.cn.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.webcode.cn.util.SqlSessionFactoryUtil;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> testMain.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月7日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">testMain</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span> <span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		SqlSession sqlSession = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = SqlSessionFactoryUtil.openSqlSession();</span><br><span class="line">			UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">			User user = <span class="keyword">new</span> User();</span><br><span class="line">			user.setLastName(<span class="string">"tom"</span>);</span><br><span class="line">			user.setSex(<span class="number">1</span>);</span><br><span class="line">			userMapper.saveUser(user);</span><br><span class="line">			userMapper.deleteUserById(<span class="number">1</span>);</span><br><span class="line">			userMapper.updateUser(<span class="keyword">new</span> User(<span class="number">2</span>,<span class="string">"jetty"</span>,<span class="number">1</span>));</span><br><span class="line">			sqlSession.commit();			</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">			System.err.println(ex.getMessage());</span><br><span class="line">			sqlSession.rollback();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>)&#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>用Java Application的形式启动运行testMain.java,打印结果如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">DEBUG [main] - Logging initialized using <span class="string">'class org.apache.ibatis.logging.log4j.Log4jImpl'</span> adapter.</span><br><span class="line">DEBUG [main] - PooledDataSource forcefully closed/removed all connections.</span><br><span class="line">DEBUG [main] - PooledDataSource forcefully closed/removed all connections.</span><br><span class="line">DEBUG [main] - PooledDataSource forcefully closed/removed all connections.</span><br><span class="line">DEBUG [main] - PooledDataSource forcefully closed/removed all connections.</span><br><span class="line">DEBUG [main] - Opening JDBC Connection</span><br><span class="line">DEBUG [main] - Created connection <span class="number">1449263511</span>.</span><br><span class="line">DEBUG [main] - Setting autocommit to <span class="keyword">false</span> on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@<span class="number">56620197</span>]</span><br><span class="line">DEBUG [main] - ==&gt;  Preparing: <span class="function">insert into <span class="title">t_user</span><span class="params">(`last_name`,`sex`)</span> <span class="title">values</span><span class="params">(?,?)</span> </span></span><br><span class="line"><span class="function">DEBUG [main] - </span>==&gt; Parameters: tom(String), <span class="number">1</span>(Integer)</span><br><span class="line">DEBUG [main] - &lt;==    Updates: <span class="number">1</span></span><br><span class="line">DEBUG [main] - ==&gt;  Preparing: delete from t_user where id = ? </span><br><span class="line">DEBUG [main] - ==&gt; Parameters: <span class="number">1</span>(Integer)</span><br><span class="line">DEBUG [main] - &lt;==    Updates: <span class="number">0</span></span><br><span class="line">DEBUG [main] - ==&gt;  Preparing: update t_user set last_name = ?,sex = ? where id = ? </span><br><span class="line">DEBUG [main] - ==&gt; Parameters: jetty(String), <span class="number">1</span>(Integer), <span class="number">2</span>(Integer)</span><br><span class="line">DEBUG [main] - &lt;==    Updates: <span class="number">1</span></span><br><span class="line">DEBUG [main] - Committing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@<span class="number">56620197</span>]</span><br><span class="line">DEBUG [main] - Resetting autocommit to <span class="keyword">true</span> on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@<span class="number">56620197</span>]</span><br><span class="line">DEBUG [main] - Closing JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@<span class="number">56620197</span>]</span><br><span class="line">DEBUG [main] - Returned connection <span class="number">1449263511</span> to pool.</span><br></pre></td></tr></table></figure>
+
+<p>这里Log4j为我们打印出来Mybatis的运行轨迹，以及最为重要的运行的SQL和参数。我们可以根据这些信息对发生异常的情况进行分析排错。</p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·
       
     </div>
     
@@ -632,7 +680,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" title="SpringBoot基础（五）项目打包">http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/</a>
+    <a href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/" title="mybatis 入门（六）实例">http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -645,6 +693,14 @@ window.onmouseout = function () {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%85%A5%E9%97%A8/" rel="tag"> <i class="fa fa-tag"></i> 入门</a>
+          
+            <a href="/tags/hibernate/" rel="tag"> <i class="fa fa-tag"></i> hibernate</a>
+          
+        </div>
+      
 
       
       
@@ -654,8 +710,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/08/SpringBoot%E6%95%B4%E5%90%88%EF%BC%88%E4%B8%83%EF%BC%89%E6%95%B4%E5%90%88ApacheShiro%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E6%A1%86%E6%9E%B6/" rel="next" title="SpringBoot框架（一）整合ApacheShiro权限管理框架">
-                <i class="fa fa-chevron-left"></i> SpringBoot框架（一）整合ApacheShiro权限管理框架
+              <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="next" title="mybatis 入门（五）生命周期">
+                <i class="fa fa-chevron-left"></i> mybatis 入门（五）生命周期
               </a>
             
           </div>
@@ -664,8 +720,8 @@ window.onmouseout = function () {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/" rel="prev" title="Activity-（三）创建流程引擎ProcessEngine">
-                Activity-（三）创建流程引擎ProcessEngine <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/06/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/" rel="prev" title="微信小程序（一）简介">
+                微信小程序（一）简介 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -852,7 +908,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、Spring-Boot-项目打包"><span class="nav-number">1.</span> <span class="nav-text">1、Spring Boot 项目打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、Spring-Boot-运行模式"><span class="nav-number">2.</span> <span class="nav-text">2、Spring Boot 运行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></div>
             
 
           </div>
