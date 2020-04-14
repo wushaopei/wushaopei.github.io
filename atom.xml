@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-14T07:54:00.345Z</updated>
+  <updated>2020-04-14T08:43:53.946Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发编程（二十）J-U-C-AQS-ReentrantReadWriteLock、StampedLock、Condition</title>
+    <link href="http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89J-U-C-AQS-ReentrantReadWriteLock%E3%80%81StampedLock%E3%80%81Condition/"/>
+    <id>http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89J-U-C-AQS-ReentrantReadWriteLock%E3%80%81StampedLock%E3%80%81Condition/</id>
+    <published>2020-04-14T07:55:06.000Z</published>
+    <updated>2020-04-14T08:43:53.946Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
+    
+      <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
+    
+      <category term="ReentrantLock" scheme="http://blog.wushaopei.com/tags/ReentrantLock/"/>
+    
+  </entry>
   
   <entry>
     <title>并发编程（十九）J-U-C-AQS-ReentrantLock与锁</title>
@@ -39,9 +70,9 @@
       <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
-    
       <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
+    
+      <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
     
       <category term="ReentrantLock" scheme="http://blog.wushaopei.com/tags/ReentrantLock/"/>
     
@@ -294,9 +325,9 @@
       <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
       <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
+    
+      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
     
       <category term="Semaphore" scheme="http://blog.wushaopei.com/tags/Semaphore/"/>
     
@@ -325,9 +356,9 @@
       <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
       <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
+    
+      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
     
       <category term="Semaphore" scheme="http://blog.wushaopei.com/tags/Semaphore/"/>
     
@@ -356,9 +387,9 @@
       <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
       <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
+    
+      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
     
   </entry>
   
@@ -385,9 +416,9 @@
       <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
       <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
+    
+      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
     
   </entry>
   
@@ -440,31 +471,6 @@
       <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
     
       <category term="properties" scheme="http://blog.wushaopei.com/tags/properties/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>自动化开发（六）Specification-06-Common Function</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/</id>
-    <published>2020-04-13T07:09:47.000Z</published>
-    <updated>2020-04-14T07:19:13.026Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="自动化开发" scheme="http://blog.wushaopei.com/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/"/>
-    
     
   </entry>
   
