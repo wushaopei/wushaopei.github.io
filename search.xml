@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>并发编程（十九）J-U-C-AQS-ReentrantLock与锁</title>
+    <url>/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89J-U-C-AQS-ReentrantLock%E4%B8%8E%E9%94%81/</url>
+    <content><![CDATA[<h2 id="ReentrantLock与锁"><a href="#ReentrantLock与锁" class="headerlink" title="ReentrantLock与锁"></a>ReentrantLock与锁</h2><h3 id="ReentrantLock-可重入锁-和-synchronized-区别"><a href="#ReentrantLock-可重入锁-和-synchronized-区别" class="headerlink" title="ReentrantLock (可重入锁) 和 synchronized 区别"></a>ReentrantLock (可重入锁) 和 synchronized 区别</h3><p><strong>可重入性：</strong> ReentrantLock的字面意思就是可重入的，而synchronized也是属于可重入的，两者的却别不大；都是进入一次线程，锁的计数器就自增1，所以等到锁的计数器下降为0时才会释放锁。</p>
+<p><strong>锁的实现：</strong> synchronized是依赖于JVM实现的，而ReentrantLock基于JDK实现的；两者的区别就类似于用户控制操作系统来实现和自己敲代码实现的区别；</p>
+<p><strong>性能的区别</strong>：在synchronized的关键字优化以前，synchronized的性能比ReentrantLock的性能差很多；从synchronized引入了偏向锁、轻量级锁也就是自旋锁后，它们两者的性能就差不多了，在两者都可用的情况下，官方更建议使用synchronized的，因为它的写法更容易。</p>
+<h4 id="功能区别："><a href="#功能区别：" class="headerlink" title="功能区别："></a><strong>功能区别</strong>：</h4><blockquote>
+<p>从便利性来说：synchronized比较方便、简洁，并且它是有编译器去保证锁的加锁和释放的；而ReentrantLock需要我们来手动声明加锁和释放锁，为了避免忘记手动释放锁而导致死锁，最好是在finally中声明释放锁；</p>
+<p>从细腻度和灵活度来说：ReentrantLock要优胜于synchronized的。</p>
+</blockquote>
+<h3 id="ReentrantLock独有的功能"><a href="#ReentrantLock独有的功能" class="headerlink" title="ReentrantLock独有的功能"></a>ReentrantLock独有的功能</h3><blockquote>
+<ul>
+<li>可指定是<strong>公平锁</strong>还是<strong>非公平锁</strong></li>
+<li><strong>提供了一个Condition类，可以分组唤醒需要唤醒的线程</strong></li>
+<li><strong>提供能够中断等待锁的线程的机制 ， lock.lockInterruptibly()</strong></li>
+</ul>
+</blockquote>
+<p>所谓<strong>公平锁</strong> ，就是先等待的线程先获得锁，这一点<strong>ReentrantLock</strong>是独有的，可以自己选择公平还是不公平 </p>
+<h3 id="ReentranLock的定义："><a href="#ReentranLock的定义：" class="headerlink" title="ReentranLock的定义："></a>ReentranLock的定义：</h3><blockquote>
+<p><strong>ReentrantLock</strong>实际上是一种自旋锁，通过循环调用CAS操作来实现加锁，它的性能比较好也是因为避免了进入内核态的阻塞状态，想尽办法避免进入内核的阻塞状态是去分析和理解锁的设计的关键要素。 </p>
+</blockquote>
+<h3 id="什么情况下适合使用ReentrantLock呢？"><a href="#什么情况下适合使用ReentrantLock呢？" class="headerlink" title="什么情况下适合使用ReentrantLock呢？"></a>什么情况下适合使用ReentrantLock呢？</h3><blockquote>
+<p>当你需要用到<strong>ReentrantLock</strong>这三个独立功能的时候你就必须使用<strong>ReentrantLock</strong>，而且你可以根据业务场景来选择使用<strong>ReentrantLock</strong>或者是<strong>Synchronized</strong>的。 </p>
+</blockquote>
+<h3 id="ReentrantLock-和-Synchronized"><a href="#ReentrantLock-和-Synchronized" class="headerlink" title="ReentrantLock 和 Synchronized"></a>ReentrantLock 和 Synchronized</h3><p>Synchronized 能做的事情，ReentrantLock都能做，而ReentrantLock能做的Synchronized却有许多都做不了，在性能方面ReentrantLock不比Synchronized差！</p>
+<h4 id="那么，是否可以抛弃Synchronized呢？"><a href="#那么，是否可以抛弃Synchronized呢？" class="headerlink" title="那么，是否可以抛弃Synchronized呢？"></a><strong>那么，是否可以抛弃Synchronized呢？</strong></h4><blockquote>
+<p>不可以，Javautil.current.lock包中的锁定类是应用于高级用户和高级情况的工具，一般来说，除非你对lock的某个高级的包邮明确的需要，或者有明确的证据。这里不仅仅是怀疑，而是表名特定的情况下，同步已经成为可伸缩性的瓶颈的时候，建议还是使用synchronized。</p>
+<p>并且即使是相对于高级锁定类而言，synchronized也有它的优势，比如，使用synchronized 的时候，你不会忘记释放锁，退出synchronized块的时候，jvm会为你做这件事情。你会很容易忘记使用finally去释放锁，这对程序非常有害。你的程序会通过测试，但在实际工作中会出现死锁，当时会很指出原因。这也是很不建议初级开发人员使用ReentrantLock的好理由。</p>
+<p>另外一个原因是，当JVM使用synchronized管理线程的锁定请求和释放时，JVM在生成线程转储时，能够包括锁定信息。这些信息对调试程序很有帮助。有利于分析死锁以及其它异常问题的来源。而lock类只是普通的，jvm不知道具体哪个线程拥有lock对象，而且几乎每个开发人员都熟悉synchronized的，它可以在JVM的所有版本中工作，在jdk5.0成为标准之前，使用lock类将意味着要利用lock的特性而不是每个JVM都有的，而且也不是每个开发人员都熟悉的。</p>
+<p>所以，程序员在开发中遇到的大部分的加锁的情景都可以使用synchronized，那种特别高级的特殊情况还是很少的。</p>
+</blockquote>
+<h3 id="ReentrantLock相关类的代码演示；"><a href="#ReentrantLock相关类的代码演示；" class="headerlink" title="ReentrantLock相关类的代码演示；"></a>ReentrantLock相关类的代码演示；</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockExample2</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; clientTotal ; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> count = i;</span><br><span class="line">            executorService.execute(()-&gt;&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">                    log.error(<span class="string">"exception"</span>,e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>,count );</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            count ++;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">13</span>:<span class="number">47</span>:<span class="number">27.962</span> [main] INFO com.mmall.concurrency.example.lock.LockExample2 - count:<span class="number">5000</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重要底层实现原理分析："><a href="#重要底层实现原理分析：" class="headerlink" title="重要底层实现原理分析："></a>重要底层实现原理分析：</h3><p>ReentrantLock的底层代码实现中： </p>
+<img src="http://photo.wushaopei.com/qiniu321.png" width="60%">
+
+<p>默认构造方法中生成给定的是一个不公平的锁； </p>
+<img src="http://photo.wushaopei.com/qiniu322.png" width="60%">
+
+<p>在带参构造中，根据传入的true或者false来决定是使用公平锁或不公平锁 </p>
+<img src="http://photo.wushaopei.com/qiniu323.png" width="60%">
+
+<p>仅在调用时锁定未被保持的情况下才获取锁定 </p>
+<img src="http://photo.wushaopei.com/qiniu324.png" width="60%">
+
+<p>如果锁定在给定的等待时间内没有被线程保持，且当前线程没有被中断，则获取这个锁定 </p>
+<img src="http://photo.wushaopei.com/qiniu325.png" width="60%">
+
+<p>如果当前线程没有被中断，就获取锁定；如果被中断，就抛出异常。 </p>
+<img src="http://photo.wushaopei.com/qiniu326.png" width="60%">
+
+<p>查询此锁定，是否有任意线程保持 </p>
+<img src="http://photo.wushaopei.com/qiniu327.png" width="60%">
+
+<p>查询当前线程是否处于锁定状态 </p>
+<img src="http://photo.wushaopei.com/qiniu327.png" width="60%">
+
+<p><strong>isFair()</strong> 作用是判断是不是公平锁 </p>
+<h3 id="扩展：ReentrantReadWriteLock"><a href="#扩展：ReentrantReadWriteLock" class="headerlink" title="扩展：ReentrantReadWriteLock"></a>扩展：ReentrantReadWriteLock</h3><p><strong>作用</strong>：在没有任何读写锁的时候才可以取得写入锁 </p>
+<blockquote>
+<p>ReentrantReadWriteLock可以用于实现悲观读取，即读取时经常有另一个可能要写入的需求，为了保持同步，ReentrantReadWriteLock的读取锁定就可以派上用场了。如果读取情况很多，写入情况很少的情况下，使用ReentrantReadWriteLock可能会使写入线程遭遇饥饿，也就是说写入线程迟迟不能竞争到锁定，而一直等待。</p>
+</blockquote>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>Java并发编程</category>
+      </categories>
+      <tags>
+        <tag>可重入锁</tag>
+        <tag>AQS</tag>
+        <tag>ReentrantLock</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>OSGI: (二) Apache Felix 介绍 </title>
     <url>/2020/04/13/OSGI-%E4%BA%8C-Apache-Felix-%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<h2 id="Felix-项目历史"><a href="#Felix-项目历史" class="headerlink" title="Felix 项目历史"></a>Felix 项目历史</h2><p>作为<a href="http://apache.org" target="_blank" rel="noopener">Apache</a>旗下的其中一个项目，<a href="http://felix.apache.org" target="_blank" rel="noopener">Felix</a>在2006年就拥有了自己的网站。不过一开始似乎进展并不快，直到2007年的七月，才发布了自己的1.0.0版本，其后他们发布了很多与Felix框架相关的<a href="http://maven.apache.org" target="_blank" rel="noopener">Maven</a>插件，到了2008年初，开始对纲要标准（Compendium Specification）进行部分实现。此后Felix项目的发展壮大非常的迅速，那时候的OSGi标准也日趋稳定和完善。时至今日，Felix项目不仅包含了一个OSGi R4(到今天为止，准确的版本号是4.2)服务平台标准的实现，在此之外还包含了很多OSGi相关的技术和功能（非标准），他们能帮助OSGi框架更好的发挥作用. </p>
@@ -486,8 +561,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -523,8 +598,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -554,8 +629,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -593,8 +668,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -683,49 +758,76 @@
     <title>自动化开发（六）Specification-06-Common Function</title>
     <url>/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/</url>
     <content><![CDATA[<h2 id="06-Common-Function"><a href="#06-Common-Function" class="headerlink" title="06. Common Function"></a>06. Common Function</h2><p>设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。</p>
-<h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><h5 id="06-01-01-01-PLC-MAP"><a href="#06-01-01-01-PLC-MAP" class="headerlink" title="06.01.01.01. PLC MAP"></a>06.01.01.01. PLC MAP</h5><h6 id="06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.01.01.01. Local PLC – Link Relay (B Area)"></a>06.01.01.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-01-02-Communication-Scenario"><a href="#06-01-01-02-Communication-Scenario" class="headerlink" title="06.01.01.02. Communication Scenario"></a>06.01.01.02. Communication Scenario</h5><h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-02-02-Communication-Scenario"><a href="#06-01-02-02-Communication-Scenario" class="headerlink" title="06.01.02.02. Communication Scenario"></a>06.01.02.02. Communication Scenario</h5><h4 id="06-01-03-CIM-Mode-Change-Command"><a href="#06-01-03-CIM-Mode-Change-Command" class="headerlink" title="06.01.03. CIM Mode Change Command"></a>06.01.03. CIM Mode Change Command</h4><h5 id="06-01-03-01-PLC-MAP"><a href="#06-01-03-01-PLC-MAP" class="headerlink" title="06.01.03.01. PLC MAP"></a>06.01.03.01. PLC MAP</h5><h6 id="06-01-03-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-01-03-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.03.01.01. Local PLC – Link Register (W Area)"></a>06.01.03.01.01. Local PLC – Link Register (W Area)</h6><h6 id="06-01-03-01-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-03-01-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.03.01.02. Local PLC – Link Relay (B Area)"></a>06.01.03.01.02. Local PLC – Link Relay (B Area)</h6><h6 id="06-01-03-01-03-Master-PLC-–-Link-Register-W-Area"><a href="#06-01-03-01-03-Master-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.03.01.03. Master PLC – Link Register (W Area)"></a>06.01.03.01.03. Master PLC – Link Register (W Area)</h6><h6 id="06-01-03-01-04-Master-PLC-–-Link-Relay-B-Area"><a href="#06-01-03-01-04-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.03.01.04. Master PLC – Link Relay (B Area)"></a>06.01.03.01.04. Master PLC – Link Relay (B Area)</h6><h5 id="06-01-03-02-Communication-Scenario"><a href="#06-01-03-02-Communication-Scenario" class="headerlink" title="06.01.03.02. Communication Scenario"></a>06.01.03.02. Communication Scenario</h5><h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><h4 id="06-01-05-Inline-Mode"><a href="#06-01-05-Inline-Mode" class="headerlink" title="06.01.05. Inline Mode"></a>06.01.05. Inline Mode</h4><h5 id="06-01-05-01-PLC-MAP"><a href="#06-01-05-01-PLC-MAP" class="headerlink" title="06.01.05.01. PLC MAP"></a>06.01.05.01. PLC MAP</h5><h6 id="06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.05.01.01. Local PLC – Link Relay (B Area)"></a>06.01.05.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-05-02-Communication-Scenario"><a href="#06-01-05-02-Communication-Scenario" class="headerlink" title="06.01.05.02. Communication Scenario"></a>06.01.05.02. Communication Scenario</h5><h4 id="06-01-06-Local-Alarm-Status"><a href="#06-01-06-Local-Alarm-Status" class="headerlink" title="06.01.06. Local Alarm Status"></a>06.01.06. Local Alarm Status</h4><h5 id="06-01-06-01-PLC-MAP"><a href="#06-01-06-01-PLC-MAP" class="headerlink" title="06.01.06.01. PLC MAP"></a>06.01.06.01. PLC MAP</h5><h6 id="06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.06.01.01. Local PLC – Link Relay (B Area)"></a>06.01.06.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-06-02-Communication-Scenario"><a href="#06-01-06-02-Communication-Scenario" class="headerlink" title="06.01.06.02. Communication Scenario"></a>06.01.06.02. Communication Scenario</h5><h4 id="06-01-07-Equipment-Operation-Mode"><a href="#06-01-07-Equipment-Operation-Mode" class="headerlink" title="06.01.07. Equipment Operation Mode"></a>06.01.07. Equipment Operation Mode</h4><h5 id="06-01-07-01-PLC-MAP"><a href="#06-01-07-01-PLC-MAP" class="headerlink" title="06.01.07.01. PLC MAP"></a>06.01.07.01. PLC MAP</h5><h6 id="06-01-07-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-01-07-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.07.01.01. Local PLC – Link Register (W Area)"></a>06.01.07.01.01. Local PLC – Link Register (W Area)</h6><h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu298.png" width="80%">
+<h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><p>​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变，则主PLC应将其作为通信断开，并生成操作员呼叫。 </p>
+<h5 id="06-01-01-01-PLC-MAP"><a href="#06-01-01-01-PLC-MAP" class="headerlink" title="06.01.01.01. PLC MAP"></a>06.01.01.01. PLC MAP</h5><h6 id="06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.01.01.01. Local PLC – Link Relay (B Area)"></a>06.01.01.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu308.png" width="80%">
+
+
+
+<h5 id="06-01-01-02-Communication-Scenario"><a href="#06-01-01-02-Communication-Scenario" class="headerlink" title="06.01.01.02. Communication Scenario"></a>06.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu309.png" width="80%">
+
+<p>以 4s on 和 4s off 去检测机台的状态，如果 10s Bit都不变化，则认为机台挂掉了。</p>
+<h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><p>CIM模式是指定设备与BC之间的通信关系。有两种模式，CIM on 模式和CIM off 模式。设备应在触摸屏上提供CIM模式切换按钮。CIM模式可以改变，无论玻璃计数。 </p>
+<ul>
+<li>CIM on模式:BC和EQ之间通讯正常，EQ可以向BC报告所有事件。BC也可以向EQ发送任何命令 </li>
+<li>CIM OFF模式:BC和EQ之间的通信出现了某种异常，EQ可以更新状态数据(链路寄存器区域)，但不能向BC报告事件(链路中继区域)，不包括设备状态变化报告。同时，装备也不接受BC的任何命令 </li>
+</ul>
+<p><strong>※注意:</strong>  </p>
+<pre><code>1. CIM关闭模式，设备应接受BC设置的CIM模式改变命令来改变CIM模式。 </code></pre><p>CIM Mode ：</p>
+<p>​    <strong>ON</strong>  :  机台会把数据上报到BC，BC会收</p>
+<pre><code>**OOF** :  机台不会 ON Bit , 只会去写 Word ；BC 只会在 机台 Bit 变化 on 才会去读 Word </code></pre><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu310.png" width="80%">
 
 
 
 
 
+<h5 id="06-01-02-02-Communication-Scenario"><a href="#06-01-02-02-Communication-Scenario" class="headerlink" title="06.01.02.02. Communication Scenario"></a>06.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu311.png" width="80%">
 
 
 
+<h4 id="06-01-03-CIM-Mode-Change-Command"><a href="#06-01-03-CIM-Mode-Change-Command" class="headerlink" title="06.01.03. CIM Mode Change Command"></a>06.01.03. CIM Mode Change Command</h4><p>​    BC可以通过CIM模式改变命令改变CIM模式的设备，进行数据采集。如果设备应答接受，设备需要再次自动触发CIM模式事件</p>
+<p><strong>※注意:</strong></p>
+<p>Return Code 说明:</p>
+<p>1: Accept，表示设备接受命令，需要改变CIM模式。 </p>
+<p>2: Already In Desired Status，即CIM模式的指令与设备CIM相同</p>
+<p>3: Equipment Reject，意思是设备不能接受指令，不能改变CIM Mode</p>
+<h5 id="06-01-03-01-PLC-MAP"><a href="#06-01-03-01-PLC-MAP" class="headerlink" title="06.01.03.01. PLC MAP"></a>06.01.03.01. PLC MAP</h5><h6 id=""><a href="#" class="headerlink" title=""></a><img src="http://photo.wushaopei.com/qiniu312.png" width="80%"></h6><h5 id="06-01-03-02-Communication-Scenario"><a href="#06-01-03-02-Communication-Scenario" class="headerlink" title="06.01.03.02. Communication Scenario"></a>06.01.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu313.png" width="80%">
 
 
 
+<h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><p>Loader/Un-loader/Buffer/Virtual Port（加载器/卸载器/缓冲区/虚拟端口）应提供以下作业数据项设置功能CIM-OFF模式。</p>
+<p>请参阅作业数据中的PLC地图文档。</p>
+<img src="http://photo.wushaopei.com/qiniu314.png" width="80%">
 
 
 
+<h4 id="06-01-05-Inline-Mode"><a href="#06-01-05-Inline-Mode" class="headerlink" title="06.01.05. Inline Mode"></a>06.01.05. Inline Mode</h4><p>内联模式仅与作业转移有关，并且仅在上游设备和下游设备之间必要。设备应按各接口提供触摸屏上的内联模式切换按钮。内联模式包括两种模式: </p>
+<ul>
+<li>Upstream Inline Mode On (上游内联模式开启) :EQ可以从上游设备接收一个玻璃/芯片。下游内联信号的接口链路信号打开 </li>
+<li>Upstream Inline Mode Off (上游内联模式关闭) :EQ无法从上游设备接收任何玻璃/芯片。下游内联信号的接口链路信号将关闭 </li>
+<li>Downstream Inline Mode On (下游内联模式开启) :EQ可以向下游设备发送一个玻璃/芯片。上游内联信号的接口链路信号将打开。 </li>
+<li>Downstream Inline Mode Off (下游内联模式关闭) :EQ不能向下游设备发送任何玻璃/芯片。上游 Inline 信号的接口链路信号将关闭。 </li>
+</ul>
+<p>当设备有多个接口时，只要有一组 Inline on，就需要 Inline on向BC报告，当接口全部 Inline off时，就向BC报告  Inline off。 </p>
+<h5 id="06-01-05-01-PLC-MAP"><a href="#06-01-05-01-PLC-MAP" class="headerlink" title="06.01.05.01. PLC MAP"></a>06.01.05.01. PLC MAP</h5><h6 id="06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.05.01.01. Local PLC – Link Relay (B Area)"></a>06.01.05.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu315.png" width="80%">
+
+<h5 id="06-01-05-02-Communication-Scenario"><a href="#06-01-05-02-Communication-Scenario" class="headerlink" title="06.01.05.02. Communication Scenario"></a>06.01.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu316.png" width="80%">
+
+<h4 id="06-01-06-Local-Alarm-Status"><a href="#06-01-06-Local-Alarm-Status" class="headerlink" title="06.01.06. Local Alarm Status"></a>06.01.06. Local Alarm Status</h4><p>​    显示整个设备有报警(错误或警告)。如果所有警报(错误或警告)都已清除，则应将其关闭 </p>
+<h5 id="06-01-06-01-PLC-MAP"><a href="#06-01-06-01-PLC-MAP" class="headerlink" title="06.01.06.01. PLC MAP"></a>06.01.06.01. PLC MAP</h5><h6 id="06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.06.01.01. Local PLC – Link Relay (B Area)"></a>06.01.06.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu317.png" width="80%">
 
 
 
+<h5 id="06-01-06-02-Communication-Scenario"><a href="#06-01-06-02-Communication-Scenario" class="headerlink" title="06.01.06.02. Communication Scenario"></a>06.01.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu318.png" width="80%">
 
 
 
+<h4 id="06-01-07-Equipment-Operation-Mode"><a href="#06-01-07-Equipment-Operation-Mode" class="headerlink" title="06.01.07. Equipment Operation Mode"></a>06.01.07. Equipment Operation Mode</h4><p>显示设备当前运行方式为 <strong>Auto, Semi-Auto or Manual</strong> (自动、半自动或手动)。默认状态为自动，如果设备运行模式发生变化，应向BC报告。</p>
+<p>在自动或半自动模式下，作业通过接口信号从上游设备接收或发送到下游设备</p>
+<h5 id="06-01-07-01-PLC-MAP"><a href="#06-01-07-01-PLC-MAP" class="headerlink" title="06.01.07.01. PLC MAP"></a>06.01.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu319.png" width="80%">
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu320.png" width="80%">
 
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
@@ -4794,59 +4896,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>jdbc(二)获取数据库连接的五种方式</title>
-    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
-<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
-<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
-<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
-<ul>
-<li><span style="color:red;">jdbc:子协议:子名称</span></li>
-<li>协议：JDBC URL中的协议总是jdbc</li>
-<li>子协议：子协议用于标识一个数据库驱动程序</li>
-<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
-</ul>
-<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
-
-<ul>
-<li><p>对于Oracle 数据库连接，采用如下形式：</p>
-<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
-</li>
-<li><p>对于SQLServer数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
-</li>
-<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
-</li>
-</ul>
-<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
-<ol>
-<li>安装数据库 - 服务必须开启</li>
-<li>需要导入数据库的驱动</li>
-</ol>
-<p>连接数据库的<strong>五种方式</strong>： </p>
-<p><strong>代码：</strong> </p>
-<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(四)ResultSet</title>
     <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
     <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
@@ -5022,6 +5071,59 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>jdbc增删改查</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(二)获取数据库连接的五种方式</title>
+    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
+<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
+<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
+<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
+<ul>
+<li><span style="color:red;">jdbc:子协议:子名称</span></li>
+<li>协议：JDBC URL中的协议总是jdbc</li>
+<li>子协议：子协议用于标识一个数据库驱动程序</li>
+<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
+</ul>
+<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
+
+<ul>
+<li><p>对于Oracle 数据库连接，采用如下形式：</p>
+<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
+</li>
+<li><p>对于SQLServer数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
+</li>
+<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
+</li>
+</ul>
+<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
+<ol>
+<li>安装数据库 - 服务必须开启</li>
+<li>需要导入数据库的驱动</li>
+</ol>
+<p>连接数据库的<strong>五种方式</strong>： </p>
+<p><strong>代码：</strong> </p>
+<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
       </tags>
   </entry>
   <entry>
@@ -5244,79 +5346,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>hexo搭建个人博客（一）博客框架搭建</title>
-    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>好，话不多说，开始动手</p>
-<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
-<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
-
-<p>上面这张图显示的是我安装node的版本 </p>
-<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
-
-<hr>
-<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
-<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
-<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
-<hr>
-<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
-<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
-<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
-
-<p> 安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
-
-<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
-
-<p>此时hexo的基本布置完成了</p>
-<hr>
-<p>接下来要做的就是把博客部署到github上去</p>
-<p>首先你要有个github账号，注册账号省略</p>
-<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
-<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
-
-<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
-<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
-
-<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
-<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
-<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
-<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
-<hr>
-<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
-<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>个人博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络（一）-深入理解NIO</title>
     <url>/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</url>
     <content><![CDATA[<p><strong>目录概览</strong>：</p>
@@ -5447,6 +5476,79 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建个人博客（一）博客框架搭建</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>好，话不多说，开始动手</p>
+<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
+<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
+
+<p>上面这张图显示的是我安装node的版本 </p>
+<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
+
+<hr>
+<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
+<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
+<hr>
+<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
+<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
+<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
+
+<p> 安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
+
+<p>此时hexo的基本布置完成了</p>
+<hr>
+<p>接下来要做的就是把博客部署到github上去</p>
+<p>首先你要有个github账号，注册账号省略</p>
+<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
+<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
+<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
+
+<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
+<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
+
+<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
+<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
+<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
+<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
+<hr>
+<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
+<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>个人博客搭建</tag>
       </tags>
   </entry>
   <entry>

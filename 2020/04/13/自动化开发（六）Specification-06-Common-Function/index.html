@@ -91,19 +91,31 @@
 
 
 
-<meta name="description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive06.01.01.01. PLC MAP06.01.01.01.01. Local PLC – Link Relay (B Area)06.01">
+<meta name="description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自动化开发（六）Specification-06-Common Function">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/index.html">
 <meta property="og:site_name" content="白夜行">
-<meta property="og:description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive06.01.01.01. PLC MAP06.01.01.01.01. Local PLC – Link Relay (B Area)06.01">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu298.png">
+<meta property="og:description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu308.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu309.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu310.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu311.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu312.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu313.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu314.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu315.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu316.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu317.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu318.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu319.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu320.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-04-13T07:22:32.342Z">
+<meta property="article:modified_time" content="2020-04-14T07:19:13.026Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu298.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu308.png">
 
 
 
@@ -581,49 +593,76 @@ window.onmouseout = function () {
 
       
         <h2 id="06-Common-Function"><a href="#06-Common-Function" class="headerlink" title="06. Common Function"></a>06. Common Function</h2><p>设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。</p>
-<h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><h5 id="06-01-01-01-PLC-MAP"><a href="#06-01-01-01-PLC-MAP" class="headerlink" title="06.01.01.01. PLC MAP"></a>06.01.01.01. PLC MAP</h5><h6 id="06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.01.01.01. Local PLC – Link Relay (B Area)"></a>06.01.01.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-01-02-Communication-Scenario"><a href="#06-01-01-02-Communication-Scenario" class="headerlink" title="06.01.01.02. Communication Scenario"></a>06.01.01.02. Communication Scenario</h5><h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-02-02-Communication-Scenario"><a href="#06-01-02-02-Communication-Scenario" class="headerlink" title="06.01.02.02. Communication Scenario"></a>06.01.02.02. Communication Scenario</h5><h4 id="06-01-03-CIM-Mode-Change-Command"><a href="#06-01-03-CIM-Mode-Change-Command" class="headerlink" title="06.01.03. CIM Mode Change Command"></a>06.01.03. CIM Mode Change Command</h4><h5 id="06-01-03-01-PLC-MAP"><a href="#06-01-03-01-PLC-MAP" class="headerlink" title="06.01.03.01. PLC MAP"></a>06.01.03.01. PLC MAP</h5><h6 id="06-01-03-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-01-03-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.03.01.01. Local PLC – Link Register (W Area)"></a>06.01.03.01.01. Local PLC – Link Register (W Area)</h6><h6 id="06-01-03-01-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-03-01-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.03.01.02. Local PLC – Link Relay (B Area)"></a>06.01.03.01.02. Local PLC – Link Relay (B Area)</h6><h6 id="06-01-03-01-03-Master-PLC-–-Link-Register-W-Area"><a href="#06-01-03-01-03-Master-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.03.01.03. Master PLC – Link Register (W Area)"></a>06.01.03.01.03. Master PLC – Link Register (W Area)</h6><h6 id="06-01-03-01-04-Master-PLC-–-Link-Relay-B-Area"><a href="#06-01-03-01-04-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.03.01.04. Master PLC – Link Relay (B Area)"></a>06.01.03.01.04. Master PLC – Link Relay (B Area)</h6><h5 id="06-01-03-02-Communication-Scenario"><a href="#06-01-03-02-Communication-Scenario" class="headerlink" title="06.01.03.02. Communication Scenario"></a>06.01.03.02. Communication Scenario</h5><h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><h4 id="06-01-05-Inline-Mode"><a href="#06-01-05-Inline-Mode" class="headerlink" title="06.01.05. Inline Mode"></a>06.01.05. Inline Mode</h4><h5 id="06-01-05-01-PLC-MAP"><a href="#06-01-05-01-PLC-MAP" class="headerlink" title="06.01.05.01. PLC MAP"></a>06.01.05.01. PLC MAP</h5><h6 id="06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.05.01.01. Local PLC – Link Relay (B Area)"></a>06.01.05.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-05-02-Communication-Scenario"><a href="#06-01-05-02-Communication-Scenario" class="headerlink" title="06.01.05.02. Communication Scenario"></a>06.01.05.02. Communication Scenario</h5><h4 id="06-01-06-Local-Alarm-Status"><a href="#06-01-06-Local-Alarm-Status" class="headerlink" title="06.01.06. Local Alarm Status"></a>06.01.06. Local Alarm Status</h4><h5 id="06-01-06-01-PLC-MAP"><a href="#06-01-06-01-PLC-MAP" class="headerlink" title="06.01.06.01. PLC MAP"></a>06.01.06.01. PLC MAP</h5><h6 id="06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.06.01.01. Local PLC – Link Relay (B Area)"></a>06.01.06.01.01. Local PLC – Link Relay (B Area)</h6><h5 id="06-01-06-02-Communication-Scenario"><a href="#06-01-06-02-Communication-Scenario" class="headerlink" title="06.01.06.02. Communication Scenario"></a>06.01.06.02. Communication Scenario</h5><h4 id="06-01-07-Equipment-Operation-Mode"><a href="#06-01-07-Equipment-Operation-Mode" class="headerlink" title="06.01.07. Equipment Operation Mode"></a>06.01.07. Equipment Operation Mode</h4><h5 id="06-01-07-01-PLC-MAP"><a href="#06-01-07-01-PLC-MAP" class="headerlink" title="06.01.07.01. PLC MAP"></a>06.01.07.01. PLC MAP</h5><h6 id="06-01-07-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-01-07-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.01.07.01.01. Local PLC – Link Register (W Area)"></a>06.01.07.01.01. Local PLC – Link Register (W Area)</h6><h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu298.png" width="80%">
+<h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><p>​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变，则主PLC应将其作为通信断开，并生成操作员呼叫。 </p>
+<h5 id="06-01-01-01-PLC-MAP"><a href="#06-01-01-01-PLC-MAP" class="headerlink" title="06.01.01.01. PLC MAP"></a>06.01.01.01. PLC MAP</h5><h6 id="06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.01.01.01. Local PLC – Link Relay (B Area)"></a>06.01.01.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu308.png" width="80%">
+
+
+
+<h5 id="06-01-01-02-Communication-Scenario"><a href="#06-01-01-02-Communication-Scenario" class="headerlink" title="06.01.01.02. Communication Scenario"></a>06.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu309.png" width="80%">
+
+<p>以 4s on 和 4s off 去检测机台的状态，如果 10s Bit都不变化，则认为机台挂掉了。</p>
+<h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><p>CIM模式是指定设备与BC之间的通信关系。有两种模式，CIM on 模式和CIM off 模式。设备应在触摸屏上提供CIM模式切换按钮。CIM模式可以改变，无论玻璃计数。 </p>
+<ul>
+<li>CIM on模式:BC和EQ之间通讯正常，EQ可以向BC报告所有事件。BC也可以向EQ发送任何命令 </li>
+<li>CIM OFF模式:BC和EQ之间的通信出现了某种异常，EQ可以更新状态数据(链路寄存器区域)，但不能向BC报告事件(链路中继区域)，不包括设备状态变化报告。同时，装备也不接受BC的任何命令 </li>
+</ul>
+<p><strong>※注意:</strong>  </p>
+<pre><code>1. CIM关闭模式，设备应接受BC设置的CIM模式改变命令来改变CIM模式。 </code></pre><p>CIM Mode ：</p>
+<p>​    <strong>ON</strong>  :  机台会把数据上报到BC，BC会收</p>
+<pre><code>**OOF** :  机台不会 ON Bit , 只会去写 Word ；BC 只会在 机台 Bit 变化 on 才会去读 Word </code></pre><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu310.png" width="80%">
 
 
 
 
 
+<h5 id="06-01-02-02-Communication-Scenario"><a href="#06-01-02-02-Communication-Scenario" class="headerlink" title="06.01.02.02. Communication Scenario"></a>06.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu311.png" width="80%">
 
 
 
+<h4 id="06-01-03-CIM-Mode-Change-Command"><a href="#06-01-03-CIM-Mode-Change-Command" class="headerlink" title="06.01.03. CIM Mode Change Command"></a>06.01.03. CIM Mode Change Command</h4><p>​    BC可以通过CIM模式改变命令改变CIM模式的设备，进行数据采集。如果设备应答接受，设备需要再次自动触发CIM模式事件</p>
+<p><strong>※注意:</strong></p>
+<p>Return Code 说明:</p>
+<p>1: Accept，表示设备接受命令，需要改变CIM模式。 </p>
+<p>2: Already In Desired Status，即CIM模式的指令与设备CIM相同</p>
+<p>3: Equipment Reject，意思是设备不能接受指令，不能改变CIM Mode</p>
+<h5 id="06-01-03-01-PLC-MAP"><a href="#06-01-03-01-PLC-MAP" class="headerlink" title="06.01.03.01. PLC MAP"></a>06.01.03.01. PLC MAP</h5><h6 id=""><a href="#" class="headerlink" title=""></a><img src="http://photo.wushaopei.com/qiniu312.png" width="80%"></h6><h5 id="06-01-03-02-Communication-Scenario"><a href="#06-01-03-02-Communication-Scenario" class="headerlink" title="06.01.03.02. Communication Scenario"></a>06.01.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu313.png" width="80%">
 
 
 
+<h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><p>Loader/Un-loader/Buffer/Virtual Port（加载器/卸载器/缓冲区/虚拟端口）应提供以下作业数据项设置功能CIM-OFF模式。</p>
+<p>请参阅作业数据中的PLC地图文档。</p>
+<img src="http://photo.wushaopei.com/qiniu314.png" width="80%">
 
 
 
+<h4 id="06-01-05-Inline-Mode"><a href="#06-01-05-Inline-Mode" class="headerlink" title="06.01.05. Inline Mode"></a>06.01.05. Inline Mode</h4><p>内联模式仅与作业转移有关，并且仅在上游设备和下游设备之间必要。设备应按各接口提供触摸屏上的内联模式切换按钮。内联模式包括两种模式: </p>
+<ul>
+<li>Upstream Inline Mode On (上游内联模式开启) :EQ可以从上游设备接收一个玻璃/芯片。下游内联信号的接口链路信号打开 </li>
+<li>Upstream Inline Mode Off (上游内联模式关闭) :EQ无法从上游设备接收任何玻璃/芯片。下游内联信号的接口链路信号将关闭 </li>
+<li>Downstream Inline Mode On (下游内联模式开启) :EQ可以向下游设备发送一个玻璃/芯片。上游内联信号的接口链路信号将打开。 </li>
+<li>Downstream Inline Mode Off (下游内联模式关闭) :EQ不能向下游设备发送任何玻璃/芯片。上游 Inline 信号的接口链路信号将关闭。 </li>
+</ul>
+<p>当设备有多个接口时，只要有一组 Inline on，就需要 Inline on向BC报告，当接口全部 Inline off时，就向BC报告  Inline off。 </p>
+<h5 id="06-01-05-01-PLC-MAP"><a href="#06-01-05-01-PLC-MAP" class="headerlink" title="06.01.05.01. PLC MAP"></a>06.01.05.01. PLC MAP</h5><h6 id="06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.05.01.01. Local PLC – Link Relay (B Area)"></a>06.01.05.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu315.png" width="80%">
+
+<h5 id="06-01-05-02-Communication-Scenario"><a href="#06-01-05-02-Communication-Scenario" class="headerlink" title="06.01.05.02. Communication Scenario"></a>06.01.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu316.png" width="80%">
+
+<h4 id="06-01-06-Local-Alarm-Status"><a href="#06-01-06-Local-Alarm-Status" class="headerlink" title="06.01.06. Local Alarm Status"></a>06.01.06. Local Alarm Status</h4><p>​    显示整个设备有报警(错误或警告)。如果所有警报(错误或警告)都已清除，则应将其关闭 </p>
+<h5 id="06-01-06-01-PLC-MAP"><a href="#06-01-06-01-PLC-MAP" class="headerlink" title="06.01.06.01. PLC MAP"></a>06.01.06.01. PLC MAP</h5><h6 id="06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.06.01.01. Local PLC – Link Relay (B Area)"></a>06.01.06.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu317.png" width="80%">
 
 
 
+<h5 id="06-01-06-02-Communication-Scenario"><a href="#06-01-06-02-Communication-Scenario" class="headerlink" title="06.01.06.02. Communication Scenario"></a>06.01.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu318.png" width="80%">
 
 
 
+<h4 id="06-01-07-Equipment-Operation-Mode"><a href="#06-01-07-Equipment-Operation-Mode" class="headerlink" title="06.01.07. Equipment Operation Mode"></a>06.01.07. Equipment Operation Mode</h4><p>显示设备当前运行方式为 <strong>Auto, Semi-Auto or Manual</strong> (自动、半自动或手动)。默认状态为自动，如果设备运行模式发生变化，应向BC报告。</p>
+<p>在自动或半自动模式下，作业通过接口信号从上游设备接收或发送到下游设备</p>
+<h5 id="06-01-07-01-PLC-MAP"><a href="#06-01-07-01-PLC-MAP" class="headerlink" title="06.01.07.01. PLC MAP"></a>06.01.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu319.png" width="80%">
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu320.png" width="80%">
 
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
@@ -804,7 +843,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">109</span>
+                  <span class="site-state-item-count">110</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -826,7 +865,7 @@ window.onmouseout = function () {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -865,7 +904,7 @@ window.onmouseout = function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Common-Function"><span class="nav-number">1.</span> <span class="nav-text">06. Common Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#06-01-Equipment-Monitor-Management"><span class="nav-number">1.1.</span> <span class="nav-text">06.01. Equipment Monitor Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-01-Equipment-Alive"><span class="nav-number">1.1.1.</span> <span class="nav-text">06.01.01. Equipment Alive</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-01-PLC-MAP"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">06.01.01.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">06.01.01.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-02-Communication-Scenario"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">06.01.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-02-CIM-Mode"><span class="nav-number">1.1.2.</span> <span class="nav-text">06.01.02. CIM Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-01-PLC-MAP"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">06.01.02.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">06.01.02.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-02-Communication-Scenario"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">06.01.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-03-CIM-Mode-Change-Command"><span class="nav-number">1.1.3.</span> <span class="nav-text">06.01.03. CIM Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-01-PLC-MAP"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">06.01.03.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-03-01-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text">06.01.03.01.01. Local PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-03-01-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.3.1.2.</span> <span class="nav-text">06.01.03.01.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-03-01-03-Master-PLC-–-Link-Register-W-Area"><span class="nav-number">1.1.3.1.3.</span> <span class="nav-text">06.01.03.01.03. Master PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-03-01-04-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.3.1.4.</span> <span class="nav-text">06.01.03.01.04. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-02-Communication-Scenario"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">06.01.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-04-CIM-Off-Mode-Operation"><span class="nav-number">1.1.4.</span> <span class="nav-text">06.01.04. CIM Off Mode Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-05-Inline-Mode"><span class="nav-number">1.1.5.</span> <span class="nav-text">06.01.05. Inline Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-01-PLC-MAP"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">06.01.05.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">06.01.05.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-02-Communication-Scenario"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">06.01.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-06-Local-Alarm-Status"><span class="nav-number">1.1.6.</span> <span class="nav-text">06.01.06. Local Alarm Status</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-01-PLC-MAP"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">06.01.06.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">06.01.06.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-02-Communication-Scenario"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">06.01.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-07-Equipment-Operation-Mode"><span class="nav-number">1.1.7.</span> <span class="nav-text">06.01.07. Equipment Operation Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-01-PLC-MAP"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">06.01.07.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-07-01-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.1.7.1.1.</span> <span class="nav-text">06.01.07.01.01. Local PLC – Link Register (W Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-02-Communication-Scenario"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">06.01.07.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.1.8.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Common-Function"><span class="nav-number">1.</span> <span class="nav-text">06. Common Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#06-01-Equipment-Monitor-Management"><span class="nav-number">1.1.</span> <span class="nav-text">06.01. Equipment Monitor Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-01-Equipment-Alive"><span class="nav-number">1.1.1.</span> <span class="nav-text">06.01.01. Equipment Alive</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-01-PLC-MAP"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">06.01.01.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">06.01.01.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-02-Communication-Scenario"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">06.01.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-02-CIM-Mode"><span class="nav-number">1.1.2.</span> <span class="nav-text">06.01.02. CIM Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-01-PLC-MAP"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">06.01.02.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">06.01.02.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-02-Communication-Scenario"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">06.01.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-03-CIM-Mode-Change-Command"><span class="nav-number">1.1.3.</span> <span class="nav-text">06.01.03. CIM Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-01-PLC-MAP"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">06.01.03.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-02-Communication-Scenario"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">06.01.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-04-CIM-Off-Mode-Operation"><span class="nav-number">1.1.4.</span> <span class="nav-text">06.01.04. CIM Off Mode Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-05-Inline-Mode"><span class="nav-number">1.1.5.</span> <span class="nav-text">06.01.05. Inline Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-01-PLC-MAP"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">06.01.05.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">06.01.05.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-02-Communication-Scenario"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">06.01.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-06-Local-Alarm-Status"><span class="nav-number">1.1.6.</span> <span class="nav-text">06.01.06. Local Alarm Status</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-01-PLC-MAP"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">06.01.06.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">06.01.06.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-02-Communication-Scenario"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">06.01.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-07-Equipment-Operation-Mode"><span class="nav-number">1.1.7.</span> <span class="nav-text">06.01.07. Equipment Operation Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-01-PLC-MAP"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">06.01.07.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-02-Communication-Scenario"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">06.01.07.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.1.8.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
