@@ -133,8 +133,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>AQS</tag>
         <tag>可重入锁</tag>
+        <tag>AQS</tag>
         <tag>ReentrantLock</tag>
       </tags>
   </entry>
@@ -208,9 +208,278 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>AQS</tag>
         <tag>可重入锁</tag>
+        <tag>AQS</tag>
         <tag>ReentrantLock</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OSGI(二) Apache Felix 介绍 与 案例实现</title>
+    <url>/2020/04/13/OSGI%20(%E4%BA%8C)%20Apache%20Felix%20%E4%BB%8B%E7%BB%8D%20%E4%B8%8E%20%E6%A1%88%E4%BE%8B%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<h2 id="Felix-项目历史"><a href="#Felix-项目历史" class="headerlink" title="Felix 项目历史"></a>Felix 项目历史</h2><p>作为<a href="http://apache.org" target="_blank" rel="noopener">Apache</a>旗下的其中一个项目，<a href="http://felix.apache.org" target="_blank" rel="noopener">Felix</a>在2006年就拥有了自己的网站。不过一开始似乎进展并不快，直到2007年的七月，才发布了自己的1.0.0版本，其后他们发布了很多与Felix框架相关的<a href="http://maven.apache.org" target="_blank" rel="noopener">Maven</a>插件，到了2008年初，开始对纲要标准（Compendium Specification）进行部分实现。此后Felix项目的发展壮大非常的迅速，那时候的OSGi标准也日趋稳定和完善。时至今日，Felix项目不仅包含了一个OSGi R4(到今天为止，准确的版本号是4.2)服务平台标准的实现，在此之外还包含了很多OSGi相关的技术和功能（非标准），他们能帮助OSGi框架更好的发挥作用. </p>
+<h2 id="Felix-项目概述"><a href="#Felix-项目概述" class="headerlink" title="Felix 项目概述"></a>Felix 项目概述</h2><p>整个Felix项目被分解为了若干个子项目，我们可以从SVN上将Felix检出： </p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">svn checkout http://svn.apache.org/repos/asf/felix/trunk felix-trunk</span><br></pre></td></tr></table></figure>
+
+<p>完成了上述操作后，我们可以看到有整整57个文件夹，里面除了examples（示例程序）、src（无关紧要的内容，一些图片和css）、commons（项目需要用到的公共包，比如beanutils），还有pom（里面是总体的pom文件）这4个文件夹外，基本都是与Felix项目直接相关的代码，里面除了一些已经发布的，还有非常多的未发布项目。 </p>
+<h3 id="Felix对标准的实现情况"><a href="#Felix对标准的实现情况" class="headerlink" title="Felix对标准的实现情况"></a>Felix对标准的实现情况</h3><p>下面我们从一个总体的角度来看看Felix对标准的那些内容进行了实现： </p>
+<h4 id="核心标准-Core-Specification"><a href="#核心标准-Core-Specification" class="headerlink" title="核心标准(Core Specification)"></a>核心标准(Core Specification)</h4><p>Felix对核心标准的实现都是通过了[OSGi联盟][OSGi Alliance]认证的。 </p>
+<table>
+<thead>
+<tr>
+<th>标准名称</th>
+<th>版本号</th>
+<th>Felix中的子项目</th>
+<th>项目版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Framework</td>
+<td>R4.2</td>
+<td>Framework</td>
+<td>3.0.6</td>
+</tr>
+<tr>
+<td>Package Admin</td>
+<td>1.2 (R4.2)</td>
+<td>Framework</td>
+<td>3.0.6</td>
+</tr>
+<tr>
+<td>Start Level</td>
+<td>1.1 (R4.2)</td>
+<td>Framework</td>
+<td>3.0.6</td>
+</tr>
+<tr>
+<td>Permission Admin</td>
+<td>R4.2</td>
+<td>Framework Security</td>
+<td>1.4.0</td>
+</tr>
+<tr>
+<td>Conditional Permission Admin</td>
+<td>R4.2</td>
+<td>Framework Security</td>
+<td>1.4.0</td>
+</tr>
+<tr>
+<td>URL Handlers</td>
+<td>1.0 (R4.2)</td>
+<td>Framework</td>
+<td>3.0.6</td>
+</tr>
+<tr>
+<td>Service Hooks</td>
+<td>1.0 (R4.2)</td>
+<td>Framework</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="纲要标准-Compendium-Specification"><a href="#纲要标准-Compendium-Specification" class="headerlink" title="纲要标准(Compendium Specification)"></a>纲要标准(Compendium Specification)</h4><p>在这里我们只把实现并且已经发布过的子项目列举出来： </p>
+<table>
+<thead>
+<tr>
+<th>标准名称</th>
+<th>版本号</th>
+<th>Felix中的子项目</th>
+<th>项目版本</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Log Service</td>
+<td>1.3 (R4.2)</td>
+<td>Log</td>
+<td>1.0.0</td>
+<td></td>
+</tr>
+<tr>
+<td>Http Service</td>
+<td>1.2 (R4.2)</td>
+<td>Http Service Projects</td>
+<td>2.0.4</td>
+<td></td>
+</tr>
+<tr>
+<td>Configuration Admin</td>
+<td>1.3 (R4.2)</td>
+<td>Configuration Admin</td>
+<td>1.2.8</td>
+<td>参考实现</td>
+</tr>
+<tr>
+<td>Metatype</td>
+<td>1.1 (R4.2)</td>
+<td>Metatype</td>
+<td>1.0.4</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Preferences</td>
+<td>1.1 (R4.2)</td>
+<td>Preferences</td>
+<td>1.0.4</td>
+<td>—</td>
+</tr>
+<tr>
+<td>UPnP Device</td>
+<td>1.1 (R4.2)</td>
+<td>UPnP Base Driver</td>
+<td>0.8.0</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Declarative Services</td>
+<td>1.1 (R4.2)</td>
+<td>SCR</td>
+<td>1.6.0</td>
+<td>通过了R4.2相应的服从测试</td>
+</tr>
+<tr>
+<td>Event Admin</td>
+<td>1.2 (R4.2)</td>
+<td>Event Admin</td>
+<td>1.2.8</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>Blueprint</td>
+<td>1.0 (R4.2)</td>
+<td></td>
+<td></td>
+<td>由Apache Aries实现</td>
+</tr>
+<tr>
+<td>Tracker</td>
+<td>1.4 (R4.2)</td>
+<td>Framework</td>
+<td>3.0.6</td>
+<td>OSG</td>
+</tr>
+</tbody></table>
+<h3 id="标准以外的相关技术实现"><a href="#标准以外的相关技术实现" class="headerlink" title="标准以外的相关技术实现"></a>标准以外的相关技术实现</h3><h4 id="用于简化OSGi开发的子项目"><a href="#用于简化OSGi开发的子项目" class="headerlink" title="用于简化OSGi开发的子项目"></a>用于简化OSGi开发的子项目</h4><ul>
+<li><p><a href="http://felix.apache.org/site/apache-felix-dependency-manager.html" target="_blank" rel="noopener">Dependency Manager</a> </p>
+<p>在OSGi基于服务的体系结构中，应用是由一个个组件建立起来的，每个组件分别依赖和发布了一些服务，这样这些服务就形成了一个网络。但是由于其动态性，这个网络的结构总是在不停的变化，所以开发者总是不得不考虑和应对这样的变化，OSGi本身提供了服务的listener和tracker这两个机制来捕捉和监控服务的状态变化，但是对于开发者来说这个太底层了。而这个工具提供给我们了一套JavaAPI来声明式的定义和管理这些依赖。</p>
+</li>
+<li><p><a href="http://felix.apache.org/site/apache-felix-ipojo.html" target="_blank" rel="noopener">iPOJO</a></p>
+<p>这是一个相当大的项目，从这个项目的主页上就可以看出Felix项目在这个子项目上花了很多精力，可以说是在OSGi基础上的一个革新。</p>
+<p>iPOJO是一个用于简化OSGi开发的服务组件运行时，它本身支持了所有OSGi的动态性。它基于<a href="http://en.wikipedia.org/wiki/Plain_Old_Java_Object" target="_blank" rel="noopener">POJO</a>的概念简化了程序逻辑的开发，任何非功能性的对象属性只在运行的时候被注入进来。它主要有以下几个特点：</p>
+<ul>
+<li>开发组件的时候只需要定义POJO即可，没有多余的工作</li>
+<li>组件模型可扩展，所以很容易根据你的需要来调整</li>
+<li>标准的组件模型会管理服务的提供与依赖</li>
+<li>iPOJO管理组件实例的生命周期和OSGi环境的动态性，这是前所未有的</li>
+<li>为了创建高动态性的应用，iPOJO提供了一个强大的组装系统</li>
+<li>iPOJO支持标注、XML和JavaAPI来定义组件</li>
+</ul>
+<p>如果有机会，我会在一篇单独的文档中详细的介绍iPOJO。</p>
+</li>
+</ul>
+<h4 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h4><ul>
+<li><a href="http://felix.apache.org/site/apache-felix-gogo.html" target="_blank" rel="noopener">Gogo</a> - 用来和OSGi交互的较为常用的shell，除了基本的框架命令，其中还包含grep，cat，echo这类指令，并且可以自定义宏命令。</li>
+<li><a href="http://felix.apache.org/site/apache-felix-shell.html" target="_blank" rel="noopener">Shell</a> - 这个子项目只提供了单纯的shell服务API，而没有提供用户界面。</li>
+<li><a href="http://felix.apache.org/site/apache-felix-shell-tui.html" target="_blank" rel="noopener">Shell TUI</a> - Apache Felix Shell的文字界面，相比gogo来说更为简单，但是不怎么常用，他的使用依赖于shell bundle。</li>
+<li><a href="http://felix.apache.org/site/apache-felix-remote-shell.html" target="_blank" rel="noopener">Remote Shell</a> - Apache Felix Shell的远程文字界面，我们通过这个工具可以在其他终端上远程操作Felix。</li>
+</ul>
+<h4 id="Maven插件"><a href="#Maven插件" class="headerlink" title="Maven插件"></a>Maven插件</h4><ul>
+<li><p><a href="http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html" target="_blank" rel="noopener">Maven Bundle Plugin</a></p>
+<p>这个插件用于简化Bundle的构建，可以将一个bundle看做以个Maven工程，其中还包括自动化对OSGi Bundle仓库的管理。它的前身曾经是OBR Plugin和OSGi Plugin这两个插件。</p>
+</li>
+<li><p><a href="http://felix.apache.org/site/apache-felix-maven-scr-plugin.html" target="_blank" rel="noopener">Maven SCR Plugin</a></p>
+<p>这个插件的主要作用是帮助用户生成OSGi中使用Declarative Services, Config Admin和Metatype services这三个功能所必要的信息，这样就简化了用户的操作。</p>
+</li>
+</ul>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
+<li><a href="http://felix.apache.org/site/apache-felix-file-install.html" target="_blank" rel="noopener">File Install</a> - 用来管理bundle部署及其目录的一个简单的代理。</li>
+<li><a href="http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html" target="_blank" rel="noopener">OSGi Bundle Repository</a> - 帮助我们更好的发现和部署bundle和bundle的依赖。</li>
+<li><a href="http://felix.apache.org/site/apache-felix-web-console.html" target="_blank" rel="noopener">Web Console</a> - 基于web的Felix控制台。</li>
+</ul>
+<h2 id="Felix-基本运行环境配置"><a href="#Felix-基本运行环境配置" class="headerlink" title="Felix 基本运行环境配置"></a>Felix 基本运行环境配置</h2><h3 id="Felix执行环境的下载"><a href="#Felix执行环境的下载" class="headerlink" title="Felix执行环境的下载"></a>Felix执行环境的下载</h3><p>进入下载页面，选择Felix Framework Distribution的下载项：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">http:<span class="comment">//felix.apache.org/downloads.cgi?Preferred=https%3A%2F%2Fmirror.bit.edu.cn%2Fapache%2F</span></span><br></pre></td></tr></table></figure>
+
+<p>如下图所示： </p>
+<img src="http://photo.wushaopei.com/qiniu305.png" width="60%">
+
+<h3 id="启动Felix"><a href="#启动Felix" class="headerlink" title="启动Felix"></a>启动Felix</h3><p>将下载好的包解压，从命令行进入这个文件夹的根目录，执行如下命令，进入到Felix的命令行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java -jar bin/felix.jar</span><br></pre></td></tr></table></figure>
+
+<p>如下图所示： </p>
+<img src="http://photo.wushaopei.com/qiniu306.png" width="60%">
+
+<p>这样我们就进入了Felix的执行环境，可以通过Shell与框架进行一些交互 </p>
+<h3 id="一些简单的命令"><a href="#一些简单的命令" class="headerlink" title="一些简单的命令"></a>一些简单的命令</h3><p>在这个命令行下输入help我们就可以看到大部分的指令，由于数量不少，不在这里一一列出。为了避免命令名字的冲突，这些命令都有自己的名字空间，现有的名字空间有三种：</p>
+<ul>
+<li>felix - 关于felix框架的核心命令，比如列出所有bundle，安装/卸载bundle等等</li>
+<li>gogo - 包含grep，cat，echo这类的指令，并且gogo是个Felix的子项目，他是参照<a href="http://felix.apache.org/site/rfc-147-overview.html" target="_blank" rel="noopener">RFC 147</a>来实现的，这个标准定义了OSGi环境的shell应该是怎么样的。</li>
+<li>obr - 关于OSGi Bundle Repository功能的指令</li>
+</ul>
+<p>如果对任何的命令有所疑问，用help+空格+“命令名称”来查看说明即可。</p>
+<h2 id="Felix环境配置"><a href="#Felix环境配置" class="headerlink" title="Felix环境配置"></a>Felix环境配置</h2><p>下载felix的最新版本，并且将最新的felix解压到本地路径。</p>
+<p>新建一个Java工程</p>
+<img src="http://photo.wushaopei.com/qiniu331.png" width="60%">
+
+<p>工程名为felix，这个工程名可以随意设置 </p>
+<img src="http://photo.wushaopei.com/qiniu332.png" width="60%">
+
+<p>选择下一步，修改输出路径 </p>
+<img src="http://photo.wushaopei.com/qiniu333.png" width="60%">
+
+<p>复制解压后的felix目录中的内容到工程中。完成后的目录如下所示： </p>
+<img src="http://photo.wushaopei.com/qiniu335.png" width="60%">
+
+<p>将felix.jar添加到工程的目录中，选择Build Path-&gt;Add to Build Path ：</p>
+<img src="http://photo.wushaopei.com/qiniu336.png" width="60%">
+
+<p>然后配置Run Configuration </p>
+<img src="http://photo.wushaopei.com/qiniu337.png" width="60%">
+
+<p>修改配置 </p>
+<img src="http://photo.wushaopei.com/qiniu338.png" width="60%">
+
+<img src="http://photo.wushaopei.com/qiniu339.png" width="60%">
+
+<p>点击Run，就可以运行felix，启动后结果如下： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">四月 <span class="number">14</span>, <span class="number">2020</span> <span class="number">5</span>:<span class="number">00</span>:<span class="number">44</span> 下午 org.jline.utils.Log logr</span><br><span class="line">警告: Unable to create a system terminal, <span class="function">creating a dumb <span class="title">terminal</span> <span class="params">(enable debug logging <span class="keyword">for</span> more information)</span></span></span><br><span class="line"><span class="function">____________________________</span></span><br><span class="line"><span class="function">Welcome to Apache Felix Gogo</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">g!</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="发布应用到Felix中"><a href="#发布应用到Felix中" class="headerlink" title="发布应用到Felix中"></a>发布应用到Felix中</h2><p>新建插件工程HelloFelix </p>
+<img src="http://photo.wushaopei.com/qiniu340.png" width="60%">
+
+<p>“ next ” 下一步，选择生成 Activator ：</p>
+<img src="http://photo.wushaopei.com/qiniu334.png" width="60%">
+
+<p>完成后修改Activator类，加入两段输出： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * (non-Javadoc)</span></span><br><span class="line"><span class="comment"> * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(BundleContext bundleContext)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	Activator.context = bundleContext;</span><br><span class="line">	System.out.println(<span class="string">"hello felix应用启动！"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * (non-Javadoc)</span></span><br><span class="line"><span class="comment"> * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">(BundleContext bundleContext)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	Activator.context = <span class="keyword">null</span>;</span><br><span class="line">	System.out.println(<span class="string">"hello felix应用停止！"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成后选择 File–&gt;Export，选择Plug-in Development的Deployable plug-ins and fragments </p>
+<img src="http://photo.wushaopei.com/qiniu341.png" width="60%">
+
+<p>选择要导出的插件，Destination选项卡的Directory选择Felix环境的物理地址，导出后，会在Felix工程的根目录自动创建一个felix-cache和plugins目录，bundle会默认导出这个目录，单击Finish按钮。 </p>
+<img src="http://photo.wushaopei.com/qiniu342.png" width="60%">
+
+<p>点击完成，得到结果，然后到工程中已经搭建好的环境felix项目中进行刷新，可以看到多出pluglins目录 </p>
+<img src="http://photo.wushaopei.com/qiniu343.png" width="60%">
+
+<p>环境和工程都已经完成，下面安装和卸载一下工程在felix中</p>
+<p>启动Felix，在Console中先使用install命令安装bundle，接着使用start命令启动bundle。</p>
+<img src="http://photo.wushaopei.com/qiniu344.png" width="60%">
+
+<p>启动的时候，start命令后接着那个bundle的启动ID就可以启动bundle。</p>
+<p>停止的时候，stop命令后接着那个bundle的ID就可以停止bundle。</p>
+<img src="http://photo.wushaopei.com/qiniu345.png" width="60%">
+
+<p>最后卸载工程HelloFelix，使用命令uninstall </p>
+<img src="http://photo.wushaopei.com/qiniu346.png" width="60%">
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>OSGI</category>
+        <category>Felix</category>
+      </categories>
+      <tags>
+        <tag>OSGI</tag>
+        <tag>Felix</tag>
       </tags>
   </entry>
   <entry>
@@ -623,8 +892,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -660,8 +929,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -691,8 +960,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -730,8 +999,8 @@
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -2259,8 +2528,8 @@
         <category>知识树</category>
       </categories>
       <tags>
-        <tag>入门</tag>
         <tag>mybatis</tag>
+        <tag>入门</tag>
       </tags>
   </entry>
   <entry>
@@ -5215,104 +5484,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>jdbc(三)预编译-Statement、PreparedStatement</title>
-    <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
-    <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
-<li>数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句</li>
-<li>在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">|-----   Statement</span><br><span class="line"> </span><br><span class="line">       |------PreparedStatement</span><br><span class="line"> </span><br><span class="line">              |------CallableStatement</span><br></pre></td></tr></table></figure>
-
-<p>使用<span style="color:red;">statement</span>进行预编译可能会导致SQL注入的发生 </p>
-<img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
-
-<h3 id="SQL-注入攻击"><a href="#SQL-注入攻击" class="headerlink" title="SQL 注入攻击"></a><strong>SQL 注入攻击</strong></h3><ul>
-<li>SQL 注入是利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的 SQL 语句段或命令(如：SELECT user, password FROM user_table WHERE user=’a’ OR 1 = ‘ AND password = ‘ OR ‘1’ = ‘1’) ，从而利用系统的 SQL 引擎完成恶意行为的做法</li>
-<li>对于 Java 而言，要防范 SQL 注入，只要用 PreparedStatement(从Statement扩展而来) 取代 Statement 就可以了</li>
-</ul>
-<h3 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a><strong>PreparedStatement</strong></h3><ul>
-<li>可以通过调用 Connection 对象的 preparedStatement() 方法获取 PreparedStatement 对象</li>
-<li>PreparedStatement 接口是 Statement 的子接口，它表示一条预编译过的 SQL 语句</li>
-<li>PreparedStatement 对象所代表的 SQL 语句中的参数用问号(?)来表示，调用 PreparedStatement 对象的 setXxx() 方法来设置这些参数. setXxx() 方法有两个参数，第一个参数是要设置的 SQL 语句中的参数的索引(从 1 开始)，第二个是设置的 SQL 语句中的参数的值</li>
-</ul>
-<h3 id="PreparedStatement-vs-Statement"><a href="#PreparedStatement-vs-Statement" class="headerlink" title="PreparedStatement vs Statement"></a><strong>PreparedStatement vs Statement</strong></h3><ul>
-<li>代码的可读性和可维护性.</li>
-<li>PreparedStatement 能最大可能提高性能：</li>
-</ul>
-<blockquote>
-<ol>
-<li>DBServer会对预编译语句提供性能优化。因为预编译语句有可能被重复调用，所以语句在被DBServer的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中就会得到执行。</li>
-<li>在statement语句中,即使是相同操作但因为数据内容不一样,所以整个语句本身不能匹配,没有缓存语句的意义.事实是没有数据库会对普通语句编译后的执行代码缓存.这样每执行一次都要对传入的语句编译一次.  </li>
-<li>(语法检查，语义检查，翻译成二进制命令，缓存)</li>
-</ol>
-</blockquote>
-<ul>
-<li>PreparedStatement 可以防止 SQL 注入防止 SQL 注入 </li>
-</ul>
-<h3 id="数据类型转换表"><a href="#数据类型转换表" class="headerlink" title="数据类型转换表"></a><strong>数据类型转换表</strong></h3><table>
-<thead>
-<tr>
-<th>java类型</th>
-<th>SQL类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>boolean</td>
-<td>BIT</td>
-</tr>
-<tr>
-<td>byte</td>
-<td>TINYINT</td>
-</tr>
-<tr>
-<td>short</td>
-<td>SMALLINT</td>
-</tr>
-<tr>
-<td>int</td>
-<td>INTEGER</td>
-</tr>
-<tr>
-<td>long</td>
-<td>BIGINT</td>
-</tr>
-<tr>
-<td>String</td>
-<td>CHAR,VARCHAR,LONGVARCHAR</td>
-</tr>
-<tr>
-<td>byte array</td>
-<td>BINARY , VAR  BINARY</td>
-</tr>
-<tr>
-<td>java.sql.Date</td>
-<td>DATE</td>
-</tr>
-<tr>
-<td>java.sql.Time</td>
-<td>TIME</td>
-</tr>
-<tr>
-<td>java.sql.Timestamp</td>
-<td>TIMESTAMP</td>
-</tr>
-</tbody></table>
-<h3 id="连接数据库、操作表的步骤："><a href="#连接数据库、操作表的步骤：" class="headerlink" title="连接数据库、操作表的步骤："></a><strong>连接数据库、操作表的步骤：</strong></h3><img src="http://photo.wushaopei.com/qiniu93.png" width="60%">
-
-<p><strong>注意：</strong></p>
-<ul>
-<li>释放ResultSet, Statement,Connection。</li>
-<li>数据库连接（Connection）是非常稀有的资源，用完后必须马上释放，如果Connection不能及时正确的关闭将导致系统宕机。Connection的使用原则是<span style="color:red;">尽量晚创建，尽量早的释放。</span></li>
-</ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(四)ResultSet</title>
     <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
     <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
@@ -5403,6 +5574,104 @@ rvconnector</code></pre></li>
 
 
 
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(三)预编译-Statement、PreparedStatement</title>
+    <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
+    <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
+<li>数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句</li>
+<li>在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">|-----   Statement</span><br><span class="line"> </span><br><span class="line">       |------PreparedStatement</span><br><span class="line"> </span><br><span class="line">              |------CallableStatement</span><br></pre></td></tr></table></figure>
+
+<p>使用<span style="color:red;">statement</span>进行预编译可能会导致SQL注入的发生 </p>
+<img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
+
+<h3 id="SQL-注入攻击"><a href="#SQL-注入攻击" class="headerlink" title="SQL 注入攻击"></a><strong>SQL 注入攻击</strong></h3><ul>
+<li>SQL 注入是利用某些系统没有对用户输入的数据进行充分的检查，而在用户输入数据中注入非法的 SQL 语句段或命令(如：SELECT user, password FROM user_table WHERE user=’a’ OR 1 = ‘ AND password = ‘ OR ‘1’ = ‘1’) ，从而利用系统的 SQL 引擎完成恶意行为的做法</li>
+<li>对于 Java 而言，要防范 SQL 注入，只要用 PreparedStatement(从Statement扩展而来) 取代 Statement 就可以了</li>
+</ul>
+<h3 id="PreparedStatement"><a href="#PreparedStatement" class="headerlink" title="PreparedStatement"></a><strong>PreparedStatement</strong></h3><ul>
+<li>可以通过调用 Connection 对象的 preparedStatement() 方法获取 PreparedStatement 对象</li>
+<li>PreparedStatement 接口是 Statement 的子接口，它表示一条预编译过的 SQL 语句</li>
+<li>PreparedStatement 对象所代表的 SQL 语句中的参数用问号(?)来表示，调用 PreparedStatement 对象的 setXxx() 方法来设置这些参数. setXxx() 方法有两个参数，第一个参数是要设置的 SQL 语句中的参数的索引(从 1 开始)，第二个是设置的 SQL 语句中的参数的值</li>
+</ul>
+<h3 id="PreparedStatement-vs-Statement"><a href="#PreparedStatement-vs-Statement" class="headerlink" title="PreparedStatement vs Statement"></a><strong>PreparedStatement vs Statement</strong></h3><ul>
+<li>代码的可读性和可维护性.</li>
+<li>PreparedStatement 能最大可能提高性能：</li>
+</ul>
+<blockquote>
+<ol>
+<li>DBServer会对预编译语句提供性能优化。因为预编译语句有可能被重复调用，所以语句在被DBServer的编译器编译后的执行代码被缓存下来，那么下次调用时只要是相同的预编译语句就不需要编译，只要将参数直接传入编译过的语句执行代码中就会得到执行。</li>
+<li>在statement语句中,即使是相同操作但因为数据内容不一样,所以整个语句本身不能匹配,没有缓存语句的意义.事实是没有数据库会对普通语句编译后的执行代码缓存.这样每执行一次都要对传入的语句编译一次.  </li>
+<li>(语法检查，语义检查，翻译成二进制命令，缓存)</li>
+</ol>
+</blockquote>
+<ul>
+<li>PreparedStatement 可以防止 SQL 注入防止 SQL 注入 </li>
+</ul>
+<h3 id="数据类型转换表"><a href="#数据类型转换表" class="headerlink" title="数据类型转换表"></a><strong>数据类型转换表</strong></h3><table>
+<thead>
+<tr>
+<th>java类型</th>
+<th>SQL类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>BIT</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>TINYINT</td>
+</tr>
+<tr>
+<td>short</td>
+<td>SMALLINT</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>long</td>
+<td>BIGINT</td>
+</tr>
+<tr>
+<td>String</td>
+<td>CHAR,VARCHAR,LONGVARCHAR</td>
+</tr>
+<tr>
+<td>byte array</td>
+<td>BINARY , VAR  BINARY</td>
+</tr>
+<tr>
+<td>java.sql.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>java.sql.Time</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>java.sql.Timestamp</td>
+<td>TIMESTAMP</td>
+</tr>
+</tbody></table>
+<h3 id="连接数据库、操作表的步骤："><a href="#连接数据库、操作表的步骤：" class="headerlink" title="连接数据库、操作表的步骤："></a><strong>连接数据库、操作表的步骤：</strong></h3><img src="http://photo.wushaopei.com/qiniu93.png" width="60%">
+
+<p><strong>注意：</strong></p>
+<ul>
+<li>释放ResultSet, Statement,Connection。</li>
+<li>数据库连接（Connection）是非常稀有的资源，用完后必须马上释放，如果Connection不能及时正确的关闭将导致系统宕机。Connection的使用原则是<span style="color:red;">尽量晚创建，尽量早的释放。</span></li>
+</ul>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>jdbc</category>
@@ -5665,6 +5934,79 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
+    <title>hexo搭建个人博客（一）博客框架搭建</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>好，话不多说，开始动手</p>
+<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
+<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
+
+<p>上面这张图显示的是我安装node的版本 </p>
+<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
+
+<hr>
+<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
+<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
+<hr>
+<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
+<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
+<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
+
+<p> 安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
+
+<p>此时hexo的基本布置完成了</p>
+<hr>
+<p>接下来要做的就是把博客部署到github上去</p>
+<p>首先你要有个github账号，注册账号省略</p>
+<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
+<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
+<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
+
+<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
+<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
+
+<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
+<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
+<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
+<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
+<hr>
+<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
+<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>个人博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机网络（一）-深入理解NIO</title>
     <url>/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</url>
     <content><![CDATA[<p><strong>目录概览</strong>：</p>
@@ -5795,79 +6137,6 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>NIO</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo搭建个人博客（一）博客框架搭建</title>
-    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>好，话不多说，开始动手</p>
-<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
-<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
-
-<p>上面这张图显示的是我安装node的版本 </p>
-<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
-
-<hr>
-<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
-<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
-<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
-<hr>
-<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
-<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
-<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
-
-<p> 安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
-
-<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
-
-<p>此时hexo的基本布置完成了</p>
-<hr>
-<p>接下来要做的就是把博客部署到github上去</p>
-<p>首先你要有个github账号，注册账号省略</p>
-<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
-<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
-
-<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
-<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
-
-<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
-<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
-<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
-<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
-<hr>
-<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
-<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>个人博客搭建</tag>
       </tags>
   </entry>
   <entry>
