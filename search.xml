@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Activity（十三）流程变量</title>
+    <url>/2020/04/15/Activity%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F/</url>
+    <content><![CDATA[<h2 id="流程变量"><a href="#流程变量" class="headerlink" title="流程变量"></a>流程变量</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>​    在流程实例运行过程中，难免要记录或者保存一些数据，然后运行到某个节点的时候取数据查看， 或者是后面学到流程分支的时候 判断流程走向，都要用到一些数据存储。 </p>
+<p>​    就有了一个新的概念流程变量，顾名思义就是流程中用来存储数据的变量。</p>
+<p>​    Activiti中基本支持所有的基本数据类型作为流程变量，以及支持序列化对象， </p>
+<p>​    所以也可以存一个对象；当然在开发的话，还是要建立一些业务表，来存储业务数据；简单的数据，可以存到到流程变量，比较方便.</p>
+<p>​    根据一个流程定义可以启动很多流程实例，每个流程实例里的流程变量都是独立的互不影响。 </p>
+<h3 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h3><pre><code>&gt;    全局变量、局部变量</code></pre><h3 id="流程变量示例"><a href="#流程变量示例" class="headerlink" title="流程变量示例"></a>流程变量示例</h3><h4 id="定义流程图，员工请假流程："><a href="#定义流程图，员工请假流程：" class="headerlink" title="定义流程图，员工请假流程："></a>定义流程图，员工请假流程：</h4><img src="http://photo.wushaopei.com/qiniu383.png" width="80%">
+
+<p>流程图如上，三个任务节点名分别是 “员工提交请假申请” ,   “ 经理审批” , “ 部门审批” .</p>
+<h4 id="部署流程定义-及-启动流程实例"><a href="#部署流程定义-及-启动流程实例" class="headerlink" title="部署流程定义 及 启动流程实例"></a>部署流程定义 及 启动流程实例</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> activiti_create2.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年3月8日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">activiti_variable</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 获取默认的流程引擎实例 会自动读取activiti.cfg.xml文件 </span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//定义一个成员变量</span></span><br><span class="line">    RepositoryService repositoryService;</span><br><span class="line">    </span><br><span class="line">    RuntimeService runtimeService;</span><br><span class="line">    </span><br><span class="line">    TaskService taskService;</span><br><span class="line">    </span><br><span class="line">    HistoryService historyService;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取流程引擎</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();</span><br><span class="line">        repositoryService = processEngine.getRepositoryService();</span><br><span class="line">        runtimeService = processEngine.getRuntimeService();</span><br><span class="line">        taskService = processEngine.getTaskService();</span><br><span class="line">        historyService = processEngine.getHistoryService();</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 部署流程定义</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deploy</span><span class="params">()</span></span>&#123;</span><br><span class="line">	    <span class="comment">// 获取部署对象</span></span><br><span class="line">	    Deployment deployment=processEngine.getRepositoryService() <span class="comment">// 部署Service</span></span><br><span class="line">	                 .createDeployment()  <span class="comment">// 创建部署</span></span><br><span class="line">	                 .addClasspathResource(<span class="string">"diagrams/MyProcess2.bpmn"</span>)  <span class="comment">// 加载资源文件</span></span><br><span class="line">	                 .deploy(); <span class="comment">// 部署</span></span><br><span class="line">	    System.out.println(<span class="string">"流程部署ID:"</span>+deployment.getId());</span><br><span class="line">	    System.out.println(<span class="string">"流程部署Name:"</span>+deployment.getName());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 启动流程</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startProcess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(<span class="string">"myProcess"</span>);</span><br><span class="line">        String processInstanceId = processInstance.getId();</span><br><span class="line">        String activityId = processInstance.getActivityId();</span><br><span class="line">        String definitionId = processInstance.getProcessDefinitionId();</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">"流程实例ID："</span>+processInstanceId);</span><br><span class="line">        System.out.println(<span class="string">"正在活动的节点ID："</span>+activityId);</span><br><span class="line">        System.out.println(<span class="string">"流程定义ID："</span>+definitionId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>运行start()方法</strong> ，启动流程实例，这样一个新的流程实例就产生并且开始运行了。 </p>
+<p>这时候就可以看到 act_hi_actinst 表有数据了：</p>
+<img src="http://photo.wushaopei.com/qiniu384.png" width="80%">
+
+<p> 这时候到了 “员工请假提交”任务节点，这时候可以添加一些流程变量，比如请假日期，请假天数，</p>
+<p> 请假原因，当然这里为了演示Activiti还支持序列化对象，</p>
+<p> 这里再加一个请假的员工对象信息；</p>
+<h4 id="创建一个员工实体对象Employee"><a href="#创建一个员工实体对象Employee" class="headerlink" title="创建一个员工实体对象Employee:"></a>创建一个员工实体对象Employee:</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Employee.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月14日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">getSerialversionuid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> serialVersionUID;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="流程变量-1"><a href="#流程变量-1" class="headerlink" title="流程变量"></a>流程变量</h4><p>这里需要说明一下，Activiti中的流程变量有两种，一种是全局，可以从第一个节点传递到最后一个节点的；另一种是局部变量，只在当前节点有效，无法被下一个节点接收到。</p>
+<h4 id="全局变量-——-Variable"><a href="#全局变量-——-Variable" class="headerlink" title="全局变量  —— Variable"></a>全局变量  —— Variable</h4><h5 id="设置流程变量："><a href="#设置流程变量：" class="headerlink" title="设置流程变量："></a>设置流程变量：</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 设置流程变量以及值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVariablesValues</span><span class="params">()</span></span>&#123;</span><br><span class="line">        TaskService taskService=processEngine.getTaskService(); <span class="comment">// 任务Service</span></span><br><span class="line">        String taskId=<span class="string">"80004"</span>; <span class="comment">// 任务id  对应表act_hi_actinst上的 TASK_ID</span></span><br><span class="line">        taskService.setVariableLocal(taskId, <span class="string">"days"</span>, <span class="number">2</span>); <span class="comment">// 存Integer类型</span></span><br><span class="line">        taskService.setVariable(taskId, <span class="string">"date"</span>, <span class="keyword">new</span> Date()); <span class="comment">// 存日期类型</span></span><br><span class="line">        taskService.setVariable(taskId, <span class="string">"reason"</span>, <span class="string">"发烧"</span>); <span class="comment">// 存字符串</span></span><br><span class="line">        Employee employee=<span class="keyword">new</span> Employee();</span><br><span class="line">        employee.setId(<span class="number">1</span>);</span><br><span class="line">        employee.setName(<span class="string">"李四"</span>);</span><br><span class="line">        taskService.setVariable(taskId, <span class="string">"employee"</span>, employee);  <span class="comment">// 存序列化对象</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取流程变量："><a href="#获取流程变量：" class="headerlink" title="获取流程变量："></a>获取流程变量：</h5><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 获取流程变量数据</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Test</span><br><span class="line">public void getVariableValues()&#123;</span><br><span class="line">	TaskService taskService&#x3D;processEngine.getTaskService();&#x2F;&#x2F;获取任务</span><br><span class="line">	String taskId&#x3D;&quot;80004&quot;;</span><br><span class="line">	Integer day&#x3D;(Integer) taskService.getVariable(taskId, &quot;days&quot;);&#x2F;&#x2F;获取请假天数</span><br><span class="line">	Date date&#x3D;(Date) taskService.getVariable(taskId, &quot;date&quot;);&#x2F;&#x2F;请假日期</span><br><span class="line">	String reason&#x3D;(String) taskService.getVariable(taskId, &quot;reason&quot;);&#x2F;&#x2F;请假原因</span><br><span class="line">	</span><br><span class="line">	Employee employee&#x3D;(Employee) taskService.getVariable(taskId, &quot;employee&quot;);&#x2F;&#x2F;序列化对象</span><br><span class="line">	System.out.println(&quot;请假天数：&quot;+day);</span><br><span class="line">	System.out.println(&quot;请假日期：&quot;+date);</span><br><span class="line">	System.out.println(&quot;请假原因:&quot;+reason);</span><br><span class="line">	System.err.println(&quot;请假对象：&quot;+employee.getId()+&quot; —— &quot;+employee.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看获取的流程变量："><a href="#查看获取的流程变量：" class="headerlink" title="查看获取的流程变量："></a><strong>查看获取的流程变量：</strong></h5><img src="http://photo.wushaopei.com/qiniu385.png" width="80%">
+
+<p>​    要设置流程变量，需要获取Service，这里的话，TaskService可以设置变量，RuntimeService也可以设置流程变量。</p>
+<p>​    假如节点不是任务节点的时候，只能用RuntimeService。接口和方法和TaskService一样的；</p>
+<p>​    这里设置了 请假日期，请假天数，请假理由，请假对象。当然这里set变量的时候 需要一个任务ID。</p>
+<p>​    大家可以从任务表里去找；后面的变量都是key:value形式，这里的key当然也可以用中文，</p>
+<p>设置的时候也可以一次性设置多个变量。</p>
+<p>​    执行下这个方法，会对应的把数据库查询到对应的流程变量表中，当然那个对象序列的话，特殊点，存到了字节文件表里去了；</p>
+<h5 id="使用-CompleteTask（）方法完成流程"><a href="#使用-CompleteTask（）方法完成流程" class="headerlink" title="使用 CompleteTask（）方法完成流程"></a>使用 CompleteTask（）方法完成流程</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 完成任务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">completeTask</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	processEngine.getTaskService().complete(<span class="string">"102504"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行完成后， act_hi_actinst 表会再次发生改变：</p>
+ <img src="http://photo.wushaopei.com/qiniu386.png" width="80%">
+
+<p>这时候可以看到任务表 act_ru_task 中有这么一条数据，代表已完成的任务：</p>
+ <img src="http://photo.wushaopei.com/qiniu387.png" width="80%">
+
+<h5 id="经理审批-–-获取流程变量"><a href="#经理审批-–-获取流程变量" class="headerlink" title="经理审批 – 获取流程变量"></a>经理审批 – 获取流程变量</h5><p>这样就轮到部门审批的节点了。 现在可以获取 “员工请假提交” 任务节点设置的流程变量： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取流程变量数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getVariableValues2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TaskService taskService=processEngine.getTaskService();<span class="comment">//获取任务</span></span><br><span class="line">	String taskId=<span class="string">"107502"</span>;</span><br><span class="line">	Integer day=(Integer) taskService.getVariable(taskId, <span class="string">"days"</span>);<span class="comment">//获取请假天数</span></span><br><span class="line">	Date date=(Date) taskService.getVariable(taskId, <span class="string">"date"</span>);<span class="comment">//请假日期</span></span><br><span class="line">	String reason=(String) taskService.getVariable(taskId, <span class="string">"reason"</span>);<span class="comment">//请假原因</span></span><br><span class="line">	</span><br><span class="line">	Employee employee=(Employee) taskService.getVariable(taskId, <span class="string">"employee"</span>);<span class="comment">//序列化对象</span></span><br><span class="line">	System.out.println(<span class="string">"请假天数："</span>+day);</span><br><span class="line">	System.out.println(<span class="string">"请假日期："</span>+date);</span><br><span class="line">	System.out.println(<span class="string">"请假原因:"</span>+reason);</span><br><span class="line">	System.err.println(<span class="string">"请假对象："</span>+employee.getId()+<span class="string">" —— "</span>+employee.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取流程结果：</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">19:48:41.555 [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - </span><br><span class="line"></span><br><span class="line">请假天数：null</span><br><span class="line">请假日期：Wed Apr 15 19:41:23 CST 2020</span><br><span class="line">请假原因:发烧</span><br><span class="line">请假对象：1 —— 李四</span><br></pre></td></tr></table></figure>
+
+<p><strong>定论：</strong> 走到这里，我们可以知道，全局变量  <strong>Variable</strong> 可以被后面的节点给获取到。</p>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>经过经理审批后，还有部门审批，我们在这里验证局部流程变量不能被下一个节点获取的问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置流程局部变量数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVariableLocalValue</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TaskService taskService=processEngine.getTaskService();<span class="comment">//获取任务</span></span><br><span class="line">	String taskId=<span class="string">"107502"</span>;<span class="comment">//更加任务id知道是哪个人物，设置流程变量。可以更加查看任务方法查看任务的id，可以到数据库直接看</span></span><br><span class="line">	<span class="comment">//下面设置任务的内容，比如请假流程，任务的第一节点也就是申请人要写请节哀的原因</span></span><br><span class="line">	taskService.setVariableLocal(taskId, <span class="string">"days"</span>, <span class="number">5</span>);<span class="comment">//请假天数</span></span><br><span class="line">	taskService.setVariable(taskId, <span class="string">"date"</span>, <span class="keyword">new</span> Date());<span class="comment">//请假日期</span></span><br><span class="line">	taskService.setVariable(taskId, <span class="string">"reason"</span>, <span class="string">"局部"</span>);<span class="comment">//请假原因</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在当前节点获取局部流程变量：</strong> </p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">请假天数：<span class="number">5</span></span><br><span class="line">请假日期：Wed Apr <span class="number">15</span> <span class="number">20</span>:<span class="number">05</span>:<span class="number">56</span> CST <span class="number">2020</span></span><br><span class="line">请假原因:局部</span><br><span class="line">请假对象：<span class="number">1</span> —— zhangsan</span><br></pre></td></tr></table></figure>
+
+<p>我们继续往下走，执行完成任务方法，注意修改任务id：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 完成任务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">completeTask2</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	processEngine.getTaskService().complete(<span class="string">"107502"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取局部流程变量："><a href="#获取局部流程变量：" class="headerlink" title="获取局部流程变量："></a>获取局部流程变量：</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取流程变量数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getVariableLocalValues</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TaskService taskService=processEngine.getTaskService();<span class="comment">//获取任务</span></span><br><span class="line">	String taskId=<span class="string">"97502"</span>;</span><br><span class="line">	Integer day=(Integer) taskService.getVariableLocal(taskId, <span class="string">"days"</span>);<span class="comment">//获取请假天数</span></span><br><span class="line">	Date date=(Date) taskService.getVariable(taskId, <span class="string">"date"</span>);<span class="comment">//请假日期</span></span><br><span class="line">	String reason=(String) taskService.getVariable(taskId, <span class="string">"reason"</span>);<span class="comment">//请假原因</span></span><br><span class="line">	</span><br><span class="line">	Employee employee=(Employee) taskService.getVariable(taskId, <span class="string">"employee"</span>);<span class="comment">//序列化对象</span></span><br><span class="line">	System.out.println(<span class="string">"请假天数："</span>+day);</span><br><span class="line">	System.out.println(<span class="string">"请假日期："</span>+date);</span><br><span class="line">	System.out.println(<span class="string">"请假原因:"</span>+reason);</span><br><span class="line">	System.err.println(<span class="string">"请假对象："</span>+employee.getId()+<span class="string">",,,"</span>+employee.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里查看一下相关的表数据变化：</p>
+<p><strong>act_hi_actinst:</strong> </p>
+ <img src="http://photo.wushaopei.com/qiniu388.png" width="80%">
+
+<p>从图中我们可以看到，流程已经走到了部门审批的节点上</p>
+<p>*<em>act_ru_task: *</em> </p>
+ <img src="http://photo.wushaopei.com/qiniu389.png" width="80%">
+
+<p> 从图中我们可以看到，任务节点走到了 task_ID为 112502 的部门审批上。</p>
+<h5 id="局部变量的获取结果："><a href="#局部变量的获取结果：" class="headerlink" title="局部变量的获取结果："></a>局部变量的获取结果：</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="number">20</span>:<span class="number">09</span>:<span class="number">59.430</span> [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - --- GetTaskVariableCmd finished --------------------------------------------------------</span><br><span class="line"><span class="number">20</span>:<span class="number">09</span>:<span class="number">59.430</span> [main] DEBUG org.activiti.engine.impl.interceptor.LogInterceptor - </span><br><span class="line"></span><br><span class="line">请假天数：<span class="literal">null</span></span><br><span class="line">请假日期：Wed Apr <span class="number">15</span> <span class="number">20</span>:<span class="number">05</span>:<span class="number">56</span> CST <span class="number">2020</span></span><br><span class="line">请假原因:局部</span><br><span class="line">请假对象：<span class="number">1</span>,,,zhangsan</span><br></pre></td></tr></table></figure>
+
+<p>从结果可以得知，被声明为 局部流程变量，也就是 LocalVariable的 请假天数在部门经理审批节点被声明为 5 天，但是在部门审批节点没有获取到，而其他的全局流程变量都顺利获取到了。</p>
+<h3 id="多流程变量的设置与获取"><a href="#多流程变量的设置与获取" class="headerlink" title="多流程变量的设置与获取"></a>多流程变量的设置与获取</h3><p>下面再介绍一种可以设置多个变量的方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置多个流程变量数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVariableValue1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TaskService taskService=processEngine.getTaskService();<span class="comment">//获取任务</span></span><br><span class="line">	String taskId=<span class="string">"107502"</span>;<span class="comment">//更加任务id知道是哪个人物，设置流程变量。可以更加查看任务方法查看任务的id，可以到数据库直接看</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">//下面我们再测试一个额外的知识点，就是流程传输变量，这里我们再新建一个employee对象，对象有id 和name两个属性,还有就是序列化传输</span></span><br><span class="line">	Employee employee=<span class="keyword">new</span> Employee();</span><br><span class="line">	employee.setId(<span class="number">1</span>);</span><br><span class="line">	employee.setName(<span class="string">"zhangsan"</span>);</span><br><span class="line">	taskService.setVariable(taskId, <span class="string">"employee"</span>,employee);<span class="comment">//序列化对象</span></span><br><span class="line">	</span><br><span class="line">	Map&lt;String, Object&gt; variables=<span class="keyword">new</span> HashMap&lt;String,Object&gt;();</span><br><span class="line">	variables.put(<span class="string">"days"</span>, <span class="number">3</span>);</span><br><span class="line">	variables.put(<span class="string">"date"</span>,<span class="keyword">new</span> Date());</span><br><span class="line">	variables.put(<span class="string">"reason"</span>, <span class="string">"faShao2"</span>);</span><br><span class="line">	variables.put(<span class="string">"employee"</span>, employee);</span><br><span class="line">	taskService.setVariables(taskId, variables);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取多个变量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取多个流程变量数据</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getVariableValue</span><span class="params">()</span></span>&#123;</span><br><span class="line">	TaskService taskService=processEngine.getTaskService();<span class="comment">//获取任务</span></span><br><span class="line">	String taskId=<span class="string">"97502"</span>;</span><br><span class="line">	</span><br><span class="line">	Map&lt;String, Object&gt; variables=taskService.getVariables(taskId);</span><br><span class="line">	Integer day=(Integer) variables.get(<span class="string">"days"</span>);<span class="comment">//获取请假天数</span></span><br><span class="line">	Date date=(Date) variables.get(<span class="string">"date"</span>);<span class="comment">//请假日期</span></span><br><span class="line">	String reason=(String) variables.get(<span class="string">"reason"</span>);<span class="comment">//请假原因</span></span><br><span class="line">	</span><br><span class="line">	Employee employee=(Employee) variables.get(<span class="string">"employee"</span>);<span class="comment">//序列化对象</span></span><br><span class="line">	System.out.println(<span class="string">"请假天数："</span>+day);</span><br><span class="line">	System.out.println(<span class="string">"请假日期："</span>+date);</span><br><span class="line">	System.out.println(<span class="string">"请假原因:"</span>+reason);</span><br><span class="line">	System.err.println(<span class="string">"请假对象："</span>+employee.getId()+<span class="string">",,,"</span>+employee.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>workflower</category>
+      </categories>
+      <tags>
+        <tag>流程变量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>并发编程（二十）J-U-C-AQS-ReentrantReadWriteLock、StampedLock、Condition</title>
     <url>/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89J-U-C-AQS-ReentrantReadWriteLock%E3%80%81StampedLock%E3%80%81Condition/</url>
     <content><![CDATA[<h3 id="ReentrantReadWriteLock实例代码演示："><a href="#ReentrantReadWriteLock实例代码演示：" class="headerlink" title="ReentrantReadWriteLock实例代码演示："></a>ReentrantReadWriteLock实例代码演示：</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockExample3</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Data&gt; map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ReentrantReadWriteLock lock = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lock readLock = lock.readLock();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lock writeLock = lock.writeLock();</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">get</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        readLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(key);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            readLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getAllKeys</span><span class="params">()</span></span>&#123;</span><br><span class="line">        readLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.keySet();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            readLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">put</span><span class="params">(String key,Data value)</span></span>&#123;</span><br><span class="line">        writeLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.put(key,value);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            writeLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Data</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -123,218 +214,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OSGI: (二) Apache Felix 介绍 </title>
-    <url>/2020/04/13/OSGI-%E4%BA%8C-Apache-Felix-%E4%BB%8B%E7%BB%8D/</url>
-    <content><![CDATA[<h2 id="Felix-项目历史"><a href="#Felix-项目历史" class="headerlink" title="Felix 项目历史"></a>Felix 项目历史</h2><p>作为<a href="http://apache.org" target="_blank" rel="noopener">Apache</a>旗下的其中一个项目，<a href="http://felix.apache.org" target="_blank" rel="noopener">Felix</a>在2006年就拥有了自己的网站。不过一开始似乎进展并不快，直到2007年的七月，才发布了自己的1.0.0版本，其后他们发布了很多与Felix框架相关的<a href="http://maven.apache.org" target="_blank" rel="noopener">Maven</a>插件，到了2008年初，开始对纲要标准（Compendium Specification）进行部分实现。此后Felix项目的发展壮大非常的迅速，那时候的OSGi标准也日趋稳定和完善。时至今日，Felix项目不仅包含了一个OSGi R4(到今天为止，准确的版本号是4.2)服务平台标准的实现，在此之外还包含了很多OSGi相关的技术和功能（非标准），他们能帮助OSGi框架更好的发挥作用. </p>
-<h2 id="Felix-项目概述"><a href="#Felix-项目概述" class="headerlink" title="Felix 项目概述"></a>Felix 项目概述</h2><p>整个Felix项目被分解为了若干个子项目，我们可以从SVN上将Felix检出： </p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">svn checkout http://svn.apache.org/repos/asf/felix/trunk felix-trunk</span><br></pre></td></tr></table></figure>
-
-<p>完成了上述操作后，我们可以看到有整整57个文件夹，里面除了examples（示例程序）、src（无关紧要的内容，一些图片和css）、commons（项目需要用到的公共包，比如beanutils），还有pom（里面是总体的pom文件）这4个文件夹外，基本都是与Felix项目直接相关的代码，里面除了一些已经发布的，还有非常多的未发布项目。 </p>
-<h3 id="Felix对标准的实现情况"><a href="#Felix对标准的实现情况" class="headerlink" title="Felix对标准的实现情况"></a>Felix对标准的实现情况</h3><p>下面我们从一个总体的角度来看看Felix对标准的那些内容进行了实现： </p>
-<h4 id="2-1-1-核心标准-Core-Specification"><a href="#2-1-1-核心标准-Core-Specification" class="headerlink" title="2.1.1 核心标准(Core Specification)"></a>2.1.1 核心标准(Core Specification)</h4><p>Felix对核心标准的实现都是通过了[OSGi联盟][OSGi Alliance]认证的。 </p>
-<table>
-<thead>
-<tr>
-<th>标准名称</th>
-<th>版本号</th>
-<th>Felix中的子项目</th>
-<th>项目版本</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Framework</td>
-<td>R4.2</td>
-<td>Framework</td>
-<td>3.0.6</td>
-</tr>
-<tr>
-<td>Package Admin</td>
-<td>1.2 (R4.2)</td>
-<td>Framework</td>
-<td>3.0.6</td>
-</tr>
-<tr>
-<td>Start Level</td>
-<td>1.1 (R4.2)</td>
-<td>Framework</td>
-<td>3.0.6</td>
-</tr>
-<tr>
-<td>Permission Admin</td>
-<td>R4.2</td>
-<td>Framework Security</td>
-<td>1.4.0</td>
-</tr>
-<tr>
-<td>Conditional Permission Admin</td>
-<td>R4.2</td>
-<td>Framework Security</td>
-<td>1.4.0</td>
-</tr>
-<tr>
-<td>URL Handlers</td>
-<td>1.0 (R4.2)</td>
-<td>Framework</td>
-<td>3.0.6</td>
-</tr>
-<tr>
-<td>Service Hooks</td>
-<td>1.0 (R4.2)</td>
-<td>Framework</td>
-<td></td>
-</tr>
-</tbody></table>
-<h4 id="2-1-2-纲要标准-Compendium-Specification"><a href="#2-1-2-纲要标准-Compendium-Specification" class="headerlink" title="2.1.2 纲要标准(Compendium Specification)"></a>2.1.2 纲要标准(Compendium Specification)</h4><p>在这里我们只把实现并且已经发布过的子项目列举出来： </p>
-<table>
-<thead>
-<tr>
-<th>标准名称</th>
-<th>版本号</th>
-<th>Felix中的子项目</th>
-<th>项目版本</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Log Service</td>
-<td>1.3 (R4.2)</td>
-<td>Log</td>
-<td>1.0.0</td>
-<td></td>
-</tr>
-<tr>
-<td>Http Service</td>
-<td>1.2 (R4.2)</td>
-<td>Http Service Projects</td>
-<td>2.0.4</td>
-<td></td>
-</tr>
-<tr>
-<td>Configuration Admin</td>
-<td>1.3 (R4.2)</td>
-<td>Configuration Admin</td>
-<td>1.2.8</td>
-<td>参考实现</td>
-</tr>
-<tr>
-<td>Metatype</td>
-<td>1.1 (R4.2)</td>
-<td>Metatype</td>
-<td>1.0.4</td>
-<td>—</td>
-</tr>
-<tr>
-<td>Preferences</td>
-<td>1.1 (R4.2)</td>
-<td>Preferences</td>
-<td>1.0.4</td>
-<td>—</td>
-</tr>
-<tr>
-<td>UPnP Device</td>
-<td>1.1 (R4.2)</td>
-<td>UPnP Base Driver</td>
-<td>0.8.0</td>
-<td>—</td>
-</tr>
-<tr>
-<td>Declarative Services</td>
-<td>1.1 (R4.2)</td>
-<td>SCR</td>
-<td>1.6.0</td>
-<td>通过了R4.2相应的服从测试</td>
-</tr>
-<tr>
-<td>Event Admin</td>
-<td>1.2 (R4.2)</td>
-<td>Event Admin</td>
-<td>1.2.8</td>
-<td>同上</td>
-</tr>
-<tr>
-<td>Blueprint</td>
-<td>1.0 (R4.2)</td>
-<td></td>
-<td></td>
-<td>由Apache Aries实现</td>
-</tr>
-<tr>
-<td>Tracker</td>
-<td>1.4 (R4.2)</td>
-<td>Framework</td>
-<td>3.0.6</td>
-<td>OSG</td>
-</tr>
-</tbody></table>
-<h3 id="2-2-标准以外的相关技术实现"><a href="#2-2-标准以外的相关技术实现" class="headerlink" title="2.2 标准以外的相关技术实现"></a>2.2 标准以外的相关技术实现</h3><h4 id="2-2-1-用于简化OSGi开发的子项目"><a href="#2-2-1-用于简化OSGi开发的子项目" class="headerlink" title="2.2.1 用于简化OSGi开发的子项目"></a>2.2.1 用于简化OSGi开发的子项目</h4><ul>
-<li><p><a href="http://felix.apache.org/site/apache-felix-dependency-manager.html" target="_blank" rel="noopener">Dependency Manager</a> </p>
-<p>在OSGi基于服务的体系结构中，应用是由一个个组件建立起来的，每个组件分别依赖和发布了一些服务，这样这些服务就形成了一个网络。但是由于其动态性，这个网络的结构总是在不停的变化，所以开发者总是不得不考虑和应对这样的变化，OSGi本身提供了服务的listener和tracker这两个机制来捕捉和监控服务的状态变化，但是对于开发者来说这个太底层了。而这个工具提供给我们了一套JavaAPI来声明式的定义和管理这些依赖。</p>
-</li>
-<li><p><a href="http://felix.apache.org/site/apache-felix-ipojo.html" target="_blank" rel="noopener">iPOJO</a></p>
-<p>这是一个相当大的项目，从这个项目的主页上就可以看出Felix项目在这个子项目上花了很多精力，可以说是在OSGi基础上的一个革新。</p>
-<p>iPOJO是一个用于简化OSGi开发的服务组件运行时，它本身支持了所有OSGi的动态性。它基于<a href="http://en.wikipedia.org/wiki/Plain_Old_Java_Object" target="_blank" rel="noopener">POJO</a>的概念简化了程序逻辑的开发，任何非功能性的对象属性只在运行的时候被注入进来。它主要有以下几个特点：</p>
-<ul>
-<li>开发组件的时候只需要定义POJO即可，没有多余的工作</li>
-<li>组件模型可扩展，所以很容易根据你的需要来调整</li>
-<li>标准的组件模型会管理服务的提供与依赖</li>
-<li>iPOJO管理组件实例的生命周期和OSGi环境的动态性，这是前所未有的</li>
-<li>为了创建高动态性的应用，iPOJO提供了一个强大的组装系统</li>
-<li>iPOJO支持标注、XML和JavaAPI来定义组件</li>
-</ul>
-<p>如果有机会，我会在一篇单独的文档中详细的介绍iPOJO。</p>
-</li>
-</ul>
-<h4 id="2-2-2-Shell"><a href="#2-2-2-Shell" class="headerlink" title="2.2.2 Shell"></a>2.2.2 Shell</h4><ul>
-<li><a href="http://felix.apache.org/site/apache-felix-gogo.html" target="_blank" rel="noopener">Gogo</a> - 用来和OSGi交互的较为常用的shell，除了基本的框架命令，其中还包含grep，cat，echo这类指令，并且可以自定义宏命令。</li>
-<li><a href="http://felix.apache.org/site/apache-felix-shell.html" target="_blank" rel="noopener">Shell</a> - 这个子项目只提供了单纯的shell服务API，而没有提供用户界面。</li>
-<li><a href="http://felix.apache.org/site/apache-felix-shell-tui.html" target="_blank" rel="noopener">Shell TUI</a> - Apache Felix Shell的文字界面，相比gogo来说更为简单，但是不怎么常用，他的使用依赖于shell bundle。</li>
-<li><a href="http://felix.apache.org/site/apache-felix-remote-shell.html" target="_blank" rel="noopener">Remote Shell</a> - Apache Felix Shell的远程文字界面，我们通过这个工具可以在其他终端上远程操作Felix。</li>
-</ul>
-<h4 id="2-2-3-Maven插件"><a href="#2-2-3-Maven插件" class="headerlink" title="2.2.3 Maven插件"></a>2.2.3 Maven插件</h4><ul>
-<li><p><a href="http://felix.apache.org/site/apache-felix-maven-bundle-plugin-bnd.html" target="_blank" rel="noopener">Maven Bundle Plugin</a></p>
-<p>这个插件用于简化Bundle的构建，可以将一个bundle看做以个Maven工程，其中还包括自动化对OSGi Bundle仓库的管理。它的前身曾经是OBR Plugin和OSGi Plugin这两个插件。</p>
-</li>
-<li><p><a href="http://felix.apache.org/site/apache-felix-maven-scr-plugin.html" target="_blank" rel="noopener">Maven SCR Plugin</a></p>
-<p>这个插件的主要作用是帮助用户生成OSGi中使用Declarative Services, Config Admin和Metatype services这三个功能所必要的信息，这样就简化了用户的操作。</p>
-</li>
-</ul>
-<h4 id="2-2-4-其他"><a href="#2-2-4-其他" class="headerlink" title="2.2.4 其他"></a>2.2.4 其他</h4><ul>
-<li><a href="http://felix.apache.org/site/apache-felix-file-install.html" target="_blank" rel="noopener">File Install</a> - 用来管理bundle部署及其目录的一个简单的代理。</li>
-<li><a href="http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html" target="_blank" rel="noopener">OSGi Bundle Repository</a> - 帮助我们更好的发现和部署bundle和bundle的依赖。</li>
-<li><a href="http://felix.apache.org/site/apache-felix-web-console.html" target="_blank" rel="noopener">Web Console</a> - 基于web的Felix控制台。</li>
-</ul>
-<h2 id="3-Felix-基本运行环境配置"><a href="#3-Felix-基本运行环境配置" class="headerlink" title="3 Felix 基本运行环境配置"></a>3 Felix 基本运行环境配置</h2><h3 id="3-1-Felix执行环境的下载"><a href="#3-1-Felix执行环境的下载" class="headerlink" title="3.1 Felix执行环境的下载"></a>3.1 Felix执行环境的下载</h3><p>进入下载页面，选择Felix Framework Distribution的下载项：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">http:<span class="comment">//felix.apache.org/downloads.cgi?Preferred=https%3A%2F%2Fmirror.bit.edu.cn%2Fapache%2F</span></span><br></pre></td></tr></table></figure>
-
-<p>如下图所示： </p>
-<img src="http://photo.wushaopei.com/qiniu305.png" width="60%">
-
-<h3 id="3-2-启动Felix"><a href="#3-2-启动Felix" class="headerlink" title="3.2 启动Felix"></a>3.2 启动Felix</h3><p>将下载好的包解压，从命令行进入这个文件夹的根目录，执行如下命令，进入到Felix的命令行：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java -jar bin/felix.jar</span><br></pre></td></tr></table></figure>
-
-<p>如下图所示： </p>
-<img src="http://photo.wushaopei.com/qiniu306.png" width="60%">
-
-<p>这样我们就进入了Felix的执行环境，可以通过Shell与框架进行一些交互 </p>
-<h3 id="3-3-一些简单的命令"><a href="#3-3-一些简单的命令" class="headerlink" title="3.3 一些简单的命令"></a>3.3 一些简单的命令</h3><p>在这个命令行下输入help我们就可以看到大部分的指令，由于数量不少，不在这里一一列出。为了避免命令名字的冲突，这些命令都有自己的名字空间，现有的名字空间有三种：</p>
-<ul>
-<li>felix - 关于felix框架的核心命令，比如列出所有bundle，安装/卸载bundle等等</li>
-<li>gogo - 包含grep，cat，echo这类的指令，并且gogo是个Felix的子项目，他是参照<a href="http://felix.apache.org/site/rfc-147-overview.html" target="_blank" rel="noopener">RFC 147</a>来实现的，这个标准定义了OSGi环境的shell应该是怎么样的。</li>
-<li>obr - 关于OSGi Bundle Repository功能的指令</li>
-</ul>
-<p>如果对任何的命令有所疑问，用help+空格+“命令名称”来查看说明即可。</p>
-<p>参考链接： <a href="http://www.osgi.com.cn/article/7289225" target="_blank" rel="noopener">http://www.osgi.com.cn/article/7289225</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>OSGI</category>
-        <category>Felix</category>
-      </categories>
-      <tags>
-        <tag>OSGI</tag>
-        <tag>Felix</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>OSGI: (一) 简述对OSGI的认识</title>
     <url>/2020/04/13/OSGI-%E4%B8%80-%E7%AE%80%E8%BF%B0%E5%AF%B9OSGI%E7%9A%84%E8%AE%A4%E8%AF%86/</url>
     <content><![CDATA[<h2 id="OSGI：简述对OSGI的认识"><a href="#OSGI：简述对OSGI的认识" class="headerlink" title="OSGI：简述对OSGI的认识"></a>OSGI：简述对OSGI的认识</h2><h2 id="一、OSGI的概念"><a href="#一、OSGI的概念" class="headerlink" title="一、OSGI的概念"></a>一、OSGI的概念</h2><p>OSGI（Open Service Gateway Initiative，直译为“开放服务网关”）实际上是一个由OSGi联盟（OSGi Alliance）发起的以Java为技术平台的动态模块化规范。</p>
@@ -406,9 +285,145 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>mybatis 配置（三）别名</title>
+    <title>mybatis 配置（三）别名 - typeAliases</title>
     <url>/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%AB%E5%90%8D/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h3 id="自定义类型别名（typeAliases）"><a href="#自定义类型别名（typeAliases）" class="headerlink" title="自定义类型别名（typeAliases）"></a>自定义类型别名（typeAliases）</h3><p>类型别名可为 Java 类型设置一个缩写名字。 它仅用于 XML 配置，意在降低冗余的全限定类名书写。例如： </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- typeAliases多个类型别名 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- typeAlias每个都是类型别名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Author"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Author"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Blog"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Blog"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Comment"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Comment"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Post"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Post"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Section"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Section"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"Tag"</span> <span class="attr">type</span>=<span class="string">"domain.blog.Tag"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当这样配置时，<code>Blog</code> 可以用在任何使用 <code>domain.blog.Blog</code> 的地方。</p>
+<p>也可以指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean，比如：         </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- package使用包名，自动扫描，进行别名配置 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"domain.blog"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>每一个在包 <code>domain.blog</code> 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。 比如 <code>domain.blog.Author</code> 的别名为 <code>author</code>；若有注解，则别名为其注解值。见下面的例子： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Alias</span>("author") 注解可以自定义别名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Alias</span>(<span class="string">"author"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Author</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当配置上面的配置，MyBatis 就会自动扫描包，将扫描到的类装载到上下文中，以便将来使用。这样就算是多个 POJO 也可以通过包扫描的方式装载到 MyBatis 的上下文中。</p>
+<p>当然配置了包扫描的路径，而没有注解@Alias 的MyBatis 也会装载，只是说它将把你的类名的第一个字母变为小写，作为MyBatis 的别名，要特别注意避免出现重名的场景，建议使用部分包名加类名的限定。</p>
+<h3 id="系统定义别名"><a href="#系统定义别名" class="headerlink" title="系统定义别名"></a>系统定义别名</h3><p>下面是一些为常见的 Java 类型内建的类型别名。它们都是不区分大小写的，注意，为了应对原始类型的命名重复，采取了特殊的命名风格。 </p>
+<table>
+<thead>
+<tr>
+<th><strong>别名</strong></th>
+<th><strong>映射的类型</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>_byte</td>
+<td>byte</td>
+</tr>
+<tr>
+<td>_long</td>
+<td>long</td>
+</tr>
+<tr>
+<td>_short</td>
+<td>short</td>
+</tr>
+<tr>
+<td>_int</td>
+<td>int</td>
+</tr>
+<tr>
+<td>_integer</td>
+<td>int</td>
+</tr>
+<tr>
+<td>_double</td>
+<td>double</td>
+</tr>
+<tr>
+<td>_float</td>
+<td>float</td>
+</tr>
+<tr>
+<td>_boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>string</td>
+<td>String</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>date</td>
+<td>Date</td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>BigDecimal</td>
+</tr>
+<tr>
+<td>bigdecimal</td>
+<td>BigDecimal</td>
+</tr>
+<tr>
+<td>object</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>map</td>
+<td>Map</td>
+</tr>
+<tr>
+<td>hashmap</td>
+<td>HashMap</td>
+</tr>
+<tr>
+<td>list</td>
+<td>List</td>
+</tr>
+<tr>
+<td>arraylist</td>
+<td>ArrayList</td>
+</tr>
+<tr>
+<td>collection</td>
+<td>Collection</td>
+</tr>
+<tr>
+<td>iterator</td>
+<td>Iterator</td>
+</tr>
+</tbody></table>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>配置</tag>
+        <tag>别名</tag>
+      </tags>
   </entry>
   <entry>
     <title>mybatis 配置（二）设置</title>
@@ -727,7 +742,71 @@
 <h3 id="如何开始使用-Bootstrap"><a href="#如何开始使用-Bootstrap" class="headerlink" title="如何开始使用 Bootstrap"></a>如何开始使用 Bootstrap</h3><img src="http://photo.wushaopei.com/qiniu307.png" width="60%">
 
 <p><strong>此处针对 bootstrap 的3.0 以上版本(包括3.0)</strong></p>
-<h3 id="下载-Bootstrap-框架"><a href="#下载-Bootstrap-框架" class="headerlink" title="下载 Bootstrap 框架"></a>下载 Bootstrap 框架</h3>]]></content>
+<h3 id="下载-Bootstrap-框架"><a href="#下载-Bootstrap-框架" class="headerlink" title="下载 Bootstrap 框架"></a>下载 Bootstrap 框架</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">https:&#x2F;&#x2F;v4.bootcss.com&#x2F;docs&#x2F;getting-started&#x2F;download&#x2F;</span><br></pre></td></tr></table></figure>
+
+<img src="http://photo.wushaopei.com/qiniu347.png" width="60%">
+
+<h3 id="Bootstrap-版本差异"><a href="#Bootstrap-版本差异" class="headerlink" title="Bootstrap 版本差异"></a>Bootstrap 版本差异</h3><p><strong>注意：</strong> </p>
+<blockquote>
+<p>bootstrap必须基于jquary，所以要在引用bootstrap框架之前引入jquary </p>
+</blockquote>
+<p>BootStrap不支持IE8以下的兼容模式，这条代码是为了让IE中运行最新的渲染模式</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>初始化移动浏览器显示 </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使低版本浏览器 支持H5标签 </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使低版本浏览器对媒体查询进行支持 </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://oss.maxcdn.com/respond/1.4.2/respond.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>视口的宽度等于物理设备上真实的分辨率，初始的缩放比例为1（不做缩放） </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1"</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- 这句话的意思打开浏览器时，浏览器的宽度等于屏幕的分辨率  刚开始为1 是说屏幕不缩放 </span></span><br><span class="line"><span class="comment">		width=device-width 宽度等于设备的宽度</span></span><br><span class="line"><span class="comment">		initial-scale=1  初始不缩放</span></span><br><span class="line"><span class="comment">	--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="最基本的模板"><a href="#最基本的模板" class="headerlink" title="最基本的模板"></a>最基本的模板</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Required meta tags --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, shrink-to-fit=no"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Bootstrap CSS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"</span> <span class="attr">integrity</span>=<span class="string">"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Optional JavaScript --&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"</span> <span class="attr">integrity</span>=<span class="string">"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"</span> <span class="attr">crossorigin</span>=<span class="string">"anonymous"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编程练习"><a href="#编程练习" class="headerlink" title="编程练习"></a>编程练习</h3><p>基于Bootstrap实现下图所示效果的页面，一个居中的标题和一个大按钮：</p>
+<p><strong>效果图:</strong></p>
+<img src="http://photo.wushaopei.com/qiniu347.png" width="60%">
+
+<p><strong>库引用地址:</strong></p>
+<p>   <strong>bootstrap框架:</strong> //netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css</p>
+<p>   <strong>jquery库:</strong> <a href="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" target="_blank" rel="noopener">http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js</a></p>
+<p>   <strong>bootstrap.min.js：</strong><a href="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js" target="_blank" rel="noopener">http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js</a></p>
+<h4 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h4><ol>
+<li>搭建基础的bootstrap页面</li>
+<li>居中的标题和按钮</li>
+</ol>
+<p><strong>注意居中：</strong>通过文本对齐类，可以简单方便的将文字重新对齐，如class=”text-center”</p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cn"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> &gt;</span>我是按钮，按我一下<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="文档中组件的引用"><a href="#文档中组件的引用" class="headerlink" title="文档中组件的引用"></a>文档中组件的引用</h4><img src="http://photo.wushaopei.com/qiniu349.png" width="60%">
+
+
+
+<h3 id="Bootstrap中的-CSS"><a href="#Bootstrap中的-CSS" class="headerlink" title="Bootstrap中的 CSS"></a>Bootstrap中的 CSS</h3><p>​    Bootstrap是移动设备优先的，它针对移动设备的样式融合进了框架的每个角落，使得只需要通过简单的编码，便可以实现漂亮的响应式布局。 </p>
+<img src="http://photo.wushaopei.com/qiniu350.png" width="70%">
+
+
+
+<h4 id="初始化框架使用的是Normalize-css"><a href="#初始化框架使用的是Normalize-css" class="headerlink" title="初始化框架使用的是Normalize.css"></a>初始化框架使用的是Normalize.css</h4><h4 id="栅格结构-grid-system"><a href="#栅格结构-grid-system" class="headerlink" title="栅格结构(grid system)"></a>栅格结构(grid system)</h4><p>​    栅格布局中所有的行必须放在class为container的容器中. </p>
+<p>​    通过一系列的行（row）与列（column）的组合来创建页面布局, 自动分为最多12列,内容在列中.  栅格的class在屏幕宽度大于或等于阈值的设备上起作用，并针对小屏幕设备所设置的class覆盖掉         </p>
+<h4 id="栅格系统的用法："><a href="#栅格系统的用法：" class="headerlink" title="栅格系统的用法："></a>栅格系统的用法：</h4><p>​    首先，它的行必须要包含在container容器中。内容放在列中，而且只有列能成为行的直接子元素。</p>
+<p>​     通过设置padding 造成列之间的间隔</p>
+<pre><code>栅格的宽度在大于或等于预置的宽度上起作用，并且针对小屏幕设置的class给覆盖掉</code></pre><h3 id="Bootstrap中的组件"><a href="#Bootstrap中的组件" class="headerlink" title="Bootstrap中的组件"></a>Bootstrap中的组件</h3><p>​    Bootstrap包含很多可复用的组件，包括图标，下拉菜单，导航，警告框，弹出框等更多功能。</p>
+<h4 id="按钮、按钮组-组件"><a href="#按钮、按钮组-组件" class="headerlink" title="按钮、按钮组 组件"></a>按钮、按钮组 组件</h4><p>​    对所有按钮外部加上<div  class="btn-group">后所有按钮会成为按钮组，bootstrap会自动为第一个及最后一个加圆角，这些按钮会连在一块。按钮的功能的实现可用js插件</p>
+<p>​     js插件包括了所有jqury，可一次引入所有插件，也可单个引入。</p>
+<p>​     第一以及最后一个元素设置负的margin，抵消掉影响。</p>
+<h3 id="Bootstrap的插件"><a href="#Bootstrap的插件" class="headerlink" title="Bootstrap的插件"></a>Bootstrap的插件</h3><h4 id="Tooltip插件–鼠标放上就可显示相关提示内容。"><a href="#Tooltip插件–鼠标放上就可显示相关提示内容。" class="headerlink" title="Tooltip插件–鼠标放上就可显示相关提示内容。"></a><strong>Tooltip插件–鼠标放上就可显示相关提示内容。</strong></h4><p>​    工具提示（Tooltip）插件不像之前所讨论的下拉菜单及其他插件那样，它不是纯 CSS 插件。如需使用该插件，您必须使用 jquery  激活它（读取 javascript）。使用下面的脚本来启用页面中的所有的工具提示（tooltip）：</p>
+<p> jquery引入位置得在bootstrap.js的前面</p>
+ <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn-group"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span> <span class="attr">data-toggle</span>=<span class="string">"tooltip"</span>  <span class="attr">data-placement</span>=<span class="string">"left"</span> <span class="attr">title</span>=<span class="string">"Tooltip on left"</span> &gt;</span>Tooltip on  left<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span> <span class="attr">data-toggle</span>=<span class="string">"tooltip"</span>  <span class="attr">data-placement</span>=<span class="string">"top"</span> <span class="attr">title</span>=<span class="string">"Tooltip on top"</span>&gt;</span>Tooltip on  top<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line">	。。。 </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="定制Bootstrap"><a href="#定制Bootstrap" class="headerlink" title="定制Bootstrap"></a>定制Bootstrap</h3><p>通过自定义Bootstrap 组件、Less变量和 jQuery  插件，可以定制一份属于自己的 Bootstrap 版本。</p>
+]]></content>
   </entry>
   <entry>
     <title>mybatis 配置（一）properties 元素</title>
@@ -876,7 +955,197 @@
 
 <h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu320.png" width="80%">
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+<h3 id="06-02-BC-Monitor-Management"><a href="#06-02-BC-Monitor-Management" class="headerlink" title="06.02. BC Monitor Management"></a>06.02. BC Monitor Management</h3><h4 id="06-02-01-BC-Status"><a href="#06-02-01-BC-Status" class="headerlink" title="06.02.01. BC Status"></a>06.02.01. BC Status</h4><p>​    BC将BC状态信号改为周期性信号，周期为开4秒，关4秒。如果BC状态位10秒内没有变化，本地PLC应以其为通讯连接，并拨打操作员电话，报警电平为报警，如果信号恢复正常，请自动清除报警。</p>
+<p>(Alarm Text：BC Status Check Timeout )</p>
+<h5 id="06-02-01-01-PLC-MAP"><a href="#06-02-01-01-PLC-MAP" class="headerlink" title="06.02.01.01. PLC MAP"></a>06.02.01.01. PLC MAP</h5><h6 id="06-02-01-01-01-Master-PLC-–-Link-Relay-B-Area"><a href="#06-02-01-01-01-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.02.01.01.01. Master PLC – Link Relay (B Area)"></a>06.02.01.01.01. Master PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu351.png" width="80%">
+
+<h5 id="06-02-01-02-Communication-Scenario"><a href="#06-02-01-02-Communication-Scenario" class="headerlink" title="06.02.01.02. Communication Scenario"></a>06.02.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu352.png" width="80%">
+
+<h3 id="06-03-Equipment-Management"><a href="#06-03-Equipment-Management" class="headerlink" title="06.03. Equipment Management"></a>06.03. Equipment Management</h3><h4 id="06-03-01-Equipment-Status"><a href="#06-03-01-Equipment-Status" class="headerlink" title="06.03.01. Equipment Status"></a>06.03.01. Equipment Status</h4><p>​    如果设备状态发生变化，必须报告相应的事件。它必须显示在设备的触摸屏上。如果设备状态改变为停止或设置，设备应提前报警，并绘制下报警图。没有直接改变设备状态的远程命令。在BC中，设备状态定义为以下五种类型之一: </p>
+<ul>
+<li><p>Idle :  设备不执行进程，但它已经准备好启动进程。这适用于是否有与设备相关的材料。 </p>
+</li>
+<li><p>Running :  设备正在执行一个进程。如果工艺完成，没有加工作业，设备又会再次闲置 </p>
+</li>
+<li><p>Setup :设备正在初始化模块和实用程序。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Setup，则报警ID应该报告给BC 65512 </p>
+</li>
+<li><p>Stop : 设备进程停止。设备因报警、H/W问题或其他原因停机。在此状态下，设备必须停止工作转移。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Stop，则报警ID应为report 65513 to BC。 </p>
+</li>
+<li><p>Pause : 设备进程暂停。在这种状态下，设备可以立即恢复进程。设备应向BC报告报警级别=报警事件警告。如果设备状态被perator或BC命令更改为Pause，则报警ID应该报告给BC 65514。</p>
+<p>如果设置状态改变，停止和暂停设备必须报告报警ID</p>
+</li>
+</ul>
+<p><strong>※注意:</strong></p>
+<ol>
+<li>当 equipment/unit 状态变为Setup, Stop or Pause 时，设备应将报警事件的报警ID分开(除以BC或EQP异常或EQP正常开关…等) </li>
+</ol>
+<img src="http://photo.wushaopei.com/qiniu353.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu354.png" width="80%">
+
+
+
+<h4 id="06-03-02-Unit-Status"><a href="#06-03-02-Unit-Status" class="headerlink" title="06.03.02. Unit Status"></a>06.03.02. Unit Status</h4><p><strong>Unit Status</strong> 仅用于多单元设备，最大单元数为15。如果设备没有单元，所有的数据都应该设置为零，将被忽略。单元状态的类型和定义与设备状态的类型和定义相同。每个单元状态是独立的，但是设备状态可能依赖于设备内单元的状态。设备的唯一责任是<strong>根据其所在单位的状态报告正确的设备状态</strong> </p>
+<h4 id="06-03-03-PLC-MAP"><a href="#06-03-03-PLC-MAP" class="headerlink" title="06.03.03. PLC MAP"></a>06.03.03. PLC MAP</h4><h5 id="06-03-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-03-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.03.03.01. Local PLC – Link Register (W Area)"></a>06.03.03.01. Local PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu355.png" width="80%">
+
+<h5 id="06-03-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-03-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.03.03.02. Local PLC – Link Relay (B Area)"></a>06.03.03.02. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu356.png" width="80%">
+
+<h5 id="06-03-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-03-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.03.03.03. Master PLC – Link Relay (B Area)"></a>06.03.03.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu357.png" width="80%">
+
+
+
+<h4 id="06-03-04-Communication-Scenari"><a href="#06-03-04-Communication-Scenari" class="headerlink" title="06.03.04. Communication Scenari"></a>06.03.04. Communication Scenari</h4><img src="http://photo.wushaopei.com/qiniu358.png" width="80%">
+
+
+
+<h4 id="06-03-05-No-Processing-Time"><a href="#06-03-05-No-Processing-Time" class="headerlink" title="06.03.05. No Processing Time"></a>06.03.05. No Processing Time</h4><p>​    设备应在触摸屏上为每个单元和设备提供“无处理时间”定时器设置功能。如果没有超过加工时间，则设备应报告空转。(无处理时间=0:不检查无处理时间)(默认值:Tact Time * 2) </p>
+<img src="http://photo.wushaopei.com/qiniu359.png" width="80%">
+
+
+
+<h4 id="06-03-06-Send-Wait-Time-Out-Report"><a href="#06-03-06-Send-Wait-Time-Out-Report" class="headerlink" title="06.03.06. Send Wait Time Out Report"></a>06.03.06. Send Wait Time Out Report</h4><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，通过发送等待计时器，则上游设备需要向BC报告此事件。 </p>
+<h5 id="06-03-06-01-PLC-MAP"><a href="#06-03-06-01-PLC-MAP" class="headerlink" title="06.03.06.01. PLC MAP"></a>06.03.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu360.png" width="90%">
+
+<h5 id="06-03-06-02-Communication-Scenario"><a href="#06-03-06-02-Communication-Scenario" class="headerlink" title="06.03.06.02. Communication Scenario"></a>06.03.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu361.png" width="90%">
+
+<h4 id="06-03-07-Equipment-Status-Stop-Command"><a href="#06-03-07-Equipment-Status-Stop-Command" class="headerlink" title="06.03.07. Equipment Status Stop Command"></a>06.03.07. Equipment Status Stop Command</h4><p>​    当BC收到设备报告“发送等待时间超时报告”事件时，BC会请求下游设备状态变化目标停止。</p>
+<p>​    当设备状态空闲时，设备状态只能改变为停止。其他的状态应该是回复“不接受”给BC。</p>
+<h5 id="06-03-07-01-PLC-MAP"><a href="#06-03-07-01-PLC-MAP" class="headerlink" title="06.03.07.01. PLC MAP"></a>06.03.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu362.png" width="90%">
+
+<h5 id="06-03-07-02-Communication-Scenario"><a href="#06-03-07-02-Communication-Scenario" class="headerlink" title="06.03.07.02. Communication Scenario"></a>06.03.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu363.png" width="90%">
+
+
+
+<h3 id="06-04-Alarm-Management"><a href="#06-04-Alarm-Management" class="headerlink" title="06.04. Alarm Management"></a>06.04. Alarm Management</h3><p> alarm (报警）是指设备上可能危及正在加工的人员、设备或物料的任何异常情况。 </p>
+<h4 id="06-04-01-Alarm-Status"><a href="#06-04-01-Alarm-Status" class="headerlink" title="06.04.01. Alarm Status"></a>06.04.01. Alarm Status</h4><p>  报告的是警报状态。 </p>
+<ul>
+<li>Alarm Set： 检测到警报 </li>
+<li>Alarm Clear：警报解除。 </li>
+</ul>
+<h4 id="06-04-02-Alarm-Unit"><a href="#06-04-02-Alarm-Unit" class="headerlink" title="06.04.02. Alarm Unit"></a>06.04.02. Alarm Unit</h4><p>  当设备报告一个警报事件时，它显示该警报与设备中的哪个单元有关。 </p>
+<h4 id="06-04-03-Alarm-ID"><a href="#06-04-03-Alarm-ID" class="headerlink" title="06.04.03. Alarm ID"></a>06.04.03. Alarm ID</h4><p>所有设备制造商必须提交每台设备的报警标识清单。一个单元必须有一个唯一的警报ID，无论错误或警告警报。 </p>
+<ul>
+<li>0：reserved (never used)  </li>
+<li>1 ~ 65500：Equipment can use </li>
+<li>65501 ~ 65535：By BC Defined</li>
+</ul>
+<img src="http://photo.wushaopei.com/qiniu364.png" width="90%">
+
+<h4 id="06-04-04-Alarm-Code"><a href="#06-04-04-Alarm-Code" class="headerlink" title="06.04.04. Alarm Code"></a>06.04.04. Alarm Code</h4><ul>
+<li>Bit 00：Danger for human （对人类危险 ）</li>
+<li>Bit 01：Equipment error </li>
+<li>Bit 02：Parameter overflow caused process error  （参数溢出导致进程错误 ）</li>
+<li>Bit 03：Parameter overflow caused equipment can’t work  （参数溢出导致设备无法工作 ）</li>
+<li>Bit 04：Cannot recover trouble  （无法恢复故障 ）</li>
+<li>Bit 05：Equipment status warning  （设备状态警告 ）</li>
+<li>Bit 06：Process reached to predefined status （进程达到预定义状态 ）</li>
+<li>Bit 07：BC Caused </li>
+</ul>
+<h4 id="06-04-05-Alarm-Level"><a href="#06-04-05-Alarm-Level" class="headerlink" title="06.04.05. Alarm Level"></a>06.04.05. Alarm Level</h4><p>​    它显示了警报的级别。它由警告和错误组成。 </p>
+<ul>
+<li>Warning : 警告表示一个灯光错误。对于警告，设备应继续进行处理、蜂鸣操作，并将信息显示在触摸屏上。 </li>
+<li>Error :  告警表示严重错误。当报警发生时，设备必须停止处理(某些设备可能只会导致进程暂停)，蜂鸣操作员对设备进行检查，并在触摸屏上显示信息 </li>
+</ul>
+<h4 id="06-04-06-Alarm-Text"><a href="#06-04-06-Alarm-Text" class="headerlink" title="06.04.06. Alarm Text"></a>06.04.06. Alarm Text</h4><p>​    它包含一个简短的文本描述的警报。 </p>
+<h4 id="06-04-07-Alarm-Text-Using-Flag"><a href="#06-04-07-Alarm-Text-Using-Flag" class="headerlink" title="06.04.07. Alarm Text Using Flag"></a>06.04.07. Alarm Text Using Flag</h4><p>​    它定义了设备或BC使用的报警文本。 </p>
+<h4 id="06-04-08-PLC-MAP"><a href="#06-04-08-PLC-MAP" class="headerlink" title="06.04.08. PLC MAP"></a>06.04.08. PLC MAP</h4><p>​    <img src="http://photo.wushaopei.com/qiniu365.png" width="90%"></p>
+<h5 id="06-04-08-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.02. Local PLC – Link Relay (B Area)"></a>06.04.08.02. Local PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu366.png" width="90%"></p>
+<h5 id="06-04-08-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.03. Master PLC – Link Relay (B Area)"></a>06.04.08.03. Master PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu367.png" width="90%"></p>
+<h4 id="06-04-09-Communication-Scenario"><a href="#06-04-09-Communication-Scenario" class="headerlink" title="06.04.09. Communication Scenario"></a>06.04.09. Communication Scenario</h4><p>​    <img src="http://photo.wushaopei.com/qiniu368.png" width="90%"></p>
+<h3 id="06-05-Job-Management"><a href="#06-05-Job-Management" class="headerlink" title="06.05. Job Management"></a>06.05. Job Management</h3><p>​    这项工作意味着要对玻璃、芯片等材料进行加工。每个作业都有自己独特的数据进行处理，这些数据称为作业数据，包括PPID、盒式磁带序列号、作业序列号等。作业数据从上游设备接收，主设备已准备好接收作业，应发送到下游设备，主设备已准备好发送作业。设备应保存和管理每个作业的作业数据，即使作业在内部区域之间移动。同时，设备应在触摸屏上提供各工种的作业数据信息。 </p>
+<h4 id="06-05-01-Job-Data-Transfer"><a href="#06-05-01-Job-Data-Transfer" class="headerlink" title="06.05.01. Job Data Transfer"></a>06.05.01. Job Data Transfer</h4><p>如果设备向其他设备发送作业，发送作业的设备称为上游设备。如果设备从其他设备接收作业，接收作业的设备称为下游设备。设备可以有一个以上的上游设备和下游设备。为了区分哪些设备是上游设备，哪些是下游设备，对于特定的设备，上游路径号为。被使用和管理。</p>
+<p>当向下游设备发送作业时，作业数据通过CC-Link IE随作业一起传输到下游设备。对于作业数据的传输，设备可以根据设备需要的作业数据数量，从“发送下游01块作业数据到”发送下游10块作业数据，再从“接收上游01块作业数据”到“接收上游10块作业数据”。</p>
+<p>当上游设备即将向下游设备发送作业时，下游设备首先验证作业的作业数据。如果在作业数据中没有检测到错误，下游设备开始接收作业</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu369.png" width="90%"></p>
+<h5 id="06-05-01-01-PLC-MAP"><a href="#06-05-01-01-PLC-MAP" class="headerlink" title="06.05.01.01. PLC MAP"></a>06.05.01.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu370.png" width="90%"></p>
+<h4 id="06-05-02-Job-Event"><a href="#06-05-02-Job-Event" class="headerlink" title="06.05.02. Job Event"></a>06.05.02. Job Event</h4><p>作业数据必须在特殊的时间上报给BC，例如从上游设备接收作业，向下游设备发送作业，从磁带或单元取出作业，将作业存储到磁带或单元中，从设备中删除作业。玻璃内部的CST，在取出时，对应的槽R数据需要取出后取出在取出的作业数据，玻璃存储到CST中，对应的槽R要填写相应的作业数据。 </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu371.png" width="90%"></p>
+<h5 id="06-05-02-01-Job-Event-Timing-Chart"><a href="#06-05-02-01-Job-Event-Timing-Chart" class="headerlink" title="06.05.02.01. Job Event Timing Chart"></a>06.05.02.01. Job Event Timing Chart</h5><p>​    <img src="http://photo.wushaopei.com/qiniu372.png" width="90%"></p>
+<h4 id="06-05-03-Receive-Job-Data-Event"><a href="#06-05-03-Receive-Job-Data-Event" class="headerlink" title="06.05.03. Receive Job Data Event"></a>06.05.03. Receive Job Data Event</h4><p>​    当设备从上游设备接收作业时，应报告此事件。当设备报告接收到的作业事件时，包括以下项目。 </p>
+<ul>
+<li>Received Job :从上游设备接收到的作业的作业数据，应在作业转移数据区写入接收作业数据，接收信号关闭后，作业完全由下游设备接收。 </li>
+<li>在上下游设备之间，从下游设备接收到的作业事件报告顺序应遵循物理作业转移顺序。准确的报告时间将在测试期间和测试后进行调整，如果需要的话。 </li>
+</ul>
+<h5 id="06-05-03-01-PLC-MAP"><a href="#06-05-03-01-PLC-MAP" class="headerlink" title="06.05.03.01. PLC MAP"></a>06.05.03.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu373.png" width="90%"></p>
+<h5 id="06-05-03-02-Communication-Scenario"><a href="#06-05-03-02-Communication-Scenario" class="headerlink" title="06.05.03.02. Communication Scenario"></a>06.05.03.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu374.png" width="90%"></p>
+<h4 id="06-05-04-Send-Out-Job-Data-Event"><a href="#06-05-04-Send-Out-Job-Data-Event" class="headerlink" title="06.05.04. Send Out Job Data Event"></a>06.05.04. Send Out Job Data Event</h4><p>当设备向下游设备发送作业时，应报告此事件。当设备报告发送的作业事件时，应包括以下项目 .</p>
+<ul>
+<li>Send Out Job  :  在链路信号上升时，工作转移信号和工作应完全转移到下游设备，EQ应在工作转移数据区写入发送的工作数据。 </li>
+<li>在上游和下游设备之间，上游设备发出作业事件的报告顺序应遵循物理作业转移顺序。准确的报告时间将在测试期间和测试后进行调整，如果需要的话 </li>
+</ul>
+<h5 id="06-05-04-01-PLC-MAP"><a href="#06-05-04-01-PLC-MAP" class="headerlink" title="06.05.04.01. PLC MAP"></a>06.05.04.01. PLC MAP</h5><h6 id="06-05-04-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-04-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.04.01.01. Local PLC – Link Register (W Area)"></a>06.05.04.01.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu375.png" width="90%"></p>
+<h6 id="06-05-04-01-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-05-04-01-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.04.01.02. Local PLC – Link Relay (B Area)"></a>06.05.04.01.02. Local PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu376.png" width="90%"></p>
+<h6 id="06-05-04-01-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-05-04-01-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.04.01.03. Master PLC – Link Relay (B Area)"></a>06.05.04.01.03. Master PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu377.png" width="90%"></p>
+<h5 id="06-05-04-02-Communication-Scenario"><a href="#06-05-04-02-Communication-Scenario" class="headerlink" title="06.05.04.02. Communication Scenario"></a>06.05.04.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu378.png" width="90%"></p>
+<h4 id="06-05-05-Store-Job-Data-Event"><a href="#06-05-05-Store-Job-Data-Event" class="headerlink" title="06.05.05. Store Job Data Event"></a>06.05.05. Store Job Data Event</h4><p>当设备将作业存储到一个单元或磁带时，应使用端口号和单元编号报告此事件。如果有插槽，则应报告插槽。 </p>
+<ul>
+<li>Store Job : 存储的作业的作业数据 </li>
+<li>Unit or Port : 用于区分存储在 unit 或 port 上的产品 </li>
+<li>Unit No :  本单位的单位编号。如果本机有槽位，设备应更新槽位号 </li>
+<li>Port No :  作业存储的磁带的端口号。设备应更新槽号 </li>
+<li>Slot No : 槽号。如果单元没有槽号，这个项目应该被清除。 </li>
+</ul>
+<h5 id="06-05-05-01-PLC-MAP"><a href="#06-05-05-01-PLC-MAP" class="headerlink" title="06.05.05.01. PLC MAP"></a>06.05.05.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu379.png" width="90%"></p>
+<h5 id="06-05-05-02-Communication-Scenario"><a href="#06-05-05-02-Communication-Scenario" class="headerlink" title="06.05.05.02. Communication Scenario"></a>06.05.05.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu380.png" width="90%"></p>
+<h4 id="06-05-06-Fetch-Out-Job-Data-Event"><a href="#06-05-06-Fetch-Out-Job-Data-Event" class="headerlink" title="06.05.06. Fetch Out Job Data Event"></a>06.05.06. Fetch Out Job Data Event</h4><p>当设备从一个单元或磁带中取出 Job 时，应使用端口号和单元编号报告该事件。如果有插槽，则应报告插槽。</p>
+<p>取作业的作业数据是在从磁带或单元中取出作业时报告的。</p>
+<p>在这种情况下，必须报告端口号和单元编号。</p>
+<ul>
+<li>Fetch Out Job：取出作业数据 的作业</li>
+<li>Unit or Port：用于区分从单元或端口取出的产品。 </li>
+<li>Unit No： 单元的单元号。如果设备有槽位，设备应更新槽位号</li>
+<li>Port No： 工作取的磁带的端口号。设备应更新槽位号。</li>
+<li>Slot No： Slot No. 如果单位没有槽位，这个项目应该被清除。 </li>
+</ul>
+<p><strong>※注意:</strong> </p>
+<p>​    当Buffer不是单位时，不需要单位状态，只需要报告存储和提取到BC。</p>
+<p>​    当缓冲区为单元时，需要报告单元状态，需要报告存储和提取到BC</p>
+<h5 id="06-05-06-01-PLC-MAP"><a href="#06-05-06-01-PLC-MAP" class="headerlink" title="06.05.06.01. PLC MAP"></a>06.05.06.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu381.png" width="90%"></p>
+<h5 id="06-05-06-02-Communication-Scenario"><a href="#06-05-06-02-Communication-Scenario" class="headerlink" title="06.05.06.02. Communication Scenario"></a>06.05.06.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu382.png" width="90%"></p>
+<h4 id="06-05-07-Remove-Job-Event-Mode"><a href="#06-05-07-Remove-Job-Event-Mode" class="headerlink" title="06.05.07. Remove Job Event Mode"></a>06.05.07. Remove Job Event Mode</h4><p>​    当 Job Data 刚刚从设备中删除时，将报告已删除作业的作业数据。 </p>
+<ul>
+<li><p>Removed Job : 操作员删除的作业的作业数据。 </p>
+</li>
+<li><p>Unit or Port：它用于区分产品从单元或端口被移除。 </p>
+</li>
+<li><p>Unit No： 单元的单元号。如果本机有槽位，设备应更新槽位号 </p>
+</li>
+<li><p>Port No：作业被删除的磁带的端口号。设备应更新槽号 </p>
+</li>
+<li><p>Slot No：Slot No. 如果 unit 没有 slot ，这个item 应该被清除。 </p>
+</li>
+<li><p>Remove Job Flag：  </p>
+<ul>
+<li><p>Normal Remove：  如果删除作业标志是正常删除，设备应保持删除作业数据 </p>
+</li>
+<li><p>Recovery： 当删除作业标志被删除作业恢复时，设备应恢复此作业数据。 </p>
+</li>
+<li><p>Delete Dirty Data： 如果作业数据存在，但玻璃丢失，用户可以使用作业数据删除功能</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  设备供应商应提供至少10个当前已删除的作业数据保存功能，并提供作业数据选择功能进行恢复。</p>
+<p>  设备供应商应提供至少10个当前已删除的作业数据的删除保存功能，并提供作业数据选择功能进行恢复。</p>
+<p>  如果设备恢复的作业数据项，如配方号、产品类型、组索引等，这些值的内容与设备本身不同，设备不能改变作业数据，应发出警告，然后等待操作员处理。</p>
+<p>  如果BC没有对设备回复信号，对于正常的删除和删除脏数据，意味着在事件复位后，作业数据/计数应该被擦除;对于恢复，这意味着在事件停止后无法恢复作业数据</p>
+<h5 id="06-05-07-01-Error-Recovery-and-Remove-Job"><a href="#06-05-07-01-Error-Recovery-and-Remove-Job" class="headerlink" title="06.05.07.01. Error Recovery and Remove Job"></a>06.05.07.01. Error Recovery and Remove Job</h5><p>当报警或发现作业存在与作业数据不符，需要更改或删除数据时，设备应具备以下功能: </p>
+<ul>
+<li><p>报警，通知操作员更正 </p>
+</li>
+<li><p>程序”和“作业位置显示”，以恢复上述差异故障或报警情况。 </p>
+</li>
+<li><p>拆卸程序应包含至少三项内容。 </p>
+</li>
+<li><p>Physical glass/chip removal </p>
+</li>
+<li><p>Report removed Job Data to BC </p>
+</li>
+<li><p>从触摸屏设备上删除作业 </p>
+<p>设备供应商应提供详细的错误恢复场景。 </p>
+</li>
+</ul>
+<h5 id="06-05-07-02。错误恢复和正常进程"><a href="#06-05-07-02。错误恢复和正常进程" class="headerlink" title="06.05.07.02。错误恢复和正常进程"></a>06.05.07.02。错误恢复和正常进程</h5><h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>自动化开发</category>
       </categories>
@@ -1990,8 +2259,8 @@
         <category>知识树</category>
       </categories>
       <tags>
-        <tag>mybatis</tag>
         <tag>入门</tag>
+        <tag>mybatis</tag>
       </tags>
   </entry>
   <entry>
@@ -3918,6 +4187,9 @@ rvconnector</code></pre></li>
       <categories>
         <category>workflower</category>
       </categories>
+      <tags>
+        <tag>历史流程实例</tag>
+      </tags>
   </entry>
   <entry>
     <title>Activity-（十一）删除Key相同的流程</title>
@@ -4943,52 +5215,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(三)预编译-Statement、PreparedStatement</title>
     <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
     <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
@@ -5084,6 +5310,52 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
       </tags>
   </entry>
   <entry>
@@ -5916,67 +6188,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>SpringBoot功能（二）定制 starter 启动器</title>
-    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
-    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
-<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
-<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
-<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
-<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
-<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
-<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为大家解释一下这些注解的含义</p>
-<table>
-<thead>
-<tr>
-<th>@SpringBootConfiguration：</th>
-<th>代表这是一个配置类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
-<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass(Jedis.class)：</td>
-<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
-</tr>
-</tbody></table>
-<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
-
-<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
-<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用方式：</strong> </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
-
-<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
-
-<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>springboot功能篇</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SpringBoot功能（一）集成JavaMail实现邮箱认证</title>
     <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/</url>
     <content><![CDATA[<h2 id="一、JavaMail"><a href="#一、JavaMail" class="headerlink" title="一、JavaMail"></a>一、JavaMail</h2><h3 id="1、什么是JavaMail？"><a href="#1、什么是JavaMail？" class="headerlink" title="1、什么是JavaMail？"></a>1、什么是JavaMail？</h3><p><strong>JavaMail</strong> ，顾名思义，提供给开发者处理 电子邮件相关的编程接口。它是<strong>Sun</strong>发布的用来处理<strong>email</strong>的<strong>API</strong>。它可以方便的执行一些常用的邮件传输。我们可以基于<strong>JavaMaiil</strong>开发出类似于 <strong>Microsoft Outlook</strong>的应用程序。 </p>
@@ -6083,6 +6294,67 @@ rvconnector</code></pre></li>
 <p>发送邮件给用户，用户根据接收到的邮件的连接点击并跳转到对应的controller请求接口执行code验证码查询到用户，并根据当前激活码的作用对用户执行激活账户、业务等操作！！！</p>
 </blockquote>
 <p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/spring-boot-JSP-email" target="_blank" rel="noopener">码云</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>springboot功能篇</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>SpringBoot功能（二）定制 starter 启动器</title>
+    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
+    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
+<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
+<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
+<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
+<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
+<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
+<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为大家解释一下这些注解的含义</p>
+<table>
+<thead>
+<tr>
+<th>@SpringBootConfiguration：</th>
+<th>代表这是一个配置类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
+<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass(Jedis.class)：</td>
+<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
+</tr>
+</tbody></table>
+<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
+
+<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
+<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用方式：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
+
+<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>springboot功能篇</category>
