@@ -93,12 +93,12 @@
 
 <meta name="description" content="冗长的黑暗中,你是我唯一的光。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mybatis 配置（六）typeHandler 类型处理器-枚举类型">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:title" content="mybatis 配置（七）environments 配置环境">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="article:published_time" content="2020-04-13T08:31:16.000Z">
-<meta property="article:modified_time" content="2020-04-13T08:31:16.775Z">
+<meta property="article:published_time" content="2020-04-13T08:31:47.000Z">
+<meta property="article:modified_time" content="2020-04-16T03:30:01.668Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/13/mybatis-配置（六）typeHandler-类型处理器-枚举类型/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/13/mybatis-配置（七）environments-配置环境/"/>
 
 
 
 
 
-  <title>mybatis 配置（六）typeHandler 类型处理器-枚举类型 | 鮀城小帅</title>
+  <title>mybatis 配置（七）environments 配置环境 | 鮀城小帅</title>
   
 
 
@@ -462,7 +462,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -479,7 +479,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">mybatis 配置（六）typeHandler 类型处理器-枚举类型</h1>
+          <h1 class="post-title" itemprop="name headline">mybatis 配置（七）environments 配置环境</h1>
         
 
         <div class="post-meta">
@@ -491,7 +491,7 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:31:16+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:31:47+08:00">
                 2020-04-13
               </time>
             
@@ -510,8 +510,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+                <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -519,7 +519,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" class="leancloud_visitors" data-flag-title="mybatis 配置（六）typeHandler 类型处理器-枚举类型">
+             <span id="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" class="leancloud_visitors" data-flag-title="mybatis 配置（七）environments 配置环境">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -575,7 +575,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/" title="mybatis 配置（六）typeHandler 类型处理器-枚举类型">http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%9E%8B/</a>
+    <a href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" title="mybatis 配置（七）environments 配置环境">http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -597,8 +597,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%94%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E8%87%AA%E5%AE%9A%E4%B9%89/" rel="next" title="mybatis 配置（五）typeHandler 类型处理器-自定义">
-                <i class="fa fa-chevron-left"></i> mybatis 配置（五）typeHandler 类型处理器-自定义
+              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/" rel="next" title="mybatis 配置（六）插件">
+                <i class="fa fa-chevron-left"></i> mybatis 配置（六）插件
               </a>
             
           </div>
@@ -607,8 +607,8 @@ window.onmouseout = function () {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89ObjectFactory/" rel="prev" title="mybatis 配置（七）ObjectFactory">
-                mybatis 配置（七）ObjectFactory <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89databaseIdProvider-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%82%E5%95%86%E6%A0%87%E8%AF%86/" rel="prev" title="mybatis 配置（八）databaseIdProvider 数据库厂商标识">
+                mybatis 配置（八）databaseIdProvider 数据库厂商标识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -725,7 +725,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">111</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -747,7 +747,7 @@ window.onmouseout = function () {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

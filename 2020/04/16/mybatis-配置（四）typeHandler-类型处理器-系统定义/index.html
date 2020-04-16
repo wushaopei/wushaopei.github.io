@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="配置,typeHandler 类型处理器," />
 
 
 
@@ -91,16 +91,20 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。下表描述了一些默认的类型处理器。  提示 从 3.4.5 开始，MyBatis 默认支持 JSR-310（日期和时间 API） 。     类型处理器 Java 类型 JDBC 类型    BooleanTypeHandler j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mybatis 配置（八）插件">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:title" content="mybatis 配置（四）typeHandler 类型处理器">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="article:published_time" content="2020-04-13T08:31:38.000Z">
-<meta property="article:modified_time" content="2020-04-13T08:31:38.733Z">
+<meta property="og:description" content="MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。下表描述了一些默认的类型处理器。  提示 从 3.4.5 开始，MyBatis 默认支持 JSR-310（日期和时间 API） 。     类型处理器 Java 类型 JDBC 类型    BooleanTypeHandler j">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="article:published_time" content="2020-04-15T22:30:29.000Z">
+<meta property="article:modified_time" content="2020-04-16T03:28:33.725Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="配置">
+<meta property="article:tag" content="typeHandler 类型处理器">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 
 
 
@@ -130,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/13/mybatis-配置（八）插件/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/16/mybatis-配置（四）typeHandler-类型处理器-系统定义/"/>
 
 
 
 
 
-  <title>mybatis 配置（八）插件 | 鮀城小帅</title>
+  <title>mybatis 配置（四）typeHandler 类型处理器 | 鮀城小帅</title>
   
 
 
@@ -462,7 +466,7 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -479,7 +483,7 @@ window.onmouseout = function () {
 
         
         
-          <h1 class="post-title" itemprop="name headline">mybatis 配置（八）插件</h1>
+          <h1 class="post-title" itemprop="name headline">mybatis 配置（四）typeHandler 类型处理器</h1>
         
 
         <div class="post-meta">
@@ -491,8 +495,8 @@ window.onmouseout = function () {
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:31:38+08:00">
-                2020-04-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T06:30:29+08:00">
+                2020-04-16
               </time>
             
 
@@ -502,6 +506,28 @@ window.onmouseout = function () {
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -510,8 +536,8 @@ window.onmouseout = function () {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/" itemprop="commentCount"></span>
+                <a href="/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -519,7 +545,7 @@ window.onmouseout = function () {
 
           
           
-             <span id="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/" class="leancloud_visitors" data-flag-title="mybatis 配置（八）插件">
+             <span id="/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/" class="leancloud_visitors" data-flag-title="mybatis 配置（四）typeHandler 类型处理器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -555,7 +581,181 @@ window.onmouseout = function () {
       
 
       
-        
+        <p>MyBatis 在设置预处理语句（PreparedStatement）中的参数或从结果集中取出一个值时， 都会用类型处理器将获取到的值以合适的方式转换成 Java 类型。下表描述了一些默认的类型处理器。 </p>
+<p>提示 从 3.4.5 开始，MyBatis 默认支持 JSR-310（日期和时间 API） 。 </p>
+<table>
+<thead>
+<tr>
+<th><strong>类型处理器</strong></th>
+<th><strong>Java 类型</strong></th>
+<th><strong>JDBC 类型</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BooleanTypeHandler</td>
+<td>java.lang.Boolean, boolean</td>
+<td>数据库兼容的 BOOLEAN</td>
+</tr>
+<tr>
+<td>ByteTypeHandler</td>
+<td>java.lang.Byte, byte</td>
+<td>数据库兼容的 NUMERIC 或 BYTE</td>
+</tr>
+<tr>
+<td>ShortTypeHandler</td>
+<td>java.lang.Short, short</td>
+<td>数据库兼容的 NUMERIC 或 SHORT INTEGER</td>
+</tr>
+<tr>
+<td>IntegerTypeHandler</td>
+<td>java.lang.Integer, int</td>
+<td>数据库兼容的 NUMERIC 或 INTEGER</td>
+</tr>
+<tr>
+<td>LongTypeHandler</td>
+<td>java.lang.Long, long</td>
+<td>数据库兼容的 NUMERIC 或 LONG INTEGER</td>
+</tr>
+<tr>
+<td>FloatTypeHandler</td>
+<td>java.lang.Float, float</td>
+<td>数据库兼容的 NUMERIC 或 FLOAT</td>
+</tr>
+<tr>
+<td>DoubleTypeHandler</td>
+<td>java.lang.Double, double</td>
+<td>数据库兼容的 NUMERIC 或 DOUBLE</td>
+</tr>
+<tr>
+<td>BigDecimalTypeHandler</td>
+<td>java.math.BigDecimal</td>
+<td>数据库兼容的 NUMERIC 或 DECIMAL</td>
+</tr>
+<tr>
+<td>StringTypeHandler</td>
+<td>java.lang.String</td>
+<td>CHAR, VARCHAR</td>
+</tr>
+<tr>
+<td>ClobReaderTypeHandler</td>
+<td>java.io.Reader</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ClobTypeHandler</td>
+<td>java.lang.String</td>
+<td>CLOB, LONGVARCHAR</td>
+</tr>
+<tr>
+<td>NStringTypeHandler</td>
+<td>java.lang.String</td>
+<td>NVARCHAR, NCHAR</td>
+</tr>
+<tr>
+<td>NClobTypeHandler</td>
+<td>java.lang.String</td>
+<td>NCLOB</td>
+</tr>
+<tr>
+<td>BlobInputStreamTypeHandler</td>
+<td>java.io.InputStream</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ByteArrayTypeHandler</td>
+<td>byte[]</td>
+<td>数据库兼容的字节流类型</td>
+</tr>
+<tr>
+<td>BlobTypeHandler</td>
+<td>byte[]</td>
+<td>BLOB, LONGVARBINARY</td>
+</tr>
+<tr>
+<td>DateTypeHandler</td>
+<td>java.util.Date</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>DateOnlyTypeHandler</td>
+<td>java.util.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>TimeOnlyTypeHandler</td>
+<td>java.util.Date</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>SqlTimestampTypeHandler</td>
+<td>java.sql.Timestamp</td>
+<td>TIMESTAMP</td>
+</tr>
+<tr>
+<td>SqlDateTypeHandler</td>
+<td>java.sql.Date</td>
+<td>DATE</td>
+</tr>
+<tr>
+<td>SqlTimeTypeHandler</td>
+<td>java.sql.Time</td>
+<td>TIME</td>
+</tr>
+<tr>
+<td>ObjectTypeHandler</td>
+<td>Any</td>
+<td>OTHER 或未指定类型</td>
+</tr>
+<tr>
+<td>EnumTypeHandler</td>
+<td>Enumeration Type</td>
+<td>VARCHAR-任何兼容的字符串类型，存储枚举的名称（而不是索引）</td>
+</tr>
+<tr>
+<td>EnumOrdinalTypeHandler</td>
+<td>Enumeration Type</td>
+<td>任何兼容的 NUMERIC 或 DOUBLE 类型，存储枚举的索引（而不是名称）。</td>
+</tr>
+</tbody></table>
+<p>你可以重写已有的类型处理器或创建你自己的类型处理器来处理不支持的或非标准的类型。 具体做法为：实现 <code>org.apache.ibatis.type.TypeHandler</code> 接口， 或继承一个很便利的类 <code>org.apache.ibatis.type.BaseTypeHandler</code>， 并且可以（可选地）将它映射到一个 JDBC 类型。比如： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ExampleTypeHandler.java</span></span><br><span class="line"><span class="meta">@MappedJdbcTypes</span>(JdbcType.VARCHAR)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleTypeHandler</span> <span class="keyword">extends</span> <span class="title">BaseTypeHandler</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="keyword">int</span> i, String parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    ps.setString(i, parameter);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rs.getString(columnName);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getNullableResult</span><span class="params">(ResultSet rs, <span class="keyword">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rs.getString(columnIndex);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getNullableResult</span><span class="params">(CallableStatement cs, <span class="keyword">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cs.getString(columnIndex);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis-config.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeHandlers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeHandler</span> <span class="attr">handler</span>=<span class="string">"org.mybatis.example.ExampleTypeHandler"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeHandlers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>​           使用上述的类型处理器将会覆盖已有的处理 Java String 类型的属性以及VARCHAR 类型的参数和结果的类型处理器。要注意 MyBatis 不会通过检测数据库元信息来决定使用哪种类型，所以你必须在参数和结果映射中指明字段是 VARCHAR 类型， 以使其能够绑定到正确的类型处理器上。这是因为 MyBatis 直到语句被执行时才清楚数据类型。         </p>
+<p>​           通过类型处理器的泛型，MyBatis 可以得知该类型处理器处理的 Java 类型，不过这种行为可以通过两种方法改变：         </p>
+<ul>
+<li>在类型处理器的配置元素（typeHandler 元素）上增加一个  <code>javaType</code> 属性（比如：<code>javaType=&quot;String&quot;</code>）；             </li>
+<li>在类型处理器的类上增加一个 <code>@MappedTypes</code> 注解指定与其关联的 Java 类型列表。 如果在 <code>javaType</code> 属性中也同时指定，则注解上的配置将被忽略。           </li>
+</ul>
+<p>可以通过两种方式来指定关联的 JDBC 类型：</p>
+<ul>
+<li>在类型处理器的配置元素上增加一个 <code>jdbcType</code>   属性（比如：<code>jdbcType=&quot;VARCHAR&quot;</code>）；           </li>
+<li>在类型处理器的类上增加一个 <code>@MappedJdbcTypes</code> 注解指定与其关联的 JDBC 类型列表。             如果在 <code>jdbcType</code> 属性中也同时指定，则注解上的配置将被忽略。           </li>
+</ul>
+<p>当在 <code>ResultMap</code> 中决定使用哪种类型处理器时，此时 Java类型是已知的（从结果类型中获得），但是 JDBC 类型是未知的。因此 Mybatis 使用 <code>javaType=[Java 类型], jdbcType=null</code>  的组合来选择一个类型处理器。这意味着使用 <code>@MappedJdbcTypes</code>   注解可以<em>限制</em>类型处理器的作用范围，并且可以确保，除非显式地设置，否则类型处理器在 <code>ResultMap</code> 中将不会生效。如果希望能在 <code>ResultMap</code> 中隐式地使用类型处理器，那么设置 <code>@MappedJdbcTypes</code> 注解的 <code>includeNullJdbcType=true</code> 即可。 然而从 Mybatis 3.4.0 开始，如果某个 Java 类型<strong>只有一个</strong>注册的类型处理器，即使没有设置 <code>includeNullJdbcType=true</code>，那么这个类型处理器也会是 <code>ResultMap</code> 使用 Java类型时的默认处理器。         </p>
+<p>最后，可以让 MyBatis 帮你查找类型处理器：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis-config.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeHandlers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"org.mybatis.example"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeHandlers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意在使用自动发现功能的时候，只能通过注解方式来指定 JDBC 的类型。</p>
+<p>你可以创建能够处理多个类的泛型类型处理器。为了使用泛型类型处理器，需要增加一个接受该类的 class 作为参数的构造器，这样 MyBatis 会在构造一个类型处理器实例的时候传入一个具体的类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//GenericTypeHandler.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericTypeHandler</span>&lt;<span class="title">E</span> <span class="keyword">extends</span> <span class="title">MyObject</span>&gt; <span class="keyword">extends</span> <span class="title">BaseTypeHandler</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> Class&lt;E&gt; type;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">GenericTypeHandler</span><span class="params">(Class&lt;E&gt; type)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (type == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Type argument cannot be null"</span>);</span><br><span class="line">    <span class="keyword">this</span>.type = type;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<p><code>EnumTypeHandler</code> 和 <code>EnumOrdinalTypeHandler</code> 都是泛型类型处理器，我们将会在接下来的部分详细探讨。 </p>
+<h3 id="处理枚举类型"><a href="#处理枚举类型" class="headerlink" title="处理枚举类型"></a>处理枚举类型</h3><p>若想映射枚举类型 <code>Enum</code>，则需要从 <code>EnumTypeHandler</code> 或者 <code>EnumOrdinalTypeHandler</code> 中选择一个来使用。</p>
+<p>比如说我们想存储取近似值时用到的舍入模式。默认情况下，MyBatis 会利用 <code>EnumTypeHandler</code> 来把 <code>Enum</code> 值转换成对应的名字。</p>
+<p>注意 <code>EnumTypeHandler</code> 在某种意义上来说是比较特别的，其它的处理器只针对某个特定的类，而它不同，它会处理任意继承了   <code>Enum</code> 的类。</p>
+<p>不过，我们可能不想存储名字，相反我们的 DBA 会坚持使用整形值代码。那也一样简单：在配置文件中把  <code>EnumOrdinalTypeHandler</code> 加到 <code>typeHandlers</code> 中即可，这样每个 <code>RoundingMode</code> 将通过他们的序数值来映射成对应的整形数值。         </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis-config.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">typeHandlers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">typeHandler</span> <span class="attr">handler</span>=<span class="string">"org.apache.ibatis.type.EnumOrdinalTypeHandler"</span> <span class="attr">javaType</span>=<span class="string">"java.math.RoundingMode"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">typeHandlers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但要是你想在一个地方将 <code>Enum</code> 映射成字符串，在另外一个地方映射成整形值呢？</p>
+<p>​           自动映射器（auto-mapper）会自动地选用 <code>EnumOrdinalTypeHandler</code> 来处理枚举类型，           所以如果我们想用普通的 <code>EnumTypeHandler</code>，就必须要显式地为那些 SQL 语句设置要使用的类型处理器。         </p>
+<p>（下一节才开始介绍映射器文件，如果你是首次阅读该文档，你可能需要先跳过这里，过会再来看。）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">    <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">    <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"org.apache.ibatis.submitted.rounding.Mapper"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"org.apache.ibatis.submitted.rounding.User"</span> <span class="attr">id</span>=<span class="string">"usermap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"funkyNumber"</span> <span class="attr">property</span>=<span class="string">"funkyNumber"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"roundingMode"</span> <span class="attr">property</span>=<span class="string">"roundingMode"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUser"</span> <span class="attr">resultMap</span>=<span class="string">"usermap"</span>&gt;</span></span><br><span class="line">		select * from users</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insert"</span>&gt;</span></span><br><span class="line">	    insert into users (id, name, funkyNumber, roundingMode) values (</span><br><span class="line">	    	#&#123;id&#125;, #&#123;name&#125;, #&#123;funkyNumber&#125;, #&#123;roundingMode&#125;</span><br><span class="line">	    )</span><br><span class="line">	<span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"org.apache.ibatis.submitted.rounding.User"</span> <span class="attr">id</span>=<span class="string">"usermap2"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">property</span>=<span class="string">"name"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"funkyNumber"</span> <span class="attr">property</span>=<span class="string">"funkyNumber"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"roundingMode"</span> <span class="attr">property</span>=<span class="string">"roundingMode"</span> <span class="attr">typeHandler</span>=<span class="string">"org.apache.ibatis.type.EnumTypeHandler"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUser2"</span> <span class="attr">resultMap</span>=<span class="string">"usermap2"</span>&gt;</span></span><br><span class="line">		select * from users2</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insert2"</span>&gt;</span></span><br><span class="line">	    insert into users2 (id, name, funkyNumber, roundingMode) values (</span><br><span class="line">	    	#&#123;id&#125;, #&#123;name&#125;, #&#123;funkyNumber&#125;, #&#123;roundingMode, typeHandler=org.apache.ibatis.type.EnumTypeHandler&#125;</span><br><span class="line">	    )</span><br><span class="line">	<span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，这里的 select 语句必须指定 <code>resultMap</code> 而不是 <code>resultType</code>。 </p>
+<p><strong>转载自： <a href="https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers" target="_blank" rel="noopener">https://mybatis.org/mybatis-3/zh/configuration.html#typeHandlers</a></strong></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·
       
     </div>
     
@@ -575,7 +775,7 @@ window.onmouseout = function () {
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/" title="mybatis 配置（八）插件">http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89%E6%8F%92%E4%BB%B6/</a>
+    <a href="http://blog.wushaopei.com/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/" title="mybatis 配置（四）typeHandler 类型处理器">http://blog.wushaopei.com/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -588,6 +788,14 @@ window.onmouseout = function () {
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag"> <i class="fa fa-tag"></i> 配置</a>
+          
+            <a href="/tags/typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8/" rel="tag"> <i class="fa fa-tag"></i> typeHandler 类型处理器</a>
+          
+        </div>
+      
 
       
       
@@ -597,8 +805,8 @@ window.onmouseout = function () {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89ObjectFactory/" rel="next" title="mybatis 配置（七）ObjectFactory">
-                <i class="fa fa-chevron-left"></i> mybatis 配置（七）ObjectFactory
+              <a href="/2020/04/15/01-%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/" rel="next" title="01.基础架构：一条SQL查询语句是如何执行的？">
+                <i class="fa fa-chevron-left"></i> 01.基础架构：一条SQL查询语句是如何执行的？
               </a>
             
           </div>
@@ -606,10 +814,6 @@ window.onmouseout = function () {
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/" rel="prev" title="mybatis 配置（九）environments 配置环境">
-                mybatis 配置（九）environments 配置环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -705,8 +909,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -725,7 +938,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-count">111</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -747,7 +960,7 @@ window.onmouseout = function () {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -776,6 +989,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#处理枚举类型"><span class="nav-number">1.</span> <span class="nav-text">处理枚举类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
