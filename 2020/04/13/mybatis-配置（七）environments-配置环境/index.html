@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="配置,environments," />
 
 
 
@@ -91,16 +91,21 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="环境配置（environments）MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中，现实情况下有多种理由需要这么做。例如，开发、测试和生产环境需要有不同的配置；或者想在具有相同 Schema的多个生产数据库中使用相同的 SQL 映射。还有许多类似的使用场景。 不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis 配置（七）environments 配置环境">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="环境配置（environments）MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中，现实情况下有多种理由需要这么做。例如，开发、测试和生产环境需要有不同的配置；或者想在具有相同 Schema的多个生产数据库中使用相同的 SQL 映射。还有许多类似的使用场景。 不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1737.png">
+<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-13T08:31:47.000Z">
-<meta property="article:modified_time" content="2020-04-16T03:30:01.668Z">
+<meta property="article:modified_time" content="2020-04-17T07:02:50.683Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="配置">
+<meta property="article:tag" content="environments">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1737.png">
 
 
 
@@ -500,6 +505,28 @@ window.onmouseout = function () {
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -553,7 +580,41 @@ window.onmouseout = function () {
       
 
       
-        
+        <h2 id="环境配置（environments）"><a href="#环境配置（environments）" class="headerlink" title="环境配置（environments）"></a>环境配置（environments）</h2><p>MyBatis 可以配置成适应多种环境，这种机制有助于将 SQL 映射应用于多种数据库之中，现实情况下有多种理由需要这么做。例如，开发、测试和生产环境需要有不同的配置；或者想在具有相同 Schema的多个生产数据库中使用相同的 SQL 映射。还有许多类似的使用场景。</p>
+<p><strong>不过要记住：尽管可以配置多个环境，但每个 SqlSessionFactory 实例只能选择一种环境。</strong>         </p>
+<p>​           所以，如果你想连接两个数据库，就需要创建两个 SqlSessionFactory实例，每个数据库对应一个。而如果是三个数据库，就需要三个实例，依此类推，记起来很简单：         </p>
+<ul>
+<li><strong>每个数据库对应一个 SqlSessionFactory 实例</strong>          </li>
+</ul>
+<p>为了指定创建哪种环境，只要将它作为可选的参数传递给 SqlSessionFactoryBuilder 即可。可以接受环境配置的两个方法签名是： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(reader, environment);</span><br><span class="line">SqlSessionFactory factory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(reader, environment, properties);</span><br></pre></td></tr></table></figure>
+
+<p>如果忽略了环境参数，那么将会加载默认环境，如下所示： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SqlSessionFactory factory &#x3D; new SqlSessionFactoryBuilder().build(reader);</span><br><span class="line">SqlSessionFactory factory &#x3D; new SqlSessionFactoryBuilder().build(reader, properties);</span><br></pre></td></tr></table></figure>
+
+<p>environments 元素定义了如何配置环境。 </p>
+<h3 id="连接池的数据源配置如下："><a href="#连接池的数据源配置如下：" class="headerlink" title="连接池的数据源配置如下："></a><strong>连接池的数据源配置如下：</strong></h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"autoCommit"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.mysql.cj.jdbc.Driver"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3333/mybatis?characterEncoding=utf8<span class="symbol">&amp;amp;</span>serverTimezone=UTC"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="分析一下上面的配置"><a href="#分析一下上面的配置" class="headerlink" title="分析一下上面的配置"></a>分析一下上面的配置</h4><ul>
+<li><p>environments 中的属性 default ， 标明在缺省的情况下，我们将启用哪个数据源配置。</p>
+</li>
+<li><p>environment  元素是配置一个数据源的开始，属性 id 是设置这个数据源的标志，以便MyBatis 上下文使用它。</p>
+</li>
+<li><p>transactionManager 配置的是数据库事务，其中 type 属性有3种配置方式。 </p>
+<p> (1)  JDBC , 采用 JDBC 方式管理事务，在独立编码中我们常常使用</p>
+<p> (2) MANAGED  , 采用容器方式管理事务，在 JNDI 数据源中常用</p>
+<p> (3) 由使用者自定义数据库事务管理方法，适用于特殊应用</p>
+</li>
+<li><p>property  元素则是可以配置数据源的各类属性，</p>
+</li>
+</ul>
+<img src="http://photo.wushaopei.com/qiniu1737.png" width="80%">
+
+
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -585,6 +646,14 @@ window.onmouseout = function () {
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag"> <i class="fa fa-tag"></i> 配置</a>
+          
+            <a href="/tags/environments/" rel="tag"> <i class="fa fa-tag"></i> environments</a>
+          
+        </div>
       
 
       
@@ -703,8 +772,17 @@ window.onmouseout = function () {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -723,7 +801,7 @@ window.onmouseout = function () {
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">114</span>
+                  <span class="site-state-item-count">115</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -745,7 +823,7 @@ window.onmouseout = function () {
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -774,6 +852,22 @@ window.onmouseout = function () {
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置（environments）"><span class="nav-number">1.</span> <span class="nav-text">环境配置（environments）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#连接池的数据源配置如下："><span class="nav-number">1.1.</span> <span class="nav-text">连接池的数据源配置如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析一下上面的配置"><span class="nav-number">1.1.1.</span> <span class="nav-text">分析一下上面的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.1.2.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
