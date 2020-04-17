@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-16T03:28:33.725Z</updated>
+  <updated>2020-04-17T02:46:10.332Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,93 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发编程（二十三）J-U-C-组件-BlockingQueue</title>
+    <link href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/"/>
+    <id>http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/</id>
+    <published>2020-04-17T01:52:08.000Z</published>
+    <updated>2020-04-17T02:46:10.332Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="组件" scheme="http://blog.wushaopei.com/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+      <category term="BlockingQueue" scheme="http://blog.wushaopei.com/tags/BlockingQueue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发编程（二十二）J-U-C-组件-ForkJoin</title>
+    <link href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-ForkJoin/"/>
+    <id>http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-ForkJoin/</id>
+    <published>2020-04-17T01:51:49.000Z</published>
+    <updated>2020-04-17T02:29:18.176Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="组件" scheme="http://blog.wushaopei.com/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+      <category term="ForkJoin" scheme="http://blog.wushaopei.com/tags/ForkJoin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发编程（二十一）J-U-C-组件-FutureTask</title>
+    <link href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-FutureTask/"/>
+    <id>http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-FutureTask/</id>
+    <published>2020-04-17T01:51:18.000Z</published>
+    <updated>2020-04-17T02:09:18.043Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="FutureTask" scheme="http://blog.wushaopei.com/tags/FutureTask/"/>
+    
+      <category term="组件" scheme="http://blog.wushaopei.com/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis 配置（四）typeHandler 类型处理器</title>
@@ -273,13 +360,27 @@
     <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/"/>
     <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/</id>
     <published>2020-04-13T08:31:38.000Z</published>
-    <updated>2020-04-16T03:30:05.837Z</updated>
+    <updated>2020-04-17T03:43:04.529Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
     
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="插件" scheme="http://blog.wushaopei.com/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
@@ -288,13 +389,27 @@
     <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%94%EF%BC%89ObjectFactory/"/>
     <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%94%EF%BC%89ObjectFactory/</id>
     <published>2020-04-13T08:31:28.000Z</published>
-    <updated>2020-04-16T03:30:10.171Z</updated>
+    <updated>2020-04-17T03:29:32.406Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
     
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
+    
+      <category term="objectFactory" scheme="http://blog.wushaopei.com/tags/objectFactory/"/>
     
   </entry>
   
@@ -332,7 +447,7 @@
     <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%8C%EF%BC%89%E8%AE%BE%E7%BD%AE/"/>
     <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%8C%EF%BC%89%E8%AE%BE%E7%BD%AE/</id>
     <published>2020-04-13T08:29:31.000Z</published>
-    <updated>2020-04-13T15:37:07.640Z</updated>
+    <updated>2020-04-17T03:41:16.411Z</updated>
     
     <summary type="html">
     
@@ -444,87 +559,6 @@
       <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
     
       <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发编程（十五）J.U.C-AQS-简介</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89J-U-C-AQS-%E7%AE%80%E4%BB%8B/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89J-U-C-AQS-%E7%AE%80%E4%BB%8B/</id>
-    <published>2020-04-13T07:56:56.000Z</published>
-    <updated>2020-04-13T08:02:41.986Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="并发容器" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
-    
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>bootstrap 入门（一）简介</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/bootstrap-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/bootstrap-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E7%AE%80%E4%BB%8B/</id>
-    <published>2020-04-13T07:47:59.000Z</published>
-    <updated>2020-04-14T16:26:32.087Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 配置（一）properties 元素</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%80%EF%BC%89properties-%E5%85%83%E7%B4%A0/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%80%EF%BC%89properties-%E5%85%83%E7%B4%A0/</id>
-    <published>2020-04-13T07:41:20.000Z</published>
-    <updated>2020-04-13T12:46:57.390Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="properties" scheme="http://blog.wushaopei.com/tags/properties/"/>
     
   </entry>
   
