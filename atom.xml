@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-21T07:31:31.884Z</updated>
+  <updated>2020-04-21T11:36:11.177Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,140 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mybatis 映射器（六）select元素-使用resultMap 映射结果集</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/</id>
+    <published>2020-04-21T11:36:11.000Z</published>
+    <updated>2020-04-21T11:36:11.177Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（五）select元素-传递多个参数</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</id>
+    <published>2020-04-21T09:01:52.000Z</published>
+    <updated>2020-04-21T09:01:52.754Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（四）select元素-自动映射</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/</id>
+    <published>2020-04-21T09:01:01.000Z</published>
+    <updated>2020-04-21T11:36:35.317Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（三）select元素-简易数据类型的例子</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/</id>
+    <published>2020-04-21T09:00:50.000Z</published>
+    <updated>2020-04-21T11:33:32.825Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
+    
+      <category term="简易数据类型的例子" scheme="http://blog.wushaopei.com/tags/%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（二）select元素-概述</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/</id>
+    <published>2020-04-21T09:00:49.000Z</published>
+    <updated>2020-04-21T09:28:17.006Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="映射器的主要元素" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（一）映射器的主要元素</title>
+    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/"/>
+    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/</id>
+    <published>2020-04-21T09:00:40.000Z</published>
+    <updated>2020-04-21T09:30:26.842Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="映射器的主要元素" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Activity（十七）流程监听器</title>
@@ -405,168 +539,6 @@
       <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
     
       <category term="ReentrantLock" scheme="http://blog.wushaopei.com/tags/ReentrantLock/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OSGI(二) Apache Felix 介绍 与 案例实现</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/OSGI%20(%E4%BA%8C)%20Apache%20Felix%20%E4%BB%8B%E7%BB%8D%20%E4%B8%8E%20%E6%A1%88%E4%BE%8B%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/OSGI%20(%E4%BA%8C)%20Apache%20Felix%20%E4%BB%8B%E7%BB%8D%20%E4%B8%8E%20%E6%A1%88%E4%BE%8B%E5%AE%9E%E7%8E%B0/</id>
-    <published>2020-04-13T09:35:03.000Z</published>
-    <updated>2020-04-15T12:22:27.727Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="OSGI" scheme="http://blog.wushaopei.com/categories/OSGI/"/>
-    
-      <category term="Felix" scheme="http://blog.wushaopei.com/categories/OSGI/Felix/"/>
-    
-    
-      <category term="OSGI" scheme="http://blog.wushaopei.com/tags/OSGI/"/>
-    
-      <category term="Felix" scheme="http://blog.wushaopei.com/tags/Felix/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OSGI: (一) 简述对OSGI的认识</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/OSGI-%E4%B8%80-%E7%AE%80%E8%BF%B0%E5%AF%B9OSGI%E7%9A%84%E8%AE%A4%E8%AF%86/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/OSGI-%E4%B8%80-%E7%AE%80%E8%BF%B0%E5%AF%B9OSGI%E7%9A%84%E8%AE%A4%E8%AF%86/</id>
-    <published>2020-04-13T09:00:16.000Z</published>
-    <updated>2020-04-13T09:03:49.064Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="OSGI" scheme="http://blog.wushaopei.com/categories/OSGI/"/>
-    
-    
-      <category term="OSGI" scheme="http://blog.wushaopei.com/tags/OSGI/"/>
-    
-      <category term="简介" scheme="http://blog.wushaopei.com/tags/%E7%AE%80%E4%BB%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 配置（十一）引入映射器的方法</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/</id>
-    <published>2020-04-13T08:32:06.000Z</published>
-    <updated>2020-04-18T10:03:31.080Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="引入映射器的方法" scheme="http://blog.wushaopei.com/tags/%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 配置（八）databaseIdProvider 数据库厂商标识</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89databaseIdProvider-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%82%E5%95%86%E6%A0%87%E8%AF%86/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AB%EF%BC%89databaseIdProvider-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%82%E5%95%86%E6%A0%87%E8%AF%86/</id>
-    <published>2020-04-13T08:31:56.000Z</published>
-    <updated>2020-04-16T03:29:57.614Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 配置（七）environments 配置环境</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/</id>
-    <published>2020-04-13T08:31:47.000Z</published>
-    <updated>2020-04-18T09:35:22.663Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="environments" scheme="http://blog.wushaopei.com/tags/environments/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 配置（六）插件</title>
-    <link href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/"/>
-    <id>http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/</id>
-    <published>2020-04-13T08:31:38.000Z</published>
-    <updated>2020-04-17T03:43:04.529Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="配置" scheme="http://blog.wushaopei.com/tags/%E9%85%8D%E7%BD%AE/"/>
-    
-      <category term="插件" scheme="http://blog.wushaopei.com/tags/%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   

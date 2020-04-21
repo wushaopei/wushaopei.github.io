@@ -1,6 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>mybatis 映射器（六）select元素-使用resultMap 映射结果集</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mybatis 映射器（五）select元素-传递多个参数</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mybatis 映射器（四）select元素-自动映射</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>mybatis 映射器（三）select元素-简易数据类型的例子</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/</url>
+    <content><![CDATA[<h3 id="简单数据类型的例子"><a href="#简单数据类型的例子" class="headerlink" title="简单数据类型的例子"></a>简单数据类型的例子</h3><p>例如，我们需要统计一个用户名的数量。我们应该把用户名作为参数传递，而将结果设置为整形返回给调用者，代码如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 查询全部的同名对象 --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryUsersCountByName"</span> <span class="attr">resultType</span>=<span class="string">"int"</span> <span class="attr">parameterType</span>=<span class="string">"string"</span> &gt;</span></span><br><span class="line"> 		select count(1) from t_user where last_name like concat(#&#123;lastName&#125;,'%') </span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们在接口UserDao中定义方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">queryUsersCountByName</span><span class="params">(String  lastName)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这样就可以使用MyBatis 调用SQL了，十分简单。下面对操作步骤进行归纳概括。</p>
+<ul>
+<li>id 标出了这条SQL</li>
+<li>parameterType 定义参数类型</li>
+<li>resultType 定义返回值类型</li>
+</ul>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>映射器</tag>
+        <tag>select元素</tag>
+        <tag>简易数据类型的例子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mybatis 映射器（二）select元素-概述</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>查询语句是 MyBatis 中最常用的元素之一——光能把数据存到数据库中价值并不大，还要能重新取出来才有用，多数应用也都是查询比修改要频繁。 MyBatis 的基本原则之一是：在每个插入、更新或删除操作之间，通常会执行多个查询操作。 </p>
+<p>在执行select 语句前，我们需要定义参数，它可以是一个简单的参数类型，例如 int 、float、String ，也可以是一个复杂的参数类型，例如 JavaBean、Map 等，这些都是MyBatis 接收的参数类型。执行SQL后，MyBatis 也提供了强大的映射规则，甚至是自动映射来帮助我们把返回的结果集绑定到 JavaBean 中。</p>
+<h4 id="Select-元素的属性配置"><a href="#Select-元素的属性配置" class="headerlink" title="Select 元素的属性配置"></a>Select 元素的属性配置</h4><table>
+<thead>
+<tr>
+<th>id</th>
+<th>在命名空间中唯一的标识符，可以被用来引用这条语句。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>parameterType</td>
+<td>将会传入这条语句的参数的类全限定名或别名。这个属性是可选的，因为 MyBatis 可以通过类型处理器（TypeHandler）推断出具体传入语句的参数，默认值为未设置（unset）。</td>
+</tr>
+<tr>
+<td>parameterMap</td>
+<td>用于引用外部 parameterMap 的属性，目前已被废弃。请使用行内参数映射和 parameterType 属性。</td>
+</tr>
+<tr>
+<td>resultType</td>
+<td>期望从这条语句中返回结果的类全限定名或别名。注意，如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。                 resultType 和 resultMap 之间只能同时使用一个。</td>
+</tr>
+<tr>
+<td>resultMap</td>
+<td>对外部 resultMap 的命名引用。结果映射是 MyBatis 最强大的特性，如果你对其理解透彻，许多复杂的映射问题都能迎刃而解。resultType 和 resultMap 之间只能同时使用一个。</td>
+</tr>
+<tr>
+<td>flushCache</td>
+<td>将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。</td>
+</tr>
+<tr>
+<td>useCache</td>
+<td>将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。</td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。</td>
+</tr>
+<tr>
+<td>fetchSize</td>
+<td>这是一个给驱动的建议值，尝试让驱动程序每次批量返回的结果行数等于这个设置值。 默认值为未设置（unset）（依赖驱动）。</td>
+</tr>
+<tr>
+<td>statementType</td>
+<td>可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用                 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。</td>
+</tr>
+<tr>
+<td>resultSetType</td>
+<td>FORWARD_ONLY，SCROLL_SENSITIVE, SCROLL_INSENSITIVE 或                DEFAULT（等价于 unset） 中的一个，默认值为 unset （依赖数据库驱动）。</td>
+</tr>
+<tr>
+<td>databaseId</td>
+<td>如果配置了数据库厂商标识（databaseIdProvider），MyBatis                 会加载所有不带 databaseId 或匹配当前 databaseId 的语句；如果带和不带的语句都有，则不带的会被忽略。</td>
+</tr>
+<tr>
+<td>resultOrdered</td>
+<td>这个设置仅针对嵌套结果 select 语句：如果为true，将会假设包含了嵌套结果集或是分组，当返回一个主结果行时，就不会产生对前面结果集的引用。这就使得在获取嵌套结果集的时候不至于内存不够用。默认值：<code>false</code>。</td>
+</tr>
+</tbody></table>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>映射器</tag>
+        <tag>映射器的主要元素</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mybatis 映射器（一）映射器的主要元素</title>
+    <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h2 id="XML-映射器"><a href="#XML-映射器" class="headerlink" title="XML 映射器"></a>XML 映射器</h2><p>MyBatis 的真正强大在于它的语句映射，这是它的魔力所在。由于它的异常强大，映射器的        XML 文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近       95% 的代码。MyBatis 致力于减少使用成本，让用户能更专注于 SQL 代码。</p>
+<p>SQL 映射文件只有很少的几个顶级元素（按照应被定义的顺序列出）：</p>
+<ul>
+<li><code>cache</code> – 该命名空间的缓存配置。         </li>
+<li><code>cache-ref</code>  – 引用其它命名空间的缓存配置。         </li>
+<li><code>resultMap</code>  – 描述如何从数据库结果集中加载对象，是最复杂也是最强大的元素。         </li>
+<li><code>parameterMap</code>  – 老式风格的参数映射。此元素已被废弃，并可能在将来被移除！请使用行内参数映射。文档中不会介绍此元素。                    </li>
+<li><code>sql</code>  – 可被其它语句引用的可重用语句块。         </li>
+<li><code>insert</code>  – 映射插入语句。         </li>
+<li><code>update</code>  – 映射更新语句。         </li>
+<li><code>delete</code>  – 映射删除语句。         </li>
+<li><code>select</code>  – 映射查询语句。         </li>
+</ul>
+<p><strong>下一部分将从语句本身开始来描述每个元素的细节。</strong> </p>
+<p>本文转载自 Mybatis 中文官网<a href="https://mybatis.org/mybatis-3/zh/sqlmap-xml.html" target="_blank" rel="noopener">https://mybatis.org/mybatis-3/zh/sqlmap-xml.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>映射器</tag>
+        <tag>映射器的主要元素</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Activity（十七）流程监听器</title>
     <url>/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/</url>
     <content><![CDATA[<h2 id="流程监听器"><a href="#流程监听器" class="headerlink" title="流程监听器"></a>流程监听器</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>绑定到某一个任务节点上，当这个节点被执行时执行预先设定的操作。</p>
@@ -5278,7 +5417,7 @@ rvconnector</code></pre></li>
     <url>/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/</url>
     <content><![CDATA[<p>在开发中可能需要查看某个流程的流程图片。</p>
 <p>对应操作的数据库表是act_ge_bytearray的Bytes_字段：</p>
-<img src="http://photo.wushaopei.com/qiniu131.png" width="60%">
+<img src="http://photo.wushaopei.com/qiniu131.png" width="80%">
 
 <p>Activiti提供了操作接口，可以查询返回一个资源文件输入流，</p>
 <p>然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上，</p>
