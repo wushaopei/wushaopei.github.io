@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-21T11:36:11.177Z</updated>
+  <updated>2020-04-22T14:06:42.363Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,87 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理</title>
+    <link href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <id>http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</id>
+    <published>2020-04-22T13:41:15.000Z</published>
+    <updated>2020-04-22T14:06:42.363Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="实现多线程的四种方式" scheme="http://blog.wushaopei.com/tags/%E5%AE%9E%E7%8E%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架</title>
+    <link href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/"/>
+    <id>http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/</id>
+    <published>2020-04-22T13:40:27.000Z</published>
+    <updated>2020-04-22T13:51:36.058Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="线程池常用API" scheme="http://blog.wushaopei.com/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%B8%B8%E7%94%A8API/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并发编程（二十四）JUC-线程调度-线程池-概念与API</title>
+    <link href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/"/>
+    <id>http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/</id>
+    <published>2020-04-22T09:15:47.000Z</published>
+    <updated>2020-04-22T13:42:12.383Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="线程池" scheme="http://blog.wushaopei.com/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis 映射器（六）select元素-使用resultMap 映射结果集</title>
@@ -32,17 +113,33 @@
   </entry>
   
   <entry>
-    <title>mybatis 映射器（五）select元素-传递多个参数</title>
+    <title>mybatis-映射器（五）select元素-传递多个参数</title>
     <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
     <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</id>
     <published>2020-04-21T09:01:52.000Z</published>
-    <updated>2020-04-21T09:01:52.754Z</updated>
+    <updated>2020-04-22T16:24:14.658Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
     
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
+    
+      <category term="参数传递" scheme="http://blog.wushaopei.com/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
     
   </entry>
   
@@ -51,13 +148,29 @@
     <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/"/>
     <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/</id>
     <published>2020-04-21T09:01:01.000Z</published>
-    <updated>2020-04-21T11:36:35.317Z</updated>
+    <updated>2020-04-22T15:10:15.107Z</updated>
     
     <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
     
     </summary>
     
     
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
+    
+      <category term="自动映射" scheme="http://blog.wushaopei.com/tags/%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/"/>
     
   </entry>
   
@@ -66,7 +179,7 @@
     <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/"/>
     <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/</id>
     <published>2020-04-21T09:00:50.000Z</published>
-    <updated>2020-04-21T11:33:32.825Z</updated>
+    <updated>2020-04-22T14:37:30.224Z</updated>
     
     <summary type="html">
     
@@ -450,95 +563,6 @@
     
     
       <category term="SQL查询" scheme="http://blog.wushaopei.com/tags/SQL%E6%9F%A5%E8%AF%A2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Activity（十三）流程变量</title>
-    <link href="http://blog.wushaopei.com/2020/04/15/Activity%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F/"/>
-    <id>http://blog.wushaopei.com/2020/04/15/Activity%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F/</id>
-    <published>2020-04-15T11:14:05.000Z</published>
-    <updated>2020-04-21T07:31:24.442Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Activity" scheme="http://blog.wushaopei.com/categories/Activity/"/>
-    
-    
-      <category term="流程变量" scheme="http://blog.wushaopei.com/tags/%E6%B5%81%E7%A8%8B%E5%8F%98%E9%87%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发编程（二十）J-U-C-AQS-ReentrantReadWriteLock、StampedLock、Condition</title>
-    <link href="http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89J-U-C-AQS-ReentrantReadWriteLock%E3%80%81StampedLock%E3%80%81Condition/"/>
-    <id>http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89J-U-C-AQS-ReentrantReadWriteLock%E3%80%81StampedLock%E3%80%81Condition/</id>
-    <published>2020-04-14T07:55:06.000Z</published>
-    <updated>2020-04-17T01:22:16.072Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
-      <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
-    
-      <category term="ReentrantLock" scheme="http://blog.wushaopei.com/tags/ReentrantLock/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发编程（十九）J-U-C-AQS-ReentrantLock与锁</title>
-    <link href="http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89J-U-C-AQS-ReentrantLock%E4%B8%8E%E9%94%81/"/>
-    <id>http://blog.wushaopei.com/2020/04/14/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89J-U-C-AQS-ReentrantLock%E4%B8%8E%E9%94%81/</id>
-    <published>2020-04-14T07:45:24.000Z</published>
-    <updated>2020-04-14T07:54:00.345Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Java并发编程" scheme="http://blog.wushaopei.com/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="AQS" scheme="http://blog.wushaopei.com/tags/AQS/"/>
-    
-      <category term="可重入锁" scheme="http://blog.wushaopei.com/tags/%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81/"/>
-    
-      <category term="ReentrantLock" scheme="http://blog.wushaopei.com/tags/ReentrantLock/"/>
     
   </entry>
   

@@ -1,19 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理</title>
+    <url>/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<h3 id="分析四种线程池的创建的底层实现："><a href="#分析四种线程池的创建的底层实现：" class="headerlink" title="分析四种线程池的创建的底层实现："></a>分析四种线程池的创建的底层实现：</h3><img src="http://photo.wushaopei.com/qiniu464.png" width="60%">
+
+<p>由上图中可知，四种线程其实都是有Executors来调用相应构造器实现创建的 </p>
+<img src="http://photo.wushaopei.com/qiniu465.png" width="60%">
+
+<p>由上图可知，<strong>newCachedThreadPool()</strong>创建可缓存的线程池底层实际还是调用<strong>ThreadPoolExecutor</strong>类的构造器返回的实例对象实现的。 </p>
+<img src="http://photo.wushaopei.com/qiniu466.png" width="60%">
+
+<p><strong>newFixedThreadPool（）</strong>创建定长线程池的底层也是由<strong>ThreadPoolExecutor</strong>类的构造器返回的实例对象实现的。 </p>
+<img src="http://photo.wushaopei.com/qiniu467.png" width="60%">
+
+<img src="http://photo.wushaopei.com/qiniu468.png" width="60%">
+
+<p>由上述两个图可知，newScheduledThreadPool（）创建定长且可定时的线程池的底层是由ScheduledThreadPoolExecutor类的构造器创建实例实现的；而ScheduledThreadPoolExecutor又继承了ThreadPoolExecutor类<br><img src="http://photo.wushaopei.com/qiniu469.png" width="60%"></p>
+<p><strong>newSingleThreadExecutor</strong>（）创建单线程线程池的底层也是由ThreadPoolExecutor类的构造器返回的实例对象实现的。 </p>
+<h3 id="代码实例演示线程池的实现："><a href="#代码实例演示线程池的实现：" class="headerlink" title="代码实例演示线程池的实现："></a>代码实例演示线程池的实现：</h3><h4 id="newCachedThreadPool-实现可缓存线程池："><a href="#newCachedThreadPool-实现可缓存线程池：" class="headerlink" title="newCachedThreadPool()实现可缓存线程池："></a>newCachedThreadPool()实现可缓存线程池：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExample1</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">        ExecutorService e = Executors.newCachedThreadPool();</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">            e.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    log.info(<span class="string">"task:&#123;&#125;"</span> ,index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        e.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">22:59:26.711 [pool-1-thread-2] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:1</span><br><span class="line">22:59:26.711 [pool-1-thread-3] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:2</span><br><span class="line">22:59:26.711 [pool-1-thread-6] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:5</span><br><span class="line">22:59:26.711 [pool-1-thread-9] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:8</span><br><span class="line">22:59:26.711 [pool-1-thread-8] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:7</span><br><span class="line">22:59:26.711 [pool-1-thread-1] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:0</span><br><span class="line">22:59:26.711 [pool-1-thread-7] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:6</span><br><span class="line">22:59:26.711 [pool-1-thread-10] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:9</span><br><span class="line">22:59:26.711 [pool-1-thread-4] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:3</span><br><span class="line">22:59:26.711 [pool-1-thread-5] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample1 - task:4</span><br><span class="line"> </span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="newFixedThreadPool-实现定长线程池："><a href="#newFixedThreadPool-实现定长线程池：" class="headerlink" title="newFixedThreadPool()实现定长线程池："></a>newFixedThreadPool()实现定长线程池：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExample2</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">        ExecutorService e = Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">            e.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    log.info(<span class="string">"task:&#123;&#125;"</span> ,index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        e.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.958</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">1</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.958</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">0</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.958</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">2</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">3</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">5</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">4</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">6</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">8</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">7</span></span><br><span class="line"><span class="number">23</span>:<span class="number">02</span>:<span class="number">02.964</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample2 - task:<span class="number">9</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="newSingleThreadExecutor（）创建单线程线程池："><a href="#newSingleThreadExecutor（）创建单线程线程池：" class="headerlink" title="newSingleThreadExecutor（）创建单线程线程池："></a>newSingleThreadExecutor（）创建单线程线程池：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ExecutorService e = Executors.newSingleThreadExecutor();</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.663</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">0</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">1</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">2</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">3</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">4</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">5</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">6</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">7</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">8</span></span><br><span class="line"><span class="number">23</span>:<span class="number">04</span>:<span class="number">33.670</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample3 - task:<span class="number">9</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>由结果可知，单线程线程池中，线程任务的执行是有序的。 </p>
+<h4 id="newScheduledThreadPool（）创建定长的线程池："><a href="#newScheduledThreadPool（）创建定长的线程池：" class="headerlink" title="newScheduledThreadPool（）创建定长的线程池："></a>newScheduledThreadPool（）创建定长的线程池：</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ScheduledExecutorService executorService = Executors.newScheduledThreadPool(<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.452</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">1</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.452</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">2</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.452</span> [pool-<span class="number">1</span>-thread-<span class="number">4</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">4</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.452</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">0</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.459</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">6</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.459</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">7</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.459</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">8</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.459</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">9</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.452</span> [pool-<span class="number">1</span>-thread-<span class="number">5</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">3</span></span><br><span class="line"><span class="number">23</span>:<span class="number">07</span>:<span class="number">51.459</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.threadPool.ThreadPoolExample4 - task:<span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="newScheduledThreadPool（）创建定长且可定时的线程池："><a href="#newScheduledThreadPool（）创建定长且可定时的线程池：" class="headerlink" title="newScheduledThreadPool（）创建定长且可定时的线程池："></a>newScheduledThreadPool（）创建定长且可定时的线程池：</h4><p>单次执行定时任务： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">executorService.schedule(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log.warn(<span class="string">"schedule run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">3</span>, TimeUnit.SECONDS);  <span class="comment">//定时执行，3秒后执行任务</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>执行并打印结果：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">23</span>:<span class="number">15</span>:<span class="number">13.526</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br></pre></td></tr></table></figure>
+
+<p>延迟多次执行定时任务： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">executorService.scheduleAtFixedRate(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        log.warn(<span class="string">"schedule run"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="number">1</span>,<span class="number">3</span>, TimeUnit.SECONDS);  <span class="comment">// 以指定的延迟去执行任务，每隔3秒执行一次任务</span></span><br></pre></td></tr></table></figure>
+
+<p>执行并打印结果： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">22.111</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">25.110</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">28.110</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">31.109</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">34.109</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">37.109</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br><span class="line"><span class="number">23</span>:<span class="number">16</span>:<span class="number">40.109</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] WARN com.mmall.concurrency.example.threadPool.ThreadPoolExample5 - schedule run</span><br></pre></td></tr></table></figure>
+
+<h3 id="线程池-合理配置"><a href="#线程池-合理配置" class="headerlink" title="线程池 - 合理配置"></a>线程池 - 合理配置</h3><blockquote>
+<ul>
+<li>CPU密集型任务，就需要尽量压榨CPU，参考值可以设为 NCPU + 1</li>
+<li>IO密集型任务，参考值可以设置为2*NCPU</li>
+</ul>
+</blockquote>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>Java并发编程</category>
+      </categories>
+      <tags>
+        <tag>实现多线程的四种方式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架</title>
+    <url>/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[<h2 id="线程池常用API"><a href="#线程池常用API" class="headerlink" title="线程池常用API"></a>线程池常用API</h2><h3 id="提交任务的方法："><a href="#提交任务的方法：" class="headerlink" title="提交任务的方法："></a><strong>提交任务的方法：</strong></h3><blockquote>
+<p>execute () : 提交任务，交给线程池执行</p>
+<p>submit () : 提交任务，能够返回执行结果 execute + Future</p>
+</blockquote>
+<h3 id="关闭线程池的方法："><a href="#关闭线程池的方法：" class="headerlink" title="关闭线程池的方法："></a><strong>关闭线程池的方法：</strong></h3><blockquote>
+<p>shutdown ( ) : 关闭线程池，等待任务都执行完</p>
+<p>shutdownNow () ： 关闭线程池，不等待任务执行完</p>
+</blockquote>
+<h3 id="使用与监控的方法："><a href="#使用与监控的方法：" class="headerlink" title="使用与监控的方法："></a><strong>使用与监控的方法：</strong></h3><blockquote>
+<p>getTaskCount ( ): 线程池已执行和未执行的任务总数</p>
+<p>   get CompletedTaskCount ( ) :  已完成的任务数量</p>
+<p>   getPoolSize ( ) : 线程池当前的线程数量</p>
+<p>   getActiveCount ( ) : 当前线程池中正在执行任务的线程数量</p>
+</blockquote>
+<h3 id="ThreadPoolExecutor常见方法-总览："><a href="#ThreadPoolExecutor常见方法-总览：" class="headerlink" title="ThreadPoolExecutor常见方法 总览："></a><strong>ThreadPoolExecutor常见方法 总览：</strong></h3><img src="http://photo.wushaopei.com/qiniu462.png" width="60%">
+
+<h2 id="线程池的类图："><a href="#线程池的类图：" class="headerlink" title="线程池的类图："></a>线程池的类图：</h2><img src="http://photo.wushaopei.com/qiniu463.png" width="60%">
+
+<p>Executors是根据一组执行策略执行调度调用异步任务的框架，目的是将任务提交与任务运行分离开来处理。</p>
+<p>JUC里有<strong>三个Executor接口，</strong>分别是<code>Executor、ExecutorService、ScheduledExecutorService</code></p>
+<blockquote>
+<p> Executor是一个运行新任务的简单接口；</p>
+<pre><code>ExecutorService扩展了Executor接口，添加了用来管理执行器、生命周期和任务声明周期的方法；
+
+ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期执行任务.</code></pre></blockquote>
+<h3 id="通过Executors提供的四种创建线程池的方法："><a href="#通过Executors提供的四种创建线程池的方法：" class="headerlink" title="通过Executors提供的四种创建线程池的方法："></a>通过Executors提供的四种创建线程池的方法：</h3><p>  <strong>第一种：</strong><code>Executors.newCachedThreadPool</code></p>
+<blockquote>
+<p>它可以创建一个可缓存的线程池。如果线程池的长度超过了处理的需要，可以灵活回收空闲线程，如果没有可回收的，就新建线程 </p>
+</blockquote>
+<p><strong>第二种 :</strong>  <code>Executors.newFixedThreadPool</code></p>
+<blockquote>
+<p>它创建的是一个定长的线程池，可以创建线程池的最大线程数，超出的任务会在队列中等待 </p>
+</blockquote>
+<p><strong>第三种，</strong> <code>Executors.newScheduledThreadPool</code></p>
+<blockquote>
+<p>它创建的也是一个定长的线程池，它支持定时以及周期性的任务执行； </p>
+</blockquote>
+<p><strong>第四种，</strong><code>Executors.newSingleThreadExecutor</code></p>
+<blockquote>
+<p>它是一个单线程化的线程池，它会用唯一的一个工作线程来执行任务，保证所有任务按照指定顺序去执行。该顺序可以按照指定先入先出、优先级等等来设定 </p>
+</blockquote>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>Java并发编程</category>
+      </categories>
+      <tags>
+        <tag>线程池常用API</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>并发编程（二十四）JUC-线程调度-线程池-概念与API</title>
+    <url>/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/</url>
+    <content><![CDATA[<h2 id="线程池-概念与API"><a href="#线程池-概念与API" class="headerlink" title="线程池-概念与API"></a>线程池-概念与API</h2><h2 id="引子："><a href="#引子：" class="headerlink" title="引子："></a><strong>引子：</strong></h2><p>实际上，在开发中并不会普遍的使用Thread，因为它具有一些弊端，对并发性能的影响比较大，如下： </p>
+<blockquote>
+<p><strong>new Thread 弊端：</strong></p>
+<p>​         每次 new Thread 新建对象，性能差；</p>
+<p>​         线程缺乏统一管理，可能无限制的新建线程，相互竞争，有可能占用过多系统资源导致死机或OOM；</p>
+<p>​         缺少更多功能，如更多执行、定期执行、线程中断</p>
+</blockquote>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><h3 id="线程池的好处"><a href="#线程池的好处" class="headerlink" title="线程池的好处"></a>线程池的好处</h3><blockquote>
+<p>重用存在的线程，减少对象创建、消亡的开销，性能佳；</p>
+<p>可有效控制最大并发线程数，提高系统资源利用率，同时可以避免过多资源竞争，避免阻塞；</p>
+<p>提供定时执行、定期执行、单线程、并发数控制等功能</p>
+</blockquote>
+<h3 id="线程池相关的类-ThreadPoolExecutor"><a href="#线程池相关的类-ThreadPoolExecutor" class="headerlink" title="线程池相关的类 - ThreadPoolExecutor"></a>线程池相关的类 - ThreadPoolExecutor</h3><h4 id="第一种：线程池-ThreadPoolExecutor"><a href="#第一种：线程池-ThreadPoolExecutor" class="headerlink" title="第一种：线程池 - ThreadPoolExecutor"></a>第一种：线程池 - ThreadPoolExecutor</h4><h4 id="其主要参数有："><a href="#其主要参数有：" class="headerlink" title="其主要参数有："></a><strong>其主要参数有：</strong></h4><table>
+<thead>
+<tr>
+<th>corePoolSize</th>
+<th>核心线程数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>maximumPoolSize</td>
+<td>线程最大线程数</td>
+</tr>
+<tr>
+<td>workQueue</td>
+<td>阻塞队列，存储等待执行的任务，很重要，会对线程运行过程产生重大影响</td>
+</tr>
+</tbody></table>
+<h4 id="具体说一下以上3个主要参数的关系："><a href="#具体说一下以上3个主要参数的关系：" class="headerlink" title="具体说一下以上3个主要参数的关系："></a><strong>具体说一下以上3个主要参数的关系：</strong></h4><ul>
+<li>如果运行的线程数少于 corePooSize，直接创建新线程来处理任务，即使线程池中的其他线程是空闲的；</li>
+<li>如果线程池中的线程数量大于等于corePooSize， 且小于maximumPoolSize的时候，则只有当workQueue满了的时候，才会创建新的执行线程去处理任务。 </li>
+<li>如果我们设置的corePooSize和maximumPoolSize的数量相同的话，那么由于线程池的大小是固定的，这时候如果有新任务提交，如果里面的workQueue还没满的时候，就会把请求放入到workQueue里面，等待有空闲的线程，去workQueue里面去取出来进行处理。 </li>
+<li>如果当前运行的线程数量大于等于maximumPoolSize时，如果此时workQueue也满了，那么就会通过拒绝策略 指定策略去处理任务。 </li>
+</ul>
+<p>所以，在任务提交时，它的<strong>顺序主要有三个</strong>，先判断是否<strong>小于corePooSize</strong>，如果小于它，就直接创建新线程来调用任务；然后再接着判断<strong>workQueue</strong>，最后再判断与maximumPoolSize的比较结果。 </p>
+<p>扩展连接地址：<a href="https://blog.csdn.net/xiaojin21cen/article/details/87363143" target="_blank" rel="noopener">https://blog.csdn.net/xiaojin21cen/article/details/87363143</a> </p>
+<h4 id="其他参数："><a href="#其他参数：" class="headerlink" title="其他参数："></a><strong>其他参数：</strong></h4><table>
+<thead>
+<tr>
+<th><strong>keepAliveTime</strong></th>
+<th><strong>线程没有任务执行时最多保持多久时间终止</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>unit</strong></td>
+<td><strong>keepAliveTime的时间单位</strong></td>
+</tr>
+<tr>
+<td><strong>threadFactory</strong></td>
+<td><strong>threadFactory</strong></td>
+</tr>
+<tr>
+<td><strong>threadFactory</strong></td>
+<td><strong>threadFactory</strong></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>keepAliveTime</strong>  ：  线程池维护线程所允许的空闲时间；当线程池中的线程数量大于corePooSize时，如果这时没有新的任务提交，核心线程外的线程不会立即销毁，而是会一直等待，直.到等待的时间超过了keepAliveTime. </li>
+<li><strong>threadFactory</strong>   ：  线程池中默认会有一个默认的工厂用来创建线程；默认的工厂来创建线程时，会使新创建的线程会具有相同的优先级，并且是可以守护的线程。同时它也设置了线程的名称。 </li>
+</ul>
+<h4 id="线程池对线程的具体处理策略："><a href="#线程池对线程的具体处理策略：" class="headerlink" title="线程池对线程的具体处理策略："></a><strong>线程池对线程的具体处理策略</strong>：</h4><p>如果线程池中的workQueue 满了，这时候还继续提交任务，我们就需要采取一种策略来处理这个任务。 </p>
+<p><strong>线程池总共提供了四种策略：</strong>  </p>
+<ul>
+<li>第一种是直接抛出异常，这也是默认的策略；默认是直接抛出异常；</li>
+<li>第二种是用调用者所在的线程来执行任务；</li>
+<li>第三种是丢弃队列中最靠前的任务并执行当前任务；</li>
+</ul>
+<p>最后一种策略是直接丢弃这个任务。 </p>
+<h4 id="线程池实例的创建分析："><a href="#线程池实例的创建分析：" class="headerlink" title="线程池实例的创建分析："></a><strong>线程池实例的创建分析：</strong></h4><p><strong>常用的线程池创建如下：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ExecutorService exec = Executors.newCachedThreadPool();</span><br></pre></td></tr></table></figure>
+
+<h4 id="该实例的底层实现是："><a href="#该实例的底层实现是：" class="headerlink" title="该实例的底层实现是："></a><strong>该实例的底层实现是：</strong></h4><img src="http://photo.wushaopei.com/qiniu459.png" width="60%">
+
+<p>由源码可知，Executors创建线程池的底层实际是由 ThreadPoolExecutor的实例初始化返回的，再进入ThreadPoolExecutor底层看一看： </p>
+<img src="http://photo.wushaopei.com/qiniu460.png" width="60%">
+
+<p>ThreadPoolExecutor的实例化包括但不限于上图中的构造方法的实现，当前图中的参数包含了所有可能需要用到的参数，这里对线程工厂和策略都做了参数传入。具体需要根据业务需求进行选择相应的构造器。 </p>
+<img src="http://photo.wushaopei.com/qiniu461.png" width="60%">
+
+<p>当我们初试化了一个线程池之后，它通常有RUNNING、SHUTDOWN、STOP、TIDYING、TERMINATED集中状态。</p>
+<table>
+<thead>
+<tr>
+<th>RUNNING</th>
+<th>能接收新提交的任务，并且也能阻塞队列中的任务；</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SHUTDOWN</strong></td>
+<td><strong>当一个线程处于shutdown状态时，不能接收、处理新提交的任务；但是可以处理阻塞队列中已经保存的任务；     在线程池处于Running状态时，调用shutdown（）方法就会进入到SHUTDOWN状态</strong></td>
+</tr>
+<tr>
+<td><strong>STOP</strong></td>
+<td><strong>stop 状态不接收新的任务，也不处理队列中的任务；它会中断正在处理任务的队列中的线程 ;   线程池处理Running状态的任务时，如果调用了shutdownNow()方法会使线程池进入到该状态；</strong></td>
+</tr>
+<tr>
+<td><strong>TIDYING</strong></td>
+<td><strong>如果所有任务都终止了，这时候的有效线程数为0，线程池就会进入到该状态</strong></td>
+</tr>
+<tr>
+<td><strong>TERMINATED</strong></td>
+<td><strong>在TIDYING状态时调用terminated()方法就会进入到TERMINATED状态，默认的terminated()方法什么都不会做。只是会在调用terminated()方法让线程池进入到TERMINATED状态。</strong></td>
+</tr>
+</tbody></table>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>Java并发编程</category>
+      </categories>
+      <tags>
+        <tag>线程池</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>mybatis 映射器（六）select元素-使用resultMap 映射结果集</title>
     <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>mybatis 映射器（五）select元素-传递多个参数</title>
+    <title>mybatis-映射器（五）select元素-传递多个参数</title>
     <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h1 id="mybatis的参数传递"><a href="#mybatis的参数传递" class="headerlink" title="mybatis的参数传递"></a><strong>mybatis的参数传递</strong></h1><p>前面的 《mybatis 映射器（四）select元素-自动映射》中的例子是传递一个参数给映射器，大部分情况下我们需要传递多个参数给映射器。</p>
+<p>现在我们要根据用户名和性别来查询用户，显然这涉及到了两个参数。</p>
+<h3 id="使用多个普通数据类型传参"><a href="#使用多个普通数据类型传参" class="headerlink" title="使用多个普通数据类型传参"></a>使用多个普通数据类型传参</h3><p><strong>配置文件：</strong></p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;select id=<span class="string">"queryUserByNameAndSex"</span> resultType=<span class="string">"com.webcode.pojo.User"</span>&gt;</span><br><span class="line">		&lt;!-- </span><br><span class="line">			多个普通类型的参数，在配置sql语句的时候，</span><br><span class="line">			方案一：那么在#&#123;&#125;占位符中，可以写0,1</span><br><span class="line">			<span class="number">0</span>表示第一个参数，<span class="number">1</span>表示第二个参数。（不推荐使用）</span><br><span class="line">			</span><br><span class="line">			方案二：那么在#&#123;&#125;占位符中，可以写param1,param2……</span><br><span class="line">			param1表示第一参数</span><br><span class="line">			param2表示第二个参数</span><br><span class="line">			以此类推 第n个参数，就是paramn</span><br><span class="line">		 --&gt;</span><br><span class="line">		select id,last_name lastName,sex from t_user where last_name = #&#123;param1&#125; and sex = #&#123;param2&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对于<strong>UserDao</strong> 接口，我们提供一个方法： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserByNameAndSex</span><span class="params">(String name, Integer sex)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这种传参方式看起来可以传递多个参数，但是存在传递的参数太多时要多次配置传参，会很麻烦。</p>
+<h3 id="使用-Map-传递参数"><a href="#使用-Map-传递参数" class="headerlink" title="使用 Map 传递参数"></a>使用 Map 传递参数</h3><p><strong>配置文件：</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryUserByMap"</span> <span class="attr">resultType</span>=<span class="string">"com.webcode.pojo.User"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">			当参数是Map类型的时候，sql语句中的参数名必须和map的key一致</span></span><br><span class="line"><span class="comment">			map.put("name",xxx);</span></span><br><span class="line"><span class="comment">			map.put("sex",xxx);</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		select id,last_name lastName,sex from t_user where last_name = #&#123;name&#125; and sex = #&#123;sex&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对于UserDao 接口，我们同样提供一个对应的方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Map&lt;String, Object&gt; param,我们希望在Map中放name的值和sex的值，来进行查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserByMap</span><span class="params">(Map&lt;String, Object&gt; param)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个方法虽然简单易用，但是存在一个弊端：这样设置的参数使用了 Map ， 而 Map 需要键值对应，由于业务关联性不强，你需要深入到程序中看代码，造成可读性下降。 MyBatis 为我们提供了更好的实现方法，它就是注解参数的形式，下面就是它的实现。</p>
+<h3 id="使用-Param-注解方式传递参数"><a href="#使用-Param-注解方式传递参数" class="headerlink" title="使用 @Param() 注解方式传递参数"></a>使用 @Param() 注解方式传递参数</h3><p>我们需要使用 MyBatis 的参数注解 @Para（org.apache.ibatis.annotations.Param）来实现想要的功能。操作方法是，把UserDao 接口修改为下面的形式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们把映射器的 XML 修改为无需定义参数类型，如下：</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;select id=<span class="string">"queryUserByNameAndSex"</span> resultType=<span class="string">"com.webcode.pojo.User"</span>&gt;</span><br><span class="line">	&lt;!-- </span><br><span class="line">		<span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserByNameAndSex</span><span class="params">(@Param(<span class="string">"name"</span>)</span> String name,</span></span><br><span class="line"><span class="function">		@<span class="title">Param</span><span class="params">(<span class="string">"sex"</span>)</span> Integer sex)</span>;</span><br><span class="line">		当我们在方法的参数上使用了<span class="meta">@Param</span>注解给参数进行全名之后，我们可以在配置的sql语句中的占位符里写中参数的名</span><br><span class="line">	 --&gt;</span><br><span class="line">	select id,last_name lastName,sex from t_user where last_name = #&#123;name&#125; and sex = #&#123;sex&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当我们把参数传递给后台的时候，通过 @Param 提供的名称 MyBatis 就会知道 #{roleName} 代表 roleName 参数，参数的可读性大大提供了。但是这会引起另一个麻烦，一条 SQL 拥有 10 个参数的查询，如果我们都使用 @Param 方式，那么参数将十分复杂，可读性依旧不高，不过 MyBatis 为我们提供了 JavaBean  定义参数的方式来解决这个问题。</p>
+<h3 id="使用-JavaBean-传递参数"><a href="#使用-JavaBean-传递参数" class="headerlink" title="使用 JavaBean 传递参数"></a>使用 JavaBean 传递参数</h3><p>在参数过多的情况下， MyBatis 允许组织一个 JavaBean ， 通过简单的 setter 和 getter 方法设置参数，这样就可以提供我们的可读性。首先，定义一个 UserParams 的 JavaBean ，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="meta">@Alias</span>(<span class="string">"user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserParams</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id, String lastName, Integer sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String lastName;</span><br><span class="line">	<span class="keyword">private</span> Integer sex;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们用 JavaBean 改写一下传递参数的例子，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;select id&#x3D;&quot;queryUserByUser&quot; resultType&#x3D;&quot;com.webcode.pojo.User&quot;&gt;</span><br><span class="line">		&lt;!-- 当传递的参数是javaBean对象的时候，在sql语句的配置的占位符中，使用属性名 --&gt;</span><br><span class="line">		select id,last_name lastName,sex from t_user where last_name &#x3D; #&#123;lastName&#125; and sex &#x3D; #&#123;sex&#125;</span><br><span class="line">	&lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同样我们在 UserDao 接口提供一个方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 我们希望使用user对象的lastName属性和sex属性，来进行查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserByUser</span><span class="params">(User user)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这就是通过 JavaBean 的方式传递多个参数的方式。</p>
+<h3 id="使用多个POJO-数据类型传参"><a href="#使用多个POJO-数据类型传参" class="headerlink" title="使用多个POJO 数据类型传参"></a>使用多个POJO 数据类型传参</h3><p>我们用 JavaBean 改写一下传递参数的例子，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 我们希望使用第一个user对象的lastName属性和第二个user对象的sex属性，来进行查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">queryUserByUsers</span><span class="params">(User name,User sex)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>配置信息：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"queryUserByUsers"</span> <span class="attr">resultType</span>=<span class="string">"com.webcode.pojo.User"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">		如果参数是多个javaBean的时候，</span></span><br><span class="line"><span class="comment">		第一个javaBean是param1，第二个javaBean是param2.以此类推。</span></span><br><span class="line"><span class="comment">		但我们使用的只是javaBean的属性。#&#123;param1.属性名&#125;	就表示使用第一个javaBean的某个属性的值</span></span><br><span class="line"><span class="comment">	 --&gt;</span></span><br><span class="line">	select id,last_name lastName,sex from t_user where last_name = #&#123;param1.lastName&#125; and sex = #&#123;param2.sex&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上我们描述了4种传递多个参数的方式；</p>
+<ul>
+<li>使用 Map 传递参数。因为 Map 导致业务可读性的丧失，从而导致后续扩展和维护的困难，我们应该在实际的应用中果断废弃这样的传递参数的方式。</li>
+<li>使用 @Param 注解传递多个参数，这种方式的使用受到参数个数（n）的影响。当 n &lt;= 5 时，它 是最佳的传参方式，它比用 JavaBean 更好，因为它更加直观；当 n &gt; 5 时，多个参数将给调用带来困难。</li>
+<li>当参数个数多于 5 个时，建议使用 JavaBean 方式。</li>
+</ul>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>映射器</tag>
+        <tag>select元素</tag>
+        <tag>参数传递</tag>
+      </tags>
   </entry>
   <entry>
     <title>mybatis 映射器（四）select元素-自动映射</title>
     <url>/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>在MyBatis 中，有这么一个参数 <code>autoMapping</code>  ，如果设置这个属性，MyBatis 将会为本结果映射开启或者关闭自动映射。 这个属性会覆盖全局的属性 autoMappingBehavior。默认值：未设置（unset）。 </p>
+<p>在默认开启自动映射的情况下，只要返回的 SQL 列名和 JavaBean 的属性一致，MyBatis 就会帮助我们回填这些字段而无需任何配置，它可以在很大程度上简化我们的配置工作。</p>
+<p>而在实际的情况中，大部分的数据库规范要求每个单词用下划线分割，而 Java 则是用驼峰命名法来命名，于是使用列的别名就可以使得 MyBatis 自动映射，或者直接在配置文件中开启驼峰命名方式。</p>
+<p>案例演示，这里通过用户名查询一个用户的信息，并将结果集映射到角色的 JavaBean 上。我们先给出 JavaBean , 如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> User.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年4月5日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Setter</span></span><br><span class="line"><span class="meta">@Getter</span></span><br><span class="line"><span class="meta">@ToString</span></span><br><span class="line"><span class="meta">@Alias</span>(<span class="string">"user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="comment">// TODO Auto-generated constructor stub</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id, String lastName, Integer sex)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.lastName = lastName;</span><br><span class="line">		<span class="keyword">this</span>.sex = sex;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">private</span> Integer id;</span><br><span class="line">	<span class="keyword">private</span> String lastName;</span><br><span class="line">	<span class="keyword">private</span> Integer sex;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据库表 （t_user) 字段如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>int</td>
+<td>用户id，主键，递增</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>varchar</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>sex</td>
+<td>int</td>
+<td>性别</td>
+</tr>
+</tbody></table>
+<p>编写 UserMapper 的映射语句，这里根据 用户id 获取用户的所有信息：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectUserById"</span> <span class="attr">resultType</span>=<span class="string">"com.webcode.cn.entity.User"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span>&gt;</span></span><br><span class="line">    	select id,last_name lastName,sex from t_user where id = #&#123;id&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为映射器语句配置一个 Dao 接口 中对应的方法，</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> User <span class="title">selectUserById</span><span class="params">(Integer id)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 该接口中的 方法名需要与映射的语句的 id 一致。</p>
+<p>通过以上的配置，我们就可以使用它，用户名称（last_name) 使用SQL 提供的别名功能使得查询结果和 JavaBean 的属性一一对应起来，然后 MyBatis 提供的自动映射的功能使得我们无需过多的提供配置信息，大大地减少了我们的工作量。</p>
+<p>​    自动映射可以在 setting 元素中配置  <code>autoMappingBehavior</code> 属性值来设置其策略。它包含3个值。</p>
+<ul>
+<li>NONE , 取消自动映射</li>
+<li>PARTIAL , 只会自动映射，没有定义嵌套结果集映射的结果集</li>
+<li>FULL ， 会自动映射任意复杂的结果集（无论是否嵌套）。</li>
+</ul>
+<p>默认值为 PARTIAL。所以在默认的情况下，它可以做到当前对象的映射，使用 FULL 是嵌套映射，在性能上会下降。</p>
+<p>​    如果你的数据库是规范命名的，即使每一个单词都用下划线分隔， POJO 采用驼峰式命名方法，那么你也可以设置 mapUnderscoreToCamelCase 为 true , 这样就可以实现从数据库到 POJO 的自动映射了。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 自动开启驼峰命名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 是否开自动映射 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"autoMappingBehavior"</span> <span class="attr">value</span>=<span class="string">"FULL "</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>映射器</tag>
+        <tag>select元素</tag>
+        <tag>自动映射</tag>
+      </tags>
   </entry>
   <entry>
     <title>mybatis 映射器（三）select元素-简易数据类型的例子</title>
@@ -32,6 +378,11 @@
 <li>parameterType 定义参数类型</li>
 <li>resultType 定义返回值类型</li>
 </ul>
+<p><strong>main</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span> <span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		SqlSession sqlSession = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = SqlSessionFactoryUtil.openSqlSession();</span><br><span class="line">			UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">int</span> counts = userMapper.queryUsersCountByName(<span class="string">"tom"</span>);</span><br><span class="line">			</span><br><span class="line">			sqlSession.commit();			</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">			System.err.println(ex.getMessage());</span><br><span class="line">			sqlSession.rollback();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>)&#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>mybatis</category>
@@ -2320,7 +2671,147 @@
 <p>设备供应商应提供详细的错误恢复场景。 </p>
 </li>
 </ul>
-<h5 id="06-05-07-02。错误恢复和正常进程"><a href="#06-05-07-02。错误恢复和正常进程" class="headerlink" title="06.05.07.02。错误恢复和正常进程"></a>06.05.07.02。错误恢复和正常进程</h5><h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+<h5 id="06-05-07-02-Error-Recovery-and-Normal-Process"><a href="#06-05-07-02-Error-Recovery-and-Normal-Process" class="headerlink" title="06.05.07.02 Error Recovery and Normal Process"></a>06.05.07.02 Error Recovery and Normal Process</h5><p>设备应提供以下功能，用于故障恢复后的正常流程 </p>
+<ul>
+<li>报警，通知操作员更正 </li>
+<li>Before job transfer signal on : 手动将玻璃送至上游设备 </li>
+<li>After job transfer signal on：通过人工操作将玻璃送至下游设备。 </li>
+<li>Normal process after Error Recovery </li>
+<li>Report job event to BC </li>
+</ul>
+<p>设备供应商应提供详细的错误恢复场景。 </p>
+<h5 id="06-05-07-03-PLC-MAP"><a href="#06-05-07-03-PLC-MAP" class="headerlink" title="06.05.07.03. PLC MAP"></a>06.05.07.03. PLC MAP</h5><h6 id="06-05-07-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-07-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.07.03.01. Local PLC – Link Register (W Area)"></a>06.05.07.03.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu419.png" width="90%"></p>
+<h6 id="06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.02. Local PLC – Link Relay (B Area)"></a>06.05.07.03.02. Local PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu420.png" width="90%"></p>
+<h6 id="06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.03. Master PLC – Link Relay (B Area)"></a>06.05.07.03.03. Master PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu421.png" width="90%"></p>
+<h5 id="06-05-07-04-Communication-Scenario"><a href="#06-05-07-04-Communication-Scenario" class="headerlink" title="06.05.07.04. Communication Scenario"></a>06.05.07.04. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu422.png" width="90%"></p>
+<h4 id="06-05-08-Job-Count-Report"><a href="#06-05-08-Job-Count-Report" class="headerlink" title="06.05.08. Job Count Report"></a>06.05.08. Job Count Report</h4><p>作业计数是报告整个设备的作业计数(不包括卡带)。根据作业类型，设备应区分作业是产品作业还是虚拟作业。  Normally，产品工作意味着大量的产品加工 , 但是在装配线上有两个产品工作， TFT和CF，产品工作意味着TFT玻璃加工 . 设备应根据作业类型的作业数据实时写入各类作业计数。 </p>
+<ul>
+<li>Total TFT Product Job Count  :  它是设备中TFT玻璃的当前计数。 </li>
+<li>Total CF Product Job Count： 这是设备中CF 玻璃的当前计数。 </li>
+<li>Total Dummy Job Count：这是设备中虚拟 玻璃 的数量</li>
+<li>Total Through Dummy Job Count：  它是在设备中通过虚拟玻璃的计数</li>
+<li>Total Thickness Dummy Job Count： 它是在设备中的虚拟玻璃厚度的计数 </li>
+<li>Total UV MASK Job Count： 是在设备中UV MASK glasses 的计数</li>
+<li>special requirement ： 对于一些有单位的设备，应该实时向BC报告作业数。请参阅操作场景规范的每一行。 </li>
+</ul>
+<h5 id="06-05-08-01-PLC-MAP"><a href="#06-05-08-01-PLC-MAP" class="headerlink" title="06.05.08.01. PLC MAP"></a>06.05.08.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu423.png" width="90%"></p>
+<h5 id="06-05-08-02-Communication-Scenario"><a href="#06-05-08-02-Communication-Scenario" class="headerlink" title="06.05.08.02. Communication Scenario"></a>06.05.08.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu424.png" width="90%"></p>
+<h4 id="06-05-09-Product-Type-Report"><a href="#06-05-09-Product-Type-Report" class="headerlink" title="06.05.09. Product Type Report"></a>06.05.09. Product Type Report</h4><p>每次设备从上游设备接收玻璃时 ，它应该根据工作产品类型数据实时写入Word区域的产品类型</p>
+<ul>
+<li>Special Requirement ： 有些设备有单元， 按每个单元报告产品类型，并实时报告给BC。请参考各线路操作方案规范。</li>
+</ul>
+<h5 id="06-05-09-01-PLC-MAP"><a href="#06-05-09-01-PLC-MAP" class="headerlink" title="06.05.09.01. PLC MAP"></a>06.05.09.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu425.png" width="90%"></p>
+<h5 id="06-05-09-01-Communication-Scenario"><a href="#06-05-09-01-Communication-Scenario" class="headerlink" title="06.05.09.01. Communication Scenario"></a>06.05.09.01. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu426.png" width="90%"></p>
+<h4 id="06-05-10-Job-Data-Shift"><a href="#06-05-10-Job-Data-Shift" class="headerlink" title="06.05.10. Job Data Shift"></a>06.05.10. Job Data Shift</h4><p>对于多工位设备，必须提供“作业数据转移”功能;这一功能意味着操作者可以将作业数据移动到另一个物理玻璃位置，但条件是从有作业数据但没有玻璃板的位置，移动到有玻璃板但没有玻璃板数据的另一个位置。此功能仅在设备状态处于“停止”状态时启用。 </p>
+<p><strong>Example：</strong></p>
+<p>如果设备中有两个玻璃位置异常，一个有工作数据但没有玻璃，另一个有玻璃但没有工作数据。操作人员可以通过该函数将作业数据转换到玻璃位置，并将两者结合起来 </p>
+<p><strong>Condition：</strong> </p>
+<p>(1). Source position：Glass not exists and Job Data existed. (Color = Red) </p>
+<p>(2). Target position： Glass existed and Job Data not exist. (Color=Yellow) </p>
+<p>(3). EQP should be stopped when use this function </p>
+<p><strong>Step：</strong>  </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu427.png" width="90%"></p>
+<h4 id="06-05-11-Job-Each-Position"><a href="#06-05-11-Job-Each-Position" class="headerlink" title="06.05.11. Job Each Position"></a>06.05.11. Job Each Position</h4><p>当设备在输送、舞台、电梯、转台、缓冲槽等位置内进行作业转移时，应将设备的实际位置与卡带顺序号、作业顺序号实时上报至BC，并在设备触摸屏上显示。此外，岗位名称应由设备名称来代替。 </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu428.png" width="90%"></p>
+<h4 id="06-05-12-Set-Last-Glass-Command"><a href="#06-05-12-Set-Last-Glass-Command" class="headerlink" title="06.05.12. Set Last Glass Command"></a>06.05.12. Set Last Glass Command</h4><p>当出现以下特殊情况时，BC会在某些设备上指示“设置最后的玻璃命令”，通知某些玻璃被打开或关闭最后的玻璃。 </p>
+<ul>
+<li>Case#01： 如果带有最后一个玻璃标志的作业数据是打开的，但在某些设备中被破坏，则操作员触发“删除作业事件”到BC。BC将触发此功能到设备。 </li>
+<li>Case#02：如果当前的磁带被设备或BC中断了，但是用上一个工作的玻璃标志不能从当前的磁带中取出。BC将触发此功能到设备。 </li>
+</ul>
+<p><strong>※ Note：</strong> </p>
+<p><strong>Return Code Description：</strong>  </p>
+<p>1：OK, Accepted, 意味着设备接受指令，需要打开工作数据的最后一面玻璃旗 </p>
+<p>2：NG, No Matching Glass, 这意味着设备无法在每个位置找到玻璃。 </p>
+<h5 id="06-05-12-01-PLC-MAP"><a href="#06-05-12-01-PLC-MAP" class="headerlink" title="06.05.12.01. PLC MAP"></a>06.05.12.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu429.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu430.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu431.png" width="90%"></p>
+<h5 id="06-05-12-02-Communication-Scenario"><a href="#06-05-12-02-Communication-Scenario" class="headerlink" title="06.05.12.02. Communication Scenario"></a>06.05.12.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu432.png" width="90%"></p>
+<h4 id="06-05-13-Job-Remove-Recovery-Command"><a href="#06-05-13-Job-Remove-Recovery-Command" class="headerlink" title="06.05.13. Job Remove Recovery Command"></a>06.05.13. Job Remove Recovery Command</h4><p>如果BC从某些设备收到删除/恢复作业事件，BC将下载作业删除/恢复信息到所有设备。 </p>
+<p><strong>※ Note：</strong>  </p>
+<p>Return Code Description：</p>
+<p>For Indexer equipment both port： </p>
+<p>1：OK, 意思是设备接受命令并从列表中删除或恢复作业数据(用于移出磁带) </p>
+<p>2：NG,  这意味着设备无法在列表中找到工作数据。 </p>
+<p>For other equipment : 总是回复OK到BC。 </p>
+<h5 id="06-05-13-01-PLC-MAP"><a href="#06-05-13-01-PLC-MAP" class="headerlink" title="06.05.13.01. PLC MAP"></a>06.05.13.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu433.png" width="90%"></p>
+<h5 id="06-05-13-02-Communication-Scenario"><a href="#06-05-13-02-Communication-Scenario" class="headerlink" title="06.05.13.02. Communication Scenario"></a>06.05.13.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu434.png" width="90%"></p>
+<h4 id="06-05-14-Job-Data-Edit-Report"><a href="#06-05-14-Job-Data-Edit-Report" class="headerlink" title="06.05.14. Job Data Edit Report"></a>06.05.14. Job Data Edit Report</h4><p>对于CELL , CF，它只对 Port 是 unloading port 或 两个 Port 的设备。其他设备应提供作业数据编辑功能，但修改后的设备不向BC报告新作业数据。</p>
+<p>对于Cell，所有的设备都应该提供这个功能。修改后，设备应自动向BC报告新作业数据。</p>
+<p>作业存储在磁带中，但操作员手册通过作业数据编辑功能改变了作业数据内容。修改后，设备应自动向BC报告新作业数据。</p>
+<p>设备改造后应检查配方ID、产品类型、组索引等，如内容与设备本身不一致，设备无法保存作业数据，等待操作人员处理。</p>
+<p><strong>※ Note：</strong> 所有项目的作业数据均可由操作人员在手动模式下进行修改，修改后的设备应检查是否可以使用。</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu435.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu436.png" width="90%"></p>
+<h5 id="06-05-14-02-Communication-Scenario"><a href="#06-05-14-02-Communication-Scenario" class="headerlink" title="06.05.14.02. Communication Scenario"></a>06.05.14.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu437.png" width="90%"></p>
+<h4 id="06-05-15-CST-Transfer-Event"><a href="#06-05-15-CST-Transfer-Event" class="headerlink" title="06.05.15. CST Transfer Event"></a>06.05.15. CST Transfer Event</h4><p>对于某些特殊线路，如 Array CAC线、Cell POL线，设备传输的是Cassette而不是Glass。当盒式磁带在上游设备和下游设备或单元内部设备之间传输时，设备仍需要向BC报告盒式磁带的接收/发送/存储/取出/移除事件 </p>
+<h5 id="06-05-15-01-PLC-MAP"><a href="#06-05-15-01-PLC-MAP" class="headerlink" title="06.05.15.01. PLC MAP"></a>06.05.15.01. PLC MAP</h5><h6 id="06-05-15-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-15-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.15.01.01. Local PLC – Link Register (W Area)"></a>06.05.15.01.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu438.png" width="90%"> </p>
+<img src="http://photo.wushaopei.com/qiniu439.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu440.png" width="90%">
+
+<h4 id="06-05-15-02-Communication-Scenario"><a href="#06-05-15-02-Communication-Scenario" class="headerlink" title="06.05.15.02. Communication Scenario"></a>06.05.15.02. Communication Scenario</h4><img src="http://photo.wushaopei.com/qiniu441.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu442.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu443.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu444.png" width="90%">
+
+
+
+<h4 id="06-05-16-Glass-Info-Change-Report"><a href="#06-05-16-Glass-Info-Change-Report" class="headerlink" title="06.05.16. Glass Info Change Report"></a>06.05.16. Glass Info Change Report</h4><p>Array TPE, CF总间距分室的日常检查槽应提供“Glass Info Change Report ”功能后，收到的工作从上游设备。</p>
+<p>当从机器人(或盒式磁带)接收玻璃时，盒式磁带序列号应由操作员手动更改(数组:5001<del>6000,CF:60000</del>61000)，工作序列号始终为1</p>
+<h5 id="06-05-16-01-PLC-MAP"><a href="#06-05-16-01-PLC-MAP" class="headerlink" title="06.05.16.01. PLC MAP"></a>06.05.16.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu445.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu446.png" width="90%">
+
+<h5 id="06-05-16-02-Communication-Scenario"><a href="#06-05-16-02-Communication-Scenario" class="headerlink" title="06.05.16.02. Communication Scenario"></a>06.05.16.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu447.png" width="90%">
+
+<h3 id="06-06-Process-Data-Management"><a href="#06-06-Process-Data-Management" class="headerlink" title="06.06. Process Data Management"></a>06.06. Process Data Management</h3><p>该功能仅适用于工艺设备，具有加工参数值或检验结果等工艺数据。数据应与个人工作相关，并使用玻璃/芯片ID报告 </p>
+<ul>
+<li>Job Data：  作业数据应与发送作业的作业数据相同 </li>
+<li>Processing Time：它是设备中某项工作的实际处理时间。 </li>
+<li>Kind of Process Data：There are 4 kinds of process data <ul>
+<li>By Glass：如果设备有工艺数据，每个玻璃/芯片的工艺数据应在作业发送到下游设备之前报告。一个本地设备应该向BC报告每个玻璃一次的工艺数据 </li>
+<li>By Event： : BC发送“工艺数据请求”时，设备应报告工艺数据 </li>
+<li>By Time (Accumulated Data)： 设备应报告累积的工艺数据。设备应提供累计工艺数据报告时间设定功能。 </li>
+<li>By Time (Daily Check)： 设备应实时向BC报告当前数据，如每日检查项目、效用项目等 </li>
+</ul>
+</li>
+</ul>
+<h4 id="06-06-01-Default-Value"><a href="#06-06-01-Default-Value" class="headerlink" title="06.06.01. Default Value"></a>06.06.01. Default Value</h4><p>如果某些过程数据项没有“ measurement （测量）”或“ inspection (检查) ”，这些项目应按默认值报告如下: </p>
+<img src="http://photo.wushaopei.com/qiniu448.png" width="90%">
+
+<h4 id="06-06-02-By-Glass"><a href="#06-06-02-By-Glass" class="headerlink" title="06.06.02. By Glass"></a>06.06.02. By Glass</h4><p>在玻璃送至下游设备之前，设备需要按每个玻璃向BC报告“工艺数据”。</p>
+<p>Special Case： 请参考操作场景说明书的每一行</p>
+<ul>
+<li>By File： 有些设备受PLC地址范围的限制，将工艺数据按文件改变使用(共享文件夹)向BC报告。但设备仍应使用此功能(仅使用Header - Process数据报告块，不包括Body - Process数据项块)通知BC按文件获取真实的进程数据内容。请参阅CSOT_G8.5B_EDC文件通用规范。 </li>
+<li>By SECS： 有些设备受PLC地址范围的限制，工艺数据会由SECS更改后上报给BC。设备可忽略PLC功能。请参阅CSOT-18_G8.5B_Equipment SECS通用规范 </li>
+</ul>
+<h5 id="06-06-02-01-PLC-MAP"><a href="#06-06-02-01-PLC-MAP" class="headerlink" title="06.06.02.01. PLC MAP"></a>06.06.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu449.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu450.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu451.png" width="90%">
+
+<h5 id="06-06-02-02-Communication-Scenario"><a href="#06-06-02-02-Communication-Scenario" class="headerlink" title="06.06.02.02. Communication Scenario"></a>06.06.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu452.png" width="90%">
+
+<h4 id="06-06-03-By-Event"><a href="#06-06-03-By-Event" class="headerlink" title="06.06.03. By Event"></a>06.06.03. By Event</h4><h5 id="06-06-03-01-PLC-MAP"><a href="#06-06-03-01-PLC-MAP" class="headerlink" title="06.06.03.01. PLC MAP"></a>06.06.03.01. PLC MAP</h5><p>这是设备的特殊项目，如果一个设备需要报告那些项目，然后在PLC MAP 分配 </p>
+<img src="http://photo.wushaopei.com/qiniu453.png" width="90%">
+
+<h5 id="06-06-03-02-Communication-Scenario"><a href="#06-06-03-02-Communication-Scenario" class="headerlink" title="06.06.03.02. Communication Scenario"></a>06.06.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu454.png" width="90%">
+
+<h4 id="06-06-04-By-Time-Accumulated-Data"><a href="#06-06-04-By-Time-Accumulated-Data" class="headerlink" title="06.06.04. By Time (Accumulated Data)"></a>06.06.04. By Time (Accumulated Data)</h4><h5 id="06-06-04-01-PLC-MAP"><a href="#06-06-04-01-PLC-MAP" class="headerlink" title="06.06.04.01. PLC MAP"></a>06.06.04.01. PLC MAP</h5><p>这是设备的特殊项目，如果一个设备需要报告那些项目，然后在PLC MAP 分配。 </p>
+<img src="http://photo.wushaopei.com/qiniu455.png" width="90%">
+
+<h5 id="06-06-04-02-Communication-Scenario"><a href="#06-06-04-02-Communication-Scenario" class="headerlink" title="06.06.04.02. Communication Scenario"></a>06.06.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu456.png" width="90%">
+
+<h4 id="06-06-05-By-Time-Daily-Check"><a href="#06-06-05-By-Time-Daily-Check" class="headerlink" title="06.06.05. By Time (Daily Check)"></a>06.06.05. By Time (Daily Check)</h4><p>设备实时报告日常检查项目。 </p>
+<h5 id="06-06-05-01-PLC-MAP"><a href="#06-06-05-01-PLC-MAP" class="headerlink" title="06.06.05.01. PLC MAP"></a>06.06.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu457.png" width="90%">
+
+<h5 id="06-06-05-01-Communication-Scenario"><a href="#06-06-05-01-Communication-Scenario" class="headerlink" title="06.06.05.01. Communication Scenario"></a>06.06.05.01. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu458.png" width="90%">
+
+<h5 id="-1"><a href="#-1" class="headerlink" title=""></a></h5>]]></content>
       <categories>
         <category>自动化开发</category>
       </categories>
@@ -6249,8 +6740,7 @@ rvconnector</code></pre></li>
   <entry>
     <title>mybatis-知识树目录</title>
     <url>/2020/03/12/mybatis-%E7%9F%A5%E8%AF%86%E6%A0%91%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><h3 id="传统的JDBC编程"><a href="#传统的JDBC编程" class="headerlink" title="传统的JDBC编程"></a><a href="http://wushaopei.com/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/" target="_blank" rel="noopener">传统的JDBC编程</a></h3><h3 id="ORM模型"><a href="#ORM模型" class="headerlink" title="ORM模型"></a><a href="https://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/">ORM模型</a></h3><h3 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a><a href="https://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/">Hibernate</a></h3><h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a><a href="https://blog.wushaopei.com/2020/03/30/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis/">MyBatis</a></h3><h3 id="什么时候用MyBatis"><a href="#什么时候用MyBatis" class="headerlink" title="什么时候用MyBatis"></a><a href="https://blog.wushaopei.com/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/">什么时候用MyBatis</a></h3><h2 id="MyBatis-入门"><a href="#MyBatis-入门" class="headerlink" title="MyBatis 入门"></a>MyBatis 入门</h2><h3 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a><a href="https://blog.wushaopei.com/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">开发环境准备</a></h3><h4 id="下载MyBatis"><a href="#下载MyBatis" class="headerlink" title="下载MyBatis"></a>下载MyBatis</h4><h4 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h4><h3 id="MyBatis的基本构成"><a href="#MyBatis的基本构成" class="headerlink" title="MyBatis的基本构成"></a>MyBatis的基本构成</h3><h4 id="构建SqlSessionFactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a>构建SqlSessionFactory</h4><h4 id="创建SqlSession"><a href="#创建SqlSession" class="headerlink" title="创建SqlSession"></a>创建SqlSession</h4><h4 id="映射器"><a href="#映射器" class="headerlink" title="映射器"></a>映射器</h4><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><h4 id="SqlSessionFactoryBuilder"><a href="#SqlSessionFactoryBuilder" class="headerlink" title="SqlSessionFactoryBuilder"></a>SqlSessionFactoryBuilder</h4><h4 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h4><h4 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h4><h4 id="Mapper"><a href="#Mapper" class="headerlink" title="Mapper"></a>Mapper</h4><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="properties"><a href="#properties" class="headerlink" title="properties"></a>properties</h3><h4 id="property子元素"><a href="#property子元素" class="headerlink" title="property子元素"></a>property子元素</h4><h4 id="properties配置文件"><a href="#properties配置文件" class="headerlink" title="properties配置文件"></a>properties配置文件</h4><h4 id="程序参数传递"><a href="#程序参数传递" class="headerlink" title="程序参数传递"></a>程序参数传递</h4><h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><h4 id="系统定义别名"><a href="#系统定义别名" class="headerlink" title="系统定义别名"></a>系统定义别名</h4><h4 id="自定义别名"><a href="#自定义别名" class="headerlink" title="自定义别名"></a>自定义别名</h4><h3 id="typeHandler类型处理器"><a href="#typeHandler类型处理器" class="headerlink" title="typeHandler类型处理器"></a>typeHandler类型处理器</h3><h4 id="系统定义的typeHandler"><a href="#系统定义的typeHandler" class="headerlink" title="系统定义的typeHandler"></a>系统定义的typeHandler</h4><h4 id="自定义typeHandler"><a href="#自定义typeHandler" class="headerlink" title="自定义typeHandler"></a>自定义typeHandler</h4><h4 id="枚举类型typeHandler"><a href="#枚举类型typeHandler" class="headerlink" title="枚举类型typeHandler"></a>枚举类型typeHandler</h4><h3 id="ObjectFactory"><a href="#ObjectFactory" class="headerlink" title="ObjectFactory"></a>ObjectFactory</h3><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h3 id="environments-配置环境"><a href="#environments-配置环境" class="headerlink" title="environments 配置环境"></a>environments 配置环境</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><h4 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h4><h4 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h4><h3 id="databaseIdProvider数据库厂商标识"><a href="#databaseIdProvider数据库厂商标识" class="headerlink" title="databaseIdProvider数据库厂商标识"></a>databaseIdProvider数据库厂商标识</h3><h4 id="使用系统默认规则"><a href="#使用系统默认规则" class="headerlink" title="使用系统默认规则"></a>使用系统默认规则</h4><h4 id="不使用系统默认规则"><a href="#不使用系统默认规则" class="headerlink" title="不使用系统默认规则"></a>不使用系统默认规则</h4><h3 id="引入映射器的方法"><a href="#引入映射器的方法" class="headerlink" title="引入映射器的方法"></a>引入映射器的方法</h3><h2 id="映射器-1"><a href="#映射器-1" class="headerlink" title="映射器"></a>映射器</h2><h3 id="映射器的主要元素"><a href="#映射器的主要元素" class="headerlink" title="映射器的主要元素"></a>映射器的主要元素</h3><h3 id="select-元素"><a href="#select-元素" class="headerlink" title="select 元素"></a>select 元素</h3><h4 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h4><h4 id="简易数据类型的例子"><a href="#简易数据类型的例子" class="headerlink" title="简易数据类型的例子"></a>简易数据类型的例子</h4><h4 id="自动映射"><a href="#自动映射" class="headerlink" title="自动映射"></a>自动映射</h4><h4 id="传递多个参数"><a href="#传递多个参数" class="headerlink" title="传递多个参数"></a>传递多个参数</h4><h4 id="使用resultMap映射结果集"><a href="#使用resultMap映射结果集" class="headerlink" title="使用resultMap映射结果集"></a>使用resultMap映射结果集</h4><h3 id="insert元素"><a href="#insert元素" class="headerlink" title="insert元素"></a>insert元素</h3><h4 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h4><h4 id="主键回填和自定义"><a href="#主键回填和自定义" class="headerlink" title="主键回填和自定义"></a>主键回填和自定义</h4><h3 id="update元素和-delete元素"><a href="#update元素和-delete元素" class="headerlink" title="update元素和 delete元素"></a>update元素和 delete元素</h3><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><h4 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h4><h4 id="存储过程支持"><a href="#存储过程支持" class="headerlink" title="存储过程支持"></a>存储过程支持</h4><h4 id="特殊字符串替换和处理"><a href="#特殊字符串替换和处理" class="headerlink" title="特殊字符串替换和处理"></a>特殊字符串替换和处理</h4><h3 id="sql元素"><a href="#sql元素" class="headerlink" title="sql元素"></a>sql元素</h3><h3 id="resultMap结果映射集"><a href="#resultMap结果映射集" class="headerlink" title="resultMap结果映射集"></a>resultMap结果映射集</h3><h4 id="resultMap元素的构成"><a href="#resultMap元素的构成" class="headerlink" title="resultMap元素的构成"></a>resultMap元素的构成</h4><h4 id="使用map存储结果集"><a href="#使用map存储结果集" class="headerlink" title="使用map存储结果集"></a>使用map存储结果集</h4><h4 id="使用POJO存储结果集"><a href="#使用POJO存储结果集" class="headerlink" title="使用POJO存储结果集"></a>使用POJO存储结果集</h4><h4 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h4><h3 id="缓存cache"><a href="#缓存cache" class="headerlink" title="缓存cache"></a>缓存cache</h3><h4 id="系统缓存（一级缓存和二级缓存）"><a href="#系统缓存（一级缓存和二级缓存）" class="headerlink" title="系统缓存（一级缓存和二级缓存）"></a>系统缓存（一级缓存和二级缓存）</h4><h4 id="自定义缓存"><a href="#自定义缓存" class="headerlink" title="自定义缓存"></a>自定义缓存</h4>]]></content>
+    <content><![CDATA[<h2 id="MyBatis简介"><a href="#MyBatis简介" class="headerlink" title="MyBatis简介"></a>MyBatis简介</h2><h3 id="传统的JDBC编程"><a href="#传统的JDBC编程" class="headerlink" title="传统的JDBC编程"></a><a href="http://wushaopei.com/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/" target="_blank" rel="noopener">传统的JDBC编程</a></h3><h3 id="ORM模型"><a href="#ORM模型" class="headerlink" title="ORM模型"></a><a href="https://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/">ORM模型</a></h3><h3 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a><a href="https://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/">Hibernate</a></h3><h3 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a><a href="https://blog.wushaopei.com/2020/03/30/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis/">MyBatis</a></h3><h3 id="什么时候用MyBatis"><a href="#什么时候用MyBatis" class="headerlink" title="什么时候用MyBatis"></a><a href="https://blog.wushaopei.com/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/">什么时候用MyBatis</a></h3><h2 id="MyBatis-入门"><a href="#MyBatis-入门" class="headerlink" title="MyBatis 入门"></a>MyBatis 入门</h2><h3 id="开发环境准备"><a href="#开发环境准备" class="headerlink" title="开发环境准备"></a><a href="https://blog.wushaopei.com/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">开发环境准备</a></h3><h4 id="构建SqlSessionFactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a><a href="https://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/">构建SqlSessionFactory</a></h4><h4 id="创建SqlSession"><a href="#创建SqlSession" class="headerlink" title="创建SqlSession"></a><a href="https://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/">创建SqlSession</a></h4><h4 id="映射器"><a href="#映射器" class="headerlink" title="映射器"></a><a href="https://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/">映射器</a></h4><h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a><a href="https://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">生命周期</a></h3><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a><a href="https://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E5%AE%9E%E4%BE%8B/">实例</a></h3><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="properties"><a href="#properties" class="headerlink" title="properties"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%80%EF%BC%89properties-%E5%85%83%E7%B4%A0/">properties</a></h3><h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%8C%EF%BC%89%E8%AE%BE%E7%BD%AE/">设置</a></h3><h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%AB%E5%90%8D/">别名</a></h3><h3 id="typeHandler类型处理器"><a href="#typeHandler类型处理器" class="headerlink" title="typeHandler类型处理器"></a><a href="https://blog.wushaopei.com/2020/04/16/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9B%9B%EF%BC%89typeHandler-%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E5%99%A8-%E7%B3%BB%E7%BB%9F%E5%AE%9A%E4%B9%89/">typeHandler类型处理器</a></h3><h3 id="ObjectFactory"><a href="#ObjectFactory" class="headerlink" title="ObjectFactory"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%94%EF%BC%89ObjectFactory/">ObjectFactory</a></h3><h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E5%85%AD%EF%BC%89%E6%8F%92%E4%BB%B6/">插件</a></h3><h3 id="environments-配置环境"><a href="#environments-配置环境" class="headerlink" title="environments 配置环境"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%83%EF%BC%89environments-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/">environments 配置环境</a></h3><h3 id="引入映射器的方法"><a href="#引入映射器的方法" class="headerlink" title="引入映射器的方法"></a><a href="https://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/">引入映射器的方法</a></h3><h2 id="映射器-1"><a href="#映射器-1" class="headerlink" title="映射器"></a>映射器</h2><h3 id="映射器的主要元素"><a href="#映射器的主要元素" class="headerlink" title="映射器的主要元素"></a><a href="https://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/">映射器的主要元素</a></h3><h3 id="select-元素-概述"><a href="#select-元素-概述" class="headerlink" title="select 元素 - 概述"></a><a href="https://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/">select 元素 - 概述</a></h3><h4 id="select-元素-简易数据类型的例子"><a href="#select-元素-简易数据类型的例子" class="headerlink" title="select 元素-简易数据类型的例子"></a><a href="https://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/">select 元素-简易数据类型的例子</a></h4><h4 id="自动映射"><a href="#自动映射" class="headerlink" title="自动映射"></a>自动映射</h4><h4 id="传递多个参数"><a href="#传递多个参数" class="headerlink" title="传递多个参数"></a>传递多个参数</h4><h4 id="使用resultMap映射结果集"><a href="#使用resultMap映射结果集" class="headerlink" title="使用resultMap映射结果集"></a>使用resultMap映射结果集</h4><h3 id="insert元素"><a href="#insert元素" class="headerlink" title="insert元素"></a>insert元素</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><h4 id="主键回填和自定义"><a href="#主键回填和自定义" class="headerlink" title="主键回填和自定义"></a>主键回填和自定义</h4><h3 id="update元素和-delete元素"><a href="#update元素和-delete元素" class="headerlink" title="update元素和 delete元素"></a>update元素和 delete元素</h3><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><h4 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h4><h4 id="存储过程支持"><a href="#存储过程支持" class="headerlink" title="存储过程支持"></a>存储过程支持</h4><h4 id="特殊字符串替换和处理"><a href="#特殊字符串替换和处理" class="headerlink" title="特殊字符串替换和处理"></a>特殊字符串替换和处理</h4><h3 id="sql元素"><a href="#sql元素" class="headerlink" title="sql元素"></a>sql元素</h3><h3 id="resultMap结果映射集"><a href="#resultMap结果映射集" class="headerlink" title="resultMap结果映射集"></a>resultMap结果映射集</h3><h4 id="resultMap元素的构成"><a href="#resultMap元素的构成" class="headerlink" title="resultMap元素的构成"></a>resultMap元素的构成</h4><h4 id="使用map存储结果集"><a href="#使用map存储结果集" class="headerlink" title="使用map存储结果集"></a>使用map存储结果集</h4><h4 id="使用POJO存储结果集"><a href="#使用POJO存储结果集" class="headerlink" title="使用POJO存储结果集"></a>使用POJO存储结果集</h4><h4 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h4><h3 id="缓存cache"><a href="#缓存cache" class="headerlink" title="缓存cache"></a>缓存cache</h3><h4 id="系统缓存（一级缓存和二级缓存）"><a href="#系统缓存（一级缓存和二级缓存）" class="headerlink" title="系统缓存（一级缓存和二级缓存）"></a>系统缓存（一级缓存和二级缓存）</h4><h4 id="自定义缓存"><a href="#自定义缓存" class="headerlink" title="自定义缓存"></a>自定义缓存</h4>]]></content>
       <categories>
         <category>mybatis</category>
       </categories>
@@ -6390,6 +6880,52 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jdbc(五)普通增删改查、通用增删改查</title>
     <url>/2020/03/10/jdbc(%E4%BA%94)%E6%99%AE%E9%80%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E3%80%81%E9%80%9A%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9/</url>
     <content><![CDATA[<h3 id="普通的增删查改"><a href="#普通的增删查改" class="headerlink" title="普通的增删查改"></a>普通的增删查改</h3><h4 id="创建一个类customer"><a href="#创建一个类customer" class="headerlink" title="创建一个类customer"></a>创建一个类customer</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> String email;</span><br><span class="line">	<span class="keyword">private</span> Date birth;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Customer</span><span class="params">(<span class="keyword">int</span> id, String name, String email, Date birth)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.email = email;</span><br><span class="line">		<span class="keyword">this</span>.birth = birth;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
@@ -6421,6 +6957,59 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>jdbc增删改查</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(二)获取数据库连接的五种方式</title>
+    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
+<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
+<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
+<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
+<ul>
+<li><span style="color:red;">jdbc:子协议:子名称</span></li>
+<li>协议：JDBC URL中的协议总是jdbc</li>
+<li>子协议：子协议用于标识一个数据库驱动程序</li>
+<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
+</ul>
+<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
+
+<ul>
+<li><p>对于Oracle 数据库连接，采用如下形式：</p>
+<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
+</li>
+<li><p>对于SQLServer数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
+</li>
+<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
+</li>
+</ul>
+<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
+<ol>
+<li>安装数据库 - 服务必须开启</li>
+<li>需要导入数据库的驱动</li>
+</ol>
+<p>连接数据库的<strong>五种方式</strong>： </p>
+<p><strong>代码：</strong> </p>
+<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
       </tags>
   </entry>
   <entry>
@@ -6513,105 +7102,6 @@ rvconnector</code></pre></li>
 <li>释放ResultSet, Statement,Connection。</li>
 <li>数据库连接（Connection）是非常稀有的资源，用完后必须马上释放，如果Connection不能及时正确的关闭将导致系统宕机。Connection的使用原则是<span style="color:red;">尽量晚创建，尽量早的释放。</span></li>
 </ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdbc(二)获取数据库连接的五种方式</title>
-    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
-<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
-<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
-<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
-<ul>
-<li><span style="color:red;">jdbc:子协议:子名称</span></li>
-<li>协议：JDBC URL中的协议总是jdbc</li>
-<li>子协议：子协议用于标识一个数据库驱动程序</li>
-<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
-</ul>
-<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
-
-<ul>
-<li><p>对于Oracle 数据库连接，采用如下形式：</p>
-<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
-</li>
-<li><p>对于SQLServer数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
-</li>
-<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
-</li>
-</ul>
-<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
-<ol>
-<li>安装数据库 - 服务必须开启</li>
-<li>需要导入数据库的驱动</li>
-</ol>
-<p>连接数据库的<strong>五种方式</strong>： </p>
-<p><strong>代码：</strong> </p>
-<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>jdbc</category>
@@ -6840,79 +7330,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>hexo搭建个人博客（一）博客框架搭建</title>
-    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>好，话不多说，开始动手</p>
-<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
-<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
-
-<p>上面这张图显示的是我安装node的版本 </p>
-<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
-
-<hr>
-<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
-<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
-<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
-<hr>
-<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
-<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
-<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
-
-<p> 安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
-
-<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
-
-<p>此时hexo的基本布置完成了</p>
-<hr>
-<p>接下来要做的就是把博客部署到github上去</p>
-<p>首先你要有个github账号，注册账号省略</p>
-<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
-<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
-
-<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
-<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
-
-<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
-<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
-<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
-<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
-<hr>
-<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
-<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>个人博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络（一）-深入理解NIO</title>
     <url>/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</url>
     <content><![CDATA[<p><strong>目录概览</strong>：</p>
@@ -7043,6 +7460,79 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建个人博客（一）博客框架搭建</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>好，话不多说，开始动手</p>
+<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
+<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
+
+<p>上面这张图显示的是我安装node的版本 </p>
+<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
+
+<hr>
+<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
+<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
+<hr>
+<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
+<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
+<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
+
+<p> 安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
+
+<p>此时hexo的基本布置完成了</p>
+<hr>
+<p>接下来要做的就是把博客部署到github上去</p>
+<p>首先你要有个github账号，注册账号省略</p>
+<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
+<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
+<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
+
+<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
+<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
+
+<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
+<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
+<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
+<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
+<hr>
+<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
+<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>个人博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -7363,67 +7853,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>SpringBoot功能（二）定制 starter 启动器</title>
-    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
-    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
-<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
-<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
-<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
-<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
-<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
-<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为大家解释一下这些注解的含义</p>
-<table>
-<thead>
-<tr>
-<th>@SpringBootConfiguration：</th>
-<th>代表这是一个配置类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
-<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass(Jedis.class)：</td>
-<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
-</tr>
-</tbody></table>
-<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
-
-<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
-<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用方式：</strong> </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
-
-<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
-
-<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>springboot功能篇</category>
-      </categories>
-  </entry>
-  <entry>
     <title>SpringBoot功能（一）集成JavaMail实现邮箱认证</title>
     <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/</url>
     <content><![CDATA[<h2 id="一、JavaMail"><a href="#一、JavaMail" class="headerlink" title="一、JavaMail"></a>一、JavaMail</h2><h3 id="1、什么是JavaMail？"><a href="#1、什么是JavaMail？" class="headerlink" title="1、什么是JavaMail？"></a>1、什么是JavaMail？</h3><p><strong>JavaMail</strong> ，顾名思义，提供给开发者处理 电子邮件相关的编程接口。它是<strong>Sun</strong>发布的用来处理<strong>email</strong>的<strong>API</strong>。它可以方便的执行一些常用的邮件传输。我们可以基于<strong>JavaMaiil</strong>开发出类似于 <strong>Microsoft Outlook</strong>的应用程序。 </p>
@@ -7530,6 +7959,67 @@ rvconnector</code></pre></li>
 <p>发送邮件给用户，用户根据接收到的邮件的连接点击并跳转到对应的controller请求接口执行code验证码查询到用户，并根据当前激活码的作用对用户执行激活账户、业务等操作！！！</p>
 </blockquote>
 <p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/spring-boot-JSP-email" target="_blank" rel="noopener">码云</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>springboot功能篇</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>SpringBoot功能（二）定制 starter 启动器</title>
+    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
+    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
+<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
+<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
+<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
+<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
+<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
+<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为大家解释一下这些注解的含义</p>
+<table>
+<thead>
+<tr>
+<th>@SpringBootConfiguration：</th>
+<th>代表这是一个配置类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
+<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass(Jedis.class)：</td>
+<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
+</tr>
+</tbody></table>
+<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
+
+<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
+<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用方式：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
+
+<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>springboot功能篇</category>
@@ -8556,7 +9046,7 @@ SpringBoot 采用约点大于配置的方法，直接引入依赖，即可实现
 </tbody></table>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
-        <category>workflower</category>
+        <category>Activity</category>
       </categories>
   </entry>
   <entry>
