@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>mybatis 映射器（十）参数</title>
+    <title>mybatis 映射器（九）参数</title>
     <url>/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/</url>
     <content><![CDATA[<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><p>之前见到的所有语句都使用了简单的参数形式。但实际上，参数是 MyBatis 非常强大的元素。对于大多数简单的使用场景，你都不需要使用复杂的参数，比如： </p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectUserById"</span> <span class="attr">resultMap</span>=<span class="string">"userResultMap"</span>&gt;</span></span><br><span class="line">   	select id,last_name,sex from t_user where id = #&#123;id&#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -74,7 +74,7 @@
       </tags>
   </entry>
   <entry>
-    <title>mybatis 映射器（九）update元素和delete元素</title>
+    <title>mybatis 映射器（八）update元素和delete元素</title>
     <url>/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/</url>
     <content><![CDATA[<p>数据变更语句 insert，update 和 delete 的实现非常接近，这里我们将三者的属性配置放到一起比较一下：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span>  </span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"insertAuthor"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">parameterType</span>=<span class="string">"domain.blog.Author"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushCache</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">statementType</span>=<span class="string">"PREPARED"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">keyProperty</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">  <span class="attr">keyColumn</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">  <span class="attr">useGeneratedKeys</span>=<span class="string">""</span></span></span><br><span class="line"><span class="tag">  <span class="attr">timeout</span>=<span class="string">"20"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">update</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"updateAuthor"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">parameterType</span>=<span class="string">"domain.blog.Author"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushCache</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">statementType</span>=<span class="string">"PREPARED"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">timeout</span>=<span class="string">"20"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"deleteAuthor"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">parameterType</span>=<span class="string">"domain.blog.Author"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushCache</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">statementType</span>=<span class="string">"PREPARED"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">timeout</span>=<span class="string">"20"</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -1863,8 +1863,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>AQS</tag>
         <tag>可重入锁</tag>
+        <tag>AQS</tag>
         <tag>ReentrantLock</tag>
       </tags>
   </entry>
@@ -1938,8 +1938,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>AQS</tag>
         <tag>可重入锁</tag>
+        <tag>AQS</tag>
         <tag>ReentrantLock</tag>
       </tags>
   </entry>
@@ -2244,7 +2244,7 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
       </tags>
   </entry>
   <entry>
-    <title>mybatis 配置（十一）引入映射器的方法</title>
+    <title>mybatis 配置（九）引入映射器的方法</title>
     <url>/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h2 id="引入映射器的方法"><a href="#引入映射器的方法" class="headerlink" title="引入映射器的方法"></a>引入映射器的方法</h2><p>映射器是  MyBatis 最复杂、最核心的组件它具有参数类型、动态SQL、定义SQL、缓存信息等功能。</p>
 <h3 id="映射器的使用"><a href="#映射器的使用" class="headerlink" title="映射器的使用"></a>映射器的使用</h3><p>映射器定义了命名空间的方法，命名空间对应的是一个接口的全路径，而不是实体类。一下是对接口实现调度的过程：</p>
@@ -2749,8 +2749,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -2786,8 +2786,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
         <tag>Semaphore</tag>
       </tags>
   </entry>
@@ -2817,8 +2817,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -2856,8 +2856,8 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
         <category>Java并发编程</category>
       </categories>
       <tags>
-        <tag>并发容器</tag>
         <tag>AQS</tag>
+        <tag>并发容器</tag>
       </tags>
   </entry>
   <entry>
@@ -7589,52 +7589,6 @@ rvconnector</code></pre></li>
       </tags>
   </entry>
   <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(二)获取数据库连接的五种方式</title>
     <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
@@ -7783,6 +7737,52 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
       </tags>
   </entry>
   <entry>
@@ -8005,79 +8005,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>hexo搭建个人博客（一）博客框架搭建</title>
-    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>好，话不多说，开始动手</p>
-<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
-<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
-
-<p>上面这张图显示的是我安装node的版本 </p>
-<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
-
-<hr>
-<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
-<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
-<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
-<hr>
-<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
-<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
-<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
-
-<p> 安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
-
-<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
-
-<p>此时hexo的基本布置完成了</p>
-<hr>
-<p>接下来要做的就是把博客部署到github上去</p>
-<p>首先你要有个github账号，注册账号省略</p>
-<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
-<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
-
-<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
-<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
-
-<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
-<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
-<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
-<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
-<hr>
-<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
-<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>个人博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络（一）-深入理解NIO</title>
     <url>/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</url>
     <content><![CDATA[<p><strong>目录概览</strong>：</p>
@@ -8208,6 +8135,79 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建个人博客（一）博客框架搭建</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>好，话不多说，开始动手</p>
+<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
+<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
+
+<p>上面这张图显示的是我安装node的版本 </p>
+<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
+
+<hr>
+<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
+<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
+<hr>
+<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
+<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
+<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
+
+<p> 安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
+
+<p>此时hexo的基本布置完成了</p>
+<hr>
+<p>接下来要做的就是把博客部署到github上去</p>
+<p>首先你要有个github账号，注册账号省略</p>
+<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
+<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
+<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
+
+<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
+<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
+
+<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
+<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
+<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
+<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
+<hr>
+<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
+<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>个人博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -8528,6 +8528,67 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
+    <title>SpringBoot功能（二）定制 starter 启动器</title>
+    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
+    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
+<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
+<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
+<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
+<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
+<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
+<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为大家解释一下这些注解的含义</p>
+<table>
+<thead>
+<tr>
+<th>@SpringBootConfiguration：</th>
+<th>代表这是一个配置类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
+<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
+</tr>
+<tr>
+<td>@ConditionalOnClass(Jedis.class)：</td>
+<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
+</tr>
+</tbody></table>
+<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
+
+<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
+<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用方式：</strong> </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
+
+<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
+
+<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>springboot功能篇</category>
+      </categories>
+  </entry>
+  <entry>
     <title>SpringBoot功能（一）集成JavaMail实现邮箱认证</title>
     <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89%E9%9B%86%E6%88%90JavaMail%E5%AE%9E%E7%8E%B0%E9%82%AE%E7%AE%B1%E8%AE%A4%E8%AF%81/</url>
     <content><![CDATA[<h2 id="一、JavaMail"><a href="#一、JavaMail" class="headerlink" title="一、JavaMail"></a>一、JavaMail</h2><h3 id="1、什么是JavaMail？"><a href="#1、什么是JavaMail？" class="headerlink" title="1、什么是JavaMail？"></a>1、什么是JavaMail？</h3><p><strong>JavaMail</strong> ，顾名思义，提供给开发者处理 电子邮件相关的编程接口。它是<strong>Sun</strong>发布的用来处理<strong>email</strong>的<strong>API</strong>。它可以方便的执行一些常用的邮件传输。我们可以基于<strong>JavaMaiil</strong>开发出类似于 <strong>Microsoft Outlook</strong>的应用程序。 </p>
@@ -8634,67 +8695,6 @@ rvconnector</code></pre></li>
 <p>发送邮件给用户，用户根据接收到的邮件的连接点击并跳转到对应的controller请求接口执行code验证码查询到用户，并根据当前激活码的作用对用户执行激活账户、业务等操作！！！</p>
 </blockquote>
 <p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/spring-boot-JSP-email" target="_blank" rel="noopener">码云</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>springboot功能篇</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>SpringBoot功能（二）定制 starter 启动器</title>
-    <url>/2020/03/08/SpringBoot%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E5%88%B6%20starter%20%E5%90%AF%E5%8A%A8%E5%99%A8/</url>
-    <content><![CDATA[<p>在实际项目开发中，我们常常会用到各种各样的 starter，这些starter 有的是有 springboot官方提供并已经整合一些基本功能的，如：<strong>spring-boot-starter，</strong>也有一些是由 第三方将框架与<strong>springboot</strong>进行定制整合后提供给我们进行快捷高效开发的，如：<strong>MyBatis-Spring-Boot-Starter。</strong></p>
-<p>在日常开发中，由于项目的要求以及高效开发、部署等，我们可以对springboot进行私有定制，生成自己需要的启动器，再引入到实际项目中，提高开发的效率。</p>
-<p>举例： 我们在<strong>springboot</strong> 中使用 <strong>redis</strong> 的 <strong>java</strong>控件<strong>jedis</strong> 时，需要 进行创建  <strong>Jedis</strong> 的实例并传入相应参数如  <strong>ip</strong> 、<strong>port</strong> 等，在使用<strong>springboot</strong>后，可以进行定制化<strong>starter</strong>，将<strong>Jedis</strong> 用<strong>ip</strong>、<strong>port</strong> 进行实例化，并将 <strong>Bean</strong> 注入容器由 <strong>SpringBoot</strong> 进行管理，制成启动器。</p>
-<p>在需要使用到 <strong>redis</strong> 功能的工程项目中引入该启动器，这样就能够提高开发的效率。</p>
-<p>正规的<strong>starter</strong>是一个独立的工程，然后在<strong>maven</strong>中新仓库注册发布，其他开发人员就可以使用你的<strong>starter</strong>了。</p>
-<p>以下实现一个针对 <strong>redis</strong> 的 定制器 <strong>starter</strong>。 </p>
-<h3 id="一、新建一个maven项目spring-boot-starter-redis-（启动器）"><a href="#一、新建一个maven项目spring-boot-starter-redis-（启动器）" class="headerlink" title="一、新建一个maven项目spring-boot-starter-redis （启动器）"></a>一、新建一个maven项目spring-boot-starter-redis （启动器）</h3><p>引入如下依赖： </p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">              <span class="comment">&lt;!--自动配置依赖--&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-configuration-processor<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息"><a href="#二、在此项目中编写-RedisProperties-class-，用以从-application-properties-中读取-redis-的配置信息" class="headerlink" title="二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息"></a>二、在此项目中编写 RedisProperties.class ，用以从 application.properties 中读取 redis 的配置信息</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.properties;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisProperties</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@ConfigurationProperties</span>(prefix=<span class="string">"jedis"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisProperties</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String host;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> port;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getHost</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHost</span><span class="params">(String host)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.host = host;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPort</span><span class="params">(<span class="keyword">int</span> port)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.port = port;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中"><a href="#三、在此项目中编写RedisAutoConfiguration-class，用以将-Jedis-的bean-装载进-spring-容器中" class="headerlink" title="三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中"></a>三、在此项目中编写RedisAutoConfiguration.class，用以将 Jedis 的bean 装载进 spring 容器中</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.demo.autoConfigure;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.example.demo.properties.RedisProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.AutoConfigureAfter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnClass;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.context.properties.EnableConfigurationProperties;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.annotation.PostConstruct;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> JedisAutoConfigure</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 18:32</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass</span>(&#123; Jedis<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">EnableConfigurationProperties</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class">@<span class="title">AutoConfigureAfter</span>(</span>&#123;RedisProperties<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">RedisAutoConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Jedis <span class="title">Jedis</span><span class="params">(RedisProperties redisProperties)</span> </span>&#123;</span><br><span class="line">         <span class="comment">//spring会自动将RedisProperties这个bean注入进来，</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Jedis(redisProperties.getHost(),redisProperties.getPort(),<span class="number">10000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为大家解释一下这些注解的含义</p>
-<table>
-<thead>
-<tr>
-<th>@SpringBootConfiguration：</th>
-<th>代表这是一个配置类</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>@EnableConfigurationProperties (RedisProperties.class)：</td>
-<td>将RedisProperties加载到spring容器中。参考Spring-Boot之@Enable*注解的工作原理</td>
-</tr>
-<tr>
-<td>@ConditionalOnClass(Jedis.class)：</td>
-<td>当项目引用了Jedis的jar时，才加载此配置类。参考Spring-Boot autoconfigure之Condition</td>
-</tr>
-</tbody></table>
-<h3 id="四、在此项目中resource目录下新建-application-properties-文件"><a href="#四、在此项目中resource目录下新建-application-properties-文件" class="headerlink" title="四、在此项目中resource目录下新建 application.properties 文件"></a>四、在此项目中resource目录下新建 application.properties 文件</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">redis.host=127.0.0.1</span><br><span class="line">redis.port=6379</span><br></pre></td></tr></table></figure>
-
-<h3 id="五、Bean-注入方式："><a href="#五、Bean-注入方式：" class="headerlink" title="五、Bean 注入方式："></a>五、Bean 注入方式：</h3><h4 id="第一种：自动注入，创建-依赖配置-spring-factories"><a href="#第一种：自动注入，创建-依赖配置-spring-factories" class="headerlink" title="第一种：自动注入，创建 依赖配置 spring.factories"></a>第一种：自动注入，创建 依赖配置 spring.factories</h4><p>在resource 目录下新建 META-INF 目录，并在该目录下创建 spring.factories 文件，在文件添加以下数据：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.springframework.boot.autoconfigure.EnableAutoConfiguration =com.example.demo.autoConfigure.RedisAutoConfiguration</span><br></pre></td></tr></table></figure>
-
-<p>当前数据用于将加载生成的Bean 交给当前启动器所在的容器进行管理，并在被引入到具体的工程项目时被项目中的容器所扫描到而调用。 </p>
-<h4 id="第二种：手动注入，创建EnableRedis类"><a href="#第二种：手动注入，创建EnableRedis类" class="headerlink" title="第二种：手动注入，创建EnableRedis类"></a>第二种：手动注入，创建<strong>EnableRedis</strong>类</h4><p>根据<strong>@Import</strong>注解 的作用进行切面配置，手动添加到 工程项目启动类 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Import</span>(RedisAutoConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">interface</span> <span class="title">EnableRedis</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用方式：</strong> </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableRedis</span><span class="comment">//关键的一步</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">......    </span><br><span class="line">                        &#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖"><a href="#六、新建Blog-工程项目，引入-spring-boot-starter-redis-依赖" class="headerlink" title="六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖"></a>六、新建Blog 工程项目，引入 spring-boot-starter-redis 依赖</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="七、在Blog项目中，编写启动类BlogApplication"><a href="#七、在Blog项目中，编写启动类BlogApplication" class="headerlink" title="七、在Blog项目中，编写启动类BlogApplication"></a>七、在Blog项目中，编写启动类BlogApplication</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ConfigurableApplicationContext;</span><br><span class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> BlogApplication</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/2/2 23:15</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlogApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ConfigurableApplicationContext context = SpringApplication.run(BlogApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">        Jedis jedis = context.getBean(Jedis<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        System.out.println(jedis);</span><br><span class="line">        <span class="comment">//如果成功连接上了redis，jedis.ping()会返回一个pong</span></span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="八、启动redis"><a href="#八、启动redis" class="headerlink" title="八、启动redis"></a>八、启动redis</h3><p><strong>启动虚拟机或云服务器的redis</strong> </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[root@wsp &#x2F;]# redis-server &#x2F;etc&#x2F;redis.conf </span><br><span class="line">[root@wsp &#x2F;]# redis-cli</span><br></pre></td></tr></table></figure>
-
-<p>先启动 <strong>Spring-boot-starter-redis</strong> 启动器 ，再启动具体的项目工程 <strong>spring-boot-starter-apps</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu60.png" width="60%">
-
-<p><a href="https://gitee.com/wushaopei/springboot-plus/tree/master/springboot-starter" target="_blank" rel="noopener">码云</a></p>
 <h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
       <categories>
         <category>springboot功能篇</category>
