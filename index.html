@@ -459,6 +459,513 @@ window.onmouseout = function () {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" itemprop="url">mybatis-映射器（十二）resultMap结果映射集 - 级联</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:49:57+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" class="leancloud_visitors" data-flag-title="mybatis-映射器（十二）resultMap结果映射集 - 级联">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          案例表结构设计：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657SET FOREIGN_KEY_CHECKS&#x3D;0;-- ----
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" itemprop="url">mybatis 映射器（十一）resultMap结果映射集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:48:43+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" class="leancloud_visitors" data-flag-title="mybatis 映射器（十一）resultMap结果映射集">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ​    resultMap 元素是 MyBatis 中最重要最强大的元素。 它可以让你从 90% 的 JDBC ResultSets 数据提取代码中解放出来，并在一些情形下允许你进行一些 JDBC 不支持的操作。实际上，在为一些比如连接的复杂语句编写映射代码的时候，一份 resultMap 能够代
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" itemprop="url">mybatis 映射器（十）sql元素</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:48:20+08:00">
+                2020-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（十）sql元素">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          sql 元素这个元素可以用来定义可重用的 SQL 代码片段，以便在其它语句中使用。 参数可以静态地（在加载的时候）确定下来，并且可以在不同的 include 元素中定义不同的参数值。​    例如，你有一条 SQL 需要 select 几十个字段映射到 JavaBean 中去，如果我们有第二条 SQ
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1714,531 +2221,6 @@ window.onmouseout = function () {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="url">并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T21:41:15+08:00">
-                2020-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          分析四种线程池的创建的底层实现：
-
-由上图中可知，四种线程其实都是有Executors来调用相应构造器实现创建的 
-
-
-由上图可知，newCachedThreadPool()创建可缓存的线程池底层实际还是调用ThreadPoolExecutor类的构造器返回的实例对象实现的。 
-
-
-newFixed
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" itemprop="url">并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T21:40:27+08:00">
-                2020-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" class="leancloud_visitors" data-flag-title="并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          线程池常用API提交任务的方法：
-execute () : 提交任务，交给线程池执行
-submit () : 提交任务，能够返回执行结果 execute + Future
-
-关闭线程池的方法：
-shutdown ( ) : 关闭线程池，等待任务都执行完
-shutdownNow () ： 关闭线程池，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/" itemprop="url">并发编程（二十四）JUC-线程调度-线程池-概念与API</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T17:15:47+08:00">
-                2020-04-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/" class="leancloud_visitors" data-flag-title="并发编程（二十四）JUC-线程调度-线程池-概念与API">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          线程池-概念与API引子：实际上，在开发中并不会普遍的使用Thread，因为它具有一些弊端，对并发性能的影响比较大，如下： 
-
-new Thread 弊端：
-​         每次 new Thread 新建对象，性能差；
-​         线程缺乏统一管理，可能无限制的新建线程，相互竞争，有可
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2293,7 +2275,7 @@ new Thread 弊端：
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">139</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2315,7 +2297,7 @@ new Thread 弊端：
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-23T15:05:04.768Z</updated>
+  <updated>2020-04-28T01:53:05.546Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,95 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mybatis-映射器（十二）resultMap结果映射集 - 级联</title>
+    <link href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/"/>
+    <id>http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/</id>
+    <published>2020-04-28T01:49:57.000Z</published>
+    <updated>2020-04-28T01:53:05.546Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="resultMap结果映射集" scheme="http://blog.wushaopei.com/tags/resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/"/>
+    
+      <category term="级联" scheme="http://blog.wushaopei.com/tags/%E7%BA%A7%E8%81%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（十一）resultMap结果映射集</title>
+    <link href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/"/>
+    <id>http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/</id>
+    <published>2020-04-28T01:48:43.000Z</published>
+    <updated>2020-04-28T01:52:23.205Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="resultMap结果映射集" scheme="http://blog.wushaopei.com/tags/resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis 映射器（十）sql元素</title>
+    <link href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/"/>
+    <id>http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/</id>
+    <published>2020-04-28T01:48:20.000Z</published>
+    <updated>2020-04-28T01:51:45.532Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
+    
+      <category term="sql 元素" scheme="http://blog.wushaopei.com/tags/sql-%E5%85%83%E7%B4%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis 映射器（九）参数</title>
@@ -508,87 +597,6 @@
     
     
       <category term="流程监听器" scheme="http://blog.wushaopei.com/tags/%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Activity（十六）并行网关</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/</id>
-    <published>2020-04-21T06:41:29.000Z</published>
-    <updated>2020-04-21T07:31:33.987Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Activity" scheme="http://blog.wushaopei.com/categories/Activity/"/>
-    
-    
-      <category term="并行网关" scheme="http://blog.wushaopei.com/tags/%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Activity（十五）排他网关</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/</id>
-    <published>2020-04-21T06:10:11.000Z</published>
-    <updated>2020-04-21T07:31:29.622Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Activity" scheme="http://blog.wushaopei.com/categories/Activity/"/>
-    
-    
-      <category term="排他网关" scheme="http://blog.wushaopei.com/tags/%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Activity（十四）流程连线</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%BF%9E%E7%BA%BF/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%BF%9E%E7%BA%BF/</id>
-    <published>2020-04-21T02:41:01.000Z</published>
-    <updated>2020-04-21T07:31:27.166Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Activity" scheme="http://blog.wushaopei.com/categories/Activity/"/>
-    
-    
-      <category term="流程连线" scheme="http://blog.wushaopei.com/tags/%E6%B5%81%E7%A8%8B%E8%BF%9E%E7%BA%BF/"/>
     
   </entry>
   
