@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-04-29T04:16:51.043Z</updated>
+  <updated>2020-05-02T08:40:31.695Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>mybatis-原理篇（三）SqlSession运行过程</title>
+    <link href="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89SqlSession%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/"/>
+    <id>http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89SqlSession%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-04-30T05:24:11.000Z</published>
+    <updated>2020-05-02T08:40:31.695Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="mybatis原理" scheme="http://blog.wushaopei.com/tags/mybatis%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="SqlSession" scheme="http://blog.wushaopei.com/tags/SqlSession/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis-原理篇（二）构建SqlSessionFactory过程</title>
+    <link href="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/"/>
+    <id>http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/</id>
+    <published>2020-04-30T05:23:48.000Z</published>
+    <updated>2020-05-02T07:18:35.471Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="mybatis原理" scheme="http://blog.wushaopei.com/tags/mybatis%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="Configuration" scheme="http://blog.wushaopei.com/tags/Configuration/"/>
+    
+      <category term="SqlSessionFactory" scheme="http://blog.wushaopei.com/tags/SqlSessionFactory/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis-原理篇（一）前置知识点： 反射与动态代理</title>
+    <link href="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    <id>http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</id>
+    <published>2020-04-30T05:23:16.000Z</published>
+    <updated>2020-04-30T08:59:32.735Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          
+        
+      
+    
+    </summary>
+    
+    
+      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
+    
+    
+      <category term="mybatis原理" scheme="http://blog.wushaopei.com/tags/mybatis%E5%8E%9F%E7%90%86/"/>
+    
+      <category term="反射" scheme="http://blog.wushaopei.com/tags/%E5%8F%8D%E5%B0%84/"/>
+    
+      <category term="动态代理" scheme="http://blog.wushaopei.com/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/"/>
+    
+  </entry>
   
   <entry>
     <title>转载：别让自己“墙了自己”</title>
@@ -500,99 +591,6 @@
     
     
       <category term="线程池" scheme="http://blog.wushaopei.com/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 映射器（六）select元素-使用resultMap 映射结果集</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/</id>
-    <published>2020-04-21T11:36:11.000Z</published>
-    <updated>2020-04-23T06:04:41.921Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
-    
-      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
-    
-      <category term="resultMap" scheme="http://blog.wushaopei.com/tags/resultMap/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis-映射器（五）select元素-传递多个参数</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/</id>
-    <published>2020-04-21T09:01:52.000Z</published>
-    <updated>2020-04-23T05:39:52.740Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
-    
-      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
-    
-      <category term="参数传递" scheme="http://blog.wushaopei.com/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mybatis 映射器（四）select元素-自动映射</title>
-    <link href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/"/>
-    <id>http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/</id>
-    <published>2020-04-21T09:01:01.000Z</published>
-    <updated>2020-04-22T15:10:15.107Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="mybatis" scheme="http://blog.wushaopei.com/categories/mybatis/"/>
-    
-    
-      <category term="映射器" scheme="http://blog.wushaopei.com/tags/%E6%98%A0%E5%B0%84%E5%99%A8/"/>
-    
-      <category term="select元素" scheme="http://blog.wushaopei.com/tags/select%E5%85%83%E7%B4%A0/"/>
-    
-      <category term="自动映射" scheme="http://blog.wushaopei.com/tags/%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/"/>
     
   </entry>
   
