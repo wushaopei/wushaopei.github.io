@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="s8Pe1TBqyy" />
+<script>
+    (function(){
+        if('password'){
+            if (prompt('请输入文章密码') !== 'password'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鮀城小帅" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="07. Port Management07.01. Port Operation Mode Management07.01.01. CST Operation Mode根据玻璃类型指示装载机当前的工作方式。 CST操作模式仅适用于特定的设备(仅适用于阵列，CF)。   Kind to Kind Mode (CF&#x2F;Cell Default)： Glass&#x2F;chip  按产品(种类)类型装入盒内。它不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化开发（六）Specification-06-Common Function">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/index.html">
+<meta property="og:site_name" content="鮀城小帅">
+<meta property="og:description" content="07. Port Management07.01. Port Operation Mode Management07.01.01. CST Operation Mode根据玻璃类型指示装载机当前的工作方式。 CST操作模式仅适用于特定的设备(仅适用于阵列，CF)。   Kind to Kind Mode (CF&#x2F;Cell Default)： Glass&#x2F;chip  按产品(种类)类型装入盒内。它不">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu520.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu521.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu522.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu523.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu524.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu525.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu526.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu527.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu528.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu529.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu530.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu531.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu532.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu533.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu534.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu535.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu536.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu537.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu538.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu539.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu540.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu541.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu542.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu543.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu544.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu545.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu546.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu547.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu548.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu549.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu550.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu551.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu552.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu553.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu554.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu555.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu556.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu557.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu558.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu559.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu560.png">
+<meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
+<meta property="article:modified_time" content="2020-05-08T07:33:10.647Z">
+<meta property="article:author" content="吴少培">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu520.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/13/自动化开发（七）Specification-07-Port Management/"/>
+
+
+
+
+
+  <title>自动化开发（六）Specification-06-Common Function | 鮀城小帅</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鮀城小帅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总要扛起一片心中的天</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-公益">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-说说">
+          <a href="/shuoshuo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            说说
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/wushaopei" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+  <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+</a>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自动化开发（六）Specification-06-Common Function</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T15:09:47+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" class="leancloud_visitors" data-flag-title="自动化开发（六）Specification-06-Common Function">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="07-Port-Management"><a href="#07-Port-Management" class="headerlink" title="07. Port Management"></a>07. Port Management</h2><h3 id="07-01-Port-Operation-Mode-Management"><a href="#07-01-Port-Operation-Mode-Management" class="headerlink" title="07.01. Port Operation Mode Management"></a>07.01. Port Operation Mode Management</h3><h4 id="07-01-01-CST-Operation-Mode"><a href="#07-01-01-CST-Operation-Mode" class="headerlink" title="07.01.01. CST Operation Mode"></a>07.01.01. CST Operation Mode</h4><p>根据玻璃类型指示装载机当前的工作方式。 CST操作模式仅适用于特定的设备(仅适用于阵列，CF)。 </p>
+<ul>
+<li>Kind to Kind Mode (CF/Cell Default)： Glass/chip  按产品(种类)类型装入盒内。它不考虑 glasses 的FIFO顺序。卸载 cassette 满时，卸载报告卸载请求事件。 </li>
+<li>Cassette To Cassette Mode(Array Default)： Glass/chip 将储存在相同的槽卸载磁带作为加载磁带。如果卸载机有金属丝盒，玻璃/芯片可以存储到另一个卸载盒槽。工作数据表设备写入。 </li>
+</ul>
+<h5 id="07-01-01-01-PLC-MAP-de-Mode"><a href="#07-01-01-01-PLC-MAP-de-Mode" class="headerlink" title="07.01.01.01. PLC MAP de Mode"></a>07.01.01.01. PLC MAP de Mode</h5><img src="http://photo.wushaopei.com/qiniu520.png" width="80%">
+
+<h5 id="07-01-01-02-Communication-Scenario"><a href="#07-01-01-02-Communication-Scenario" class="headerlink" title="07.01.01.02. Communication Scenario"></a>07.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu521.png" width="80%">
+
+<h4 id="07-01-02-Partial-Full-Mode"><a href="#07-01-02-Partial-Full-Mode" class="headerlink" title="07.01.02. Partial Full Mode"></a>07.01.02. Partial Full Mode</h4><p>Unloader should provide Partial Full Mode Enable/Disable function. </p>
+<ul>
+<li>Enable：  <ul>
+<li>When Cassette Status = Process Complete，从 port 卸下全部 Cassette  或部分 Cassette 时，设备需要打开部分全开标志。</li>
+<li>Unloader port can load partial cassette or empty cassette </li>
+</ul>
+</li>
+<li>Disable：  <ul>
+<li>When Cassette Status = Process Complete, Full Cassette or Partial Cassette unload from  port, equipment doesn’t need to turn on Partial Full Flag.</li>
+<li>Unloader port can load empty cassette. </li>
+</ul>
+</li>
+</ul>
+<h5 id="07-01-02-01-PLC-MAP"><a href="#07-01-02-01-PLC-MAP" class="headerlink" title="07.01.02.01. PLC MAP"></a>07.01.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu522.png" width="80%">
+
+<h5 id="07-01-02-02-Communication-Scenario"><a href="#07-01-02-02-Communication-Scenario" class="headerlink" title="07.01.02.02. Communication Scenario"></a>07.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu523.png" width="80%">
+
+
+
+<h3 id="07-02-Port-Function-Management"><a href="#07-02-Port-Function-Management" class="headerlink" title="07.02. Port Function Management"></a>07.02. Port Function Management</h3><h4 id="07-02-01-Port-Type-Change"><a href="#07-02-01-Port-Type-Change" class="headerlink" title="07.02.01. Port Type Change"></a>07.02.01. Port Type Change</h4><p>它是根据当前加载在端口上的磁带的预期操作对端口进行分类: 加载在端口上的磁带是是否将作业输入到 Inline , 或在作业以行方式完成后，从 Inline  方式输出作业 ,  或在临时行中缓冲作业 .</p>
+<p>如果端口上有磁带，则不能更改端口的端口类型。 设备制造商应该提供这一功能。如果端口类型改变，设备应该报告端口的 ‘Load Request’   事件 .</p>
+<p>There are 4 kinds of port types, loader, un-loader, both and buffer.  根据端口的类型，端口模式与端口类型相关。 </p>
+<ul>
+<li><p>Loading Port： 用于从装入端口的 cassette 中取出 Job 并将其输入到 Inline 中。 </p>
+</li>
+<li><p>Unloading Port： 用于将完成其过程的 Job 存储到 cassette 中 ,  把 cassette  从 Inline  取出来</p>
+</li>
+<li><p>Both Port： 用于从装入 Port 的 cassette  中取出 Job 并将其输入到 Inline  中，也用于将完成其处理过程的作业存储到 cassette  中，并将 cassette  从 Inline  中取出 </p>
+</li>
+<li><p>Buffer Port：To be used to buffer Job in Inline </p>
+<ul>
+<li>Buffer Type： 指示此 Port 仅用于缓冲目的。可混合多种类型的玻璃。 </li>
+<li>Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline  输入，如Loading Port。 </li>
+<li>Un-Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline 输出，如Unloading Port。 </li>
+</ul>
+<h5 id="07-02-01-01-PLC-MAP"><a href="#07-02-01-01-PLC-MAP" class="headerlink" title="07.02.01.01. PLC MAP"></a>07.02.01.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu524.png" width="80%">
+
+</li>
+</ul>
+<h5 id="07-02-01-02-Communication-Scenario"><a href="#07-02-01-02-Communication-Scenario" class="headerlink" title="07.02.01.02. Communication Scenario"></a>07.02.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu525.png" width="80%">
+
+
+
+<h4 id="07-02-02-Port-Mode-Change"><a href="#07-02-02-Port-Mode-Change" class="headerlink" title="07.02.02. Port Mode Change"></a>07.02.02. Port Mode Change</h4><p>它是根据端口盒中所包含的眼镜的操作方式对端口进行分类。</p>
+<p>显示玻璃类型或判断信息。基于端口类型的含义有一些不同。</p>
+<p>如果端口上有盒式磁带，则端口的端口模式不能更改。设备制造商应该提供这一功能。如果端口模式改变，设备应报告端口的“负载请求”事件。(自动换口模式设备除外)</p>
+<img src="http://photo.wushaopei.com/qiniu526.png" width="80%">
+
+<ul>
+<li><p>Loading Port： 指示装载在 Port 上的 Cassette 中所包含的 Glass 类型</p>
+<ul>
+<li><p>TFT Mode： 表示此端口用于处理TFT玻璃。 </p>
+</li>
+<li><p>CF Mode：Indicates that this Port is for processing CF Glasses. </p>
+</li>
+<li><p>Dummy Mode： Indicates that this Port is for processing Dummy Glasses into Inline. </p>
+</li>
+<li><p>MQC Mode：Indicates that this Port is for processing MQC Glasses into Inline </p>
+</li>
+<li><p>HT Mode：Indicates that all glasses in this Port would enter HT Chamber in CVD for  </p>
+<p>processing</p>
+</li>
+<li><p>LT Mode：Indicates that all glasses in this Port would enter LT Chamber in CVD for  </p>
+<p>processing</p>
+</li>
+<li><p>ENG Mode：Indicates that this Port is for processing MQC Glasses into Inline. </p>
+</li>
+<li><p>IGZO Mode：Indicates that this Port is for processing IGZO Glasses into Inline </p>
+</li>
+<li><p>ILC Mode：Indicates that all glasses in this Port would enter the equipment in ILC mode  for processing</p>
+</li>
+<li><p>FLC模式:表示该端口的所有眼镜进入FLC模式进行处理 </p>
+</li>
+<li><p>Through Dummy Mode：Indicates that this Port is for processing Through Dummy  </p>
+<p>Glasses into Inline. </p>
+</li>
+<li><p>Thickness Dummy Mode：Indicates this Port is to fetch Thickness Dummy Glasses into Inline.</p>
+</li>
+<li><p>UV Mask Mode：表示此端口用于将  UV Mask Glasses  Inline 加工。 </p>
+</li>
+<li><p>Mismatch Mode：用于处理 Array/ CF line 的排序 ，表示此端口用于处理VCR读不匹配的 Glass。 </p>
+</li>
+</ul>
+</li>
+<li><p>Both Port： 这个端口用于 loading 和 un-loading 这两种类型。 </p>
+<ul>
+<li>TFT Mode： 指示此端口用于 loading 和 un-loading TFT玻璃。 </li>
+<li>CF Mode：表示此端口用于 loading 和 un-loading CF 玻璃。 </li>
+<li>Dummy Mode：表示此端口用于 loading 和 un-loading Dummy Glasses。</li>
+<li>MQC Mode： 表示此端口用于 loading 和 un-loading MQC Dummy Glasses。</li>
+<li>HT Mode： 指示此端口用于 loading 和 un-loading，将进入CVD中的HT室进行处理。</li>
+<li>LT Mode： 表示此端口为加载，卸载时将进入CVD中的LT室进行处理。 </li>
+<li>ENG Mode： 说明此端口用于MQC玻璃的装卸加工。 </li>
+<li>IGZO Mode： 表示此端口用于装载和卸载加工IGZO玻璃。 </li>
+<li>ILC Mode：表示此装卸口将进入设备的ILC模式进行处理。 </li>
+<li>FLC Mode：表示此装卸口将进入设备FLC模式进行处理。 </li>
+</ul>
+<p>设备仅根据端口类型使用一种端口模式:加载器、卸载器和缓冲区。</p>
+<p>例如，卸载器可能有正常，返工，修理或NG端口和缓冲区可能有加载，卸载，虚拟，刮，返工或缓冲区。</p>
+</li>
+</ul>
+<h5 id="07-02-02-01-PLC-MAP"><a href="#07-02-02-01-PLC-MAP" class="headerlink" title="07.02.02.01. PLC MAP"></a>07.02.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu527.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu528.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu529.png" width="80%">
+
+<h5 id="07-02-02-02-Communication-Scenario"><a href="#07-02-02-02-Communication-Scenario" class="headerlink" title="07.02.02.02. Communication Scenario"></a>07.02.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu530.png" width="80%">
+
+<h4 id="07-02-03-Port-Transfer-Mode-Change"><a href="#07-02-03-Port-Transfer-Mode-Change" class="headerlink" title="07.02.03. Port Transfer Mode Change"></a>07.02.03. Port Transfer Mode Change</h4><p>它指出了在端口和AMHS之间传输磁带的方式。有3种模式 : AGV模式，MGV模式和STK内联模式。AGV模式包括RGV模式。</p>
+<p>AGV模式应该能够通过操作员按下的按钮切换到MGV模式。</p>
+<p>如果端口上有盒式磁带，则端口的端口传输模式不能改变。</p>
+<p>设备制造商应该提供这一功能。如果端口传输模式改变，设备应报告端口的“负载请求”事件。</p>
+<ul>
+<li>MGV Mode： 与 MGV 的 Port 接口</li>
+<li>AGV Mode： 与 AGV 的 Port 接口</li>
+<li>Stocker Inline Mode：与 储料器的 Port 接口</li>
+</ul>
+<h5 id="07-02-03-01-PLC-MAP"><a href="#07-02-03-01-PLC-MAP" class="headerlink" title="07.02.03.01. PLC MAP"></a>07.02.03.01. PLC MAP</h5><h6 id="07-02-03-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-02-03-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.02.03.01.01. Local PLC – Link Register (W Area)"></a>07.02.03.01.01. Local PLC – Link Register (W Area)</h6><img src="http://photo.wushaopei.com/qiniu531.png" width="80%">
+
+<h5 id="07-02-03-02-Communication-Scenario"><a href="#07-02-03-02-Communication-Scenario" class="headerlink" title="07.02.03.02. Communication Scenario"></a>07.02.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu532.png" width="80%">
+
+<h4 id="07-02-04-Port-Enable-Mode-Change"><a href="#07-02-04-Port-Enable-Mode-Change" class="headerlink" title="07.02.04. Port Enable Mode Change"></a>07.02.04. Port Enable Mode Change</h4><p>端口启用模式意味着将使用该端口。只有当端口上没有磁带时，端口启用/禁用更改才可用(即加载请求状态)。一旦端口状态被设置为禁用，就不应该允许或更改与端口相关的端口模式或磁带状态。</p>
+<p>如果端口上有盒式磁带，则端口的端口启用模式不能更改。</p>
+<p>设备制造商应该提供这一功能。如果端口启用模式从禁用模式更改为启用模式，设备应报告端口的“负载请求”事件。</p>
+<ul>
+<li>Enabled Mode： 可以使用此端口。 </li>
+<li>Disabled Mode： 此端口无法使用。操作员或其他人员禁止使用此端口 </li>
+</ul>
+<h5 id="07-02-04-01-PLC-MAP"><a href="#07-02-04-01-PLC-MAP" class="headerlink" title="07.02.04.01. PLC MAP"></a>07.02.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu533.png" width="80%">
+
+<h5 id="07-02-04-02-Communication-Scenario"><a href="#07-02-04-02-Communication-Scenario" class="headerlink" title="07.02.04.02. Communication Scenario"></a>07.02.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu534.png" width="80%">
+
+<h4 id="07-02-05-Cassette-on-Port-Q-Time-Change"><a href="#07-02-05-Cassette-on-Port-Q-Time-Change" class="headerlink" title="07.02.05. Cassette on Port Q Time Change"></a>07.02.05. Cassette on Port Q Time Change</h4><p>所有有负载端口的设备应提供端口Q时间功能的磁带。如果卡带等待处理状态超过设置Q时间，设备应自动取消此卡带并发出警告。Q时间应该在触摸屏上设置。 </p>
+<p>当Q时间值发生变化时，设备应向BC报告。</p>
+<p>若Q时间值为0，则表示设备不自动取消卡带，即使卡带已超过Q时间设置。</p>
+<h5 id="07-02-05-01-PLC-MAP"><a href="#07-02-05-01-PLC-MAP" class="headerlink" title="07.02.05.01. PLC MAP"></a>07.02.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu535.png" width="80%">
+
+<h5 id="07-02-05-02-Communication-Scenario"><a href="#07-02-05-02-Communication-Scenario" class="headerlink" title="07.02.05.02. Communication Scenario"></a>07.02.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu536.png" width="80%">
+
+<h4 id="07-02-06-Cassette-on-Port-Q-Time-Change-Command"><a href="#07-02-06-Cassette-on-Port-Q-Time-Change-Command" class="headerlink" title="07.02.06. Cassette on Port Q Time Change Command"></a>07.02.06. Cassette on Port Q Time Change Command</h4><p>BC也可以设置卡带对Q口时间的值。当设备接收到此事件时，应将Q时间值更改为，并将回复结果改为BC。 </p>
+<ul>
+<li><p>OK：重新计数卡带的端口Q时间。 </p>
+</li>
+<li><p>NG：保持原始磁带在Q端口的时间。</p>
+<p> 如果设备回复OK，设备需要在端口Q上再次自动触发卡带时间改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-06-01-PLC-MAP"><a href="#07-02-06-01-PLC-MAP" class="headerlink" title="07.02.06.01. PLC MAP"></a>07.02.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu537.png" width="80%">
+
+<h5 id="07-02-06-02-Communication-Scenario"><a href="#07-02-06-02-Communication-Scenario" class="headerlink" title="07.02.06.02. Communication Scenario"></a>07.02.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu538.png" width="80%">
+
+<h4 id="07-02-07-Port-Down"><a href="#07-02-07-Port-Down" class="headerlink" title="07.02.07. Port Down"></a>07.02.07. Port Down</h4><p>​    当端口有错误不能使用时，设备应触发此功能到BC。 </p>
+<ul>
+<li><p>Normal：Port is OK </p>
+</li>
+<li><p>Down： 发生错误时端口不能使用。 </p>
+<p>For Array/CF： 当一个端口出现错误不能使用时，设备也应同时将“端口下的真实状态”更新到BC。 </p>
+</li>
+</ul>
+<h5 id="07-02-07-01-PLC-MAP"><a href="#07-02-07-01-PLC-MAP" class="headerlink" title="07.02.07.01. PLC MAP"></a>07.02.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu539.png" width="80%">
+
+<h5 id="07-02-07-02-Communication-Scenario"><a href="#07-02-07-02-Communication-Scenario" class="headerlink" title="07.02.07.02. Communication Scenario"></a>07.02.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu540.png" width="80%">
+
+<h4 id="07-02-08-Port-Type-Change-Command"><a href="#07-02-08-Port-Type-Change-Command" class="headerlink" title="07.02.08. Port Type Change Command"></a>07.02.08. Port Type Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将结果回复到BC并更改端口类型。如果端口上有盒式磁带，则不能更改端口的端口类型。 </p>
+<ul>
+<li><p>OK：更改端口类型 </p>
+</li>
+<li><p>NG：不能更改端口的端口类型 </p>
+<p> 如果设备回复OK，设备需要在端口类型改变事件上再次自动触发盒式磁带。 </p>
+</li>
+</ul>
+<h5 id="07-02-08-01-PLC-MAP"><a href="#07-02-08-01-PLC-MAP" class="headerlink" title="07.02.08.01. PLC MAP"></a>07.02.08.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu541.png" width="80%">
+
+<h5 id="07-02-08-02-Communication-Scenario"><a href="#07-02-08-02-Communication-Scenario" class="headerlink" title="07.02.08.02. Communication Scenario"></a>07.02.08.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu542.png" width="80%">
+
+<h4 id="07-02-09-Port-Mode-Change-Command"><a href="#07-02-09-Port-Mode-Change-Command" class="headerlink" title="07.02.09. Port Mode Change Command"></a>07.02.09. Port Mode Change Command</h4><p>还可以设置BC端口模式的改变。当设备收到此命令时，应将结果回复到BC并改变端口模式。如果端口上有磁带，则端口的端口模式无法更改 </p>
+<ul>
+<li><p>OK ：更改端口的端口模式。 </p>
+</li>
+<li><p>NG ：不能改变端口的端口模式</p>
+<p>如果设备回复OK，设备需要再次自动触发端口模式改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-09-01-PLC-MAP"><a href="#07-02-09-01-PLC-MAP" class="headerlink" title="07.02.09.01. PLC MAP"></a>07.02.09.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu543.png" width="80%">
+
+<h5 id="07-02-09-02-Communication-Scenario"><a href="#07-02-09-02-Communication-Scenario" class="headerlink" title="07.02.09.02. Communication Scenario"></a>07.02.09.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu544.png" width="80%">
+
+<h4 id="07-02-10-Port-Transfer-Mode-Change-Command"><a href="#07-02-10-Port-Transfer-Mode-Change-Command" class="headerlink" title="07.02.10. Port Transfer Mode Change Command"></a>07.02.10. Port Transfer Mode Change Command</h4><p>BC还可以设置端口传输模式的改变。当设备收到此命令时，应将应答结果返回给BC，并改变端口传输模式。如果端口上有磁带，则端口的端口传输模式不能改变。</p>
+<ul>
+<li><p>OK： 改变端口的传输方式。 </p>
+</li>
+<li><p>NG :  无法更改端口的传输模式。 </p>
+<p>如果设备回复OK，设备需要再次自动触发端口传输模式更改事件。 </p>
+</li>
+</ul>
+<h5 id="07-02-10-01-PLC-MAP"><a href="#07-02-10-01-PLC-MAP" class="headerlink" title="07.02.10.01. PLC MAP"></a>07.02.10.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu545.png" width="80%">
+
+<h5 id="07-02-10-02-Communication-Scenario"><a href="#07-02-10-02-Communication-Scenario" class="headerlink" title="07.02.10.02. Communication Scenario"></a>07.02.10.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu546.png" width="80%">
+
+<h4 id="07-02-11-Port-Enable-Mode-Change-Command"><a href="#07-02-11-Port-Enable-Mode-Change-Command" class="headerlink" title="07.02.11. Port Enable Mode Change Command"></a>07.02.11. Port Enable Mode Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将应答结果返回给BC并更改端口启用模式。如果端口上有磁带，则该端口无法更改。 </p>
+<ul>
+<li><p>OK： 改变端口的启用端口 </p>
+</li>
+<li><p>NG： 不能更改端口的启用端口 </p>
+<p>如果设备回复OK，设备需要再次自动触发端口使能模式改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-11-01-PLC-MAP"><a href="#07-02-11-01-PLC-MAP" class="headerlink" title="07.02.11.01. PLC MAP"></a>07.02.11.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu547.png" width="80%">
+
+<h5 id="07-02-11-02-Communication-Scenario"><a href="#07-02-11-02-Communication-Scenario" class="headerlink" title="07.02.11.02. Communication Scenario"></a>07.02.11.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu548.png" width="80%">
+
+<h3 id="07-03-Port-amp-Cassette-Status-Management"><a href="#07-03-Port-amp-Cassette-Status-Management" class="headerlink" title="07.03. Port &amp; Cassette Status Management"></a>07.03. Port &amp; Cassette Status Management</h3><h4 id="07-03-01-Item-Define"><a href="#07-03-01-Item-Define" class="headerlink" title="07.03.01. Item Define"></a>07.03.01. Item Define</h4><h5 id="07-03-01-01-Port-Status"><a href="#07-03-01-01-Port-Status" class="headerlink" title="07.03.01.01. Port Status"></a>07.03.01.01. Port Status</h5><p>港口状态有4种类型;加载请求，加载完成，卸载请求和卸载完成。 </p>
+<ul>
+<li>Load Request： 端口可以接收盒式磁带，正在等待装入盒式磁带。在触发事件时，应自动增加端口的盒序号。在PLC的R口块中，CST状态下LDRQ后撤，设备将自动将ZR口区数据全部清除，避免残留影响下次下载盒式数据。 </li>
+<li>Load Complete： 一盒磁带已装上了端口。 </li>
+<li>Unload Request：一盒磁带正等着卸下来。 </li>
+<li>Unload Complete： 一盒磁带已经卸载了，端口上没有磁带了。 </li>
+</ul>
+<h5 id="07-03-01-02-Cassette-Status"><a href="#07-03-01-02-Cassette-Status" class="headerlink" title="07.03.01.02. Cassette Status"></a>07.03.01.02. Cassette Status</h5><p>​    卡带状态与操作者或设备本身的工艺操作有关。 </p>
+<ul>
+<li>No Cassette Exist： 端口上没有盒式磁带。 </li>
+<li>Waiting for Cassette Data： 磁带当前被装入端口，等待主PLC或操作员的磁带映射数据。设备应报告这一事件后，夹紧盒式磁带和(如果端口有BCR)读取盒式磁带ID和(如果端口有映射单元)感应每个插槽的工作的存在。 </li>
+<li>Waiting for Start Command： Cassette Map 已成功接收，正在等待主PLC或操作员的启动命令 </li>
+<li>Waiting for Processing <ul>
+<li>Loading Port： 开始命令已成功接收，并等待作业取出开始 </li>
+<li>Unloading Port： 已成功接收到Start命令，正在等待将Start插入到磁带中的作业。 </li>
+</ul>
+</li>
+<li>In Processing <ul>
+<li>Loading Port： 应该先更改为“正在处理中”，然后将T5报告  “Fetch out Job Data”  事件延迟到BC </li>
+<li>Unloading Port：应先更改为  “In Processing”  ，然后将T5报告 “Store Job Data”  事件延迟到BC。 </li>
+<li>Buffer Port：接收到BC的Start命令后，将更改为“In Processing”，然后需要延迟T5报告“Store Job Data”或“Fetch Out Job Data”事件到BC。 </li>
+<li>T5定时器默认值为1秒;范围 1~8秒 </li>
+</ul>
+</li>
+<li>Process Completed： 过程中的盒式磁带已完成(最后一次玻璃存储在盒式磁带后)或取消，或中止，需要延迟T5定时器才能改变到过程完成状态。 </li>
+<li>Process Paused： 盒式磁带的处理已被BC或操作员(EQ)暂停 </li>
+<li>Re-Map： 操作员在BC OPI改变盒式磁带状态从正在处理重新映射，等待操作员重新选择和下载盒式磁带映射数据。 </li>
+</ul>
+<h5 id="07-03-01-03-Cassette-Sequence-No"><a href="#07-03-01-03-Cassette-Sequence-No" class="headerlink" title="07.03.01.03. Cassette Sequence No"></a>07.03.01.03. Cassette Sequence No</h5><p>Cassette Sequence No 是表示盒式磁带的虚构序列号。当该端口的端口状态更改为“Load Request”时，它应该被增加。 </p>
+<h5 id="07-03-01-04-Operator-ID"><a href="#07-03-01-04-Operator-ID" class="headerlink" title="07.03.01.04. Operator ID"></a>07.03.01.04. Operator ID</h5><p>每个在线的操作员都有唯一的ID。设备必须为操作员ID输入提供屏幕。 </p>
+<h5 id="07-03-01-05-Cassette-ID"><a href="#07-03-01-05-Cassette-ID" class="headerlink" title="07.03.01.05. Cassette ID"></a>07.03.01.05. Cassette ID</h5><p>如果端口有一个BCR，那么它必须更新项目。BCR夹紧后读取卡带ID。 </p>
+<h5 id="07-03-01-06-Job-Count-in-Cassette"><a href="#07-03-01-06-Job-Count-in-Cassette" class="headerlink" title="07.03.01.06. Job Count in Cassette"></a>07.03.01.06. Job Count in Cassette</h5><p>盒式磁带中的作业计数是盒式磁带在端口装载时的作业计数。当映射单元感知到每个槽中存在作业时，应该更新它。如果工作计数有任何变化，及时报告设备。 </p>
+<h5 id="07-03-01-07-Job-Existence"><a href="#07-03-01-07-Job-Existence" class="headerlink" title="07.03.01.07. Job Existence"></a>07.03.01.07. Job Existence</h5><p>如果映射单元感知到每个槽中作业的存在，则应针对每个槽对其进行更新并实时刷新。 </p>
+<h5 id="07-03-01-08-Complete-Cassette-Dat"><a href="#07-03-01-08-Complete-Cassette-Dat" class="headerlink" title="07.03.01.08. Complete Cassette Dat"></a>07.03.01.08. Complete Cassette Dat</h5><p>它用来表示磁带是如何完成的。 </p>
+<ul>
+<li>Normal Complete： 磁带已正常完成 </li>
+<li>Operator Forced To Cancel： 在工序开始前，操作员已经取消了Cassette </li>
+<li>Operator Forced To Abort： 在正常的程序完成之前，操作员已经中止了磁带 </li>
+<li>BC Forced to Cancel： 在流程开始前，Cassette 已被BC取消。 </li>
+<li>BC Forced to Abort： 在正常工艺完成之前，卡带已被BC终止。 </li>
+<li>EQ Auto Cancel： Cassette 在开机前已被EQ自动取消。 </li>
+<li>EQ Auto Abort： 在正常工艺完成之前，Cassette 已被EQ自动中止。 </li>
+</ul>
+<h4 id="07-03-02-Port-amp-Cassette-Status-Change"><a href="#07-03-02-Port-amp-Cassette-Status-Change" class="headerlink" title="07.03.02. Port &amp; Cassette Status Change"></a>07.03.02. Port &amp; Cassette Status Change</h4><h5 id="07-03-02-01-Normal-Scenario"><a href="#07-03-02-01-Normal-Scenario" class="headerlink" title="07.03.02.01. Normal Scenario"></a>07.03.02.01. Normal Scenario</h5><img src="http://photo.wushaopei.com/qiniu549.png" width="80%">
+
+<h5 id="07-03-02-02-Re-Map-Scenario"><a href="#07-03-02-02-Re-Map-Scenario" class="headerlink" title="07.03.02.02. Re-Map Scenario"></a>07.03.02.02. Re-Map Scenario</h5><img src="http://photo.wushaopei.com/qiniu550.png" width="80%">
+
+<h4 id="07-03-03-PLC-MAP"><a href="#07-03-03-PLC-MAP" class="headerlink" title="07.03.03. PLC MAP"></a>07.03.03. PLC MAP</h4><h5 id="07-03-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-03-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.03.03.01. Local PLC – Link Register (W Area)"></a>07.03.03.01. Local PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu551.png" width="80%">
+
+<h5 id="07-03-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.02. Local PLC – Link Relay (B Area)"></a>07.03.03.02. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu552.png" width="80%">
+
+<h5 id="07-03-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.03. Master PLC – Link Relay (B Area)"></a>07.03.03.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu553.png" width="80%">
+
+<h4 id="07-03-04-Communication-Scenario"><a href="#07-03-04-Communication-Scenario" class="headerlink" title="07.03.04. Communication Scenario"></a>07.03.04. Communication Scenario</h4><h5 id="07-03-04-01-Cassette-Normal-Scenario"><a href="#07-03-04-01-Cassette-Normal-Scenario" class="headerlink" title="07.03.04.01. Cassette Normal Scenario"></a>07.03.04.01. Cassette Normal Scenario</h5><p>设备应有T4定时器，用于设置进程完成回复和UR事件之间的时间范围(如果是源盒式磁带自动转换为目标盒式磁带，则为UC事件); </p>
+<p>在等待过程中的盒状态，在第一次取玻璃之前，设备必须向BC报告第一次玻璃检查。当BC回复OK时，第一个杯子就可以取了。 </p>
+<p>在取第一个玻璃之前，设备必须与BC确认。如果BC回复NG，设备取消卡带。 </p>
+<img src="http://photo.wushaopei.com/qiniu554.png" width="80%">
+
+<h5 id="07-03-04-02-Cassette-Cancel-Scenario"><a href="#07-03-04-02-Cassette-Cancel-Scenario" class="headerlink" title="07.03.04.02. Cassette Cancel Scenario"></a>07.03.04.02. Cassette Cancel Scenario</h5><img src="http://photo.wushaopei.com/qiniu555.png" width="80%">
+
+<h5 id="07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command"><a href="#07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command" class="headerlink" title="07.03.04.03. Cassette Cancel Scenario – After waiting for start command"></a>07.03.04.03. Cassette Cancel Scenario – After waiting for start command</h5><p>​         <img src="http://photo.wushaopei.com/qiniu556.png" width="80%"></p>
+<h5 id="07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing"><a href="#07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing" class="headerlink" title="07.03.04.04. Cassette Cancel Scenario – After waiting for processing"></a>07.03.04.04. Cassette Cancel Scenario – After waiting for processing</h5><p>​         <img src="http://photo.wushaopei.com/qiniu557.png" width="80%"></p>
+<h5 id="07-03-04-05-Cassette-Abort-Scenario"><a href="#07-03-04-05-Cassette-Abort-Scenario" class="headerlink" title="07.03.04.05. Cassette Abort Scenario"></a>07.03.04.05. Cassette Abort Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu558.png" width="80%"></p>
+<h5 id="07-03-04-06-Empty-Cassette-Scenario"><a href="#07-03-04-06-Empty-Cassette-Scenario" class="headerlink" title="07.03.04.06. Empty Cassette Scenario"></a>07.03.04.06. Empty Cassette Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu559.png" width="80%"></p>
+<h5 id="07-03-04-07-EMP-Mode-Change-Scenario"><a href="#07-03-04-07-EMP-Mode-Change-Scenario" class="headerlink" title="07.03.04.07. EMP Mode Change Scenario"></a>07.03.04.07. EMP Mode Change Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu560.png" width="80%"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    吴少培
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" title="自动化开发（六）Specification-06-Common Function">http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/08/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%8F%8A%E5%AE%89%E5%85%A8%E5%85%B1%E4%BA%AB%E7%AD%96%E7%95%A5%E6%80%BB%E7%BB%93/" rel="next" title="并发编程（十四）线程安全策略-并发容器及安全共享策略总结">
+                <i class="fa fa-chevron-left"></i> 并发编程（十四）线程安全策略-并发容器及安全共享策略总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" rel="prev" title="自动化开发（六）Specification-06-Common Function">
+                自动化开发（六）Specification-06-Common Function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="吴少培" />
+            
+              <p class="site-author-name" itemprop="name">吴少培</p>
+              <p class="site-description motion-element" itemprop="description">冗长的黑暗中,你是我唯一的光。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">150</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#07-Port-Management"><span class="nav-number">1.</span> <span class="nav-text">07. Port Management</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#07-01-Port-Operation-Mode-Management"><span class="nav-number">1.1.</span> <span class="nav-text">07.01. Port Operation Mode Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#07-01-01-CST-Operation-Mode"><span class="nav-number">1.1.1.</span> <span class="nav-text">07.01.01. CST Operation Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-01-01-01-PLC-MAP-de-Mode"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">07.01.01.01. PLC MAP de Mode</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-01-01-02-Communication-Scenario"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">07.01.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-01-02-Partial-Full-Mode"><span class="nav-number">1.1.2.</span> <span class="nav-text">07.01.02. Partial Full Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-01-02-01-PLC-MAP"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">07.01.02.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-01-02-02-Communication-Scenario"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">07.01.02.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-02-Port-Function-Management"><span class="nav-number">1.2.</span> <span class="nav-text">07.02. Port Function Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-01-Port-Type-Change"><span class="nav-number">1.2.1.</span> <span class="nav-text">07.02.01. Port Type Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-01-01-PLC-MAP"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">07.02.01.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-01-02-Communication-Scenario"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">07.02.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-02-Port-Mode-Change"><span class="nav-number">1.2.2.</span> <span class="nav-text">07.02.02. Port Mode Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-02-01-PLC-MAP"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">07.02.02.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-02-02-Communication-Scenario"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">07.02.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-03-Port-Transfer-Mode-Change"><span class="nav-number">1.2.3.</span> <span class="nav-text">07.02.03. Port Transfer Mode Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-03-01-PLC-MAP"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">07.02.03.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#07-02-03-01-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.2.3.1.1.</span> <span class="nav-text">07.02.03.01.01. Local PLC – Link Register (W Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-03-02-Communication-Scenario"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">07.02.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-04-Port-Enable-Mode-Change"><span class="nav-number">1.2.4.</span> <span class="nav-text">07.02.04. Port Enable Mode Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-04-01-PLC-MAP"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">07.02.04.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-04-02-Communication-Scenario"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">07.02.04.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-05-Cassette-on-Port-Q-Time-Change"><span class="nav-number">1.2.5.</span> <span class="nav-text">07.02.05. Cassette on Port Q Time Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-05-01-PLC-MAP"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">07.02.05.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-05-02-Communication-Scenario"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">07.02.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-06-Cassette-on-Port-Q-Time-Change-Command"><span class="nav-number">1.2.6.</span> <span class="nav-text">07.02.06. Cassette on Port Q Time Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-06-01-PLC-MAP"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">07.02.06.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-06-02-Communication-Scenario"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">07.02.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-07-Port-Down"><span class="nav-number">1.2.7.</span> <span class="nav-text">07.02.07. Port Down</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-07-01-PLC-MAP"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">07.02.07.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-07-02-Communication-Scenario"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">07.02.07.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-08-Port-Type-Change-Command"><span class="nav-number">1.2.8.</span> <span class="nav-text">07.02.08. Port Type Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-08-01-PLC-MAP"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">07.02.08.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-08-02-Communication-Scenario"><span class="nav-number">1.2.8.2.</span> <span class="nav-text">07.02.08.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-09-Port-Mode-Change-Command"><span class="nav-number">1.2.9.</span> <span class="nav-text">07.02.09. Port Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-09-01-PLC-MAP"><span class="nav-number">1.2.9.1.</span> <span class="nav-text">07.02.09.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-09-02-Communication-Scenario"><span class="nav-number">1.2.9.2.</span> <span class="nav-text">07.02.09.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-10-Port-Transfer-Mode-Change-Command"><span class="nav-number">1.2.10.</span> <span class="nav-text">07.02.10. Port Transfer Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-10-01-PLC-MAP"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">07.02.10.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-10-02-Communication-Scenario"><span class="nav-number">1.2.10.2.</span> <span class="nav-text">07.02.10.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-02-11-Port-Enable-Mode-Change-Command"><span class="nav-number">1.2.11.</span> <span class="nav-text">07.02.11. Port Enable Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-11-01-PLC-MAP"><span class="nav-number">1.2.11.1.</span> <span class="nav-text">07.02.11.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-02-11-02-Communication-Scenario"><span class="nav-number">1.2.11.2.</span> <span class="nav-text">07.02.11.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-03-Port-amp-Cassette-Status-Management"><span class="nav-number">1.3.</span> <span class="nav-text">07.03. Port &amp; Cassette Status Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#07-03-01-Item-Define"><span class="nav-number">1.3.1.</span> <span class="nav-text">07.03.01. Item Define</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-01-Port-Status"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">07.03.01.01. Port Status</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-02-Cassette-Status"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">07.03.01.02. Cassette Status</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-03-Cassette-Sequence-No"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">07.03.01.03. Cassette Sequence No</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-04-Operator-ID"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">07.03.01.04. Operator ID</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-05-Cassette-ID"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">07.03.01.05. Cassette ID</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-06-Job-Count-in-Cassette"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">07.03.01.06. Job Count in Cassette</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-07-Job-Existence"><span class="nav-number">1.3.1.7.</span> <span class="nav-text">07.03.01.07. Job Existence</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-01-08-Complete-Cassette-Dat"><span class="nav-number">1.3.1.8.</span> <span class="nav-text">07.03.01.08. Complete Cassette Dat</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-03-02-Port-amp-Cassette-Status-Change"><span class="nav-number">1.3.2.</span> <span class="nav-text">07.03.02. Port &amp; Cassette Status Change</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-02-01-Normal-Scenario"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">07.03.02.01. Normal Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-02-02-Re-Map-Scenario"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">07.03.02.02. Re-Map Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-03-03-PLC-MAP"><span class="nav-number">1.3.3.</span> <span class="nav-text">07.03.03. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-03-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">07.03.03.01. Local PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-03-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">07.03.03.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-03-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">07.03.03.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#07-03-04-Communication-Scenario"><span class="nav-number">1.3.4.</span> <span class="nav-text">07.03.04. Communication Scenario</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-01-Cassette-Normal-Scenario"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">07.03.04.01. Cassette Normal Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-02-Cassette-Cancel-Scenario"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">07.03.04.02. Cassette Cancel Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">07.03.04.03. Cassette Cancel Scenario – After waiting for start command</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">07.03.04.04. Cassette Cancel Scenario – After waiting for processing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-05-Cassette-Abort-Scenario"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">07.03.04.05. Cassette Abort Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-06-Empty-Cassette-Scenario"><span class="nav-number">1.3.4.6.</span> <span class="nav-text">07.03.04.06. Empty Cassette Scenario</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#07-03-04-07-EMP-Mode-Change-Scenario"><span class="nav-number">1.3.4.7.</span> <span class="nav-text">07.03.04.07. EMP Mode Change Scenario</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+   
+     <div id="music163player">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=864187808&auto=1&height=66"></iframe>
+     </div>
+	 
+
+  </aside>
+
+
+        
+      </div>
+      <script>
+//暂时储存文章中的内容
+var div = $('.post-body');
+//暂时储存目录的内容
+var toc=$('.post-toc-wrap')
+function password() {
+  if('password'){
+  //将文章内容删除
+    div.remove();
+ //将目录删除 
+    toc.remove();
+  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
+  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
+  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
+   $('.post-header').after('<textarea class="description" value="Please enter your password and press enter to build" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none ">
+      Please enter your password and press enter to build</textarea>' +
+      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
+      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
+      'margin: 0 auto;outline: none;width:95%"/>' +
+      '</div>')
+      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
+    document.onclick = function (event) {
+      var e = event || window.event;
+      var elem = e.srcElement || e.target;
+ 
+      while (elem) {
+        if (elem != document) {
+          if (elem.className == "password") {
+            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
+            return;
+          }
+          elem = elem.parentNode;
+        } else {
+          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
+          return;
+        }
+      }
+    }
+    //绑定enter键按下后离开的事件
+    $(document).keyup(function(event){
+      if(event.keyCode ==13&&$('.password').length>0){
+        //console.log($('.password').val())
+        //console.log('password')
+        if ($('.password').val() == 'password') {
+        //恢复文章内容
+          (div).appendTo($(".post-header"))
+          //恢复目录
+          toc.appendTo($(".sidebar-inner"))
+          //删除本页面的输入密码组件
+           $(".description").remove();
+          $(".qiang").remove();
+          $(".password").remove();
+          
+          //重新处理pjax事件,如果没有加pjax的从下面这行起到下面的else之间的代码需要去掉。
+          //图片懒加载，没有加入此功能的这个函数需要去掉
+            $('img').lazyload({
+               placeholder: '/images/loading.gif',
+               effect: 'fadeIn',
+               threshold : 100,
+               failure_limit : 20,
+               skip_invisible : false
+             });
+             //pjax后出现文章不显示，没有pjax的下面四行需要去掉
+              $(".post-block").css({opacity:1});
+              $(".post-header").css({opacity:1});
+              $(".post-body").css({opacity:1});
+              $(".pagination").css({opacity:1});
+        }else {
+          alert("Sorry, the password is wrong.")
+        }
+      }
+      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
+    });
+  }
+}
+password();
+</script>
+    </main>
+    
+    
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴少培</span>
+
+  
+</div>
+
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+
+<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">粤ICP备20015601号-1</a>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
+        appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
+        placeholder: '说点什么吧',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz", "sOUcJH2CX5V7BXA99NbRDn9B");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+
+
+</html>
