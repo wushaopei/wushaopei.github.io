@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="s8Pe1TBqyy" />
+<script>
+    (function(){
+        if('password'){
+            if (prompt('请输入文章密码') !== 'password'){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鮀城小帅" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动化开发（六）Specification-06-Common Function">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/index.html">
+<meta property="og:site_name" content="鮀城小帅">
+<meta property="og:description" content="06. Common Function设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。 06.01. Equipment Monitor Management06.01.01. Equipment Alive​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu308.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu309.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu310.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu311.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu312.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu313.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu314.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu315.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu316.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu317.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu318.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu319.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu320.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu351.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu352.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu353.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu354.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu355.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu356.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu357.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu358.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu359.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu360.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu361.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu362.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu363.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu364.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu365.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu366.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu367.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu368.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu369.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu370.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu371.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu372.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu373.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu374.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu375.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu376.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu377.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu378.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu379.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu380.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu381.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu382.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu419.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu420.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu421.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu422.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu423.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu424.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu425.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu426.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu427.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu428.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu429.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu430.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu431.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu432.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu433.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu434.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu435.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu436.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu437.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu438.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu439.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu440.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu441.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu442.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu443.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu444.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu445.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu446.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu447.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu448.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu449.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu450.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu451.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu452.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu453.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu454.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu455.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu456.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu457.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu458.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu470.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu471.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu472.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu473.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu474.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu475.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu476.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu492.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu493.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu494.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu495.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu496.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu497.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu498.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu499.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu500.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu501.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu502.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu503.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu504.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu505.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu506.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu507.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu508.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu509.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu510.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu511.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu512.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu513.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu514.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu515.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu516.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu517.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu518.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu519.png">
+<meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
+<meta property="article:modified_time" content="2020-05-08T07:33:31.557Z">
+<meta property="article:author" content="吴少培">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu308.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/04/13/自动化开发（六）Specification-06-Common-Function/"/>
+
+
+
+
+
+  <title>自动化开发（六）Specification-06-Common Function | 鮀城小帅</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鮀城小帅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总要扛起一片心中的天</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-公益">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-说说">
+          <a href="/shuoshuo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            说说
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/wushaopei" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+  <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+</a>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自动化开发（六）Specification-06-Common Function</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T15:09:47+08:00">
+                2020-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" class="leancloud_visitors" data-flag-title="自动化开发（六）Specification-06-Common Function">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="06-Common-Function"><a href="#06-Common-Function" class="headerlink" title="06. Common Function"></a>06. Common Function</h2><p>设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。</p>
+<h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><p>​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变，则主PLC应将其作为通信断开，并生成操作员呼叫。 </p>
+<h5 id="06-01-01-01-PLC-MAP"><a href="#06-01-01-01-PLC-MAP" class="headerlink" title="06.01.01.01. PLC MAP"></a>06.01.01.01. PLC MAP</h5><h6 id="06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.01.01.01. Local PLC – Link Relay (B Area)"></a>06.01.01.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu308.png" width="80%">
+
+
+
+<h5 id="06-01-01-02-Communication-Scenario"><a href="#06-01-01-02-Communication-Scenario" class="headerlink" title="06.01.01.02. Communication Scenario"></a>06.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu309.png" width="80%">
+
+<p>以 4s on 和 4s off 去检测机台的状态，如果 10s Bit都不变化，则认为机台挂掉了。</p>
+<h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><p>CIM模式是指定设备与BC之间的通信关系。有两种模式，CIM on 模式和CIM off 模式。设备应在触摸屏上提供CIM模式切换按钮。CIM模式可以改变，无论玻璃计数。 </p>
+<ul>
+<li>CIM on模式:BC和EQ之间通讯正常，EQ可以向BC报告所有事件。BC也可以向EQ发送任何命令 </li>
+<li>CIM OFF模式:BC和EQ之间的通信出现了某种异常，EQ可以更新状态数据(链路寄存器区域)，但不能向BC报告事件(链路中继区域)，不包括设备状态变化报告。同时，装备也不接受BC的任何命令 </li>
+</ul>
+<p><strong>※注意:</strong>  </p>
+<pre><code>1. CIM关闭模式，设备应接受BC设置的CIM模式改变命令来改变CIM模式。 </code></pre><p>CIM Mode ：</p>
+<p>​    <strong>ON</strong>  :  机台会把数据上报到BC，BC会收</p>
+<pre><code>**OOF** :  机台不会 ON Bit , 只会去写 Word ；BC 只会在 机台 Bit 变化 on 才会去读 Word </code></pre><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu310.png" width="80%">
+
+
+
+
+
+<h5 id="06-01-02-02-Communication-Scenario"><a href="#06-01-02-02-Communication-Scenario" class="headerlink" title="06.01.02.02. Communication Scenario"></a>06.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu311.png" width="80%">
+
+
+
+<h4 id="06-01-03-CIM-Mode-Change-Command"><a href="#06-01-03-CIM-Mode-Change-Command" class="headerlink" title="06.01.03. CIM Mode Change Command"></a>06.01.03. CIM Mode Change Command</h4><p>​    BC可以通过CIM模式改变命令改变CIM模式的设备，进行数据采集。如果设备应答接受，设备需要再次自动触发CIM模式事件</p>
+<p><strong>※注意:</strong></p>
+<p>Return Code 说明:</p>
+<p>1: Accept，表示设备接受命令，需要改变CIM模式。 </p>
+<p>2: Already In Desired Status，即CIM模式的指令与设备CIM相同</p>
+<p>3: Equipment Reject，意思是设备不能接受指令，不能改变CIM Mode</p>
+<h5 id="06-01-03-01-PLC-MAP"><a href="#06-01-03-01-PLC-MAP" class="headerlink" title="06.01.03.01. PLC MAP"></a>06.01.03.01. PLC MAP</h5><h6 id=""><a href="#" class="headerlink" title=""></a><img src="http://photo.wushaopei.com/qiniu312.png" width="80%"></h6><h5 id="06-01-03-02-Communication-Scenario"><a href="#06-01-03-02-Communication-Scenario" class="headerlink" title="06.01.03.02. Communication Scenario"></a>06.01.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu313.png" width="80%">
+
+
+
+<h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><p>Loader/Un-loader/Buffer/Virtual Port（加载器/卸载器/缓冲区/虚拟端口）应提供以下作业数据项设置功能CIM-OFF模式。</p>
+<p>请参阅作业数据中的PLC地图文档。</p>
+<img src="http://photo.wushaopei.com/qiniu314.png" width="80%">
+
+
+
+<h4 id="06-01-05-Inline-Mode"><a href="#06-01-05-Inline-Mode" class="headerlink" title="06.01.05. Inline Mode"></a>06.01.05. Inline Mode</h4><p>内联模式仅与作业转移有关，并且仅在上游设备和下游设备之间必要。设备应按各接口提供触摸屏上的内联模式切换按钮。内联模式包括两种模式: </p>
+<ul>
+<li>Upstream Inline Mode On (上游内联模式开启) :EQ可以从上游设备接收一个玻璃/芯片。下游内联信号的接口链路信号打开 </li>
+<li>Upstream Inline Mode Off (上游内联模式关闭) :EQ无法从上游设备接收任何玻璃/芯片。下游内联信号的接口链路信号将关闭 </li>
+<li>Downstream Inline Mode On (下游内联模式开启) :EQ可以向下游设备发送一个玻璃/芯片。上游内联信号的接口链路信号将打开。 </li>
+<li>Downstream Inline Mode Off (下游内联模式关闭) :EQ不能向下游设备发送任何玻璃/芯片。上游 Inline 信号的接口链路信号将关闭。 </li>
+</ul>
+<p>当设备有多个接口时，只要有一组 Inline on，就需要 Inline on向BC报告，当接口全部 Inline off时，就向BC报告  Inline off。 </p>
+<h5 id="06-01-05-01-PLC-MAP"><a href="#06-01-05-01-PLC-MAP" class="headerlink" title="06.01.05.01. PLC MAP"></a>06.01.05.01. PLC MAP</h5><h6 id="06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.05.01.01. Local PLC – Link Relay (B Area)"></a>06.01.05.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu315.png" width="80%">
+
+<h5 id="06-01-05-02-Communication-Scenario"><a href="#06-01-05-02-Communication-Scenario" class="headerlink" title="06.01.05.02. Communication Scenario"></a>06.01.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu316.png" width="80%">
+
+<h4 id="06-01-06-Local-Alarm-Status"><a href="#06-01-06-Local-Alarm-Status" class="headerlink" title="06.01.06. Local Alarm Status"></a>06.01.06. Local Alarm Status</h4><p>​    显示整个设备有报警(错误或警告)。如果所有警报(错误或警告)都已清除，则应将其关闭 </p>
+<h5 id="06-01-06-01-PLC-MAP"><a href="#06-01-06-01-PLC-MAP" class="headerlink" title="06.01.06.01. PLC MAP"></a>06.01.06.01. PLC MAP</h5><h6 id="06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.06.01.01. Local PLC – Link Relay (B Area)"></a>06.01.06.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu317.png" width="80%">
+
+
+
+<h5 id="06-01-06-02-Communication-Scenario"><a href="#06-01-06-02-Communication-Scenario" class="headerlink" title="06.01.06.02. Communication Scenario"></a>06.01.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu318.png" width="80%">
+
+
+
+<h4 id="06-01-07-Equipment-Operation-Mode"><a href="#06-01-07-Equipment-Operation-Mode" class="headerlink" title="06.01.07. Equipment Operation Mode"></a>06.01.07. Equipment Operation Mode</h4><p>显示设备当前运行方式为 <strong>Auto, Semi-Auto or Manual</strong> (自动、半自动或手动)。默认状态为自动，如果设备运行模式发生变化，应向BC报告。</p>
+<p>在自动或半自动模式下，作业通过接口信号从上游设备接收或发送到下游设备</p>
+<h5 id="06-01-07-01-PLC-MAP"><a href="#06-01-07-01-PLC-MAP" class="headerlink" title="06.01.07.01. PLC MAP"></a>06.01.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu319.png" width="80%">
+
+
+
+<h5 id="06-01-07-02-Communication-Scenario"><a href="#06-01-07-02-Communication-Scenario" class="headerlink" title="06.01.07.02. Communication Scenario"></a>06.01.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu320.png" width="80%">
+
+<h3 id="06-02-BC-Monitor-Management"><a href="#06-02-BC-Monitor-Management" class="headerlink" title="06.02. BC Monitor Management"></a>06.02. BC Monitor Management</h3><h4 id="06-02-01-BC-Status"><a href="#06-02-01-BC-Status" class="headerlink" title="06.02.01. BC Status"></a>06.02.01. BC Status</h4><p>​    BC将BC状态信号改为周期性信号，周期为开4秒，关4秒。如果BC状态位10秒内没有变化，本地PLC应以其为通讯连接，并拨打操作员电话，报警电平为报警，如果信号恢复正常，请自动清除报警。</p>
+<p>(Alarm Text：BC Status Check Timeout )</p>
+<h5 id="06-02-01-01-PLC-MAP"><a href="#06-02-01-01-PLC-MAP" class="headerlink" title="06.02.01.01. PLC MAP"></a>06.02.01.01. PLC MAP</h5><h6 id="06-02-01-01-01-Master-PLC-–-Link-Relay-B-Area"><a href="#06-02-01-01-01-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.02.01.01.01. Master PLC – Link Relay (B Area)"></a>06.02.01.01.01. Master PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu351.png" width="80%">
+
+<h5 id="06-02-01-02-Communication-Scenario"><a href="#06-02-01-02-Communication-Scenario" class="headerlink" title="06.02.01.02. Communication Scenario"></a>06.02.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu352.png" width="80%">
+
+<h3 id="06-03-Equipment-Management"><a href="#06-03-Equipment-Management" class="headerlink" title="06.03. Equipment Management"></a>06.03. Equipment Management</h3><h4 id="06-03-01-Equipment-Status"><a href="#06-03-01-Equipment-Status" class="headerlink" title="06.03.01. Equipment Status"></a>06.03.01. Equipment Status</h4><p>​    如果设备状态发生变化，必须报告相应的事件。它必须显示在设备的触摸屏上。如果设备状态改变为停止或设置，设备应提前报警，并绘制下报警图。没有直接改变设备状态的远程命令。在BC中，设备状态定义为以下五种类型之一: </p>
+<ul>
+<li><p>Idle :  设备不执行进程，但它已经准备好启动进程。这适用于是否有与设备相关的材料。 </p>
+</li>
+<li><p>Running :  设备正在执行一个进程。如果工艺完成，没有加工作业，设备又会再次闲置 </p>
+</li>
+<li><p>Setup :设备正在初始化模块和实用程序。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Setup，则报警ID应该报告给BC 65512 </p>
+</li>
+<li><p>Stop : 设备进程停止。设备因报警、H/W问题或其他原因停机。在此状态下，设备必须停止工作转移。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Stop，则报警ID应为report 65513 to BC。 </p>
+</li>
+<li><p>Pause : 设备进程暂停。在这种状态下，设备可以立即恢复进程。设备应向BC报告报警级别=报警事件警告。如果设备状态被perator或BC命令更改为Pause，则报警ID应该报告给BC 65514。</p>
+<p>如果设置状态改变，停止和暂停设备必须报告报警ID</p>
+</li>
+</ul>
+<p><strong>※注意:</strong></p>
+<ol>
+<li>当 equipment/unit 状态变为Setup, Stop or Pause 时，设备应将报警事件的报警ID分开(除以BC或EQP异常或EQP正常开关…等) </li>
+</ol>
+<img src="http://photo.wushaopei.com/qiniu353.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu354.png" width="80%">
+
+
+
+<h4 id="06-03-02-Unit-Status"><a href="#06-03-02-Unit-Status" class="headerlink" title="06.03.02. Unit Status"></a>06.03.02. Unit Status</h4><p><strong>Unit Status</strong> 仅用于多单元设备，最大单元数为15。如果设备没有单元，所有的数据都应该设置为零，将被忽略。单元状态的类型和定义与设备状态的类型和定义相同。每个单元状态是独立的，但是设备状态可能依赖于设备内单元的状态。设备的唯一责任是<strong>根据其所在单位的状态报告正确的设备状态</strong> </p>
+<h4 id="06-03-03-PLC-MAP"><a href="#06-03-03-PLC-MAP" class="headerlink" title="06.03.03. PLC MAP"></a>06.03.03. PLC MAP</h4><h5 id="06-03-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-03-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.03.03.01. Local PLC – Link Register (W Area)"></a>06.03.03.01. Local PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu355.png" width="80%">
+
+<h5 id="06-03-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-03-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.03.03.02. Local PLC – Link Relay (B Area)"></a>06.03.03.02. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu356.png" width="80%">
+
+<h5 id="06-03-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-03-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.03.03.03. Master PLC – Link Relay (B Area)"></a>06.03.03.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu357.png" width="80%">
+
+
+
+<h4 id="06-03-04-Communication-Scenari"><a href="#06-03-04-Communication-Scenari" class="headerlink" title="06.03.04. Communication Scenari"></a>06.03.04. Communication Scenari</h4><img src="http://photo.wushaopei.com/qiniu358.png" width="80%">
+
+
+
+<h4 id="06-03-05-No-Processing-Time"><a href="#06-03-05-No-Processing-Time" class="headerlink" title="06.03.05. No Processing Time"></a>06.03.05. No Processing Time</h4><p>​    设备应在触摸屏上为每个单元和设备提供“无处理时间”定时器设置功能。如果没有超过加工时间，则设备应报告空转。(无处理时间=0:不检查无处理时间)(默认值:Tact Time * 2) </p>
+<img src="http://photo.wushaopei.com/qiniu359.png" width="80%">
+
+
+
+<h4 id="06-03-06-Send-Wait-Time-Out-Report"><a href="#06-03-06-Send-Wait-Time-Out-Report" class="headerlink" title="06.03.06. Send Wait Time Out Report"></a>06.03.06. Send Wait Time Out Report</h4><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，通过发送等待计时器，则上游设备需要向BC报告此事件。 </p>
+<h5 id="06-03-06-01-PLC-MAP"><a href="#06-03-06-01-PLC-MAP" class="headerlink" title="06.03.06.01. PLC MAP"></a>06.03.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu360.png" width="90%">
+
+<h5 id="06-03-06-02-Communication-Scenario"><a href="#06-03-06-02-Communication-Scenario" class="headerlink" title="06.03.06.02. Communication Scenario"></a>06.03.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu361.png" width="90%">
+
+<h4 id="06-03-07-Equipment-Status-Stop-Command"><a href="#06-03-07-Equipment-Status-Stop-Command" class="headerlink" title="06.03.07. Equipment Status Stop Command"></a>06.03.07. Equipment Status Stop Command</h4><p>​    当BC收到设备报告“发送等待时间超时报告”事件时，BC会请求下游设备状态变化目标停止。</p>
+<p>​    当设备状态空闲时，设备状态只能改变为停止。其他的状态应该是回复“不接受”给BC。</p>
+<h5 id="06-03-07-01-PLC-MAP"><a href="#06-03-07-01-PLC-MAP" class="headerlink" title="06.03.07.01. PLC MAP"></a>06.03.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu362.png" width="90%">
+
+<h5 id="06-03-07-02-Communication-Scenario"><a href="#06-03-07-02-Communication-Scenario" class="headerlink" title="06.03.07.02. Communication Scenario"></a>06.03.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu363.png" width="90%">
+
+
+
+<h3 id="06-04-Alarm-Management"><a href="#06-04-Alarm-Management" class="headerlink" title="06.04. Alarm Management"></a>06.04. Alarm Management</h3><p> alarm (报警）是指设备上可能危及正在加工的人员、设备或物料的任何异常情况。 </p>
+<h4 id="06-04-01-Alarm-Status"><a href="#06-04-01-Alarm-Status" class="headerlink" title="06.04.01. Alarm Status"></a>06.04.01. Alarm Status</h4><p>  报告的是警报状态。 </p>
+<ul>
+<li>Alarm Set： 检测到警报 </li>
+<li>Alarm Clear：警报解除。 </li>
+</ul>
+<h4 id="06-04-02-Alarm-Unit"><a href="#06-04-02-Alarm-Unit" class="headerlink" title="06.04.02. Alarm Unit"></a>06.04.02. Alarm Unit</h4><p>  当设备报告一个警报事件时，它显示该警报与设备中的哪个单元有关。 </p>
+<h4 id="06-04-03-Alarm-ID"><a href="#06-04-03-Alarm-ID" class="headerlink" title="06.04.03. Alarm ID"></a>06.04.03. Alarm ID</h4><p>所有设备制造商必须提交每台设备的报警标识清单。一个单元必须有一个唯一的警报ID，无论错误或警告警报。 </p>
+<ul>
+<li>0：reserved (never used)  </li>
+<li>1 ~ 65500：Equipment can use </li>
+<li>65501 ~ 65535：By BC Defined</li>
+</ul>
+<img src="http://photo.wushaopei.com/qiniu364.png" width="90%">
+
+<h4 id="06-04-04-Alarm-Code"><a href="#06-04-04-Alarm-Code" class="headerlink" title="06.04.04. Alarm Code"></a>06.04.04. Alarm Code</h4><ul>
+<li>Bit 00：Danger for human （对人类危险 ）</li>
+<li>Bit 01：Equipment error </li>
+<li>Bit 02：Parameter overflow caused process error  （参数溢出导致进程错误 ）</li>
+<li>Bit 03：Parameter overflow caused equipment can’t work  （参数溢出导致设备无法工作 ）</li>
+<li>Bit 04：Cannot recover trouble  （无法恢复故障 ）</li>
+<li>Bit 05：Equipment status warning  （设备状态警告 ）</li>
+<li>Bit 06：Process reached to predefined status （进程达到预定义状态 ）</li>
+<li>Bit 07：BC Caused </li>
+</ul>
+<h4 id="06-04-05-Alarm-Level"><a href="#06-04-05-Alarm-Level" class="headerlink" title="06.04.05. Alarm Level"></a>06.04.05. Alarm Level</h4><p>​    它显示了警报的级别。它由警告和错误组成。 </p>
+<ul>
+<li>Warning : 警告表示一个灯光错误。对于警告，设备应继续进行处理、蜂鸣操作，并将信息显示在触摸屏上。 </li>
+<li>Error :  告警表示严重错误。当报警发生时，设备必须停止处理(某些设备可能只会导致进程暂停)，蜂鸣操作员对设备进行检查，并在触摸屏上显示信息 </li>
+</ul>
+<h4 id="06-04-06-Alarm-Text"><a href="#06-04-06-Alarm-Text" class="headerlink" title="06.04.06. Alarm Text"></a>06.04.06. Alarm Text</h4><p>​    它包含一个简短的文本描述的警报。 </p>
+<h4 id="06-04-07-Alarm-Text-Using-Flag"><a href="#06-04-07-Alarm-Text-Using-Flag" class="headerlink" title="06.04.07. Alarm Text Using Flag"></a>06.04.07. Alarm Text Using Flag</h4><p>​    它定义了设备或BC使用的报警文本。 </p>
+<h4 id="06-04-08-PLC-MAP"><a href="#06-04-08-PLC-MAP" class="headerlink" title="06.04.08. PLC MAP"></a>06.04.08. PLC MAP</h4><p>​    <img src="http://photo.wushaopei.com/qiniu365.png" width="90%"></p>
+<h5 id="06-04-08-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.02. Local PLC – Link Relay (B Area)"></a>06.04.08.02. Local PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu366.png" width="90%"></p>
+<h5 id="06-04-08-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.03. Master PLC – Link Relay (B Area)"></a>06.04.08.03. Master PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu367.png" width="90%"></p>
+<h4 id="06-04-09-Communication-Scenario"><a href="#06-04-09-Communication-Scenario" class="headerlink" title="06.04.09. Communication Scenario"></a>06.04.09. Communication Scenario</h4><p>​    <img src="http://photo.wushaopei.com/qiniu368.png" width="90%"></p>
+<h3 id="06-05-Job-Management"><a href="#06-05-Job-Management" class="headerlink" title="06.05. Job Management"></a>06.05. Job Management</h3><p>​    这项工作意味着要对玻璃、芯片等材料进行加工。每个作业都有自己独特的数据进行处理，这些数据称为作业数据，包括PPID、盒式磁带序列号、作业序列号等。作业数据从上游设备接收，主设备已准备好接收作业，应发送到下游设备，主设备已准备好发送作业。设备应保存和管理每个作业的作业数据，即使作业在内部区域之间移动。同时，设备应在触摸屏上提供各工种的作业数据信息。 </p>
+<h4 id="06-05-01-Job-Data-Transfer"><a href="#06-05-01-Job-Data-Transfer" class="headerlink" title="06.05.01. Job Data Transfer"></a>06.05.01. Job Data Transfer</h4><p>如果设备向其他设备发送作业，发送作业的设备称为上游设备。如果设备从其他设备接收作业，接收作业的设备称为下游设备。设备可以有一个以上的上游设备和下游设备。为了区分哪些设备是上游设备，哪些是下游设备，对于特定的设备，上游路径号为。被使用和管理。</p>
+<p>当向下游设备发送作业时，作业数据通过CC-Link IE随作业一起传输到下游设备。对于作业数据的传输，设备可以根据设备需要的作业数据数量，从“发送下游01块作业数据到”发送下游10块作业数据，再从“接收上游01块作业数据”到“接收上游10块作业数据”。</p>
+<p>当上游设备即将向下游设备发送作业时，下游设备首先验证作业的作业数据。如果在作业数据中没有检测到错误，下游设备开始接收作业</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu369.png" width="90%"></p>
+<h5 id="06-05-01-01-PLC-MAP"><a href="#06-05-01-01-PLC-MAP" class="headerlink" title="06.05.01.01. PLC MAP"></a>06.05.01.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu370.png" width="90%"></p>
+<h4 id="06-05-02-Job-Event"><a href="#06-05-02-Job-Event" class="headerlink" title="06.05.02. Job Event"></a>06.05.02. Job Event</h4><p>作业数据必须在特殊的时间上报给BC，例如从上游设备接收作业，向下游设备发送作业，从磁带或单元取出作业，将作业存储到磁带或单元中，从设备中删除作业。玻璃内部的CST，在取出时，对应的槽R数据需要取出后取出在取出的作业数据，玻璃存储到CST中，对应的槽R要填写相应的作业数据。 </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu371.png" width="90%"></p>
+<h5 id="06-05-02-01-Job-Event-Timing-Chart"><a href="#06-05-02-01-Job-Event-Timing-Chart" class="headerlink" title="06.05.02.01. Job Event Timing Chart"></a>06.05.02.01. Job Event Timing Chart</h5><p>​    <img src="http://photo.wushaopei.com/qiniu372.png" width="90%"></p>
+<h4 id="06-05-03-Receive-Job-Data-Event"><a href="#06-05-03-Receive-Job-Data-Event" class="headerlink" title="06.05.03. Receive Job Data Event"></a>06.05.03. Receive Job Data Event</h4><p>​    当设备从上游设备接收作业时，应报告此事件。当设备报告接收到的作业事件时，包括以下项目。 </p>
+<ul>
+<li>Received Job :从上游设备接收到的作业的作业数据，应在作业转移数据区写入接收作业数据，接收信号关闭后，作业完全由下游设备接收。 </li>
+<li>在上下游设备之间，从下游设备接收到的作业事件报告顺序应遵循物理作业转移顺序。准确的报告时间将在测试期间和测试后进行调整，如果需要的话。 </li>
+</ul>
+<h5 id="06-05-03-01-PLC-MAP"><a href="#06-05-03-01-PLC-MAP" class="headerlink" title="06.05.03.01. PLC MAP"></a>06.05.03.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu373.png" width="90%"></p>
+<h5 id="06-05-03-02-Communication-Scenario"><a href="#06-05-03-02-Communication-Scenario" class="headerlink" title="06.05.03.02. Communication Scenario"></a>06.05.03.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu374.png" width="90%"></p>
+<h4 id="06-05-04-Send-Out-Job-Data-Event"><a href="#06-05-04-Send-Out-Job-Data-Event" class="headerlink" title="06.05.04. Send Out Job Data Event"></a>06.05.04. Send Out Job Data Event</h4><p>当设备向下游设备发送作业时，应报告此事件。当设备报告发送的作业事件时，应包括以下项目 .</p>
+<ul>
+<li>Send Out Job  :  在链路信号上升时，工作转移信号和工作应完全转移到下游设备，EQ应在工作转移数据区写入发送的工作数据。 </li>
+<li>在上游和下游设备之间，上游设备发出作业事件的报告顺序应遵循物理作业转移顺序。准确的报告时间将在测试期间和测试后进行调整，如果需要的话 </li>
+</ul>
+<h5 id="06-05-04-01-PLC-MAP"><a href="#06-05-04-01-PLC-MAP" class="headerlink" title="06.05.04.01. PLC MAP"></a>06.05.04.01. PLC MAP</h5><h6 id="06-05-04-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-04-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.04.01.01. Local PLC – Link Register (W Area)"></a>06.05.04.01.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu375.png" width="90%"></p>
+<h6 id="06-05-04-01-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-05-04-01-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.04.01.02. Local PLC – Link Relay (B Area)"></a>06.05.04.01.02. Local PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu376.png" width="90%"></p>
+<h6 id="06-05-04-01-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-05-04-01-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.04.01.03. Master PLC – Link Relay (B Area)"></a>06.05.04.01.03. Master PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu377.png" width="90%"></p>
+<h5 id="06-05-04-02-Communication-Scenario"><a href="#06-05-04-02-Communication-Scenario" class="headerlink" title="06.05.04.02. Communication Scenario"></a>06.05.04.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu378.png" width="90%"></p>
+<h4 id="06-05-05-Store-Job-Data-Event"><a href="#06-05-05-Store-Job-Data-Event" class="headerlink" title="06.05.05. Store Job Data Event"></a>06.05.05. Store Job Data Event</h4><p>当设备将作业存储到一个单元或磁带时，应使用端口号和单元编号报告此事件。如果有插槽，则应报告插槽。 </p>
+<ul>
+<li>Store Job : 存储的作业的作业数据 </li>
+<li>Unit or Port : 用于区分存储在 unit 或 port 上的产品 </li>
+<li>Unit No :  本单位的单位编号。如果本机有槽位，设备应更新槽位号 </li>
+<li>Port No :  作业存储的磁带的端口号。设备应更新槽号 </li>
+<li>Slot No : 槽号。如果单元没有槽号，这个项目应该被清除。 </li>
+</ul>
+<h5 id="06-05-05-01-PLC-MAP"><a href="#06-05-05-01-PLC-MAP" class="headerlink" title="06.05.05.01. PLC MAP"></a>06.05.05.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu379.png" width="90%"></p>
+<h5 id="06-05-05-02-Communication-Scenario"><a href="#06-05-05-02-Communication-Scenario" class="headerlink" title="06.05.05.02. Communication Scenario"></a>06.05.05.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu380.png" width="90%"></p>
+<h4 id="06-05-06-Fetch-Out-Job-Data-Event"><a href="#06-05-06-Fetch-Out-Job-Data-Event" class="headerlink" title="06.05.06. Fetch Out Job Data Event"></a>06.05.06. Fetch Out Job Data Event</h4><p>当设备从一个单元或磁带中取出 Job 时，应使用端口号和单元编号报告该事件。如果有插槽，则应报告插槽。</p>
+<p>取作业的作业数据是在从磁带或单元中取出作业时报告的。</p>
+<p>在这种情况下，必须报告端口号和单元编号。</p>
+<ul>
+<li>Fetch Out Job：取出作业数据 的作业</li>
+<li>Unit or Port：用于区分从单元或端口取出的产品。 </li>
+<li>Unit No： 单元的单元号。如果设备有槽位，设备应更新槽位号</li>
+<li>Port No： 工作取的磁带的端口号。设备应更新槽位号。</li>
+<li>Slot No： Slot No. 如果单位没有槽位，这个项目应该被清除。 </li>
+</ul>
+<p><strong>※注意:</strong> </p>
+<p>​    当Buffer不是单位时，不需要单位状态，只需要报告存储和提取到BC。</p>
+<p>​    当缓冲区为单元时，需要报告单元状态，需要报告存储和提取到BC</p>
+<h5 id="06-05-06-01-PLC-MAP"><a href="#06-05-06-01-PLC-MAP" class="headerlink" title="06.05.06.01. PLC MAP"></a>06.05.06.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu381.png" width="90%"></p>
+<h5 id="06-05-06-02-Communication-Scenario"><a href="#06-05-06-02-Communication-Scenario" class="headerlink" title="06.05.06.02. Communication Scenario"></a>06.05.06.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu382.png" width="90%"></p>
+<h4 id="06-05-07-Remove-Job-Event-Mode"><a href="#06-05-07-Remove-Job-Event-Mode" class="headerlink" title="06.05.07. Remove Job Event Mode"></a>06.05.07. Remove Job Event Mode</h4><p>​    当 Job Data 刚刚从设备中删除时，将报告已删除作业的作业数据。 </p>
+<ul>
+<li><p>Removed Job : 操作员删除的作业的作业数据。 </p>
+</li>
+<li><p>Unit or Port：它用于区分产品从单元或端口被移除。 </p>
+</li>
+<li><p>Unit No： 单元的单元号。如果本机有槽位，设备应更新槽位号 </p>
+</li>
+<li><p>Port No：作业被删除的磁带的端口号。设备应更新槽号 </p>
+</li>
+<li><p>Slot No：Slot No. 如果 unit 没有 slot ，这个item 应该被清除。 </p>
+</li>
+<li><p>Remove Job Flag：  </p>
+<ul>
+<li><p>Normal Remove：  如果删除作业标志是正常删除，设备应保持删除作业数据 </p>
+</li>
+<li><p>Recovery： 当删除作业标志被删除作业恢复时，设备应恢复此作业数据。 </p>
+</li>
+<li><p>Delete Dirty Data： 如果作业数据存在，但玻璃丢失，用户可以使用作业数据删除功能</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  设备供应商应提供至少10个当前已删除的作业数据保存功能，并提供作业数据选择功能进行恢复。</p>
+<p>  设备供应商应提供至少10个当前已删除的作业数据的删除保存功能，并提供作业数据选择功能进行恢复。</p>
+<p>  如果设备恢复的作业数据项，如配方号、产品类型、组索引等，这些值的内容与设备本身不同，设备不能改变作业数据，应发出警告，然后等待操作员处理。</p>
+<p>  如果BC没有对设备回复信号，对于正常的删除和删除脏数据，意味着在事件复位后，作业数据/计数应该被擦除;对于恢复，这意味着在事件停止后无法恢复作业数据</p>
+<h5 id="06-05-07-01-Error-Recovery-and-Remove-Job"><a href="#06-05-07-01-Error-Recovery-and-Remove-Job" class="headerlink" title="06.05.07.01. Error Recovery and Remove Job"></a>06.05.07.01. Error Recovery and Remove Job</h5><p>当报警或发现作业存在与作业数据不符，需要更改或删除数据时，设备应具备以下功能: </p>
+<ul>
+<li><p>报警，通知操作员更正 </p>
+</li>
+<li><p>程序”和“作业位置显示”，以恢复上述差异故障或报警情况。 </p>
+</li>
+<li><p>拆卸程序应包含至少三项内容。 </p>
+</li>
+<li><p>Physical glass/chip removal </p>
+</li>
+<li><p>Report removed Job Data to BC </p>
+</li>
+<li><p>从触摸屏设备上删除作业 </p>
+<p>设备供应商应提供详细的错误恢复场景。 </p>
+</li>
+</ul>
+<h5 id="06-05-07-02-Error-Recovery-and-Normal-Process"><a href="#06-05-07-02-Error-Recovery-and-Normal-Process" class="headerlink" title="06.05.07.02 Error Recovery and Normal Process"></a>06.05.07.02 Error Recovery and Normal Process</h5><p>设备应提供以下功能，用于故障恢复后的正常流程 </p>
+<ul>
+<li>报警，通知操作员更正 </li>
+<li>Before job transfer signal on : 手动将玻璃送至上游设备 </li>
+<li>After job transfer signal on：通过人工操作将玻璃送至下游设备。 </li>
+<li>Normal process after Error Recovery </li>
+<li>Report job event to BC </li>
+</ul>
+<p>设备供应商应提供详细的错误恢复场景。 </p>
+<h5 id="06-05-07-03-PLC-MAP"><a href="#06-05-07-03-PLC-MAP" class="headerlink" title="06.05.07.03. PLC MAP"></a>06.05.07.03. PLC MAP</h5><h6 id="06-05-07-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-07-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.07.03.01. Local PLC – Link Register (W Area)"></a>06.05.07.03.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu419.png" width="90%"></p>
+<h6 id="06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.02. Local PLC – Link Relay (B Area)"></a>06.05.07.03.02. Local PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu420.png" width="90%"></p>
+<h6 id="06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.03. Master PLC – Link Relay (B Area)"></a>06.05.07.03.03. Master PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu421.png" width="90%"></p>
+<h5 id="06-05-07-04-Communication-Scenario"><a href="#06-05-07-04-Communication-Scenario" class="headerlink" title="06.05.07.04. Communication Scenario"></a>06.05.07.04. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu422.png" width="90%"></p>
+<h4 id="06-05-08-Job-Count-Report"><a href="#06-05-08-Job-Count-Report" class="headerlink" title="06.05.08. Job Count Report"></a>06.05.08. Job Count Report</h4><p>作业计数是报告整个设备的作业计数(不包括卡带)。根据作业类型，设备应区分作业是产品作业还是虚拟作业。  Normally，产品工作意味着大量的产品加工 , 但是在装配线上有两个产品工作， TFT和CF，产品工作意味着TFT玻璃加工 . 设备应根据作业类型的作业数据实时写入各类作业计数。 </p>
+<ul>
+<li>Total TFT Product Job Count  :  它是设备中TFT玻璃的当前计数。 </li>
+<li>Total CF Product Job Count： 这是设备中CF 玻璃的当前计数。 </li>
+<li>Total Dummy Job Count：这是设备中虚拟 玻璃 的数量</li>
+<li>Total Through Dummy Job Count：  它是在设备中通过虚拟玻璃的计数</li>
+<li>Total Thickness Dummy Job Count： 它是在设备中的虚拟玻璃厚度的计数 </li>
+<li>Total UV MASK Job Count： 是在设备中UV MASK glasses 的计数</li>
+<li>special requirement ： 对于一些有单位的设备，应该实时向BC报告作业数。请参阅操作场景规范的每一行。 </li>
+</ul>
+<h5 id="06-05-08-01-PLC-MAP"><a href="#06-05-08-01-PLC-MAP" class="headerlink" title="06.05.08.01. PLC MAP"></a>06.05.08.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu423.png" width="90%"></p>
+<h5 id="06-05-08-02-Communication-Scenario"><a href="#06-05-08-02-Communication-Scenario" class="headerlink" title="06.05.08.02. Communication Scenario"></a>06.05.08.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu424.png" width="90%"></p>
+<h4 id="06-05-09-Product-Type-Report"><a href="#06-05-09-Product-Type-Report" class="headerlink" title="06.05.09. Product Type Report"></a>06.05.09. Product Type Report</h4><p>每次设备从上游设备接收玻璃时 ，它应该根据工作产品类型数据实时写入Word区域的产品类型</p>
+<ul>
+<li>Special Requirement ： 有些设备有单元， 按每个单元报告产品类型，并实时报告给BC。请参考各线路操作方案规范。</li>
+</ul>
+<h5 id="06-05-09-01-PLC-MAP"><a href="#06-05-09-01-PLC-MAP" class="headerlink" title="06.05.09.01. PLC MAP"></a>06.05.09.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu425.png" width="90%"></p>
+<h5 id="06-05-09-01-Communication-Scenario"><a href="#06-05-09-01-Communication-Scenario" class="headerlink" title="06.05.09.01. Communication Scenario"></a>06.05.09.01. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu426.png" width="90%"></p>
+<h4 id="06-05-10-Job-Data-Shift"><a href="#06-05-10-Job-Data-Shift" class="headerlink" title="06.05.10. Job Data Shift"></a>06.05.10. Job Data Shift</h4><p>对于多工位设备，必须提供“作业数据转移”功能;这一功能意味着操作者可以将作业数据移动到另一个物理玻璃位置，但条件是从有作业数据但没有玻璃板的位置，移动到有玻璃板但没有玻璃板数据的另一个位置。此功能仅在设备状态处于“停止”状态时启用。 </p>
+<p><strong>Example：</strong></p>
+<p>如果设备中有两个玻璃位置异常，一个有工作数据但没有玻璃，另一个有玻璃但没有工作数据。操作人员可以通过该函数将作业数据转换到玻璃位置，并将两者结合起来 </p>
+<p><strong>Condition：</strong> </p>
+<p>(1). Source position：Glass not exists and Job Data existed. (Color = Red) </p>
+<p>(2). Target position： Glass existed and Job Data not exist. (Color=Yellow) </p>
+<p>(3). EQP should be stopped when use this function </p>
+<p><strong>Step：</strong>  </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu427.png" width="90%"></p>
+<h4 id="06-05-11-Job-Each-Position"><a href="#06-05-11-Job-Each-Position" class="headerlink" title="06.05.11. Job Each Position"></a>06.05.11. Job Each Position</h4><p>当设备在输送、舞台、电梯、转台、缓冲槽等位置内进行作业转移时，应将设备的实际位置与卡带顺序号、作业顺序号实时上报至BC，并在设备触摸屏上显示。此外，岗位名称应由设备名称来代替。 </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu428.png" width="90%"></p>
+<h4 id="06-05-12-Set-Last-Glass-Command"><a href="#06-05-12-Set-Last-Glass-Command" class="headerlink" title="06.05.12. Set Last Glass Command"></a>06.05.12. Set Last Glass Command</h4><p>当出现以下特殊情况时，BC会在某些设备上指示“设置最后的玻璃命令”，通知某些玻璃被打开或关闭最后的玻璃。 </p>
+<ul>
+<li>Case#01： 如果带有最后一个玻璃标志的作业数据是打开的，但在某些设备中被破坏，则操作员触发“删除作业事件”到BC。BC将触发此功能到设备。 </li>
+<li>Case#02：如果当前的磁带被设备或BC中断了，但是用上一个工作的玻璃标志不能从当前的磁带中取出。BC将触发此功能到设备。 </li>
+</ul>
+<p><strong>※ Note：</strong> </p>
+<p><strong>Return Code Description：</strong>  </p>
+<p>1：OK, Accepted, 意味着设备接受指令，需要打开工作数据的最后一面玻璃旗 </p>
+<p>2：NG, No Matching Glass, 这意味着设备无法在每个位置找到玻璃。 </p>
+<h5 id="06-05-12-01-PLC-MAP"><a href="#06-05-12-01-PLC-MAP" class="headerlink" title="06.05.12.01. PLC MAP"></a>06.05.12.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu429.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu430.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu431.png" width="90%"></p>
+<h5 id="06-05-12-02-Communication-Scenario"><a href="#06-05-12-02-Communication-Scenario" class="headerlink" title="06.05.12.02. Communication Scenario"></a>06.05.12.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu432.png" width="90%"></p>
+<h4 id="06-05-13-Job-Remove-Recovery-Command"><a href="#06-05-13-Job-Remove-Recovery-Command" class="headerlink" title="06.05.13. Job Remove Recovery Command"></a>06.05.13. Job Remove Recovery Command</h4><p>如果BC从某些设备收到删除/恢复作业事件，BC将下载作业删除/恢复信息到所有设备。 </p>
+<p><strong>※ Note：</strong>  </p>
+<p>Return Code Description：</p>
+<p>For Indexer equipment both port： </p>
+<p>1：OK, 意思是设备接受命令并从列表中删除或恢复作业数据(用于移出磁带) </p>
+<p>2：NG,  这意味着设备无法在列表中找到工作数据。 </p>
+<p>For other equipment : 总是回复OK到BC。 </p>
+<h5 id="06-05-13-01-PLC-MAP"><a href="#06-05-13-01-PLC-MAP" class="headerlink" title="06.05.13.01. PLC MAP"></a>06.05.13.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu433.png" width="90%"></p>
+<h5 id="06-05-13-02-Communication-Scenario"><a href="#06-05-13-02-Communication-Scenario" class="headerlink" title="06.05.13.02. Communication Scenario"></a>06.05.13.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu434.png" width="90%"></p>
+<h4 id="06-05-14-Job-Data-Edit-Report"><a href="#06-05-14-Job-Data-Edit-Report" class="headerlink" title="06.05.14. Job Data Edit Report"></a>06.05.14. Job Data Edit Report</h4><p>对于CELL , CF，它只对 Port 是 unloading port 或 两个 Port 的设备。其他设备应提供作业数据编辑功能，但修改后的设备不向BC报告新作业数据。</p>
+<p>对于Cell，所有的设备都应该提供这个功能。修改后，设备应自动向BC报告新作业数据。</p>
+<p>作业存储在磁带中，但操作员手册通过作业数据编辑功能改变了作业数据内容。修改后，设备应自动向BC报告新作业数据。</p>
+<p>设备改造后应检查配方ID、产品类型、组索引等，如内容与设备本身不一致，设备无法保存作业数据，等待操作人员处理。</p>
+<p><strong>※ Note：</strong> 所有项目的作业数据均可由操作人员在手动模式下进行修改，修改后的设备应检查是否可以使用。</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu435.png" width="90%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu436.png" width="90%"></p>
+<h5 id="06-05-14-02-Communication-Scenario"><a href="#06-05-14-02-Communication-Scenario" class="headerlink" title="06.05.14.02. Communication Scenario"></a>06.05.14.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu437.png" width="90%"></p>
+<h4 id="06-05-15-CST-Transfer-Event"><a href="#06-05-15-CST-Transfer-Event" class="headerlink" title="06.05.15. CST Transfer Event"></a>06.05.15. CST Transfer Event</h4><p>对于某些特殊线路，如 Array CAC线、Cell POL线，设备传输的是Cassette而不是Glass。当盒式磁带在上游设备和下游设备或单元内部设备之间传输时，设备仍需要向BC报告盒式磁带的接收/发送/存储/取出/移除事件 </p>
+<h5 id="06-05-15-01-PLC-MAP"><a href="#06-05-15-01-PLC-MAP" class="headerlink" title="06.05.15.01. PLC MAP"></a>06.05.15.01. PLC MAP</h5><h6 id="06-05-15-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#06-05-15-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="06.05.15.01.01. Local PLC – Link Register (W Area)"></a>06.05.15.01.01. Local PLC – Link Register (W Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu438.png" width="90%"> </p>
+<img src="http://photo.wushaopei.com/qiniu439.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu440.png" width="90%">
+
+<h4 id="06-05-15-02-Communication-Scenario"><a href="#06-05-15-02-Communication-Scenario" class="headerlink" title="06.05.15.02. Communication Scenario"></a>06.05.15.02. Communication Scenario</h4><img src="http://photo.wushaopei.com/qiniu441.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu442.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu443.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu444.png" width="90%">
+
+
+
+<h4 id="06-05-16-Glass-Info-Change-Report"><a href="#06-05-16-Glass-Info-Change-Report" class="headerlink" title="06.05.16. Glass Info Change Report"></a>06.05.16. Glass Info Change Report</h4><p>Array TPE, CF总间距分室的日常检查槽应提供“Glass Info Change Report ”功能后，收到的工作从上游设备。</p>
+<p>当从机器人(或盒式磁带)接收玻璃时，盒式磁带序列号应由操作员手动更改(数组:5001<del>6000,CF:60000</del>61000)，工作序列号始终为1</p>
+<h5 id="06-05-16-01-PLC-MAP"><a href="#06-05-16-01-PLC-MAP" class="headerlink" title="06.05.16.01. PLC MAP"></a>06.05.16.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu445.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu446.png" width="90%">
+
+<h5 id="06-05-16-02-Communication-Scenario"><a href="#06-05-16-02-Communication-Scenario" class="headerlink" title="06.05.16.02. Communication Scenario"></a>06.05.16.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu447.png" width="90%">
+
+<h3 id="06-06-Process-Data-Management"><a href="#06-06-Process-Data-Management" class="headerlink" title="06.06. Process Data Management"></a>06.06. Process Data Management</h3><p>该功能仅适用于工艺设备，具有加工参数值或检验结果等工艺数据。数据应与个人工作相关，并使用玻璃/芯片ID报告 </p>
+<ul>
+<li>Job Data：  作业数据应与发送作业的作业数据相同 </li>
+<li>Processing Time：它是设备中某项工作的实际处理时间。 </li>
+<li>Kind of Process Data：There are 4 kinds of process data <ul>
+<li>By Glass：如果设备有工艺数据，每个玻璃/芯片的工艺数据应在作业发送到下游设备之前报告。一个本地设备应该向BC报告每个玻璃一次的工艺数据 </li>
+<li>By Event： : BC发送“工艺数据请求”时，设备应报告工艺数据 </li>
+<li>By Time (Accumulated Data)： 设备应报告累积的工艺数据。设备应提供累计工艺数据报告时间设定功能。 </li>
+<li>By Time (Daily Check)： 设备应实时向BC报告当前数据，如每日检查项目、效用项目等 </li>
+</ul>
+</li>
+</ul>
+<h4 id="06-06-01-Default-Value"><a href="#06-06-01-Default-Value" class="headerlink" title="06.06.01. Default Value"></a>06.06.01. Default Value</h4><p>如果某些过程数据项没有“ measurement （测量）”或“ inspection (检查) ”，这些项目应按默认值报告如下: </p>
+<img src="http://photo.wushaopei.com/qiniu448.png" width="90%">
+
+<h4 id="06-06-02-By-Glass"><a href="#06-06-02-By-Glass" class="headerlink" title="06.06.02. By Glass"></a>06.06.02. By Glass</h4><p>在玻璃送至下游设备之前，设备需要按每个玻璃向BC报告“工艺数据”。</p>
+<p>Special Case： 请参考操作场景说明书的每一行</p>
+<ul>
+<li>By File： 有些设备受PLC地址范围的限制，将工艺数据按文件改变使用(共享文件夹)向BC报告。但设备仍应使用此功能(仅使用Header - Process数据报告块，不包括Body - Process数据项块)通知BC按文件获取真实的进程数据内容。请参阅CSOT_G8.5B_EDC文件通用规范。 </li>
+<li>By SECS： 有些设备受PLC地址范围的限制，工艺数据会由SECS更改后上报给BC。设备可忽略PLC功能。请参阅CSOT-18_G8.5B_Equipment SECS通用规范 </li>
+</ul>
+<h5 id="06-06-02-01-PLC-MAP"><a href="#06-06-02-01-PLC-MAP" class="headerlink" title="06.06.02.01. PLC MAP"></a>06.06.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu449.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu450.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu451.png" width="90%">
+
+<h5 id="06-06-02-02-Communication-Scenario"><a href="#06-06-02-02-Communication-Scenario" class="headerlink" title="06.06.02.02. Communication Scenario"></a>06.06.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu452.png" width="90%">
+
+<h4 id="06-06-03-By-Event"><a href="#06-06-03-By-Event" class="headerlink" title="06.06.03. By Event"></a>06.06.03. By Event</h4><h5 id="06-06-03-01-PLC-MAP"><a href="#06-06-03-01-PLC-MAP" class="headerlink" title="06.06.03.01. PLC MAP"></a>06.06.03.01. PLC MAP</h5><p>这是设备的特殊项目，如果一个设备需要报告那些项目，然后在PLC MAP 分配 </p>
+<img src="http://photo.wushaopei.com/qiniu453.png" width="90%">
+
+<h5 id="06-06-03-02-Communication-Scenario"><a href="#06-06-03-02-Communication-Scenario" class="headerlink" title="06.06.03.02. Communication Scenario"></a>06.06.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu454.png" width="90%">
+
+<h4 id="06-06-04-By-Time-Accumulated-Data"><a href="#06-06-04-By-Time-Accumulated-Data" class="headerlink" title="06.06.04. By Time (Accumulated Data)"></a>06.06.04. By Time (Accumulated Data)</h4><h5 id="06-06-04-01-PLC-MAP"><a href="#06-06-04-01-PLC-MAP" class="headerlink" title="06.06.04.01. PLC MAP"></a>06.06.04.01. PLC MAP</h5><p>这是设备的特殊项目，如果一个设备需要报告那些项目，然后在PLC MAP 分配。 </p>
+<img src="http://photo.wushaopei.com/qiniu455.png" width="90%">
+
+<h5 id="06-06-04-02-Communication-Scenario"><a href="#06-06-04-02-Communication-Scenario" class="headerlink" title="06.06.04.02. Communication Scenario"></a>06.06.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu456.png" width="90%">
+
+<h4 id="06-06-05-By-Time-Daily-Check"><a href="#06-06-05-By-Time-Daily-Check" class="headerlink" title="06.06.05. By Time (Daily Check)"></a>06.06.05. By Time (Daily Check)</h4><p>设备实时报告日常检查项目。 </p>
+<h5 id="06-06-05-01-PLC-MAP"><a href="#06-06-05-01-PLC-MAP" class="headerlink" title="06.06.05.01. PLC MAP"></a>06.06.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu457.png" width="90%">
+
+<h5 id="06-06-05-01-Communication-Scenario"><a href="#06-06-05-01-Communication-Scenario" class="headerlink" title="06.06.05.01. Communication Scenario"></a>06.06.05.01. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu458.png" width="90%">
+
+<h3 id="06-07-APC-Data-Management"><a href="#06-07-APC-Data-Management" class="headerlink" title="06.07. APC Data Management"></a>06.07. APC Data Management</h3><p>此功能用于收集或控制跟踪数据、传感器数据(实用数据、设施数据……)或一些特殊数据 </p>
+<h4 id="06-07-01-APC-Data-Report"><a href="#06-07-01-APC-Data-Report" class="headerlink" title="06.07.01. APC Data Report"></a>06.07.01. APC Data Report</h4><p>设备实时将APC数据(如跟踪数据或传感器数据或某些特殊数据收集)写入word区域。BC将读取这些数据并报告给主机。 </p>
+<p>BC提供当前APC数据报告时间设置功能。 </p>
+<p><strong>Trace</strong> (跟踪），传感器数据报告频率要求如下: </p>
+<ul>
+<li>如果 items 数少于200，必须支持4hz; </li>
+<li>If the items count between 300 and 200, must support 3Hz; </li>
+<li>If the items count greater than 300, must support 2Hz.  </li>
+</ul>
+<h5 id="06-07-01-01-PLC-MAP"><a href="#06-07-01-01-PLC-MAP" class="headerlink" title="06.07.01.01. PLC MAP"></a>06.07.01.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu470.png" width="90%">
+
+<h4 id="06-07-02-APC-Data-Download"><a href="#06-07-02-APC-Data-Download" class="headerlink" title="06.07.02. APC Data Download"></a>06.07.02. APC Data Download</h4><p>BC would download APC Data to equipment for change some item value. When equipment  </p>
+<p>receive BC of download data, should change the item of set value .</p>
+<p><strong>※ Note：</strong> </p>
+<p>Return Code Description：  </p>
+<p>1：OK,   它的意思是设备接受命令并通过设定值来改变物品的值 </p>
+<p>2：NG,  这意味着 equipment 不能接受BC的命令 </p>
+<img src="http://photo.wushaopei.com/qiniu471.png" width="90%">
+
+<h5 id="06-07-02-02-Communication-Scenario"><a href="#06-07-02-02-Communication-Scenario" class="headerlink" title="06.07.02.02. Communication Scenario"></a>06.07.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu472.png" width="90%">
+
+
+
+<h4 id="06-07-03-Energy-Visualization-Management-能源可视化管理"><a href="#06-07-03-Energy-Visualization-Management-能源可视化管理" class="headerlink" title="06.07.03. Energy Visualization Management (能源可视化管理 )"></a>06.07.03. Energy Visualization Management (能源可视化管理 )</h4><p>设备应将液体、电力、燃气消耗数据按时间设定报告给BC。时间可以在触摸屏上设置，由CSOT工程师决定。 </p>
+<h5 id="06-07-03-01-PLC-MAP"><a href="#06-07-03-01-PLC-MAP" class="headerlink" title="06.07.03.01. PLC MAP"></a>06.07.03.01. PLC MAP</h5><p>项目的能量可视化如下图所示，由CSOT工程师决定。 </p>
+<img src="http://photo.wushaopei.com/qiniu473.png" width="90%">
+
+<h5 id="06-07-03-02-PLC-MAP"><a href="#06-07-03-02-PLC-MAP" class="headerlink" title="06.07.03.02. PLC MAP"></a>06.07.03.02. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu474.png" width="90%">
+
+<h5 id="06-07-03-03-Communication-Scenario"><a href="#06-07-03-03-Communication-Scenario" class="headerlink" title="06.07.03.03. Communication Scenario"></a>06.07.03.03. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu475.png" width="90%">
+
+
+
+<h3 id="06-08-Recipe-Management"><a href="#06-08-Recipe-Management" class="headerlink" title="06.08. Recipe Management"></a>06.08. Recipe Management</h3><p>BC将通过盒式控制命令事件将作业数据下载到装入器/卸载器。该作业数据包括PPID。当作业被发送到下游设备时，PPID也通过CC-Link IE被发送到下游设备。For 收到 其他 equipment, 从 上游 设备 通过 CC-Link IE 并 送往 下游 设备 没有 任何 修改 .</p>
+<ul>
+<li><p>PPID示例格式:参考操作场景规范的每一行。 </p>
+<img src="http://photo.wushaopei.com/qiniu476.png" width="50%">
+
+<p>​    例如:L3设备应将PPID 3和4字符(AB)与设备配方ID进行比较。 </p>
+</li>
+</ul>
+<h4 id="06-08-01-Auto-Recipe-Change-Mode"><a href="#06-08-01-Auto-Recipe-Change-Mode" class="headerlink" title="06.08.01. Auto Recipe Change Mode"></a>06.08.01. Auto Recipe Change Mode</h4><p>​    所有设备应提供自动配方更改功能。设备应在设备触摸屏上提供自动配方更改启用/禁用更改功能 </p>
+<ul>
+<li>Enable：Equipment should change Recipe ID by automatic. </li>
+<li>Disable：Equipment should change Recipe ID by manual.</li>
+</ul>
+<h5 id="06-08-01-01-PLC-MAP"><a href="#06-08-01-01-PLC-MAP" class="headerlink" title="06.08.01.01. PLC MAP"></a>06.08.01.01. PLC MAP</h5><h6 id="06-08-01-01-01-Local-PLC-–-Link-Relay-B-Area-"><a href="#06-08-01-01-01-Local-PLC-–-Link-Relay-B-Area-" class="headerlink" title="06.08.01.01.01. Local PLC – Link Relay (B Area) "></a>06.08.01.01.01. Local PLC – Link Relay (B Area) </h6><img src="http://photo.wushaopei.com/qiniu492.png" width="80%">
+
+<h5 id="06-08-01-02-Communication-Scenario"><a href="#06-08-01-02-Communication-Scenario" class="headerlink" title="06.08.01.02. Communication Scenario"></a>06.08.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu493.png" width="80%">
+
+<h4 id="06-08-02-Current-Recipe-ID-Report"><a href="#06-08-02-Current-Recipe-ID-Report" class="headerlink" title="06.08.02. Current Recipe ID Report"></a>06.08.02. Current Recipe ID Report</h4><p>当前配方是由设备设置当前使用的配方ID。</p>
+<p>当当前的配方改变时，设备应以相应的配方ID向BC报告。只有当设备中没有玻璃时，才允许当前的配方改变。设备不允许改变在设备的配方注册表中没有找到的当前配方</p>
+<h5 id="06-08-02-01-PLC-MAP-debar"><a href="#06-08-02-01-PLC-MAP-debar" class="headerlink" title="06.08.02.01. PLC MAP debar"></a>06.08.02.01. PLC MAP debar</h5><img src="http://photo.wushaopei.com/qiniu494.png" width="80%">
+
+<h5 id="06-08-02-02-Communication-Scenario"><a href="#06-08-02-02-Communication-Scenario" class="headerlink" title="06.08.02.02. Communication Scenario"></a>06.08.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu495.png" width="80%">
+
+<h4 id="06-08-03-Equipment-Recipe-Validation"><a href="#06-08-03-Equipment-Recipe-Validation" class="headerlink" title="06.08.03. Equipment Recipe Validation"></a>06.08.03. Equipment Recipe Validation</h4><p>当 <code>cassette</code> 在端口加载时，在CIM状态下，BC将PPID下载到加载程序，在CIM关闭状态下，操作员在加载程序的触摸屏上输入PPID进行联机操作。</p>
+<p>PPID从装载机转移到下游设备，在从上游设备接收玻璃之前，设备应验证PPID(如果启用配方检查)和相应的配方ID。</p>
+<p>设备应提供 <code>Job Data Check</code>、 <code>enable/disable</code>  操作选择功能。正常情况下，机器处于 <code>enable</code> 功能;在异常处理情况下，OP选择禁用后，当玻璃从上游传输，下游接收玻璃，不需要检查配方或其他项目，如产品类型，组索引等。</p>
+<p>详细规则请参阅CSOT-17_G8.5B_Equipment链路信号通用规范5.4.1作业数据检查功能。</p>
+<ol>
+<li><strong>Auto Recipe Change Enable Case：</strong>  </li>
+</ol>
+<ul>
+<li>如果从上游设备接收的PPID与当前配方ID匹配，则设备可以从上游接收玻璃。 </li>
+<li>如果从上游设备接收到的PPID与当前的配方ID不匹配，但在配方注册表中找到了，则设备应自动更改配方，从上游设备接收玻璃。 </li>
+<li>如果从上游设备接收到的PPID与当前配方ID不匹配，且在配方注册表中未找到，则设备应发出警报，且未接收到玻璃。 </li>
+<li>操作人员在设备上进行配方登记后，设备应再次检查PPID，并自动更改配方。如果从上游设备接收的PPID与当前配方ID匹配，则从上游设备接收玻璃 </li>
+</ul>
+<ol start="2">
+<li><strong>Auto Recipe Change Disable Case：</strong>  </li>
+</ol>
+<ul>
+<li>如果从上游设备接收的PPID与当前配方ID匹配，则设备可以从上游接收玻璃。 </li>
+<li>如果从上游设备接收到的PPID与当前配方ID不匹配，则设备应发出警报，不接收玻璃。 </li>
+<li>在操作员更改当前配方ID后，设备应再次检查PPID。如果从上游设备接收的PPID与当前配方ID匹配，则从上游设备接收玻璃 </li>
+</ul>
+<ol start="3">
+<li><strong>Auto Recipe Change via Recipe ID Check Mode Case：</strong> </li>
+</ol>
+<ul>
+<li>配方ID检查模式为禁用<code>(Disable)</code>，配方自动更改为禁用: 无论 Job Data 中的 Recipe ID 与 当前的 设备的Recipe ID 是否相同，都采取从上游设备接收玻璃并使用配方ID的电流进行处理/检测。 </li>
+<li>Recipe ID Check Mode is Enable, Recipe Auto Change is Disable：  <ul>
+<li>Job Data 中的 Recipe ID  与 当前设备的 Recipe ID  相同时，从上游设备接收玻璃，使用当前的 Recipe ID 进行加工/检测 </li>
+<li>Job Data 中的 Recipe ID  与 当前设备的 Recipe ID 不同时，不能接收来自上游设备的玻璃并发出警报 </li>
+</ul>
+</li>
+<li>Recipe ID Check Mode is Disable, Recipe Auto Change is Enable： <ul>
+<li>Job Data 中的 Recipe ID  与 当前设备的 Recipe ID  相同时，从上游设备接收玻璃，使用当前的 Recipe ID 进行加工/检测 </li>
+<li>Job Data 中的 Recipe ID  与 当前设备的 Recipe ID 不同时，应检查 Job Data 中的Recipe ID 是否可以更改: <ul>
+<li>如果可以更改，则从上游设备接收玻璃，但将配方ID的当前值更改为 Job Data 中的 Recipe ID 进行加工/检测 </li>
+<li>如果不能更改(包括配方表中不存在配方id)，则无法从上游设备接收玻璃并发出警报。 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Recipe ID Check Mode is Enable, Recipe Auto Change is Enable： <ul>
+<li>Job Data 上的 Recipe ID 与当前的 Recipe ID 不同时 ，从上游设备接收玻璃，使用当前的 Recipe ID 进行加工/检测。 </li>
+<li>Recipe ID 的作业数据与 当前Recipe ID 的不同，应检查 的 Job Data 中的Recipe ID 是否可以更改: <ul>
+<li>如果可以更改，则从上游设备接收玻璃，但将当前的 Recipe ID 更改为Job Data 的Recipe ID 来加工/检测 </li>
+<li>如果不能更改（包括配方表中不存在 Recipe ID ），则无法从上游设备接收玻璃并发出警报</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他情况:应结合 Job Data Check 项条件(如产品类型、产品ID、组索引启用或禁用)来判断收到的 glass 是否合格。 </li>
+</ul>
+<h5 id="06-08-03-01-Check-Item-Description"><a href="#06-08-03-01-Check-Item-Description" class="headerlink" title="06.08.03.01. Check Item Description"></a>06.08.03.01. Check Item Description</h5><p>当上游设备转移 Job 时，设备需要判断是否可以从上游设备接收 Job ，如下: </p>
+<ul>
+<li><p>Job Data Check Mode： 操作人员可在触摸屏上手动切换。 </p>
+<ul>
+<li><p>Enable :  设备需要检查每个条件来接收来自上游设备的作业 </p>
+</li>
+<li><p>Disable:  设备不检查各项情况，直接从上游设备接收作业。 </p>
+<p>※ Note：如果作业数据检查模式无效，则所有检查项目将更改为无效。 </p>
+</li>
+</ul>
+</li>
+<li><p>Recipe ID Check Mode：Operators can manual change on Touch Panel </p>
+<ul>
+<li><p>Enable : 设备需要检查 Recipe ID 是否可以使用。同样，接收 Job ；不同，不接受 Job .</p>
+</li>
+<li><p>Disable : 设备不检查 Recipe ID ,直接从上游设备接收 Job ，并使用当前的 Recipe ID 进行处理</p>
+</li>
+</ul>
+</li>
+<li><p>Product Type Check Mode：Operators can manual change on Touch Panel. </p>
+<ul>
+<li>Enable ： 当设备中有 Glass 时， 设备不能混合不同产品类型的 Glass</li>
+<li>Disable ：设备不检查产品类型，直接从上游设备接收 Job </li>
+</ul>
+<p>※ Note : 为避免混装产品，卸料盒应支持产品型式检查 </p>
+<p>Enable/Disable function </p>
+<p>※ Note : 对于CF卸载器，当产品类型检查为“Enable”时，卸载器需要检查当前产品类型的作业数据是否与已经卸载的CST中的作业数据的产品类型相同，还是空闲的CST来存储不同产品类型的作业数据。如果不同产品类型的作业数据可以存储到不使用的CST中，卸载器可以接收不同产品类型的作业数据;否则，没有CST可以存储不同产品类型的作业数据，卸载程序仍然可以接收不同产品类型的作业数据。 </p>
+</li>
+<li><p>Group Index Check Mode：Operators can manual change on Touch Panel. </p>
+<ul>
+<li>Enable : 设备需要检查 check last Group Index 是否与发送 Job Data 的上游组索引相同。相同，接收 Job ; 不同，不接收 Job.</li>
+<li>Disable ：设备不检查 Group Index，直接从上游设备接收作业</li>
+</ul>
+</li>
+<li><p>Product ID Check Moe：Operators can manual change on Touch Panel</p>
+<ul>
+<li>Enable : 设备需要检查上一个产品 ID 是否与上一个产品 ID 相同</li>
+<li>Disable : 设备不检查产品 ID ，直接从上游设备接收 Job </li>
+</ul>
+</li>
+<li><p>Job Duplicate Check Mode：Operators can manual change on Touch Panel. </p>
+<ul>
+<li><p>Enable：When receive/send out Job from/to upstream/downstream equipment, equipment need to check Cassette Sequence No and Job Sequence No same with last receive/send out of Cassette Sequence No and Job Sequence No or not. (Including equipment inside of Job). Same, can’t receive or send out the Job; different, can receive or send out the Job.</p>
+</li>
+<li><p>Disable :  Equipment doesn’t check Job Duplicate or not, directly receive Job from  </p>
+<p>upstream equipment or send out to downstream equipment. </p>
+<p>No matter check mode is enable or disable, when check Job was </p>
+<p>always need to raise warning. </p>
+<p>对于Cell，无论启用或禁用检查模式，当检查工作重复时，设备总是从上游设备接收玻璃，并且需要提高亏空。</p>
+<p>对于电池，设备应检查10块玻璃的最后接收/发送历史记录;对于Array，CF， Equipment只是检查最后的玻璃接收/发送的历史</p>
+</li>
+</ul>
+</li>
+<li><p>COA Version Check Mode：Operators can manual change on Touch Panel. Just for CF </p>
+<p>Unloader. </p>
+<ul>
+<li>Enable : 卸载器需要检查当前的COA版本是否与存储作业数据的COA版本相同。同样，存储作业;不同，不能存储作业 </li>
+<li>Disable : 设备不检查COA版本，直接从上游设备接收作业。 </li>
+</ul>
+<p>※ Note： </p>
+<ol>
+<li><p>如果设备中没有玻璃，则不检查产品类型、组索引、产品ID和COA版本，然后直接从upstream equipment/stage 接收玻璃。</p>
+</li>
+<li><p>对于阵列，当设备处于强制清除模式(参见09.01.03节)时，不检查作业数据检查项。</p>
+</li>
+<li><p>For Cell Line Load Equipment : 负载需要记住最后一个玻璃产品类型，如果负载设备中没有玻璃，则不检查产品类型。但设备应检查新的CST玻璃产品类型与上一种玻璃产品类型，如不相同，机器不取玻璃，设备应报警并呼叫操作员。操作人员确认玻璃是否可以拿取。(更改运行不同的产品)  </p>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="06-08-03-02-PLC-MAP"><a href="#06-08-03-02-PLC-MAP" class="headerlink" title="06.08.03.02. PLC MAP"></a>06.08.03.02. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu496.png" width="80%">
+
+<h5 id="06-08-03-03-Communication-Scenari"><a href="#06-08-03-03-Communication-Scenari" class="headerlink" title="06.08.03.03. Communication Scenari"></a>06.08.03.03. Communication Scenari</h5><img src="http://photo.wushaopei.com/qiniu497.png" width="80%">
+
+
+
+<h4 id="06-08-04-Recipe-Register-Validation-Command"><a href="#06-08-04-Recipe-Register-Validation-Command" class="headerlink" title="06.08.04. Recipe Register Validation Command"></a>06.08.04. Recipe Register Validation Command</h4><p>BC 可以向设备发送 Recipe ID 注册检查命令。如果BC发送的 Recipe ID 都已注册，那么设备应该回复OK，否则回复NG </p>
+<ul>
+<li><p>Auto Manual : </p>
+<ul>
+<li>Auto ： 通过BC自动触发此函数 </li>
+<li>Manual :  在BC UI或MES查询中通过操作符触发此函数 </li>
+</ul>
+</li>
+<li><p>Port No :  BC会将 Port No设为设备，设备需要将相同的 Port No回复给BC进行记录使用 </p>
+</li>
+<li><p>Recipe ID :  设备应将BC请求的 Recipe ID 回复到BC进行记录 </p>
+<p>※ Note： </p>
+<p>Return  Code Description:</p>
+<ol>
+<li>OK , 这意味着 BC 请求的 Recipe ID 存在  Recipe 表中</li>
+<li>NG , 这意味着 BC 请求的 Recipe ID 不存在 Recipe 表中</li>
+</ol>
+</li>
+</ul>
+<h5 id="06-08-04-01-PLC-MAP"><a href="#06-08-04-01-PLC-MAP" class="headerlink" title="06.08.04.01. PLC MAP"></a>06.08.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu498.png" width="80%">
+
+<h5 id="06-08-04-02-Communication-Scenario"><a href="#06-08-04-02-Communication-Scenario" class="headerlink" title="06.08.04.02. Communication Scenario"></a>06.08.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu499.png" width="80%">
+
+<h4 id="06-08-05-Recipe-Modify-Report"><a href="#06-08-05-Recipe-Modify-Report" class="headerlink" title="06.08.05. Recipe Modify Report"></a>06.08.05. Recipe Modify Report</h4><p>When Recipe was Created or Modify or Deleted, equipment should report this event to BC. </p>
+<ul>
+<li>When a new Recipe is created by Engineer, Equipment should report Create to BC </li>
+<li>When a Recipe is modified by Engineer, Equipment should report Modify to BC </li>
+<li>When a Recipe is deleted by Engineer, Equipment should report Delete to BC. </li>
+</ul>
+<h5 id="06-08-05-01-PLC-MAP"><a href="#06-08-05-01-PLC-MAP" class="headerlink" title="06.08.05.01. PLC MAP"></a>06.08.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu500.png" width="80%">
+
+<h5 id="06-08-05-02-Communication-Scenario"><a href="#06-08-05-02-Communication-Scenario" class="headerlink" title="06.08.05.02. Communication Scenario"></a>06.08.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu501.png" width="80%">
+
+<h4 id="06-08-06-Recipe-Parameter-Request-Command"><a href="#06-08-06-Recipe-Parameter-Request-Command" class="headerlink" title="06.08.06. Recipe Parameter Request Command"></a>06.08.06. Recipe Parameter Request Command</h4><p>BC can request equipment Recipe Parameter for check MES recipe validation. When BC  </p>
+<p>requests the recipe parameter to equipment, equipment should reply the recipe             parameter  value of corresponding Recipe ID.</p>
+<ul>
+<li>Port No： BC会将 Port No 设置为设备的，设备需要将相同的 Port No 回复给BC进行记录使用。 </li>
+</ul>
+<h5 id="06-08-06-01-Default-Value"><a href="#06-08-06-01-Default-Value" class="headerlink" title="06.08.06.01. Default Value"></a>06.08.06.01. Default Value</h5><p>如果设备为多单元类型，有些单元由于故障无法上报配方参数，请将这些参数的特殊值上报如下: </p>
+<img src="http://photo.wushaopei.com/qiniu502.png" width="80%">
+
+<h5 id="06-08-06-02-PLC-MAP"><a href="#06-08-06-02-PLC-MAP" class="headerlink" title="06.08.06.02. PLC MAP"></a>06.08.06.02. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu503.png" width="80%">
+
+<h5 id="06-08-06-03-Communication-Scenario"><a href="#06-08-06-03-Communication-Scenario" class="headerlink" title="06.08.06.03. Communication Scenario"></a>06.08.06.03. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu504.png" width="80%">
+
+<h3 id="06-09-CIM-Message-Management"><a href="#06-09-CIM-Message-Management" class="headerlink" title="06.09. CIM Message Management"></a>06.09. CIM Message Management</h3><p>CIM报文用于通知特定设备的操作员特定信息。 当接收到CIM报文时，设备必须将其显示给操作员，并在本地保存历史数据。 设备应支持BC可以使用 touch panel number 向特定设备的特定 touch panel 发送一个或多个CIM消息。 </p>
+<p>当设备接收到来自BC的CIM消息时，设备应该在 touch panel 上的弹出窗口中显示CIM消息。CIM消息弹出窗口应提供“确认”按钮，如果操作员确认，则清除CIM消息，届时设备应报告确认事件(请参阅CIM消息确认报告区域)。 </p>
+<p>设备只清除经操作员确认或由BC发出的CIM报文清除命令指示的CIM报文。当接收到CIM消息时，将显示如下: </p>
+<img src="http://photo.wushaopei.com/qiniu505.png" width="80%">
+
+<p>如果设备在工程师或操作员确认前已接收到1条以上的CIM消息，则设备应在屏幕上进行最多5条CIM消息的缓冲。如果缓冲的CIM报文数量超过5条，则设备应将CIM报文的缓冲改为最新的(最新的)5条CIM报文 .</p>
+<h4 id="06-09-01-CIM-Message-History-Management"><a href="#06-09-01-CIM-Message-History-Management" class="headerlink" title="06.09.01. CIM Message History Management"></a>06.09.01. CIM Message History Management</h4><p>设备应该在设备触摸面板上显示至少20条最近从BC收到的CIM消息的历史 </p>
+<img src="http://photo.wushaopei.com/qiniu506.png" width="80%">
+
+<h4 id="06-09-02-CIM-Message-Set-Command"><a href="#06-09-02-CIM-Message-Set-Command" class="headerlink" title="06.09.02. CIM Message Set Command"></a>06.09.02. CIM Message Set Command</h4><p>这是从主设备到设备的命令，指示CIM消息显示在设备触摸屏上。当收到消息时，设备会在弹出窗口中显示消息。每个CIM消息都有其惟一的ID，设备根据CIM消息ID管理CIM消息。 </p>
+<ul>
+<li><p>CIM Message： 设备应该预留足够的空间来显示一些CIM消息。 </p>
+<p>设备在带有CIM消息ID的设备触摸屏上显示CIM消息 </p>
+</li>
+<li><p>设备应提供在触摸屏上显示CIM信息的屏幕。 如果设备接收到CIM消息集命令，它必须首先读取该数据并显示在屏幕上 </p>
+</li>
+<li><p>CIM Message ID： CIM消息ID是消息的唯一标识， 而消息内容则向操作员指示更详细的信息。如果CIM消息ID没有值， 设备应有显示空间。  根据CIM消息ID， 设备应显示信息，并做一些动作，如蜂鸣器到操作员和打开信号塔灯。</p>
+<p>进入翻译页面</p>
+</li>
+</ul>
+<h5 id="06-09-02-01-Signal-Tower-Management"><a href="#06-09-02-01-Signal-Tower-Management" class="headerlink" title="06.09.02.01. Signal Tower Management"></a>06.09.02.01. Signal Tower Management</h5><p>当设备收到BC的CIM报文时，信号塔灯和蜂鸣器的设备如下: </p>
+<img src="http://photo.wushaopei.com/qiniu507.png" width="80%">
+
+<h5 id="06-09-02-02-PLC-MAP"><a href="#06-09-02-02-PLC-MAP" class="headerlink" title="06.09.02.02. PLC MAP"></a>06.09.02.02. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu508.png" width="80%">
+
+<h5 id="06-09-02-03-Communication-Scenario"><a href="#06-09-02-03-Communication-Scenario" class="headerlink" title="06.09.02.03. Communication Scenario"></a>06.09.02.03. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu509.png" width="80%">
+
+<h4 id="06-09-03-CIM-Message-Clear-Command"><a href="#06-09-03-CIM-Message-Clear-Command" class="headerlink" title="06.09.03. CIM Message Clear Command"></a>06.09.03. CIM Message Clear Command</h4><p>这是从主设备到设备的命令，指示明确的CIM信息显示在触摸屏上。设备从CIM消息弹出窗口清除主设备基于CIM消息ID所指示的CIM消息，无论该CIM消息是否已被操作员确认。如果在弹出窗口中没有未确认的CIM消息，则设备关闭弹出窗口。必须保存CIM信息的历史。 </p>
+<p>设备应该支持BC可以清除一个或多个CIM消息从一个特定的特定设备的触控面板使用触摸板数量和CIM消息ID。如果设备收到这个命令时,设备应明确只有CIM的信息由CIM表示消息ID从触摸面板由触控面板编号表示。 </p>
+<p>如果CIM信息全部清除或确认，则设备应关闭CIM信息弹出显示，蜂鸣器和信号塔应更改为原始状态 </p>
+<p>CIM消息清除命令或确认后，设备应重新安排弹出式显示如下: </p>
+<img src="http://photo.wushaopei.com/qiniu510.png" width="80%">
+
+
+
+<h5 id="06-09-03-01-PLC-MAP"><a href="#06-09-03-01-PLC-MAP" class="headerlink" title="06.09.03.01. PLC MAP"></a>06.09.03.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu511.png" width="80%">
+
+<h5 id="06-09-03-02-Communication-Scenario"><a href="#06-09-03-02-Communication-Scenario" class="headerlink" title="06.09.03.02. Communication Scenario"></a>06.09.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu512.png" width="80%">
+
+<h4 id="06-09-04-CIM-Message-Confirm-Report"><a href="#06-09-04-CIM-Message-Confirm-Report" class="headerlink" title="06.09.04. CIM Message Confirm Report"></a>06.09.04. CIM Message Confirm Report</h4><p>这表示操作员在设备触摸屏上确认了CIM信息。 经操作员确认后，设备将CIM消息的ID报告给主设备 。</p>
+<p>如果CIM信息全部清除或确认，则设备应关闭CIM信息弹出显示，蜂鸣器和信号塔应更改为原始状态 。</p>
+<p>CIM消息清除命令或确认后，设备应重新安排弹出式显示如下: </p>
+<img src="http://photo.wushaopei.com/qiniu513.png" width="80%">
+
+<h5 id="06-09-04-01-PLC-MAP"><a href="#06-09-04-01-PLC-MAP" class="headerlink" title="06.09.04.01. PLC MAP"></a>06.09.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu514.png" width="80%">
+
+<h5 id="06-09-04-02-Communication-Scenario"><a href="#06-09-04-02-Communication-Scenario" class="headerlink" title="06.09.04.02. Communication Scenario"></a>06.09.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu515.png" width="80%">
+
+<h3 id="06-10-Date-Time-Set-Command"><a href="#06-10-Date-Time-Set-Command" class="headerlink" title="06.10. Date Time Set Command"></a>06.10. Date Time Set Command</h3><p>当设备接收到该命令时，设备根据该命令发送的时间调整其本地系统时间。 </p>
+<p>BC将设备接收MES的日期时间或设备CIM模式更改为ON的日期时间设置为设备的日期时间 </p>
+<h4 id="06-10-01-PLC-MAP"><a href="#06-10-01-PLC-MAP" class="headerlink" title="06.10.01. PLC MAP"></a>06.10.01. PLC MAP</h4><h5 id="06-10-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-10-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.10.01.01. Local PLC – Link Relay (B Area)"></a>06.10.01.01. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu516.png" width="80%">
+
+<h5 id="06-10-01-02-Master-PLC-–-Link-Register-W-Area"><a href="#06-10-01-02-Master-PLC-–-Link-Register-W-Area" class="headerlink" title="06.10.01.02. Master PLC – Link Register (W Area)"></a>06.10.01.02. Master PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu517.png" width="80%">
+
+<h5 id="06-10-01-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-10-01-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.10.01.03. Master PLC – Link Relay (B Area)"></a>06.10.01.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu518.png" width="80%">
+
+<h4 id="06-10-02-Communication-Scenario"><a href="#06-10-02-Communication-Scenario" class="headerlink" title="06.10.02. Communication Scenario"></a>06.10.02. Communication Scenario</h4><img src="http://photo.wushaopei.com/qiniu519.png" width="80%">
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    吴少培
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" title="自动化开发（六）Specification-06-Common Function">http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="next" title="自动化开发（六）Specification-06-Common Function">
+                <i class="fa fa-chevron-left"></i> 自动化开发（六）Specification-06-Common Function
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%80%EF%BC%89properties-%E5%85%83%E7%B4%A0/" rel="prev" title="mybatis 配置（一）properties 元素">
+                mybatis 配置（一）properties 元素 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="吴少培" />
+            
+              <p class="site-author-name" itemprop="name">吴少培</p>
+              <p class="site-description motion-element" itemprop="description">冗长的黑暗中,你是我唯一的光。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Common-Function"><span class="nav-number">1.</span> <span class="nav-text">06. Common Function</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#06-01-Equipment-Monitor-Management"><span class="nav-number">1.1.</span> <span class="nav-text">06.01. Equipment Monitor Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-01-Equipment-Alive"><span class="nav-number">1.1.1.</span> <span class="nav-text">06.01.01. Equipment Alive</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-01-PLC-MAP"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">06.01.01.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-01-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">06.01.01.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-01-02-Communication-Scenario"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">06.01.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-02-CIM-Mode"><span class="nav-number">1.1.2.</span> <span class="nav-text">06.01.02. CIM Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-01-PLC-MAP"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">06.01.02.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">06.01.02.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-02-02-Communication-Scenario"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">06.01.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-03-CIM-Mode-Change-Command"><span class="nav-number">1.1.3.</span> <span class="nav-text">06.01.03. CIM Mode Change Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-01-PLC-MAP"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">06.01.03.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#"><span class="nav-number">1.1.3.1.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-03-02-Communication-Scenario"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">06.01.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-04-CIM-Off-Mode-Operation"><span class="nav-number">1.1.4.</span> <span class="nav-text">06.01.04. CIM Off Mode Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-05-Inline-Mode"><span class="nav-number">1.1.5.</span> <span class="nav-text">06.01.05. Inline Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-01-PLC-MAP"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">06.01.05.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-05-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">06.01.05.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-05-02-Communication-Scenario"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">06.01.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-06-Local-Alarm-Status"><span class="nav-number">1.1.6.</span> <span class="nav-text">06.01.06. Local Alarm Status</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-01-PLC-MAP"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">06.01.06.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-01-06-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.1.6.1.1.</span> <span class="nav-text">06.01.06.01.01. Local PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-06-02-Communication-Scenario"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">06.01.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-01-07-Equipment-Operation-Mode"><span class="nav-number">1.1.7.</span> <span class="nav-text">06.01.07. Equipment Operation Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-01-PLC-MAP"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">06.01.07.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-01-07-02-Communication-Scenario"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">06.01.07.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-02-BC-Monitor-Management"><span class="nav-number">1.2.</span> <span class="nav-text">06.02. BC Monitor Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-02-01-BC-Status"><span class="nav-number">1.2.1.</span> <span class="nav-text">06.02.01. BC Status</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-02-01-01-PLC-MAP"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">06.02.01.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-02-01-01-01-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">06.02.01.01.01. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-02-01-02-Communication-Scenario"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">06.02.01.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-03-Equipment-Management"><span class="nav-number">1.3.</span> <span class="nav-text">06.03. Equipment Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-01-Equipment-Status"><span class="nav-number">1.3.1.</span> <span class="nav-text">06.03.01. Equipment Status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-02-Unit-Status"><span class="nav-number">1.3.2.</span> <span class="nav-text">06.03.02. Unit Status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-03-PLC-MAP"><span class="nav-number">1.3.3.</span> <span class="nav-text">06.03.03. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-03-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">06.03.03.01. Local PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-03-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">06.03.03.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-03-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">06.03.03.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-04-Communication-Scenari"><span class="nav-number">1.3.4.</span> <span class="nav-text">06.03.04. Communication Scenari</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-05-No-Processing-Time"><span class="nav-number">1.3.5.</span> <span class="nav-text">06.03.05. No Processing Time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-06-Send-Wait-Time-Out-Report"><span class="nav-number">1.3.6.</span> <span class="nav-text">06.03.06. Send Wait Time Out Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-06-01-PLC-MAP"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">06.03.06.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-06-02-Communication-Scenario"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">06.03.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-03-07-Equipment-Status-Stop-Command"><span class="nav-number">1.3.7.</span> <span class="nav-text">06.03.07. Equipment Status Stop Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-07-01-PLC-MAP"><span class="nav-number">1.3.7.1.</span> <span class="nav-text">06.03.07.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-03-07-02-Communication-Scenario"><span class="nav-number">1.3.7.2.</span> <span class="nav-text">06.03.07.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-04-Alarm-Management"><span class="nav-number">1.4.</span> <span class="nav-text">06.04. Alarm Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-01-Alarm-Status"><span class="nav-number">1.4.1.</span> <span class="nav-text">06.04.01. Alarm Status</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-02-Alarm-Unit"><span class="nav-number">1.4.2.</span> <span class="nav-text">06.04.02. Alarm Unit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-03-Alarm-ID"><span class="nav-number">1.4.3.</span> <span class="nav-text">06.04.03. Alarm ID</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-04-Alarm-Code"><span class="nav-number">1.4.4.</span> <span class="nav-text">06.04.04. Alarm Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-05-Alarm-Level"><span class="nav-number">1.4.5.</span> <span class="nav-text">06.04.05. Alarm Level</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-06-Alarm-Text"><span class="nav-number">1.4.6.</span> <span class="nav-text">06.04.06. Alarm Text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-07-Alarm-Text-Using-Flag"><span class="nav-number">1.4.7.</span> <span class="nav-text">06.04.07. Alarm Text Using Flag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-08-PLC-MAP"><span class="nav-number">1.4.8.</span> <span class="nav-text">06.04.08. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-04-08-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.4.8.1.</span> <span class="nav-text">06.04.08.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-04-08-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.4.8.2.</span> <span class="nav-text">06.04.08.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-04-09-Communication-Scenario"><span class="nav-number">1.4.9.</span> <span class="nav-text">06.04.09. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-05-Job-Management"><span class="nav-number">1.5.</span> <span class="nav-text">06.05. Job Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-01-Job-Data-Transfer"><span class="nav-number">1.5.1.</span> <span class="nav-text">06.05.01. Job Data Transfer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-01-01-PLC-MAP"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">06.05.01.01. PLC MAP</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-02-Job-Event"><span class="nav-number">1.5.2.</span> <span class="nav-text">06.05.02. Job Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-02-01-Job-Event-Timing-Chart"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">06.05.02.01. Job Event Timing Chart</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-03-Receive-Job-Data-Event"><span class="nav-number">1.5.3.</span> <span class="nav-text">06.05.03. Receive Job Data Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-03-01-PLC-MAP"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">06.05.03.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-03-02-Communication-Scenario"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">06.05.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-04-Send-Out-Job-Data-Event"><span class="nav-number">1.5.4.</span> <span class="nav-text">06.05.04. Send Out Job Data Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-04-01-PLC-MAP"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">06.05.04.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-04-01-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.5.4.1.1.</span> <span class="nav-text">06.05.04.01.01. Local PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-04-01-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.5.4.1.2.</span> <span class="nav-text">06.05.04.01.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-04-01-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.5.4.1.3.</span> <span class="nav-text">06.05.04.01.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-04-02-Communication-Scenario"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">06.05.04.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-05-Store-Job-Data-Event"><span class="nav-number">1.5.5.</span> <span class="nav-text">06.05.05. Store Job Data Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-05-01-PLC-MAP"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">06.05.05.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-05-02-Communication-Scenario"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">06.05.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-06-Fetch-Out-Job-Data-Event"><span class="nav-number">1.5.6.</span> <span class="nav-text">06.05.06. Fetch Out Job Data Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-06-01-PLC-MAP"><span class="nav-number">1.5.6.1.</span> <span class="nav-text">06.05.06.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-06-02-Communication-Scenario"><span class="nav-number">1.5.6.2.</span> <span class="nav-text">06.05.06.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-07-Remove-Job-Event-Mode"><span class="nav-number">1.5.7.</span> <span class="nav-text">06.05.07. Remove Job Event Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-07-01-Error-Recovery-and-Remove-Job"><span class="nav-number">1.5.7.1.</span> <span class="nav-text">06.05.07.01. Error Recovery and Remove Job</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-07-02-Error-Recovery-and-Normal-Process"><span class="nav-number">1.5.7.2.</span> <span class="nav-text">06.05.07.02 Error Recovery and Normal Process</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-07-03-PLC-MAP"><span class="nav-number">1.5.7.3.</span> <span class="nav-text">06.05.07.03. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-07-03-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.5.7.3.1.</span> <span class="nav-text">06.05.07.03.01. Local PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.5.7.3.2.</span> <span class="nav-text">06.05.07.03.02. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.5.7.3.3.</span> <span class="nav-text">06.05.07.03.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-07-04-Communication-Scenario"><span class="nav-number">1.5.7.4.</span> <span class="nav-text">06.05.07.04. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-08-Job-Count-Report"><span class="nav-number">1.5.8.</span> <span class="nav-text">06.05.08. Job Count Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-08-01-PLC-MAP"><span class="nav-number">1.5.8.1.</span> <span class="nav-text">06.05.08.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-08-02-Communication-Scenario"><span class="nav-number">1.5.8.2.</span> <span class="nav-text">06.05.08.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-09-Product-Type-Report"><span class="nav-number">1.5.9.</span> <span class="nav-text">06.05.09. Product Type Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-09-01-PLC-MAP"><span class="nav-number">1.5.9.1.</span> <span class="nav-text">06.05.09.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-09-01-Communication-Scenario"><span class="nav-number">1.5.9.2.</span> <span class="nav-text">06.05.09.01. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-10-Job-Data-Shift"><span class="nav-number">1.5.10.</span> <span class="nav-text">06.05.10. Job Data Shift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-11-Job-Each-Position"><span class="nav-number">1.5.11.</span> <span class="nav-text">06.05.11. Job Each Position</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-12-Set-Last-Glass-Command"><span class="nav-number">1.5.12.</span> <span class="nav-text">06.05.12. Set Last Glass Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-12-01-PLC-MAP"><span class="nav-number">1.5.12.1.</span> <span class="nav-text">06.05.12.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-12-02-Communication-Scenario"><span class="nav-number">1.5.12.2.</span> <span class="nav-text">06.05.12.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-13-Job-Remove-Recovery-Command"><span class="nav-number">1.5.13.</span> <span class="nav-text">06.05.13. Job Remove Recovery Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-13-01-PLC-MAP"><span class="nav-number">1.5.13.1.</span> <span class="nav-text">06.05.13.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-13-02-Communication-Scenario"><span class="nav-number">1.5.13.2.</span> <span class="nav-text">06.05.13.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-14-Job-Data-Edit-Report"><span class="nav-number">1.5.14.</span> <span class="nav-text">06.05.14. Job Data Edit Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-14-02-Communication-Scenario"><span class="nav-number">1.5.14.1.</span> <span class="nav-text">06.05.14.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-15-CST-Transfer-Event"><span class="nav-number">1.5.15.</span> <span class="nav-text">06.05.15. CST Transfer Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-15-01-PLC-MAP"><span class="nav-number">1.5.15.1.</span> <span class="nav-text">06.05.15.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-05-15-01-01-Local-PLC-–-Link-Register-W-Area"><span class="nav-number">1.5.15.1.1.</span> <span class="nav-text">06.05.15.01.01. Local PLC – Link Register (W Area)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-15-02-Communication-Scenario"><span class="nav-number">1.5.16.</span> <span class="nav-text">06.05.15.02. Communication Scenario</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-05-16-Glass-Info-Change-Report"><span class="nav-number">1.5.17.</span> <span class="nav-text">06.05.16. Glass Info Change Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-16-01-PLC-MAP"><span class="nav-number">1.5.17.1.</span> <span class="nav-text">06.05.16.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-05-16-02-Communication-Scenario"><span class="nav-number">1.5.17.2.</span> <span class="nav-text">06.05.16.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-06-Process-Data-Management"><span class="nav-number">1.6.</span> <span class="nav-text">06.06. Process Data Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-06-01-Default-Value"><span class="nav-number">1.6.1.</span> <span class="nav-text">06.06.01. Default Value</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-06-02-By-Glass"><span class="nav-number">1.6.2.</span> <span class="nav-text">06.06.02. By Glass</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-02-01-PLC-MAP"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">06.06.02.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-02-02-Communication-Scenario"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">06.06.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-06-03-By-Event"><span class="nav-number">1.6.3.</span> <span class="nav-text">06.06.03. By Event</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-03-01-PLC-MAP"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">06.06.03.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-03-02-Communication-Scenario"><span class="nav-number">1.6.3.2.</span> <span class="nav-text">06.06.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-06-04-By-Time-Accumulated-Data"><span class="nav-number">1.6.4.</span> <span class="nav-text">06.06.04. By Time (Accumulated Data)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-04-01-PLC-MAP"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">06.06.04.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-04-02-Communication-Scenario"><span class="nav-number">1.6.4.2.</span> <span class="nav-text">06.06.04.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-06-05-By-Time-Daily-Check"><span class="nav-number">1.6.5.</span> <span class="nav-text">06.06.05. By Time (Daily Check)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-05-01-PLC-MAP"><span class="nav-number">1.6.5.1.</span> <span class="nav-text">06.06.05.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-06-05-01-Communication-Scenario"><span class="nav-number">1.6.5.2.</span> <span class="nav-text">06.06.05.01. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-07-APC-Data-Management"><span class="nav-number">1.7.</span> <span class="nav-text">06.07. APC Data Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-07-01-APC-Data-Report"><span class="nav-number">1.7.1.</span> <span class="nav-text">06.07.01. APC Data Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-07-01-01-PLC-MAP"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">06.07.01.01. PLC MAP</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-07-02-APC-Data-Download"><span class="nav-number">1.7.2.</span> <span class="nav-text">06.07.02. APC Data Download</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-07-02-02-Communication-Scenario"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">06.07.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-07-03-Energy-Visualization-Management-能源可视化管理"><span class="nav-number">1.7.3.</span> <span class="nav-text">06.07.03. Energy Visualization Management (能源可视化管理 )</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-07-03-01-PLC-MAP"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">06.07.03.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-07-03-02-PLC-MAP"><span class="nav-number">1.7.3.2.</span> <span class="nav-text">06.07.03.02. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-07-03-03-Communication-Scenario"><span class="nav-number">1.7.3.3.</span> <span class="nav-text">06.07.03.03. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-08-Recipe-Management"><span class="nav-number">1.8.</span> <span class="nav-text">06.08. Recipe Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-01-Auto-Recipe-Change-Mode"><span class="nav-number">1.8.1.</span> <span class="nav-text">06.08.01. Auto Recipe Change Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-01-01-PLC-MAP"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">06.08.01.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#06-08-01-01-01-Local-PLC-–-Link-Relay-B-Area-"><span class="nav-number">1.8.1.1.1.</span> <span class="nav-text">06.08.01.01.01. Local PLC – Link Relay (B Area) </span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-01-02-Communication-Scenario"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">06.08.01.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-02-Current-Recipe-ID-Report"><span class="nav-number">1.8.2.</span> <span class="nav-text">06.08.02. Current Recipe ID Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-02-01-PLC-MAP-debar"><span class="nav-number">1.8.2.1.</span> <span class="nav-text">06.08.02.01. PLC MAP debar</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-02-02-Communication-Scenario"><span class="nav-number">1.8.2.2.</span> <span class="nav-text">06.08.02.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-03-Equipment-Recipe-Validation"><span class="nav-number">1.8.3.</span> <span class="nav-text">06.08.03. Equipment Recipe Validation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-03-01-Check-Item-Description"><span class="nav-number">1.8.3.1.</span> <span class="nav-text">06.08.03.01. Check Item Description</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-03-02-PLC-MAP"><span class="nav-number">1.8.3.2.</span> <span class="nav-text">06.08.03.02. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-03-03-Communication-Scenari"><span class="nav-number">1.8.3.3.</span> <span class="nav-text">06.08.03.03. Communication Scenari</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-04-Recipe-Register-Validation-Command"><span class="nav-number">1.8.4.</span> <span class="nav-text">06.08.04. Recipe Register Validation Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-04-01-PLC-MAP"><span class="nav-number">1.8.4.1.</span> <span class="nav-text">06.08.04.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-04-02-Communication-Scenario"><span class="nav-number">1.8.4.2.</span> <span class="nav-text">06.08.04.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-05-Recipe-Modify-Report"><span class="nav-number">1.8.5.</span> <span class="nav-text">06.08.05. Recipe Modify Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-05-01-PLC-MAP"><span class="nav-number">1.8.5.1.</span> <span class="nav-text">06.08.05.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-05-02-Communication-Scenario"><span class="nav-number">1.8.5.2.</span> <span class="nav-text">06.08.05.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-08-06-Recipe-Parameter-Request-Command"><span class="nav-number">1.8.6.</span> <span class="nav-text">06.08.06. Recipe Parameter Request Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-06-01-Default-Value"><span class="nav-number">1.8.6.1.</span> <span class="nav-text">06.08.06.01. Default Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-06-02-PLC-MAP"><span class="nav-number">1.8.6.2.</span> <span class="nav-text">06.08.06.02. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-08-06-03-Communication-Scenario"><span class="nav-number">1.8.6.3.</span> <span class="nav-text">06.08.06.03. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-09-CIM-Message-Management"><span class="nav-number">1.9.</span> <span class="nav-text">06.09. CIM Message Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-09-01-CIM-Message-History-Management"><span class="nav-number">1.9.1.</span> <span class="nav-text">06.09.01. CIM Message History Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-09-02-CIM-Message-Set-Command"><span class="nav-number">1.9.2.</span> <span class="nav-text">06.09.02. CIM Message Set Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-02-01-Signal-Tower-Management"><span class="nav-number">1.9.2.1.</span> <span class="nav-text">06.09.02.01. Signal Tower Management</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-02-02-PLC-MAP"><span class="nav-number">1.9.2.2.</span> <span class="nav-text">06.09.02.02. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-02-03-Communication-Scenario"><span class="nav-number">1.9.2.3.</span> <span class="nav-text">06.09.02.03. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-09-03-CIM-Message-Clear-Command"><span class="nav-number">1.9.3.</span> <span class="nav-text">06.09.03. CIM Message Clear Command</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-03-01-PLC-MAP"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">06.09.03.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-03-02-Communication-Scenario"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">06.09.03.02. Communication Scenario</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-09-04-CIM-Message-Confirm-Report"><span class="nav-number">1.9.4.</span> <span class="nav-text">06.09.04. CIM Message Confirm Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-04-01-PLC-MAP"><span class="nav-number">1.9.4.1.</span> <span class="nav-text">06.09.04.01. PLC MAP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-09-04-02-Communication-Scenario"><span class="nav-number">1.9.4.2.</span> <span class="nav-text">06.09.04.02. Communication Scenario</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-10-Date-Time-Set-Command"><span class="nav-number">1.10.</span> <span class="nav-text">06.10. Date Time Set Command</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#06-10-01-PLC-MAP"><span class="nav-number">1.10.1.</span> <span class="nav-text">06.10.01. PLC MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#06-10-01-01-Local-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.10.1.1.</span> <span class="nav-text">06.10.01.01. Local PLC – Link Relay (B Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-10-01-02-Master-PLC-–-Link-Register-W-Area"><span class="nav-number">1.10.1.2.</span> <span class="nav-text">06.10.01.02. Master PLC – Link Register (W Area)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#06-10-01-03-Master-PLC-–-Link-Relay-B-Area"><span class="nav-number">1.10.1.3.</span> <span class="nav-text">06.10.01.03. Master PLC – Link Relay (B Area)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#06-10-02-Communication-Scenario"><span class="nav-number">1.10.2.</span> <span class="nav-text">06.10.02. Communication Scenario</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+   
+     <div id="music163player">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=864187808&auto=1&height=66"></iframe>
+     </div>
+	 
+
+  </aside>
+
+
+        
+      </div>
+      <script>
+//暂时储存文章中的内容
+var div = $('.post-body');
+//暂时储存目录的内容
+var toc=$('.post-toc-wrap')
+function password() {
+  if('password'){
+  //将文章内容删除
+    div.remove();
+ //将目录删除 
+    toc.remove();
+  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
+  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
+  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
+   $('.post-header').after('<textarea class="description" value="Please enter your password and press enter to build" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none ">
+      Please enter your password and press enter to build</textarea>' +
+      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
+      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
+      'margin: 0 auto;outline: none;width:95%"/>' +
+      '</div>')
+      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
+    document.onclick = function (event) {
+      var e = event || window.event;
+      var elem = e.srcElement || e.target;
+ 
+      while (elem) {
+        if (elem != document) {
+          if (elem.className == "password") {
+            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
+            return;
+          }
+          elem = elem.parentNode;
+        } else {
+          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
+          return;
+        }
+      }
+    }
+    //绑定enter键按下后离开的事件
+    $(document).keyup(function(event){
+      if(event.keyCode ==13&&$('.password').length>0){
+        //console.log($('.password').val())
+        //console.log('password')
+        if ($('.password').val() == 'password') {
+        //恢复文章内容
+          (div).appendTo($(".post-header"))
+          //恢复目录
+          toc.appendTo($(".sidebar-inner"))
+          //删除本页面的输入密码组件
+           $(".description").remove();
+          $(".qiang").remove();
+          $(".password").remove();
+          
+          //重新处理pjax事件,如果没有加pjax的从下面这行起到下面的else之间的代码需要去掉。
+          //图片懒加载，没有加入此功能的这个函数需要去掉
+            $('img').lazyload({
+               placeholder: '/images/loading.gif',
+               effect: 'fadeIn',
+               threshold : 100,
+               failure_limit : 20,
+               skip_invisible : false
+             });
+             //pjax后出现文章不显示，没有pjax的下面四行需要去掉
+              $(".post-block").css({opacity:1});
+              $(".post-header").css({opacity:1});
+              $(".post-body").css({opacity:1});
+              $(".pagination").css({opacity:1});
+        }else {
+          alert("Sorry, the password is wrong.")
+        }
+      }
+      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
+    });
+  }
+}
+password();
+</script>
+    </main>
+    
+    
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴少培</span>
+
+  
+</div>
+
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+
+<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">粤ICP备20015601号-1</a>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
+        appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
+        placeholder: '说点什么吧',
+        avatar:'',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz", "sOUcJH2CX5V7BXA99NbRDn9B");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+
+
+</html>
