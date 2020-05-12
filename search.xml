@@ -10352,6 +10352,105 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(二)获取数据库连接的五种方式</title>
+    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
+<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
+<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
+<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
+<ul>
+<li><span style="color:red;">jdbc:子协议:子名称</span></li>
+<li>协议：JDBC URL中的协议总是jdbc</li>
+<li>子协议：子协议用于标识一个数据库驱动程序</li>
+<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
+</ul>
+<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
+
+<ul>
+<li><p>对于Oracle 数据库连接，采用如下形式：</p>
+<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
+</li>
+<li><p>对于SQLServer数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
+</li>
+<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
+<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
+</li>
+</ul>
+<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
+<ol>
+<li>安装数据库 - 服务必须开启</li>
+<li>需要导入数据库的驱动</li>
+</ol>
+<p>连接数据库的<strong>五种方式</strong>： </p>
+<p><strong>代码：</strong> </p>
+<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jdbc(三)预编译-Statement、PreparedStatement</title>
     <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
     <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
@@ -10447,105 +10546,6 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdbc(二)获取数据库连接的五种方式</title>
-    <url>/2020/03/10/jdbc(%E4%BA%8C)%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E7%9A%84%20%E4%BA%94%20%E7%A7%8D%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="获取数据库连接"><a href="#获取数据库连接" class="headerlink" title="获取数据库连接"></a>获取数据库连接</h2><h3 id="连接参数与协议"><a href="#连接参数与协议" class="headerlink" title="连接参数与协议"></a>连接参数与协议</h3><p>（1）可以调用 DriverManager 类的 getConnection() 方法建立到数据库的连接</p>
-<p>（2）User,password可以用“属性名=属性值”方式告诉数据库；</p>
-<p>（3）JDBC URL 用于标识一个被注册的驱动程序，驱动程序管理器通过这个 URL 选择正确的驱动程序，从而建立到数据库的连接。</p>
-<p>（4）JDBC URL的标准由三部分组成，各部分间用冒号分隔。</p>
-<ul>
-<li><span style="color:red;">jdbc:子协议:子名称</span></li>
-<li>协议：JDBC URL中的协议总是jdbc</li>
-<li>子协议：子协议用于标识一个数据库驱动程序</li>
-<li>子名称：一种标识数据库的方法。子名称可以依不同的子协议而变化，用子名称的目的是为了定位数据库提供足够的信息。包含主机名(对应服务端的ip地址)，端口号，数据库名</li>
-</ul>
-<h3 id="几种常用数据库的JDBC-URL"><a href="#几种常用数据库的JDBC-URL" class="headerlink" title="几种常用数据库的JDBC URL"></a>几种常用数据库的JDBC URL</h3><img src="http://photo.wushaopei.com/qiniu92.png" width="60%">
-
-<ul>
-<li><p>对于Oracle 数据库连接，采用如下形式：</p>
-<p><span style="color:red;">jdbc:oracle:thin:@localhost:1521:webcode</span></p>
-</li>
-<li><p>对于SQLServer数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:microsoft:sqlserver//localhost:1433;DatabaseName=sid</span></p>
-</li>
-<li><p>对于MYSQL 数据库连接，采用如下形式：</p>
-<p> <span style="color:red;">jdbc:mysql://localhost:3306/webcode</span></p>
-</li>
-</ul>
-<h3 id="JDBC连接数据库的5种方式"><a href="#JDBC连接数据库的5种方式" class="headerlink" title="JDBC连接数据库的5种方式"></a>JDBC连接数据库的5种方式</h3><p><strong>注意：</strong></p>
-<ol>
-<li>安装数据库 - 服务必须开启</li>
-<li>需要导入数据库的驱动</li>
-</ol>
-<p>连接数据库的<strong>五种方式</strong>： </p>
-<p><strong>代码：</strong> </p>
-<h4 id="方式1-："><a href="#方式1-：" class="headerlink" title="方式1 ："></a><strong>方式1 ：</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 数据库的连接：</span></span><br><span class="line"><span class="comment"> * 1.必须保证数据库是安装好的，服务是启动的</span></span><br><span class="line"><span class="comment"> * 2.必须将驱动添加到项目中</span></span><br><span class="line"><span class="comment"> * 3.必须保证数据库的账号和密码是对的</span></span><br><span class="line"><span class="comment"> * 4.必须保证数据库的版本和驱动的一样。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式一  ：通过多态的方式获取连接驱动</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = <span class="keyword">new</span> com.mysql.jdbc.Driver();</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式2-：通过反射获取对象"><a href="#方式2-：通过反射获取对象" class="headerlink" title="方式2   ：通过反射获取对象"></a><strong>方式2   ：</strong>通过反射获取对象</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式二：通过反射获取对象</span></span><br><span class="line"><span class="comment"> * 体会面向接口的编程思想</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	<span class="comment">//设置数据库的账号和密码</span></span><br><span class="line">	Properties info = <span class="keyword">new</span> Properties();</span><br><span class="line">	info.setProperty(<span class="string">"user"</span>, <span class="string">"root"</span>);</span><br><span class="line">	info.setProperty(<span class="string">"password"</span>, <span class="string">"root"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connect = driver.connect(url, info);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connect);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式3-：-通过DriverMananger获取数据库的连接"><a href="#方式3-：-通过DriverMananger获取数据库的连接" class="headerlink" title="方式3 ： 通过DriverMananger获取数据库的连接"></a><strong>方式3 ： 通过DriverMananger获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式三：通过DriverMananger获取数据库的连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * 使用DriverMananger有两个操作</span></span><br><span class="line"><span class="comment"> * 1.注册驱动</span></span><br><span class="line"><span class="comment"> * 2.获取连接</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	Object obj = clazz.newInstance();</span><br><span class="line">	<span class="comment">//多态 ： 左边是接口的类型，右边是接口的实现</span></span><br><span class="line">	Driver driver = (Driver) obj;</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="comment">//注册驱动</span></span><br><span class="line">	DriverManager.registerDriver(driver);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式4-：-mysql驱动默认会进行驱动的注册"><a href="#方式4-：-mysql驱动默认会进行驱动的注册" class="headerlink" title="方式4 ： mysql驱动默认会进行驱动的注册"></a><strong>方式4 ： mysql驱动默认会进行驱动的注册</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">   <span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 连接方式四：mysql驱动默认会进行驱动的注册</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test4</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据库连接的url</span></span><br><span class="line">	String url = <span class="string">"jdbc:mysql://localhost:3306/test"</span>;</span><br><span class="line">	String user = <span class="string">"root"</span>;</span><br><span class="line">	String password = <span class="string">"root"</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * mysql可以不用注册，其它的数据库必须进行注册</span></span><br><span class="line"><span class="comment">	 * 这一步不要省。</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	Class clazz = Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);</span><br><span class="line">	<span class="comment">//数据库的连接</span></span><br><span class="line">	Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">	</span><br><span class="line">	System.out.println(connection);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方式5-：-使用配置文件获取数据库的连接"><a href="#方式5-：-使用配置文件获取数据库的连接" class="headerlink" title="方式5 ： 使用配置文件获取数据库的连接"></a><strong>方式5 ： 使用配置文件获取数据库的连接</strong></h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 方式五：使用配置文件获取数据库的连接</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test5</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">//读取配置文件中的内容</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * 实际上是从bin目录下读取的配置文件</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		InputStream is = <span class="keyword">this</span>.getClass().getClassLoader()</span><br><span class="line">				.getResourceAsStream(<span class="string">"sqlDriver.properties"</span>);</span><br><span class="line">		Properties ps = <span class="keyword">new</span> Properties();</span><br><span class="line">		ps.load(is);</span><br><span class="line">		String user = ps.getProperty(<span class="string">"user"</span>);</span><br><span class="line">		String password = ps.getProperty(<span class="string">"password"</span>);</span><br><span class="line">		String driverClass = ps.getProperty(<span class="string">"driverClass"</span>);</span><br><span class="line">		String url = ps.getProperty(<span class="string">"url"</span>);</span><br><span class="line">		is.close();</span><br><span class="line">		</span><br><span class="line"><span class="comment">//		创建Driver对象</span></span><br><span class="line">		Class clazz = Class.forName(driverClass);</span><br><span class="line">		Object obj = clazz.newInstance();</span><br><span class="line">		Driver driver = (Driver) obj;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//注册驱动</span></span><br><span class="line">		DriverManager.registerDriver(driver);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//数据库的连接</span></span><br><span class="line">		Connection connection = DriverManager.getConnection(url, user, password);</span><br><span class="line">		</span><br><span class="line">		System.out.println(connection);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>数据库连接</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
       </tags>
   </entry>
   <entry>
@@ -10802,79 +10802,6 @@ rvconnector</code></pre></li>
       </categories>
   </entry>
   <entry>
-    <title>hexo搭建个人博客（一）博客框架搭建</title>
-    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<p>好，话不多说，开始动手</p>
-<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
-<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
-
-<p>上面这张图显示的是我安装node的版本 </p>
-<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
-
-<hr>
-<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
-<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
-<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
-<hr>
-<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
-<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-
-<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
-<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
-
-<p> 安装依赖</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
-
-<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
-
-<p>此时hexo的基本布置完成了</p>
-<hr>
-<p>接下来要做的就是把博客部署到github上去</p>
-<p>首先你要有个github账号，注册账号省略</p>
-<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
-<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
-
-<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
-<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
-
-<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-
-
-
-<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
-<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
-<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
-<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
-<hr>
-<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
-<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>个人博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计算机网络（一）-深入理解NIO</title>
     <url>/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/</url>
     <content><![CDATA[<p><strong>目录概览</strong>：</p>
@@ -11005,6 +10932,79 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>NIO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo搭建个人博客（一）博客框架搭建</title>
+    <url>/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<p><strong>前言</strong>：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">实验环境:win10</span><br><span class="line">前期准备：安装好git和node.js（自行百度下载git和nedo.js）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>好，话不多说，开始动手</p>
+<p>终端中输入 node -v 和git 分别出现以下界面，则安装正确（我使用的终端是cmder完整版，可以在win下使用linux的命令）</p>
+<img src="http://photo.wushaopei.com/qiniu100.png" width="60%">
+
+<p>上面这张图显示的是我安装node的版本 </p>
+<img src="http://photo.wushaopei.com/qiniu101.png" width="80%">
+
+<hr>
+<p>上面的步骤完成之后，接下来就可以开始安装hexo了</p>
+<p>首先介绍下npm，这是一个包管理器，接下来的安装都和这个命令有关，但由于众所周知的原因，国内速度很慢，所以我们进行一个镜像源更改，改到淘宝的源，利用npm安装一个cnpm包管理器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install -g cnpm --registry&#x3D;https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>替换成功之后cnpm就安装完成了，接下来开始正式安装hexo，用以下命令安装</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>hexo安装完成之后可以使用  hexo - v 命令验证下是否安装成功，成功的话就能够得到以下这个界面 </p>
+<p><img src="https://img2018.cnblogs.com/blog/1502090/201905/1502090-20190526232835559-905739455.png" alt="img"></p>
+<hr>
+<p>接下来，选择一个盘新建一个文件夹，取名为blog(如果你和我一样是使用cmder的话，直接可以用mkdir命令)</p>
+<p>然后终端进入这个blog文件夹，运行以下命令初始化</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+
+<p>完成之后会在blog文件夹下生成一些文件，到这一步，hexo的初始化就已经完成了</p>
+<img src="http://photo.wushaopei.com/qiniu103.png" width="80%">
+
+<p> 安装依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cnpm install</span><br></pre></td></tr></table></figure>
+
+<p> 这时候我们启动hexo博客，运行以下命令，然后在你的浏览器中输入 localhost:4000</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">这个命令默认的是使用4000端口，如果没有错误的话，你可以使用 localhost:4000 在你的浏览器中预览你的博客</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">但是有些人的电脑4000端口可能被占用什么的，这个时候　你可以使用以下命令</span><br><span class="line">hexo  s -p 5555　　&#x2F;&#x2F;指定5555端口</span><br></pre></td></tr></table></figure>
+
+<p>此时hexo的基本布置完成了</p>
+<hr>
+<p>接下来要做的就是把博客部署到github上去</p>
+<p>首先你要有个github账号，注册账号省略</p>
+<p>然后你要创建一个仓库，仓库名字严格要求为 ： 你的用户名.github.io      </p>
+<p>接下来打开的你的blog文件夹，推荐使用sublime，编辑 _config.yml 文件 </p>
+<img src="http://photo.wushaopei.com/qiniu104.png" width="80%">
+
+<p> 配置如上图所示，repo 配置为你的github仓库的地址 ，下图中的地址 </p>
+<img src="http://photo.wushaopei.com/qiniu105.png" width="80%">
+
+<p>保存更改，打开终端，进入blog文件夹路径，把博客部署到远端</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个时候可能报错，如：（xxxxx为你的github  ID）</p>
+<h2 id="fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#fatal-unable-to-access-‘https-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="fatal: unable to access ‘https://github.com/xxxxxx/xxxxxx.github.io.git"></a>fatal: unable to access ‘<a href="https://github.com/xxxxxx/xxxxxx.github.io.git" target="_blank" rel="noopener">https://github.com/xxxxxx/xxxxxx.github.io.git</a></h2><p>这是因为git没有配置好原因，你可以把上面的 repo 的库地址配置为  </p>
+<h2 id="https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git"><a href="#https-用户名：密码-github-com-xxxxxx-xxxxxx-github-io-git" class="headerlink" title="https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git"></a>https://用户名：密码@github.com/xxxxxx/xxxxxx.github.io.git</h2><p>完成之后刷新你的github仓库，就会发现仓库不是空的了。</p>
+<p>然后在浏览器中输入     你的用户名.github.io   就能够访问你的博客了</p>
+<hr>
+<p>  总结：到此，个人博客就搭建完成了，不过此时的主题是hexo默认的主题，后续可以自己查找资料换主题</p>
+<p><strong>注：转载自</strong>：<a href="https://www.cnblogs.com/hztjiayou/p/10928410.html" target="_blank" rel="noopener">https://www.cnblogs.com/hztjiayou/p/10928410.html</a></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>个人博客搭建</tag>
       </tags>
   </entry>
   <entry>

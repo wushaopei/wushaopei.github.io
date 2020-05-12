@@ -1031,7 +1031,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E5%9B%9B)ResultSet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1050,7 +1050,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="url">jdbc(三)预编译-Statement、PreparedStatement</a></h1>
+                <a class="post-title-link" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="url">jdbc(四)ResultSet</a></h1>
         
 
         <div class="post-meta">
@@ -1103,8 +1103,8 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="commentCount"></span>
+                <a href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1112,7 +1112,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
 
           
           
-             <span id="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" class="leancloud_visitors" data-flag-title="jdbc(三)预编译-Statement、PreparedStatement">
+             <span id="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" class="leancloud_visitors" data-flag-title="jdbc(四)ResultSet">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1145,15 +1145,14 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
       
         
           
-          预编译：statement 与 PreparedStatementsql提供访问的接口：
-数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句
-在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：
-
-12345|---
+          ResultSetResultSet 的作用：
+通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象
+ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现
+ResultSet 对象维护了一个指向当前
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#more" rel="contents">
+            <a class="btn" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1375,7 +1374,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E5%9B%9B)ResultSet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1394,7 +1393,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="url">jdbc(四)ResultSet</a></h1>
+                <a class="post-title-link" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="url">jdbc(三)预编译-Statement、PreparedStatement</a></h1>
         
 
         <div class="post-meta">
@@ -1447,8 +1446,8 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="commentCount"></span>
+                <a href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1456,7 +1455,7 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
 
           
           
-             <span id="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" class="leancloud_visitors" data-flag-title="jdbc(四)ResultSet">
+             <span id="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" class="leancloud_visitors" data-flag-title="jdbc(三)预编译-Statement、PreparedStatement">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1489,14 +1488,15 @@ JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对
       
         
           
-          ResultSetResultSet 的作用：
-通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象
-ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现
-ResultSet 对象维护了一个指向当前
+          预编译：statement 与 PreparedStatementsql提供访问的接口：
+数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句
+在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：
+
+12345|---
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#more" rel="contents">
+            <a class="btn" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
