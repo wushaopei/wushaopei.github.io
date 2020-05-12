@@ -943,18 +943,18 @@ password();
   
   <script type="text/javascript">
     var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
+    var guest = 'nick';
     guest = guest.split(',').filter(item=>{
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
         el: '#comments' ,
         verify: false,
-        notify: false,
+        notify: true,
         appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
         appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
         placeholder: '说点什么吧',
-        avatar:'',
+        avatar:'mp',
         guest_info:guest,
         pageSize:'10' || 10,
     });
