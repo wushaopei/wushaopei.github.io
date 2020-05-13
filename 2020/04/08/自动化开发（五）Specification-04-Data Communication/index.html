@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu299.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-08T07:49:27.000Z">
-<meta property="article:modified_time" content="2020-04-13T07:09:06.306Z">
+<meta property="article:modified_time" content="2020-05-13T03:31:41.996Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu277.png">
@@ -482,10 +482,10 @@
 </li>
 </ul>
 <h2 id="04-01-Link-Relay-Link-Register-Relation"><a href="#04-01-Link-Relay-Link-Register-Relation" class="headerlink" title="04.01. Link Relay, Link Register Relation"></a>04.01. Link Relay, Link Register Relation</h2><ul>
-<li>当事件发生或某些数据发生变化时，本地PLC必须将数据写入特定的链路寄存器<strong>(W区)</strong>，然后打开相关的本地链路继电器<strong>(B区)</strong>触发事件 </li>
-<li>当链路继电器的数据发生变化时，主PLC应读取相关的链路寄存器区域，然后打开自己的链路继电器进行应答，应答对应于本地继电器。 </li>
-<li>当主PLC的响应是OK时，本地PLC关闭其链路继电器。 </li>
-<li>当本地PLC的链路继电器断开时，主PLC断开与本地PLC的链路继电器相对应的链路继电器 </li>
+<li>当事件发生或某些数据发生变化时，本地PLC必须将数据写入特定的Word Area <strong>(W区)</strong>，然后打开相关的本地Bit Area<strong>(B区)</strong>触发事件 </li>
+<li>当Bit Area的数据发生变化时，主PLC应读取相关的Word Area 区域，然后打开自己的Bit Area进行应答，应答对应于本地继电器。 </li>
+<li>当主PLC的响应是OK时，本地PLC关闭其Bit Area。 </li>
+<li>当本地PLC的Bit Area断开时，主PLC断开与本地PLC的Bit Area相对应的Bit Area </li>
 </ul>
 <h2 id="04-02-EQP-Event-Report-Timing-Chart"><a href="#04-02-EQP-Event-Report-Timing-Chart" class="headerlink" title="04.02. EQP Event Report Timing Chart"></a>04.02. EQP Event Report Timing Chart</h2><h3 id="04-02-01-Event-Report-Timing-Chart-Local-to-Master"><a href="#04-02-01-Event-Report-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.01. Event Report Timing Chart (Local to Master)"></a>04.02.01. Event Report Timing Chart (Local to Master)</h3><img src="http://photo.wushaopei.com/qiniu277.png" width="80%">
 
@@ -501,14 +501,14 @@
 <p>在机台、机况等比较重要的状态，包括 port 信息等，如果该流程是在CIM MODE  off 的状态下执行的，它实时的更新到Word Area ，在它开启之后，或者BC 重启之后，会重新捞一遍数据。我们会给他更新到最新的状况，而不是说现场发生了什么我们还不知道。</p>
 <h3 id="04-02-02-Request-Timing-Chart-Local-to-Master"><a href="#04-02-02-Request-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.02. Request Timing Chart (Local to Master)"></a>04.02.02. Request Timing Chart (Local to Master)</h3><img src="http://photo.wushaopei.com/qiniu292.png" width="80%">
 
-<p>① 将数据输入链路寄存器(W区)后，本地PLC打开链路继电器(B区)。 </p>
-<p>② Local PLC加载计时器检查超时。(T1:4秒)-本地PLC在此期间不报告任何使用此链路继电器的其他事件。 </p>
-<p>③主PLC读取数据，然后打开链路继电器(B区)。</p>
-<p>④ 本地PLC读取主PLC的数据并关闭链路继电器(事件位)，然后继续下一步动作 </p>
-<p>⑤主PLC关闭链路继电器(事件应答)，定时器复位后。主PLC在T2时间内扫描本地PLC的链路。如果超时，主PLC处理错误例程(T2超时时间为2秒)</p>
+<p>① 将数据输入Word Area (W区)后，本地PLC打开Bit Area(B区)。 </p>
+<p>② Local PLC加载计时器检查超时。(T1:4秒)-本地PLC在此期间不报告任何使用此Bit Area的其他事件。 </p>
+<p>③主PLC读取数据，然后打开Bit Area(B区)。</p>
+<p>④ 本地PLC读取主PLC的数据并关闭Bit Area(事件位)，然后继续下一步动作 </p>
+<p>⑤主PLC关闭Bit Area(事件应答)，定时器复位后。主PLC在T2时间内扫描本地PLC的链路。如果超时，主PLC处理错误例程(T2超时时间为2秒)</p>
 <ul>
 <li>EQ厂商提供T1定时器数值设定功能。(默认值= 4秒) </li>
-<li>本地PLC在链路寄存器中保存一次设置的报表数据，直到生成新的报表数据。 </li>
+<li>本地PLC在Word Area 中保存一次设置的报表数据，直到生成新的报表数据。 </li>
 </ul>
 <p><strong>流程：</strong> </p>
 <p>① 机台将数据写入到W区，也就是Data中，然后Bit Area on 起来</p>
@@ -521,24 +521,24 @@
 <p>① 如果本地PLC有数据(命名数据A)要报告给主PLC，则在缓冲区中设置数据A </p>
 <p>② 如果本地PLC目前没有其他先前的数据报告给主PLC，则移动数据到缓冲区中设置一个连接寄存器区域并报告给主PLC。</p>
 <p>③ 如果本地PLC有新的数据(命名数据B)报告给主PLC，本地PLC在缓冲区中设置数据B。如果此时有之前的数据(即数据A)正在报告给master，本地PLC等待，直到数据报告过程结束</p>
-<p>④ 主PLC关闭链路继电器(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
+<p>④ 主PLC关闭Bit Area(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
 <ul>
 <li>EQ厂商提供T3定时器值设定功能。(默认值= 0.5秒) </li>
 </ul>
 <h2 id="04-03-BC-Command-Reply-Timing-Chart"><a href="#04-03-BC-Command-Reply-Timing-Chart" class="headerlink" title="04.03. BC Command Reply Timing Chart"></a>04.03. BC Command Reply Timing Chart</h2><h3 id="04-03-01-BC-Command-Timing-Chart-Master-to-Local"><a href="#04-03-01-BC-Command-Timing-Chart-Master-to-Local" class="headerlink" title="04.03.01. BC Command Timing Chart (Master to Local)"></a>04.03.01. BC Command Timing Chart (Master to Local)</h3><p>BC Notice Area is related to Equipment Command Reply Area （BC通知区与设备命令应答区相关）</p>
  <img src="http://photo.wushaopei.com/qiniu294.png" width="80%">
 
-<p>①将数据设置到主PLC的链路寄存器区域后，主PLC再打开链路继电器(命令) </p>
+<p>①将数据设置到主PLC的Word Area 区域后，主PLC再打开Bit Area(命令) </p>
 <p>②主PLC加载定时器检查超时。(T1: 4秒) </p>
-<p>③本地PLC读取主区域的数据。读取后，本地PLC打开本地PLC的链路继电器(命令应答) </p>
-<p>④主PLC在命令应答时关闭链路继电器(命令)。如果在T1超时内本地PLC没有打开应答位，则主PLC处理错误例程 </p>
-<p>⑤本地PLC关闭链路继电器(命令应答)，定时器复位后。本地PLC在T2时间内扫描主PLC的链路继电器。如果超时(T2)发生，本地PLC处理错误例程。 </p>
+<p>③本地PLC读取主区域的数据。读取后，本地PLC打开本地PLC的Bit Area(命令应答) </p>
+<p>④主PLC在命令应答时关闭Bit Area(命令)。如果在T1超时内本地PLC没有打开应答位，则主PLC处理错误例程 </p>
+<p>⑤本地PLC关闭Bit Area(命令应答)，定时器复位后。本地PLC在T2时间内扫描主PLC的Bit Area。如果超时(T2)发生，本地PLC处理错误例程。 </p>
 <ul>
 <li>EQ厂商提供T2定时器数值设定功能。(默认值= 2秒) </li>
 </ul>
 <h2 id="04-04-Time-Out-Error"><a href="#04-04-Time-Out-Error" class="headerlink" title="04.04. Time Out Error"></a>04.04. Time Out Error</h2><h3 id="04-04-01-T1-Time-Out-Master-↔-Local"><a href="#04-04-01-T1-Time-Out-Master-↔-Local" class="headerlink" title="04.04.01. T1 Time Out (Master ↔ Local)"></a>04.04.01. T1 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu295.png" width="80%">
 
-<p>① 将数据输入链路寄存器后，本地或主PLC打开链路继电器(事件或命令位) </p>
+<p>① 将数据输入Word Area 后，本地或主PLC打开Bit Area(事件或命令位) </p>
 <p>② 本地或主PLC加载定时器检查超时。(T1:4秒)如果伙伴的响应不存在，则本地或主PLC超时。 </p>
 <p>③ 在定时器复位后，关闭连接继电器(事件或命令位)。 </p>
 <h3 id="04-04-02-T2-Time-Out-Master-↔-Local"><a href="#04-04-02-T2-Time-Out-Master-↔-Local" class="headerlink" title="04.04.02. T2 Time Out (Master ↔ Local)"></a>04.04.02. T2 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu296.png" width="80%">
@@ -548,7 +548,7 @@
 <p>③ 在定时器复位后，关闭连接继电器(事件或命令应答位) </p>
 <h3 id="04-04-03-T3-Delay-Time-Master-↔-Local"><a href="#04-04-03-T3-Delay-Time-Master-↔-Local" class="headerlink" title="04.04.03. T3 Delay Time (Master ↔ Local)"></a>04.04.03. T3 Delay Time (Master ↔ Local)</h3>  <img src="http://photo.wushaopei.com/qiniu297.png" width="80%">
 
-<p>① 主PLC关闭链路继电器(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
+<p>① 主PLC关闭Bit Area(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
 <ul>
 <li>EQ厂商提供T3定时器值设定功能。(默认值= 0.5秒) </li>
 </ul>
@@ -558,8 +558,8 @@
 
 </li>
 </ul>
-<p>① 将数据设置到链接寄存器(W区)后。本地PLC开启链路继电器(事件位) </p>
-<p>② 当数据写入链接寄存器时。链路继电器(事件报告位)必须延迟0.2秒才能打开。Tn定时器的最大值是1秒。 </p>
+<p>① 将数据设置到链接寄存器(W区)后。本地PLC开启Bit Area(事件位) </p>
+<p>② 当数据写入链接寄存器时。Bit Area(事件报告位)必须延迟0.2秒才能打开。Tn定时器的最大值是1秒。 </p>
 <h2 id="04-05-Data-Expression"><a href="#04-05-Data-Expression" class="headerlink" title="04.05. Data Expression"></a>04.05. Data Expression</h2><h3 id="04-05-01-ASCII-Type"><a href="#04-05-01-ASCII-Type" class="headerlink" title="04.05.01. ASCII Type"></a>04.05.01. ASCII Type</h3><ul>
 <li>使用8位ASCII码。 </li>
 <li>用ASCII类型的空白(H20)值填充空值。 </li>
@@ -755,7 +755,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">156</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
