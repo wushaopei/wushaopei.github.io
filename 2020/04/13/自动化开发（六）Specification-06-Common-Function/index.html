@@ -218,7 +218,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu518.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu519.png">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-05-08T07:33:31.557Z">
+<meta property="article:modified_time" content="2020-05-13T09:29:18.989Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu308.png">
@@ -586,14 +586,12 @@
 <h4 id="06-01-02-CIM-Mode"><a href="#06-01-02-CIM-Mode" class="headerlink" title="06.01.02. CIM Mode"></a>06.01.02. CIM Mode</h4><p>CIM模式是指定设备与BC之间的通信关系。有两种模式，CIM on 模式和CIM off 模式。设备应在触摸屏上提供CIM模式切换按钮。CIM模式可以改变，无论玻璃计数。 </p>
 <ul>
 <li>CIM on模式:BC和EQ之间通讯正常，EQ可以向BC报告所有事件。BC也可以向EQ发送任何命令 </li>
-<li>CIM OFF模式:BC和EQ之间的通信出现了某种异常，EQ可以更新状态数据(链路寄存器区域)，但不能向BC报告事件(链路中继区域)，不包括设备状态变化报告。同时，装备也不接受BC的任何命令 </li>
+<li>CIM OFF模式:BC和EQ之间的通信出现了某种异常，EQ可以更新状态数据( Word  区域)，但不能向BC报告事件(  Bit 区域)，不包括设备状态变化报告。同时，装备也不接受BC的任何命令 </li>
 </ul>
 <p><strong>※注意:</strong>  </p>
 <pre><code>1. CIM关闭模式，设备应接受BC设置的CIM模式改变命令来改变CIM模式。 </code></pre><p>CIM Mode ：</p>
 <p>​    <strong>ON</strong>  :  机台会把数据上报到BC，BC会收</p>
 <pre><code>**OOF** :  机台不会 ON Bit , 只会去写 Word ；BC 只会在 机台 Bit 变化 on 才会去读 Word </code></pre><h5 id="06-01-02-01-PLC-MAP"><a href="#06-01-02-01-PLC-MAP" class="headerlink" title="06.01.02.01. PLC MAP"></a>06.01.02.01. PLC MAP</h5><h6 id="06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-01-02-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.01.02.01.01. Local PLC – Link Relay (B Area)"></a>06.01.02.01.01. Local PLC – Link Relay (B Area)</h6><img src="http://photo.wushaopei.com/qiniu310.png" width="80%">
-
-
 
 
 
@@ -658,7 +656,7 @@
 </li>
 <li><p>Running :  设备正在执行一个进程。如果工艺完成，没有加工作业，设备又会再次闲置 </p>
 </li>
-<li><p>Setup :设备正在初始化模块和实用程序。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Setup，则报警ID应该报告给BC 65512 </p>
+<li><p>Setup :设备正在初始化模块和实用程序。设备应向BC报告  Alarm Level  = Error 。如果设备状态被操作员或BC命令更改为Setup，则报警ID应该报告给BC 65512 </p>
 </li>
 <li><p>Stop : 设备进程停止。设备因报警、H/W问题或其他原因停机。在此状态下，设备必须停止工作转移。设备应向BC报告报警级别=报警事件错误。如果设备状态被操作员或BC命令更改为Stop，则报警ID应为report 65513 to BC。 </p>
 </li>
@@ -689,12 +687,12 @@
 
 
 
-<h4 id="06-03-05-No-Processing-Time"><a href="#06-03-05-No-Processing-Time" class="headerlink" title="06.03.05. No Processing Time"></a>06.03.05. No Processing Time</h4><p>​    设备应在触摸屏上为每个单元和设备提供“无处理时间”定时器设置功能。如果没有超过加工时间，则设备应报告空转。(无处理时间=0:不检查无处理时间)(默认值:Tact Time * 2) </p>
+<h4 id="06-03-05-No-Processing-Time"><a href="#06-03-05-No-Processing-Time" class="headerlink" title="06.03.05. No Processing Time"></a>06.03.05. No Processing Time</h4><p>​    设备应在触摸屏上为每个单元和设备提供“无处理时间”定时器设置功能。设备是空转时，如果设备超过 no processing time 时间，则设备应报告 Idle。(无处理时间=0:不检查无处理时间)(默认值:Tact Time * 2) </p>
 <img src="http://photo.wushaopei.com/qiniu359.png" width="80%">
 
 
 
-<h4 id="06-03-06-Send-Wait-Time-Out-Report"><a href="#06-03-06-Send-Wait-Time-Out-Report" class="headerlink" title="06.03.06. Send Wait Time Out Report"></a>06.03.06. Send Wait Time Out Report</h4><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，通过发送等待计时器，则上游设备需要向BC报告此事件。 </p>
+<h4 id="06-03-06-Send-Wait-Time-Out-Report"><a href="#06-03-06-Send-Wait-Time-Out-Report" class="headerlink" title="06.03.06. Send Wait Time Out Report"></a>06.03.06. Send Wait Time Out Report</h4><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，当超过发送等待计时时间，则上游设备需要向BC报告此事件。 </p>
 <h5 id="06-03-06-01-PLC-MAP"><a href="#06-03-06-01-PLC-MAP" class="headerlink" title="06.03.06.01. PLC MAP"></a>06.03.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu360.png" width="90%">
 
 <h5 id="06-03-06-02-Communication-Scenario"><a href="#06-03-06-02-Communication-Scenario" class="headerlink" title="06.03.06.02. Communication Scenario"></a>06.03.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu361.png" width="90%">
@@ -925,12 +923,12 @@
 
 
 <h4 id="06-05-16-Glass-Info-Change-Report"><a href="#06-05-16-Glass-Info-Change-Report" class="headerlink" title="06.05.16. Glass Info Change Report"></a>06.05.16. Glass Info Change Report</h4><p>Array TPE, CF总间距分室的日常检查槽应提供“Glass Info Change Report ”功能后，收到的工作从上游设备。</p>
-<p>当从机器人(或盒式磁带)接收玻璃时，盒式磁带序列号应由操作员手动更改(数组:5001<del>6000,CF:60000</del>61000)，工作序列号始终为1</p>
+<p>当从 rebot (或盒式磁带)接收玻璃时，盒式磁带序列号应由操作员手动更改(数组:5001<del>6000,CF:60000</del>61000)，工作序列号始终为1</p>
 <h5 id="06-05-16-01-PLC-MAP"><a href="#06-05-16-01-PLC-MAP" class="headerlink" title="06.05.16.01. PLC MAP"></a>06.05.16.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu445.png" width="90%">
 
 <img src="http://photo.wushaopei.com/qiniu446.png" width="90%">
 
-<h5 id="06-05-16-02-Communication-Scenario"><a href="#06-05-16-02-Communication-Scenario" class="headerlink" title="06.05.16.02. Communication Scenario"></a>06.05.16.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu447.png" width="90%">
+<h5 id="06-05-16-02-Communication-Scenario"><a href="#06-05-16-02-Communication-Scenario" class="headerlink" title="06.05.16.02. Communication Scenario"></a>06.05.16.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu447.png" width="80%">
 
 <h3 id="06-06-Process-Data-Management"><a href="#06-06-Process-Data-Management" class="headerlink" title="06.06. Process Data Management"></a>06.06. Process Data Management</h3><p>该功能仅适用于工艺设备，具有加工参数值或检验结果等工艺数据。数据应与个人工作相关，并使用玻璃/芯片ID报告 </p>
 <ul>
@@ -1315,7 +1313,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" rel="prev" title="自动化开发（七）Specification-07-Port Management">
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="prev" title="自动化开发（七）Specification-07-Port Management">
                 自动化开发（七）Specification-07-Port Management <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -1442,7 +1440,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1464,7 +1462,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

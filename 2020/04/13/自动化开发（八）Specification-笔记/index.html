@@ -93,15 +93,21 @@
 
 <meta name="description" content="1、EQP Event Report Timing Chart1.1、EQP Event Report Timing Chart （设备上报）  如图，是机台报到BC 的流程。 第一步，Local 会先写Word Area ，然后Bit on  起来。 第二步，BC 监测到Local 的BIT  on 起来后，会在对应的Word 去读取数据（Data Reading)，读取完数据后会进行处理。处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自动化开发（七）Specification-07-Port Management">
+<meta property="og:title" content="自动化开发（八）Specification-笔记">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1、EQP Event Report Timing Chart1.1、EQP Event Report Timing Chart （设备上报）  如图，是机台报到BC 的流程。 第一步，Local 会先写Word Area ，然后Bit on  起来。 第二步，BC 监测到Local 的BIT  on 起来后，会在对应的Word 去读取数据（Data Reading)，读取完数据后会进行处理。处理">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu277.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu292.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu293.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu294.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu295.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu296.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu297.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu298.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu371.png">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-05-13T03:29:35.183Z">
+<meta property="article:modified_time" content="2020-05-13T09:38:04.580Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu277.png">
@@ -140,7 +146,7 @@
 
 
 
-  <title>自动化开发（七）Specification-07-Port Management | 鮀城小帅</title>
+  <title>自动化开发（八）Specification-笔记 | 鮀城小帅</title>
   
 
 
@@ -359,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">自动化开发（七）Specification-07-Port Management</h1>
+          <h1 class="post-title" itemprop="name headline">自动化开发（八）Specification-笔记</h1>
         
 
         <div class="post-meta">
@@ -421,7 +427,7 @@
 
           
           
-             <span id="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="自动化开发（七）Specification-07-Port Management">
+             <span id="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="自动化开发（八）Specification-笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -480,6 +486,90 @@
 <ul>
 <li>EQ厂商提供T3定时器值设定功能。(默认值= 0.5秒) </li>
 </ul>
+<h2 id="2-BC-Command-Reply-Timing-Chart"><a href="#2-BC-Command-Reply-Timing-Chart" class="headerlink" title="2.  BC Command Reply Timing Chart"></a>2.  BC Command Reply Timing Chart</h2><h3 id="2-1-BC-Command-Timing-Chart-Master-to-Local"><a href="#2-1-BC-Command-Timing-Chart-Master-to-Local" class="headerlink" title="2.1. BC Command Timing Chart (Master to Local)"></a>2.1. BC Command Timing Chart (Master to Local)</h3><img src="http://photo.wushaopei.com/qiniu294.png" width="80%">
+
+<p>①将数据设置到主PLC的Word Area 区域后，主PLC再打开Bit Area(命令) </p>
+<p>②主PLC加载定时器检查超时。(T1: 4秒) </p>
+<p>③本地PLC读取主区域的数据。读取后，本地PLC打开本地PLC的Bit Area(命令应答) </p>
+<p>④主PLC在命令应答时关闭Bit Area(命令)。如果在T1超时内本地PLC没有打开应答位，则主PLC处理错误例程 </p>
+<p>⑤本地PLC关闭Bit Area(命令应答)，定时器复位后。本地PLC在T2时间内扫描主PLC的Bit Area。如果超时(T2)发生，本地PLC处理错误例程。 </p>
+<ul>
+<li>EQ厂商提供T2定时器数值设定功能。(默认值= 2秒) </li>
+</ul>
+<h2 id="TimeOut"><a href="#TimeOut" class="headerlink" title="TimeOut"></a>TimeOut</h2><h3 id="T1-Time-Out-Master-↔-Local"><a href="#T1-Time-Out-Master-↔-Local" class="headerlink" title="T1 Time Out (Master ↔ Local)"></a>T1 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu295.png" width="80%">
+
+<p>① 将数据输入Word Area 后，本地或主PLC打开Bit Area(事件或命令位) </p>
+<p>② 本地或主PLC加载定时器检查超时。(T1:4秒)如果伙伴的响应不存在，则本地或主PLC超时。 </p>
+<p>③ 在定时器复位后，关闭连接继电器(事件或命令位)。 </p>
+<h3 id="T2-Time-Out-Master-↔-Local"><a href="#T2-Time-Out-Master-↔-Local" class="headerlink" title="T2 Time Out (Master ↔ Local)"></a>T2 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu296.png" width="80%">
+
+<p>① 将数据读入链路字后（W区），打开链路中继(命令或事件应答Bit区)</p>
+<p>② 加载计时器来检查超时 。(T2:2分钟)。如果伙伴的响应不存在，则本地或主PLC进行超时。 </p>
+<p>③ 在定时器复位后，关闭连接继电器(事件或命令应答位) </p>
+<h3 id="T3-Delay-Time-Master-↔-Local"><a href="#T3-Delay-Time-Master-↔-Local" class="headerlink" title="T3 Delay Time (Master ↔ Local)"></a>T3 Delay Time (Master ↔ Local)</h3>  <img src="http://photo.wushaopei.com/qiniu297.png" width="80%">
+
+<p>① 主PLC关闭Bit Area(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
+<ul>
+<li>EQ厂商提供T3定时器值设定功能。(默认值= 0.5秒) </li>
+</ul>
+<h3 id="Tn-Time"><a href="#Tn-Time" class="headerlink" title="Tn Time"></a>Tn Time</h3><ul>
+<li><p>Event Report Timing Chart (Local to Master) us Bar</p>
+<img src="http://photo.wushaopei.com/qiniu298.png" width="80%">
+
+</li>
+</ul>
+<p>① 将数据设置到链接寄存器(W区)后。本地PLC开启Bit Area(事件位) </p>
+<p>② 当数据写入链接寄存器时。Bit Area(事件报告位)必须延迟0.2秒才能打开。Tn定时器的最大值是1秒。 </p>
+<h3 id="上卡流程："><a href="#上卡流程：" class="headerlink" title="上卡流程："></a>上卡流程：</h3><p>1、没Cassette时（No Cassette Exist），port发送请求命令要一个卡夹（Load Request）；</p>
+<p>2、拿到卡夹后（Load Complete），等待BC校验卡夹数据（Wait For Cassette Data）；</p>
+<p>3、BC校验数据成功时，BC发送消息给设备（Cassette Map Data Download Complete）；</p>
+<p>4、设备等待开始（Wait For Start Command）；</p>
+<p>5、BC发送启动命令给设备（Start Command），设备等待制程（Waiting For Processing）；</p>
+<p>6、BC给设备下开始命令（Process Start）设备正在制程（In Processing）；</p>
+<p>7、正常制成 （Normal Complete），设备制程完成（Process Complete）；</p>
+<p>8、等待T5 Time时间（1-8秒），port请求发送退卡指令（Unload Request）；</p>
+<p>9、退卡完成（Unload Complete）</p>
+<h3 id="一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><a href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明" class="headerlink" title="一个设备有哪些 Common Event，并对各个Event做简单功能说明"></a>一个设备有哪些 Common Event，并对各个Event做简单功能说明</h3><img src="http://photo.wushaopei.com/qiniu371.png" width="90%">
+
+<p>如上图，不限于上图中的数量；</p>
+<ul>
+<li>Receive Job Data Event         当设备从上游设备接收作业时，应报告此事件</li>
+<li>Send Out Job Data Event       当设备向下游设备发送作业时，应报告此事件。</li>
+<li>Store Job Data Event         当设备将 Job 存储到一个unit 或 cassette 时，应使用 port 和 unit ID 报告此事件。</li>
+<li>Fetch Out Job Data Event    当 EQP 从一个 unit 或 cassette 中取出 Job 时，应使用 Port 和 unit ID 报告该 Event 。</li>
+<li>Remove Job Event Mode    当 Job Data 刚刚从 EQP 中删除时，将报告已删除 Job的 Job Data .</li>
+<li>Job Count Report               实时操作，作业计数是报告整个设备的作业计数(不包括卡带)。</li>
+</ul>
+<p>常用的 参数： </p>
+<ul>
+<li>Unit or Port：用于区分从单元或端口取出的产品。 </li>
+<li>Unit No： 单元的单元号。如果设备有槽位，设备应更新槽位号</li>
+<li>Port No： 工作取的磁带的端口号。设备应更新槽位号。</li>
+<li>Slot No： Slot No. 如果单位没有槽位，这个项目应该被清除。 </li>
+<li></li>
+</ul>
+<h3 id="请简述CIM-Message功能与设备相关的操作联动"><a href="#请简述CIM-Message功能与设备相关的操作联动" class="headerlink" title="请简述CIM Message功能与设备相关的操作联动"></a>请简述CIM Message功能与设备相关的操作联动</h3><p><strong>声明：</strong>CIM报文用于通知特定设备的操作员特定信息。当接收到CIM报文时，设备必须将其显示给操作员，并在本地保存历史数据。 </p>
+<ul>
+<li><p>CIM Message Set Command：往设备发一条消息，然后显示。</p>
+</li>
+<li><p>CIM Message Clear Command：发消息后，让设备把发送的消息清除</p>
+</li>
+<li><p>CIM Message Confirm Report：发消息后向设备手动确认</p>
+</li>
+<li><p>Display Least 5 CIM Message：屏幕显示5个Message</p>
+</li>
+<li><p>Display Least 20 History CIM Message：至少保留20条历史记录的Message</p>
+</li>
+</ul>
+<h3 id="请简述Send-Wait-Time-Out-Report功能逻辑"><a href="#请简述Send-Wait-Time-Out-Report功能逻辑" class="headerlink" title="请简述Send Wait Time Out Report功能逻辑"></a>请简述Send Wait Time Out Report功能逻辑</h3><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，当超过发送等待计时时间，则上游设备需要向BC报告此事件。 </p>
+<h3 id="简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明"><a href="#简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明" class="headerlink" title="简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明"></a>简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明</h3><p>Receive:接收job</p>
+<p>AlarmStatusChangeReport:报警状态上报</p>
+<p>EquipmentOperationModeReport：设备操作模式上报</p>
+<p>EquipmentStatusChangeReport：设备状态上报</p>
+<p>Store：放入卡夹</p>
+<p>FetchOut：接收卡夹</p>
+<p>SendOut：送出卡夹</p>
+<h3 id="当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><a href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC" class="headerlink" title="当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC"></a>当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</h3><p>如果设备状态改变为 setup，设备应提前报警.  上报： AlarmStatusChangeReport:报警状态上报。</p>
 
       
     </div>
@@ -500,7 +590,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" title="自动化开发（七）Specification-07-Port Management">http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/</a>
+    <a href="http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" title="自动化开发（八）Specification-笔记">http://blog.wushaopei.com/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -522,8 +612,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" rel="next" title="自动化开发（六）Specification-06-Common Function">
-                <i class="fa fa-chevron-left"></i> 自动化开发（六）Specification-06-Common Function
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="next" title="自动化开发（七）Specification-07-Port Management">
+                <i class="fa fa-chevron-left"></i> 自动化开发（七）Specification-07-Port Management
               </a>
             
           </div>
@@ -532,8 +622,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="prev" title="自动化开发（七）Specification-07-Port Management">
-                自动化开发（七）Specification-07-Port Management <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B8%80%EF%BC%89properties-%E5%85%83%E7%B4%A0/" rel="prev" title="mybatis 配置（一）properties 元素">
+                mybatis 配置（一）properties 元素 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -659,7 +749,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">156</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -681,7 +771,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">112</span>
+                  <span class="site-state-item-count">113</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -720,7 +810,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、EQP-Event-Report-Timing-Chart"><span class="nav-number">1.</span> <span class="nav-text">1、EQP Event Report Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、EQP-Event-Report-Timing-Chart-（设备上报）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、EQP Event Report Timing Chart （设备上报）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、Request-Timing-Chart-Local-to-Master-（设备请求）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Request Timing Chart (Local to Master)（设备请求）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Consecutive-Event-Report-Timing-Chart-Local-to-Master-（连续上报事件）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Consecutive Event Report Timing Chart (Local to Master) （连续上报事件）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、EQP-Event-Report-Timing-Chart"><span class="nav-number">1.</span> <span class="nav-text">1、EQP Event Report Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、EQP-Event-Report-Timing-Chart-（设备上报）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、EQP Event Report Timing Chart （设备上报）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、Request-Timing-Chart-Local-to-Master-（设备请求）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Request Timing Chart (Local to Master)（设备请求）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Consecutive-Event-Report-Timing-Chart-Local-to-Master-（连续上报事件）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Consecutive Event Report Timing Chart (Local to Master) （连续上报事件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BC-Command-Reply-Timing-Chart"><span class="nav-number">2.</span> <span class="nav-text">2.  BC Command Reply Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-BC-Command-Timing-Chart-Master-to-Local"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. BC Command Timing Chart (Master to Local)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TimeOut"><span class="nav-number">3.</span> <span class="nav-text">TimeOut</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-Time-Out-Master-↔-Local"><span class="nav-number">3.1.</span> <span class="nav-text">T1 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-Time-Out-Master-↔-Local"><span class="nav-number">3.2.</span> <span class="nav-text">T2 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-Delay-Time-Master-↔-Local"><span class="nav-number">3.3.</span> <span class="nav-text">T3 Delay Time (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tn-Time"><span class="nav-number">3.4.</span> <span class="nav-text">Tn Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上卡流程："><span class="nav-number">3.5.</span> <span class="nav-text">上卡流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><span class="nav-number">3.6.</span> <span class="nav-text">一个设备有哪些 Common Event，并对各个Event做简单功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述CIM-Message功能与设备相关的操作联动"><span class="nav-number">3.7.</span> <span class="nav-text">请简述CIM Message功能与设备相关的操作联动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述Send-Wait-Time-Out-Report功能逻辑"><span class="nav-number">3.8.</span> <span class="nav-text">请简述Send Wait Time Out Report功能逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明"><span class="nav-number">3.9.</span> <span class="nav-text">简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><span class="nav-number">3.10.</span> <span class="nav-text">当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</span></a></li></ol></li></ol></div>
             
 
           </div>
