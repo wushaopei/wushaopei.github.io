@@ -5400,6 +5400,362 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
   </entry>
   <entry>
     <title>自动化开发（六）Specification-06-Common Function</title>
+    <url>/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/</url>
+    <content><![CDATA[<h2 id="07-Port-Management"><a href="#07-Port-Management" class="headerlink" title="07. Port Management"></a>07. Port Management</h2><h3 id="07-01-Port-Operation-Mode-Management"><a href="#07-01-Port-Operation-Mode-Management" class="headerlink" title="07.01. Port Operation Mode Management"></a>07.01. Port Operation Mode Management</h3><h4 id="07-01-01-CST-Operation-Mode"><a href="#07-01-01-CST-Operation-Mode" class="headerlink" title="07.01.01. CST Operation Mode"></a>07.01.01. CST Operation Mode</h4><p>根据玻璃类型指示装载机当前的工作方式。 CST操作模式仅适用于特定的设备(仅适用于阵列，CF)。 </p>
+<ul>
+<li>Kind to Kind Mode (CF/Cell Default)： Glass/chip  按产品(种类)类型装入盒内。它不考虑 glasses 的FIFO顺序。卸载 cassette 满时，卸载报告卸载请求事件。 </li>
+<li>Cassette To Cassette Mode(Array Default)： Glass/chip 将储存在相同的槽卸载磁带作为加载磁带。如果卸载机有金属丝盒，玻璃/芯片可以存储到另一个卸载盒槽。工作数据表设备写入。 </li>
+</ul>
+<h5 id="07-01-01-01-PLC-MAP-de-Mode"><a href="#07-01-01-01-PLC-MAP-de-Mode" class="headerlink" title="07.01.01.01. PLC MAP de Mode"></a>07.01.01.01. PLC MAP de Mode</h5><img src="http://photo.wushaopei.com/qiniu520.png" width="80%">
+
+<h5 id="07-01-01-02-Communication-Scenario"><a href="#07-01-01-02-Communication-Scenario" class="headerlink" title="07.01.01.02. Communication Scenario"></a>07.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu521.png" width="80%">
+
+<h4 id="07-01-02-Partial-Full-Mode"><a href="#07-01-02-Partial-Full-Mode" class="headerlink" title="07.01.02. Partial Full Mode"></a>07.01.02. Partial Full Mode</h4><p>Unloader should provide Partial Full Mode Enable/Disable function. </p>
+<ul>
+<li>Enable：  <ul>
+<li>When Cassette Status = Process Complete，从 port 卸下全部 Cassette  或部分 Cassette 时，设备需要打开部分全开标志。</li>
+<li>Unloader port can load partial cassette or empty cassette </li>
+</ul>
+</li>
+<li>Disable：  <ul>
+<li>When Cassette Status = Process Complete, Full Cassette or Partial Cassette unload from  port, equipment doesn’t need to turn on Partial Full Flag.</li>
+<li>Unloader port can load empty cassette. </li>
+</ul>
+</li>
+</ul>
+<h5 id="07-01-02-01-PLC-MAP"><a href="#07-01-02-01-PLC-MAP" class="headerlink" title="07.01.02.01. PLC MAP"></a>07.01.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu522.png" width="80%">
+
+<h5 id="07-01-02-02-Communication-Scenario"><a href="#07-01-02-02-Communication-Scenario" class="headerlink" title="07.01.02.02. Communication Scenario"></a>07.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu523.png" width="80%">
+
+
+
+<h3 id="07-02-Port-Function-Management"><a href="#07-02-Port-Function-Management" class="headerlink" title="07.02. Port Function Management"></a>07.02. Port Function Management</h3><h4 id="07-02-01-Port-Type-Change"><a href="#07-02-01-Port-Type-Change" class="headerlink" title="07.02.01. Port Type Change"></a>07.02.01. Port Type Change</h4><p>它是根据当前加载在端口上的磁带的预期操作对端口进行分类: 加载在端口上的磁带是是否将作业输入到 Inline , 或在作业以行方式完成后，从 Inline  方式输出作业 ,  或在临时行中缓冲作业 .</p>
+<p>如果端口上有磁带，则不能更改端口的端口类型。 设备制造商应该提供这一功能。如果端口类型改变，设备应该报告端口的 ‘Load Request’   事件 .</p>
+<p>There are 4 kinds of port types, loader, un-loader, both and buffer.  根据端口的类型，端口模式与端口类型相关。 </p>
+<ul>
+<li><p>Loading Port： 用于从装入端口的 cassette 中取出 Job 并将其输入到 Inline 中。 </p>
+</li>
+<li><p>Unloading Port： 用于将完成其过程的 Job 存储到 cassette 中 ,  把 cassette  从 Inline  取出来</p>
+</li>
+<li><p>Both Port： 用于从装入 Port 的 cassette  中取出 Job 并将其输入到 Inline  中，也用于将完成其处理过程的作业存储到 cassette  中，并将 cassette  从 Inline  中取出 </p>
+</li>
+<li><p>Buffer Port：To be used to buffer Job in Inline </p>
+<ul>
+<li>Buffer Type： 指示此 Port 仅用于缓冲目的。可混合多种类型的玻璃。 </li>
+<li>Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline  输入，如Loading Port。 </li>
+<li>Un-Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline 输出，如Unloading Port。 </li>
+</ul>
+<h5 id="07-02-01-01-PLC-MAP"><a href="#07-02-01-01-PLC-MAP" class="headerlink" title="07.02.01.01. PLC MAP"></a>07.02.01.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu524.png" width="80%">
+
+</li>
+</ul>
+<h5 id="07-02-01-02-Communication-Scenario"><a href="#07-02-01-02-Communication-Scenario" class="headerlink" title="07.02.01.02. Communication Scenario"></a>07.02.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu525.png" width="80%">
+
+
+
+<h4 id="07-02-02-Port-Mode-Change"><a href="#07-02-02-Port-Mode-Change" class="headerlink" title="07.02.02. Port Mode Change"></a>07.02.02. Port Mode Change</h4><p>它是根据端口盒中所包含的眼镜的操作方式对端口进行分类。</p>
+<p>显示玻璃类型或判断信息。基于端口类型的含义有一些不同。</p>
+<p>如果端口上有盒式磁带，则端口的端口模式不能更改。设备制造商应该提供这一功能。如果端口模式改变，设备应报告端口的“负载请求”事件。(自动换口模式设备除外)</p>
+<img src="http://photo.wushaopei.com/qiniu526.png" width="80%">
+
+<ul>
+<li><p>Loading Port： 指示装载在 Port 上的 Cassette 中所包含的 Glass 类型</p>
+<ul>
+<li><p>TFT Mode： 表示此端口用于处理TFT玻璃。 </p>
+</li>
+<li><p>CF Mode：Indicates that this Port is for processing CF Glasses. </p>
+</li>
+<li><p>Dummy Mode： Indicates that this Port is for processing Dummy Glasses into Inline. </p>
+</li>
+<li><p>MQC Mode：Indicates that this Port is for processing MQC Glasses into Inline </p>
+</li>
+<li><p>HT Mode：Indicates that all glasses in this Port would enter HT Chamber in CVD for  </p>
+<p>processing</p>
+</li>
+<li><p>LT Mode：Indicates that all glasses in this Port would enter LT Chamber in CVD for  </p>
+<p>processing</p>
+</li>
+<li><p>ENG Mode：Indicates that this Port is for processing MQC Glasses into Inline. </p>
+</li>
+<li><p>IGZO Mode：Indicates that this Port is for processing IGZO Glasses into Inline </p>
+</li>
+<li><p>ILC Mode：Indicates that all glasses in this Port would enter the equipment in ILC mode  for processing</p>
+</li>
+<li><p>FLC模式:表示该端口的所有眼镜进入FLC模式进行处理 </p>
+</li>
+<li><p>Through Dummy Mode：Indicates that this Port is for processing Through Dummy  </p>
+<p>Glasses into Inline. </p>
+</li>
+<li><p>Thickness Dummy Mode：Indicates this Port is to fetch Thickness Dummy Glasses into Inline.</p>
+</li>
+<li><p>UV Mask Mode：表示此端口用于将  UV Mask Glasses  Inline 加工。 </p>
+</li>
+<li><p>Mismatch Mode：用于处理 Array/ CF line 的排序 ，表示此端口用于处理VCR读不匹配的 Glass。 </p>
+</li>
+</ul>
+</li>
+<li><p>Both Port： 这个端口用于 loading 和 un-loading 这两种类型。 </p>
+<ul>
+<li>TFT Mode： 指示此端口用于 loading 和 un-loading TFT玻璃。 </li>
+<li>CF Mode：表示此端口用于 loading 和 un-loading CF 玻璃。 </li>
+<li>Dummy Mode：表示此端口用于 loading 和 un-loading Dummy Glasses。</li>
+<li>MQC Mode： 表示此端口用于 loading 和 un-loading MQC Dummy Glasses。</li>
+<li>HT Mode： 指示此端口用于 loading 和 un-loading，将进入CVD中的HT室进行处理。</li>
+<li>LT Mode： 表示此端口为加载，卸载时将进入CVD中的LT室进行处理。 </li>
+<li>ENG Mode： 说明此端口用于MQC玻璃的装卸加工。 </li>
+<li>IGZO Mode： 表示此端口用于装载和卸载加工IGZO玻璃。 </li>
+<li>ILC Mode：表示此装卸口将进入设备的ILC模式进行处理。 </li>
+<li>FLC Mode：表示此装卸口将进入设备FLC模式进行处理。 </li>
+</ul>
+<p>设备仅根据端口类型使用一种端口模式:加载器、卸载器和缓冲区。</p>
+<p>例如，卸载器可能有正常，返工，修理或NG端口和缓冲区可能有加载，卸载，虚拟，刮，返工或缓冲区。</p>
+</li>
+</ul>
+<h5 id="07-02-02-01-PLC-MAP"><a href="#07-02-02-01-PLC-MAP" class="headerlink" title="07.02.02.01. PLC MAP"></a>07.02.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu527.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu528.png" width="80%">
+
+<img src="http://photo.wushaopei.com/qiniu529.png" width="80%">
+
+<h5 id="07-02-02-02-Communication-Scenario"><a href="#07-02-02-02-Communication-Scenario" class="headerlink" title="07.02.02.02. Communication Scenario"></a>07.02.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu530.png" width="80%">
+
+<h4 id="07-02-03-Port-Transfer-Mode-Change"><a href="#07-02-03-Port-Transfer-Mode-Change" class="headerlink" title="07.02.03. Port Transfer Mode Change"></a>07.02.03. Port Transfer Mode Change</h4><p>它指出了在端口和AMHS之间传输磁带的方式。有3种模式 : AGV模式，MGV模式和STK内联模式。AGV模式包括RGV模式。</p>
+<p>AGV模式应该能够通过操作员按下的按钮切换到MGV模式。</p>
+<p>如果端口上有盒式磁带，则端口的端口传输模式不能改变。</p>
+<p>设备制造商应该提供这一功能。如果端口传输模式改变，设备应报告端口的“负载请求”事件。</p>
+<ul>
+<li>MGV Mode： 与 MGV 的 Port 接口</li>
+<li>AGV Mode： 与 AGV 的 Port 接口</li>
+<li>Stocker Inline Mode：与 储料器的 Port 接口</li>
+</ul>
+<h5 id="07-02-03-01-PLC-MAP"><a href="#07-02-03-01-PLC-MAP" class="headerlink" title="07.02.03.01. PLC MAP"></a>07.02.03.01. PLC MAP</h5><h6 id="07-02-03-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-02-03-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.02.03.01.01. Local PLC – Link Register (W Area)"></a>07.02.03.01.01. Local PLC – Link Register (W Area)</h6><img src="http://photo.wushaopei.com/qiniu531.png" width="80%">
+
+<h5 id="07-02-03-02-Communication-Scenario"><a href="#07-02-03-02-Communication-Scenario" class="headerlink" title="07.02.03.02. Communication Scenario"></a>07.02.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu532.png" width="80%">
+
+<h4 id="07-02-04-Port-Enable-Mode-Change"><a href="#07-02-04-Port-Enable-Mode-Change" class="headerlink" title="07.02.04. Port Enable Mode Change"></a>07.02.04. Port Enable Mode Change</h4><p>端口启用模式意味着将使用该端口。只有当端口上没有磁带时，端口启用/禁用更改才可用(即加载请求状态)。一旦端口状态被设置为禁用，就不应该允许或更改与端口相关的端口模式或磁带状态。</p>
+<p>如果端口上有盒式磁带，则端口的端口启用模式不能更改。</p>
+<p>设备制造商应该提供这一功能。如果端口启用模式从禁用模式更改为启用模式，设备应报告端口的“负载请求”事件。</p>
+<ul>
+<li>Enabled Mode： 可以使用此端口。 </li>
+<li>Disabled Mode： 此端口无法使用。操作员或其他人员禁止使用此端口 </li>
+</ul>
+<h5 id="07-02-04-01-PLC-MAP"><a href="#07-02-04-01-PLC-MAP" class="headerlink" title="07.02.04.01. PLC MAP"></a>07.02.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu533.png" width="80%">
+
+<h5 id="07-02-04-02-Communication-Scenario"><a href="#07-02-04-02-Communication-Scenario" class="headerlink" title="07.02.04.02. Communication Scenario"></a>07.02.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu534.png" width="80%">
+
+<h4 id="07-02-05-Cassette-on-Port-Q-Time-Change"><a href="#07-02-05-Cassette-on-Port-Q-Time-Change" class="headerlink" title="07.02.05. Cassette on Port Q Time Change"></a>07.02.05. Cassette on Port Q Time Change</h4><p>所有有负载端口的设备应提供端口Q时间功能的磁带。如果卡带等待处理状态超过设置Q时间，设备应自动取消此卡带并发出警告。Q时间应该在触摸屏上设置。 </p>
+<p>当Q时间值发生变化时，设备应向BC报告。</p>
+<p>若Q时间值为0，则表示设备不自动取消卡带，即使卡带已超过Q时间设置。</p>
+<h5 id="07-02-05-01-PLC-MAP"><a href="#07-02-05-01-PLC-MAP" class="headerlink" title="07.02.05.01. PLC MAP"></a>07.02.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu535.png" width="80%">
+
+<h5 id="07-02-05-02-Communication-Scenario"><a href="#07-02-05-02-Communication-Scenario" class="headerlink" title="07.02.05.02. Communication Scenario"></a>07.02.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu536.png" width="80%">
+
+<h4 id="07-02-06-Cassette-on-Port-Q-Time-Change-Command"><a href="#07-02-06-Cassette-on-Port-Q-Time-Change-Command" class="headerlink" title="07.02.06. Cassette on Port Q Time Change Command"></a>07.02.06. Cassette on Port Q Time Change Command</h4><p>BC也可以设置卡带对Q口时间的值。当设备接收到此事件时，应将Q时间值更改为，并将回复结果改为BC。 </p>
+<ul>
+<li><p>OK：重新计数卡带的端口Q时间。 </p>
+</li>
+<li><p>NG：保持原始磁带在Q端口的时间。</p>
+<p> 如果设备回复OK，设备需要在端口Q上再次自动触发卡带时间改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-06-01-PLC-MAP"><a href="#07-02-06-01-PLC-MAP" class="headerlink" title="07.02.06.01. PLC MAP"></a>07.02.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu537.png" width="80%">
+
+<h5 id="07-02-06-02-Communication-Scenario"><a href="#07-02-06-02-Communication-Scenario" class="headerlink" title="07.02.06.02. Communication Scenario"></a>07.02.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu538.png" width="80%">
+
+<h4 id="07-02-07-Port-Down"><a href="#07-02-07-Port-Down" class="headerlink" title="07.02.07. Port Down"></a>07.02.07. Port Down</h4><p>​    当端口有错误不能使用时，设备应触发此功能到BC。 </p>
+<ul>
+<li><p>Normal：Port is OK </p>
+</li>
+<li><p>Down： 发生错误时端口不能使用。 </p>
+<p>For Array/CF： 当一个端口出现错误不能使用时，设备也应同时将“端口下的真实状态”更新到BC。 </p>
+</li>
+</ul>
+<h5 id="07-02-07-01-PLC-MAP"><a href="#07-02-07-01-PLC-MAP" class="headerlink" title="07.02.07.01. PLC MAP"></a>07.02.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu539.png" width="80%">
+
+<h5 id="07-02-07-02-Communication-Scenario"><a href="#07-02-07-02-Communication-Scenario" class="headerlink" title="07.02.07.02. Communication Scenario"></a>07.02.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu540.png" width="80%">
+
+<h4 id="07-02-08-Port-Type-Change-Command"><a href="#07-02-08-Port-Type-Change-Command" class="headerlink" title="07.02.08. Port Type Change Command"></a>07.02.08. Port Type Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将结果回复到BC并更改端口类型。如果端口上有盒式磁带，则不能更改端口的端口类型。 </p>
+<ul>
+<li><p>OK：更改端口类型 </p>
+</li>
+<li><p>NG：不能更改端口的端口类型 </p>
+<p> 如果设备回复OK，设备需要在端口类型改变事件上再次自动触发盒式磁带。 </p>
+</li>
+</ul>
+<h5 id="07-02-08-01-PLC-MAP"><a href="#07-02-08-01-PLC-MAP" class="headerlink" title="07.02.08.01. PLC MAP"></a>07.02.08.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu541.png" width="80%">
+
+<h5 id="07-02-08-02-Communication-Scenario"><a href="#07-02-08-02-Communication-Scenario" class="headerlink" title="07.02.08.02. Communication Scenario"></a>07.02.08.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu542.png" width="80%">
+
+<h4 id="07-02-09-Port-Mode-Change-Command"><a href="#07-02-09-Port-Mode-Change-Command" class="headerlink" title="07.02.09. Port Mode Change Command"></a>07.02.09. Port Mode Change Command</h4><p>还可以设置BC端口模式的改变。当设备收到此命令时，应将结果回复到BC并改变端口模式。如果端口上有磁带，则端口的端口模式无法更改 </p>
+<ul>
+<li><p>OK ：更改端口的端口模式。 </p>
+</li>
+<li><p>NG ：不能改变端口的端口模式</p>
+<p>如果设备回复OK，设备需要再次自动触发端口模式改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-09-01-PLC-MAP"><a href="#07-02-09-01-PLC-MAP" class="headerlink" title="07.02.09.01. PLC MAP"></a>07.02.09.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu543.png" width="80%">
+
+<h5 id="07-02-09-02-Communication-Scenario"><a href="#07-02-09-02-Communication-Scenario" class="headerlink" title="07.02.09.02. Communication Scenario"></a>07.02.09.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu544.png" width="80%">
+
+<h4 id="07-02-10-Port-Transfer-Mode-Change-Command"><a href="#07-02-10-Port-Transfer-Mode-Change-Command" class="headerlink" title="07.02.10. Port Transfer Mode Change Command"></a>07.02.10. Port Transfer Mode Change Command</h4><p>BC还可以设置端口传输模式的改变。当设备收到此命令时，应将应答结果返回给BC，并改变端口传输模式。如果端口上有磁带，则端口的端口传输模式不能改变。</p>
+<ul>
+<li><p>OK： 改变端口的传输方式。 </p>
+</li>
+<li><p>NG :  无法更改端口的传输模式。 </p>
+<p>如果设备回复OK，设备需要再次自动触发端口传输模式更改事件。 </p>
+</li>
+</ul>
+<h5 id="07-02-10-01-PLC-MAP"><a href="#07-02-10-01-PLC-MAP" class="headerlink" title="07.02.10.01. PLC MAP"></a>07.02.10.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu545.png" width="80%">
+
+<h5 id="07-02-10-02-Communication-Scenario"><a href="#07-02-10-02-Communication-Scenario" class="headerlink" title="07.02.10.02. Communication Scenario"></a>07.02.10.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu546.png" width="80%">
+
+<h4 id="07-02-11-Port-Enable-Mode-Change-Command"><a href="#07-02-11-Port-Enable-Mode-Change-Command" class="headerlink" title="07.02.11. Port Enable Mode Change Command"></a>07.02.11. Port Enable Mode Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将应答结果返回给BC并更改端口启用模式。如果端口上有磁带，则该端口无法更改。 </p>
+<ul>
+<li><p>OK： 改变端口的启用端口 </p>
+</li>
+<li><p>NG： 不能更改端口的启用端口 </p>
+<p>如果设备回复OK，设备需要再次自动触发端口使能模式改变事件 </p>
+</li>
+</ul>
+<h5 id="07-02-11-01-PLC-MAP"><a href="#07-02-11-01-PLC-MAP" class="headerlink" title="07.02.11.01. PLC MAP"></a>07.02.11.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu547.png" width="80%">
+
+<h5 id="07-02-11-02-Communication-Scenario"><a href="#07-02-11-02-Communication-Scenario" class="headerlink" title="07.02.11.02. Communication Scenario"></a>07.02.11.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu548.png" width="80%">
+
+<h3 id="07-03-Port-amp-Cassette-Status-Management"><a href="#07-03-Port-amp-Cassette-Status-Management" class="headerlink" title="07.03. Port &amp; Cassette Status Management"></a>07.03. Port &amp; Cassette Status Management</h3><h4 id="07-03-01-Item-Define"><a href="#07-03-01-Item-Define" class="headerlink" title="07.03.01. Item Define"></a>07.03.01. Item Define</h4><h5 id="07-03-01-01-Port-Status"><a href="#07-03-01-01-Port-Status" class="headerlink" title="07.03.01.01. Port Status"></a>07.03.01.01. Port Status</h5><p>港口状态有4种类型;加载请求，加载完成，卸载请求和卸载完成。 </p>
+<ul>
+<li>Load Request： 端口可以接收盒式磁带，正在等待装入盒式磁带。在触发事件时，应自动增加端口的盒序号。在PLC的R口块中，CST状态下LDRQ后撤，设备将自动将ZR口区数据全部清除，避免残留影响下次下载盒式数据。 </li>
+<li>Load Complete： 一盒磁带已装上了端口。 </li>
+<li>Unload Request：一盒磁带正等着卸下来。 </li>
+<li>Unload Complete： 一盒磁带已经卸载了，端口上没有磁带了。 </li>
+</ul>
+<h5 id="07-03-01-02-Cassette-Status"><a href="#07-03-01-02-Cassette-Status" class="headerlink" title="07.03.01.02. Cassette Status"></a>07.03.01.02. Cassette Status</h5><p>​    卡带状态与操作者或设备本身的工艺操作有关。 </p>
+<ul>
+<li>No Cassette Exist： 端口上没有盒式磁带。 </li>
+<li>Waiting for Cassette Data： 磁带当前被装入端口，等待主PLC或操作员的磁带映射数据。设备应报告这一事件后，夹紧盒式磁带和(如果端口有BCR)读取盒式磁带ID和(如果端口有映射单元)感应每个插槽的工作的存在。 </li>
+<li>Waiting for Start Command： Cassette Map 已成功接收，正在等待主PLC或操作员的启动命令 </li>
+<li>Waiting for Processing <ul>
+<li>Loading Port： 开始命令已成功接收，并等待作业取出开始 </li>
+<li>Unloading Port： 已成功接收到Start命令，正在等待将Start插入到磁带中的作业。 </li>
+</ul>
+</li>
+<li>In Processing <ul>
+<li>Loading Port： 应该先更改为“正在处理中”，然后将T5报告  “Fetch out Job Data”  事件延迟到BC </li>
+<li>Unloading Port：应先更改为  “In Processing”  ，然后将T5报告 “Store Job Data”  事件延迟到BC。 </li>
+<li>Buffer Port：接收到BC的Start命令后，将更改为“In Processing”，然后需要延迟T5报告“Store Job Data”或“Fetch Out Job Data”事件到BC。 </li>
+<li>T5定时器默认值为1秒;范围 1~8秒 </li>
+</ul>
+</li>
+<li>Process Completed： 过程中的盒式磁带已完成(最后一次玻璃存储在盒式磁带后)或取消，或中止，需要延迟T5定时器才能改变到过程完成状态。 </li>
+<li>Process Paused： 盒式磁带的处理已被BC或操作员(EQ)暂停 </li>
+<li>Re-Map： 操作员在BC OPI改变盒式磁带状态从正在处理重新映射，等待操作员重新选择和下载盒式磁带映射数据。 </li>
+</ul>
+<h5 id="07-03-01-03-Cassette-Sequence-No"><a href="#07-03-01-03-Cassette-Sequence-No" class="headerlink" title="07.03.01.03. Cassette Sequence No"></a>07.03.01.03. Cassette Sequence No</h5><p>Cassette Sequence No 是表示盒式磁带的虚构序列号。当该端口的端口状态更改为“Load Request”时，它应该被增加。 </p>
+<h5 id="07-03-01-04-Operator-ID"><a href="#07-03-01-04-Operator-ID" class="headerlink" title="07.03.01.04. Operator ID"></a>07.03.01.04. Operator ID</h5><p>每个在线的操作员都有唯一的ID。设备必须为操作员ID输入提供屏幕。 </p>
+<h5 id="07-03-01-05-Cassette-ID"><a href="#07-03-01-05-Cassette-ID" class="headerlink" title="07.03.01.05. Cassette ID"></a>07.03.01.05. Cassette ID</h5><p>如果端口有一个BCR，那么它必须更新项目。BCR夹紧后读取卡带ID。 </p>
+<h5 id="07-03-01-06-Job-Count-in-Cassette"><a href="#07-03-01-06-Job-Count-in-Cassette" class="headerlink" title="07.03.01.06. Job Count in Cassette"></a>07.03.01.06. Job Count in Cassette</h5><p>盒式磁带中的作业计数是盒式磁带在端口装载时的作业计数。当映射单元感知到每个槽中存在作业时，应该更新它。如果工作计数有任何变化，及时报告设备。 </p>
+<h5 id="07-03-01-07-Job-Existence"><a href="#07-03-01-07-Job-Existence" class="headerlink" title="07.03.01.07. Job Existence"></a>07.03.01.07. Job Existence</h5><p>如果映射单元感知到每个槽中作业的存在，则应针对每个槽对其进行更新并实时刷新。 </p>
+<h5 id="07-03-01-08-Complete-Cassette-Dat"><a href="#07-03-01-08-Complete-Cassette-Dat" class="headerlink" title="07.03.01.08. Complete Cassette Dat"></a>07.03.01.08. Complete Cassette Dat</h5><p>它用来表示磁带是如何完成的。 </p>
+<ul>
+<li>Normal Complete： 磁带已正常完成 </li>
+<li>Operator Forced To Cancel： 在工序开始前，操作员已经取消了Cassette </li>
+<li>Operator Forced To Abort： 在正常的程序完成之前，操作员已经中止了磁带 </li>
+<li>BC Forced to Cancel： 在流程开始前，Cassette 已被BC取消。 </li>
+<li>BC Forced to Abort： 在正常工艺完成之前，卡带已被BC终止。 </li>
+<li>EQ Auto Cancel： Cassette 在开机前已被EQ自动取消。 </li>
+<li>EQ Auto Abort： 在正常工艺完成之前，Cassette 已被EQ自动中止。 </li>
+</ul>
+<h4 id="07-03-02-Port-amp-Cassette-Status-Change"><a href="#07-03-02-Port-amp-Cassette-Status-Change" class="headerlink" title="07.03.02. Port &amp; Cassette Status Change"></a>07.03.02. Port &amp; Cassette Status Change</h4><h5 id="07-03-02-01-Normal-Scenario"><a href="#07-03-02-01-Normal-Scenario" class="headerlink" title="07.03.02.01. Normal Scenario"></a>07.03.02.01. Normal Scenario</h5><img src="http://photo.wushaopei.com/qiniu549.png" width="80%">
+
+<h5 id="07-03-02-02-Re-Map-Scenario"><a href="#07-03-02-02-Re-Map-Scenario" class="headerlink" title="07.03.02.02. Re-Map Scenario"></a>07.03.02.02. Re-Map Scenario</h5><img src="http://photo.wushaopei.com/qiniu550.png" width="80%">
+
+<h4 id="07-03-03-PLC-MAP"><a href="#07-03-03-PLC-MAP" class="headerlink" title="07.03.03. PLC MAP"></a>07.03.03. PLC MAP</h4><h5 id="07-03-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-03-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.03.03.01. Local PLC – Link Register (W Area)"></a>07.03.03.01. Local PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu551.png" width="80%">
+
+<h5 id="07-03-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.02. Local PLC – Link Relay (B Area)"></a>07.03.03.02. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu552.png" width="80%">
+
+<h5 id="07-03-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.03. Master PLC – Link Relay (B Area)"></a>07.03.03.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu553.png" width="80%">
+
+<h4 id="07-03-04-Communication-Scenario"><a href="#07-03-04-Communication-Scenario" class="headerlink" title="07.03.04. Communication Scenario"></a>07.03.04. Communication Scenario</h4><h5 id="07-03-04-01-Cassette-Normal-Scenario"><a href="#07-03-04-01-Cassette-Normal-Scenario" class="headerlink" title="07.03.04.01. Cassette Normal Scenario"></a>07.03.04.01. Cassette Normal Scenario</h5><p>设备应有T4定时器，用于设置进程完成回复和UR事件之间的时间范围(如果是源盒式磁带自动转换为目标盒式磁带，则为UC事件); </p>
+<p>在等待过程中的盒状态，在第一次取玻璃之前，设备必须向BC报告第一次玻璃检查。当BC回复OK时，第一个杯子就可以取了。 </p>
+<p>在取第一个玻璃之前，设备必须与BC确认。如果BC回复NG，设备取消卡带。 </p>
+<img src="http://photo.wushaopei.com/qiniu554.png" width="80%">
+
+<h5 id="07-03-04-02-Cassette-Cancel-Scenario"><a href="#07-03-04-02-Cassette-Cancel-Scenario" class="headerlink" title="07.03.04.02. Cassette Cancel Scenario"></a>07.03.04.02. Cassette Cancel Scenario</h5><img src="http://photo.wushaopei.com/qiniu555.png" width="80%">
+
+<h5 id="07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command"><a href="#07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command" class="headerlink" title="07.03.04.03. Cassette Cancel Scenario – After waiting for start command"></a>07.03.04.03. Cassette Cancel Scenario – After waiting for start command</h5><p>​         <img src="http://photo.wushaopei.com/qiniu556.png" width="80%"></p>
+<h5 id="07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing"><a href="#07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing" class="headerlink" title="07.03.04.04. Cassette Cancel Scenario – After waiting for processing"></a>07.03.04.04. Cassette Cancel Scenario – After waiting for processing</h5><p>​         <img src="http://photo.wushaopei.com/qiniu557.png" width="80%"></p>
+<h5 id="07-03-04-05-Cassette-Abort-Scenario"><a href="#07-03-04-05-Cassette-Abort-Scenario" class="headerlink" title="07.03.04.05. Cassette Abort Scenario"></a>07.03.04.05. Cassette Abort Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu558.png" width="80%"></p>
+<h5 id="07-03-04-06-Empty-Cassette-Scenario"><a href="#07-03-04-06-Empty-Cassette-Scenario" class="headerlink" title="07.03.04.06. Empty Cassette Scenario"></a>07.03.04.06. Empty Cassette Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu559.png" width="80%"></p>
+<h5 id="07-03-04-07-EMP-Mode-Change-Scenario"><a href="#07-03-04-07-EMP-Mode-Change-Scenario" class="headerlink" title="07.03.04.07. EMP Mode Change Scenario"></a>07.03.04.07. EMP Mode Change Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu560.png" width="80%"></p>
+<p>07.03.04.08. Event Report Interval Time Scenario </p>
+<p>​         <img src="http://photo.wushaopei.com/qiniu608.png" width="80%"></p>
+<p>(1).     在端口状态 “Load Complete ” 和卡带状态 “ Waiting for Cassette Data ”之间，应延迟1秒，此时(名称:LC等待CST数据时间)可在触摸屏上设置。 </p>
+<p>(2).     在 “Cassette Map Download”  和卡带状态  “Waiting for Start Command”之间，应延迟1秒。此时(名称:CST下载等待启动时间)可在触摸屏上设置。 </p>
+<p>(3).   在卡带控制指令  “Cassette Process Start”  和卡带状态  “Waiting for Processing” 之间，应延迟1秒。此时(名称:进程启动等待进程时间)可在触摸屏上设置。 </p>
+<p>(4).   在卡带状态 “Waiting for Processing”   和卡带状态  “In Processing”  之间，应等待第一次玻璃检查结果事件来改变卡带状态。当最后一块玻璃从盒的装载口离开时，最后一块玻璃标志的工作数据应自动打开。 </p>
+<p>(5).  在卡带状态变为  “Process Completed” 前，设备应更新卡带各槽位和ZR区域的作业数据 </p>
+<p>(6).   在卡带状态  “Process Completed”  与bit的BC应答之间，应延迟T6时间。这个时间可以在触摸屏上设置。默认值为0，表示不延迟 </p>
+<p>(7).   在卡带状态  “Process Completed”  和端口状态 “Unload Request” 之间，应延迟T5时间。T5时间可以在触摸屏上设置。 </p>
+<p>(8).   在端口状态 “Unload Complete” 和卡带状态  “No Cassette Exist” 之间，应延迟1秒。此时(名称:UC到No CST存在时间)可在触摸屏上设置。 </p>
+<p>(9).    在卡带状态  “No Cassette Exist”  和端口状态  “Load Request” 之间，应延迟1秒。此时(名称:从无CST到LR时间)可在触摸屏上设置。 </p>
+<h5 id="07-03-04-09-Cassette-Process-Completed-Interval-Time-Scenario"><a href="#07-03-04-09-Cassette-Process-Completed-Interval-Time-Scenario" class="headerlink" title="07.03.04.09. Cassette Process Completed Interval Time Scenario"></a>07.03.04.09. Cassette Process Completed Interval Time Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu609.png" width="80%"></p>
+<p>(1).  在01号卡带和02号卡带之间完成卡带加工的间隔时间至少为6秒。设备应提供触摸屏或PC上的设置。默认值是6秒。 </p>
+<p>(2).  当端口01和端口02的卡带同时完成时，设备应报告一个端口并保持至少6秒，然后再报告另一个端口，无论端口类型。 </p>
+<h3 id="07-04-Cassette-Control-Command"><a href="#07-04-Cassette-Control-Command" class="headerlink" title="07.04. Cassette Control Command"></a>07.04. Cassette Control Command</h3><h4 id="07-04-01-Command-Define-"><a href="#07-04-01-Command-Define-" class="headerlink" title="07.04.01. Command Define "></a>07.04.01. Command Define </h4><p>​    盒式磁带控制指令用于控制设备如何处理端口上的盒式磁带。 </p>
+<ul>
+<li><p>Cassette Map Download : 当设备请求一个端口的盒式磁带映射数据时，BC应将数据下载到设备。BC将盒式映射数据写入已请求该数据的设备的本地PLC中。此时，BC向设备发送此命令。设备可根据卡带图数据对卡带进行处理 </p>
+</li>
+<li><p>Cassette Process Start： 如果从BC接收的盒式磁带映射数据正常，设备应向BC请求盒式磁带进程启动命令。当从BC收到此命令时，设备可以启动卡带。 </p>
+</li>
+<li><p>Cassette Process Start By Count： 有些设备需要特定的工作数量才能启动。此命令用于这些类型，并包含要启动的作业数量。操作与卡带进程启动命令相同。</p>
+</li>
+<li><p>Cassette Process Pause： 卡带可以暂停。如果接收到此命令，设备必须暂停进程。如果机器人(或传送带)当前正在提取或存储作业到磁带，则在设备将磁带状态切换为暂停之前，应完成提取或存储操作。 </p>
+</li>
+<li><p>Cassette Process Resume： 如果磁带进程暂停，设备可以通过此命令重新启动进程。 </p>
+</li>
+<li><p>Cassette Process Cancel： 如果磁带没有被处理，BC可以取消该过程。BC使用这个命令。设备将卡带从端口上松开。 </p>
+</li>
+<li><p>Cassette Process Abort： 如果正在处理磁带，BC可以使用此命令终止进程。如果机器人(或传送带)当前正在提取或存储作业到磁带，则在设备将磁带状态切换到abort之前，应完成提取或存储操作。 </p>
+</li>
+<li><p>Cassette Reload/Load： 当端口状态= “ 3:Unload Request “，卡带状态= “ 7:Process Completed “时，BC/OP可以将Reload命令设置为设备，如果设备接受命令，则端口状态变为” 4:Unload Complete “，卡带状态变为7:No Cassette Exist “。 </p>
+<p>端口状态将更改为“4:卸载完成”，盒式磁带状态将更改为“1:不存在盒式磁带”</p>
+<p>端口状态变为“1:Load Request”，卡带状态变为“1:No Cassette Exist”，等待BC/OP将Load命令设置到设备。</p>
+</li>
+<li><p>Cassette Re-Map：用于重新选择使用的函数。设备应将卡带状态更改为“重新映射”，并等待BC重新下载新的卡带映射数据到设备。 </p>
+</li>
+</ul>
+<h4 id="07-04-02-Cassette-Map-Data"><a href="#07-04-02-Cassette-Map-Data" class="headerlink" title="07.04.02. Cassette Map Data"></a>07.04.02. Cassette Map Data</h4><p>它是盒式磁带中每个插槽的工作数据。BC可以将要求盒式映射数据的设备的数据写入本地PLC。 </p>
+<h4 id="07-04-03-Cassette-Control-Command-Return-Code"><a href="#07-04-03-Cassette-Control-Command-Return-Code" class="headerlink" title="07.04.03. Cassette Control Command Return Code"></a>07.04.03. Cassette Control Command Return Code</h4><p>它是BC的盒式磁带控制命令的返回代码。设备必须根据命令返回代码进行应答。 </p>
+<p><strong>※ Note：</strong> </p>
+<p>Return Code Description：  </p>
+<p>1：Command OK,  意思是设备接受指令</p>
+<p>2:   Command Error（命令错误），意思是BC命令错误，需要警告，设备不能自动取消/中止卡带。它应该再次等待BC下载命令，直到操作员或BC手动取消。 </p>
+<p>3：CSTID is Invalid （CSTID是无效的(包括密盒ID)），这意味着CSTID的BCR读取是非法的，需要发出警告，设备不能自动取消/终止盒式磁带。它应该等待操作符或BC取消。 </p>
+<p>4：Recipe Mismatch（配方不匹配），意味着配方ID的作业数据不能在设备中使用，需要报警，设备不能自动取消/中止卡带。它应该等待操作符或BC取消。设备应按配方ID检查模式，配方自动切换模式检查配方ID。 </p>
+<p>5： Slot Information Mismatch （槽信息不匹配），即设备作业存在内容与BC下载的作业存在内容不一致，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。</p>
+<p>(如果没有地图传感器就不要检查)</p>
+<p>6：Job Type Mismatch（作业类型不匹配），即作业类型的作业数据与端口模式不同。设备需要提供作业类型不匹配的自动取消启用/禁用按钮。如果启用，卡带应自动取消，如果禁用，设备应发出警告并等待操作员或BC取消 </p>
+<p>7：Cassette Setting Code Mismatch (BEOL), 仅对于Cell，其设备卡带设置代码与BC下载的卡带设置代码不同，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
+<p>8：Already Received（已经收到），意思是设备多次收到来自BC的相同指令，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
+<p>9：Other Error（其他错误）,  它的意思是BC下载命令，设备检查后，它的其他错误发生，它需要提出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
+<p>10：Product Type Mismatch（产品类型不匹配 ）, 它的意思是设备最后的产品类型不同于BC下载的产品类型。设备需要提供产品类型不匹配自动取消启用/禁用按钮。如果启用，卡带应自动取消，如果禁用，设备应发出警告并等待操作员或BC取消。  </p>
+<p>11：Group Index Mismatch （组索引不匹配），仅用于单元格，如果此功能启用，设备不能混合不同的组索引 glass 。 </p>
+<p>12：Product ID Mismatch （产品ID不匹配 ），仅对于Cell，如果此功能启用，设备不能混合不同的产品id glasses.</p>
+<h4 id="07-04-04-PLC-MAP"><a href="#07-04-04-PLC-MAP" class="headerlink" title="07.04.04. PLC MAP"></a>07.04.04. PLC MAP</h4><h5 id="07-04-04-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-04-04-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.04.04.01. Local PLC – Link Register (W Area)"></a>07.04.04.01. Local PLC – Link Register (W Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu615.png" width="80%"></p>
+<h5 id="07-04-04-02-Local-PLC-–-Link-Relay-B-Area"><a href="#07-04-04-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.04.04.02. Local PLC – Link Relay (B Area)"></a>07.04.04.02. Local PLC – Link Relay (B Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu616.png" width="80%"></p>
+<p>​         <img src="http://photo.wushaopei.com/qiniu617.png" width="80%"></p>
+<h5 id="07-04-04-04-Master-PLC-–-Link-Relay-B-Area"><a href="#07-04-04-04-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.04.04.04. Master PLC – Link Relay (B Area)"></a>07.04.04.04. Master PLC – Link Relay (B Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu618.png" width="80%"></p>
+<h4 id="07-04-05-Local-PLC-–-File-Register-R-ZR-Area"><a href="#07-04-05-Local-PLC-–-File-Register-R-ZR-Area" class="headerlink" title="07.04.05. Local PLC – File Register (R/ZR Area)"></a>07.04.05. Local PLC – File Register (R/ZR Area)</h4><p>此标准盒式磁带映射数据为28槽盒式磁带，其它类型盒式磁带参照PLC地址映射。 </p>
+<p>设备应根据玻璃取出/存储在卡带槽中，以更新与ZR区域有关的全部工作数据。</p>
+<h5 id="07-04-05-01-Standard-Cassette-Map-Data"><a href="#07-04-05-01-Standard-Cassette-Map-Data" class="headerlink" title="07.04.05.01. Standard Cassette Map Data"></a>07.04.05.01. Standard Cassette Map Data</h5><p>​         <img src="http://photo.wushaopei.com/qiniu619.png" width="80%"></p>
+<p>​         <img src="http://photo.wushaopei.com/qiniu620.png" width="80%"></p>
+<h3 id="07-05-First-Glass-Check"><a href="#07-05-First-Glass-Check" class="headerlink" title="07.05. First Glass Check"></a>07.05. First Glass Check</h3>]]></content>
+      <categories>
+        <category>自动化开发</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>自动化开发（六）Specification-06-Common Function</title>
     <url>/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/</url>
     <content><![CDATA[<h2 id="06-Common-Function"><a href="#06-Common-Function" class="headerlink" title="06. Common Function"></a>06. Common Function</h2><p>设备将需要所有事件的间隔时间分开，而接口的间隔时间是分开的,报警时的报警报告 报警文字要写清楚。</p>
 <h3 id="06-01-Equipment-Monitor-Management"><a href="#06-01-Equipment-Monitor-Management" class="headerlink" title="06.01. Equipment Monitor Management"></a>06.01. Equipment Monitor Management</h3><h4 id="06-01-01-Equipment-Alive"><a href="#06-01-01-Equipment-Alive" class="headerlink" title="06.01.01. Equipment Alive"></a>06.01.01. Equipment Alive</h4><p>​    设备带电是指设备运行正常，可以由PLC控制的状态。本地PLC应定期将设备的活位改变为4秒on, 4秒off。如果设备的活位10秒不改变，则主PLC应将其作为通信断开，并生成操作员呼叫。 </p>
@@ -6091,362 +6447,6 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
 
 
 ]]></content>
-      <categories>
-        <category>自动化开发</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>自动化开发（六）Specification-06-Common Function</title>
-    <url>/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/</url>
-    <content><![CDATA[<h2 id="07-Port-Management"><a href="#07-Port-Management" class="headerlink" title="07. Port Management"></a>07. Port Management</h2><h3 id="07-01-Port-Operation-Mode-Management"><a href="#07-01-Port-Operation-Mode-Management" class="headerlink" title="07.01. Port Operation Mode Management"></a>07.01. Port Operation Mode Management</h3><h4 id="07-01-01-CST-Operation-Mode"><a href="#07-01-01-CST-Operation-Mode" class="headerlink" title="07.01.01. CST Operation Mode"></a>07.01.01. CST Operation Mode</h4><p>根据玻璃类型指示装载机当前的工作方式。 CST操作模式仅适用于特定的设备(仅适用于阵列，CF)。 </p>
-<ul>
-<li>Kind to Kind Mode (CF/Cell Default)： Glass/chip  按产品(种类)类型装入盒内。它不考虑 glasses 的FIFO顺序。卸载 cassette 满时，卸载报告卸载请求事件。 </li>
-<li>Cassette To Cassette Mode(Array Default)： Glass/chip 将储存在相同的槽卸载磁带作为加载磁带。如果卸载机有金属丝盒，玻璃/芯片可以存储到另一个卸载盒槽。工作数据表设备写入。 </li>
-</ul>
-<h5 id="07-01-01-01-PLC-MAP-de-Mode"><a href="#07-01-01-01-PLC-MAP-de-Mode" class="headerlink" title="07.01.01.01. PLC MAP de Mode"></a>07.01.01.01. PLC MAP de Mode</h5><img src="http://photo.wushaopei.com/qiniu520.png" width="80%">
-
-<h5 id="07-01-01-02-Communication-Scenario"><a href="#07-01-01-02-Communication-Scenario" class="headerlink" title="07.01.01.02. Communication Scenario"></a>07.01.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu521.png" width="80%">
-
-<h4 id="07-01-02-Partial-Full-Mode"><a href="#07-01-02-Partial-Full-Mode" class="headerlink" title="07.01.02. Partial Full Mode"></a>07.01.02. Partial Full Mode</h4><p>Unloader should provide Partial Full Mode Enable/Disable function. </p>
-<ul>
-<li>Enable：  <ul>
-<li>When Cassette Status = Process Complete，从 port 卸下全部 Cassette  或部分 Cassette 时，设备需要打开部分全开标志。</li>
-<li>Unloader port can load partial cassette or empty cassette </li>
-</ul>
-</li>
-<li>Disable：  <ul>
-<li>When Cassette Status = Process Complete, Full Cassette or Partial Cassette unload from  port, equipment doesn’t need to turn on Partial Full Flag.</li>
-<li>Unloader port can load empty cassette. </li>
-</ul>
-</li>
-</ul>
-<h5 id="07-01-02-01-PLC-MAP"><a href="#07-01-02-01-PLC-MAP" class="headerlink" title="07.01.02.01. PLC MAP"></a>07.01.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu522.png" width="80%">
-
-<h5 id="07-01-02-02-Communication-Scenario"><a href="#07-01-02-02-Communication-Scenario" class="headerlink" title="07.01.02.02. Communication Scenario"></a>07.01.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu523.png" width="80%">
-
-
-
-<h3 id="07-02-Port-Function-Management"><a href="#07-02-Port-Function-Management" class="headerlink" title="07.02. Port Function Management"></a>07.02. Port Function Management</h3><h4 id="07-02-01-Port-Type-Change"><a href="#07-02-01-Port-Type-Change" class="headerlink" title="07.02.01. Port Type Change"></a>07.02.01. Port Type Change</h4><p>它是根据当前加载在端口上的磁带的预期操作对端口进行分类: 加载在端口上的磁带是是否将作业输入到 Inline , 或在作业以行方式完成后，从 Inline  方式输出作业 ,  或在临时行中缓冲作业 .</p>
-<p>如果端口上有磁带，则不能更改端口的端口类型。 设备制造商应该提供这一功能。如果端口类型改变，设备应该报告端口的 ‘Load Request’   事件 .</p>
-<p>There are 4 kinds of port types, loader, un-loader, both and buffer.  根据端口的类型，端口模式与端口类型相关。 </p>
-<ul>
-<li><p>Loading Port： 用于从装入端口的 cassette 中取出 Job 并将其输入到 Inline 中。 </p>
-</li>
-<li><p>Unloading Port： 用于将完成其过程的 Job 存储到 cassette 中 ,  把 cassette  从 Inline  取出来</p>
-</li>
-<li><p>Both Port： 用于从装入 Port 的 cassette  中取出 Job 并将其输入到 Inline  中，也用于将完成其处理过程的作业存储到 cassette  中，并将 cassette  从 Inline  中取出 </p>
-</li>
-<li><p>Buffer Port：To be used to buffer Job in Inline </p>
-<ul>
-<li>Buffer Type： 指示此 Port 仅用于缓冲目的。可混合多种类型的玻璃。 </li>
-<li>Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline  输入，如Loading Port。 </li>
-<li>Un-Loader in Buffer Type： 指示此缓冲端口可用于 Glass Inline 输出，如Unloading Port。 </li>
-</ul>
-<h5 id="07-02-01-01-PLC-MAP"><a href="#07-02-01-01-PLC-MAP" class="headerlink" title="07.02.01.01. PLC MAP"></a>07.02.01.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu524.png" width="80%">
-
-</li>
-</ul>
-<h5 id="07-02-01-02-Communication-Scenario"><a href="#07-02-01-02-Communication-Scenario" class="headerlink" title="07.02.01.02. Communication Scenario"></a>07.02.01.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu525.png" width="80%">
-
-
-
-<h4 id="07-02-02-Port-Mode-Change"><a href="#07-02-02-Port-Mode-Change" class="headerlink" title="07.02.02. Port Mode Change"></a>07.02.02. Port Mode Change</h4><p>它是根据端口盒中所包含的眼镜的操作方式对端口进行分类。</p>
-<p>显示玻璃类型或判断信息。基于端口类型的含义有一些不同。</p>
-<p>如果端口上有盒式磁带，则端口的端口模式不能更改。设备制造商应该提供这一功能。如果端口模式改变，设备应报告端口的“负载请求”事件。(自动换口模式设备除外)</p>
-<img src="http://photo.wushaopei.com/qiniu526.png" width="80%">
-
-<ul>
-<li><p>Loading Port： 指示装载在 Port 上的 Cassette 中所包含的 Glass 类型</p>
-<ul>
-<li><p>TFT Mode： 表示此端口用于处理TFT玻璃。 </p>
-</li>
-<li><p>CF Mode：Indicates that this Port is for processing CF Glasses. </p>
-</li>
-<li><p>Dummy Mode： Indicates that this Port is for processing Dummy Glasses into Inline. </p>
-</li>
-<li><p>MQC Mode：Indicates that this Port is for processing MQC Glasses into Inline </p>
-</li>
-<li><p>HT Mode：Indicates that all glasses in this Port would enter HT Chamber in CVD for  </p>
-<p>processing</p>
-</li>
-<li><p>LT Mode：Indicates that all glasses in this Port would enter LT Chamber in CVD for  </p>
-<p>processing</p>
-</li>
-<li><p>ENG Mode：Indicates that this Port is for processing MQC Glasses into Inline. </p>
-</li>
-<li><p>IGZO Mode：Indicates that this Port is for processing IGZO Glasses into Inline </p>
-</li>
-<li><p>ILC Mode：Indicates that all glasses in this Port would enter the equipment in ILC mode  for processing</p>
-</li>
-<li><p>FLC模式:表示该端口的所有眼镜进入FLC模式进行处理 </p>
-</li>
-<li><p>Through Dummy Mode：Indicates that this Port is for processing Through Dummy  </p>
-<p>Glasses into Inline. </p>
-</li>
-<li><p>Thickness Dummy Mode：Indicates this Port is to fetch Thickness Dummy Glasses into Inline.</p>
-</li>
-<li><p>UV Mask Mode：表示此端口用于将  UV Mask Glasses  Inline 加工。 </p>
-</li>
-<li><p>Mismatch Mode：用于处理 Array/ CF line 的排序 ，表示此端口用于处理VCR读不匹配的 Glass。 </p>
-</li>
-</ul>
-</li>
-<li><p>Both Port： 这个端口用于 loading 和 un-loading 这两种类型。 </p>
-<ul>
-<li>TFT Mode： 指示此端口用于 loading 和 un-loading TFT玻璃。 </li>
-<li>CF Mode：表示此端口用于 loading 和 un-loading CF 玻璃。 </li>
-<li>Dummy Mode：表示此端口用于 loading 和 un-loading Dummy Glasses。</li>
-<li>MQC Mode： 表示此端口用于 loading 和 un-loading MQC Dummy Glasses。</li>
-<li>HT Mode： 指示此端口用于 loading 和 un-loading，将进入CVD中的HT室进行处理。</li>
-<li>LT Mode： 表示此端口为加载，卸载时将进入CVD中的LT室进行处理。 </li>
-<li>ENG Mode： 说明此端口用于MQC玻璃的装卸加工。 </li>
-<li>IGZO Mode： 表示此端口用于装载和卸载加工IGZO玻璃。 </li>
-<li>ILC Mode：表示此装卸口将进入设备的ILC模式进行处理。 </li>
-<li>FLC Mode：表示此装卸口将进入设备FLC模式进行处理。 </li>
-</ul>
-<p>设备仅根据端口类型使用一种端口模式:加载器、卸载器和缓冲区。</p>
-<p>例如，卸载器可能有正常，返工，修理或NG端口和缓冲区可能有加载，卸载，虚拟，刮，返工或缓冲区。</p>
-</li>
-</ul>
-<h5 id="07-02-02-01-PLC-MAP"><a href="#07-02-02-01-PLC-MAP" class="headerlink" title="07.02.02.01. PLC MAP"></a>07.02.02.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu527.png" width="80%">
-
-<img src="http://photo.wushaopei.com/qiniu528.png" width="80%">
-
-<img src="http://photo.wushaopei.com/qiniu529.png" width="80%">
-
-<h5 id="07-02-02-02-Communication-Scenario"><a href="#07-02-02-02-Communication-Scenario" class="headerlink" title="07.02.02.02. Communication Scenario"></a>07.02.02.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu530.png" width="80%">
-
-<h4 id="07-02-03-Port-Transfer-Mode-Change"><a href="#07-02-03-Port-Transfer-Mode-Change" class="headerlink" title="07.02.03. Port Transfer Mode Change"></a>07.02.03. Port Transfer Mode Change</h4><p>它指出了在端口和AMHS之间传输磁带的方式。有3种模式 : AGV模式，MGV模式和STK内联模式。AGV模式包括RGV模式。</p>
-<p>AGV模式应该能够通过操作员按下的按钮切换到MGV模式。</p>
-<p>如果端口上有盒式磁带，则端口的端口传输模式不能改变。</p>
-<p>设备制造商应该提供这一功能。如果端口传输模式改变，设备应报告端口的“负载请求”事件。</p>
-<ul>
-<li>MGV Mode： 与 MGV 的 Port 接口</li>
-<li>AGV Mode： 与 AGV 的 Port 接口</li>
-<li>Stocker Inline Mode：与 储料器的 Port 接口</li>
-</ul>
-<h5 id="07-02-03-01-PLC-MAP"><a href="#07-02-03-01-PLC-MAP" class="headerlink" title="07.02.03.01. PLC MAP"></a>07.02.03.01. PLC MAP</h5><h6 id="07-02-03-01-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-02-03-01-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.02.03.01.01. Local PLC – Link Register (W Area)"></a>07.02.03.01.01. Local PLC – Link Register (W Area)</h6><img src="http://photo.wushaopei.com/qiniu531.png" width="80%">
-
-<h5 id="07-02-03-02-Communication-Scenario"><a href="#07-02-03-02-Communication-Scenario" class="headerlink" title="07.02.03.02. Communication Scenario"></a>07.02.03.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu532.png" width="80%">
-
-<h4 id="07-02-04-Port-Enable-Mode-Change"><a href="#07-02-04-Port-Enable-Mode-Change" class="headerlink" title="07.02.04. Port Enable Mode Change"></a>07.02.04. Port Enable Mode Change</h4><p>端口启用模式意味着将使用该端口。只有当端口上没有磁带时，端口启用/禁用更改才可用(即加载请求状态)。一旦端口状态被设置为禁用，就不应该允许或更改与端口相关的端口模式或磁带状态。</p>
-<p>如果端口上有盒式磁带，则端口的端口启用模式不能更改。</p>
-<p>设备制造商应该提供这一功能。如果端口启用模式从禁用模式更改为启用模式，设备应报告端口的“负载请求”事件。</p>
-<ul>
-<li>Enabled Mode： 可以使用此端口。 </li>
-<li>Disabled Mode： 此端口无法使用。操作员或其他人员禁止使用此端口 </li>
-</ul>
-<h5 id="07-02-04-01-PLC-MAP"><a href="#07-02-04-01-PLC-MAP" class="headerlink" title="07.02.04.01. PLC MAP"></a>07.02.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu533.png" width="80%">
-
-<h5 id="07-02-04-02-Communication-Scenario"><a href="#07-02-04-02-Communication-Scenario" class="headerlink" title="07.02.04.02. Communication Scenario"></a>07.02.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu534.png" width="80%">
-
-<h4 id="07-02-05-Cassette-on-Port-Q-Time-Change"><a href="#07-02-05-Cassette-on-Port-Q-Time-Change" class="headerlink" title="07.02.05. Cassette on Port Q Time Change"></a>07.02.05. Cassette on Port Q Time Change</h4><p>所有有负载端口的设备应提供端口Q时间功能的磁带。如果卡带等待处理状态超过设置Q时间，设备应自动取消此卡带并发出警告。Q时间应该在触摸屏上设置。 </p>
-<p>当Q时间值发生变化时，设备应向BC报告。</p>
-<p>若Q时间值为0，则表示设备不自动取消卡带，即使卡带已超过Q时间设置。</p>
-<h5 id="07-02-05-01-PLC-MAP"><a href="#07-02-05-01-PLC-MAP" class="headerlink" title="07.02.05.01. PLC MAP"></a>07.02.05.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu535.png" width="80%">
-
-<h5 id="07-02-05-02-Communication-Scenario"><a href="#07-02-05-02-Communication-Scenario" class="headerlink" title="07.02.05.02. Communication Scenario"></a>07.02.05.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu536.png" width="80%">
-
-<h4 id="07-02-06-Cassette-on-Port-Q-Time-Change-Command"><a href="#07-02-06-Cassette-on-Port-Q-Time-Change-Command" class="headerlink" title="07.02.06. Cassette on Port Q Time Change Command"></a>07.02.06. Cassette on Port Q Time Change Command</h4><p>BC也可以设置卡带对Q口时间的值。当设备接收到此事件时，应将Q时间值更改为，并将回复结果改为BC。 </p>
-<ul>
-<li><p>OK：重新计数卡带的端口Q时间。 </p>
-</li>
-<li><p>NG：保持原始磁带在Q端口的时间。</p>
-<p> 如果设备回复OK，设备需要在端口Q上再次自动触发卡带时间改变事件 </p>
-</li>
-</ul>
-<h5 id="07-02-06-01-PLC-MAP"><a href="#07-02-06-01-PLC-MAP" class="headerlink" title="07.02.06.01. PLC MAP"></a>07.02.06.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu537.png" width="80%">
-
-<h5 id="07-02-06-02-Communication-Scenario"><a href="#07-02-06-02-Communication-Scenario" class="headerlink" title="07.02.06.02. Communication Scenario"></a>07.02.06.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu538.png" width="80%">
-
-<h4 id="07-02-07-Port-Down"><a href="#07-02-07-Port-Down" class="headerlink" title="07.02.07. Port Down"></a>07.02.07. Port Down</h4><p>​    当端口有错误不能使用时，设备应触发此功能到BC。 </p>
-<ul>
-<li><p>Normal：Port is OK </p>
-</li>
-<li><p>Down： 发生错误时端口不能使用。 </p>
-<p>For Array/CF： 当一个端口出现错误不能使用时，设备也应同时将“端口下的真实状态”更新到BC。 </p>
-</li>
-</ul>
-<h5 id="07-02-07-01-PLC-MAP"><a href="#07-02-07-01-PLC-MAP" class="headerlink" title="07.02.07.01. PLC MAP"></a>07.02.07.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu539.png" width="80%">
-
-<h5 id="07-02-07-02-Communication-Scenario"><a href="#07-02-07-02-Communication-Scenario" class="headerlink" title="07.02.07.02. Communication Scenario"></a>07.02.07.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu540.png" width="80%">
-
-<h4 id="07-02-08-Port-Type-Change-Command"><a href="#07-02-08-Port-Type-Change-Command" class="headerlink" title="07.02.08. Port Type Change Command"></a>07.02.08. Port Type Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将结果回复到BC并更改端口类型。如果端口上有盒式磁带，则不能更改端口的端口类型。 </p>
-<ul>
-<li><p>OK：更改端口类型 </p>
-</li>
-<li><p>NG：不能更改端口的端口类型 </p>
-<p> 如果设备回复OK，设备需要在端口类型改变事件上再次自动触发盒式磁带。 </p>
-</li>
-</ul>
-<h5 id="07-02-08-01-PLC-MAP"><a href="#07-02-08-01-PLC-MAP" class="headerlink" title="07.02.08.01. PLC MAP"></a>07.02.08.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu541.png" width="80%">
-
-<h5 id="07-02-08-02-Communication-Scenario"><a href="#07-02-08-02-Communication-Scenario" class="headerlink" title="07.02.08.02. Communication Scenario"></a>07.02.08.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu542.png" width="80%">
-
-<h4 id="07-02-09-Port-Mode-Change-Command"><a href="#07-02-09-Port-Mode-Change-Command" class="headerlink" title="07.02.09. Port Mode Change Command"></a>07.02.09. Port Mode Change Command</h4><p>还可以设置BC端口模式的改变。当设备收到此命令时，应将结果回复到BC并改变端口模式。如果端口上有磁带，则端口的端口模式无法更改 </p>
-<ul>
-<li><p>OK ：更改端口的端口模式。 </p>
-</li>
-<li><p>NG ：不能改变端口的端口模式</p>
-<p>如果设备回复OK，设备需要再次自动触发端口模式改变事件 </p>
-</li>
-</ul>
-<h5 id="07-02-09-01-PLC-MAP"><a href="#07-02-09-01-PLC-MAP" class="headerlink" title="07.02.09.01. PLC MAP"></a>07.02.09.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu543.png" width="80%">
-
-<h5 id="07-02-09-02-Communication-Scenario"><a href="#07-02-09-02-Communication-Scenario" class="headerlink" title="07.02.09.02. Communication Scenario"></a>07.02.09.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu544.png" width="80%">
-
-<h4 id="07-02-10-Port-Transfer-Mode-Change-Command"><a href="#07-02-10-Port-Transfer-Mode-Change-Command" class="headerlink" title="07.02.10. Port Transfer Mode Change Command"></a>07.02.10. Port Transfer Mode Change Command</h4><p>BC还可以设置端口传输模式的改变。当设备收到此命令时，应将应答结果返回给BC，并改变端口传输模式。如果端口上有磁带，则端口的端口传输模式不能改变。</p>
-<ul>
-<li><p>OK： 改变端口的传输方式。 </p>
-</li>
-<li><p>NG :  无法更改端口的传输模式。 </p>
-<p>如果设备回复OK，设备需要再次自动触发端口传输模式更改事件。 </p>
-</li>
-</ul>
-<h5 id="07-02-10-01-PLC-MAP"><a href="#07-02-10-01-PLC-MAP" class="headerlink" title="07.02.10.01. PLC MAP"></a>07.02.10.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu545.png" width="80%">
-
-<h5 id="07-02-10-02-Communication-Scenario"><a href="#07-02-10-02-Communication-Scenario" class="headerlink" title="07.02.10.02. Communication Scenario"></a>07.02.10.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu546.png" width="80%">
-
-<h4 id="07-02-11-Port-Enable-Mode-Change-Command"><a href="#07-02-11-Port-Enable-Mode-Change-Command" class="headerlink" title="07.02.11. Port Enable Mode Change Command"></a>07.02.11. Port Enable Mode Change Command</h4><p>BC还可以设置端口类型的改变。当设备收到此命令时，应将应答结果返回给BC并更改端口启用模式。如果端口上有磁带，则该端口无法更改。 </p>
-<ul>
-<li><p>OK： 改变端口的启用端口 </p>
-</li>
-<li><p>NG： 不能更改端口的启用端口 </p>
-<p>如果设备回复OK，设备需要再次自动触发端口使能模式改变事件 </p>
-</li>
-</ul>
-<h5 id="07-02-11-01-PLC-MAP"><a href="#07-02-11-01-PLC-MAP" class="headerlink" title="07.02.11.01. PLC MAP"></a>07.02.11.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu547.png" width="80%">
-
-<h5 id="07-02-11-02-Communication-Scenario"><a href="#07-02-11-02-Communication-Scenario" class="headerlink" title="07.02.11.02. Communication Scenario"></a>07.02.11.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu548.png" width="80%">
-
-<h3 id="07-03-Port-amp-Cassette-Status-Management"><a href="#07-03-Port-amp-Cassette-Status-Management" class="headerlink" title="07.03. Port &amp; Cassette Status Management"></a>07.03. Port &amp; Cassette Status Management</h3><h4 id="07-03-01-Item-Define"><a href="#07-03-01-Item-Define" class="headerlink" title="07.03.01. Item Define"></a>07.03.01. Item Define</h4><h5 id="07-03-01-01-Port-Status"><a href="#07-03-01-01-Port-Status" class="headerlink" title="07.03.01.01. Port Status"></a>07.03.01.01. Port Status</h5><p>港口状态有4种类型;加载请求，加载完成，卸载请求和卸载完成。 </p>
-<ul>
-<li>Load Request： 端口可以接收盒式磁带，正在等待装入盒式磁带。在触发事件时，应自动增加端口的盒序号。在PLC的R口块中，CST状态下LDRQ后撤，设备将自动将ZR口区数据全部清除，避免残留影响下次下载盒式数据。 </li>
-<li>Load Complete： 一盒磁带已装上了端口。 </li>
-<li>Unload Request：一盒磁带正等着卸下来。 </li>
-<li>Unload Complete： 一盒磁带已经卸载了，端口上没有磁带了。 </li>
-</ul>
-<h5 id="07-03-01-02-Cassette-Status"><a href="#07-03-01-02-Cassette-Status" class="headerlink" title="07.03.01.02. Cassette Status"></a>07.03.01.02. Cassette Status</h5><p>​    卡带状态与操作者或设备本身的工艺操作有关。 </p>
-<ul>
-<li>No Cassette Exist： 端口上没有盒式磁带。 </li>
-<li>Waiting for Cassette Data： 磁带当前被装入端口，等待主PLC或操作员的磁带映射数据。设备应报告这一事件后，夹紧盒式磁带和(如果端口有BCR)读取盒式磁带ID和(如果端口有映射单元)感应每个插槽的工作的存在。 </li>
-<li>Waiting for Start Command： Cassette Map 已成功接收，正在等待主PLC或操作员的启动命令 </li>
-<li>Waiting for Processing <ul>
-<li>Loading Port： 开始命令已成功接收，并等待作业取出开始 </li>
-<li>Unloading Port： 已成功接收到Start命令，正在等待将Start插入到磁带中的作业。 </li>
-</ul>
-</li>
-<li>In Processing <ul>
-<li>Loading Port： 应该先更改为“正在处理中”，然后将T5报告  “Fetch out Job Data”  事件延迟到BC </li>
-<li>Unloading Port：应先更改为  “In Processing”  ，然后将T5报告 “Store Job Data”  事件延迟到BC。 </li>
-<li>Buffer Port：接收到BC的Start命令后，将更改为“In Processing”，然后需要延迟T5报告“Store Job Data”或“Fetch Out Job Data”事件到BC。 </li>
-<li>T5定时器默认值为1秒;范围 1~8秒 </li>
-</ul>
-</li>
-<li>Process Completed： 过程中的盒式磁带已完成(最后一次玻璃存储在盒式磁带后)或取消，或中止，需要延迟T5定时器才能改变到过程完成状态。 </li>
-<li>Process Paused： 盒式磁带的处理已被BC或操作员(EQ)暂停 </li>
-<li>Re-Map： 操作员在BC OPI改变盒式磁带状态从正在处理重新映射，等待操作员重新选择和下载盒式磁带映射数据。 </li>
-</ul>
-<h5 id="07-03-01-03-Cassette-Sequence-No"><a href="#07-03-01-03-Cassette-Sequence-No" class="headerlink" title="07.03.01.03. Cassette Sequence No"></a>07.03.01.03. Cassette Sequence No</h5><p>Cassette Sequence No 是表示盒式磁带的虚构序列号。当该端口的端口状态更改为“Load Request”时，它应该被增加。 </p>
-<h5 id="07-03-01-04-Operator-ID"><a href="#07-03-01-04-Operator-ID" class="headerlink" title="07.03.01.04. Operator ID"></a>07.03.01.04. Operator ID</h5><p>每个在线的操作员都有唯一的ID。设备必须为操作员ID输入提供屏幕。 </p>
-<h5 id="07-03-01-05-Cassette-ID"><a href="#07-03-01-05-Cassette-ID" class="headerlink" title="07.03.01.05. Cassette ID"></a>07.03.01.05. Cassette ID</h5><p>如果端口有一个BCR，那么它必须更新项目。BCR夹紧后读取卡带ID。 </p>
-<h5 id="07-03-01-06-Job-Count-in-Cassette"><a href="#07-03-01-06-Job-Count-in-Cassette" class="headerlink" title="07.03.01.06. Job Count in Cassette"></a>07.03.01.06. Job Count in Cassette</h5><p>盒式磁带中的作业计数是盒式磁带在端口装载时的作业计数。当映射单元感知到每个槽中存在作业时，应该更新它。如果工作计数有任何变化，及时报告设备。 </p>
-<h5 id="07-03-01-07-Job-Existence"><a href="#07-03-01-07-Job-Existence" class="headerlink" title="07.03.01.07. Job Existence"></a>07.03.01.07. Job Existence</h5><p>如果映射单元感知到每个槽中作业的存在，则应针对每个槽对其进行更新并实时刷新。 </p>
-<h5 id="07-03-01-08-Complete-Cassette-Dat"><a href="#07-03-01-08-Complete-Cassette-Dat" class="headerlink" title="07.03.01.08. Complete Cassette Dat"></a>07.03.01.08. Complete Cassette Dat</h5><p>它用来表示磁带是如何完成的。 </p>
-<ul>
-<li>Normal Complete： 磁带已正常完成 </li>
-<li>Operator Forced To Cancel： 在工序开始前，操作员已经取消了Cassette </li>
-<li>Operator Forced To Abort： 在正常的程序完成之前，操作员已经中止了磁带 </li>
-<li>BC Forced to Cancel： 在流程开始前，Cassette 已被BC取消。 </li>
-<li>BC Forced to Abort： 在正常工艺完成之前，卡带已被BC终止。 </li>
-<li>EQ Auto Cancel： Cassette 在开机前已被EQ自动取消。 </li>
-<li>EQ Auto Abort： 在正常工艺完成之前，Cassette 已被EQ自动中止。 </li>
-</ul>
-<h4 id="07-03-02-Port-amp-Cassette-Status-Change"><a href="#07-03-02-Port-amp-Cassette-Status-Change" class="headerlink" title="07.03.02. Port &amp; Cassette Status Change"></a>07.03.02. Port &amp; Cassette Status Change</h4><h5 id="07-03-02-01-Normal-Scenario"><a href="#07-03-02-01-Normal-Scenario" class="headerlink" title="07.03.02.01. Normal Scenario"></a>07.03.02.01. Normal Scenario</h5><img src="http://photo.wushaopei.com/qiniu549.png" width="80%">
-
-<h5 id="07-03-02-02-Re-Map-Scenario"><a href="#07-03-02-02-Re-Map-Scenario" class="headerlink" title="07.03.02.02. Re-Map Scenario"></a>07.03.02.02. Re-Map Scenario</h5><img src="http://photo.wushaopei.com/qiniu550.png" width="80%">
-
-<h4 id="07-03-03-PLC-MAP"><a href="#07-03-03-PLC-MAP" class="headerlink" title="07.03.03. PLC MAP"></a>07.03.03. PLC MAP</h4><h5 id="07-03-03-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-03-03-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.03.03.01. Local PLC – Link Register (W Area)"></a>07.03.03.01. Local PLC – Link Register (W Area)</h5><img src="http://photo.wushaopei.com/qiniu551.png" width="80%">
-
-<h5 id="07-03-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.02. Local PLC – Link Relay (B Area)"></a>07.03.03.02. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu552.png" width="80%">
-
-<h5 id="07-03-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#07-03-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.03.03.03. Master PLC – Link Relay (B Area)"></a>07.03.03.03. Master PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu553.png" width="80%">
-
-<h4 id="07-03-04-Communication-Scenario"><a href="#07-03-04-Communication-Scenario" class="headerlink" title="07.03.04. Communication Scenario"></a>07.03.04. Communication Scenario</h4><h5 id="07-03-04-01-Cassette-Normal-Scenario"><a href="#07-03-04-01-Cassette-Normal-Scenario" class="headerlink" title="07.03.04.01. Cassette Normal Scenario"></a>07.03.04.01. Cassette Normal Scenario</h5><p>设备应有T4定时器，用于设置进程完成回复和UR事件之间的时间范围(如果是源盒式磁带自动转换为目标盒式磁带，则为UC事件); </p>
-<p>在等待过程中的盒状态，在第一次取玻璃之前，设备必须向BC报告第一次玻璃检查。当BC回复OK时，第一个杯子就可以取了。 </p>
-<p>在取第一个玻璃之前，设备必须与BC确认。如果BC回复NG，设备取消卡带。 </p>
-<img src="http://photo.wushaopei.com/qiniu554.png" width="80%">
-
-<h5 id="07-03-04-02-Cassette-Cancel-Scenario"><a href="#07-03-04-02-Cassette-Cancel-Scenario" class="headerlink" title="07.03.04.02. Cassette Cancel Scenario"></a>07.03.04.02. Cassette Cancel Scenario</h5><img src="http://photo.wushaopei.com/qiniu555.png" width="80%">
-
-<h5 id="07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command"><a href="#07-03-04-03-Cassette-Cancel-Scenario-–-After-waiting-for-start-command" class="headerlink" title="07.03.04.03. Cassette Cancel Scenario – After waiting for start command"></a>07.03.04.03. Cassette Cancel Scenario – After waiting for start command</h5><p>​         <img src="http://photo.wushaopei.com/qiniu556.png" width="80%"></p>
-<h5 id="07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing"><a href="#07-03-04-04-Cassette-Cancel-Scenario-–-After-waiting-for-processing" class="headerlink" title="07.03.04.04. Cassette Cancel Scenario – After waiting for processing"></a>07.03.04.04. Cassette Cancel Scenario – After waiting for processing</h5><p>​         <img src="http://photo.wushaopei.com/qiniu557.png" width="80%"></p>
-<h5 id="07-03-04-05-Cassette-Abort-Scenario"><a href="#07-03-04-05-Cassette-Abort-Scenario" class="headerlink" title="07.03.04.05. Cassette Abort Scenario"></a>07.03.04.05. Cassette Abort Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu558.png" width="80%"></p>
-<h5 id="07-03-04-06-Empty-Cassette-Scenario"><a href="#07-03-04-06-Empty-Cassette-Scenario" class="headerlink" title="07.03.04.06. Empty Cassette Scenario"></a>07.03.04.06. Empty Cassette Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu559.png" width="80%"></p>
-<h5 id="07-03-04-07-EMP-Mode-Change-Scenario"><a href="#07-03-04-07-EMP-Mode-Change-Scenario" class="headerlink" title="07.03.04.07. EMP Mode Change Scenario"></a>07.03.04.07. EMP Mode Change Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu560.png" width="80%"></p>
-<p>07.03.04.08. Event Report Interval Time Scenario </p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu608.png" width="80%"></p>
-<p>(1).     在端口状态 “Load Complete ” 和卡带状态 “ Waiting for Cassette Data ”之间，应延迟1秒，此时(名称:LC等待CST数据时间)可在触摸屏上设置。 </p>
-<p>(2).     在 “Cassette Map Download”  和卡带状态  “Waiting for Start Command”之间，应延迟1秒。此时(名称:CST下载等待启动时间)可在触摸屏上设置。 </p>
-<p>(3).   在卡带控制指令  “Cassette Process Start”  和卡带状态  “Waiting for Processing” 之间，应延迟1秒。此时(名称:进程启动等待进程时间)可在触摸屏上设置。 </p>
-<p>(4).   在卡带状态 “Waiting for Processing”   和卡带状态  “In Processing”  之间，应等待第一次玻璃检查结果事件来改变卡带状态。当最后一块玻璃从盒的装载口离开时，最后一块玻璃标志的工作数据应自动打开。 </p>
-<p>(5).  在卡带状态变为  “Process Completed” 前，设备应更新卡带各槽位和ZR区域的作业数据 </p>
-<p>(6).   在卡带状态  “Process Completed”  与bit的BC应答之间，应延迟T6时间。这个时间可以在触摸屏上设置。默认值为0，表示不延迟 </p>
-<p>(7).   在卡带状态  “Process Completed”  和端口状态 “Unload Request” 之间，应延迟T5时间。T5时间可以在触摸屏上设置。 </p>
-<p>(8).   在端口状态 “Unload Complete” 和卡带状态  “No Cassette Exist” 之间，应延迟1秒。此时(名称:UC到No CST存在时间)可在触摸屏上设置。 </p>
-<p>(9).    在卡带状态  “No Cassette Exist”  和端口状态  “Load Request” 之间，应延迟1秒。此时(名称:从无CST到LR时间)可在触摸屏上设置。 </p>
-<h5 id="07-03-04-09-Cassette-Process-Completed-Interval-Time-Scenario"><a href="#07-03-04-09-Cassette-Process-Completed-Interval-Time-Scenario" class="headerlink" title="07.03.04.09. Cassette Process Completed Interval Time Scenario"></a>07.03.04.09. Cassette Process Completed Interval Time Scenario</h5><p>​         <img src="http://photo.wushaopei.com/qiniu609.png" width="80%"></p>
-<p>(1).  在01号卡带和02号卡带之间完成卡带加工的间隔时间至少为6秒。设备应提供触摸屏或PC上的设置。默认值是6秒。 </p>
-<p>(2).  当端口01和端口02的卡带同时完成时，设备应报告一个端口并保持至少6秒，然后再报告另一个端口，无论端口类型。 </p>
-<h3 id="07-04-Cassette-Control-Command"><a href="#07-04-Cassette-Control-Command" class="headerlink" title="07.04. Cassette Control Command"></a>07.04. Cassette Control Command</h3><h4 id="07-04-01-Command-Define-"><a href="#07-04-01-Command-Define-" class="headerlink" title="07.04.01. Command Define "></a>07.04.01. Command Define </h4><p>​    盒式磁带控制指令用于控制设备如何处理端口上的盒式磁带。 </p>
-<ul>
-<li><p>Cassette Map Download : 当设备请求一个端口的盒式磁带映射数据时，BC应将数据下载到设备。BC将盒式映射数据写入已请求该数据的设备的本地PLC中。此时，BC向设备发送此命令。设备可根据卡带图数据对卡带进行处理 </p>
-</li>
-<li><p>Cassette Process Start： 如果从BC接收的盒式磁带映射数据正常，设备应向BC请求盒式磁带进程启动命令。当从BC收到此命令时，设备可以启动卡带。 </p>
-</li>
-<li><p>Cassette Process Start By Count： 有些设备需要特定的工作数量才能启动。此命令用于这些类型，并包含要启动的作业数量。操作与卡带进程启动命令相同。</p>
-</li>
-<li><p>Cassette Process Pause： 卡带可以暂停。如果接收到此命令，设备必须暂停进程。如果机器人(或传送带)当前正在提取或存储作业到磁带，则在设备将磁带状态切换为暂停之前，应完成提取或存储操作。 </p>
-</li>
-<li><p>Cassette Process Resume： 如果磁带进程暂停，设备可以通过此命令重新启动进程。 </p>
-</li>
-<li><p>Cassette Process Cancel： 如果磁带没有被处理，BC可以取消该过程。BC使用这个命令。设备将卡带从端口上松开。 </p>
-</li>
-<li><p>Cassette Process Abort： 如果正在处理磁带，BC可以使用此命令终止进程。如果机器人(或传送带)当前正在提取或存储作业到磁带，则在设备将磁带状态切换到abort之前，应完成提取或存储操作。 </p>
-</li>
-<li><p>Cassette Reload/Load： 当端口状态= “ 3:Unload Request “，卡带状态= “ 7:Process Completed “时，BC/OP可以将Reload命令设置为设备，如果设备接受命令，则端口状态变为” 4:Unload Complete “，卡带状态变为7:No Cassette Exist “。 </p>
-<p>端口状态将更改为“4:卸载完成”，盒式磁带状态将更改为“1:不存在盒式磁带”</p>
-<p>端口状态变为“1:Load Request”，卡带状态变为“1:No Cassette Exist”，等待BC/OP将Load命令设置到设备。</p>
-</li>
-<li><p>Cassette Re-Map：用于重新选择使用的函数。设备应将卡带状态更改为“重新映射”，并等待BC重新下载新的卡带映射数据到设备。 </p>
-</li>
-</ul>
-<h4 id="07-04-02-Cassette-Map-Data"><a href="#07-04-02-Cassette-Map-Data" class="headerlink" title="07.04.02. Cassette Map Data"></a>07.04.02. Cassette Map Data</h4><p>它是盒式磁带中每个插槽的工作数据。BC可以将要求盒式映射数据的设备的数据写入本地PLC。 </p>
-<h4 id="07-04-03-Cassette-Control-Command-Return-Code"><a href="#07-04-03-Cassette-Control-Command-Return-Code" class="headerlink" title="07.04.03. Cassette Control Command Return Code"></a>07.04.03. Cassette Control Command Return Code</h4><p>它是BC的盒式磁带控制命令的返回代码。设备必须根据命令返回代码进行应答。 </p>
-<p><strong>※ Note：</strong> </p>
-<p>Return Code Description：  </p>
-<p>1：Command OK,  意思是设备接受指令</p>
-<p>2:   Command Error（命令错误），意思是BC命令错误，需要警告，设备不能自动取消/中止卡带。它应该再次等待BC下载命令，直到操作员或BC手动取消。 </p>
-<p>3：CSTID is Invalid （CSTID是无效的(包括密盒ID)），这意味着CSTID的BCR读取是非法的，需要发出警告，设备不能自动取消/终止盒式磁带。它应该等待操作符或BC取消。 </p>
-<p>4：Recipe Mismatch（配方不匹配），意味着配方ID的作业数据不能在设备中使用，需要报警，设备不能自动取消/中止卡带。它应该等待操作符或BC取消。设备应按配方ID检查模式，配方自动切换模式检查配方ID。 </p>
-<p>5： Slot Information Mismatch （槽信息不匹配），即设备作业存在内容与BC下载的作业存在内容不一致，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。</p>
-<p>(如果没有地图传感器就不要检查)</p>
-<p>6：Job Type Mismatch（作业类型不匹配），即作业类型的作业数据与端口模式不同。设备需要提供作业类型不匹配的自动取消启用/禁用按钮。如果启用，卡带应自动取消，如果禁用，设备应发出警告并等待操作员或BC取消 </p>
-<p>7：Cassette Setting Code Mismatch (BEOL), 仅对于Cell，其设备卡带设置代码与BC下载的卡带设置代码不同，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
-<p>8：Already Received（已经收到），意思是设备多次收到来自BC的相同指令，需要发出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
-<p>9：Other Error（其他错误）,  它的意思是BC下载命令，设备检查后，它的其他错误发生，它需要提出警告，设备不能自动取消卡带。它应该等待操作符或BC取消。 </p>
-<p>10：Product Type Mismatch（产品类型不匹配 ）, 它的意思是设备最后的产品类型不同于BC下载的产品类型。设备需要提供产品类型不匹配自动取消启用/禁用按钮。如果启用，卡带应自动取消，如果禁用，设备应发出警告并等待操作员或BC取消。  </p>
-<p>11：Group Index Mismatch （组索引不匹配），仅用于单元格，如果此功能启用，设备不能混合不同的组索引 glass 。 </p>
-<p>12：Product ID Mismatch （产品ID不匹配 ），仅对于Cell，如果此功能启用，设备不能混合不同的产品id glasses.</p>
-<h4 id="07-04-04-PLC-MAP"><a href="#07-04-04-PLC-MAP" class="headerlink" title="07.04.04. PLC MAP"></a>07.04.04. PLC MAP</h4><h5 id="07-04-04-01-Local-PLC-–-Link-Register-W-Area"><a href="#07-04-04-01-Local-PLC-–-Link-Register-W-Area" class="headerlink" title="07.04.04.01. Local PLC – Link Register (W Area)"></a>07.04.04.01. Local PLC – Link Register (W Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu615.png" width="80%"></p>
-<h5 id="07-04-04-02-Local-PLC-–-Link-Relay-B-Area"><a href="#07-04-04-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.04.04.02. Local PLC – Link Relay (B Area)"></a>07.04.04.02. Local PLC – Link Relay (B Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu616.png" width="80%"></p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu617.png" width="80%"></p>
-<h5 id="07-04-04-04-Master-PLC-–-Link-Relay-B-Area"><a href="#07-04-04-04-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="07.04.04.04. Master PLC – Link Relay (B Area)"></a>07.04.04.04. Master PLC – Link Relay (B Area)</h5><p>​         <img src="http://photo.wushaopei.com/qiniu618.png" width="80%"></p>
-<h4 id="07-04-05-Local-PLC-–-File-Register-R-ZR-Area"><a href="#07-04-05-Local-PLC-–-File-Register-R-ZR-Area" class="headerlink" title="07.04.05. Local PLC – File Register (R/ZR Area)"></a>07.04.05. Local PLC – File Register (R/ZR Area)</h4><p>此标准盒式磁带映射数据为28槽盒式磁带，其它类型盒式磁带参照PLC地址映射。 </p>
-<p>设备应根据玻璃取出/存储在卡带槽中，以更新与ZR区域有关的全部工作数据。</p>
-<h5 id="07-04-05-01-Standard-Cassette-Map-Data"><a href="#07-04-05-01-Standard-Cassette-Map-Data" class="headerlink" title="07.04.05.01. Standard Cassette Map Data"></a>07.04.05.01. Standard Cassette Map Data</h5><p>​         <img src="http://photo.wushaopei.com/qiniu619.png" width="80%"></p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu620.png" width="80%"></p>
-<h3 id="07-05-First-Glass-Check"><a href="#07-05-First-Glass-Check" class="headerlink" title="07.05. First Glass Check"></a>07.05. First Glass Check</h3>]]></content>
       <categories>
         <category>自动化开发</category>
       </categories>
@@ -7443,6 +7443,9 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
 <p>每个unit子机台都会把所处理的数据提交给主机台，并由主机台直接或经过处理后再与PLC网络、BC进行交互。</p>
 <p>  <code>EQP需要监控CCLINK IE光纤网络连接状态。如果EQP检测到任何错误发生，EQP需要火灾报警</code></p>
 ]]></content>
+      <categories>
+        <category>自动化开发</category>
+      </categories>
   </entry>
   <entry>
     <title>mybatis 简介（四）Mybatis</title>
@@ -10386,52 +10389,6 @@ rvconnector</code></pre></li>
       </tags>
   </entry>
   <entry>
-    <title>jdbc(四)ResultSet</title>
-    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
-    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
-<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
-<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
-<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
-</ul>
-<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
-
-<p><strong>（2）</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
-
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
-<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
-<li>关于 ResultSet：代表结果集 </li>
-</ol>
-<blockquote>
-<ul>
-<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
-<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
-<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
-</ul>
-</blockquote>
-<ol start="3">
-<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
-</li>
-<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
-<blockquote>
-<p>   例如: getInt(1), getString(“name”) </p>
-</blockquote>
-</li>
-<li><p>ResultSet 当然也需要进行关闭. </p>
-</li>
-</ol>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
-      <categories>
-        <category>jdbc</category>
-      </categories>
-      <tags>
-        <tag>resultSet</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jdbc(三)预编译-Statement、PreparedStatement</title>
     <url>/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/</url>
     <content><![CDATA[<h2 id="预编译：statement-与-PreparedStatement"><a href="#预编译：statement-与-PreparedStatement" class="headerlink" title="预编译：statement 与 PreparedStatement"></a>预编译：statement 与 PreparedStatement</h2><h3 id="sql提供访问的接口："><a href="#sql提供访问的接口：" class="headerlink" title="sql提供访问的接口："></a><strong>sql提供访问的接口：</strong></h3><ul>
@@ -10580,6 +10537,52 @@ rvconnector</code></pre></li>
       </categories>
       <tags>
         <tag>数据库连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jdbc(四)ResultSet</title>
+    <url>/2020/03/10/jdbc(%E5%9B%9B)ResultSet/</url>
+    <content><![CDATA[<h2 id="ResultSet"><a href="#ResultSet" class="headerlink" title="ResultSet"></a><strong>ResultSet</strong></h2><h3 id="ResultSet-的作用："><a href="#ResultSet-的作用：" class="headerlink" title="ResultSet 的作用："></a><strong>ResultSet 的作用：</strong></h3><ul>
+<li>通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象</li>
+<li>ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现</li>
+<li>ResultSet 对象维护了一个指向当前数据行的游标，初始的时候，游标在第一行之前，可以通过 ResultSet 对象的 next() 方法移动到下一行</li>
+</ul>
+<h3 id="ResultSet-接口的常用方法："><a href="#ResultSet-接口的常用方法：" class="headerlink" title="ResultSet 接口的常用方法："></a><strong>ResultSet 接口的常用方法：</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">next</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">getString</span><span class="params">( )</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a><strong>案例</strong></h3><p><strong>（1）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu94.png" width="60%">
+
+<p><strong>（2）</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu95.png" width="60%">
+
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a><strong>说明</strong></h3><ol>
+<li>查询需要调用Prepared Statement 的 executeQuery() 方法，查询结果是一个 ResultSet 对象 </li>
+<li>关于 ResultSet：代表结果集 </li>
+</ol>
+<blockquote>
+<ul>
+<li>ResultSet: 结果集. 封装了使用 JDBC 进行查询的结果.</li>
+<li>调用 PreparedStatement 对象的 executeQuery() 可以得到结果集.</li>
+<li>ResultSet 返回的实际上就是一张数据表. 有一个指针指向数据表的第一条记录的前面.</li>
+</ul>
+</blockquote>
+<ol start="3">
+<li><p>可以调用 next() 方法检测下一行是否有效. 若有效该方法返回 true, 且指针下移. 相当于Iterator 对象的 hasNext() 和 next() 方法的结合体 </p>
+</li>
+<li><p>当指针指向一行时, 可以通过调用 getXxx(int index) 或 getXxx(int columnName) 获取每一列的值. </p>
+<blockquote>
+<p>   例如: getInt(1), getString(“name”) </p>
+</blockquote>
+</li>
+<li><p>ResultSet 当然也需要进行关闭. </p>
+</li>
+</ol>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>]]></content>
+      <categories>
+        <category>jdbc</category>
+      </categories>
+      <tags>
+        <tag>resultSet</tag>
       </tags>
   </entry>
   <entry>
