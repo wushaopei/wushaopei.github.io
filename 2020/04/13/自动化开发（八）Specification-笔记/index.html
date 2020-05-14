@@ -105,9 +105,13 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu296.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu297.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu298.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu371.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu655.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu656.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu657.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu658.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu659.png">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-05-13T09:38:04.580Z">
+<meta property="article:modified_time" content="2020-05-14T08:05:14.978Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu277.png">
@@ -529,47 +533,62 @@
 <p>7、正常制成 （Normal Complete），设备制程完成（Process Complete）；</p>
 <p>8、等待T5 Time时间（1-8秒），port请求发送退卡指令（Unload Request）；</p>
 <p>9、退卡完成（Unload Complete）</p>
-<h3 id="一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><a href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明" class="headerlink" title="一个设备有哪些 Common Event，并对各个Event做简单功能说明"></a>一个设备有哪些 Common Event，并对各个Event做简单功能说明</h3><img src="http://photo.wushaopei.com/qiniu371.png" width="90%">
+<hr>
+<hr>
+<img src="http://photo.wushaopei.com/qiniu655.png" width="90%">
+
+<blockquote>
+<h3 id="当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><a href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC" class="headerlink" title="当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC"></a>当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</h3><p>如果设备状态改变为 setup，设备应提前报警.  上报： AlarmStatusChangeReport:报警状态上报。</p>
+<h3 id="设备超过-no-processing-time-时间，会发生什么？"><a href="#设备超过-no-processing-time-时间，会发生什么？" class="headerlink" title="设备超过  no processing time 时间，会发生什么？"></a>设备超过  no processing time 时间，会发生什么？</h3><p>设备是空转时，如果设备超过 no processing time 时间，则设备应报告 Idle。(无处理时间=0:不检查无处理时间)(默认值:Tact Time * 2) </p>
+<p>Tack Time:  设备上片到出片的时间为一次 Tack Time.</p>
+<h3 id="请简述Send-Wait-Time-Out-Report功能逻辑"><a href="#请简述Send-Wait-Time-Out-Report功能逻辑" class="headerlink" title="请简述Send Wait Time Out Report功能逻辑"></a>请简述Send Wait Time Out Report功能逻辑</h3><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，当超过发送等待计时时间，则上游设备需要向BC报告此事件。</p>
+</blockquote>
+<hr>
+<h3 id="一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><a href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明" class="headerlink" title="一个设备有哪些 Common Event，并对各个Event做简单功能说明"></a>一个设备有哪些 Common Event，并对各个Event做简单功能说明</h3><img src="http://photo.wushaopei.com/qiniu656.png" width="90%">
 
 <p>如上图，不限于上图中的数量；</p>
+<blockquote>
+<p><strong>设备间进出</strong> </p>
 <ul>
-<li>Receive Job Data Event         当设备从上游设备接收作业时，应报告此事件</li>
-<li>Send Out Job Data Event       当设备向下游设备发送作业时，应报告此事件。</li>
-<li>Store Job Data Event         当设备将 Job 存储到一个unit 或 cassette 时，应使用 port 和 unit ID 报告此事件。</li>
-<li>Fetch Out Job Data Event    当 EQP 从一个 unit 或 cassette 中取出 Job 时，应使用 Port 和 unit ID 报告该 Event 。</li>
-<li>Remove Job Event Mode    当 Job Data 刚刚从 EQP 中删除时，将报告已删除 Job的 Job Data .</li>
-<li>Job Count Report               实时操作，作业计数是报告整个设备的作业计数(不包括卡带)。</li>
+<li><strong>Receive Job Data Event</strong>         当设备从上游设备接收作业时，应报告此事件</li>
+<li><strong>Send Out Job Data Event</strong>       当设备向下游设备发送作业时，应报告此事件。</li>
+</ul>
+<p><strong>设备内部 unit 进出</strong></p>
+<ul>
+<li><strong>Store Job Data Event</strong>         当设备将 Job 存储到一个unit 或 cassette 时，应使用 port 和 unit ID 报告此事件。</li>
+<li><strong>Fetch Out Job Data Event</strong>    当 EQP 从一个 unit 或 cassette 中取出 Job 时，应使用 Port 和 unit ID 报告该 Event 。</li>
+</ul>
+<p><strong>其他操作</strong></p>
+<ul>
+<li><strong>Remove Job Event Mode</strong>    当 Job Data 刚刚从 EQP 中删除时，将报告已删除 Job的 Job Data .</li>
+<li><strong>Job Count Report</strong>               实时操作，作业计数是报告整个设备的作业计数(不包括卡带)。</li>
 </ul>
 <p>常用的 参数： </p>
 <ul>
 <li>Unit or Port：用于区分从单元或端口取出的产品。 </li>
 <li>Unit No： 单元的单元号。如果设备有槽位，设备应更新槽位号</li>
 <li>Port No： 工作取的磁带的端口号。设备应更新槽位号。</li>
-<li>Slot No： Slot No. 如果单位没有槽位，这个项目应该被清除。 </li>
-<li></li>
+<li>Slot No： Slot No. 如果单位没有槽位，这个项目应该被清除。</li>
 </ul>
+</blockquote>
+<hr>
+<img src="http://photo.wushaopei.com/qiniu657.png" width="90%">
+
+<img src="http://photo.wushaopei.com/qiniu658.png" width="90%">
+
+<hr>
+<img src="http://photo.wushaopei.com/qiniu659.png" width="90%">
+
+<blockquote>
 <h3 id="请简述CIM-Message功能与设备相关的操作联动"><a href="#请简述CIM-Message功能与设备相关的操作联动" class="headerlink" title="请简述CIM Message功能与设备相关的操作联动"></a>请简述CIM Message功能与设备相关的操作联动</h3><p><strong>声明：</strong>CIM报文用于通知特定设备的操作员特定信息。当接收到CIM报文时，设备必须将其显示给操作员，并在本地保存历史数据。 </p>
 <ul>
-<li><p>CIM Message Set Command：往设备发一条消息，然后显示。</p>
-</li>
-<li><p>CIM Message Clear Command：发消息后，让设备把发送的消息清除</p>
-</li>
-<li><p>CIM Message Confirm Report：发消息后向设备手动确认</p>
-</li>
-<li><p>Display Least 5 CIM Message：屏幕显示5个Message</p>
-</li>
-<li><p>Display Least 20 History CIM Message：至少保留20条历史记录的Message</p>
-</li>
+<li>CIM Message Set Command：往设备发一条消息，然后显示。</li>
+<li>CIM Message Clear Command：发消息后，让设备把发送的消息清除</li>
+<li>CIM Message Confirm Report：发消息后向设备手动确认</li>
+<li>Display Least 5 CIM Message：屏幕显示5个Message</li>
+<li>Display Least 20 History CIM Message：至少保留20条历史记录的Message</li>
 </ul>
-<h3 id="请简述Send-Wait-Time-Out-Report功能逻辑"><a href="#请简述Send-Wait-Time-Out-Report功能逻辑" class="headerlink" title="请简述Send Wait Time Out Report功能逻辑"></a>请简述Send Wait Time Out Report功能逻辑</h3><p>​    当上游设备将玻璃转移到下游设备，但下游设备没有开始接收上游设备的玻璃，当超过发送等待计时时间，则上游设备需要向BC报告此事件。 </p>
-<h3 id="简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明"><a href="#简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明" class="headerlink" title="简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明"></a>简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明</h3><p>Receive:接收job</p>
-<p>AlarmStatusChangeReport:报警状态上报</p>
-<p>EquipmentOperationModeReport：设备操作模式上报</p>
-<p>EquipmentStatusChangeReport：设备状态上报</p>
-<p>Store：放入卡夹</p>
-<p>FetchOut：接收卡夹</p>
-<p>SendOut：送出卡夹</p>
-<h3 id="当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><a href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC" class="headerlink" title="当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC"></a>当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</h3><p>如果设备状态改变为 setup，设备应提前报警.  上报： AlarmStatusChangeReport:报警状态上报。</p>
+</blockquote>
 
       
     </div>
@@ -612,8 +631,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="next" title="自动化开发（七）Specification-07-Port Management">
-                <i class="fa fa-chevron-left"></i> 自动化开发（七）Specification-07-Port Management
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" rel="next" title="自动化开发（六）Specification-06-Common Function">
+                <i class="fa fa-chevron-left"></i> 自动化开发（六）Specification-06-Common Function
               </a>
             
           </div>
@@ -810,7 +829,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、EQP-Event-Report-Timing-Chart"><span class="nav-number">1.</span> <span class="nav-text">1、EQP Event Report Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、EQP-Event-Report-Timing-Chart-（设备上报）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、EQP Event Report Timing Chart （设备上报）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、Request-Timing-Chart-Local-to-Master-（设备请求）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Request Timing Chart (Local to Master)（设备请求）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Consecutive-Event-Report-Timing-Chart-Local-to-Master-（连续上报事件）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Consecutive Event Report Timing Chart (Local to Master) （连续上报事件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BC-Command-Reply-Timing-Chart"><span class="nav-number">2.</span> <span class="nav-text">2.  BC Command Reply Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-BC-Command-Timing-Chart-Master-to-Local"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. BC Command Timing Chart (Master to Local)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TimeOut"><span class="nav-number">3.</span> <span class="nav-text">TimeOut</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-Time-Out-Master-↔-Local"><span class="nav-number">3.1.</span> <span class="nav-text">T1 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-Time-Out-Master-↔-Local"><span class="nav-number">3.2.</span> <span class="nav-text">T2 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-Delay-Time-Master-↔-Local"><span class="nav-number">3.3.</span> <span class="nav-text">T3 Delay Time (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tn-Time"><span class="nav-number">3.4.</span> <span class="nav-text">Tn Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上卡流程："><span class="nav-number">3.5.</span> <span class="nav-text">上卡流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><span class="nav-number">3.6.</span> <span class="nav-text">一个设备有哪些 Common Event，并对各个Event做简单功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述CIM-Message功能与设备相关的操作联动"><span class="nav-number">3.7.</span> <span class="nav-text">请简述CIM Message功能与设备相关的操作联动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述Send-Wait-Time-Out-Report功能逻辑"><span class="nav-number">3.8.</span> <span class="nav-text">请简述Send Wait Time Out Report功能逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简述-一个设备有哪些-Common-Event，请列举至少5个Event，并对各个Event做简单功能说明"><span class="nav-number">3.9.</span> <span class="nav-text">简述 一个设备有哪些 Common Event，请列举至少5个Event，并对各个Event做简单功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><span class="nav-number">3.10.</span> <span class="nav-text">当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、EQP-Event-Report-Timing-Chart"><span class="nav-number">1.</span> <span class="nav-text">1、EQP Event Report Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、EQP-Event-Report-Timing-Chart-（设备上报）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、EQP Event Report Timing Chart （设备上报）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2、Request-Timing-Chart-Local-to-Master-（设备请求）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、Request Timing Chart (Local to Master)（设备请求）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Consecutive-Event-Report-Timing-Chart-Local-to-Master-（连续上报事件）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Consecutive Event Report Timing Chart (Local to Master) （连续上报事件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-BC-Command-Reply-Timing-Chart"><span class="nav-number">2.</span> <span class="nav-text">2.  BC Command Reply Timing Chart</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-BC-Command-Timing-Chart-Master-to-Local"><span class="nav-number">2.1.</span> <span class="nav-text">2.1. BC Command Timing Chart (Master to Local)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TimeOut"><span class="nav-number">3.</span> <span class="nav-text">TimeOut</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#T1-Time-Out-Master-↔-Local"><span class="nav-number">3.1.</span> <span class="nav-text">T1 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T2-Time-Out-Master-↔-Local"><span class="nav-number">3.2.</span> <span class="nav-text">T2 Time Out (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#T3-Delay-Time-Master-↔-Local"><span class="nav-number">3.3.</span> <span class="nav-text">T3 Delay Time (Master ↔ Local)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tn-Time"><span class="nav-number">3.4.</span> <span class="nav-text">Tn Time</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上卡流程："><span class="nav-number">3.5.</span> <span class="nav-text">上卡流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当设备状态由Idle-变为-Setup的时候-设备会触发哪些事件上报给BC"><span class="nav-number">3.6.</span> <span class="nav-text">当设备状态由Idle 变为 Setup的时候 设备会触发哪些事件上报给BC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设备超过-no-processing-time-时间，会发生什么？"><span class="nav-number">3.7.</span> <span class="nav-text">设备超过  no processing time 时间，会发生什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述Send-Wait-Time-Out-Report功能逻辑"><span class="nav-number">3.8.</span> <span class="nav-text">请简述Send Wait Time Out Report功能逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个设备有哪些-Common-Event，并对各个Event做简单功能说明"><span class="nav-number">3.9.</span> <span class="nav-text">一个设备有哪些 Common Event，并对各个Event做简单功能说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请简述CIM-Message功能与设备相关的操作联动"><span class="nav-number">3.10.</span> <span class="nav-text">请简述CIM Message功能与设备相关的操作联动</span></a></li></ol></li></ol></div>
             
 
           </div>
