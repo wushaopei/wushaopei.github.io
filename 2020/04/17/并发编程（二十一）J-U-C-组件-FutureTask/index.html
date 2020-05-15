@@ -1078,7 +1078,8 @@ password();
     guest = guest.split(',').filter(item=>{
       return GUEST.indexOf(item)>-1;
     });
-    new Valine({
+    var valine = new Valine({
+        av:AV,
         el: '#comments' ,
         verify: false,
         notify: true,
