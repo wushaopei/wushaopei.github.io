@@ -357,6 +357,182 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" itemprop="url">并发编程（二十三）J-U-C-组件-BlockingQueue</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T09:52:08+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" class="leancloud_visitors" data-flag-title="并发编程（二十三）J-U-C-组件-BlockingQueue">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          J.U.C-BlockingQueueBlockingQueue， 阻塞队列 
+
+
+BlockingQueue，在某些情况下，对该队列的访问，可能会造成阻塞。
+被阻塞的情况主要有如下两种： 
+第一种：当队列满的时候，进行入队列操作；
+
+第二种：当队列空的时候，进行出队列操作当一个线程对一个满了的队列
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-ForkJoin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1901,177 +2077,6 @@ OSGi联盟是由Sun Microsystems、I
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/" itemprop="url">mybatis 配置（九）引入映射器的方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-13T16:32:06+08:00">
-                2020-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/" class="leancloud_visitors" data-flag-title="mybatis 配置（九）引入映射器的方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          引入映射器的方法映射器是  MyBatis 最复杂、最核心的组件它具有参数类型、动态SQL、定义SQL、缓存信息等功能。
-映射器的使用映射器定义了命名空间的方法，命名空间对应的是一个接口的全路径，而不是实体类。一下是对接口实现调度的过程：
-首先，定义映射器的接口：12345public interf
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/13/mybatis-%E9%85%8D%E7%BD%AE%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E5%85%A5%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E6%96%B9%E6%B3%95/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2126,7 +2131,7 @@ OSGi联盟是由Sun Microsystems、I
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">164</span>
+                  <span class="site-state-item-count">166</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2137,7 +2142,7 @@ OSGi联盟是由Sun Microsystems、I
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

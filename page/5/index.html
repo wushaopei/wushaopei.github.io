@@ -357,6 +357,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" itemprop="url">mybatis 映射器（四）select元素-自动映射</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:01:01+08:00">
+                2020-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" class="leancloud_visitors" data-flag-title="mybatis 映射器（四）select元素-自动映射">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在MyBatis 中，有这么一个参数 autoMapping  ，如果设置这个属性，MyBatis 将会为本结果映射开启或者关闭自动映射。 这个属性会覆盖全局的属性 autoMappingBehavior。默认值：未设置（unset）。 
+在默认开启自动映射的情况下，只要返回的 SQL 列名和 Ja
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1911,182 +2081,6 @@ respond.min.js 解决ie8对css3的media query支持问
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" itemprop="url">并发编程（二十三）J-U-C-组件-BlockingQueue</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T09:52:08+08:00">
-                2020-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/" class="leancloud_visitors" data-flag-title="并发编程（二十三）J-U-C-组件-BlockingQueue">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          J.U.C-BlockingQueueBlockingQueue， 阻塞队列 
-
-
-BlockingQueue，在某些情况下，对该队列的访问，可能会造成阻塞。
-被阻塞的情况主要有如下两种： 
-第一种：当队列满的时候，进行入队列操作；
-
-第二种：当队列空的时候，进行出队列操作当一个线程对一个满了的队列
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-BlockingQueue/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2141,7 +2135,7 @@ BlockingQueue，在某些情况下，对该队列的访问，可能会造成阻�
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">164</span>
+                  <span class="site-state-item-count">166</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2152,7 +2146,7 @@ BlockingQueue，在某些情况下，对该队列的访问，可能会造成阻�
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
