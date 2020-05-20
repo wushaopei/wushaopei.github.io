@@ -218,7 +218,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu518.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu519.png">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-05-13T09:29:18.989Z">
+<meta property="article:modified_time" content="2020-05-20T04:45:06.023Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu308.png">
@@ -629,8 +629,8 @@
 
 
 
-<h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><p>Loader/Un-loader/Buffer/Virtual Port（加载器/卸载器/缓冲区/虚拟端口）应提供以下作业数据项设置功能CIM-OFF模式。</p>
-<p>请参阅作业数据中的PLC地图文档。</p>
+<h4 id="06-01-04-CIM-Off-Mode-Operation"><a href="#06-01-04-CIM-Off-Mode-Operation" class="headerlink" title="06.01.04. CIM Off Mode Operation"></a>06.01.04. CIM Off Mode Operation</h4><p>Loader/Un-loader/Buffer/Virtual Port（加载器/卸载器/缓冲区/虚拟端口）应提供以下 Job Data项设置功能CIM-OFF模式。</p>
+<p>请参阅 Job Data中的PLC地图文档。</p>
 <img src="http://photo.wushaopei.com/qiniu314.png" width="80%">
 
 
@@ -761,18 +761,18 @@
 <h5 id="06-04-08-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.02. Local PLC – Link Relay (B Area)"></a>06.04.08.02. Local PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu366.png" width="90%"></p>
 <h5 id="06-04-08-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-04-08-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.04.08.03. Master PLC – Link Relay (B Area)"></a>06.04.08.03. Master PLC – Link Relay (B Area)</h5><p>​    <img src="http://photo.wushaopei.com/qiniu367.png" width="90%"></p>
 <h4 id="06-04-09-Communication-Scenario"><a href="#06-04-09-Communication-Scenario" class="headerlink" title="06.04.09. Communication Scenario"></a>06.04.09. Communication Scenario</h4><p>​    <img src="http://photo.wushaopei.com/qiniu368.png" width="90%"></p>
-<h3 id="06-05-Job-Management"><a href="#06-05-Job-Management" class="headerlink" title="06.05. Job Management"></a>06.05. Job Management</h3><p>​    这项工作意味着要对玻璃、芯片等材料进行加工。每个作业都有自己独特的数据进行处理，这些数据称为作业数据，包括PPID、盒式磁带序列号、作业序列号等。作业数据从上游设备接收，主设备已准备好接收作业，应发送到下游设备，主设备已准备好发送作业。设备应保存和管理每个作业的作业数据，即使作业在内部区域之间移动。同时，设备应在触摸屏上提供各工种的作业数据信息。 </p>
+<h3 id="06-05-Job-Management"><a href="#06-05-Job-Management" class="headerlink" title="06.05. Job Management"></a>06.05. Job Management</h3><p>​    这项工作意味着要对玻璃、芯片等材料进行加工。每个作业都有自己独特的数据进行处理，这些数据称为 Job Data，包括PPID、盒式磁带序列号、作业序列号等。 Job Data从上游设备接收，主设备已准备好接收作业，应发送到下游设备，主设备已准备好发送作业。设备应保存和管理每个作业的 Job Data，即使作业在内部区域之间移动。同时，设备应在触摸屏上提供各工种的 Job Data信息。 </p>
 <h4 id="06-05-01-Job-Data-Transfer"><a href="#06-05-01-Job-Data-Transfer" class="headerlink" title="06.05.01. Job Data Transfer"></a>06.05.01. Job Data Transfer</h4><p>如果设备向其他设备发送作业，发送作业的设备称为上游设备。如果设备从其他设备接收作业，接收作业的设备称为下游设备。设备可以有一个以上的上游设备和下游设备。为了区分哪些设备是上游设备，哪些是下游设备，对于特定的设备，上游路径号为。被使用和管理。</p>
-<p>当向下游设备发送作业时，作业数据通过CC-Link IE随作业一起传输到下游设备。对于作业数据的传输，设备可以根据设备需要的作业数据数量，从“发送下游01块作业数据到”发送下游10块作业数据，再从“接收上游01块作业数据”到“接收上游10块作业数据”。</p>
-<p>当上游设备即将向下游设备发送作业时，下游设备首先验证作业的作业数据。如果在作业数据中没有检测到错误，下游设备开始接收作业</p>
+<p>当向下游设备发送作业时， Job Data通过CC-Link IE随作业一起传输到下游设备。对于 Job Data的传输，设备可以根据设备需要的 Job Data数量，从“发送下游01块 Job Data到”发送下游10块 Job Data，再从“接收上游01块 Job Data”到“接收上游10块 Job Data”。</p>
+<p>当上游设备即将向下游设备发送作业时，下游设备首先验证作业的 Job Data。如果在 Job Data中没有检测到错误，下游设备开始接收作业</p>
 <p>​    <img src="http://photo.wushaopei.com/qiniu369.png" width="90%"></p>
 <h5 id="06-05-01-01-PLC-MAP"><a href="#06-05-01-01-PLC-MAP" class="headerlink" title="06.05.01.01. PLC MAP"></a>06.05.01.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu370.png" width="90%"></p>
-<h4 id="06-05-02-Job-Event"><a href="#06-05-02-Job-Event" class="headerlink" title="06.05.02. Job Event"></a>06.05.02. Job Event</h4><p>作业数据必须在特殊的时间上报给BC，例如从上游设备接收作业，向下游设备发送作业，从磁带或单元取出作业，将作业存储到磁带或单元中，从设备中删除作业。玻璃内部的CST，在取出时，对应的槽R数据需要取出后取出在取出的作业数据，玻璃存储到CST中，对应的槽R要填写相应的作业数据。 </p>
+<h4 id="06-05-02-Job-Event"><a href="#06-05-02-Job-Event" class="headerlink" title="06.05.02. Job Event"></a>06.05.02. Job Event</h4><p> Job Data必须在特殊的时间上报给BC，例如从上游设备接收作业，向下游设备发送作业，从磁带或单元取出作业，将作业存储到磁带或单元中，从设备中删除作业。玻璃内部的CST，在取出时，对应的槽R数据需要取出后取出在取出的 Job Data，玻璃存储到CST中，对应的槽R要填写相应的 Job Data。 </p>
 <p>​    <img src="http://photo.wushaopei.com/qiniu371.png" width="90%"></p>
 <h5 id="06-05-02-01-Job-Event-Timing-Chart"><a href="#06-05-02-01-Job-Event-Timing-Chart" class="headerlink" title="06.05.02.01. Job Event Timing Chart"></a>06.05.02.01. Job Event Timing Chart</h5><p>​    <img src="http://photo.wushaopei.com/qiniu372.png" width="90%"></p>
 <h4 id="06-05-03-Receive-Job-Data-Event"><a href="#06-05-03-Receive-Job-Data-Event" class="headerlink" title="06.05.03. Receive Job Data Event"></a>06.05.03. Receive Job Data Event</h4><p>​    当设备从上游设备接收作业时，应报告此事件。当设备报告接收到的作业事件时，包括以下项目。 </p>
 <ul>
-<li>Received Job :从上游设备接收到的作业的作业数据，应在作业转移数据区写入接收作业数据，接收信号关闭后，作业完全由下游设备接收。 </li>
+<li>Received Job :从上游设备接收到的作业的 Job Data，应在作业转移数据区写入接收 Job Data，接收信号关闭后，作业完全由下游设备接收。 </li>
 <li>在上下游设备之间，从下游设备接收到的作业事件报告顺序应遵循物理作业转移顺序。准确的报告时间将在测试期间和测试后进行调整，如果需要的话。 </li>
 </ul>
 <h5 id="06-05-03-01-PLC-MAP"><a href="#06-05-03-01-PLC-MAP" class="headerlink" title="06.05.03.01. PLC MAP"></a>06.05.03.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu373.png" width="90%"></p>
@@ -788,7 +788,7 @@
 <h5 id="06-05-04-02-Communication-Scenario"><a href="#06-05-04-02-Communication-Scenario" class="headerlink" title="06.05.04.02. Communication Scenario"></a>06.05.04.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu378.png" width="90%"></p>
 <h4 id="06-05-05-Store-Job-Data-Event"><a href="#06-05-05-Store-Job-Data-Event" class="headerlink" title="06.05.05. Store Job Data Event"></a>06.05.05. Store Job Data Event</h4><p>当设备将作业存储到一个单元或磁带时，应使用端口号和单元编号报告此事件。如果有插槽，则应报告插槽。 </p>
 <ul>
-<li>Store Job : 存储的作业的作业数据 </li>
+<li>Store Job : 存储的作业的 Job Data </li>
 <li>Unit or Port : 用于区分存储在 unit 或 port 上的产品 </li>
 <li>Unit No :  本单位的单位编号。如果本机有槽位，设备应更新槽位号 </li>
 <li>Port No :  作业存储的磁带的端口号。设备应更新槽号 </li>
@@ -797,10 +797,10 @@
 <h5 id="06-05-05-01-PLC-MAP"><a href="#06-05-05-01-PLC-MAP" class="headerlink" title="06.05.05.01. PLC MAP"></a>06.05.05.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu379.png" width="90%"></p>
 <h5 id="06-05-05-02-Communication-Scenario"><a href="#06-05-05-02-Communication-Scenario" class="headerlink" title="06.05.05.02. Communication Scenario"></a>06.05.05.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu380.png" width="90%"></p>
 <h4 id="06-05-06-Fetch-Out-Job-Data-Event"><a href="#06-05-06-Fetch-Out-Job-Data-Event" class="headerlink" title="06.05.06. Fetch Out Job Data Event"></a>06.05.06. Fetch Out Job Data Event</h4><p>当设备从一个单元或磁带中取出 Job 时，应使用端口号和单元编号报告该事件。如果有插槽，则应报告插槽。</p>
-<p>取作业的作业数据是在从磁带或单元中取出作业时报告的。</p>
+<p>取作业的 Job Data是在从磁带或单元中取出作业时报告的。</p>
 <p>在这种情况下，必须报告端口号和单元编号。</p>
 <ul>
-<li>Fetch Out Job：取出作业数据 的作业</li>
+<li>Fetch Out Job：取出 Job Data 的作业</li>
 <li>Unit or Port：用于区分从单元或端口取出的产品。 </li>
 <li>Unit No： 单元的单元号。如果设备有槽位，设备应更新槽位号</li>
 <li>Port No： 工作取的磁带的端口号。设备应更新槽位号。</li>
@@ -811,9 +811,9 @@
 <p>​    当缓冲区为单元时，需要报告单元状态，需要报告存储和提取到BC</p>
 <h5 id="06-05-06-01-PLC-MAP"><a href="#06-05-06-01-PLC-MAP" class="headerlink" title="06.05.06.01. PLC MAP"></a>06.05.06.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu381.png" width="90%"></p>
 <h5 id="06-05-06-02-Communication-Scenario"><a href="#06-05-06-02-Communication-Scenario" class="headerlink" title="06.05.06.02. Communication Scenario"></a>06.05.06.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu382.png" width="90%"></p>
-<h4 id="06-05-07-Remove-Job-Event-Mode"><a href="#06-05-07-Remove-Job-Event-Mode" class="headerlink" title="06.05.07. Remove Job Event Mode"></a>06.05.07. Remove Job Event Mode</h4><p>​    当 Job Data 刚刚从设备中删除时，将报告已删除作业的作业数据。 </p>
+<h4 id="06-05-07-Remove-Job-Event-Mode"><a href="#06-05-07-Remove-Job-Event-Mode" class="headerlink" title="06.05.07. Remove Job Event Mode"></a>06.05.07. Remove Job Event Mode</h4><p>​    当 Job Data 刚刚从设备中删除时，将报告已删除作业的 Job Data。 </p>
 <ul>
-<li><p>Removed Job : 操作员删除的作业的作业数据。 </p>
+<li><p>Removed Job : 操作员删除的作业的 Job Data。 </p>
 </li>
 <li><p>Unit or Port：它用于区分产品从单元或端口被移除。 </p>
 </li>
@@ -825,20 +825,20 @@
 </li>
 <li><p>Remove Job Flag：  </p>
 <ul>
-<li><p>Normal Remove：  如果删除作业标志是正常删除，设备应保持删除作业数据 </p>
+<li><p>Normal Remove：  如果删除作业标志是正常删除，设备应保持删除 Job Data </p>
 </li>
-<li><p>Recovery： 当删除作业标志被删除作业恢复时，设备应恢复此作业数据。 </p>
+<li><p>Recovery： 当删除作业标志被删除作业恢复时，设备应恢复此 Job Data。 </p>
 </li>
-<li><p>Delete Dirty Data： 如果作业数据存在，但玻璃丢失，用户可以使用作业数据删除功能</p>
-</li>
-</ul>
+<li><p>Delete Dirty Data： 如果 Job Data存在，但玻璃丢失，用户可以使用 Job Data删除功能</p>
 </li>
 </ul>
-<p>  设备供应商应提供至少10个当前已删除的作业数据保存功能，并提供作业数据选择功能进行恢复。</p>
-<p>  设备供应商应提供至少10个当前已删除的作业数据的删除保存功能，并提供作业数据选择功能进行恢复。</p>
-<p>  如果设备恢复的作业数据项，如配方号、产品类型、组索引等，这些值的内容与设备本身不同，设备不能改变作业数据，应发出警告，然后等待操作员处理。</p>
-<p>  如果BC没有对设备回复信号，对于正常的删除和删除脏数据，意味着在事件复位后，作业数据/计数应该被擦除;对于恢复，这意味着在事件停止后无法恢复作业数据</p>
-<h5 id="06-05-07-01-Error-Recovery-and-Remove-Job"><a href="#06-05-07-01-Error-Recovery-and-Remove-Job" class="headerlink" title="06.05.07.01. Error Recovery and Remove Job"></a>06.05.07.01. Error Recovery and Remove Job</h5><p>当报警或发现作业存在与作业数据不符，需要更改或删除数据时，设备应具备以下功能: </p>
+</li>
+</ul>
+<p>  设备供应商应提供至少10个当前已删除的 Job Data保存功能，并提供 Job Data选择功能进行恢复。</p>
+<p>  设备供应商应提供至少10个当前已删除的 Job Data的删除保存功能，并提供 Job Data选择功能进行恢复。</p>
+<p>  如果设备恢复的 Job Data项，如配方号、产品类型、组索引等，这些值的内容与设备本身不同，设备不能改变 Job Data，应发出警告，然后等待操作员处理。</p>
+<p>  如果BC没有对设备回复信号，对于正常的删除和删除脏数据，意味着在事件复位后， Job Data/计数应该被擦除;对于恢复，这意味着在事件停止后无法恢复 Job Data</p>
+<h5 id="06-05-07-01-Error-Recovery-and-Remove-Job"><a href="#06-05-07-01-Error-Recovery-and-Remove-Job" class="headerlink" title="06.05.07.01. Error Recovery and Remove Job"></a>06.05.07.01. Error Recovery and Remove Job</h5><p>当报警或发现作业存在与 Job Data不符，需要更改或删除数据时，设备应具备以下功能: </p>
 <ul>
 <li><p>报警，通知操作员更正 </p>
 </li>
@@ -867,7 +867,7 @@
 <h6 id="06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-02-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.02. Local PLC – Link Relay (B Area)"></a>06.05.07.03.02. Local PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu420.png" width="90%"></p>
 <h6 id="06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area"><a href="#06-05-07-03-03-Master-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.05.07.03.03. Master PLC – Link Relay (B Area)"></a>06.05.07.03.03. Master PLC – Link Relay (B Area)</h6><p>​    <img src="http://photo.wushaopei.com/qiniu421.png" width="90%"></p>
 <h5 id="06-05-07-04-Communication-Scenario"><a href="#06-05-07-04-Communication-Scenario" class="headerlink" title="06.05.07.04. Communication Scenario"></a>06.05.07.04. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu422.png" width="90%"></p>
-<h4 id="06-05-08-Job-Count-Report"><a href="#06-05-08-Job-Count-Report" class="headerlink" title="06.05.08. Job Count Report"></a>06.05.08. Job Count Report</h4><p>作业计数是报告整个设备的作业计数(不包括卡带)。根据作业类型，设备应区分作业是产品作业还是虚拟作业。  Normally，产品工作意味着大量的产品加工 , 但是在装配线上有两个产品工作， TFT和CF，产品工作意味着TFT玻璃加工 . 设备应根据作业类型的作业数据实时写入各类作业计数。 </p>
+<h4 id="06-05-08-Job-Count-Report"><a href="#06-05-08-Job-Count-Report" class="headerlink" title="06.05.08. Job Count Report"></a>06.05.08. Job Count Report</h4><p>作业计数是报告整个设备的作业计数(不包括卡带)。根据作业类型，设备应区分作业是产品作业还是虚拟作业。  Normally，产品工作意味着大量的产品加工 , 但是在装配线上有两个产品工作， TFT和CF，产品工作意味着TFT玻璃加工 . 设备应根据作业类型的 Job Data实时写入各类作业计数。 </p>
 <ul>
 <li>Total TFT Product Job Count  :  它是设备中TFT玻璃的当前计数。 </li>
 <li>Total CF Product Job Count： 这是设备中CF 玻璃的当前计数。 </li>
@@ -885,9 +885,9 @@
 </ul>
 <h5 id="06-05-09-01-PLC-MAP"><a href="#06-05-09-01-PLC-MAP" class="headerlink" title="06.05.09.01. PLC MAP"></a>06.05.09.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu425.png" width="90%"></p>
 <h5 id="06-05-09-01-Communication-Scenario"><a href="#06-05-09-01-Communication-Scenario" class="headerlink" title="06.05.09.01. Communication Scenario"></a>06.05.09.01. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu426.png" width="90%"></p>
-<h4 id="06-05-10-Job-Data-Shift"><a href="#06-05-10-Job-Data-Shift" class="headerlink" title="06.05.10. Job Data Shift"></a>06.05.10. Job Data Shift</h4><p>对于多工位设备，必须提供“作业数据转移”功能;这一功能意味着操作者可以将作业数据移动到另一个物理玻璃位置，但条件是从有作业数据但没有玻璃板的位置，移动到有玻璃板但没有玻璃板数据的另一个位置。此功能仅在设备状态处于“停止”状态时启用。 </p>
+<h4 id="06-05-10-Job-Data-Shift"><a href="#06-05-10-Job-Data-Shift" class="headerlink" title="06.05.10. Job Data Shift"></a>06.05.10. Job Data Shift</h4><p>对于多工位设备，必须提供“ Job Data转移”功能;这一功能意味着操作者可以将 Job Data移动到另一个物理玻璃位置，但条件是从有 Job Data但没有玻璃板的位置，移动到有玻璃板但没有玻璃板数据的另一个位置。此功能仅在设备状态处于“停止”状态时启用。 </p>
 <p><strong>Example：</strong></p>
-<p>如果设备中有两个玻璃位置异常，一个有工作数据但没有玻璃，另一个有玻璃但没有工作数据。操作人员可以通过该函数将作业数据转换到玻璃位置，并将两者结合起来 </p>
+<p>如果设备中有两个玻璃位置异常，一个有工作数据但没有玻璃，另一个有玻璃但没有工作数据。操作人员可以通过该函数将 Job Data转换到玻璃位置，并将两者结合起来 </p>
 <p><strong>Condition：</strong> </p>
 <p>(1). Source position：Glass not exists and Job Data existed. (Color = Red) </p>
 <p>(2). Target position： Glass existed and Job Data not exist. (Color=Yellow) </p>
@@ -898,7 +898,7 @@
 <p>​    <img src="http://photo.wushaopei.com/qiniu428.png" width="90%"></p>
 <h4 id="06-05-12-Set-Last-Glass-Command"><a href="#06-05-12-Set-Last-Glass-Command" class="headerlink" title="06.05.12. Set Last Glass Command"></a>06.05.12. Set Last Glass Command</h4><p>当出现以下特殊情况时，BC会在某些设备上指示“设置最后的玻璃命令”，通知某些玻璃被打开或关闭最后的玻璃。 </p>
 <ul>
-<li>Case#01： 如果带有最后一个玻璃标志的作业数据是打开的，但在某些设备中被破坏，则操作员触发“删除作业事件”到BC。BC将触发此功能到设备。 </li>
+<li>Case#01： 如果带有最后一个玻璃标志的 Job Data是打开的，但在某些设备中被破坏，则操作员触发“删除作业事件”到BC。BC将触发此功能到设备。 </li>
 <li>Case#02：如果当前的磁带被设备或BC中断了，但是用上一个工作的玻璃标志不能从当前的磁带中取出。BC将触发此功能到设备。 </li>
 </ul>
 <p><strong>※ Note：</strong> </p>
@@ -913,16 +913,20 @@
 <p><strong>※ Note：</strong>  </p>
 <p>Return Code Description：</p>
 <p>For Indexer equipment both port： </p>
-<p>1：OK, 意思是设备接受命令并从列表中删除或恢复作业数据(用于移出磁带) </p>
+<p>1：OK, 意思是设备接受命令并从列表中删除或恢复 Job Data(用于移出磁带) </p>
 <p>2：NG,  这意味着设备无法在列表中找到工作数据。 </p>
 <p>For other equipment : 总是回复OK到BC。 </p>
 <h5 id="06-05-13-01-PLC-MAP"><a href="#06-05-13-01-PLC-MAP" class="headerlink" title="06.05.13.01. PLC MAP"></a>06.05.13.01. PLC MAP</h5><p>​    <img src="http://photo.wushaopei.com/qiniu433.png" width="90%"></p>
 <h5 id="06-05-13-02-Communication-Scenario"><a href="#06-05-13-02-Communication-Scenario" class="headerlink" title="06.05.13.02. Communication Scenario"></a>06.05.13.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu434.png" width="90%"></p>
-<h4 id="06-05-14-Job-Data-Edit-Report"><a href="#06-05-14-Job-Data-Edit-Report" class="headerlink" title="06.05.14. Job Data Edit Report"></a>06.05.14. Job Data Edit Report</h4><p>对于CELL , CF，它只对 Port 是 unloading port 或 两个 Port 的设备。其他设备应提供作业数据编辑功能，但修改后的设备不向BC报告新作业数据。</p>
-<p>对于Cell，所有的设备都应该提供这个功能。修改后，设备应自动向BC报告新作业数据。</p>
-<p>作业存储在磁带中，但操作员手册通过作业数据编辑功能改变了作业数据内容。修改后，设备应自动向BC报告新作业数据。</p>
-<p>设备改造后应检查配方ID、产品类型、组索引等，如内容与设备本身不一致，设备无法保存作业数据，等待操作人员处理。</p>
-<p><strong>※ Note：</strong> 所有项目的作业数据均可由操作人员在手动模式下进行修改，修改后的设备应检查是否可以使用。</p>
+<h4 id="06-05-14-Job-Data-Edit-Report"><a href="#06-05-14-Job-Data-Edit-Report" class="headerlink" title="06.05.14. Job Data Edit Report"></a>06.05.14. Job Data Edit Report</h4><p>对于CELL , CF，它只对 Port 是 unloading port 或 两个 Port 的设备。其他设备应提供 Job Data 编辑功能，但修改后的设备不向BC报告新 Job Data。</p>
+<p>对于Cell，所有的设备都应该提供这个功能。修改后，设备应自动向BC报告新 Job Data 。</p>
+<p>Job 存储在 Cassette 中，但操作员手册通过 Job Data Edit 功能改变了 Job Data 内容。修改后，设备应自动向BC报告新 Job Data。</p>
+<p>设备改造后应检查配方ID、产品类型、组索引等，如内容与设备本身不一致，设备无法保存 Job Data，等待操作人员处理。</p>
+<p>※注1: 操作人员可在手动模式下修改项目 Job Data(卡带除外)序列没有。和作业顺序号)，改造后的设备应检查是否可以使用。</p>
+<p>※注2:</p>
+<p>返回代码描述:</p>
+<p>1:OK，它的意思是BCS接受 event and equipment  可以附加 Job Data 与 physical  Job.。</p>
+<p>2:NG，它的意思是BCS不能接受event  和  Job Data  不能使用。</p>
 <p>​    <img src="http://photo.wushaopei.com/qiniu435.png" width="90%"></p>
 <p>​    <img src="http://photo.wushaopei.com/qiniu436.png" width="90%"></p>
 <h5 id="06-05-14-02-Communication-Scenario"><a href="#06-05-14-02-Communication-Scenario" class="headerlink" title="06.05.14.02. Communication Scenario"></a>06.05.14.02. Communication Scenario</h5><p>​    <img src="http://photo.wushaopei.com/qiniu437.png" width="90%"></p>
@@ -952,7 +956,7 @@
 
 <h3 id="06-06-Process-Data-Management"><a href="#06-06-Process-Data-Management" class="headerlink" title="06.06. Process Data Management"></a>06.06. Process Data Management</h3><p>该功能仅适用于工艺设备，具有加工参数值或检验结果等工艺数据。数据应与个人工作相关，并使用玻璃/芯片ID报告 </p>
 <ul>
-<li>Job Data：  作业数据应与发送作业的作业数据相同 </li>
+<li>Job Data：   Job Data应与发送作业的 Job Data相同 </li>
 <li>Processing Time：它是设备中某项工作的实际处理时间。 </li>
 <li>Kind of Process Data：There are 4 kinds of process data <ul>
 <li>By Glass：如果设备有工艺数据，每个玻璃/芯片的工艺数据应在作业发送到下游设备之前报告。一个本地设备应该向BC报告每个玻璃一次的工艺数据 </li>
@@ -1027,7 +1031,7 @@
 
 
 
-<h3 id="06-08-Recipe-Management"><a href="#06-08-Recipe-Management" class="headerlink" title="06.08. Recipe Management"></a>06.08. Recipe Management</h3><p>BC将通过盒式控制命令事件将作业数据下载到装入器/卸载器。该作业数据包括PPID。当作业被发送到下游设备时，PPID也通过CC-Link IE被发送到下游设备。For 收到 其他 equipment, 从 上游 设备 通过 CC-Link IE 并 送往 下游 设备 没有 任何 修改 .</p>
+<h3 id="06-08-Recipe-Management"><a href="#06-08-Recipe-Management" class="headerlink" title="06.08. Recipe Management"></a>06.08. Recipe Management</h3><p>BC将通过盒式控制命令事件将 Job Data下载到装入器/卸载器。该 Job Data包括PPID。当作业被发送到下游设备时，PPID也通过CC-Link IE被发送到下游设备。For 收到 其他 equipment, 从 上游 设备 通过 CC-Link IE 并 送往 下游 设备 没有 任何 修改 .</p>
 <ul>
 <li><p>PPID示例格式:参考操作场景规范的每一行。 </p>
 <img src="http://photo.wushaopei.com/qiniu476.png" width="50%">
@@ -1053,7 +1057,7 @@
 <h4 id="06-08-03-Equipment-Recipe-Validation"><a href="#06-08-03-Equipment-Recipe-Validation" class="headerlink" title="06.08.03. Equipment Recipe Validation"></a>06.08.03. Equipment Recipe Validation</h4><p>当 <code>cassette</code> 在端口加载时，在CIM状态下，BC将PPID下载到加载程序，在CIM关闭状态下，操作员在加载程序的触摸屏上输入PPID进行联机操作。</p>
 <p>PPID从装载机转移到下游设备，在从上游设备接收玻璃之前，设备应验证PPID(如果启用配方检查)和相应的配方ID。</p>
 <p>设备应提供 <code>Job Data Check</code>、 <code>enable/disable</code>  操作选择功能。正常情况下，机器处于 <code>enable</code> 功能;在异常处理情况下，OP选择禁用后，当玻璃从上游传输，下游接收玻璃，不需要检查配方或其他项目，如产品类型，组索引等。</p>
-<p>详细规则请参阅CSOT-17_G8.5B_Equipment链路信号通用规范5.4.1作业数据检查功能。</p>
+<p>详细规则请参阅CSOT-17_G8.5B_Equipment链路信号通用规范5.4.1 Job Data检查功能。</p>
 <ol>
 <li><strong>Auto Recipe Change Enable Case：</strong>  </li>
 </ol>
@@ -1092,7 +1096,7 @@
 </li>
 <li>Recipe ID Check Mode is Enable, Recipe Auto Change is Enable： <ul>
 <li>Job Data 上的 Recipe ID 与当前的 Recipe ID 不同时 ，从上游设备接收玻璃，使用当前的 Recipe ID 进行加工/检测。 </li>
-<li>Recipe ID 的作业数据与 当前Recipe ID 的不同，应检查 的 Job Data 中的Recipe ID 是否可以更改: <ul>
+<li>Recipe ID 的 Job Data与 当前Recipe ID 的不同，应检查 的 Job Data 中的Recipe ID 是否可以更改: <ul>
 <li>如果可以更改，则从上游设备接收玻璃，但将当前的 Recipe ID 更改为Job Data 的Recipe ID 来加工/检测 </li>
 <li>如果不能更改（包括配方表中不存在 Recipe ID ），则无法从上游设备接收玻璃并发出警报</li>
 </ul>
@@ -1108,7 +1112,7 @@
 <li><p>Enable :  设备需要检查每个条件来接收来自上游设备的作业 </p>
 </li>
 <li><p>Disable:  设备不检查各项情况，直接从上游设备接收作业。 </p>
-<p>※ Note：如果作业数据检查模式无效，则所有检查项目将更改为无效。 </p>
+<p>※ Note：如果 Job Data检查模式无效，则所有检查项目将更改为无效。 </p>
 </li>
 </ul>
 </li>
@@ -1127,7 +1131,7 @@
 </ul>
 <p>※ Note : 为避免混装产品，卸料盒应支持产品型式检查 </p>
 <p>Enable/Disable function </p>
-<p>※ Note : 对于CF卸载器，当产品类型检查为“Enable”时，卸载器需要检查当前产品类型的作业数据是否与已经卸载的CST中的作业数据的产品类型相同，还是空闲的CST来存储不同产品类型的作业数据。如果不同产品类型的作业数据可以存储到不使用的CST中，卸载器可以接收不同产品类型的作业数据;否则，没有CST可以存储不同产品类型的作业数据，卸载程序仍然可以接收不同产品类型的作业数据。 </p>
+<p>※ Note : 对于CF卸载器，当产品类型检查为“Enable”时，卸载器需要检查当前产品类型的 Job Data是否与已经卸载的CST中的 Job Data的产品类型相同，还是空闲的CST来存储不同产品类型的 Job Data。如果不同产品类型的 Job Data可以存储到不使用的CST中，卸载器可以接收不同产品类型的 Job Data;否则，没有CST可以存储不同产品类型的 Job Data，卸载程序仍然可以接收不同产品类型的 Job Data。 </p>
 </li>
 <li><p>Group Index Check Mode：Operators can manual change on Touch Panel. </p>
 <ul>
@@ -1157,14 +1161,14 @@
 <li><p>COA Version Check Mode：Operators can manual change on Touch Panel. Just for CF </p>
 <p>Unloader. </p>
 <ul>
-<li>Enable : 卸载器需要检查当前的COA版本是否与存储作业数据的COA版本相同。同样，存储作业;不同，不能存储作业 </li>
+<li>Enable : 卸载器需要检查当前的COA版本是否与存储 Job Data的COA版本相同。同样，存储作业;不同，不能存储作业 </li>
 <li>Disable : 设备不检查COA版本，直接从上游设备接收作业。 </li>
 </ul>
 <p>※ Note： </p>
 <ol>
 <li><p>如果设备中没有玻璃，则不检查产品类型、组索引、产品ID和COA版本，然后直接从upstream equipment/stage 接收玻璃。</p>
 </li>
-<li><p>对于阵列，当设备处于强制清除模式(参见09.01.03节)时，不检查作业数据检查项。</p>
+<li><p>对于阵列，当设备处于强制清除模式(参见09.01.03节)时，不检查 Job Data检查项。</p>
 </li>
 <li><p>For Cell Line Load Equipment : 负载需要记住最后一个玻璃产品类型，如果负载设备中没有玻璃，则不检查产品类型。但设备应检查新的CST玻璃产品类型与上一种玻璃产品类型，如不相同，机器不取玻璃，设备应报警并呼叫操作员。操作人员确认玻璃是否可以拿取。(更改运行不同的产品)  </p>
 </li>
@@ -1270,7 +1274,7 @@
 
 <h5 id="06-09-04-02-Communication-Scenario"><a href="#06-09-04-02-Communication-Scenario" class="headerlink" title="06.09.04.02. Communication Scenario"></a>06.09.04.02. Communication Scenario</h5><img src="http://photo.wushaopei.com/qiniu515.png" width="80%">
 
-<h3 id="06-10-Date-Time-Set-Command"><a href="#06-10-Date-Time-Set-Command" class="headerlink" title="06.10. Date Time Set Command"></a>06.10. Date Time Set Command</h3><p>当设备接收到该命令时，设备根据该命令发送的时间调整其本地系统时间。 </p>
+<h3 id="06-10-Date-Time-Set-Command"><a href="#06-10-Date-Time-Set-Command" class="headerlink" title="06.10. Date Time Set Command"></a>06.10. Date Time Set Command</h3><p>当设备接收到该命令时，设备根据该命令发送的Data Expression** 时间调整其本地系统时间。 </p>
 <p>BC将设备接收MES的日期时间或设备CIM模式更改为ON的日期时间设置为设备的日期时间 </p>
 <h4 id="06-10-01-PLC-MAP"><a href="#06-10-01-PLC-MAP" class="headerlink" title="06.10.01. PLC MAP"></a>06.10.01. PLC MAP</h4><h5 id="06-10-01-01-Local-PLC-–-Link-Relay-B-Area"><a href="#06-10-01-01-Local-PLC-–-Link-Relay-B-Area" class="headerlink" title="06.10.01.01. Local PLC – Link Relay (B Area)"></a>06.10.01.01. Local PLC – Link Relay (B Area)</h5><img src="http://photo.wushaopei.com/qiniu516.png" width="80%">
 
@@ -1323,8 +1327,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" rel="next" title="自动化开发（八）Specification-笔记">
-                <i class="fa fa-chevron-left"></i> 自动化开发（八）Specification-笔记
+              <a href="/2020/04/08/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%8F%8A%E5%AE%89%E5%85%A8%E5%85%B1%E4%BA%AB%E7%AD%96%E7%95%A5%E6%80%BB%E7%BB%93/" rel="next" title="并发编程（十四）线程安全策略-并发容器及安全共享策略总结">
+                <i class="fa fa-chevron-left"></i> 并发编程（十四）线程安全策略-并发容器及安全共享策略总结
               </a>
             
           </div>
@@ -1333,8 +1337,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="prev" title="自动化开发（七）Specification-07-Port Management">
-                自动化开发（七）Specification-07-Port Management <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" rel="prev" title="自动化开发（八）Specification-笔记">
+                自动化开发（八）Specification-笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

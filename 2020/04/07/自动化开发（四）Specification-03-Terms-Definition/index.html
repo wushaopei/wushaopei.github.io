@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu276.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-07T01:40:06.000Z">
-<meta property="article:modified_time" content="2020-05-13T09:50:41.600Z">
+<meta property="article:modified_time" content="2020-11-19T04:15:52.038Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu270.png">
@@ -523,7 +523,7 @@
 <p>如上图所示，右边的就是Cassette ，该Cassette 分为两个Slot , 从 Slot1 到 Slot2 ,共有56层（插槽） Slot 1 中是 Job Sequence Number 1<del>28， Slot 2 是 Job Sequence Number 29</del>56。</p>
 <p><strong>重点：</strong> 根据 Cassette Sequence No 我们可以知道该片Glass 在哪个Cassette中，根据    Job Sequence Number 我们可以知道该片Glass 在 Cassette中的哪个位置。</p>
 <p><code>一个slot 层中只能有一片玻璃。</code></p>
-<h3 id="03-02-07-Chip-Position-芯片定位"><a href="#03-02-07-Chip-Position-芯片定位" class="headerlink" title="03.02.07. Chip Position(芯片定位)"></a>03.02.07. Chip Position(芯片定位)</h3><p>它主要是指切割前面板在玻璃中的具体位置。在第一次或第二次切割后，人们可以通过这个值知道每个芯片在玻璃中的原始位置 </p>
+<h3 id="03-02-07-Chip-Position-芯片定位"><a href="#03-02-07-Chip-Position-芯片定位" class="headerlink" title="03.02.07. Chip Position(芯片定位)"></a>03.02.07. Chip Position(芯片定位)</h3><p>它主要是指切割前面板在玻璃中的具体位置。在第一次或第二次切割后，人们可以通过这个值知道每个芯片在玻璃中的起始位置 </p>
 <img src="http://photo.wushaopei.com/qiniu275.png" width="80%">
 
 <p>如图中所示，TFT 是Array切割的玻璃，而CF是CF切割的玻璃，最终这两块对应玻璃是会合到一起的。在合到一起后再进行切割。</p>
@@ -546,7 +546,7 @@
 <p>当有多个接口时，所有的接口都切换成内联关闭来报告BC内联。</p>
 <p>​    </p>
 <p><code>该Mode 会被上报到BC，并由BC进行记录。</code></p>
-<h3 id="03-03-02-CIM-Mode"><a href="#03-03-02-CIM-Mode" class="headerlink" title="03.03.02. CIM Mode"></a>03.03.02. CIM Mode</h3><p>CIM模式是指定设备与BC之间的通信关系。一般情况下，在CIM OFF模式下，本地PLC应该忽略主PLC的命令。 </p>
+<h3 id="03-03-02-CIM-Mode"><a href="#03-03-02-CIM-Mode" class="headerlink" title="03.03.02. CIM Mode"></a>03.03.02. CIM Mode</h3><p>CIM Mode 是指定设备与BC之间的通信关系。一般情况下，在CIM OFF模式下，本地PLC应该忽略主PLC的命令。 </p>
 <p>设备变更CIM模式需要用户账号控制;设备中的玻璃不影响CIM模式的改变。当CIM模式关闭时，需要报告警告，直到CIM模式更改为On，然后重置警告。 </p>
 <p>在CIM关闭模式下，设备应保持当前的word数据，并不用更新，不需要将事件位更改为on。 </p>
 <p>触摸屏需要在主窗体中显示CIM的开/关状态，在任何页面中都要改变disp的状态。</p>
@@ -561,7 +561,7 @@
 <p><code>机台变化后，会先把数据写到 Word Area , 然后再把 Bit on 起来。</code></p>
 <p>​    各个状态之间的切换是有顺序的，不能直接从 Setup 切换到 Run。</p>
 <h3 id="03-03-04-Unit-Status"><a href="#03-03-04-Unit-Status" class="headerlink" title="03.03.04. Unit Status"></a>03.03.04. Unit Status</h3><p> Unit Status 显示单元的当前操作状态。 Unit Status 的类型和定义与 Equipment Status 的类型和定义相同。 </p>
-<h3 id="03-03-05-Alarm-Status"><a href="#03-03-05-Alarm-Status" class="headerlink" title="03.03.05. Alarm Status"></a>03.03.05. Alarm Status</h3><p>每个Alarm可以在两种状态之一:设置和清除。如果设备发生警报 ，称为Alarm Set， 一旦警报被cleared ， 然后它被称为警报Clear 。</p>
+<h3 id="03-03-05-Alarm-Status"><a href="#03-03-05-Alarm-Status" class="headerlink" title="03.03.05. Alarm Status"></a>03.03.05. Alarm Status</h3><p>每个Alarm可以在两种状态之一: set 和 clear 。如果设备发生警报 ，称为Alarm Set， 一旦警报被cleared ， 然后它被称为 Alarm Clear 。</p>
 <h3 id="03-03-06-Alarm-ID"><a href="#03-03-06-Alarm-ID" class="headerlink" title="03.03.06. Alarm ID"></a>03.03.06. Alarm ID</h3><p>Alarm 标识符</p>
 <h3 id="03-03-07-Alarm-Level"><a href="#03-03-07-Alarm-Level" class="headerlink" title="03.03.07. Alarm Level"></a>03.03.07. Alarm Level</h3><p>它显示了警报的级别。它由 Warming 和 Error 组成 。  </p>
 <p>Warming 只是起到提示作用，而 Error 的出现可能导致宕机。</p>
@@ -580,7 +580,7 @@
 <p>（3） Buffer Port 是 Port Type 的安全区，主要设置在整条线的中间或者某个重要制成的前面，用来防止重要制成的塞片。</p>
 <p>示例：可能某些制成要做很长时间，而导致前面的玻璃停留很长时间甚至流不动。</p>
 <h3 id="03-04-02-Port-Mode"><a href="#03-04-02-Port-Mode" class="headerlink" title="03.04.02. Port Mode"></a>03.04.02. Port Mode</h3><p>它是根据已包含或将在端口上的磁带中排序的作业判断对端口进行分类。 </p>
-<h3 id="03-04-03-Port-Transfer-Mode"><a href="#03-04-03-Port-Transfer-Mode" class="headerlink" title="03.04.03. Port Transfer Mode"></a>03.04.03. Port Transfer Mode</h3><p>它表明类型的AMHS机器连接端口在传输磁带到/从端口。 </p>
+<h3 id="03-04-03-Port-Transfer-Mode"><a href="#03-04-03-Port-Transfer-Mode" class="headerlink" title="03.04.03. Port Transfer Mode"></a>03.04.03. Port Transfer Mode</h3><p>它指示与端口连接的AMHS机器的类型，用于将磁带从端口传送到/或从端口传送  </p>
 <h3 id="03-04-04-Port-Enable-Mode"><a href="#03-04-04-Port-Enable-Mode" class="headerlink" title="03.04.04. Port Enable Mode"></a>03.04.04. Port Enable Mode</h3><p>它表示端口是否可以使用。如果端口的这种模式被更改为 “禁用” 模式’，设备不处理的磁带上的端口。操作员可以在设备屏幕上更改其值。</p>
 <p>这是Port 的开关，关掉 后，会导致Port 不能用。</p>
 <h3 id="03-04-05-Port-Status"><a href="#03-04-05-Port-Status" class="headerlink" title="03.04.05. Port Status"></a>03.04.05. Port Status</h3><p>它是用来表示一个端口是否可用来装载Cassette，或者Cassette装载已完成到一个端口，或者一个端口是否可用来卸载Cassette。 </p>

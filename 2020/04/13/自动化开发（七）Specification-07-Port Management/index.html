@@ -153,7 +153,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu664.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu665.png">
 <meta property="article:published_time" content="2020-04-13T07:09:47.000Z">
-<meta property="article:modified_time" content="2020-05-14T09:11:31.141Z">
+<meta property="article:modified_time" content="2020-05-19T16:03:57.112Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu520.png">
@@ -664,7 +664,7 @@
 <p>如果端口上有盒式磁带，则端口的端口启用模式不能更改。</p>
 <p>设备制造商应该提供这一功能。如果端口启用模式从禁用模式更改为启用模式，设备应报告端口的“负载请求”事件。</p>
 <ul>
-<li>Enabled Mode： 可以使用此端口。 </li>
+<li>Enabled Mode： 可以使用此端口。  First Glass Check</li>
 <li>Disabled Mode： 此端口无法使用。操作员或其他人员禁止使用此端口 </li>
 </ul>
 <h5 id="07-02-04-01-PLC-MAP"><a href="#07-02-04-01-PLC-MAP" class="headerlink" title="07.02.04.01. PLC MAP"></a>07.02.04.01. PLC MAP</h5><img src="http://photo.wushaopei.com/qiniu533.png" width="80%">
@@ -877,7 +877,7 @@
 <p>设备应根据玻璃取出/存储在卡带槽中，以更新与ZR区域有关的全部工作数据。</p>
 <h5 id="07-04-05-01-Standard-Cassette-Map-Data"><a href="#07-04-05-01-Standard-Cassette-Map-Data" class="headerlink" title="07.04.05.01. Standard Cassette Map Data"></a>07.04.05.01. Standard Cassette Map Data</h5><p>​         <img src="http://photo.wushaopei.com/qiniu619.png" width="80%"></p>
 <p>​         <img src="http://photo.wushaopei.com/qiniu620.png" width="80%"></p>
-<h3 id="07-05-First-Glass-Check"><a href="#07-05-First-Glass-Check" class="headerlink" title="07.05. First Glass Check"></a>07.05. First Glass Check</h3><p> Loading Port 或 Both Port 收到 Cassette Control Command 后，Cassette Status 变为“Wait for Process”，在第一次从Cassette 带取出 Glass 前，EQP 需向BC报告“First Glass Check ” event 。BC会将检查结果回复给设备。如果结果为“OK”，则可立即从 Cassette 中取出第一块 Glass ;如果结果为“NG”，设备需要自动取消 Cassette 。如果BC没有回复结果，说明T1超时，设备需要重新自动重试。重试计数默认值为3，每次重试间隔时间默认值为30秒。retry count 和 retry count 可以在 Touch Panel 上修改。如果已达到重试计数但BC仍不回复 EQP 结果，设备需要自动取消 Cassette .</p>
+<h3 id="07-05-First-Glass-Check"><a href="#07-05-First-Glass-Check" class="headerlink" title="07.05. First Glass Check"></a>07.05. First Glass Check</h3><p>Loading Port 或 Both Port 收到 Cassette Control Command 后，Cassette Status 变为“Wait for Process”，在第一次从Cassette 带取出 Glass 前，EQP 需向BC报告“First Glass Check ” event 。BC会将检查结果回复给设备。如果结果为“OK”，则可立即从 Cassette 中取出第一块 Glass ;如果结果为“NG”，设备需要自动取消 Cassette 。如果BC没有回复结果，说明T1超时，设备需要重新自动重试。重试计数默认值为3，每次重试间隔时间默认值为30秒。retry count 和 retry count 可以在 Touch Panel 上修改。如果已达到重试计数但BC仍不回复 EQP 结果，设备需要自动取消 Cassette .</p>
 <h4 id="07-05-01-PLC-MAP"><a href="#07-05-01-PLC-MAP" class="headerlink" title="07.05.01. PLC MAP"></a>07.05.01. PLC MAP</h4><img src="http://photo.wushaopei.com/qiniu660.png" width="80%">
 
 <h4 id="07-05-02-Communication-Scenario"><a href="#07-05-02-Communication-Scenario" class="headerlink" title="07.05.02. Communication Scenario"></a>07.05.02. Communication Scenario</h4><img src="http://photo.wushaopei.com/qiniu661.png" width="80%">
@@ -1003,8 +1003,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" rel="next" title="自动化开发（六）Specification-06-Common Function">
-                <i class="fa fa-chevron-left"></i> 自动化开发（六）Specification-06-Common Function
+              <a href="/2020/04/13/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AB%EF%BC%89Specification-%E7%AC%94%E8%AE%B0/" rel="next" title="自动化开发（八）Specification-笔记">
+                <i class="fa fa-chevron-left"></i> 自动化开发（八）Specification-笔记
               </a>
             
           </div>
