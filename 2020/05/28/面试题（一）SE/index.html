@@ -91,15 +91,15 @@
 
 
 
-<meta name="description" content="数组冒泡算法1234567891011   &#x2F;&#x2F;冒泡排序：     for (int i &#x3D; 0; i &lt; numbers.length - 1; i++) &amp;#123; &#x2F;&#x2F;循环几轮     for (int j &#x3D; 0; j &lt; numbers.length - 1 - i; j++) &amp;#123; &#x2F;&#x2F; 循环几次		if(numbers[j] &lt; numbers[j + 1">
+<meta name="description" content="数组冒泡算法1234567891011   &#x2F;&#x2F;冒泡排序：     for (int i &#x3D; 0; i &lt; numbers.length - 1; i++) &amp;#123; &#x2F;&#x2F;循环几轮     for (int j &#x3D; 0; j &lt; numbers.length - 1 - i; j++) &amp;#123; &#x2F;&#x2F; 循环几次		  if(numbers[j] &lt; numbers[j +">
 <meta property="og:type" content="article">
 <meta property="og:title" content="面试题（一）SE">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="数组冒泡算法1234567891011   &#x2F;&#x2F;冒泡排序：     for (int i &#x3D; 0; i &lt; numbers.length - 1; i++) &amp;#123; &#x2F;&#x2F;循环几轮     for (int j &#x3D; 0; j &lt; numbers.length - 1 - i; j++) &amp;#123; &#x2F;&#x2F; 循环几次		if(numbers[j] &lt; numbers[j + 1">
+<meta property="og:description" content="数组冒泡算法1234567891011   &#x2F;&#x2F;冒泡排序：     for (int i &#x3D; 0; i &lt; numbers.length - 1; i++) &amp;#123; &#x2F;&#x2F;循环几轮     for (int j &#x3D; 0; j &lt; numbers.length - 1 - i; j++) &amp;#123; &#x2F;&#x2F; 循环几次		  if(numbers[j] &lt; numbers[j +">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190503191754956.png">
 <meta property="article:published_time" content="2020-05-28T01:16:19.000Z">
-<meta property="article:modified_time" content="2020-05-28T05:24:16.250Z">
+<meta property="article:modified_time" content="2020-05-29T02:23:57.814Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary">
@@ -476,7 +476,7 @@
       
 
       
-        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="冒泡算法"><a href="#冒泡算法" class="headerlink" title="冒泡算法"></a>冒泡算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//冒泡排序：</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numbers.length - <span class="number">1</span>; i++) &#123; <span class="comment">//循环几轮</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; numbers.length - <span class="number">1</span> - i; j++) &#123; <span class="comment">// 循环几次</span></span><br><span class="line">		</span><br><span class="line"><span class="keyword">if</span>(numbers[j] &lt; numbers[j + <span class="number">1</span>])&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = numbers[j];</span><br><span class="line">	numbers[j] = numbers[j + <span class="number">1</span>];</span><br><span class="line">	numbers[j + <span class="number">1</span>] = temp;</span><br><span class="line">&#125;</span><br><span class="line">      &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="冒泡算法"><a href="#冒泡算法" class="headerlink" title="冒泡算法"></a>冒泡算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">//冒泡排序：</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numbers.length - <span class="number">1</span>; i++) &#123; <span class="comment">//循环几轮</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; numbers.length - <span class="number">1</span> - i; j++) &#123; <span class="comment">// 循环几次</span></span><br><span class="line">		</span><br><span class="line">  <span class="keyword">if</span>(numbers[j] &lt; numbers[j + <span class="number">1</span>])&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = numbers[j];</span><br><span class="line">	numbers[j] = numbers[j + <span class="number">1</span>];</span><br><span class="line">	numbers[j + <span class="number">1</span>] = temp;</span><br><span class="line">&#125;</span><br><span class="line">      &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="常见异常"><a href="#常见异常" class="headerlink" title="常见异常"></a>常见异常</h3><ul>
 <li>第一种 ： 空指针异常 - NullPointerException</li>
@@ -494,7 +494,7 @@
 <p><strong>方法的重载的概念:</strong></p>
 <p>​    同一个类中相同的方法名，不同的形参列表构成重载</p>
 <p>举例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	public void add(int a,int b)&#123;</span><br><span class="line">	System.out.println(&quot;int,int&quot;);</span><br><span class="line">	System.out.println(a + b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;需求?求两处double类型变量的和</span><br><span class="line">public void add(double a,double b)&#123;</span><br><span class="line">	System.out.println(&quot;double,double&quot;);</span><br><span class="line">	System.out.println(a + b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	 public void add(int a,int b)&#123;</span><br><span class="line"> 	System.out.println(&quot;int,int&quot;);</span><br><span class="line">		System.out.println(a + b);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;需求?求两处double类型变量的和</span><br><span class="line">public void add(double a,double b)&#123;</span><br><span class="line">	System.out.println(&quot;double,double&quot;);</span><br><span class="line">	System.out.println(a + b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>方法重写：</strong></p>
 <p>​    重写是子类对父类的允许访问的方法的实现过程进行重新编写, 返回值和形参都不能改变。即外壳不变，核心重写！</p>
@@ -513,6 +513,8 @@
 <p>this可以用来调用 ：属性，方法，构造器 </p>
 </blockquote>
 <h3 id="封装性"><a href="#封装性" class="headerlink" title="封装性"></a>封装性</h3><blockquote>
+<p><strong>封装性的意义？</strong></p>
+<p>​    隐藏对象内部的复杂性,只对外公开简单的接口。便于外界调用,从而提高系统的可扩展性可维护性。 </p>
 <p><strong>为什么要使用封装性？</strong></p>
 <p>​    创建对象以后，可以通过对象.属性名的方法进行赋值。只能限制数据的类型，和数值的范围。但是往往我们需要更多的其它条件的限制。在属性的声明处无法限制。所以我们采用如下的方式。</p>
 <p>​    使用权限修饰符对属性进行修饰，在其它的类中就无法直接对属性进行调用和赋值。<br>    提供公共的方法，通过方法给属性进行赋值，或者通过方法获取值。在方法的内部我们可以对属性的赋值的进行条件的限制。</p>
@@ -559,7 +561,7 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <p><strong>如果需要调用子类中的特有的属性和方法怎么办？</strong> </p>
 <p>​    采用向下转型 </p>
 <p><strong>为什么向下转型</strong></p>
-<p>父类的引用指向子类的对象，编译看左边，运行看右边。在编译的时候只能看到父类中的属性和方法。当实际上在内存中（运行时）也加载了子类中特有的方法和属性。那我们需要调用子类中特有的方法和属性那么就需要向下转型。</p>
+<p>父类的引用指向子类的对象，编译看左边，运行看右边。在编译的时候只能看到父类中的属性和方法。但实际上在内存中（运行时）也加载了子类中特有的方法和属性。那我们需要调用子类中特有的方法和属性那么就需要向下转型。</p>
 <p>说明：<br>    ①向下转型可能会出现：    ClassCastException<br>    ②向下转型可以使用：    强制类型转换符<br>    ③向下转型需要判断：    instanceof</p>
 </blockquote>
 <h3 id="对象锁"><a href="#对象锁" class="headerlink" title="对象锁"></a>对象锁</h3><blockquote>
@@ -584,23 +586,24 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <p><strong>equals</strong> : 如果没重写equals方法那么调用的是Object中的equals方法比较的是地址值。一般我们都会重写equals方法进行内容的比较。</p>
 </blockquote>
 <h3 id="一个类中，一个静态变量，一个静态方法，一个非静态方法，一个非静态变量，一个静态代码块，它们的执行顺序？哪些方法会被执行？"><a href="#一个类中，一个静态变量，一个静态方法，一个非静态方法，一个非静态变量，一个静态代码块，它们的执行顺序？哪些方法会被执行？" class="headerlink" title="一个类中，一个静态变量，一个静态方法，一个非静态方法，一个非静态变量，一个静态代码块，它们的执行顺序？哪些方法会被执行？"></a>一个类中，一个静态变量，一个静态方法，一个非静态方法，一个非静态变量，一个静态代码块，它们的执行顺序？哪些方法会被执行？</h3><blockquote>
-<p>父类静态代码块 &gt;子类静态代码块&gt;父类构造方法&gt;子类构造方法&gt;父类无参构造&gt;子类无参构造</p>
+<p>父类静态代码块 &gt;子类静态代码块&gt;父类非静态代码块&gt;父类无参构造方法&gt;子类非静态代码块&gt;子类无参构造方法</p>
 <p><strong>注意：</strong></p>
-<pre><code>静态方法和静态变量需要使用类名调用才能执行。</code></pre></blockquote>
+<pre><code>静态方法和静态变量需要使用类名调用才能执行。</code></pre><p>​    非静态变量、非静态方法需要使用类对象调用才能执行。</p>
+</blockquote>
 <h2 id="java-常用类"><a href="#java-常用类" class="headerlink" title="java 常用类"></a>java 常用类</h2><h3 id="Integer和int的区别"><a href="#Integer和int的区别" class="headerlink" title="Integer和int的区别"></a>Integer和int的区别</h3><blockquote>
 <ol>
 <li>Integer 是int 的包装类；</li>
 <li>int 直接可以拿来使用，而 Integer 需要通过new 进行实例化后才可以使用；</li>
-<li>int 是基本数据类型，Integer是引用书类型；</li>
+<li>int 是基本数据类型，Integer是引用数据类型；</li>
 <li>int则是直接存储数据值,而Integer实际是对象的引用，当new一个Integer时，实际上是生成一个指针指向此对象； </li>
 <li>int 的默认值为0，且不能为空；而Integer可以赋值为null;</li>
 </ol>
 </blockquote>
 <h3 id="String-String-Buffer-和-String-Builder"><a href="#String-String-Buffer-和-String-Builder" class="headerlink" title="String , String Buffer 和 String  Builder"></a>String , String Buffer 和 String  Builder</h3><blockquote>
-<p><strong>string, string buffer和string build er的区别?</strong> </p>
+<p><strong>string, string buffer和string builder的区别?</strong> </p>
 <ol>
 <li>String : 是一个不可变的字符序列，底层是一个char[]被final所修饰</li>
-<li>StringBuffer:是一个可变的字符序列，底层是一个char[],线程安全的，效率低</li>
+<li>StringBuffer:是一个可变的字符序列，底层是一个char[],线程安全的(syn修饰，线程同步)，效率低</li>
 <li>StringBuilder:是一个可变的字符序列，底层是一个char[],线程不安全的，效率高</li>
 </ol>
 <p>多线程环境下，使用StringBuffer 是符合线程安全要求的；单线程环境下，使用StringBuilder由于没有锁机制的存在，效率相对较快</p>
@@ -612,6 +615,10 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 </ol>
 <p><strong>说明：</strong></p>
 <p>​    当我们创建一个空参的StringBuffer的对象时，底层默认创建一个长度为16的数组。当我们添加第17个元素时，底层会进行扩容，扩容为原来的2倍+2.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">newCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// overflow-conscious code</span></span><br><span class="line">       <span class="keyword">int</span> newCapacity = (value.length &lt;&lt; <span class="number">1</span>) + <span class="number">2</span>;</span><br><span class="line">       <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>) &#123;</span><br><span class="line">           newCapacity = minCapacity;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> (newCapacity &lt;= <span class="number">0</span> || MAX_ARRAY_SIZE - newCapacity &lt; <span class="number">0</span>)</span><br><span class="line">           ? hugeCapacity(minCapacity)</span><br><span class="line">           : newCapacity;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <p><strong>StringBuffer的数据是怎么保存？</strong> </p>
 <p>​    StringBuffer对象在使用时只会开辟一个堆内存空间，每次使用都是指向那个堆内存空间。</p>
 <hr>
@@ -619,8 +626,13 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <p>​    效率最高的是 StringBuilder ，“+”的底层是使用StringBuilder 的append()方法实现字符串拼接的，需要先创建StringBuilder 的实例，再进行拼接，然后将拼接的结果转为String 字符串，对象的多次转换影响效率。<br>    而StringBuffer因为底层方法有同步锁机制，串行执行情况下，效率很低。<br>    StringBuilder 的底层没有锁机制影响，可以并行执行效率最高。</p>
 <p><strong>“+”是怎么将两个字符串进行拼接</strong> </p>
 <p>通过反编译 .class 文件可知：</p>
-<p>例子：<br>    String wechat = “wsp”;<br>    String introduce = “鮀城小帅”;<br>    String hollis = wechat + “,” + introduce;</p>
-<p>进行反编译字节码文件后，可以知道的内容有：<br>    String wechat = “wsp”;<br>    String introduce = “鮀城小帅”;<br>    StringBuilder hollis = (new             StringBuilder()).append(wechat).append(“,”).append(introduce).toString();</p>
+<p>例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String wechat = <span class="string">"wsp"</span>;</span><br><span class="line">String introduce = <span class="string">"鮀城小帅"</span>;</span><br><span class="line">String hollis = wechat + <span class="string">","</span> + introduce;</span><br></pre></td></tr></table></figure>
+
+<p>进行反编译字节码文件后，可以知道的内容有：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String wechat = <span class="string">"wsp"</span>;</span><br><span class="line">String introduce = <span class="string">"鮀城小帅"</span>;</span><br><span class="line">StringBuilder hollis = (<span class="keyword">new</span> 			StringBuilder()).append(wechat).append(<span class="string">","</span>).append(introduce).toString();</span><br></pre></td></tr></table></figure>
+
+
 <p>通过查看反编译以后的代码，我们可以发现，原来字符串常量在拼接过程中，是将String转成了StringBuilder后，使用其append方法进行处理的。</p>
 <p>那么也就是说，Java中的+对字符串的拼接，其实现原理是使用StringBuilder.append。</p>
 <p><strong>做字符串拼接的有哪些？了解吗</strong> </p>
@@ -681,13 +693,13 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <ol>
 <li>ArrayList底层为数组，查询快、增删慢、线程不安全；</li>
 <li>LinkedList底层为链表，查询慢、增删快、线程不安全</li>
-<li>Vector 底层为数组，查询快、增删慢、线程安全</li>
+<li>Vector 底层为数组，查询快、增删慢、线程安全(syc同步修饰)</li>
 </ol>
 <p>list 接口下的集合类：<code>可以装重复元素，且有序（有索引值），为单列集合</code>。</p>
 <p><strong>Set接口下的集合类的区别：</strong></p>
 <ol>
 <li>HashSet底层有链表，查询慢、增删快</li>
-<li>LinkedHashSet 底层四在HashSet基础上多了一条链表，即双向链表，增删快，与HashSet的使用方式一样；</li>
+<li>LinkedHashSet 底层是在HashSet基础上多了一条链表，即双向链表，增删快，与HashSet的使用方式一样；</li>
 <li>TreeSet底层是二叉树，对SortedSet进行了继承。</li>
 </ol>
 <p>Set 接口下的集合类不可重复且无序（无索引值），否则则会进行覆盖。</p>
@@ -737,7 +749,7 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <h3 id="HashMap的底层实现原理和扩容机制？"><a href="#HashMap的底层实现原理和扩容机制？" class="headerlink" title="HashMap的底层实现原理和扩容机制？"></a>HashMap的底层实现原理和扩容机制？</h3><p><a href="https://blog.csdn.net/weixin_42405670/article/details/104105186" target="_blank" rel="noopener">面试题： Java中各个集合类的扩容机制</a></p>
 <h3 id="关于数组和链表的区别？"><a href="#关于数组和链表的区别？" class="headerlink" title="关于数组和链表的区别？"></a>关于数组和链表的区别？</h3><blockquote>
 <p>在内存中，数组是一块连续的区域，而链表可以存在任何地方不要求连续。</p>
-<p>——<br>数组需要预留空间，在使用前要先申请占内存的大小，可能会浪费内存空间；且数组插入数据和删除数据效率低，插入数据是，这个位置后面的数据在内存中都要向后移。删除数据时，这个数据后面的数据都要往前移动；随机读取效率很高，因为数组是连续的，知道每一个数据的内存地址，可以直接找到给地址的数据；但不利于扩展，数组定义的空间不够是要重新定义数组。</p>
+<p>——<br>数组需要预留空间，在使用前要先申请占内存的大小，可能会浪费内存空间；且数组插入数据和删除数据效率低，插入数据时，这个位置后面的数据在内存中都要向后移。删除数据时，这个数据后面的数据都要往前移动；随机读取效率很高，因为数组是连续的，知道每一个数据的内存地址，可以直接找到该地址的数据；但不利于扩展，数组定义的空间不够是要重新定义数组。</p>
 <p>——<br>链表中每一个数据都保存了下一个数据的内存地址，通过这个地址找到下一个数据。增加数据和删除数据很容易。查找数据时效率低，因为不具有随机访问性,所以访问某个位置的数据都要从第一个数据开始访问，然后根据第一个数据保存的地址找到第二个数据，以此类推。不指定大小，扩展方便。链表大小不用定义，数据随意增删。</p>
 </blockquote>
 <h3 id="Hashmap里的红黑树知道吗？"><a href="#Hashmap里的红黑树知道吗？" class="headerlink" title="Hashmap里的红黑树知道吗？"></a>Hashmap里的红黑树知道吗？</h3><blockquote>
@@ -746,7 +758,7 @@ B类叫做父类 （superClass,超类，基类）</code></pre><p><strong>子类�
 <h3 id="Concurrenthashmap知道吗？"><a href="#Concurrenthashmap知道吗？" class="headerlink" title="Concurrenthashmap知道吗？"></a>Concurrenthashmap知道吗？</h3><blockquote>
 <p>ConcurrentHashMap具有锁分段的技术，使用起来比hashmap和 hashTable要优良。</p>
 <p><strong>原因：</strong> Hashmap是线程不安全的，所以一般在并发环境下不建议使用；而HashTable虽然是线程安全的，但是由于使用了同步锁，在高并发环境下效率低下；因为所有访问HashTable的线程都必须竞争同一把锁。假如容器中有多把锁，每一把锁用于锁容器其中一部分数据，那么当多线程访问容器里不同数据段的数据时，线程间就不会存在锁竞争，从而可以有效的提高并发访问效率，这就是ConcurrentHashMap锁所使用的锁分段技术。</p>
-<p><strong>应用场景：</strong>当有一个大数组时需要在多个线程共享是就可以考虑是否把它给分成多个节点了，避免大锁。</p>
+<p><strong>应用场景：</strong>当有一个大数组时需要在多个线程共享时就可以考虑是否把它给分成多个节点了，避免大锁。</p>
 </blockquote>
 <h2 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h2><h3 id="java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？"><a href="#java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？" class="headerlink" title="java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？"></a>java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？</h3><p><a href="https://www.cnblogs.com/guweiwei/p/6638879.html" target="_blank" rel="noopener"> java中有几种类型的流？JDK为每种类型的流提供了一些抽象类以供继承，请说出他们分别是哪些类？</a></p>
 <h3 id="什么是java序列化，如何实现java序列化？"><a href="#什么是java序列化，如何实现java序列化？" class="headerlink" title="什么是java序列化，如何实现java序列化？"></a>什么是java序列化，如何实现java序列化？</h3><blockquote>
@@ -967,6 +979,10 @@ Class 对象只能由系统建立对象
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/" rel="prev" title="面试题（二）Web">
+                面试题（二）Web <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1090,7 +1106,7 @@ Class 对象只能由系统建立对象
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">169</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1112,7 +1128,7 @@ Class 对象只能由系统建立对象
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">124</span>
+                  <span class="site-state-item-count">126</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
