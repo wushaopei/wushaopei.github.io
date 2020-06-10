@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/" itemprop="url">自动化开发（二）BC代码讲解</a></h1>
+                <a class="post-title-link" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="url">mybatis 入门（五）生命周期</a></h1>
         
 
         <div class="post-meta">
@@ -379,536 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T17:32:12+08:00">
-                2020-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="自动化开发（二）BC代码讲解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          代码结构包目录图：
-
-代码分块：
-api - bundle 
-bc-common   
-bc-model-bundle
-service 层： bc-service- * - *   （包括bc-jobdata-service-bundle）
-
-​        bc-service 开头的是整个BC
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89BC%E4%BB%A3%E7%A0%81%E8%AE%B2%E8%A7%A3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/" itemprop="url">自动化开发（二）BC代码讲解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T17:32:12+08:00">
-                2020-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/" class="leancloud_visitors" data-flag-title="自动化开发（二）BC代码讲解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          代码结构包目录图：
-
-代码分块：
-api - bundle 
-bc-common   
-bc-model-bundle
-service 层： bc-service- * - *   （包括bc-jobdata-service-bundle）
-
-​        bc-service 开头的是整个BC
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89BC%E4%BB%A3%E7%A0%81-%E4%B8%9A%E5%8A%A1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/" itemprop="url">自动化开发（一）BC架构讲解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T15:25:40+08:00">
-                2020-03-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化开发</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="自动化开发（一）BC架构讲解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          BC项目架构图
-
-整个BC项目的架构层次分别为：
-前端      (BC Client(WEB)  、 BC Monitor(WEB))
-服务        ( OSGI Bundles服务)
-Workflow   (WorkflowRuntime，整体包括 Workflow API and Int
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89BC%E6%9E%B6%E6%9E%84%E8%AE%B2%E8%A7%A3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/" itemprop="url">mybatis 简介（三）Hibernate</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T10:32:52+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:59:47+08:00">
+                2020-04-03
               </time>
             
 
@@ -948,8 +420,8 @@ Workflow   (WorkflowRuntime，整体包括 Workflow API and Int
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -957,7 +429,7 @@ Workflow   (WorkflowRuntime，整体包括 Workflow API and Int
 
           
           
-             <span id="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/" class="leancloud_visitors" data-flag-title="mybatis 简介（三）Hibernate">
+             <span id="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="leancloud_visitors" data-flag-title="mybatis 入门（五）生命周期">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -990,13 +462,15 @@ Workflow   (WorkflowRuntime，整体包括 Workflow API and Int
       
         
           
-          前言：​    基于JDBC在企业级开发过程中频繁建立连接等对资源与性能无法兼顾的弊端。
-​    基于这个需求，互联网企业Sun公司推出了一个ORM模型框架——Hibernate 。
-Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解）提供的规则映射到数据库表上
+          声明周期理解我们之前讨论过的不同作用域和生命周期类别是至关重要的，因为错误的使用会导致非常严重的并发问题。 
+
+
+​         对象生命周期和依赖注入框架       
+​         依赖注入框架可以创建线程安全的、基于事务的 SqlSession 和映射器，并将它们直接注入到你的 be
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%89%EF%BC%89Hibernate/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1047,7 +521,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1066,7 +540,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/" itemprop="url">mybatis 简介（二）ORM 模型</a></h1>
+                <a class="post-title-link" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/" itemprop="url">mybatis 入门（四）Mybatis 的基本构成-映射器</a></h1>
         
 
         <div class="post-meta">
@@ -1078,8 +552,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T10:32:41+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:59:09+08:00">
+                2020-04-03
               </time>
             
 
@@ -1119,8 +593,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1128,7 +602,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
 
           
           
-             <span id="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/" class="leancloud_visitors" data-flag-title="mybatis 简介（二）ORM 模型">
+             <span id="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/" class="leancloud_visitors" data-flag-title="mybatis 入门（四）Mybatis 的基本构成-映射器">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1161,12 +635,22 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
       
         
           
-          ​    由于JDBC存在的缺陷，在实际工作中我们很少使用JDBC进行编程，于是提出了对 象关系映射(0可ect Relational Mapping,简称 0RM,或者 O/RM,或者 0/R mapping)。那 什么是ORM模型呢？ 
-​    简单地说，ORM模型就是数据库的表和简单Java
+          映射器构成：映射器是由Java接口和XML文件（或注解）共同组成的，它的作用如下。
+
+定义参数类型
+描述缓存
+描述SQL语句
+定义查询结果和POJO的映射关系
+
+两种实现方式
+一种是通过XML文件方式实现；
+另一种就是通过代码方式实现。
+
+第一种，XML配置实现的方式， 这里需要在mytais-co
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%8C%EF%BC%89ORM-%E6%A8%A1%E5%9E%8B-1/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%98%A0%E5%B0%84%E5%99%A8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1217,7 +701,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1236,7 +720,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/" itemprop="url">并发编程（五）并发模拟-工具</a></h1>
+                <a class="post-title-link" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/" itemprop="url">mybatis 入门（三）Mybatis 的基本构成-创建SqlSession</a></h1>
         
 
         <div class="post-meta">
@@ -1248,8 +732,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:54:50+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:58:55+08:00">
+                2020-04-03
               </time>
             
 
@@ -1271,8 +755,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
                   </a>
                 </span>
 
@@ -1289,8 +773,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1298,7 +782,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
 
           
           
-             <span id="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/" class="leancloud_visitors" data-flag-title="并发编程（五）并发模拟-工具">
+             <span id="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/" class="leancloud_visitors" data-flag-title="mybatis 入门（三）Mybatis 的基本构成-创建SqlSession">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1331,17 +815,11 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
       
         
           
-          并发模拟——工具常用工具：  Postman : Http请求模拟工具
-  Apache Bench （AB） ： Apache附带的工具，测试网站性能
-  JMeter : Apache 组织开发的压力测试工具
-
-代码： Semaphore 、CountDownLatch等
-
-并发模拟——POST
+          创建SqlSessionSqlSession是一个接口类，它类似于你们公司前台的美女客服，它扮演着门面的作用，而真正干活的是Executor接口，你可以认为它是公司的工程师。假设我是客户找你们公司干活，我只需要告诉前台的美女客服（SqlSession）我要什么信息（参数），要做什么东西，过段时间，她
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%94%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F-%E5%B7%A5%E5%85%B7/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E5%88%9B%E5%BB%BASqlSession/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1392,7 +870,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1411,7 +889,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="url">并发编程（四）并发案例-环境搭建</a></h1>
+                <a class="post-title-link" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/" itemprop="url">mybatis 入门（二）Mybatis 的基本构成-构建SqlSessionFactory</a></h1>
         
 
         <div class="post-meta">
@@ -1423,8 +901,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:45:41+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:56:21+08:00">
+                2020-04-03
               </time>
             
 
@@ -1446,8 +924,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
                   </a>
                 </span>
 
@@ -1464,8 +942,8 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1473,7 +951,7 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
 
           
           
-             <span id="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="并发编程（四）并发案例-环境搭建">
+             <span id="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/" class="leancloud_visitors" data-flag-title="mybatis 入门（二）Mybatis 的基本构成-构建SqlSessionFactory">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1506,16 +984,13 @@ Hiberate概述Hibernate 是建立在若干POJO通过XML映射文件（或注解�
       
         
           
-          案例环境初始化环境搭建与准备Spring Boot 项目，https://start.spring.io/
-Git 管理代码，https://github.com/wushaopei/concurrency
-码云：https://gitee.com/wushaopei/concurrency
-
-
-点
+          MyBatis 的基本构成认识MyBatis，从它的表面想象，即基本构成进行了解。
+关于MyBatis的核心组件：SqlSessionFactoryBuilder(构造器)： 它会根据配置信息或者代码来生成SqlSessionfactory（工厂接口）。
+SqlSessionFactory： 依靠工
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%9B%9B%EF%BC%89%E5%B9%B6%E5%8F%91%E6%A1%88%E4%BE%8B-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1566,7 +1041,7 @@ Git 管理代码，https://github.com/wushaopei/concurrency
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1585,7 +1060,7 @@ Git 管理代码，https://github.com/wushaopei/concurrency
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" itemprop="url">并发编程（三）并发基础-Java内存模型</a></h1>
+                <a class="post-title-link" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/" itemprop="url">并发编程（十一）线程安全策略-线程封闭</a></h1>
         
 
         <div class="post-meta">
@@ -1597,8 +1072,8 @@ Git 管理代码，https://github.com/wushaopei/concurrency
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:26:58+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:34:50+08:00">
+                2020-04-03
               </time>
             
 
@@ -1638,8 +1113,8 @@ Git 管理代码，https://github.com/wushaopei/concurrency
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1647,7 +1122,7 @@ Git 管理代码，https://github.com/wushaopei/concurrency
 
           
           
-             <span id="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/" class="leancloud_visitors" data-flag-title="并发编程（三）并发基础-Java内存模型">
+             <span id="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/" class="leancloud_visitors" data-flag-title="并发编程（十一）线程安全策略-线程封闭">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1680,14 +1155,14 @@ Git 管理代码，https://github.com/wushaopei/concurrency
       
         
           
-          JAVA内存模型Java内存模型（Java Memory Model,JMM）
-
-Java内存模型规范：规定了一个线程如何和何时可以看到由其他线程修改过后的共享变量的值，以及在必须时如何同步的访问共享变量。
-Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回收来负责的，堆的优势是可以动
+          线程封闭目的：避免并发，除了设置不可变对象，还有线程封闭。
+什么是线程封闭所谓线程封闭，就是把对象锁定到一个线程里，只有这个线程可以看到对象，那么，这个对象就算不是线程安全的，也不会出现线程安全的问题了。因为它只能在一个线程内访问。 
+线程封闭共有三种：第一种线程封闭：
+ Ad-hoc 线程封闭 ：
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%89%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E5%B0%81%E9%97%AD/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1738,7 +1213,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1757,7 +1232,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" itemprop="url">并发编程（二）并发基础-CPU多级缓存机制</a></h1>
+                <a class="post-title-link" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" itemprop="url">并发编程（十）线程安全策略-不可变对象</a></h1>
         
 
         <div class="post-meta">
@@ -1769,8 +1244,8 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-24T09:14:36+08:00">
-                2020-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:03:16+08:00">
+                2020-04-03
               </time>
             
 
@@ -1810,8 +1285,8 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1819,7 +1294,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
 
           
           
-             <span id="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="并发编程（二）并发基础-CPU多级缓存机制">
+             <span id="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/" class="leancloud_visitors" data-flag-title="并发编程（十）线程安全策略-不可变对象">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1852,16 +1327,19 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
       
         
           
-          CPU多级缓存-缓存一致性CPU多级缓存
+          不可变对象定义1有一种安全的发布对象，即不可变对象。
 
-​    上图展示的是CPU高级缓存的配置，数据的读取和存储都经过高速缓存，CPU核心与高速缓存之间有一条特殊的快速通道；在这个简化的图中，主存和缓存都连接在系统总线上，这条总线同时还用于其他组件的通信。 
+不可变对象的存在条件
+ ① 对象创建以后其状态就不能修改
+ ② 对象所有域都是final类型
+ ③ 对象是正确创建的（在对象创建期间，this引用没有逸出）
 
-
-​    高速缓存出现后不久，系统变得更加复
+关键字 - finalfinal 的作用
+final 关键字可以用来修饰：类、方法、
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/24/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80-CPU%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1912,7 +1390,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1931,7 +1409,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/" itemprop="url">并发编程（一）概念引入与并发场景</a></h1>
+                <a class="post-title-link" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/" itemprop="url">并发编程（九）线程安全性-有序性与总结</a></h1>
         
 
         <div class="post-meta">
@@ -1943,8 +1421,8 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T17:39:19+08:00">
-                2020-03-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T11:41:30+08:00">
+                2020-04-03
               </time>
             
 
@@ -1984,8 +1462,8 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/" itemprop="commentCount"></span>
+                <a href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1993,7 +1471,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
 
           
           
-             <span id="/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/" class="leancloud_visitors" data-flag-title="并发编程（一）概念引入与并发场景">
+             <span id="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="并发编程（九）线程安全性-有序性与总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2026,19 +1504,538 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
       
         
           
-          涉及的基础知识与核心知识：
-
-
-
-并发及并发的线程安全处理
-
-
-
-并发编程的基本概念 并发： 同时拥有两个或者多个线程，如果程序在单核处理器上运行，多个线程将交替地换入或换出内存，这些线程是同时 “ 存在” 的 ，每个线程都处于执行过程中的某个状态，如果运行在多核处理器上，此时，程序中的每个线程都将
+          有序性​    定义： Java内存模型中，允许编译器和处理器对指令进行重排序，但是重排序过程不会影响到单线程程序的执行，却会影响到多线程并发执行的正确性； 
+​    实现方式： volatile 、synchronized、Lock 
+有序性 - happens - before原则
+程序次序规
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/#more" rel="contents">
+            <a class="btn" href="/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B9%9D%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E6%9C%89%E5%BA%8F%E6%80%A7%E4%B8%8E%E6%80%BB%E7%BB%93/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" itemprop="url">mybatis 入门（一）开发环境准备</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T23:06:26+08:00">
+                2020-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E7%9F%A5%E8%AF%86%E6%A0%91/" itemprop="url" rel="index">
+                    <span itemprop="name">知识树</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" class="leancloud_visitors" data-flag-title="mybatis 入门（一）开发环境准备">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          开发环境准备下载MyBatis最简单的方式是直接访问 MyBatis 托管在Github的官网，从上面下载MyBatis，地址如下：
+https://github.com/mybatis/mybatis-3/releases
+该官网可以下载到配置启动MyBatis所需要的Jar包和源码包
+使用Myb
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/01/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/" itemprop="url">mybatis 简介（五）什么时候用MyBatis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T09:53:19+08:00">
+                2020-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/" class="leancloud_visitors" data-flag-title="mybatis 简介（五）什么时候用MyBatis">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ​    通过前面对JDBC、Hibernate和MyBatis的介绍，我们有了一些认识。
+​    JDBC的方式在目前的企业级开发中是极少用到，因为要提供的代码太多，开发过程太繁琐而冗余，以及容易出错，并不推荐这一种方式；适用于直接使用JDBC的业务场景也是极少的。
+​    Hibernate
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/01/mybatis-%E7%AE%80%E4%BB%8B%EF%BC%88%E4%BA%94%EF%BC%89%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8MyBatis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/" itemprop="url">自动化开发（三）Specification-02.Communication Structure</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-31T22:46:36+08:00">
+                2020-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/" class="leancloud_visitors" data-flag-title="自动化开发（三）Specification-02.Communication Structure">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Communication Structure - 通讯结构T6BC架构概述Data Communication设备通过CC-Link IE的链路信号与上下游设备进行连接
+链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/31/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2080,7 +2077,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2130,7 +2127,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">169</span>
+                  <span class="site-state-item-count">184</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2141,7 +2138,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2152,7 +2149,7 @@ Java内存模型：Java里的堆是一个运行时数据区，堆是由垃圾回
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">126</span>
+                  <span class="site-state-item-count">133</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
