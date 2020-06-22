@@ -99,7 +99,7 @@
 <meta property="og:description" content="缓存 cache缓存：所谓是指把一些经常访问的数据保存到一个调整的缓冲区中。保存在高速缓冲区中的数据叫缓存。因此具备快速读取和使用的特点，如果缓存命中率高，那么就可以极大地提高系统的性能。如果缓存命中率很低，那么缓存就不存在使用的意义了，所以使用缓存的关键在于存储内容访问的命中率。 系统缓存（一级缓存和二级缓存）​    MyBatis 对缓存提供支持，但是在没有配置的默认的情况拿下，它只开启一级">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-28T03:42:21.000Z">
-<meta property="article:modified_time" content="2020-04-28T07:06:06.634Z">
+<meta property="article:modified_time" content="2020-06-11T04:45:53.152Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="映射器">
 <meta property="article:tag" content="缓存cache">
@@ -412,6 +412,17 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -484,14 +495,20 @@
 
 <p>基本上就是这样。这个简单语句的效果如下:         </p>
 <ul>
-<li>映射语句文件中的所有 select 语句的结果将会被缓存。</li>
-<li>映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存。</li>
-<li>缓存会使用最近最少使用算法（LRU, Least Recently Used）算法来清除不需要的缓存。</li>
-<li>缓存不会定时进行刷新（也就是说，没有刷新间隔）。</li>
-<li>缓存会保存列表或对象（无论查询方法返回哪种）的 1024 个引用。</li>
-<li>缓存会被视为读/写缓存，这意味着获取到的对象并不是共享的，可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改。</li>
+<li><p>映射语句文件中的所有 select 语句的结果将会被缓存。</p>
+</li>
+<li><p>映射语句文件中的所有 insert、update 和 delete 语句会刷新缓存。</p>
+</li>
+<li><p>缓存会使用最近最少使用算法（LRU, Least Recently Used）算法来清除不需要的缓存。</p>
+</li>
+<li><p>缓存不会定时进行刷新（也就是说，没有刷新间隔）。</p>
+</li>
+<li><p>缓存会保存列表或对象（无论查询方法返回哪种）的 1024 个引用。</p>
+</li>
+<li><p>缓存会被视为读/写缓存，这意味着获取到的对象并不是共享的，可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改。</p>
+<p>  提示` 缓存只作用于 cache 标签所在的映射文件中的语句。如果你混合使用 Java API 和 XML 映射文件，在共用接口中的语句将不会被默认缓存。你需要使用 @CacheNamespaceRef 注解指定缓存作用域。     </p>
+</li>
 </ul>
-<p><code>提示</code> 缓存只作用于 cache 标签所在的映射文件中的语句。如果你混合使用 Java API 和 XML 映射文件，在共用接口中的语句将不会被默认缓存。你需要使用 @CacheNamespaceRef 注解指定缓存作用域。     </p>
 <p>这些属性可以通过 cache 元素的属性来修改。比如： </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span></span></span><br><span class="line"><span class="tag">  <span class="attr">eviction</span>=<span class="string">"FIFO"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">flushInterval</span>=<span class="string">"60000"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">size</span>=<span class="string">"512"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">readOnly</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -749,7 +766,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">184</span>
+                  <span class="site-state-item-count">211</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -760,7 +777,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -771,7 +788,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">133</span>
+                  <span class="site-state-item-count">167</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
