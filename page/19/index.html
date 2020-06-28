@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="url">jdbc(三)预编译-Statement、PreparedStatement</a></h1>
+                <a class="post-title-link" href="/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/" itemprop="url">mybatis 简介（一）传统的JDBC编程的不足</a></h1>
         
 
         <div class="post-meta">
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:03:14+08:00">
-                2020-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-12T13:55:29+08:00">
+                2020-03-12
               </time>
             
 
@@ -402,8 +402,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jdbc/" itemprop="url" rel="index">
-                    <span itemprop="name">jdbc</span>
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
                   </a>
                 </span>
 
@@ -420,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="commentCount"></span>
+                <a href="/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -429,7 +440,7 @@
 
           
           
-             <span id="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" class="leancloud_visitors" data-flag-title="jdbc(三)预编译-Statement、PreparedStatement">
+             <span id="/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/" class="leancloud_visitors" data-flag-title="mybatis 简介（一）传统的JDBC编程的不足">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -462,15 +473,15 @@
       
         
           
-          预编译：statement 与 PreparedStatementsql提供访问的接口：
-数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句
-在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：
+          JDBC的作用Java程序都是通过JDBC连接数据库的，这样我们才能实现通过SQL对数据库编程。JDBC是SUN公司提出的一系列规范，并交由下游的数据库厂商去通过定义好的接口规范实现具体的数据库数据操作。
+具体实现如下：
 
-12345|---
+
+JDBC的不足传统的JDBC功能虽然让我们能够连接数据库并实现对数据的操作
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#more" rel="contents">
+            <a class="btn" href="/2020/03/12/mybatis%20%E7%AE%80%E4%BB%8B%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E7%BB%9F%E7%9A%84JDBC%E7%BC%96%E7%A8%8B%E7%9A%84%E4%B8%8D%E8%B6%B3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -521,7 +532,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E5%9B%9B)ResultSet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -540,7 +551,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="url">jdbc(四)ResultSet</a></h1>
+                <a class="post-title-link" href="/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/" itemprop="url">Activity-（五）HelloWorld实现</a></h1>
         
 
         <div class="post-meta">
@@ -552,8 +563,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:03:14+08:00">
-                2020-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-11T22:41:09+08:00">
+                2020-03-11
               </time>
             
 
@@ -575,8 +586,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jdbc/" itemprop="url" rel="index">
-                    <span itemprop="name">jdbc</span>
+                  <a href="/categories/Activity/" itemprop="url" rel="index">
+                    <span itemprop="name">Activity</span>
                   </a>
                 </span>
 
@@ -593,8 +604,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="commentCount"></span>
+                <a href="/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -602,7 +613,7 @@
 
           
           
-             <span id="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" class="leancloud_visitors" data-flag-title="jdbc(四)ResultSet">
+             <span id="/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Activity-（五）HelloWorld实现">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -635,14 +646,12 @@
       
         
           
-          ResultSetResultSet 的作用：
-通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象
-ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现
-ResultSet 对象维护了一个指向当前
+          HelloWorld做一个最简单的HellWorld流程用代码的方式实现并且走完流程。 
+以下是涉及到的比较重要的八张表123456789101112131415SELECT * FROM act_re_deployment;   -- 一 流程部署表 SELECT * FROM act_ge_by
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#more" rel="contents">
+            <a class="btn" href="/2020/03/11/Activity-%EF%BC%88%E4%BA%94%EF%BC%89HelloWorld%E5%AE%9E%E7%8E%B0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -864,6 +873,179 @@ ResultSet 对象维护了一个指向当前
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="url">jdbc(三)预编译-Statement、PreparedStatement</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:03:14+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jdbc/" itemprop="url" rel="index">
+                    <span itemprop="name">jdbc</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/" class="leancloud_visitors" data-flag-title="jdbc(三)预编译-Statement、PreparedStatement">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          预编译：statement 与 PreparedStatementsql提供访问的接口：
+数据库连接被用于向数据库服务器发送命令和 SQL 语句，在连接建立后，需要对数据库进行访问，执行 sql 语句
+在 java.sql 包中有 3 个接口分别定义了对数据库的调用的不同方式：
+
+12345|---
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/10/jdbc(%E4%B8%89)%E9%A2%84%E7%BC%96%E8%AF%91-Statement%E3%80%81PreparedStatement/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%BA%94)%E6%99%AE%E9%80%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E3%80%81%E9%80%9A%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -983,6 +1165,178 @@ ResultSet 对象维护了一个指向当前
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/03/10/jdbc(%E4%BA%94)%E6%99%AE%E9%80%9A%E5%A2%9E%E5%88%A0%E6%94%B9%E3%80%81%E9%80%9A%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E5%9B%9B)ResultSet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="url">jdbc(四)ResultSet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:03:14+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jdbc/" itemprop="url" rel="index">
+                    <span itemprop="name">jdbc</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" class="leancloud_visitors" data-flag-title="jdbc(四)ResultSet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          ResultSetResultSet 的作用：
+通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象
+ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现
+ResultSet 对象维护了一个指向当前
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1705,349 +2059,6 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="url">Activity（四）流程设计工具创建流程图</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T22:18:33+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="leancloud_visitors" data-flag-title="Activity（四）流程设计工具创建流程图">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、引言在前面我们知道了怎么创建流程控制引擎，而Activiti 的正常使用还需要进行部署流程，而这就有一个很重要的前提。那就是创建相应的流程图，并让其能被 service 所调用从而实现流程的执行。
-2、流程图创建工具2.1 简述第一种创建方式在这里说明一点，流程图的创建可以使用两种方式，第一种是
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="url">hexo搭建个人博客（一）博客框架搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="hexo搭建个人博客（一）博客框架搭建">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛
-12实验环境:win10前期准备：安装好git和node.js（自行百度下载git和nedo.js）
-
-
-好，话不多说，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2102,7 +2113,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">211</span>
+                  <span class="site-state-item-count">213</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2113,7 +2124,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2124,7 +2135,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">170</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
