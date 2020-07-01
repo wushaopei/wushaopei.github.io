@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="s8Pe1TBqyy" />
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式锁,zk实现分布式锁," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鮀城小帅" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="基于 Zookeeper 做分布式锁一、死锁与活锁的概念以订单服务、商品服务和库存的业务交互为例：   死锁： ​    在订单服务查询库存时，将库存进行上锁；此时商品服务就无法访问库存了。该操作使用死锁方式。 活锁： ​    在订单服务查询库存时，商品服务可以去查询库存。该操作使用活锁机制。ml&gt; 二、分布式锁的概念与数据最终不一致性  如上图：   ①用户下了一个订单 ②这时候需要去查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式锁（二）Zookeeper实现分布式锁的机制与案例">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/index.html">
+<meta property="og:site_name" content="鮀城小帅">
+<meta property="og:description" content="基于 Zookeeper 做分布式锁一、死锁与活锁的概念以订单服务、商品服务和库存的业务交互为例：   死锁： ​    在订单服务查询库存时，将库存进行上锁；此时商品服务就无法访问库存了。该操作使用死锁方式。 活锁： ​    在订单服务查询库存时，商品服务可以去查询库存。该操作使用活锁机制。ml&gt; 二、分布式锁的概念与数据最终不一致性  如上图：   ①用户下了一个订单 ②这时候需要去查">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu887.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu888.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu889.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu890.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu891.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu892.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu894.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu893.png">
+<meta property="article:published_time" content="2020-06-29T14:49:26.000Z">
+<meta property="article:modified_time" content="2020-07-01T14:44:22.535Z">
+<meta property="article:author" content="吴少培">
+<meta property="article:tag" content="分布式锁">
+<meta property="article:tag" content="zk实现分布式锁">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu887.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/06/29/分布式锁（二）Zookeeper实现分布式锁的机制与案例/"/>
+
+
+
+
+
+  <title>分布式锁（二）Zookeeper实现分布式锁的机制与案例 | 鮀城小帅</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鮀城小帅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总要扛起一片心中的天</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-热度">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            热度
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-公益">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-说说">
+          <a href="/shuoshuo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            说说
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/wushaopei" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+  <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+</a>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式锁（二）Zookeeper实现分布式锁的机制与案例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-29T22:49:26+08:00">
+                2020-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeepr/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeepr</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeepr/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式锁实现</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="分布式锁（二）Zookeeper实现分布式锁的机制与案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="基于-Zookeeper-做分布式锁"><a href="#基于-Zookeeper-做分布式锁" class="headerlink" title="基于 Zookeeper 做分布式锁"></a>基于 Zookeeper 做分布式锁</h2><h3 id="一、死锁与活锁的概念"><a href="#一、死锁与活锁的概念" class="headerlink" title="一、死锁与活锁的概念"></a>一、死锁与活锁的概念</h3><p>以订单服务、商品服务和库存的业务交互为例：</p>
+<img src="http://photo.wushaopei.com/qiniu887.png" width="60%">
+
+<p><strong>死锁：</strong></p>
+<p>​    在订单服务查询库存时，将库存进行上锁；此时商品服务就无法访问库存了。该操作使用死锁方式。</p>
+<p><strong>活锁：</strong></p>
+<p>​    在订单服务查询库存时，商品服务可以去查询库存。该操作使用活锁机制。ml&gt;</p>
+<h3 id="二、分布式锁的概念与数据最终不一致性"><a href="#二、分布式锁的概念与数据最终不一致性" class="headerlink" title="二、分布式锁的概念与数据最终不一致性"></a>二、分布式锁的概念与数据最终不一致性</h3><img src="http://photo.wushaopei.com/qiniu888.png" width="60%">
+
+<p><strong>如上图：</strong></p>
+<blockquote>
+<p> ①用户下了一个订单</p>
+<p>②这时候需要去查看商品的库存</p>
+<p>③如果库存不足则下订单失败</p>
+<p>④如果库存满足则开始创建订单</p>
+<p>⑤创建库存后则需要进行扣除库存的操作</p>
+<p>⑥在创建订单成功以及扣除库存成功后，用户的下单操作就算是成功了</p>
+</blockquote>
+<p><strong>问题：</strong></p>
+<p>​    在并发环境下，当第一次操作时商品库存假设为10，订单需求为6, 在第一次下单后余量为4；若第二个用户进来同样需要商品为6，此时余量为4不满足条件，正常情况下该下单失败。但是如果由于网络、数据更新缓慢等原因导致第一个用户下单后没有及时扣除库存，那么第二个用户就会因为库存依然为10而下单成功扣除6个商品。</p>
+<p>​    等到最终两个用户的订单都执行完成后，库存会出现负数，即为-2的情况。</p>
+<p><strong>解决方案</strong>： 使用分布式锁保证数据的最终一致性</p>
+<h3 id="三、Zookeeper-分布式锁"><a href="#三、Zookeeper-分布式锁" class="headerlink" title="三、Zookeeper 分布式锁"></a>三、Zookeeper 分布式锁</h3><p><strong>分布式锁实现的流程图</strong></p>
+<img src="http://photo.wushaopei.com/qiniu889.png" width="60%">
+
+<p>​    首先我们的请求进来，我们会先进行判断，我们会判断这把锁是不是已经被占用了，如果这把锁被占用了，我们就需要等待这把锁释放；那么此时我们就需要将当前进程进行挂起。</p>
+<p> <strong>将进程进行挂起的方法：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用于挂起当前请求，并且等待上一个分布式锁释放</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> CountDownLatch zkLockLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>如上述代码，我们会使用 CountDownLatch的  await 方法将当前进程进行挂起；挂起之后，请求就会一直在等待。</p>
+<p>下订单业务的锁：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分布式锁节点</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String DISTRIBUTED_LOCK = <span class="string">"distributed_lock"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>下订单的锁会有一个名称，如上述代码中的： distributed_lock</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 分布式锁的总节点名</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String ZK_LOCK_PROJECT = <span class="string">"imooc-locks"</span>;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码中是总节点，该节点可理解为一切子节点（包括上述分布式锁节点在内）的父节点，其下属多个子模块、子分布式锁节点</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   *  @Description: 初始化锁</span></span><br><span class="line"><span class="comment">   * */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 使用命名空间</span></span><br><span class="line">       client = client.usingNamespace(<span class="string">"ZKLocks-Namespace"</span>);</span><br><span class="line">       <span class="comment">/***</span></span><br><span class="line"><span class="comment">        *  创建zk锁的总节点，相当于 eclipse 的工作空间下的项目</span></span><br><span class="line"><span class="comment">        *      ZKLocks-Namespace</span></span><br><span class="line"><span class="comment">        *         |</span></span><br><span class="line"><span class="comment">        *          — imooc -lcks</span></span><br><span class="line"><span class="comment">        *                |</span></span><br><span class="line"><span class="comment">        *                 -- distributed_lock</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">       <span class="keyword">try</span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (client.checkExists().forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT) == <span class="keyword">null</span> )&#123;</span><br><span class="line">               client.create()</span><br><span class="line">                       .creatingParentsIfNeeded()</span><br><span class="line">                       .withMode(CreateMode.PERSISTENT)</span><br><span class="line">                       .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE)</span><br><span class="line">                       .forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">           logger.error(<span class="string">"客户端连接zookeeper服务器错误... 请重试.... "</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>分布式锁的初始化，基于 zk 的命名空间创建总结点、分布式子节点。以便项目更好的管理和功能实现。</p>
+<ol>
+<li><p>在命名空间下有 imooc-locks ，该节点是所有锁的总节点，所有的锁都会创建给它，这样是为了避免所有的锁分散到 namespace 下面，避免管理和使用上的混乱。</p>
+</li>
+<li><p>Distributed_lock 所在的层级是各个功能性分布式锁所在的节点层</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (client.checkExists().forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT) == <span class="keyword">null</span> )&#123;</span><br><span class="line">               client.create()</span><br><span class="line">                       .creatingParentsIfNeeded()</span><br><span class="line">                       .withMode(CreateMode.PERSISTENT)</span><br><span class="line">                       .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE)</span><br><span class="line">                       .forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">           logger.error(<span class="string">"客户端连接zookeeper服务器错误... 请重试.... "</span>);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>对以上代码的分析：</strong></p>
+<p>在总节点不存在的情况下，使用 api 创建总节点，并为总节点赋予 ACL权限以及节点类型等；无论创建是否成功都需要使用 addWatcherToLock 进行监听分布式节点。（原因：成功代表新建，失败代表已存在，都是必须进行监听的）</p>
+<p> <strong>获得分布式锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getLock</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="comment">// 使用死循环，当且仅当上一个锁释放并且当前请求获得锁成功后才会跳出</span></span><br><span class="line">     <span class="keyword">while</span> (<span class="keyword">true</span>)&#123;</span><br><span class="line">         <span class="keyword">try</span> &#123;</span><br><span class="line">             Stat stat = client.checkExists().forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT + <span class="string">"/"</span> + DISTRIBUTED_LOCK);</span><br><span class="line">             <span class="keyword">if</span> (stat == <span class="keyword">null</span>)&#123;</span><br><span class="line">                 String s = client.create()</span><br><span class="line">                         .creatingParentsIfNeeded()</span><br><span class="line">                         .withMode(CreateMode.EPHEMERAL)</span><br><span class="line">                         .withACL(ZooDefs.Ids.OPEN_ACL_UNSAFE)</span><br><span class="line">                         .forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT + <span class="string">"/"</span> + DISTRIBUTED_LOCK);</span><br><span class="line">                 System.out.println(s);</span><br><span class="line">                 logger.info(<span class="string">"获得分布式锁成功..."</span>);</span><br><span class="line">             &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                 logger.info(<span class="string">"获得分布式锁失败..."</span>);</span><br><span class="line">                 <span class="keyword">try</span> &#123;</span><br><span class="line">                     <span class="comment">// 如果没有获取到锁，需要重新设置同步资源值</span></span><br><span class="line">                     <span class="keyword">if</span> (zkLockLatch.getCount() &lt;= <span class="number">0</span> )&#123;</span><br><span class="line">                         zkLockLatch = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">                     &#125;</span><br><span class="line">                     <span class="comment">// 阻塞线程</span></span><br><span class="line">                     zkLockLatch.await();</span><br><span class="line">                 &#125;<span class="keyword">catch</span> (InterruptedException ie)&#123;</span><br><span class="line">                     ie.printStackTrace();</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">return</span>;</span><br><span class="line">         &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 节点类型必须设置为临时节点，让节点随着会话的消失而消失。临时节点的设置方式为： withMode(CreateMode.EPHEMERAL)</p>
+<p><strong>获取锁成功的标志：</strong></p>
+<p>1.如果锁的节点能被创建成功，则锁没有被占用 </p>
+<p>2.如果没有获取到锁，需要重新设置同步资源值</p>
+<p>ZkLockLatch.await()；</p>
+<p><strong>节点监听机制</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    *  @Description: 创建 watcher 监听</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addWatcherToLock</span><span class="params">(String path)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> PathChildrenCache cache = <span class="keyword">new</span> PathChildrenCache(client, path, <span class="keyword">true</span>);</span><br><span class="line">        cache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);</span><br><span class="line">        cache.getListenable().addListener(<span class="keyword">new</span> PathChildrenCacheListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">childEvent</span><span class="params">(CuratorFramework client, PathChildrenCacheEvent event)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (event.getType().equals(PathChildrenCacheEvent.Type.CHILD_REMOVED))&#123;</span><br><span class="line">                    String path = event.getData().getPath();</span><br><span class="line">                    logger.info(<span class="string">"上一个会话已释放锁或该会话已断开，节点路径为： "</span> + path);</span><br><span class="line">                    <span class="keyword">if</span> (path.contains(DISTRIBUTED_LOCK))&#123;</span><br><span class="line">                        logger.info(<span class="string">"释放计数器，让当前请求来获得分布式锁..."</span>);</span><br><span class="line">                        zkLockLatch.countDown();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>监听机制：</strong></p>
+<p>通过监听父节点的子节点的变化去确定分布式锁的释放与否。</p>
+<ol>
+<li>监听父节点的子节点被删除的事件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (event.getType().equals(PathChildrenCacheEvent.Type.CHILD_REMOVED))&#123;</span><br></pre></td></tr></table></figure>
+
+<p>​    当 event 为父节点的子节点变更事件时，说明有一把分布式锁被释放；但是，此时无法确定哪      一把锁被释放</p>
+<ol start="2">
+<li>Event.getData().getPath() 获取锁的路径，可从中得知是订单锁还是库存锁</li>
+<li>假设DISTRIBUTED_LOCK为订单锁，当 path 与 DISTRIBUTED_LOCK 相同时，说明订单锁被释放 </li>
+</ol>
+<p><strong>释放分布式锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@Description</span>: 释放分布式锁</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (client.checkExists().forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT + <span class="string">"/"</span> + DISTRIBUTED_LOCK) != <span class="keyword">null</span>)&#123;</span><br><span class="line">            client.delete().forPath(<span class="string">"/"</span> + ZK_LOCK_PROJECT + <span class="string">"/"</span> + DISTRIBUTED_LOCK);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    logger.info(<span class="string">"分布式锁释放完毕"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>释放锁，即将节点进行删除。</strong></p>
+<p>前提，判断该路径存不存在，如果路径不存在则删除失败；如果路径存在就进行删除。删除成功返回true，删除失败返回 false.</p>
+<h3 id="四、案例准备"><a href="#四、案例准备" class="headerlink" title="四、案例准备"></a>四、案例准备</h3><p><strong>注：</strong> 库存为10，当前有两个用户同时下单，都为同一商品数量为6件，使用分布式锁后只能有一个顺利创建订单，另一个用户被告知创建失败。</p>
+<p><strong>业务代码如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">	<span class="meta">@Transactional</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">displayBuy</span><span class="params">(String itemId)</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 执行订单流程之前使得当前业务获得分布式锁</span></span><br><span class="line">		dl.getLock();</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> buyCounts = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> stockCounts = <span class="number">0</span>;</span><br><span class="line">		<span class="comment">// 1. 判断库存</span></span><br><span class="line">		stockCounts = empService.getItemCounts(itemId);</span><br><span class="line">		<span class="keyword">if</span> (stockCounts &lt; buyCounts)&#123;</span><br><span class="line">			logger.info(<span class="string">"库存剩余&#123;&#125;件，用户需求量&#123;&#125;件，库存不足，订单创建失败..."</span>,stockCounts,buyCounts);</span><br><span class="line">			<span class="comment">// 释放锁，让下一个请求获得锁</span></span><br><span class="line">			dl.releaseLock();</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 创建订单</span></span><br><span class="line">		<span class="keyword">boolean</span> isOrderCreated = ordersService.createOrder(itemId);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 模拟处理业务需要3秒</span></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Thread.sleep(<span class="number">6000</span>);</span><br><span class="line"></span><br><span class="line">		&#125;<span class="keyword">catch</span> (InterruptedException ie)&#123;</span><br><span class="line">			ie.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			dl.addWatcherToLock(<span class="string">"/"</span> + distributedLock.ZK_LOCK_PROJECT );</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 3.创建订单成功后，扣除库存</span></span><br><span class="line">		<span class="keyword">if</span> (isOrderCreated)&#123;</span><br><span class="line">			logger.info(<span class="string">"订单创建成功..."</span>);</span><br><span class="line">			ordersService.displayReduceCounts(itemId, buyCounts);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			logger.info(<span class="string">"订单创建失败...."</span>);</span><br><span class="line">			<span class="comment">//释放锁，让下一个请求获得锁</span></span><br><span class="line">			dl.releaseLock();</span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取库存商品量：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCounts</span><span class="params">(String itemId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	System.out.println(ordersMapper.selectByItemId(itemId).getCounts());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> ordersMapper.selectByItemId(itemId).getCounts();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更新库存：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">displayReduceCounts</span><span class="params">(String itemId, <span class="keyword">int</span> buyCounts)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	Items items = ordersMapper.selectByItemId(itemId);</span><br><span class="line">	Integer ct = items.getCounts() - buyCounts;</span><br><span class="line">	items.setCounts(ct);</span><br><span class="line">	ordersMapper.updageItemsByItemsId(items);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>创建订单：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">createOrder</span><span class="params">(String itemId)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 创建订单</span></span><br><span class="line">	String oid = UUID.randomUUID().toString().replaceAll(<span class="string">"-"</span>, <span class="string">""</span>);</span><br><span class="line">	Orders o = <span class="keyword">new</span> Orders();</span><br><span class="line">	o.setId(oid);</span><br><span class="line">	o.setOrderNum(oid);</span><br><span class="line">	o.setItemId(itemId);</span><br><span class="line">	ordersMapper.insert(o);</span><br><span class="line">	</span><br><span class="line">	log.info(<span class="string">"订单创建成功"</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>库存表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`NewTable`</span> (</span><br><span class="line"><span class="string">`id`</span>  <span class="built_in">int</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT ,</span><br><span class="line"><span class="string">`name`</span>  <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> gbk <span class="keyword">COLLATE</span> gbk_chinese_ci <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line"><span class="string">`counts`</span>  <span class="built_in">int</span>(<span class="number">200</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span></span><br><span class="line"><span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span>=gbk <span class="keyword">COLLATE</span>=gbk_chinese_ci</span><br><span class="line">ROW_FORMAT=DYNAMIC</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+
+<p>订单表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`NewTable`</span> (</span><br><span class="line"><span class="string">`id`</span>  <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> gbk <span class="keyword">COLLATE</span> gbk_chinese_ci <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line"><span class="string">`order_num`</span>  <span class="built_in">varchar</span>(<span class="number">500</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> gbk <span class="keyword">COLLATE</span> gbk_chinese_ci <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> ,</span><br><span class="line"><span class="string">`item_id`</span>  <span class="built_in">varchar</span>(<span class="number">200</span>) <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> gbk <span class="keyword">COLLATE</span> gbk_chinese_ci <span class="keyword">NOT</span> <span class="literal">NULL</span> ,</span><br><span class="line">PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>)</span><br><span class="line">)</span><br><span class="line"><span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span></span><br><span class="line"><span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span>=gbk <span class="keyword">COLLATE</span>=gbk_chinese_ci</span><br><span class="line">ROW_FORMAT=DYNAMIC</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Handler 接口模拟多并发请求</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/getOrder1"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getOrder1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> b = empService.displayBuy(<span class="string">"1"</span>);</span><br><span class="line">		<span class="keyword">if</span> (b)&#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"OK"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder1下单成功"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span>	json;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"ERROR"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder1下单失败"</span>);</span><br><span class="line">			<span class="keyword">return</span> json;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/getOrder2"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getOrder2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> b = empService.displayBuy(<span class="string">"1"</span>);</span><br><span class="line">		<span class="keyword">if</span> (b)&#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"OK"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder2下单成功"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span>	json;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"ERROR"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder2下单失败"</span>);</span><br><span class="line">			<span class="keyword">return</span> json;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="五、案例测试"><a href="#五、案例测试" class="headerlink" title="五、案例测试"></a>五、案例测试</h3><p><strong>订单表与库存表情况：</strong></p>
+<img src="http://photo.wushaopei.com/qiniu890.png" width="60%">
+
+<img src="http://photo.wushaopei.com/qiniu891.png" width="60%">
+
+<p><strong>发起请求：</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu892.png" width="60%">
+
+<p><strong>请求结果：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/imooc<span class="literal">-locks</span>/distributed_lock</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">30.220</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 获得分布式锁成功...</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">36.613</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.s.service.impl.OrdersServiceImpl     : 订单创建成功</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">36.618</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.springboot.config.distributedLock    : 获得分布式锁失败...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.614</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.s.service.impl.EmpServiceImpl        : 订单创建成功...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 分布式锁释放完毕</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">ChildrenCache</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 上一个会话已释放锁或该会话已断开，节点路径为： /imooc<span class="literal">-locks</span>/distributed_lock</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">ChildrenCache</span>-<span class="number">2</span>] c.w.springboot.config.distributedLock    : 释放计数器，让当前请求来获得分布式锁...</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">43.228</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.s.service.impl.EmpServiceImpl        : 库存剩余<span class="number">4</span>件，用户需求量<span class="number">6</span>件，库存不足，订单创建失败...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">43.229</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.springboot.config.distributedLock    : 分布式锁释放完毕</span><br></pre></td></tr></table></figure>
+
+<p>订单表：</p>
+<img src="http://photo.wushaopei.com/qiniu894.png" width="60%">
+
+<p>库存表：</p>
+<img src="http://photo.wushaopei.com/qiniu893.png" width="60%">
+
+<p>本小节到此结束！！！！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    吴少培
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/" title="分布式锁（二）Zookeeper实现分布式锁的机制与案例">http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" rel="tag"> <i class="fa fa-tag"></i> 分布式锁</a>
+          
+            <a href="/tags/zk%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" rel="tag"> <i class="fa fa-tag"></i> zk实现分布式锁</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" rel="next" title="分布式锁（一）概念与应用场景">
+                <i class="fa fa-chevron-left"></i> 分布式锁（一）概念与应用场景
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%89%EF%BC%89Redis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/" rel="prev" title="分布式锁（三）Redis实现分布式锁的机制与案例">
+                分布式锁（三）Redis实现分布式锁的机制与案例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="吴少培" />
+            
+              <p class="site-author-name" itemprop="name">吴少培</p>
+              <p class="site-description motion-element" itemprop="description">冗长的黑暗中,你是我唯一的光。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">218</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">172</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Zookeeper-做分布式锁"><span class="nav-number">1.</span> <span class="nav-text">基于 Zookeeper 做分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、死锁与活锁的概念"><span class="nav-number">1.1.</span> <span class="nav-text">一、死锁与活锁的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、分布式锁的概念与数据最终不一致性"><span class="nav-number">1.2.</span> <span class="nav-text">二、分布式锁的概念与数据最终不一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Zookeeper-分布式锁"><span class="nav-number">1.3.</span> <span class="nav-text">三、Zookeeper 分布式锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、案例准备"><span class="nav-number">1.4.</span> <span class="nav-text">四、案例准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、案例测试"><span class="nav-number">1.5.</span> <span class="nav-text">五、案例测试</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+   
+     <div id="music163player">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=864187808&auto=1&height=66"></iframe>
+     </div>
+	 
+
+  </aside>
+
+
+        
+      </div>
+      <script>
+//暂时储存文章中的内容
+var div = $('.post-body');
+//暂时储存目录的内容
+var toc=$('.post-toc-wrap')
+function password() {
+  if(''){
+  //将文章内容删除
+    div.remove();
+ //将目录删除 
+    toc.remove();
+  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
+  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
+  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
+   $('.post-header').after('<textarea class="description" value="Please enter your password and press enter to build" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none ">
+      Please enter your password and press enter to build</textarea>' +
+      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
+      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
+      'margin: 0 auto;outline: none;width:95%"/>' +
+      '</div>')
+      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
+    document.onclick = function (event) {
+      var e = event || window.event;
+      var elem = e.srcElement || e.target;
+ 
+      while (elem) {
+        if (elem != document) {
+          if (elem.className == "password") {
+            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
+            return;
+          }
+          elem = elem.parentNode;
+        } else {
+          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
+          return;
+        }
+      }
+    }
+    //绑定enter键按下后离开的事件
+    $(document).keyup(function(event){
+      if(event.keyCode ==13&&$('.password').length>0){
+        //console.log($('.password').val())
+        //console.log('')
+        if ($('.password').val() == '') {
+        //恢复文章内容
+          (div).appendTo($(".post-header"))
+          //恢复目录
+          toc.appendTo($(".sidebar-inner"))
+          //删除本页面的输入密码组件
+           $(".description").remove();
+          $(".qiang").remove();
+          $(".password").remove();
+          
+          //重新处理pjax事件,如果没有加pjax的从下面这行起到下面的else之间的代码需要去掉。
+          //图片懒加载，没有加入此功能的这个函数需要去掉
+            $('img').lazyload({
+               placeholder: '/images/loading.gif',
+               effect: 'fadeIn',
+               threshold : 100,
+               failure_limit : 20,
+               skip_invisible : false
+             });
+             //pjax后出现文章不显示，没有pjax的下面四行需要去掉
+              $(".post-block").css({opacity:1});
+              $(".post-header").css({opacity:1});
+              $(".post-body").css({opacity:1});
+              $(".pagination").css({opacity:1});
+        }else {
+          alert("Sorry, the password is wrong.")
+        }
+      }
+      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
+    });
+  }
+}
+password();
+</script>
+    </main>
+    
+    
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴少培</span>
+
+  
+</div>
+
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+
+<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">粤ICP备20015601号-1</a>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
+        appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
+        placeholder: '说点什么吧',
+        avatar:'mp',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz", "sOUcJH2CX5V7BXA99NbRDn9B");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+
+
+</html>
