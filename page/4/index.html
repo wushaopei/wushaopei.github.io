@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" itemprop="url">Spring（五）Bean的实例化方式</a></h1>
+                <a class="post-title-link" href="/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/" itemprop="url">dubbo(一）概念：分布式与RPC</a></h1>
         
 
         <div class="post-meta">
@@ -379,1709 +379,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T22:26:01+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="Spring（五）Bean的实例化方式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-使用Spring实例化Bean的4种方式：
-
-通过构造方法实例化Bean
-通过静态方法实例化Bean
-通过实例方法实例化Bean
-Bean的别名
-
-Bean 的实例化1、通过构造方法实例化Bean【1】创建Bean1
-123456public class Bean1 &#123;     p
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" itemprop="url">Spring（四）使用Spring提供的IOC容器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T19:45:26+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" class="leancloud_visitors" data-flag-title="Spring（四）使用Spring提供的IOC容器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-IOC容器设计的模块: Spring-core、Spring-context
-
-知识脑图
-
-
-
-
-1、创建Bean类12345678package com.webcode; public class Bean &#123;     public Bean()&#123;        Sy
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" itemprop="url">Spring（三）自定义IOC容器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T19:45:12+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" class="leancloud_visitors" data-flag-title="Spring（三）自定义IOC容器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-实现一个自己的IOC
-
-知识脑图
-
-
-
-
-
-
-1、实现一个自己的IOC，场景设计
-
-2、简化IOC业务逻辑的三个约定
-所有Bean的生命周期交由IOC容器管理
-所有被依赖的Bean通过构造方法执行注入
-被依赖的Bean需要优先创建
-
-第一步：声明一个 Humen 人类接口 
-1234pub
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/" itemprop="url">Spring（二）IOC容器的概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T19:44:32+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/" class="leancloud_visitors" data-flag-title="Spring（二）IOC容器的概念">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-什么是IOC
-
-案例分析IOC的作用
-
-为什么要使用IOC
-
-
-流程脑图
-
-
-
-
-1、IOC 的概念
-IOC: Inversion of Control，控制反转、依赖注入 。Spring中IOC与DI 是密切不分的 。
-
-注意：不只是Spring的ioc，其他的框架也具有相同的IOC思想
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%BA%8C%EF%BC%89IOC%E5%AE%B9%E5%99%A8%E7%9A%84%E6%A6%82%E5%BF%B5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/" itemprop="url">Spring（一）架构概览</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T16:53:16+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/" class="leancloud_visitors" data-flag-title="Spring（一）架构概览">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-Spring 简史
-Spring 的设计初衷
-Spring 的架构模块及各模块所扮演的角色
-
-JavaWeb 发展史
-第一阶段：JavaBean + Servlet +JSP逐步发展
-第二阶段：面对EJB重量级框架带来的种种麻烦
-第三阶段：SpringMVC/Struts + Spring
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/" itemprop="url">dubbo（四）监控中心与SpringBoot整合</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-15T22:03:50+08:00">
-                2020-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dubbo/" itemprop="url" rel="index">
-                    <span itemprop="name">dubbo</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dubbo/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/" class="leancloud_visitors" data-flag-title="dubbo（四）监控中心与SpringBoot整合">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、监控中心1、dubbo-admin​    图形化的服务管理页面；安装时需要指定注册中心地址，即可从注册中心中获取到所有的提供者/消费者进行配置管理
-2、dubbo-monitor-simple简单的监控中心；
-2.1 安装(1) 下载 dubbo-ops
-https://github.com/
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/15/dubbo%EF%BC%88%E5%9B%9B%EF%BC%89%E7%9B%91%E6%8E%A7%E4%B8%AD%E5%BF%83%E4%B8%8ESpringBoot%E6%95%B4%E5%90%88/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" itemprop="url">Nginx笔记（三）nginx配置实例-反向代理、负载均衡、动静分离</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T23:16:27+08:00">
-                2020-06-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/Nginx%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/" class="leancloud_visitors" data-flag-title="Nginx笔记（三）nginx配置实例-反向代理、负载均衡、动静分离">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、反向代理反向代理准备工作： 
-
-（1）在 liunx 系统安装 tomcat，使用默认端口 8080  tomcat 安装文件放到 liunx 系统中，解压  进入 tomcat 的 bin 目录中，./startup.sh 启动 tomcat 服务器（2）对外开放访问的端口  firewall
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89nginx%E9%85%8D%E7%BD%AE%E5%AE%9E%E4%BE%8B-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E3%80%81%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" itemprop="url">Nginx笔记（二）nginx常用的命令和配置文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T23:15:49+08:00">
-                2020-06-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/Nginx%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="Nginx笔记（二）nginx常用的命令和配置文件">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、nginx 常用的命令(1) 启动命令
-1在/usr/local/nginx/sbin 目录下执行 ./nginx
-
-(2) 关闭命令
-1在/usr/local/nginx/sbin 目录下执行 ./nginx -s stop
-
-(3) 重新加载命令
-1在/usr/local/nginx/sbi
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Nginx笔记（一）nginx简介与安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T23:15:13+08:00">
-                2020-06-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/Nginx%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Nginx笔记（一）nginx简介与安装">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Nginx基础学习线路：
-
-介绍 nginx 的应用场景和具体可以做什么事情 
-介绍什么是反向代理
-介绍什么是负载均衡
-介绍什么是动静分离
-
-一、Nginx简介1、Nginx 概述​    Nginx (“engine x”) 是一个高性能的 HTTP 和反向代理服务器,特点是占有内存少，并发能力强
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/" itemprop="url">dubbo（三）dubbo-helloworld</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T21:13:13+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-14T17:34:06+08:00">
                 2020-06-14
               </time>
             
@@ -2133,8 +431,8 @@ https://github.com/
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/" itemprop="commentCount"></span>
+                <a href="/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2142,7 +440,7 @@ https://github.com/
 
           
           
-             <span id="/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/" class="leancloud_visitors" data-flag-title="dubbo（三）dubbo-helloworld">
+             <span id="/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/" class="leancloud_visitors" data-flag-title="dubbo(一）概念：分布式与RPC">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2175,30 +473,1719 @@ https://github.com/
       
         
           
-          dubbo - helloworld1、提出需求某个电商系统，订单服务需要调用用户服务获取某个用户的所有地址；
-我们现在 需要创建两个服务模块进行测试 
+          基础知识一、分布式基础理论1、什么是分布式系统？《分布式系统原理与泛型》定义：
 
+“分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像单个相关系统”分布式系统（distributed system）是建立在网络之上的软件系统。
 
-
-模块
-功能
-
-
-
-订单服务web模块
-创建订单等
-
-
-用户服务service模块
-查询用户地址等
-
-
-测试预期结果：
-​    订单服务we
+随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/#more" rel="contents">
+            <a class="btn" href="/2020/06/14/dubbo%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%8ERPC/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" itemprop="url">mybatis-设计模式篇（一）梗概</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T12:38:38+08:00">
+                2020-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式应用篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" class="leancloud_visitors" data-flag-title="mybatis-设计模式篇（一）梗概">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Mybatis至少遇到了以下的设计模式的使用：
+
+Builder模式
+
+例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder；
+
+
+工厂模式
+
+例如SqlSessio
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十五）服务器环境搭建-FastDFS简介与安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T21:28:41+08:00">
+                2020-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十五）服务器环境搭建-FastDFS简介与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、传统文件上传方式缺陷1.Web应用重新部署导致上传的文件丢失
+
+2.集群环境下没有文件同步机制
+
+3.扩容弹性差
+
+4.存在单点故障
+
+二、FastDFS功能1.独立于应用服务器文件本身不会在应用服务器上存储，不受应用服务器上Web应用重新部署影响。
+2.内部存储服务器有数据备份同一个文件存储在
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十四）服务器环境搭建-Nginx简介与安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T19:54:01+08:00">
+                2020-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十四）服务器环境搭建-Nginx简介与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、应用原理解析– 负载均衡
+
+当用户访问量非常大时，我们需要使用多台Tomcat来构成集群，由Nginx负责将负载分摊到每一台Tomcat服务器上。 
+二、协调 – Tomcat集群搭建搭建Tomcat集群的基本思路是把Tomcat解压目录复制多份，然后让每一份Tomcat分别使用不同端口号即可。
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十三）服务器环境搭建-Redis简介与安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T19:52:59+08:00">
+                2020-06-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十三）服务器环境搭建-Redis简介与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。 
+那么时代为什么需要NoSQL数据库呢？我们来做个对比： 
+
+
+
+
+关系
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" itemprop="url">Linux（十二）服务器环境搭建-安装JDK、Tomcat、MySQL及网络连通</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:54:48+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" class="leancloud_visitors" data-flag-title="Linux（十二）服务器环境搭建-安装JDK、Tomcat、MySQL及网络连通">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一. 行为守则1. 拍摄快照Linux系统操作非常复杂，搭建开发环境时全部使用命令完成安装过程。而在Linux系统下没有像360安全卫士那样的工具，无法让我们在安装出错后卸载干净。所以建议大家在执行安装过程的每一步时都拍摄快照，保存系统当前状态，一旦安装失败就可以恢复到之前的某个快照重新开始。 
+2
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" itemprop="url">Linux（十一）CentOS虚拟机下载及搭建</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:52:29+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Linux（十一）CentOS虚拟机下载及搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          CentOS 虚拟机安装包下载 ： 
+链接：https://pan.baidu.com/s/1JDIASmm5nOmeYzDcJKJhWg 提取码：ystj
+CentOS7 安装配置流程 
+第一步：创建好虚拟机 
+
+
+第二步：装入镜像文件 
+
+
+第三步：开机 
+
+
+第四步：选择 
+
+
+第五步：选择语
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十）VMWare虚拟机下载与安装</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:52:06+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十）VMWare虚拟机下载与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          VMWare 安装包 下载地址：
+链接：https://pan.baidu.com/s/1AzNLKw84Ji3_JqWzBhHMfw 提取码：nzoi
+双击开始安装
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" itemprop="url">Linux（九）服务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:29:55+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" class="leancloud_visitors" data-flag-title="Linux（九）服务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. 服务的概念​    操作系统中在后台持续运行的程序，本身并没有操作界面，需要通过端口号访问和操作。CentOS 6 和CentOS 7的服务管理有很大区别，我们分别来看。 
+2. CentOS6服务 2.1 service命令 
+12345service  服务名 startservice  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" itemprop="url">Linux（八）权限控制</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:29:37+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" class="leancloud_visitors" data-flag-title="Linux（八）权限控制">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. 概述​    Linux需要对登录用户读写执行文件、进入目录、查看增删目录内容等操作进行控制，不能任由用户随意执行所有操作。 
+我们从如下几个方面来认识Linux权限控制体系： 
+
+用户管理
+用户组管理
+文件权限信息
+chmod、chgrp、chown命令
+
+2. 用户和用户组​    所谓用
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2240,7 +2227,7 @@ https://github.com/
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2290,7 +2277,7 @@ https://github.com/
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">227</span>
+                  <span class="site-state-item-count">216</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
