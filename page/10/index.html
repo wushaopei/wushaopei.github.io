@@ -348,6 +348,1648 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" itemprop="url">mybatis 映射器（九）参数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T17:17:19+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（九）参数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          参数配置之前见到的所有语句都使用了简单的参数形式。但实际上，参数是 MyBatis 非常强大的元素。对于大多数简单的使用场景，你都不需要使用复杂的参数，比如： 
+123&lt;select id="selectUserById" resultMap="userResultMap"&gt;   	se
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/" itemprop="url">mybatis 映射器（八）update元素和delete元素</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T17:17:11+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（八）update元素和delete元素">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          数据变更语句 insert，update 和 delete 的实现非常接近，这里我们将三者的属性配置放到一起比较一下：
+1234567891011121314151617181920212223&lt;insert    id="insertAuthor"  parameterType="domai
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/" itemprop="url">mybatis-映射器（七）insert元素-概述</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T17:15:58+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/" class="leancloud_visitors" data-flag-title="mybatis-映射器（七）insert元素-概述">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          概述insert 元素，相对于 select 元素而言要简单许多。MyBatis 会在执行插入之后哦返回一个整数，以表示你进行操作后插入的记录数。 insert 元素配置详解如下：
+123456789&lt;insert  id="insertAuthor"  parameterType="doma
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/" itemprop="url">05.深入浅出索引（下）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T15:13:19+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">极客时间</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL实战45讲</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/" class="leancloud_visitors" data-flag-title="05.深入浅出索引（下）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+
+  
+      
+                      
+                       
+                        
+                        
+                        05 | 深入浅出索引（下）  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/05-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8B%EF%BC%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/" itemprop="url">04.深入浅出索引（上）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T15:13:12+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">极客时间</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL实战45讲</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/" class="leancloud_visitors" data-flag-title="04.深入浅出索引（上）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+
+  
+      
+                      
+                       
+                        
+                        
+                        04 | 深入浅出索引（上）  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/04-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%E7%B4%A2%E5%BC%95%EF%BC%88%E4%B8%8A%EF%BC%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/" itemprop="url">03.事务隔离：为什么你改了我还看不见？</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T15:13:02+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">极客时间</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL实战45讲</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/" class="leancloud_visitors" data-flag-title="03.事务隔离：为什么你改了我还看不见？">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+
+  
+      
+                      
+                       
+                        
+                        
+                        03 | 事务隔离：为什么你改了
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/03-%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E6%94%B9%E4%BA%86%E6%88%91%E8%BF%98%E7%9C%8B%E4%B8%8D%E8%A7%81%EF%BC%9F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/" itemprop="url">02 | 日志系统：一条SQL更新语句是如何执行的？ </a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T14:15:42+08:00">
+                2020-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">极客时间</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/MySQL%E5%AE%9E%E6%88%9845%E8%AE%B2/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL实战45讲</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/" class="leancloud_visitors" data-flag-title="02 | 日志系统：一条SQL更新语句是如何执行的？ ">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+
+
+
+  
+      
+                      
+                       
+                        
+                        
+                        02  | 日志系统：一条S
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/23/02-%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%EF%BC%9A%E4%B8%80%E6%9D%A1SQL%E6%9B%B4%E6%96%B0%E8%AF%AD%E5%8F%A5%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%A7%E8%A1%8C%E7%9A%84%EF%BC%9F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="url">并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T21:41:15+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="并发编程（二十六）JUC-线程调度-线程池-实现线程池的四种方式与实现原理">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          分析四种线程池的创建的底层实现：
+
+由上图中可知，四种线程其实都是有Executors来调用相应构造器实现创建的 
+
+
+由上图可知，newCachedThreadPool()创建可缓存的线程池底层实际还是调用ThreadPoolExecutor类的构造器返回的实例对象实现的。 
+
+
+newFixed
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" itemprop="url">并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-22T21:40:27+08:00">
+                2020-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/" class="leancloud_visitors" data-flag-title="并发编程（二十五）JUC-线程调度-线程池-常用API与线程池框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          线程池常用API提交任务的方法：
+execute () : 提交任务，交给线程池执行
+submit () : 提交任务，能够返回执行结果 execute + Future
+
+关闭线程池的方法：
+shutdown ( ) : 关闭线程池，等待任务都执行完
+shutdownNow () ： 关闭线程池，
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -508,1637 +2150,11 @@ new Thread 弊端：
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/" itemprop="url">mybatis 映射器（六）select元素-使用resultMap 映射结果集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T19:36:11+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/" class="leancloud_visitors" data-flag-title="mybatis 映射器（六）select元素-使用resultMap 映射结果集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前面讲到了自动映射，但是在某些时候，我们需要处理更为复杂的映射， resultMap 为我们提供了这样的模式。我们需要在映射器中定义 resultMap ，这也是我们常见的场景，代码如下：
-123456789&lt;resultMap type="com.webcode.cn.entity.User
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AD%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BD%BF%E7%94%A8resultMap-%E6%98%A0%E5%B0%84%E7%BB%93%E6%9E%9C%E9%9B%86/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" itemprop="url">mybatis-映射器（五）select元素-传递多个参数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:01:52+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/" class="leancloud_visitors" data-flag-title="mybatis-映射器（五）select元素-传递多个参数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          mybatis的参数传递前面的 《mybatis 映射器（四）select元素-自动映射》中的例子是传递一个参数给映射器，大部分情况下我们需要传递多个参数给映射器。
-现在我们要根据用户名和性别来查询用户，显然这涉及到了两个参数。
-使用多个普通数据类型传参配置文件：
-12345678910111213
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%94%EF%BC%89select%E5%85%83%E7%B4%A0-%E4%BC%A0%E9%80%92%E5%A4%9A%E4%B8%AA%E5%8F%82%E6%95%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" itemprop="url">mybatis 映射器（四）select元素-自动映射</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:01:01+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/" class="leancloud_visitors" data-flag-title="mybatis 映射器（四）select元素-自动映射">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          在MyBatis 中，有这么一个参数 autoMapping  ，如果设置这个属性，MyBatis 将会为本结果映射开启或者关闭自动映射。 这个属性会覆盖全局的属性 autoMappingBehavior。默认值：未设置（unset）。 
-在默认开启自动映射的情况下，只要返回的 SQL 列名和 Ja
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%9B%9B%EF%BC%89select%E5%85%83%E7%B4%A0-%E8%87%AA%E5%8A%A8%E6%98%A0%E5%B0%84/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/" itemprop="url">mybatis 映射器（三）select元素-简易数据类型的例子</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:00:50+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/" class="leancloud_visitors" data-flag-title="mybatis 映射器（三）select元素-简易数据类型的例子">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          简单数据类型的例子例如，我们需要统计一个用户名的数量。我们应该把用户名作为参数传递，而将结果设置为整形返回给调用者，代码如下所示：
-1234&lt;!-- 查询全部的同名对象 --&gt; &lt;select id="queryUsersCountByName" resultType="int" 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%89%EF%BC%89select%E5%85%83%E7%B4%A0-%E7%AE%80%E6%98%93%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E4%BE%8B%E5%AD%90/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/" itemprop="url">mybatis 映射器（二）select元素-概述</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:00:49+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（二）select元素-概述">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          概述查询语句是 MyBatis 中最常用的元素之一——光能把数据存到数据库中价值并不大，还要能重新取出来才有用，多数应用也都是查询比修改要频繁。 MyBatis 的基本原则之一是：在每个插入、更新或删除操作之间，通常会执行多个查询操作。 
-在执行select 语句前，我们需要定义参数，它可以是一个简
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%BA%8C%EF%BC%89select%E5%85%83%E7%B4%A0-%E6%A6%82%E8%BF%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/" itemprop="url">mybatis 映射器（一）映射器的主要元素</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T17:00:40+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（一）映射器的主要元素">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          XML 映射器MyBatis 的真正强大在于它的语句映射，这是它的魔力所在。由于它的异常强大，映射器的        XML 文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近       95% 的代码。MyBatis 致力于减少使用成本，让用户能更专注于
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%80%EF%BC%89%E6%98%A0%E5%B0%84%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%85%83%E7%B4%A0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/" itemprop="url">Activity（十七）流程监听器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T15:05:53+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/" class="leancloud_visitors" data-flag-title="Activity（十七）流程监听器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          流程监听器作用绑定到某一个任务节点上，当这个节点被执行时执行预先设定的操作。
-创建流程定义
-
-设置流程定义指定任务委托人
-
-设置排他网关分支条件
-
-
-
-两个表达式是：${flag==true}和${flag==false}
-创建流程监听器类12345678910public class YesLis
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E6%B5%81%E7%A8%8B%E7%9B%91%E5%90%AC%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/" itemprop="url">Activity（十六）并行网关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T14:41:29+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/" class="leancloud_visitors" data-flag-title="Activity（十六）并行网关">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ​     并行网关：是会有多条线路同时并行执行，当都执行完才继续执行后面的。
-重新画一个流程图取名 MyProcess5.bpmn：
-
-
-整体业务是：  员工发起请假申请——&gt;需要部门、经理都同意审批——&gt;才进入最好总监审批
-——&gt;需要以上所有人同意方能请假成功
-测试代码如下：
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/" itemprop="url">Activity（十五）排他网关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-21T14:10:11+08:00">
-                2020-04-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/" class="leancloud_visitors" data-flag-title="Activity（十五）排他网关">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          执行到该网关，根据条件只能走一条执行线路； 
-
-
- 根据请假天数，来具体让谁来审批，
- 请假天数小于3天，部门审批；
- 请假天数小于7天，大于等于3天，经理审批；
- 请假天数大于等于7天，总监审批；
-依然用表达式来实现请假天数的判断值：
-
-
-
-
-
-
-直接上代码： 
-12345678910111213
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/21/Activity%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%8E%92%E4%BB%96%E7%BD%91%E5%85%B3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2188,7 +2204,7 @@ new Thread 弊端：
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">218</span>
+                  <span class="site-state-item-count">227</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

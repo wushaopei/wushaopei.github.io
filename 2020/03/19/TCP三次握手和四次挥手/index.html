@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu137.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-19T14:48:09.000Z">
-<meta property="article:modified_time" content="2020-03-31T15:07:51.820Z">
+<meta property="article:modified_time" content="2020-07-02T15:03:30.449Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu136.png">
@@ -481,6 +481,7 @@
 <h3 id="第三次握手失败后怎么处理？"><a href="#第三次握手失败后怎么处理？" class="headerlink" title="第三次握手失败后怎么处理？"></a>第三次握手失败后怎么处理？</h3><p>如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便Client重新发送ACK包，以便Client重新发送ACK包。</p>
 <p>Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。</p>
 <p>如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</p>
+<h3 id="建立连接后，Client出现故障怎么办"><a href="#建立连接后，Client出现故障怎么办" class="headerlink" title="建立连接后，Client出现故障怎么办"></a>建立连接后，Client出现故障怎么办</h3><p>TCP设有保活机制，该机制会对Client的故障做出相应的处理。在保活时间段内，Server端会向对方发送保活探测报文，如果未收到响应则继续发送。直到发送探测报文尝试次数达到保活探测数仍未收到响应则中断连接。这时，对方主机会被确认为不可达，连接也会随之中断。</p>
 <h2 id="TCP四次挥手-Client或Server均可主动发起挥手动作"><a href="#TCP四次挥手-Client或Server均可主动发起挥手动作" class="headerlink" title="TCP四次挥手(Client或Server均可主动发起挥手动作)"></a>TCP四次挥手(Client或Server均可主动发起挥手动作)</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。整个流程如下图所示： </p>
 <img src="http://photo.wushaopei.com/qiniu137.png" width="100%">
 
@@ -675,7 +676,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">218</span>
+                  <span class="site-state-item-count">227</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -736,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手"><span class="nav-number">1.</span> <span class="nav-text">TCP三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要三次握手，而不是二次握手？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要三次握手，而不是二次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三次握手失败后怎么处理？"><span class="nav-number">1.2.</span> <span class="nav-text">第三次握手失败后怎么处理？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP四次挥手-Client或Server均可主动发起挥手动作"><span class="nav-number">2.</span> <span class="nav-text">TCP四次挥手(Client或Server均可主动发起挥手动作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么连接的时候是三次握手，关闭的时候却是四次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><span class="nav-number">2.2.</span> <span class="nav-text">为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP三次握手"><span class="nav-number">1.</span> <span class="nav-text">TCP三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要三次握手，而不是二次握手？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么需要三次握手，而不是二次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三次握手失败后怎么处理？"><span class="nav-number">1.2.</span> <span class="nav-text">第三次握手失败后怎么处理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立连接后，Client出现故障怎么办"><span class="nav-number">1.3.</span> <span class="nav-text">建立连接后，Client出现故障怎么办</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP四次挥手-Client或Server均可主动发起挥手动作"><span class="nav-number">2.</span> <span class="nav-text">TCP四次挥手(Client或Server均可主动发起挥手动作)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么连接的时候是三次握手，关闭的时候却是四次握手？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><span class="nav-number">2.2.</span> <span class="nav-text">为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">2.2.1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.wushaopei.com/"/>
-  <updated>2020-06-29T14:50:10.208Z</updated>
+  <updated>2020-07-02T13:38:22.934Z</updated>
   <id>http://blog.wushaopei.com/</id>
   
   <author>
@@ -15,6 +15,141 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式事务笔记（九）分布式事务解决方案——TCC（三阶段提交）Hmily案例演示</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89Hmily%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89Hmily%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA/</id>
+    <published>2020-07-02T13:38:22.000Z</published>
+    <updated>2020-07-02T13:38:22.934Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（八）分布式事务解决方案——TCC（三阶段提交）解决方案</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2020-07-02T13:37:59.000Z</published>
+    <updated>2020-07-02T13:37:59.416Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（七）分布式事务解决方案——TCC（三阶段提交）理论</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E7%90%86%E8%AE%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%94TCC%EF%BC%88%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E7%90%86%E8%AE%BA/</id>
+    <published>2020-07-02T13:37:44.000Z</published>
+    <updated>2020-07-02T13:37:44.425Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（六）分布式事务解决方案——2PC（两阶段提交）Seata案例演示</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89Seata%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89Seata%E6%A1%88%E4%BE%8B%E6%BC%94%E7%A4%BA/</id>
+    <published>2020-07-02T13:35:06.000Z</published>
+    <updated>2020-07-02T13:35:06.437Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（五）分布式事务解决方案——2PC（两阶段提交）解决方案</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2020-07-02T13:34:29.000Z</published>
+    <updated>2020-07-02T13:34:29.839Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（四）分布式事务解决方案——2PC（两阶段提交）理论</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E7%90%86%E8%AE%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E2%80%94%E2%80%942PC%EF%BC%88%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%EF%BC%89%E7%90%86%E8%AE%BA/</id>
+    <published>2020-07-02T13:33:09.000Z</published>
+    <updated>2020-07-02T13:33:09.476Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（三）分布式事务基础理论——BASE理论</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94BASE%E7%90%86%E8%AE%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94BASE%E7%90%86%E8%AE%BA/</id>
+    <published>2020-07-02T13:31:47.000Z</published>
+    <updated>2020-07-02T14:29:19.368Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（二）分布式事务基础理论——CAP理论</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94CAP%E7%90%86%E8%AE%BA/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E5%9F%BA%E7%A1%80%E7%90%86%E8%AE%BA%E2%80%94%E2%80%94CAP%E7%90%86%E8%AE%BA/</id>
+    <published>2020-07-02T13:31:29.000Z</published>
+    <updated>2020-07-02T14:29:17.512Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务笔记（一）基础概念</title>
+    <link href="http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/"/>
+    <id>http://blog.wushaopei.com/2020/07/02/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</id>
+    <published>2020-07-02T13:30:30.000Z</published>
+    <updated>2020-07-02T14:29:15.051Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>分布式锁（四）数据库实现分布式锁的机制与案例</title>
@@ -109,11 +244,11 @@
   </entry>
   
   <entry>
-    <title>面试导读-深圳互联网企业名单</title>
+    <title>面试导读-list</title>
     <link href="http://blog.wushaopei.com/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/"/>
     <id>http://blog.wushaopei.com/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/</id>
     <published>2020-06-29T12:35:33.000Z</published>
-    <updated>2020-06-29T12:40:35.962Z</updated>
+    <updated>2020-07-04T12:07:49.134Z</updated>
     
     <summary type="html">
     
@@ -233,7 +368,7 @@
     <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
     <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</id>
     <published>2020-06-21T13:57:12.000Z</published>
-    <updated>2020-06-30T13:43:43.314Z</updated>
+    <updated>2020-07-02T13:28:50.388Z</updated>
     
     <summary type="html">
     
@@ -248,9 +383,9 @@
     </summary>
     
     
-      <category term="Zookeepr" scheme="http://blog.wushaopei.com/categories/Zookeepr/"/>
+      <category term="Zookeeper" scheme="http://blog.wushaopei.com/categories/Zookeeper/"/>
     
-      <category term="集群篇" scheme="http://blog.wushaopei.com/categories/Zookeepr/%E9%9B%86%E7%BE%A4%E7%AF%87/"/>
+      <category term="集群篇" scheme="http://blog.wushaopei.com/categories/Zookeeper/%E9%9B%86%E7%BE%A4%E7%AF%87/"/>
     
     
       <category term="集群搭建" scheme="http://blog.wushaopei.com/tags/%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
@@ -279,135 +414,7 @@
     <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/"/>
     <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/</id>
     <published>2020-06-21T11:08:20.000Z</published>
-    <updated>2020-06-30T13:43:32.330Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Zookeepr" scheme="http://blog.wushaopei.com/categories/Zookeepr/"/>
-    
-      <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Zookeepr/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-    
-      <category term="分布式锁" scheme="http://blog.wushaopei.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
-    
-      <category term="zk异步监控" scheme="http://blog.wushaopei.com/tags/zk%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper（五）Java客户端访问ZK服务器与增删改查</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</id>
-    <published>2020-06-21T11:06:47.000Z</published>
-    <updated>2020-06-21T14:36:41.961Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Zookeepr" scheme="http://blog.wushaopei.com/categories/Zookeepr/"/>
-    
-      <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Zookeepr/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-    
-      <category term="zk客户端" scheme="http://blog.wushaopei.com/tags/zk%E5%AE%A2%E6%88%B7%E7%AB%AF/"/>
-    
-      <category term="java访问zk" scheme="http://blog.wushaopei.com/tags/java%E8%AE%BF%E9%97%AEzk/"/>
-    
-      <category term="java修改节点的值" scheme="http://blog.wushaopei.com/tags/java%E4%BF%AE%E6%94%B9%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper（四）ZK基本特性与Watcher监听的相关命令</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</id>
-    <published>2020-06-21T10:46:27.000Z</published>
-    <updated>2020-06-21T11:02:23.049Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Zookeepr" scheme="http://blog.wushaopei.com/categories/Zookeepr/"/>
-    
-      <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Zookeepr/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-    
-      <category term="分布式锁" scheme="http://blog.wushaopei.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
-    
-      <category term="watcher" scheme="http://blog.wushaopei.com/tags/watcher/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper（三）Zookeeper的作用体现有五种</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/</id>
-    <published>2020-06-21T10:16:47.000Z</published>
-    <updated>2020-06-21T10:25:45.961Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Zookeepr" scheme="http://blog.wushaopei.com/categories/Zookeepr/"/>
-    
-      <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Zookeepr/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-    
-      <category term="zk的作用" scheme="http://blog.wushaopei.com/tags/zk%E7%9A%84%E4%BD%9C%E7%94%A8/"/>
-    
-      <category term="zk集群" scheme="http://blog.wushaopei.com/tags/zk%E9%9B%86%E7%BE%A4/"/>
-    
-      <category term="分布式锁" scheme="http://blog.wushaopei.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper（二）Zookeeper目录结构及操作命令</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/</id>
-    <published>2020-06-21T09:32:08.000Z</published>
-    <updated>2020-06-22T16:01:11.858Z</updated>
+    <updated>2020-07-02T13:28:57.539Z</updated>
     
     <summary type="html">
     
@@ -427,136 +434,9 @@
       <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
     
     
-      <category term="zookeeper" scheme="http://blog.wushaopei.com/tags/zookeeper/"/>
+      <category term="分布式锁" scheme="http://blog.wushaopei.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/"/>
     
-      <category term="zk结构" scheme="http://blog.wushaopei.com/tags/zk%E7%BB%93%E6%9E%84/"/>
-    
-      <category term="zk常用命令" scheme="http://blog.wushaopei.com/tags/zk%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="zk目录结构" scheme="http://blog.wushaopei.com/tags/zk%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Zookeeper（一）Zookeeper简介及其特性</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%80%EF%BC%89Zookeeper%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%89%B9%E6%80%A7/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%80%EF%BC%89Zookeeper%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%89%B9%E6%80%A7/</id>
-    <published>2020-06-21T09:25:31.000Z</published>
-    <updated>2020-06-22T16:01:25.652Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Zookeeper" scheme="http://blog.wushaopei.com/categories/Zookeeper/"/>
-    
-      <category term="环境配置篇" scheme="http://blog.wushaopei.com/categories/Zookeeper/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.wushaopei.com/tags/Linux/"/>
-    
-      <category term="redis安装" scheme="http://blog.wushaopei.com/tags/redis%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Linux（十六）服务器环境搭建-zookeeper简介与安装</title>
-    <link href="http://blog.wushaopei.com/2020/06/21/Linux%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-zookeeper%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/"/>
-    <id>http://blog.wushaopei.com/2020/06/21/Linux%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-zookeeper%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/</id>
-    <published>2020-06-21T08:59:59.000Z</published>
-    <updated>2020-06-21T09:05:58.185Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://blog.wushaopei.com/categories/Linux/"/>
-    
-      <category term="环境配置篇" scheme="http://blog.wushaopei.com/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/"/>
-    
-    
-      <category term="Linux" scheme="http://blog.wushaopei.com/tags/Linux/"/>
-    
-      <category term="redis安装" scheme="http://blog.wushaopei.com/tags/redis%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring（九）SpringIOC注解的使用</title>
-    <link href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B9%9D%EF%BC%89SpringIOC%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-    <id>http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B9%9D%EF%BC%89SpringIOC%E6%B3%A8%E8%A7%A3%E7%9A%84%E4%BD%BF%E7%94%A8/</id>
-    <published>2020-06-20T14:28:46.000Z</published>
-    <updated>2020-06-20T17:10:25.157Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Spring（八）Bean的懒加载与生命周期</title>
-    <link href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E5%85%AB%EF%BC%89Bean%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
-    <id>http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E5%85%AB%EF%BC%89Bean%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</id>
-    <published>2020-06-20T14:27:17.000Z</published>
-    <updated>2020-06-21T03:26:12.346Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Spring（七）Bean的作用域</title>
-    <link href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%83%EF%BC%89Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
-    <id>http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%83%EF%BC%89Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/</id>
-    <published>2020-06-20T14:26:51.000Z</published>
-    <updated>2020-06-21T03:22:16.523Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          
-        
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://blog.wushaopei.com/categories/Spring/"/>
-    
-      <category term="基础篇" scheme="http://blog.wushaopei.com/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
-    
-    
-      <category term="Spring" scheme="http://blog.wushaopei.com/tags/Spring/"/>
-    
-      <category term="Bean的作用域" scheme="http://blog.wushaopei.com/tags/Bean%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+      <category term="zk异步监控" scheme="http://blog.wushaopei.com/tags/zk%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7/"/>
     
   </entry>
   
