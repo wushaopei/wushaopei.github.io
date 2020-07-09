@@ -91,12 +91,12 @@
 
 
 
-<meta name="description" content="一、java中数组的简单介绍   数组的数据是把数据码成一排进行存放的。 在数组中，数据是使用索引进行排列标识所处的位置。 索引的起始值是0，即当有8个值的时候，最后的那个值的索引必然为 7。  二、关于数组的简单使用123456789101112131415&#x2F;&#x2F; 静态数组int [] arr &#x3D; new int [20];for (int i &#x3D; 0 ; i &lt; arr.length; i">
+<meta name="description" content="一、java中数组的简单介绍​                    数组的数据是把数据码成一排进行存放的。 在数组中，数据是使用索引进行排列标识所处的位置。 索引的起始值是0，即当有8个值的时候，最后的那个值的索引必然为 7。  二、关于数组的简单使用123456789101112131415&#x2F;&#x2F; 静态数组int [] arr &#x3D; new int [20];for (int i &#x3D; 0 ; i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构和算法（一）数组与时间复杂度分析">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="一、java中数组的简单介绍   数组的数据是把数据码成一排进行存放的。 在数组中，数据是使用索引进行排列标识所处的位置。 索引的起始值是0，即当有8个值的时候，最后的那个值的索引必然为 7。  二、关于数组的简单使用123456789101112131415&#x2F;&#x2F; 静态数组int [] arr &#x3D; new int [20];for (int i &#x3D; 0 ; i &lt; arr.length; i">
+<meta property="og:description" content="一、java中数组的简单介绍​                    数组的数据是把数据码成一排进行存放的。 在数组中，数据是使用索引进行排列标识所处的位置。 索引的起始值是0，即当有8个值的时候，最后的那个值的索引必然为 7。  二、关于数组的简单使用123456789101112131415&#x2F;&#x2F; 静态数组int [] arr &#x3D; new int [20];for (int i &#x3D; 0 ; i">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu895.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu896.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu897.png">
@@ -104,10 +104,10 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu899.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu900.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu901.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu902.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu903.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu904.png">
 <meta property="article:published_time" content="2020-07-05T14:31:04.000Z">
-<meta property="article:modified_time" content="2020-07-07T12:27:51.961Z">
+<meta property="article:modified_time" content="2020-07-08T08:30:29.673Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="数据结构和算法">
 <meta property="article:tag" content="数组">
@@ -477,8 +477,7 @@
       
 
       
-        <h3 id="一、java中数组的简单介绍"><a href="#一、java中数组的简单介绍" class="headerlink" title="一、java中数组的简单介绍"></a>一、java中数组的简单介绍</h3><img src="http://photo.wushaopei.com/qiniu895.png" width="100%">
-
+        <h3 id="一、java中数组的简单介绍"><a href="#一、java中数组的简单介绍" class="headerlink" title="一、java中数组的简单介绍"></a>一、java中数组的简单介绍</h3><p>​                 <img src="http://photo.wushaopei.com/qiniu895.png" width="60%"> </p>
 <ol>
 <li>数组的数据是把数据码成一排进行存放的。</li>
 <li>在数组中，数据是使用索引进行排列标识所处的位置。</li>
@@ -497,7 +496,7 @@
 <p><code>例如： 身份证号： 110103198512166666</code></p>
 </li>
 </ul>
-<h4 id="2、提出问题"><a href="#2、提出问题" class="headerlink" title="2、提出问题"></a>2、提出问题</h4><img src="http://photo.wushaopei.com/qiniu896.png" width="100%">
+<h4 id="2、提出问题"><a href="#2、提出问题" class="headerlink" title="2、提出问题"></a>2、提出问题</h4><img src="http://photo.wushaopei.com/qiniu896.png" width="80%">
 
 <p>以上图为例，我们引出几个问题：</p>
 <ul>
@@ -505,18 +504,18 @@
 <li>如何添加元素？如何删除元素？</li>
 </ul>
 <p><strong>背景：</strong> 基于java 的数组，封装独属于我自己的数组类</p>
-<h4 id="3、数组中常见的功能"><a href="#3、数组中常见的功能" class="headerlink" title="3、数组中常见的功能"></a>3、数组中常见的功能</h4><img src="http://photo.wushaopei.com/qiniu897.png" width="100%">
+<h4 id="3、数组中常见的功能"><a href="#3、数组中常见的功能" class="headerlink" title="3、数组中常见的功能"></a>3、数组中常见的功能</h4><img src="http://photo.wushaopei.com/qiniu897.png" width="80%">
 
 <h4 id="4、初始化创建-Array-java"><a href="#4、初始化创建-Array-java" class="headerlink" title="4、初始化创建 Array.java"></a>4、初始化创建 Array.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> Array</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/7/6 20:14</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//保存数据的数组</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span>[] data;</span><br><span class="line">    <span class="comment">//数组中有多少有效的数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数，传入数组的容量capacity构造Array</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Array</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        data = <span class="keyword">new</span> <span class="keyword">int</span>[capacity];</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 无参数的构造函数，默认数组的容量capacity=10</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Array</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取数组中的元素个数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取数组的容量</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCapacity</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.length;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回数组是否为空</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="5、向数组中添加元素"><a href="#5、向数组中添加元素" class="headerlink" title="5、向数组中添加元素"></a>5、向数组中添加元素</h4><p><strong>5.1 向所有元素后添加一个新元素</strong></p>
-<img src="http://photo.wushaopei.com/qiniu898.png" width="100%">
+<img src="http://photo.wushaopei.com/qiniu898.png" width="80%">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 向所有元素后添加一个新元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(<span class="keyword">int</span> e)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (size == data.length)</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"AddLast failed. Array is full"</span>);</span><br><span class="line"></span><br><span class="line">   data[size] = e;</span><br><span class="line">   size++ ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>5.2 向指定位置添加元素</strong></p>
 <p>注意： 该操作只是进行新增，而不是对指定位置元素进行替换。</p>
-<img src="http://photo.wushaopei.com/qiniu899.png" width="100%">
+<img src="http://photo.wushaopei.com/qiniu899.png" width="80%">
 
 <p><strong>如图所示，来分析一下思路：</strong></p>
 <p>​    我们只需要将索引为 1 开始后面的所有元素向后挪一个索引值的位置，即原来的 1 挪到 2 ，2 挪到 3 ，3 挪到 4 ；这样一来，原来的 1 的位置就空出来了，再将 77 插入到索引为 1 的位置上即可实现指定位置的添加。当然，我们还需要在添加新元素后，对 size 进行加一的操作。</p>
@@ -577,7 +576,7 @@
 <p><strong>8.2 main 测试</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">// write your code here</span></span><br><span class="line">       Array&lt;Integer&gt; array = <span class="keyword">new</span> Array&lt;&gt;();</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i ++)&#123;</span><br><span class="line">           array.addLast(i);</span><br><span class="line">       &#125;</span><br><span class="line">       System.out.println(array);</span><br><span class="line"></span><br><span class="line">       array.add(<span class="number">1</span>,<span class="number">100</span>);</span><br><span class="line">       System.out.println(array);</span><br><span class="line"></span><br><span class="line">       array.addFirst(-<span class="number">1</span>);</span><br><span class="line">       System.out.println(array);</span><br><span class="line"></span><br><span class="line">       array.remove(<span class="number">2</span>);</span><br><span class="line">       System.out.println(array+<span class="string">"2"</span>);</span><br><span class="line"></span><br><span class="line">       array.removeElement(<span class="number">4</span>);</span><br><span class="line">       System.out.println(array);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="9、动态数组"><a href="#9、动态数组" class="headerlink" title="9、动态数组"></a>9、动态数组</h4><img src="http://photo.wushaopei.com/qiniu900.png" width="100%">
+<h4 id="9、动态数组"><a href="#9、动态数组" class="headerlink" title="9、动态数组"></a>9、动态数组</h4><img src="http://photo.wushaopei.com/qiniu900.png" width="70%">  
 
 <img src="http://photo.wushaopei.com/qiniu901.png" width="100%">
 
@@ -592,7 +591,7 @@
 
 <h3 id="四、复杂度分析"><a href="#四、复杂度分析" class="headerlink" title="四、复杂度分析"></a>四、复杂度分析</h3><h4 id="1、时间复杂度概念"><a href="#1、时间复杂度概念" class="headerlink" title="1、时间复杂度概念"></a>1、时间复杂度概念</h4><p><strong>常用公式：</strong>  O(1) ，O(n)，O(lgn)，O(nlogn)，O(n^2)</p>
 <p><strong>解释说明：</strong>大O描述的是算法的运行时间和输入数据之间的关系</p>
-<img src="http://photo.wushaopei.com/qiniu902.png" width="100%">
+<img src="http://photo.wushaopei.com/qiniu903.png" width="80%">
 
 <p><strong>问题：</strong> 为什么要用大 O, 叫做 O(n) ?</p>
 <p><strong>原因：</strong> <code>忽略常数。实际时间 T = c1*n + c2</code></p>
@@ -842,7 +841,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-count">223</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -864,7 +863,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">176</span>
+                  <span class="site-state-item-count">180</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
