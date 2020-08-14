@@ -91,14 +91,14 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="导读：  ConcurrentHashMap概述 ConcurrentHashMap 的实现 JDK7版本 分段锁机制 ConcurrentHashMap 的数据结构 ConcurrentHashMap的初始化 定位 Segment  常用操作： get、put、size   JDK8版本 CAS 原理 ConcurrentHashMap 的数据结构 ConcurrentHashMap的初始化 N">
 <meta property="og:type" content="article">
-<meta property="og:title" content="3、注解及自定义注解">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/index.html">
+<meta property="og:title" content="深入理解-集合类（七）ConcurrentHashMap">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="article:published_time" content="2020-08-06T14:59:10.000Z">
-<meta property="article:modified_time" content="2020-08-06T14:59:10.188Z">
+<meta property="og:description" content="导读：  ConcurrentHashMap概述 ConcurrentHashMap 的实现 JDK7版本 分段锁机制 ConcurrentHashMap 的数据结构 ConcurrentHashMap的初始化 定位 Segment  常用操作： get、put、size   JDK8版本 CAS 原理 ConcurrentHashMap 的数据结构 ConcurrentHashMap的初始化 N">
+<meta property="article:published_time" content="2020-08-12T01:36:52.000Z">
+<meta property="article:modified_time" content="2020-08-13T10:29:30.993Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/06/3、注解及自定义注解/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/12/深入理解-集合类（七）ConcurrentHashMap/"/>
 
 
 
 
 
-  <title>3、注解及自定义注解 | 鮀城小帅</title>
+  <title>深入理解-集合类（七）ConcurrentHashMap | 鮀城小帅</title>
   
 
 
@@ -349,7 +349,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -366,7 +366,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">3、注解及自定义注解</h1>
+          <h1 class="post-title" itemprop="name headline">深入理解-集合类（七）ConcurrentHashMap</h1>
         
 
         <div class="post-meta">
@@ -378,8 +378,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T22:59:10+08:00">
-                2020-08-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:36:52+08:00">
+                2020-08-12
               </time>
             
 
@@ -397,8 +397,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/" itemprop="commentCount"></span>
+                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,7 +406,7 @@
 
           
           
-             <span id="/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/" class="leancloud_visitors" data-flag-title="3、注解及自定义注解">
+             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（七）ConcurrentHashMap">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,7 +442,38 @@
       
 
       
-        
+        <p>导读：</p>
+<ul>
+<li>ConcurrentHashMap概述</li>
+<li>ConcurrentHashMap 的实现<ul>
+<li>JDK7版本<ul>
+<li>分段锁机制</li>
+<li>ConcurrentHashMap 的数据结构</li>
+<li>ConcurrentHashMap的初始化</li>
+<li>定位 Segment </li>
+<li>常用操作： get、put、size</li>
+</ul>
+</li>
+<li>JDK8版本<ul>
+<li>CAS 原理</li>
+<li>ConcurrentHashMap 的数据结构</li>
+<li>ConcurrentHashMap的初始化</li>
+<li>Node 链表和红核数结构转换</li>
+<li>常用操作： get、put、size</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ConcurrentHashMap线程安全的原因？</li>
+<li>不同 JDK 版本的 ConcurrentHashMap有什么区别？（简述）</li>
+<li>ConcurrentHashMap和 HashMap 有什么区别或者说优势？</li>
+<li>ConcurrentHashMap适合在什么情境中使用？</li>
+</ul>
+<p><a href="https://www.cnblogs.com/heqiyoujing/p/10928423.html" target="_blank" rel="noopener">https://www.cnblogs.com/heqiyoujing/p/10928423.html</a></p>
+<p><a href="https://developer.ibm.com/zh/articles/java-lo-concurrenthashmap" target="_blank" rel="noopener">https://developer.ibm.com/zh/articles/java-lo-concurrenthashmap</a></p>
+<p><a href="https://blog.csdn.net/bill_xiang_/article/details/81122044" target="_blank" rel="noopener">https://blog.csdn.net/bill_xiang_/article/details/81122044</a></p>
+<p><a href="https://juejin.im/post/6844904090900627470" target="_blank" rel="noopener">https://juejin.im/post/6844904090900627470</a></p>
+
       
     </div>
     
@@ -462,7 +493,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/" title="3、注解及自定义注解">http://blog.wushaopei.com/2020/08/06/3%E3%80%81%E6%B3%A8%E8%A7%A3%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/</a>
+    <a href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" title="深入理解-集合类（七）ConcurrentHashMap">http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -484,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" rel="next" title="数据结构和算法（五）链表和递归">
-                <i class="fa fa-chevron-left"></i> 数据结构和算法（五）链表和递归
+              <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" rel="next" title="深入理解-集合类（六）LinkedHashSet">
+                <i class="fa fa-chevron-left"></i> 深入理解-集合类（六）LinkedHashSet
               </a>
             
           </div>
@@ -493,10 +524,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/06/4%E3%80%81%E5%BC%82%E5%B8%B8%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" rel="prev" title="4、异常及自定义异常">
-                4、异常及自定义异常 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +639,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">231</span>
+                  <span class="site-state-item-count">237</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

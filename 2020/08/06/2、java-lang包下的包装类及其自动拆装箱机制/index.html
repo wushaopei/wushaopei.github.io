@@ -91,16 +91,18 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="Java.util.lang包下的常用类 - 包装类基本数据及其包装类  类型关系表：     数据类型 字节数 长度 默认值 包装类    byte 1 -2^7~2^7-1 0 Byte   short 2 -2^15~2^15-1 0 Short   int 4 -2^31~ 2^31-1 0 Integer   long 8 -2^63~2^63-1 0 Long   float 4 -3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2、java.lang包下的包装类及其自动拆装箱机制">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/06/2%E3%80%81java-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="Java.util.lang包下的常用类 - 包装类基本数据及其包装类  类型关系表：     数据类型 字节数 长度 默认值 包装类    byte 1 -2^7~2^7-1 0 Byte   short 2 -2^15~2^15-1 0 Short   int 4 -2^31~ 2^31-1 0 Integer   long 8 -2^63~2^63-1 0 Long   float 4 -3">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu989.png">
 <meta property="article:published_time" content="2020-08-06T15:10:58.000Z">
-<meta property="article:modified_time" content="2020-08-06T15:10:58.944Z">
+<meta property="article:modified_time" content="2020-08-11T13:33:37.267Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu989.png">
 
 
 
@@ -442,7 +444,120 @@
       
 
       
-        
+        <h3 id="Java-util-lang包下的常用类-包装类"><a href="#Java-util-lang包下的常用类-包装类" class="headerlink" title="Java.util.lang包下的常用类 - 包装类"></a>Java.util.lang包下的常用类 - 包装类</h3><h4 id="基本数据及其包装类"><a href="#基本数据及其包装类" class="headerlink" title="基本数据及其包装类"></a>基本数据及其包装类</h4><img src="http://photo.wushaopei.com/qiniu989.png" width="60%">
+
+<p><strong>类型关系表：</strong> </p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>字节数</th>
+<th>长度</th>
+<th>默认值</th>
+<th>包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>1</td>
+<td>-2^7~2^7-1</td>
+<td>0</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>-2^15~2^15-1</td>
+<td>0</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>-2^31~ 2^31-1</td>
+<td>0</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+<td>-2^63~2^63-1</td>
+<td>0</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>-3.4e+38 ~ 3.4e+38</td>
+<td>0.0f</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>-1.7e+308 ~ 1.7e+308</td>
+<td>0</td>
+<td>Double</td>
+</tr>
+<tr>
+<td>char</td>
+<td>2</td>
+<td>u0000<del>uFFFF（‘’</del>‘？’）</td>
+<td>‘0’</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false/true</td>
+<td>true, false （理论上占用1bit,1/8字节，实际处理按1byte处理）</td>
+<td>FALSE</td>
+<td>Boolean</td>
+</tr>
+</tbody></table>
+<h4 id="基本数据类型与其包装类的转换案例"><a href="#基本数据类型与其包装类的转换案例" class="headerlink" title="基本数据类型与其包装类的转换案例"></a><strong>基本数据类型与其包装类的转换案例</strong></h4><p><strong>基于JDK5.0之前的手动转换</strong></p>
+<p>基本数据类型 —–&gt; 包装类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// int --&gt;  Integer</span></span><br><span class="line">   <span class="keyword">int</span> i = <span class="number">12</span>;</span><br><span class="line">   Integer integer0 = <span class="keyword">new</span> Integer(i);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// float --&gt; Float</span></span><br><span class="line">   Float f = <span class="keyword">new</span> Float(<span class="string">"12.0F"</span>);</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// boolean --&gt; Boolean</span></span><br><span class="line">   Boolean b0 = <span class="keyword">new</span> Boolean(<span class="string">"true"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>包装类 —–&gt; 基本数据类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Integer --&gt; int</span></span><br><span class="line"><span class="keyword">int</span> i2 = integer0.intValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Float --&gt; float</span></span><br><span class="line"><span class="keyword">float</span> f2 = f.floatValue();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Boolean --&gt; boolean   </span></span><br><span class="line"><span class="keyword">boolean</span> b2 = b0.booleanValue();</span><br></pre></td></tr></table></figure>
+
+<h4 id="JDK5-0以后新特性：自动装箱和自动拆箱"><a href="#JDK5-0以后新特性：自动装箱和自动拆箱" class="headerlink" title="JDK5.0以后新特性：自动装箱和自动拆箱"></a><strong>JDK5.0以后新特性：自动装箱和自动拆箱</strong></h4><p><strong>举例：</strong> <strong>int 与 Integer</strong></p>
+<h5 id="自动装箱"><a href="#自动装箱" class="headerlink" title="自动装箱"></a><strong>自动装箱</strong></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Returns an &#123;<span class="doctag">@code</span> Integer&#125; instance representing the specified</span></span><br><span class="line"><span class="comment">    * &#123;<span class="doctag">@code</span> int&#125; value.  If a new &#123;<span class="doctag">@code</span> Integer&#125; instance is not</span></span><br><span class="line"><span class="comment">    * required, this method should generally be used in preference to</span></span><br><span class="line"><span class="comment">    * the constructor &#123;<span class="doctag">@link</span> #Integer(int)&#125;, as this method is likely</span></span><br><span class="line"><span class="comment">    * to yield significantly better space and time performance by</span></span><br><span class="line"><span class="comment">    * caching frequently requested values.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * This method will always cache values in the range -128 to 127,</span></span><br><span class="line"><span class="comment">    * inclusive, and may cache other values outside of this range.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>  i an &#123;<span class="doctag">@code</span> int&#125; value.</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> Integer&#125; instance representing &#123;<span class="doctag">@code</span> i&#125;.</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@since</span>  1.5</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">           <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是从 java 源码中java.util.lang包下 Integer.class 类中截取的片段。该代码段用于对基本数据类型 int 进行装箱（转为包装类）。</p>
+<p><font color=red><strong>关于 IntegerCache 的作用解析：</strong> </font></p>
+<p>​    这是JDK在1.5版本中添加的一项新特性，把-128~127的数字缓存起来了，用于提升性能和节省内存。所以这个范围内的自动装箱（相当于调用valueOf(int i)方法）的数字都会从缓存中获取，返回同一个数字</p>
+<p><strong>IntegerCache 的源码如下：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Cache to support the object identity semantics of autoboxing for values between</span></span><br><span class="line"><span class="comment">    * -128 and 127 (inclusive) as required by JLS.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * The cache is initialized on first usage.  The size of the cache</span></span><br><span class="line"><span class="comment">    * may be controlled by the &#123;<span class="doctag">@code</span> -XX:AutoBoxCacheMax=&lt;size&gt;&#125; option.</span></span><br><span class="line"><span class="comment">    * During VM initialization, java.lang.Integer.IntegerCache.high property</span></span><br><span class="line"><span class="comment">    * may be set and saved in the private system properties in the</span></span><br><span class="line"><span class="comment">    * sun.misc.VM class.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntegerCache</span> </span>&#123;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> low = -<span class="number">128</span>;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> high;</span><br><span class="line">       <span class="keyword">static</span> <span class="keyword">final</span> Integer cache[];</span><br><span class="line"></span><br><span class="line">       <span class="keyword">static</span> &#123;</span><br><span class="line">           <span class="comment">// high value may be configured by property</span></span><br><span class="line">           <span class="keyword">int</span> h = <span class="number">127</span>;</span><br><span class="line">           String integerCacheHighPropValue =</span><br><span class="line">               sun.misc.VM.getSavedProperty(<span class="string">"java.lang.Integer.IntegerCache.high"</span>);</span><br><span class="line">           <span class="keyword">if</span> (integerCacheHighPropValue != <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">try</span> &#123;</span><br><span class="line">                   <span class="keyword">int</span> i = parseInt(integerCacheHighPropValue);</span><br><span class="line">                   i = Math.max(i, <span class="number">127</span>);</span><br><span class="line">                   <span class="comment">// Maximum array size is Integer.MAX_VALUE</span></span><br><span class="line">                   h = Math.min(i, Integer.MAX_VALUE - (-low) -<span class="number">1</span>);</span><br><span class="line">               &#125; <span class="keyword">catch</span>( NumberFormatException nfe) &#123;</span><br><span class="line">                   <span class="comment">// If the property cannot be parsed into an int, ignore it.</span></span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           high = h;</span><br><span class="line"></span><br><span class="line">           cache = <span class="keyword">new</span> Integer[(high - low) + <span class="number">1</span>];</span><br><span class="line">           <span class="keyword">int</span> j = low;</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; cache.length; k++)</span><br><span class="line">               cache[k] = <span class="keyword">new</span> Integer(j++);</span><br><span class="line"></span><br><span class="line">           <span class="comment">// range [-128, 127] must be interned (JLS7 5.1.7)</span></span><br><span class="line">           <span class="keyword">assert</span> IntegerCache.high &gt;= <span class="number">127</span>;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">private</span> <span class="title">IntegerCache</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试用例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">       <span class="keyword">int</span> a=<span class="number">3</span>;</span><br><span class="line">       <span class="comment">//定义一个基本数据类型的变量a赋值3</span></span><br><span class="line">       Integer b=a;</span><br><span class="line">       <span class="comment">//b是Integer 类定义的对象，直接用int 类型的a赋值    </span></span><br><span class="line">       System.out.println(b);</span><br><span class="line">       <span class="comment">//打印结果为3</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码中 <code>Integer b=a;</code> 非常的奇怪，一个对象怎么赋值成了基本数据类型的变量，其实这就是自动装箱的过程，上面程序在执行<code>Integer b=a;</code>的时候调用了Integer.valueOf ( int i ) 方法，`Integer b=a; 这段代码等同于：Integer b=Integer.valueOf ( a )  。下面是对 Integer.valueOf ( int i ) 方法简化后的源码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;       </span><br><span class="line">       <span class="keyword">if</span> (i &gt;= -<span class="number">128</span> &amp;&amp; i &lt;= <span class="number">127</span>)</span><br><span class="line">           <span class="keyword">return</span> IntegerCache.cache[i + <span class="number">127</span>];</span><br><span class="line">           <span class="comment">//如果i的值大于-128小于127则返回一个缓冲区中的一个Integer对象</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">       <span class="comment">//否则返回 new 一个Integer 对象</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="自动拆箱"><a href="#自动拆箱" class="headerlink" title="自动拆箱"></a><strong>自动拆箱</strong></h5><p><strong>测试用例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">       Integer b=<span class="keyword">new</span> Integer(<span class="number">3</span>);</span><br><span class="line">       <span class="comment">//b为Integer的对象</span></span><br><span class="line">       <span class="keyword">int</span> a=b;</span><br><span class="line">       <span class="comment">//a为一个int的基本数据类型</span></span><br><span class="line">       System.out.println(a);</span><br><span class="line">       <span class="comment">//打印输出3。</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码：int a=b,很奇怪，怎么把一个对象赋给了一个基本类型呢？其实 int a=b,这段代码等价于：int a=b.intValue(),来看看inValue()方法到底是什么，下面是源码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Returns the value of this &#123;<span class="doctag">@code</span> Integer&#125; as an</span></span><br><span class="line"><span class="comment">  * &#123;<span class="doctag">@code</span> int&#125;.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">intValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> value;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上是Integer的自动拆箱源码。该方法返回了一个value，对应获取 value 的源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Constructs a newly allocated &#123;<span class="doctag">@code</span> Integer&#125; object that</span></span><br><span class="line"><span class="comment">    * represents the specified &#123;<span class="doctag">@code</span> int&#125; value.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span>   value   the value to be represented by the</span></span><br><span class="line"><span class="comment">    *                  &#123;<span class="doctag">@code</span> Integer&#125; object.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="title">Integer</span><span class="params">(<span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">this</span>.value = value;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>将以上的代码进行整合后，测试用例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">       Integer b=<span class="keyword">new</span> Integer(<span class="number">3</span>);</span><br><span class="line">       <span class="comment">//b为Integer的对象</span></span><br><span class="line">       <span class="keyword">int</span> a=b.intValue();</span><br><span class="line">       <span class="comment">//其中b.intValue()返回实例化b时构造函数new Integer(3);赋的值3。</span></span><br><span class="line">       System.out.println(a);</span><br><span class="line">       <span class="comment">//打印输出3。</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>由以上代码可知，其中的value，就是定义 Integer b=new Integer(3) ;  赋的值。</p>
+<h4 id="延伸–Long与long"><a href="#延伸–Long与long" class="headerlink" title="延伸–Long与long"></a><strong>延伸–Long与long</strong></h4><p>其他包装类的拆装箱机制也大体上基本相同，以下给出 long – &gt; Long 的自动拆装箱源码：</p>
+<p><strong>自动装箱：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Long <span class="title">valueOf</span><span class="params">(<span class="keyword">long</span> l)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">final</span> <span class="keyword">int</span> offset = <span class="number">128</span>;</span><br><span class="line">       <span class="keyword">if</span> (l &gt;= -<span class="number">128</span> &amp;&amp; l &lt;= <span class="number">127</span>) &#123; <span class="comment">// will cache</span></span><br><span class="line">           <span class="keyword">return</span> LongCache.cache[(<span class="keyword">int</span>)l + offset];</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> Long(l);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>自动拆箱：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns the value of this &#123;<span class="doctag">@code</span> Long&#125; as a</span></span><br><span class="line"><span class="comment">   * &#123;<span class="doctag">@code</span> long&#125; value.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">longValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> value;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    Long 的自动装箱源码中，其 LongCache 与 IntegerCache 机制相同，不同点仅仅在于它Cache了 int 类型范围的数值，并在此基础上对自身长度进行叠加实现部分数值的高效缓存。</p>
+
       
     </div>
     
@@ -484,8 +599,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/06/9%E3%80%81%E9%9B%86%E5%90%88%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/" rel="next" title="9、集合及其底层扩容机制">
-                <i class="fa fa-chevron-left"></i> 9、集合及其底层扩容机制
+              <a href="/2020/08/06/8%E3%80%81%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/" rel="next" title="8、反射原理及机制">
+                <i class="fa fa-chevron-left"></i> 8、反射原理及机制
               </a>
             
           </div>
@@ -494,7 +609,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/06/9%E3%80%81java-util%E5%8C%85%E4%B8%8B%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/" rel="prev" title="9、java.util包下的集合类及其底层扩容机制">
+              <a href="/2020/08/06/9%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E7%BC%93%E5%86%B2%E6%B5%81%E7%9A%84%E5%8E%9F%E7%90%86%E5%8F%8A%E5%BA%94%E7%94%A8/" rel="prev" title="9、java.util包下的集合类及其底层扩容机制">
                 9、java.util包下的集合类及其底层扩容机制 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -592,8 +707,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,7 +736,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">231</span>
+                  <span class="site-state-item-count">237</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -663,6 +787,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-util-lang包下的常用类-包装类"><span class="nav-number">1.</span> <span class="nav-text">Java.util.lang包下的常用类 - 包装类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本数据及其包装类"><span class="nav-number">1.1.</span> <span class="nav-text">基本数据及其包装类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本数据类型与其包装类的转换案例"><span class="nav-number">1.2.</span> <span class="nav-text">基本数据类型与其包装类的转换案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK5-0以后新特性：自动装箱和自动拆箱"><span class="nav-number">1.3.</span> <span class="nav-text">JDK5.0以后新特性：自动装箱和自动拆箱</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自动装箱"><span class="nav-number">1.3.1.</span> <span class="nav-text">自动装箱</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自动拆箱"><span class="nav-number">1.3.2.</span> <span class="nav-text">自动拆箱</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#延伸–Long与long"><span class="nav-number">1.4.</span> <span class="nav-text">延伸–Long与long</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
