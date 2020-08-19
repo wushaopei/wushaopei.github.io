@@ -91,15 +91,15 @@
 
 
 
-<meta name="description" content="导读：  LinkedHashMap 概述 LinkedHashMap 不同 JDK 版本的底层数据结构是及增删改查操作？ LinkedHashMap 是线程安全的吗？为什么？ LinkedHashMap 和 HashMap 有什么区别及应用场景？ LinkedHashMap 和 LRU算法  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Young111&#x2F;p&#x2F;11482200.html 1.">
+<meta name="description" content="导读：  LinkedHashMap 概述 LinkedHashMap 不同 JDK 版本的底层数据结构是及增删改查操作？ LinkedHashMap 是线程安全的吗？为什么？ LinkedHashMap 和 HashMap 有什么区别及应用场景？ LinkedHashMap 和 LRU算法  1. LinkedHashMap​    LinkedHashMap 是 Map 接口的哈希表和链接列表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解-集合类（五）LinkedHashMap">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="导读：  LinkedHashMap 概述 LinkedHashMap 不同 JDK 版本的底层数据结构是及增删改查操作？ LinkedHashMap 是线程安全的吗？为什么？ LinkedHashMap 和 HashMap 有什么区别及应用场景？ LinkedHashMap 和 LRU算法  https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Young111&#x2F;p&#x2F;11482200.html 1.">
+<meta property="og:description" content="导读：  LinkedHashMap 概述 LinkedHashMap 不同 JDK 版本的底层数据结构是及增删改查操作？ LinkedHashMap 是线程安全的吗？为什么？ LinkedHashMap 和 HashMap 有什么区别及应用场景？ LinkedHashMap 和 LRU算法  1. LinkedHashMap​    LinkedHashMap 是 Map 接口的哈希表和链接列表">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu994.png">
 <meta property="article:published_time" content="2020-08-12T01:34:33.000Z">
-<meta property="article:modified_time" content="2020-08-14T08:10:44.124Z">
+<meta property="article:modified_time" content="2020-08-16T04:18:58.514Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu994.png">
@@ -391,6 +391,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解-集合类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -452,7 +474,6 @@
 <li>LinkedHashMap 和 HashMap 有什么区别及应用场景？</li>
 <li>LinkedHashMap 和 LRU算法</li>
 </ul>
-<p><a href="https://www.cnblogs.com/Young111/p/11482200.html" target="_blank" rel="noopener">https://www.cnblogs.com/Young111/p/11482200.html</a></p>
 <h3 id="1-LinkedHashMap"><a href="#1-LinkedHashMap" class="headerlink" title="1. LinkedHashMap"></a>1. LinkedHashMap</h3><p>​    <strong>LinkedHashMap</strong> 是 Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序。此实现提供所有可选的映射操作，并允许使用 <strong>null</strong> 值和 <strong>null</strong> 键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。 </p>
 <p>​    <strong>LinkedHashMap</strong> 实现与 <strong>HashMap</strong> 的不同之处在于，后者维护着一个运行于所有条目的双重链接列表。此链接列表定义了迭代顺序，该迭代顺序可以是插入顺序或者是访问顺序。 </p>
 <p><strong>注意</strong>，此实现不是同步的。如果多个线程同时访问链接的哈希映射，而其中至少一个线程从结构上修改了该映射，则它必须保持外部同步。 </p>
@@ -555,7 +576,29 @@
 <h4 id="5-3-TreeMap"><a href="#5-3-TreeMap" class="headerlink" title="5.3 TreeMap"></a>5.3 <strong>TreeMap</strong></h4><p>​    实现<strong>SortMap</strong>接口，能够把它保存的记录根据键排序,默认是按键值的升序排序，也可以指定排序的比较器，当用<strong>Iterator</strong> 遍历<strong>TreeMap</strong>时，得到的记录是排过序的。 </p>
 <p><strong>总结：</strong></p>
 <p>​    一般情况下，我们用的bai最多的是<strong>HashMap</strong>,在Map 中插入du、删除和定位元素，<strong>HashMap</strong> 是最好的选择。zhi但如果您要按自然顺序或自定义顺序遍历键，那么<strong>TreeMap</strong>会更好。如果需要输出的顺序和输入的相同,那么用<strong>LinkedHashMap</strong> 可以实现,它还可以按读取顺序来排列.</p>
-<h3 id="6-LinkedHashMap-和-LRU算法"><a href="#6-LinkedHashMap-和-LRU算法" class="headerlink" title="6. LinkedHashMap 和 LRU算法"></a>6. LinkedHashMap 和 LRU算法</h3>
+<h3 id="6-LinkedHashMap-和-LRU算法"><a href="#6-LinkedHashMap-和-LRU算法" class="headerlink" title="6. LinkedHashMap 和 LRU算法"></a>6. LinkedHashMap 和 LRU算法</h3><p> LRU（Least Recently Used），也就是<strong>最近最少使用</strong>。一种有限的空间资源管理的解决方案，会在空间资源不足的情况下移除掉最近没被使用过的数据，以保证接下来需要的空间资源。 </p>
+<p>在现在通用的操作系统中为了解决<strong>内存不足</strong>这个问题，提出了<strong>虚拟内存</strong>这种解决方案，其实虚拟内存也就是将机器的内存分为多个页面（提个小问题，一个页面包含了多少kb的空间？），内存中只存放当前需要的页面信息，暂时不使用的内存数据就保存到磁盘中。这可以很好的解决内存不足的问题。当然了这就无故出现页面交换的情况，使得读取内存的速度降低（磁盘的读取速度远小于内存的读取速度），这种方案肯定有利有弊，只需要我们的服务能够接受这种情况，那就完全没有问题。</p>
+<p>Redis做为一种内存数据库，内存大小对数据库的影响更重要，所以redis也需要及时的移除掉那些过期数据。在redis中有定时清楚、惰性删除、定期删除，但是其策略主要分为两种，基于访问时间和基于访问频率。基于访问时间就是LRU算法，看看LRU算法的图解过程，如下图。</p>
+<pre><code>&lt;img src=&quot;http://photo.wushaopei.com/qiniu995.png&quot; width=&quot;90%&quot;&gt;</code></pre><ul>
+<li>先定义好一个定长的队列</li>
+<li>按照FIFO的流程，依次申请一段空间</li>
+<li>直到队列被占满了，出现内存不足的情况，淘汰策略开始工作</li>
+<li>会淘汰队列中<strong>最先进入的数据</strong>，最先进去的数据也就是最近最久未被使用的数据，然后把其移除出队列</li>
+</ul>
+<h4 id="LRU-算法小demo"><a href="#LRU-算法小demo" class="headerlink" title="LRU 算法小demo"></a>LRU 算法小demo</h4><p> 整体的算法实现没有太多的难度，维护一个有限长度的队列的进出，需要移除或者插入数据。时间复杂度可能会是个问题。 </p>
+<ul>
+<li><p>队列如果是链表，则移除数据的时间复杂度是O(1)，但是查找数据的时间复杂度是O(n)</p>
+</li>
+<li><p>队列如果是数组，则移除数据的时间复杂度是O(n)，而且移除数据还伴随着数组的平行移动，查找数据也是O(n)，除非另外再加一个Map存储其索引值会使得其查找的速度降低到O（1），但是却又提高了空间复杂度</p>
+<p>接下来写个基于数组的LRU的简单代码 </p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LruDemo</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object[] items;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> HashMap&lt;T, Integer&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LruDemo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(<span class="number">8</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LruDemo</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">        <span class="keyword">this</span>.items = <span class="keyword">new</span> Object[size];</span><br><span class="line">        <span class="keyword">this</span>.map = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">16</span>);</span><br><span class="line">        <span class="keyword">this</span>.index = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(T t)</span> </span>&#123;</span><br><span class="line">        Integer value = map.get(t);</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (index &gt;= size) &#123;</span><br><span class="line">                <span class="comment">// 满了，需要移除第一个元素</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;size;i++) &#123;</span><br><span class="line">                    items[i-<span class="number">1</span>] = items[i];</span><br><span class="line">                    map.replace((T)items[i-<span class="number">1</span>], i);</span><br><span class="line">                &#125;</span><br><span class="line">                index -= <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            items[index] = t;</span><br><span class="line">            map.put(t, index);</span><br><span class="line">            index += <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=value; i&lt;index; i++) &#123;</span><br><span class="line">                items[i] = items[i+<span class="number">1</span>];</span><br><span class="line">                map.replace((T)items[i], i);</span><br><span class="line">            &#125;</span><br><span class="line">            items[index-<span class="number">1</span>] = t;</span><br><span class="line">            map.replace(t, index-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;index; i++) &#123;</span><br><span class="line">            System.out.println(items[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"======"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LruDemo&lt;String&gt; lruDemo = <span class="keyword">new</span> LruDemo&lt;String&gt;(<span class="number">6</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"aliace"</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"bob"</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"cat"</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"dog"</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"egg"</span>);</span><br><span class="line">        lruDemo.getAll();</span><br><span class="line">        lruDemo.put(<span class="string">"bob"</span>);</span><br><span class="line">        lruDemo.getAll();</span><br><span class="line">        lruDemo.put(<span class="string">"fine"</span>);</span><br><span class="line">        lruDemo.put(<span class="string">"good"</span>);</span><br><span class="line">        lruDemo.getAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果是 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">aliace</span><br><span class="line">bob</span><br><span class="line">cat</span><br><span class="line">dog</span><br><span class="line">egg</span><br><span class="line">======</span><br><span class="line">aliace</span><br><span class="line">cat</span><br><span class="line">dog</span><br><span class="line">egg</span><br><span class="line">bob</span><br><span class="line">======</span><br><span class="line">cat</span><br><span class="line">dog</span><br><span class="line">egg</span><br><span class="line">bob</span><br><span class="line">fine</span><br><span class="line">good</span><br><span class="line">======</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -734,7 +777,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">237</span>
+                  <span class="site-state-item-count">246</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -745,7 +788,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -756,7 +799,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">184</span>
+                  <span class="site-state-item-count">190</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -795,7 +838,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-LinkedHashMap"><span class="nav-number">1.</span> <span class="nav-text">1. LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-LinkedHashMap-的实现"><span class="nav-number">2.</span> <span class="nav-text">2.LinkedHashMap 的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-基于-JDK-1-7-及以前"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基于 JDK 1.7 及以前</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）-Entry-元素："><span class="nav-number">2.1.1.</span> <span class="nav-text">1） Entry 元素：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）初始化："><span class="nav-number">2.1.2.</span> <span class="nav-text">2）初始化：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-存储"><span class="nav-number">2.1.3.</span> <span class="nav-text">3) 存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-读取"><span class="nav-number">2.1.4.</span> <span class="nav-text">4) 读取</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-基于-JDK-1-8-及以后"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 基于 JDK 1.8 及以后</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）Entry-元素-："><span class="nav-number">2.2.1.</span> <span class="nav-text">1）Entry 元素 ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）初始化：-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">2）初始化：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）存储："><span class="nav-number">2.2.3.</span> <span class="nav-text">3）存储：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-读取："><span class="nav-number">2.2.4.</span> <span class="nav-text">4) 读取：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-排序模式-jdk1-7-1-8一直沿用"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 排序模式(jdk1.7\1.8一直沿用 )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-LinkedHashMap-不同-JDK-版本的扩容机制是什么？如何进行取值？"><span class="nav-number">3.</span> <span class="nav-text">3.LinkedHashMap 不同 JDK 版本的扩容机制是什么？如何进行取值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-LinkedHashMap-是线程安全的吗？为什么？"><span class="nav-number">4.</span> <span class="nav-text">4. LinkedHashMap 是线程安全的吗？为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LinkedHashMap-和-HashMap-有什么区别及应用场景？"><span class="nav-number">5.</span> <span class="nav-text">5. LinkedHashMap 和 HashMap 有什么区别及应用场景？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-HashMap"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 HashMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-LinkedHashMap"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 LinkedHashMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-TreeMap"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 TreeMap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-LinkedHashMap-和-LRU算法"><span class="nav-number">6.</span> <span class="nav-text">6. LinkedHashMap 和 LRU算法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-LinkedHashMap"><span class="nav-number">1.</span> <span class="nav-text">1. LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-LinkedHashMap-的实现"><span class="nav-number">2.</span> <span class="nav-text">2.LinkedHashMap 的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-基于-JDK-1-7-及以前"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 基于 JDK 1.7 及以前</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）-Entry-元素："><span class="nav-number">2.1.1.</span> <span class="nav-text">1） Entry 元素：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）初始化："><span class="nav-number">2.1.2.</span> <span class="nav-text">2）初始化：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-存储"><span class="nav-number">2.1.3.</span> <span class="nav-text">3) 存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-读取"><span class="nav-number">2.1.4.</span> <span class="nav-text">4) 读取</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-基于-JDK-1-8-及以后"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 基于 JDK 1.8 及以后</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1）Entry-元素-："><span class="nav-number">2.2.1.</span> <span class="nav-text">1）Entry 元素 ：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2）初始化：-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">2）初始化：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3）存储："><span class="nav-number">2.2.3.</span> <span class="nav-text">3）存储：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-读取："><span class="nav-number">2.2.4.</span> <span class="nav-text">4) 读取：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-排序模式-jdk1-7-1-8一直沿用"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 排序模式(jdk1.7\1.8一直沿用 )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-LinkedHashMap-不同-JDK-版本的扩容机制是什么？如何进行取值？"><span class="nav-number">3.</span> <span class="nav-text">3.LinkedHashMap 不同 JDK 版本的扩容机制是什么？如何进行取值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-LinkedHashMap-是线程安全的吗？为什么？"><span class="nav-number">4.</span> <span class="nav-text">4. LinkedHashMap 是线程安全的吗？为什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-LinkedHashMap-和-HashMap-有什么区别及应用场景？"><span class="nav-number">5.</span> <span class="nav-text">5. LinkedHashMap 和 HashMap 有什么区别及应用场景？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-HashMap"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 HashMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-LinkedHashMap"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 LinkedHashMap</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-TreeMap"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 TreeMap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-LinkedHashMap-和-LRU算法"><span class="nav-number">6.</span> <span class="nav-text">6. LinkedHashMap 和 LRU算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LRU-算法小demo"><span class="nav-number">6.1.</span> <span class="nav-text">LRU 算法小demo</span></a></li></ol></li></ol></div>
             
 
           </div>

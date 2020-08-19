@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="s8Pe1TBqyy" />
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next-wu.jpg?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="鮀城小帅" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="七层网络协议及其作用 TCP&#x2F;IP协议  TCP&#x2F;IP   传输控制协议 TCP 简介 TCP Flags   三次握手  为什么需要三次握手，而不是二次握手？ 首次握手的隐患 – SYN 超时 针对 SYN Flood 的防护措施 第三次握手失败后怎么处理？   四次挥手  TIME_WAIT CLOSE_WAIT 为什么连接的时候是三次握手，关闭的时候却是四次握手？ 为什么TIME_WAIT状">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java：java-util-concurrent并发包下的常用类">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/index.html">
+<meta property="og:site_name" content="鮀城小帅">
+<meta property="og:description" content="七层网络协议及其作用 TCP&#x2F;IP协议  TCP&#x2F;IP   传输控制协议 TCP 简介 TCP Flags   三次握手  为什么需要三次握手，而不是二次握手？ 首次握手的隐患 – SYN 超时 针对 SYN Flood 的防护措施 第三次握手失败后怎么处理？   四次挥手  TIME_WAIT CLOSE_WAIT 为什么连接的时候是三次握手，关闭的时候却是四次握手？ 为什么TIME_WAIT状">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu999.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu136.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu137.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1000.png">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/5/19/1722d1de67541378?imageView2/0/w/1280/h/960/ignore-error/1">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1001.png">
+<meta property="article:published_time" content="2020-08-06T15:18:19.000Z">
+<meta property="article:modified_time" content="2020-08-18T05:09:37.413Z">
+<meta property="article:author" content="吴少培">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu999.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/06/Java：网络协议/"/>
+
+
+
+
+
+  <title>Java：java-util-concurrent并发包下的常用类 | 鮀城小帅</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">鮀城小帅</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">总要扛起一片心中的天</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-热度">
+          <a href="/top/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-signal"></i> <br />
+            
+            热度
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-公益">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-说说">
+          <a href="/shuoshuo/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            说说
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+    <a href="https://github.com/wushaopei" class="github-corner" target="_blank" title="Follow me on GitHub" aria-label="Follow me on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+  <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+      </svg>
+</a>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java：java-util-concurrent并发包下的常用类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:18:19+08:00">
+                2020-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">网络协议</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="leancloud_visitors" data-flag-title="Java：java-util-concurrent并发包下的常用类">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>  阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>七层网络协议及其作用</p>
+<p>TCP/IP协议</p>
+<ul>
+<li><p>TCP/IP </p>
+<ul>
+<li>传输控制协议 TCP 简介</li>
+<li>TCP Flags</li>
+</ul>
+</li>
+<li><p>三次握手</p>
+<ul>
+<li>为什么需要三次握手，而不是二次握手？</li>
+<li>首次握手的隐患 – SYN 超时</li>
+<li>针对 SYN Flood 的防护措施</li>
+<li>第三次握手失败后怎么处理？</li>
+</ul>
+</li>
+<li><p>四次挥手</p>
+<ul>
+<li>TIME_WAIT</li>
+<li>CLOSE_WAIT</li>
+<li>为什么连接的时候是三次握手，关闭的时候却是四次握手？</li>
+<li>为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</li>
+<li>服务器出现大量 CLOST_WAIT 状态的原因</li>
+</ul>
+</li>
+<li><p>滑动窗口</p>
+</li>
+<li><p>TCP 和 UDP 的区别</p>
+</li>
+</ul>
+<p>HTTP </p>
+<ul>
+<li>请求结构</li>
+<li>响应结构</li>
+<li>请求/响应步骤</li>
+<li>浏览器键入 URL 经历的流程</li>
+<li>状态码</li>
+<li>GET 和 POST 的区别</li>
+<li>CooKie 和 Session 的区别？及其作用？</li>
+<li>HTTP 和 HTTPS 的区别</li>
+</ul>
+<p>Socket</p>
+<h2 id="1-七层网络协议及其作用"><a href="#1-七层网络协议及其作用" class="headerlink" title="1. 七层网络协议及其作用"></a>1. 七层网络协议及其作用</h2><img src="http://photo.wushaopei.com/qiniu999.png" width="80%">
+
+<h3 id="1-1-硬件（物理层）"><a href="#1-1-硬件（物理层）" class="headerlink" title="1.1 硬件（物理层）"></a>1.1 硬件（物理层）</h3><p>​    <strong>物理层的需求</strong>： 解决两台物理机之间的通讯问题，具体操作为从机器A向机器B发送BIT流，而机器B能收到这些BIT流。这便是物理层要做的事情。</p>
+<p>​    TCP/IP 的最底层是负责数据传输的硬件。物理层主要定义了物理设备的标准，如网线的类型、各种介质的传输速率等。它的作用是传输 Byte 流（即我们所谓的 “ 0 、1” 二进制数据）将它们转化为电流强弱来进行传输。到达目的后再转化为 <code>0-1-0-1</code>的机器码。也就是我们常说的数模转换与模数转换。</p>
+<h3 id="1-2-网络接口层（数据链路层）"><a href="#1-2-网络接口层（数据链路层）" class="headerlink" title="1.2 网络接口层（数据链路层）"></a>1.2 网络接口层（数据链路层）</h3><p>​    <strong>数据链路层的意义：</strong> 解决网络传输过程中，传输 Byte 流所可能发生的错传、传输不完整的问题。</p>
+<p>​    数据链路层定义了如何格式化数据以进行传输，以及如何控制对物理介质的访问。这一层通常还提供错误检测和纠正，以确保数据传输的可靠性。</p>
+<p>​    本层将 Btye 数据组成了帧，其中交换机工作在这一层里面，对帧解码，并根据帧中包含的信息把数据发送到接收方。</p>
+<h3 id="1-3-互联网层（网络层）"><a href="#1-3-互联网层（网络层）" class="headerlink" title="1.3 互联网层（网络层）"></a>1.3 互联网层（网络层）</h3><p>​    <strong>网络层的意义：</strong>在网络中进行点对点发送数据时是需要经过多个节点的，那么如何找到目标节点？如何找到最佳路径便成了首要需求。此时，便有了<strong>网络层</strong>。</p>
+<p>​    其主要功能是讲网络地址翻译成对应的物理地址，并决定如何将数据从发送方路由到接收方。网络层通过综合考虑，发送优先权、网络拥塞层度、服务及可选路由的花费来决定从一个网络中节点A到另一个网络中节点B的最佳路径。</p>
+<p>​    由于网络层处理并智能指导数据传送，路由器连接网络隔断，路由器属于网络层，此层的数据我们称之为<strong>数据包</strong>。</p>
+<p>​    本层中比较重要的协议是 TCP/IP 协议中的 IP 协议。</p>
+<h3 id="1-4-传输层"><a href="#1-4-传输层" class="headerlink" title="1.4 传输层"></a>1.4 传输层</h3><p>​    <strong>传输层的意义：</strong> 随着网络通信需求的进一步扩大，通信过程中需要发送大量的数据，如文件传输等，可能需要很长时间，而网络在通信过程中会中断好多次。为了保证对发出大量数据的准确性，需要对数据进行切分。切割为一个一个的段落，即 segument进行发送 。<strong>那么其中一个段落丢失了该怎么办？要不要进行重传？每个段落要按照顺序到达吗？这便是传输层索要考虑的问题。</strong></p>
+<p>​    传输层解决了主机间的数据传输，数据传输可以是不同网络的。并且传输层解决了传输质量的问题。该层是 <strong>OSI 模型</strong>中最重要的一层。</p>
+<p>​    <strong>传输协议</strong>，同时进行流量控制，或者基于接收方可接收数据的快慢程度规定适当的发送速率。此外传输层按照网络所能处理的最大数据包将进行强制分割。例如：以太网无法接受大于 1500 字节的数据包。发送方节点的传输层将数据分割成较小的数据片，同时对每一个数据片安排好序列号，以便到达接受方节点的传输层时能以正确的方式进行重组。该过程称之为 <strong>排序</strong>  。</p>
+<p>​    传输层中需要我们关注的协议有 <strong>TCP/IP 协议中的 TCP 协议和 UDP 协议。</strong> </p>
+<h3 id="1-5-会话层"><a href="#1-5-会话层" class="headerlink" title="1.5 会话层"></a>1.5 会话层</h3><p>​    <strong>会话层的意义：</strong> 实现自动收发包、自动寻址的功能。建立和管理应用程序之间的通讯。</p>
+<h3 id="1-6-表示层"><a href="#1-6-表示层" class="headerlink" title="1.6  表示层"></a>1.6  表示层</h3><p>​    <strong>表示层的意义：</strong> 当我要用Linux 系统给 Windows 系统收发包，但是两个系统之间的语法不一致，如： exe 在 Linux 中无法执行， Shell 也不能在 Windows 中生效。所以就需要表示层。它能帮我们解决不同系统之间通信的问题，在表示层，数据将按照网络能理解的方式进行格式化，格式化也因其所使用的网络的类型的不同而不同。</p>
+<p>​    此时，数据发送方虽然知道自己发送的是什么东西，转换成字节数组后有多长，但接收方肯定不知道。于是，应用层的网络协议诞生了，它规定发送方和接收方必须使用一个固定长度的消息头，消息头必须使用某种固定的组成，而且消息头里必须记录消息体的长度等一系列信息。以方便接收方能正确的解析发送方发送的数据。</p>
+<p>​    应用层旨在让你更方便的应用同一网络中接收到的数据。至于数据的传递，即使没有该层，你也可以在两台机器之间进行交互，只是这样直接传递的结果，你看到的只有一堆  <code>0-1</code> 组成的数据。 </p>
+<p>​    该层中需要<strong>重点关注的是与 TCP/IP 协议有关的 HTTP 协议。</strong></p>
+<h2 id="2-TCP-IP协议"><a href="#2-TCP-IP协议" class="headerlink" title="2. TCP/IP协议"></a>2. TCP/IP协议</h2><h3 id="2-1-TCP-IP"><a href="#2-1-TCP-IP" class="headerlink" title="2.1 TCP/IP"></a>2.1 TCP/IP</h3><p><strong>OSI的实现： TCP/IP</strong></p>
+<table>
+<thead>
+<tr>
+<th>OSI七层模型</th>
+<th>TCP/IP概念层模型</th>
+<th>功能</th>
+<th>TCP/IP协议簇</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用层</td>
+<td>应用层</td>
+<td>文件传输，电子邮件，文件服务，虚拟终端</td>
+<td>TFTP,NTTP,FTP,SMTP,DMS,Telnet</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>应用层</td>
+<td>数据格式化，代码转换，数据加密</td>
+<td>没有协议</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>应用层</td>
+<td>解除或建立与别的节点的联系</td>
+<td>没有协议</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+<td>提供端对端的接口</td>
+<td>TCP, UDP</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+<td>为数据包选择路由</td>
+<td>IP，ICMP，RIP，OSFF，BCP，ICMP</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>链路层</td>
+<td>传输有地址的帧以及错误检测功能</td>
+<td>SLIP,CSLIP,PPP,ARP,RARP</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>链路层</td>
+<td>以二进制数据形式在物理媒体上传输数据</td>
+<td>ISO2110，IEEE802, IEEE802.2</td>
+</tr>
+</tbody></table>
+<h4 id="传输控制协议-TCP-简介"><a href="#传输控制协议-TCP-简介" class="headerlink" title="传输控制协议 TCP 简介"></a>传输控制协议 TCP 简介</h4><ul>
+<li>面向连接的、可靠的、基于字节流的传输层通信协议</li>
+<li>将应用层的数据流分割成报文段并发送给目标节点的 TCP 层</li>
+<li>数据包都有序号，对方收到则发送 ACK 确认，未收到则重传</li>
+<li>使用校验和来校验数据在传输过程中是否有误</li>
+</ul>
+<h4 id="TCP-Flags"><a href="#TCP-Flags" class="headerlink" title="TCP Flags"></a>TCP Flags</h4><ul>
+<li>URG ： 紧急指针标志</li>
+<li>ACK ：确认序号标志</li>
+<li>PSH ：push 标志</li>
+<li>RST :  重置连接标志</li>
+<li>SYN : 同步序号，用于建立连接过程</li>
+<li>FIN ：finish 标志，用于释放连接</li>
+</ul>
+<hr>
+<h3 id="2-2-三次握手"><a href="#2-2-三次握手" class="headerlink" title="2.2 三次握手"></a>2.2 三次握手</h3><p>所谓<strong>三次握手</strong>（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示：</p>
+<img src="http://photo.wushaopei.com/qiniu136.png" width="80%"> 
+
+<ol>
+<li>第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</li>
+<li>第二次握手：Server收到数据包后由标志位SYN=1知道Client请求建立连接，Server将标志位SYN和ACK都置为1，ack=J+1，随机产生一个值seq=K，并将该数据包发送给Client以确认连接请求，Server进入SYN_RCVD状态。</li>
+<li>第三次握手：Client收到确认后，检查ack是否为J+1，ACK是否为1，如果正确则将标志位ACK置为1，ack=K+1，并将该数据包发送给Server，Server检查ack是否为K+1，ACK是否为1，如果正确则连接建立成功，Client和Server进入ESTABLISHED状态，完成三次握手，随后Client与Server之间可以开始传输数据了。</li>
+</ol>
+<h4 id="为什么需要三次握手，而不是二次握手？"><a href="#为什么需要三次握手，而不是二次握手？" class="headerlink" title="为什么需要三次握手，而不是二次握手？"></a>为什么需要三次握手，而不是二次握手？</h4><p>​    主要是为了防止两次握手情况下已失效的连接请求报文段突然又传送到服务端,而产生的错误。举例如下:</p>
+<p>​    Client向Server发出TCP连接请求,第一个连接请求报文在网络的某个节点长时间滞留,Client超时后认为报文丢失,于是再重传一次连接请求,Server收到后建立连接。</p>
+<p>​    数据传输完毕后双方断开连接。而此时,前一个滞留在网络中的连接请求到达了服务端Server,而Server认为Client又发来连接请求,若采用的是“两次握手”,则这种情况下Server认为传输连接已经建立,并一直等待Client传输数据,而Client此时并无连接请求,因此不予理睬,这样就造成了Server的资源白白浪费了。</p>
+<p>​    但此时若是使用“三次握手”,则Server向Client返回确认报文段,由于是一个失效的请求,因此Client不予理睬,建立连接失败。第三次握手的作用:防止已失效的连接请求报文段突然又传送到了服务器。</p>
+<p>​    <strong>另一种说法：</strong>   为了初始化 Sequence Number 的初始值。</p>
+<h4 id="首次握手的隐患-–-SYN-超时"><a href="#首次握手的隐患-–-SYN-超时" class="headerlink" title="首次握手的隐患 – SYN 超时"></a>首次握手的隐患 – SYN 超时</h4><p>问题起因分析：</p>
+<ul>
+<li>Server 收到 Client 的SYN， 回复 SYN-ACK  的时候未收到 ACK 确认</li>
+<li>Server 不断重试直至超时， Linux 默认等待 63 秒才断开连接</li>
+<li>收到 SYN Flood 攻击</li>
+</ul>
+<h4 id="针对-SYN-Flood-的防护措施"><a href="#针对-SYN-Flood-的防护措施" class="headerlink" title="针对 SYN Flood 的防护措施"></a>针对 SYN Flood 的防护措施</h4><ul>
+<li><p>SYN 队列满后，通过 tcp_syncookies 参数回发 SYN Cookie</p>
+</li>
+<li><p>若为正常连接则 Client 会回发 SYN Cookie ，直接建立连接</p>
+<h3 id="第三次握手失败后怎么处理？"><a href="#第三次握手失败后怎么处理？" class="headerlink" title="第三次握手失败后怎么处理？"></a>第三次握手失败后怎么处理？</h3><pre><code>如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便Client重新发送ACK包，以便Client重新发送ACK包。
+
+Server重发SYN+ACK包的次数，可以通过设 /proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。
+
+如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</code></pre></li>
+</ul>
+<h4 id="建立连接后，Client出现故障怎么办"><a href="#建立连接后，Client出现故障怎么办" class="headerlink" title="建立连接后，Client出现故障怎么办"></a>建立连接后，Client出现故障怎么办</h4><p>​    TCP设有保活机制，该机制会对Client的故障做出相应的处理。在保活时间段内，Server端会向对方发送保活探测报文，如果未收到响应则继续发送。直到发送探测报文尝试次数达到保活探测数仍未收到响应则中断连接。这时，对方主机会被确认为不可达，连接也会随之中断。</p>
+<hr>
+<h3 id="2-3-四次挥手-Client或Server均可主动发起挥手动作"><a href="#2-3-四次挥手-Client或Server均可主动发起挥手动作" class="headerlink" title="2.3 四次挥手(Client或Server均可主动发起挥手动作)"></a>2.3 四次挥手(Client或Server均可主动发起挥手动作)</h3><p>所谓<strong>四次挥手</strong>（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。整个流程如下图所示： </p>
+<img src="http://photo.wushaopei.com/qiniu137.png" width="80%">
+
+<ol>
+<li>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</li>
+<li>第二次挥手：Server收到FIN后，发送一个ACK给Client，确认序号为收到序号+1（与SYN相同，一个FIN占用一个序号），Server进入CLOSE_WAIT状态。</li>
+<li>第三次挥手：Server发送一个FIN，用来关闭Server到Client的数据传送，Server进入LAST_ACK状态。</li>
+<li>第四次挥手：Client收到FIN后，Client进入TIME_WAIT状态，接着发送一个ACK给Server，确认序号为收到序号+1，Server进入CLOSED状态，完成四次挥手。</li>
+</ol>
+<h4 id="为什么连接的时候是三次握手，关闭的时候却是四次握手？"><a href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？" class="headerlink" title="为什么连接的时候是三次握手，关闭的时候却是四次握手？"></a>为什么连接的时候是三次握手，关闭的时候却是四次握手？</h4><p>​    Server在LISTEN状态下，收到建立连接请求的SYN报文后，可以直接把ACK和SYN放在一个报文里发送给Client。而关闭连接时，当收到对方的FIN报文时，仅仅表示对方不再发送数据了但是还能接收数据，己方也未必全部数据都发送给对方了，所以己方可以立即close，也可以发送一些数据给对方后，再发送FIN报文给对方来表示同意现在关闭连接，因此，己方ACK和FIN一般都会分开发送。 </p>
+<h4 id="为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><a href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？" class="headerlink" title="为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？"></a>为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</h4><ol>
+<li>Client的最后一个ACK报文在传输的时候丢失，Server并没有接收到这个报文。这个时候，Server就会超时重传这个FIN消息，然后Client就会重新返回最后一个ACK报文，等待两个时间周期，完成关闭。如果不等待这两个时间周期，Server重传的那条消息就不会收到。Server就因为接收不到Client的信息而无法正常关闭。</li>
+<li>防止“已失效的连接请求报文段”出现在本连接中。在发送完最后一个ACK报文段后,再经过2MSL,就可以使本连接持续的时间内所产生的所有报文段,都从网络中消失。这样就可以使下一个新的连接中不会出现这种就得连接请求报文段。</li>
+</ol>
+<h4 id="服务器出现大量-CLOST-WAIT-状态的原因"><a href="#服务器出现大量-CLOST-WAIT-状态的原因" class="headerlink" title="服务器出现大量 CLOST_WAIT 状态的原因"></a>服务器出现大量 CLOST_WAIT 状态的原因</h4><p>​    对方关闭 socket 连接，我方忙于读或写，没有及时关闭连接。</p>
+<ul>
+<li>检查代码，特别是释放资源的代码</li>
+<li>检查配置，特别是处理请求的线程配置</li>
+</ul>
+<h3 id="2-3-滑动窗口"><a href="#2-3-滑动窗口" class="headerlink" title="2.3 滑动窗口"></a>2.3 滑动窗口</h3><h4 id="RTT-和-RTO-滑动窗口的相关概念-："><a href="#RTT-和-RTO-滑动窗口的相关概念-：" class="headerlink" title="RTT 和 RTO (滑动窗口的相关概念)："></a>RTT 和 RTO (滑动窗口的<strong>相关概念)</strong>：</h4><ul>
+<li>RTT ： <strong>发送一个数据包到收到对应的 ACK ，所花费的时间</strong></li>
+<li>RTO ： <strong>重传时间间隔</strong> （本次当前所发送seq所预估的超时时间，如果有返回对应 ACK ，则不需要重传；如果超过 RTO 没有回复，则重传本次 Seq）</li>
+</ul>
+<h4 id="TCP-使用滑动窗口做流量控制与乱想重排"><a href="#TCP-使用滑动窗口做流量控制与乱想重排" class="headerlink" title="TCP 使用滑动窗口做流量控制与乱想重排"></a>TCP 使用滑动窗口做流量控制与乱想重排</h4><ul>
+<li>保证 TCP 的可靠性</li>
+<li>保证 TCP 的流控特性</li>
+</ul>
+<img src="http://photo.wushaopei.com/qiniu1000.png" width="80%">
+
+<p>​    如图所示，作图是 TCP  协议的发送端缓冲区，右边是接收端缓冲区，左边向右边发送数据，下面的长方形代表要发送的数据流；里面假设装满了数据，并且要按照顺序从左向右进行发送或者接收。</p>
+<ul>
+<li>LstByteAcked ： 指向已经发送且已经被接收端确认收到的数据流的位置</li>
+<li>LastByteSent ： 指向已发送但还没有收到回复的数据流的最后一个字节的位置</li>
+<li>LastByteWritten ： 指向当前程序已经准备要发送，但还未发送的数据的字段</li>
+<li>NextByteRead： 指向上层应用已经读完的最后一个字节的位置</li>
+<li>NextByteExpected：指向已经收到的最大的联系 Seq 的位置（收到，未发送回执）</li>
+<li>LastByteRcvd ： 指向已收到的最后一个字节的位置</li>
+</ul>
+<h3 id="2-4-TCP-和-UDP-的区别"><a href="#2-4-TCP-和-UDP-的区别" class="headerlink" title="2.4 TCP 和 UDP 的区别"></a>2.4 TCP 和 UDP 的区别</h3><h4 id="UDP-简介"><a href="#UDP-简介" class="headerlink" title="UDP 简介"></a>UDP 简介</h4><p>​    UDP（User Datagram Protocol）全称是用户数据电报协议，是一种无连接的协议，提供不可靠的用户数据报服务，1980 年发布的 <a href="https://tools.ietf.org/html/rfc768" target="_blank" rel="noopener">RFC 768</a> 定义了 UDP 协议。 </p>
+<h4 id="UDP数据结构"><a href="#UDP数据结构" class="headerlink" title="UDP数据结构"></a><strong>UDP数据结构</strong></h4><h4 id=""><a href="#" class="headerlink" title=""></a><img src="https://user-gold-cdn.xitu.io/2020/5/19/1722d1de67541378?imageView2/0/w/1280/h/960/ignore-error/1" width="100%"></h4><h4 id="UDP-的特点"><a href="#UDP-的特点" class="headerlink" title="UDP 的特点"></a><strong>UDP 的特点</strong></h4><ul>
+<li>面向非连接</li>
+<li>不维护连接状态，支持同时向多个客户端传输相同的消息</li>
+<li>数据包报头只有8个字节，额外开销较小</li>
+<li>吞吐量只受限于数据生成速率、传输速率以及机器性能</li>
+<li>尽最大努力交付，不保证可靠交付，不需要维持复杂的连接状态</li>
+<li>面向报文，不对应用程序体骄傲的报文信息进行拆分或者合并</li>
+</ul>
+<h4 id="两者的区别如下："><a href="#两者的区别如下：" class="headerlink" title="两者的区别如下："></a><strong>两者的区别如下：</strong></h4><table>
+<thead>
+<tr>
+<th>区别</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接</td>
+<td>TCP面向连接（三次握手）</td>
+<td>UDT是面向无连接的（多拨发布）</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>TCP 利用了握手和重传机制提供了可靠性保证</td>
+<td>UDP则可能会丢失数据，不知道有没有被接受</td>
+</tr>
+<tr>
+<td>有序性</td>
+<td>TCP 利用序列号保证了消息的有顺序交付，到达可能无序，但TCP最终会排序</td>
+<td>UDP是不具备有序性的</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>TCP的速度比较慢，因为要创建连接，保证消息的可靠性和有序性等，需要做额外的很多事情</td>
+<td>UDP则适合对于速度比较敏感的应用，比如：在线视频媒体、多人在线游戏</td>
+</tr>
+<tr>
+<td>量级（报文头部大小）</td>
+<td>TCP 是 20 个字节</td>
+<td>UDP 是 8 个字节</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="3-HTTP"><a href="#3-HTTP" class="headerlink" title="3. HTTP"></a>3. HTTP</h2><h3 id="3-1-HTTP-简介"><a href="#3-1-HTTP-简介" class="headerlink" title="3.1 HTTP 简介"></a>3.1 HTTP 简介</h3><h3 id="3-2-超文本传输协议-HTTP-主要特点"><a href="#3-2-超文本传输协议-HTTP-主要特点" class="headerlink" title="3.2 超文本传输协议 HTTP 主要特点"></a>3.2 超文本传输协议 HTTP 主要特点</h3><ul>
+<li><p>支持客户/ 服务器模式 </p>
+<p>工作于客户端/服务端架构之上，浏览器作为 HTTP 客户端通过 URL 向 HTTP 及 Web 服务端发送所有请求，Web 服务端根据请求向客户端发送相应的响应信息。</p>
+</li>
+<li><p>简单快速</p>
+<p>客户端向服务端发送请求时只需要发送请求方法，请求方法常用的有 ： get 、header、post、put  等。</p>
+</li>
+<li><p>灵活</p>
+<p>HTTP 协议允许传输任意类型的数据对象，正在传输的类型使用 <code>contentType</code> 加以标记</p>
+</li>
+<li><p>无连接</p>
+<p>限制每次连接只处理一个请求，服务器处理完客户端的请求，并收到客户端的应答之后断开连接，采用这种方式可以节省传输时间。HTTP 1.1 其开始使用长连接，即服务器需要等待一定时间后才断开连接，以保证连接特性。</p>
+</li>
+<li><p>无状态</p>
+<p>指协议对数据处理没有记忆能力，缺少状态意味着如果后续处理没有前面的信息则需要进行重传。</p>
+</li>
+</ul>
+<h4 id="请求-响应的步骤"><a href="#请求-响应的步骤" class="headerlink" title="请求/响应的步骤"></a>请求/响应的步骤</h4><ul>
+<li>客户端连接到 Web 服务器</li>
+<li>发送 HTTP 请求</li>
+<li>服务器接受请求并返回 HTTP 响应</li>
+<li>释放连接 TCP 连接</li>
+<li>客户端浏览器解析 HTML 内容</li>
+</ul>
+<h3 id="3-3-在浏览器地址栏键入-URL-，按下回车之后经历的流程"><a href="#3-3-在浏览器地址栏键入-URL-，按下回车之后经历的流程" class="headerlink" title="3.3 在浏览器地址栏键入 URL ，按下回车之后经历的流程"></a>3.3 在浏览器地址栏键入 URL ，按下回车之后经历的流程</h3><p>答案： </p>
+<ul>
+<li>DNS 解析</li>
+<li>TCP 连接</li>
+<li>发送 HTTP 请求</li>
+<li>服务器处理请求并返回 HTTP 报文</li>
+<li>浏览器解析渲染页面</li>
+<li>连接结束</li>
+</ul>
+<h3 id="3-4-HTTP状态码"><a href="#3-4-HTTP状态码" class="headerlink" title="3.4 HTTP状态码"></a>3.4 HTTP状态码</h3><p>五种可能的取值：</p>
+<ul>
+<li>1xx ： 指示信息 – 表示请求已接受，继续处理</li>
+<li>2xx ： 成功 – 表示请求已被成功接收、理解、接受</li>
+<li>3xx :    重定向 – 要完成请求必须进行更进一步的操作</li>
+<li>4xx  :  客户端错误 – 请求有语法错误或请求无法实现</li>
+<li>5xx  :  服务器端错误 – 服务器未能实现合法的请求</li>
+</ul>
+<p><strong>常见状态码：</strong></p>
+<table>
+<thead>
+<tr>
+<th>状态吗</th>
+<th>含义</th>
+<th>代表信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK</td>
+<td>正常返回信息</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>客户端请求有语法错误，不能被服务器所理解</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>请求未经授权，这个状态吗必须和 WWW-Authenticate 包头域一起使用</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器收到请求，但是拒绝提供服务</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>请求资源不存在， eg ,  输入了错误的 URL</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器发生不可预期的错误</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Server Unavailable</td>
+<td>服务器当前不能处理客户端的请求，一段时间后可能恢复正常</td>
+</tr>
+</tbody></table>
+<h3 id="3-5-GET-请求和POST-请求的区别"><a href="#3-5-GET-请求和POST-请求的区别" class="headerlink" title="3.5 GET 请求和POST 请求的区别"></a>3.5 GET 请求和POST 请求的区别</h3><p>从三个层面来看：</p>
+<ul>
+<li>Http报文层面：GET 将请求信息放在 URL，POST 防止报文体中</li>
+<li>数据库层面： GET 符合幂等性和安全性， POST 不符合</li>
+<li>其他层面： GET 可以被缓存、被存储，而 POST 不行</li>
+</ul>
+<h3 id="3-6-Cookie-和-Session-的区别"><a href="#3-6-Cookie-和-Session-的区别" class="headerlink" title="3.6 Cookie 和 Session 的区别"></a>3.6 Cookie 和 Session 的区别</h3><h4 id="1）Cookie-简介"><a href="#1）Cookie-简介" class="headerlink" title="1）Cookie 简介"></a>1）Cookie 简介</h4><ul>
+<li>是由服务器发送给客户端的特殊信息，以文本的形式存放在客户端</li>
+<li>客户端再次请求的适合，会把 Cookie 回发</li>
+<li>服务器接收到后，会解析 Cookie 生成与客户端相对应的内容</li>
+</ul>
+<h4 id="2）Cookie-出现的原因："><a href="#2）Cookie-出现的原因：" class="headerlink" title="2）Cookie 出现的原因："></a>2）Cookie 出现的原因：</h4><p>​    解决 HTTP 协议的无状态问题。</p>
+<blockquote>
+<p>在Web发展初期的时候，浏览网页只涉及一系列独立页面的获取，浏览器请求服务器，服务器返回响应。但是当浏览器下次请求这个服务器时，服务器并不知道已经浏览器请求过它，这被称作<strong>HTTP无状态</strong>。 </p>
+</blockquote>
+<h4 id="3）Cookie-的设置以及发送过程"><a href="#3）Cookie-的设置以及发送过程" class="headerlink" title="3）Cookie 的设置以及发送过程"></a>3）Cookie 的设置以及发送过程</h4><h4 id="4）Session-简介"><a href="#4）Session-简介" class="headerlink" title="4）Session 简介"></a>4）Session 简介</h4><ul>
+<li>服务器端的机制，在服务器上保存的信息</li>
+<li>解析客户端请求并操作 session id ，按需保存状态信息</li>
+</ul>
+<h4 id="5）Session-的实现方式"><a href="#5）Session-的实现方式" class="headerlink" title="5）Session 的实现方式"></a>5）Session 的实现方式</h4><ul>
+<li><p>使用 Cookie 实现</p>
+<blockquote>
+<p>​     sessionId是通过浏览器的cookie工作的，当客户端浏览器中禁止 Cookie，Servlet 容器无法从客户端浏览器中取得作为 Cookie 的 Session ID，也就无法跟踪客户状态。  </p>
+<p>​    服务器端把cookie存放在浏览器端，当在发送请求到服务器端时，将浏览器端存储的cookie值作为http请求头cookie属性的值传送给服务器端，来维持身份。 </p>
+</blockquote>
+</li>
+<li><p>使用 URL 回写来实现</p>
+<blockquote>
+<p><strong>该方法的实现机制为：</strong>      </p>
+<p>​    ● 先判断当前的 Web 组件是否启用 Session，如果没有启用 Session，直接返回参数 url。</p>
+<p>​    ● 再判断客户端浏览器是否支持 Cookie，如果支持 Cookie，直接返回参数 url；如果不支持 Cookie，就在参数 url 中加入 Session ID 信息，然后返回修改后的 url。</p>
+<p><strong>通过这种机制，url中保存了sessionId，然后点击URL时又回传到服务器，来维持身份。</strong>   </p>
+</blockquote>
+</li>
+</ul>
+<h4 id="6）Cookie-和-Session-的区别"><a href="#6）Cookie-和-Session-的区别" class="headerlink" title="6）Cookie 和 Session 的区别"></a>6）Cookie 和 Session 的区别</h4><ul>
+<li>Cookie 数据存放在客户的浏览器上，Session 数据放在服务器上</li>
+<li>Session 相对于 Cookie 更安全</li>
+<li>若考虑减轻服务器负担，应当使用 Cookie</li>
+</ul>
+<h3 id="3-7-HTTP-和-HTTPS-的区别"><a href="#3-7-HTTP-和-HTTPS-的区别" class="headerlink" title="3.7 HTTP 和 HTTPS 的区别"></a>3.7 HTTP 和 HTTPS 的区别</h3><h4 id="1）HTTPS-简介"><a href="#1）HTTPS-简介" class="headerlink" title="1）HTTPS 简介"></a>1）<strong>HTTPS 简介</strong></h4><p>​    <strong><em>HTTPS</em></strong> (全称:Hyper Transfer Protocol over Secure Secure Socket Layer),是以安全为目标的HTTP通道,简单讲是HTTP的安全版。 </p>
+<p>​    Https并不是一个崭新的协议，而是在http的基础上发展而来，意为http Secure.相当于是Http的升级版。<strong>它主要是为了解决http协议安全性不足的问题而诞生的</strong>。 </p>
+<h4 id="2）-SSL（Security-Sockets-Layer，安全套接层）"><a href="#2）-SSL（Security-Sockets-Layer，安全套接层）" class="headerlink" title="2） SSL（Security Sockets Layer，安全套接层）"></a>2） SSL（Security Sockets Layer，安全套接层）</h4><ul>
+<li>为网络通信提供安全及数据完整性的一种安全协议</li>
+<li>是操作系统对外的 API ， SSL 3.0 后更名为 TLS</li>
+<li>采用身份验证和数据加密保证网络通信的安全和数据的完整性</li>
+</ul>
+<p><strong>SSL 加密的目的：</strong> 应对客户端劫持的安全问题。</p>
+<h4 id="3）-加密的方式"><a href="#3）-加密的方式" class="headerlink" title="3） 加密的方式"></a>3） 加密的方式</h4><ul>
+<li>对称加密： 加密和解密都使用同一个密钥</li>
+<li>非对称加密： 加密使用的密钥和解密使用的密钥是不相同的</li>
+<li>哈希算法： 将任意长度的信息转换为固定长度的值，算法不可逆</li>
+<li>数字签名： 证明某个消息或者文件是某人发出/认同的</li>
+</ul>
+<h4 id="4）HTTPS数据传输流程"><a href="#4）HTTPS数据传输流程" class="headerlink" title="4）HTTPS数据传输流程"></a>4）HTTPS数据传输流程</h4><ul>
+<li>浏览器将支持的加密算法信息发送给服务器</li>
+<li>服务器选择一套浏览器支持的加密算法，以证书的形式回发浏览器</li>
+<li>浏览器验证证书合法性，并结合证书公钥加密信息发送给服务器</li>
+<li>服务器使用私钥解密信息，验证哈希，加密响应消息回发浏览器</li>
+<li>浏览器解密响应消息，并对消息进行验真，之后进行加密交互数据</li>
+</ul>
+<h4 id="5）小结（HTTP-和-HTTPS-的区别）"><a href="#5）小结（HTTP-和-HTTPS-的区别）" class="headerlink" title="5）小结（HTTP 和 HTTPS 的区别）"></a>5）小结（HTTP 和 HTTPS 的区别）</h4><blockquote>
+<ul>
+<li>HTTPS 需要到 CA 申请证书， HTTP 不需要</li>
+<li>HTTPS 密文传输 ， HTTP 明文传输</li>
+<li>连接方式不同， HTTPS 默认使用 443 端口， HTTP 使用80端口</li>
+<li>HTTPS = HTTP + 加密 + 认证 + 完整性保护，较 HTTP 安全</li>
+</ul>
+</blockquote>
+<h4 id="6）-HTTPS-真的很安全吗？"><a href="#6）-HTTPS-真的很安全吗？" class="headerlink" title="6） HTTPS 真的很安全吗？"></a>6） HTTPS 真的很安全吗？</h4><h2 id="4-Socket"><a href="#4-Socket" class="headerlink" title="4. Socket"></a>4. Socket</h2><h3 id="4-1-Socket-简介"><a href="#4-1-Socket-简介" class="headerlink" title="4.1 Socket 简介"></a>4.1 Socket 简介</h3><p>​    <strong>Socket</strong> 是对 TCP/IP 协议的抽象，是操作系统对外开放的接口。</p>
+<img src="http://photo.wushaopei.com/qiniu1001.png" width="80%">
+
+<h3 id="4-2-Socket-相关的面试题"><a href="#4-2-Socket-相关的面试题" class="headerlink" title="4.2 Socket 相关的面试题"></a>4.2 Socket 相关的面试题</h3><p>编写一个网络应用程序，有客户端与服务器端，客户端向服务器发送一个字符串，服务器收到该字符串后将其打印到命令行上，然后向客户端返回该字符串的长度，最后，客户端输出服务器端返回的该字符串的长度，分别用 TCP 和 UDP 两种方式去实现。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    吴少培
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" title="Java：java-util-concurrent并发包下的常用类">http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/06/9%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%8F%8A%E5%85%B6%E7%BC%93%E5%86%B2%E6%B5%81%E5%8F%8A%E5%BA%94%E7%94%A8/" rel="next" title="9、工作流与缓冲流的原理及应用">
+                <i class="fa fa-chevron-left"></i> 9、工作流与缓冲流的原理及应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" rel="prev" title="6、基本算法：二分查找、冒泡算法、快排、选择排序、插入排序">
+                6、基本算法：二分查找、冒泡算法、快排、选择排序、插入排序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="your uid"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="吴少培" />
+            
+              <p class="site-author-name" itemprop="name">吴少培</p>
+              <p class="site-description motion-element" itemprop="description">冗长的黑暗中,你是我唯一的光。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">190</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-七层网络协议及其作用"><span class="nav-number">1.</span> <span class="nav-text">1. 七层网络协议及其作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-硬件（物理层）"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 硬件（物理层）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-网络接口层（数据链路层）"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 网络接口层（数据链路层）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-互联网层（网络层）"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 互联网层（网络层）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-传输层"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 传输层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-会话层"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 会话层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-表示层"><span class="nav-number">1.6.</span> <span class="nav-text">1.6  表示层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-TCP-IP协议"><span class="nav-number">2.</span> <span class="nav-text">2. TCP&#x2F;IP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-TCP-IP"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 TCP&#x2F;IP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传输控制协议-TCP-简介"><span class="nav-number">2.1.1.</span> <span class="nav-text">传输控制协议 TCP 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-Flags"><span class="nav-number">2.1.2.</span> <span class="nav-text">TCP Flags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-三次握手"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么需要三次握手，而不是二次握手？"><span class="nav-number">2.2.1.</span> <span class="nav-text">为什么需要三次握手，而不是二次握手？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首次握手的隐患-–-SYN-超时"><span class="nav-number">2.2.2.</span> <span class="nav-text">首次握手的隐患 – SYN 超时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#针对-SYN-Flood-的防护措施"><span class="nav-number">2.2.3.</span> <span class="nav-text">针对 SYN Flood 的防护措施</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三次握手失败后怎么处理？"><span class="nav-number">2.3.</span> <span class="nav-text">第三次握手失败后怎么处理？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立连接后，Client出现故障怎么办"><span class="nav-number">2.3.1.</span> <span class="nav-text">建立连接后，Client出现故障怎么办</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-四次挥手-Client或Server均可主动发起挥手动作"><span class="nav-number">2.4.</span> <span class="nav-text">2.3 四次挥手(Client或Server均可主动发起挥手动作)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么连接的时候是三次握手，关闭的时候却是四次握手？"><span class="nav-number">2.4.1.</span> <span class="nav-text">为什么连接的时候是三次握手，关闭的时候却是四次握手？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么TIME-WAIT状态需要经过2MSL-最大报文段生存时间-才能返回到CLOSE状态？"><span class="nav-number">2.4.2.</span> <span class="nav-text">为什么TIME_WAIT状态需要经过2MSL(最大报文段生存时间)才能返回到CLOSE状态？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器出现大量-CLOST-WAIT-状态的原因"><span class="nav-number">2.4.3.</span> <span class="nav-text">服务器出现大量 CLOST_WAIT 状态的原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-滑动窗口"><span class="nav-number">2.5.</span> <span class="nav-text">2.3 滑动窗口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RTT-和-RTO-滑动窗口的相关概念-："><span class="nav-number">2.5.1.</span> <span class="nav-text">RTT 和 RTO (滑动窗口的相关概念)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-使用滑动窗口做流量控制与乱想重排"><span class="nav-number">2.5.2.</span> <span class="nav-text">TCP 使用滑动窗口做流量控制与乱想重排</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-TCP-和-UDP-的区别"><span class="nav-number">2.6.</span> <span class="nav-text">2.4 TCP 和 UDP 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP-简介"><span class="nav-number">2.6.1.</span> <span class="nav-text">UDP 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP数据结构"><span class="nav-number">2.6.2.</span> <span class="nav-text">UDP数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#"><span class="nav-number">2.6.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP-的特点"><span class="nav-number">2.6.4.</span> <span class="nav-text">UDP 的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两者的区别如下："><span class="nav-number">2.6.5.</span> <span class="nav-text">两者的区别如下：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-HTTP"><span class="nav-number">3.</span> <span class="nav-text">3. HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-HTTP-简介"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 HTTP 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-超文本传输协议-HTTP-主要特点"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 超文本传输协议 HTTP 主要特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求-响应的步骤"><span class="nav-number">3.2.1.</span> <span class="nav-text">请求&#x2F;响应的步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-在浏览器地址栏键入-URL-，按下回车之后经历的流程"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 在浏览器地址栏键入 URL ，按下回车之后经历的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-HTTP状态码"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 HTTP状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-GET-请求和POST-请求的区别"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 GET 请求和POST 请求的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-Cookie-和-Session-的区别"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 Cookie 和 Session 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）Cookie-简介"><span class="nav-number">3.6.1.</span> <span class="nav-text">1）Cookie 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）Cookie-出现的原因："><span class="nav-number">3.6.2.</span> <span class="nav-text">2）Cookie 出现的原因：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）Cookie-的设置以及发送过程"><span class="nav-number">3.6.3.</span> <span class="nav-text">3）Cookie 的设置以及发送过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）Session-简介"><span class="nav-number">3.6.4.</span> <span class="nav-text">4）Session 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5）Session-的实现方式"><span class="nav-number">3.6.5.</span> <span class="nav-text">5）Session 的实现方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6）Cookie-和-Session-的区别"><span class="nav-number">3.6.6.</span> <span class="nav-text">6）Cookie 和 Session 的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-7-HTTP-和-HTTPS-的区别"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 HTTP 和 HTTPS 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）HTTPS-简介"><span class="nav-number">3.7.1.</span> <span class="nav-text">1）HTTPS 简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）-SSL（Security-Sockets-Layer，安全套接层）"><span class="nav-number">3.7.2.</span> <span class="nav-text">2） SSL（Security Sockets Layer，安全套接层）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）-加密的方式"><span class="nav-number">3.7.3.</span> <span class="nav-text">3） 加密的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4）HTTPS数据传输流程"><span class="nav-number">3.7.4.</span> <span class="nav-text">4）HTTPS数据传输流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5）小结（HTTP-和-HTTPS-的区别）"><span class="nav-number">3.7.5.</span> <span class="nav-text">5）小结（HTTP 和 HTTPS 的区别）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6）-HTTPS-真的很安全吗？"><span class="nav-number">3.7.6.</span> <span class="nav-text">6） HTTPS 真的很安全吗？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Socket"><span class="nav-number">4.</span> <span class="nav-text">4. Socket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Socket-简介"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 Socket 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-Socket-相关的面试题"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Socket 相关的面试题</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+   
+     <div id="music163player">
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=864187808&auto=1&height=66"></iframe>
+     </div>
+	 
+
+  </aside>
+
+
+        
+      </div>
+      <script>
+//暂时储存文章中的内容
+var div = $('.post-body');
+//暂时储存目录的内容
+var toc=$('.post-toc-wrap')
+function password() {
+  if(''){
+  //将文章内容删除
+    div.remove();
+ //将目录删除 
+    toc.remove();
+  //将文章删除后，向原来文章的地方添加，应该出现的提示用户输入密码的样式
+  //下面这里的第一个用textarea是因为如果在手机端的时候只能显示一部分文字，
+  //只是拓展:input里面的字只能显示一行，不会自动换行，目前上网搜索没有发现好的办法，所以用了textarea，右下角的小三角通过resize:none 去掉。
+   $('.post-header').after('<textarea class="description" value="Please enter your password and press enter to build" style="border: none;display: block;' +'width: 60%;margin: 0 auto;text-align: center;outline: none;margin-bottom: 50px;resize:none ">
+      Please enter your password and press enter to build</textarea>' +
+      '<div class="qiang" style="height: 100px;width: 60%;margin:0 auto">' +
+      '<input class="password"  type="text" value="" style="border: none;display: block;border-bottom: 1px solid #ccc;' +
+      'margin: 0 auto;outline: none;width:95%"/>' +
+      '</div>')
+      //绑定点击事件，如果是点击的.password 这个div就改变样式，如果是document中除了div之外的其他任何元素，就变回原来的样式。
+    document.onclick = function (event) {
+      var e = event || window.event;
+      var elem = e.srcElement || e.target;
+ 
+      while (elem) {
+        if (elem != document) {
+          if (elem.className == "password") {
+            $(".password").animate({paddingTop:"30px",width:"100%",borderWidth:"2px"},300)
+            return;
+          }
+          elem = elem.parentNode;
+        } else {
+          $(".password").animate({paddingTop:"0px",width:"95%",borderWidth:"1px"},300)
+          return;
+        }
+      }
+    }
+    //绑定enter键按下后离开的事件
+    $(document).keyup(function(event){
+      if(event.keyCode ==13&&$('.password').length>0){
+        //console.log($('.password').val())
+        //console.log('')
+        if ($('.password').val() == '') {
+        //恢复文章内容
+          (div).appendTo($(".post-header"))
+          //恢复目录
+          toc.appendTo($(".sidebar-inner"))
+          //删除本页面的输入密码组件
+           $(".description").remove();
+          $(".qiang").remove();
+          $(".password").remove();
+          
+          //重新处理pjax事件,如果没有加pjax的从下面这行起到下面的else之间的代码需要去掉。
+          //图片懒加载，没有加入此功能的这个函数需要去掉
+            $('img').lazyload({
+               placeholder: '/images/loading.gif',
+               effect: 'fadeIn',
+               threshold : 100,
+               failure_limit : 20,
+               skip_invisible : false
+             });
+             //pjax后出现文章不显示，没有pjax的下面四行需要去掉
+              $(".post-block").css({opacity:1});
+              $(".post-header").css({opacity:1});
+              $(".post-body").css({opacity:1});
+              $(".pagination").css({opacity:1});
+        }else {
+          alert("Sorry, the password is wrong.")
+        }
+      }
+      //将document的keyup移除，防止在pjax的情况下会重复绑定事件
+    });
+  }
+}
+password();
+</script>
+    </main>
+    
+    
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">吴少培</span>
+
+  
+</div>
+
+
+
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+ 
+
+<img src="https://static.dy208.cn/o_1dfilp8ruo521thr1hvf18ji17soa.png">
+<a href="http://www.beian.miit.gov.cn/"  style="color:#f72b07" target="_blank">粤ICP备20015601号-1</a>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+  
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz',
+        appKey: 'sOUcJH2CX5V7BXA99NbRDn9B',
+        placeholder: '说点什么吧',
+        avatar:'mp',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("WUK5piFGYnLbMn2Iijr9JKqW-gzGzoHsz", "sOUcJH2CX5V7BXA99NbRDn9B");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+
+
+</html>
