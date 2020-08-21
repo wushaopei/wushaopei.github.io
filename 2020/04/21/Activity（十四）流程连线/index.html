@@ -91,19 +91,20 @@
 
 
 
-<meta name="description" content="当时一般情况下是部门经理审批就行了，假如有特殊的重要情况下就总监审批。 这里连线是有名称的，即name属性；   怎么区分一般情况和重要情况呢？这里其实是可以使用执行表达式的类似于EL表达式：    创建ActivitiLineTest测试类：  12345678910111213141516171819202122232425262728293031323334353637383940414">
+<meta name="description" content="流程连线示例：  当前流程对应的XML如下： 123456789101112131415&lt;process id&#x3D;&quot;myProcess&quot; name&#x3D;&quot;My process&quot; isExecutable&#x3D;&quot;true&quot;&gt;    &lt;startEvent id&#x3D;&quot;startevent">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Activity（十四）流程连线">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/21/Activity%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%BF%9E%E7%BA%BF/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="当时一般情况下是部门经理审批就行了，假如有特殊的重要情况下就总监审批。 这里连线是有名称的，即name属性；   怎么区分一般情况和重要情况呢？这里其实是可以使用执行表达式的类似于EL表达式：    创建ActivitiLineTest测试类：  12345678910111213141516171819202122232425262728293031323334353637383940414">
+<meta property="og:description" content="流程连线示例：  当前流程对应的XML如下： 123456789101112131415&lt;process id&#x3D;&quot;myProcess&quot; name&#x3D;&quot;My process&quot; isExecutable&#x3D;&quot;true&quot;&gt;    &lt;startEvent id&#x3D;&quot;startevent">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu403.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu404.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu405.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu406.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1004.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1005.png">
 <meta property="article:published_time" content="2020-04-21T02:41:01.000Z">
-<meta property="article:modified_time" content="2020-04-21T07:31:27.166Z">
+<meta property="article:modified_time" content="2020-08-20T15:17:54.740Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="流程连线">
 <meta name="twitter:card" content="summary">
@@ -471,8 +472,15 @@
       
 
       
-        <img src="http://photo.wushaopei.com/qiniu403.png" width="80%">
+        <h3 id="流程连线示例："><a href="#流程连线示例：" class="headerlink" title="流程连线示例："></a>流程连线示例：</h3><img src="http://photo.wushaopei.com/qiniu403.png" width="80%">
 
+<p><strong>当前流程对应的XML如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;process id&#x3D;&quot;myProcess&quot; name&#x3D;&quot;My process&quot; isExecutable&#x3D;&quot;true&quot;&gt;</span><br><span class="line">    &lt;startEvent id&#x3D;&quot;startevent1&quot; name&#x3D;&quot;Start&quot;&gt;&lt;&#x2F;startEvent&gt;</span><br><span class="line">    &lt;userTask id&#x3D;&quot;usertask1&quot; name&#x3D;&quot;员工提交请假申请&quot; activiti:assignee&#x3D;&quot;吴刚&quot;&gt;&lt;&#x2F;userTask&gt;</span><br><span class="line">    &lt;sequenceFlow id&#x3D;&quot;flow1&quot; sourceRef&#x3D;&quot;startevent1&quot; targetRef&#x3D;&quot;usertask1&quot;&gt;&lt;&#x2F;sequenceFlow&gt;</span><br><span class="line">    &lt;userTask id&#x3D;&quot;usertask3&quot; name&#x3D;&quot;部门审批&quot; activiti:assignee&#x3D;&quot;刘松&quot;&gt;&lt;&#x2F;userTask&gt;</span><br><span class="line">    &lt;endEvent id&#x3D;&quot;endevent1&quot; name&#x3D;&quot;End&quot;&gt;&lt;&#x2F;endEvent&gt;</span><br><span class="line">    &lt;sequenceFlow id&#x3D;&quot;flow4&quot; name&#x3D;&quot;一般情况&quot; sourceRef&#x3D;&quot;usertask3&quot; targetRef&#x3D;&quot;endevent1&quot;&gt;</span><br><span class="line">      &lt;conditionExpression xsi:type&#x3D;&quot;tFormalExpression&quot;&gt;&lt;![CDATA[$&#123;msg&#x3D;&#x3D;&#39;一般情况&#39;&#125;]]&gt;&lt;&#x2F;conditionExpression&gt;</span><br><span class="line">    &lt;&#x2F;sequenceFlow&gt;</span><br><span class="line">    &lt;userTask id&#x3D;&quot;usertask4&quot; name&#x3D;&quot;总监审批&quot; activiti:assignee&#x3D;&quot;孙总&quot;&gt;&lt;&#x2F;userTask&gt;</span><br><span class="line">    &lt;sequenceFlow id&#x3D;&quot;flow6&quot; name&#x3D;&quot;重要情况&quot; sourceRef&#x3D;&quot;usertask3&quot; targetRef&#x3D;&quot;usertask4&quot;&gt;</span><br><span class="line">      &lt;conditionExpression xsi:type&#x3D;&quot;tFormalExpression&quot;&gt;&lt;![CDATA[$&#123;msg&#x3D;&#x3D;&#39;重要情况&#39;&#125;]]&gt;&lt;&#x2F;conditionExpression&gt;</span><br><span class="line">    &lt;&#x2F;sequenceFlow&gt;</span><br><span class="line">    &lt;sequenceFlow id&#x3D;&quot;flow7&quot; sourceRef&#x3D;&quot;usertask4&quot; targetRef&#x3D;&quot;endevent1&quot;&gt;&lt;&#x2F;sequenceFlow&gt;</span><br><span class="line">  &lt;&#x2F;process&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>分析：</strong> </p>
+<blockquote>
+<p><code>&lt;conditionExpression xsi:type=&quot;tFormalExpression&quot;&gt;&lt;![CDATA[${msg==&#39;重要情况&#39;}]]&gt;&lt;/conditionExpression&gt;</code> 以上对应 Main config 中的 Condition ，即流程条件。</p>
+</blockquote>
 <p>当时一般情况下是部门经理审批就行了，假如有特殊的重要情况下就总监审批。</p>
 <p>这里连线是有名称的，即name属性；</p>
 <img src="http://photo.wushaopei.com/qiniu404.png" width="80%">
@@ -486,7 +494,35 @@
 <p>completeTask2()方法 执行到部门审批的时候，通过设置流程变量，来执行具体的流程走向；</p>
  <img src="http://photo.wushaopei.com/qiniu406.png" width="80%">
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+
+
+<h3 id="扩展知识点：条件序列流"><a href="#扩展知识点：条件序列流" class="headerlink" title="扩展知识点：条件序列流"></a>扩展知识点：条件序列流</h3><hr>
+<h5 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h5><hr>
+<p>顺序流可以具有在其上定义的条件。当剩下BPMN 2.0活动时，默认行为是评估传出序列流上的条件。当条件评估为<em>true时</em>，将选择该传出序列流。当以这种方式选择多个序列流时，将生成多个<em>执行，</em>并且该过程将以并行方式继续进行。</p>
+<p><strong>注意：</strong>以上内容适用于BPMN 2.0活动（和事件），但不适用于网关。网关将根据网关类型以特定方式处理条件流。</p>
+<h5 id="图形符号"><a href="#图形符号" class="headerlink" title="图形符号"></a>图形符号</h5><hr>
+<p>条件序列流可视化为常规序列流，开头有一个小菱形。条件表达式显示在序列流旁边。 </p>
+ <img src="http://photo.wushaopei.com/qiniu1004.png" width="40%">
+
+<h5 id="XML表示"><a href="#XML表示" class="headerlink" title="XML表示"></a>XML表示</h5><hr>
+<p>条件序列流在XML中表示为常规序列流，其中包含<strong>conditionExpression</strong>子元素。请注意，目前仅支持<em>tFormalExpressions</em>，省略<em>xsi：type =“”</em>定义将仅默认为此仅支持的表达式类型。 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;sequenceFlow id=<span class="string">"flow"</span> sourceRef=<span class="string">"theStart"</span> targetRef=<span class="string">"theTask"</span>&gt;</span><br><span class="line">  &lt;conditionExpression xsi:type=<span class="string">"tFormalExpression"</span>&gt;</span><br><span class="line">    &lt;![CDATA[$&#123;order.price &gt; <span class="number">100</span> &amp;&amp; order.price &lt; <span class="number">250</span>&#125;]]&gt;</span><br><span class="line">  &lt;/conditionExpression&gt;</span><br><span class="line">&lt;/sequenceFlow&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当前conditionalExpressions <strong>仅可与UEL一起使用，</strong>有关这些的详细信息可在“ <a href="https://www.activiti.org/5.x/userguide/#apiExpressions" target="_blank" rel="noopener">表达式”</a>部分中找到。使用的表达式应解析为布尔值，否则在评估条件时会引发异常。 </p>
+<ul>
+<li>下面的示例通过getter以典型的JavaBean样式引用过程变量的数据。 </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">"tFormalExpression"</span>&gt;</span></span><br><span class="line">  &lt;![CDATA[$&#123;order.price &gt; 100 &amp;&amp; order.price &lt; 250&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>本示例调用一个解析为布尔值的方法。 </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">conditionExpression</span> <span class="attr">xsi:type</span>=<span class="string">"tFormalExpression"</span>&gt;</span></span><br><span class="line">  &lt;![CDATA[$&#123;order.isStandardOrder()&#125;]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">conditionExpression</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Activiti发行版包含以下使用值和方法表达式的示例过程（请参见<em>org.activiti.examples.bpmn.expression）</em>： </p>
+ <img src="http://photo.wushaopei.com/qiniu1005.png" width="40%">
+
+<h4 id="以上知识点引用自Activity官方网站：-activiti-org"><a href="#以上知识点引用自Activity官方网站：-activiti-org" class="headerlink" title="以上知识点引用自Activity官方网站： activiti.org"></a>以上知识点引用自Activity官方网站： <a href="https://www.activiti.org/5.x/userguide/#bpmnJavaServiceTask" target="_blank" rel="noopener">activiti.org</a></h4>
       
     </div>
     
@@ -732,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#关注橘长的微信公众号，获取有趣文章"><span class="nav-number">1.</span> <span class="nav-text">关注橘长的微信公众号，获取有趣文章</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程连线示例："><span class="nav-number">1.</span> <span class="nav-text">流程连线示例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展知识点：条件序列流"><span class="nav-number">2.</span> <span class="nav-text">扩展知识点：条件序列流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#描述"><span class="nav-number">2.0.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图形符号"><span class="nav-number">2.0.2.</span> <span class="nav-text">图形符号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#XML表示"><span class="nav-number">2.0.3.</span> <span class="nav-text">XML表示</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以上知识点引用自Activity官方网站：-activiti-org"><span class="nav-number">2.1.</span> <span class="nav-text">以上知识点引用自Activity官方网站： activiti.org</span></a></li></ol></li></ol></div>
             
 
           </div>
