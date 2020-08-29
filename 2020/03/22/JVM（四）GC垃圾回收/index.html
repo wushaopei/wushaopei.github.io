@@ -91,12 +91,12 @@
 
 
 
-<meta name="description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述  ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Full">
+<meta name="description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述    ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Fu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM(四)GC垃圾回收">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E5%9B%9B%EF%BC%89GC%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述  ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Full">
+<meta property="og:description" content="GC是什么 定义： 分代收集算法  次数上频繁收集Young区 次数上较少收集Old区 基本不动Perm区  GC算法总体概述    ​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。 ​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC） Minor GC和Fu">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu169.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu170.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu171.png">
@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu175.gif">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-22T05:12:42.000Z">
-<meta property="article:modified_time" content="2020-03-31T15:00:40.970Z">
+<meta property="article:modified_time" content="2020-08-22T11:59:41.433Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="虚拟机">
 <meta property="article:tag" content="Heap堆">
@@ -497,6 +497,8 @@
 </ul>
 <h2 id="GC算法总体概述"><a href="#GC算法总体概述" class="headerlink" title="GC算法总体概述"></a><strong>GC算法总体概述</strong></h2><img src="http://photo.wushaopei.com/qiniu169.png" width="80%">
 
+
+
 <p>​    JVM在进行GC时，并非每次都对上面三个内存区域一起回收的，大部分时候回收的都是指新生代。</p>
 <p>​    因此GC按照回收的区域又分了两种类型，一种是普通GC（minor GC），一种是全局GC（major GC or Full GC）</p>
 <p><font color=blue>Minor GC和Full GC的区别</font></p>
@@ -507,7 +509,7 @@
 <h4 id="Code演示："><a href="#Code演示：" class="headerlink" title="Code演示："></a><strong>Code</strong>演示：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.atguigu.jvm;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**<span class="doctag">@Description</span>:-verbose:gc*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RefCountGC</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">byte</span>[] bigSize = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span> * <span class="number">1024</span> * <span class="number">1024</span>];<span class="comment">//这个成员属性唯一的作用就是占用一点内存</span></span><br><span class="line">  Object instance = <span class="keyword">null</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    RefCountGC objectA = <span class="keyword">new</span> RefCountGC();</span><br><span class="line">    RefCountGC objectB = <span class="keyword">new</span> RefCountGC();</span><br><span class="line">    objectA.instance = objectB;</span><br><span class="line">    objectB.instance = objectA;</span><br><span class="line">    objectA = <span class="keyword">null</span>;</span><br><span class="line">    objectB = <span class="keyword">null</span>;</span><br><span class="line"> </span><br><span class="line">    System.gc();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法(Copying)"></a>复制算法(Copying)</h3><h4 id="定义："><a href="#定义：" class="headerlink" title="定义："></a><strong>定义</strong>：</h4><p>​    年轻代中使用的是Minor GC，这种GC算法采用的是复制算法(Copying) </p>
-<h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a><strong>原理</strong>：</h4><img src="http://photo.wushaopei.com/qiniu171.png" width="80%">
+<h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a><strong>原理</strong>：</h4><img src="http://photo.wushaopei.com/qiniu171.png" width="60%">
 
 <p>​    Minor GC会把Eden中的所有活的对象都移到Survivor区域中，如果Survivor区中放不下，那么剩下的活的对象就被移到Old  generation中，<font color=red>也即一旦收集后，Eden是就变成空的了。</font></p>
 <p>​    当对象在 Eden ( 包括一个 Survivor 区域，这里假设是 from 区域 ) 出生后，在经过一次 Minor GC 后，如果对象还存活，并且能够被另外一块 Survivor 区域所容纳( 上面已经假设为 from 区域，这里应为 to 区域，即 to 区域有足够的内存空间来存储 Eden 和 from 区域中存活的对象 )，则使用<font color=red>复制算法</font>将这些仍然还存活的对象复制到另外一块 Survivor 区域 ( 即 to 区域 ) 中，然后清理所使用过的 Eden 以及 Survivor 区域 ( 即 from 区域 )，并且将这些对象的年龄设置为1，以后对象在 Survivor 区每熬过一次 Minor GC，就将对象的年龄 + 1，当对象的年龄达到某个值时 ( 默认是 15 岁，通过-XX:MaxTenuringThreshold 来设定参数)，这些对象就会成为老年代。</p>
@@ -752,7 +754,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -763,7 +765,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu330.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-14T07:55:06.000Z">
-<meta property="article:modified_time" content="2020-04-17T01:22:16.072Z">
+<meta property="article:modified_time" content="2020-08-23T02:47:29.328Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="AQS">
 <meta property="article:tag" content="可重入锁">
@@ -473,7 +473,7 @@
       
         <h3 id="ReentrantReadWriteLock实例代码演示："><a href="#ReentrantReadWriteLock实例代码演示：" class="headerlink" title="ReentrantReadWriteLock实例代码演示："></a>ReentrantReadWriteLock实例代码演示：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LockExample3</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;String, Data&gt; map = <span class="keyword">new</span> TreeMap&lt;&gt;();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> ReentrantReadWriteLock lock = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lock readLock = lock.readLock();</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Lock writeLock = lock.writeLock();</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">get</span><span class="params">(String key)</span></span>&#123;</span><br><span class="line">        readLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(key);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            readLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getAllKeys</span><span class="params">()</span></span>&#123;</span><br><span class="line">        readLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.keySet();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            readLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> Data <span class="title">put</span><span class="params">(String key,Data value)</span></span>&#123;</span><br><span class="line">        writeLock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.put(key,value);</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            writeLock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Data</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>*<em>说明： *</em>一个类里面封装了一个内部的map，这个map不需要把所有的方法都暴露给别人，它们要做的事情完全都通过我提供的方法来使用。而我提供一些单独的方法来给外部使用，使用的时候为了避免发生并发的问题，可以加上ReentrantReadWriteLock来实现在读和写的时候分别加锁。只有在没有读写锁的时候才能进行相应的插入操作或读操作。</p>
+<p>*<em>说明： *</em> 一个类里面封装了一个内部的map，这个map不需要把所有的方法都暴露给别人，它们要做的事情完全都通过我提供的方法来使用。而我提供一些单独的方法来给外部使用，使用的时候为了避免发生并发的问题，可以加上ReentrantReadWriteLock来实现在读和写的时候分别加锁。只有在没有读写锁的时候才能进行相应的插入操作或读操作。</p>
 <p>​    这里实现的是悲观读取。</p>
 <p>​    在进行新的插入操作时，必须要当前执行的插入或读操作完成后才能继续执行。</p>
 <p>​    如果发生写入很多，而读取很少的时候，使用ReentrantReadWriteLock类就可能会遭遇饥饿。所谓饥饿，就是代码中的</p>
@@ -500,8 +500,8 @@
 <p>在T1中，使用reentrantLock.lock()方法将线程T1加入到了AQS的等待队列里面，接着线程T1输出了“wait signal”日志信息，紧接着T1中调用了condition.await()方法，这时就将T1从AQS的等待队列中移除了，该操作对应了锁的释放。</p>
 <img src="http://photo.wushaopei.com/qiniu330.png" width="80%">
 
-<p>接着，它就加入到了condition的等待队列中去了，等待这该线程需要的序号。这里对应了AQS原理图中的Condidtion queue,如上图。</p>
-<p>线程T2因为线程T1释放锁的关系被唤醒，并判断它是否可以取到锁，于是获取锁，也加入到了，AQS的Sync queue等待队列中，当执行取锁任务后，就继续执行后续的日志打印“get lock”操作，线程T2在执行打印完成后，接着执行condition.signalAll()方法，紧接着就输出了后续的日志打印操作“send signal ”发送信号操作，</p>
+<p>接着，它就加入到了condition的等待队列中去了，等待这个线程需要的序号。这里对应了AQS原理图中的Condidtion queue,如上图。</p>
+<p>线程T2因为线程T1释放锁的关系被唤醒，并判断它是否可以取到锁，于是获取锁，也加入到了 AQS的Sync queue等待队列中，当执行取锁任务后，就继续执行后续的日志打印“get lock”操作，线程T2在执行打印完成后，接着执行condition.signalAll()方法，紧接着就输出了后续的日志打印操作“send signal ”发送信号操作，</p>
 <p>而此时condition线程队列中有线程T1的一个节点，于是它就被取出来加入到了AQS的等待队列里面去。注意：此时线程T1并没有被唤醒，只是加入到了AQS服务里面的Sync queue队列里面。</p>
 <p>当线程T2的signaAll()发送信号的方法执行完成以后，调用了reentrantLock.unlock()方法，就释放了锁。此时在AQS的Sync queue队列中只有线程T1的线程，而AQS按照线程从头到尾的顺序唤醒了T1线程。于是线程T1继续开始执行，继续执行的时候就得到了最后的线程输出，即“get signal”日志的打印。</p>
 <p>通过以上代码执行的结果以及对执行过程的分析，可以看得出来，Condition也是多线程间协调通讯的工具类。使得某个或某个线程一直等待条件（unlock()），只有当该条件具备，这些等待的线程才会被唤醒。以上案例中，唤醒所具备的条件就是等待的信号，包含signal和signalAll这两个方法，分别用于唤醒一个或多个等待的线程。这些被唤醒的线程会重新按顺序获得锁，并执行相应的业务操作。</p>
@@ -694,7 +694,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -705,7 +705,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

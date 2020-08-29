@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/03/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="不可变对象定义1有一种安全的发布对象，即不可变对象。  不可变对象的存在条件  ① 对象创建以后其状态就不能修改  ② 对象所有域都是final类型  ③ 对象是正确创建的（在对象创建期间，this引用没有逸出）  关键字 - finalfinal 的作用 final 关键字可以用来修饰：类、方法、变量   1234567修饰类：不能被继承，final类中的成员方法都会被隐式的指定为final方法">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu265.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu265png.png">
 <meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-03T06:03:16.000Z">
-<meta property="article:modified_time" content="2020-04-03T06:35:30.607Z">
+<meta property="article:modified_time" content="2020-08-22T14:35:08.952Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="synchronized">
 <meta property="article:tag" content="不可变对象">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu265.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu265png.png">
 
 
 
@@ -488,13 +488,15 @@
 <p><strong>执行结果：</strong> </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">17</span>:<span class="number">13</span>:<span class="number">54.256</span> [main] INFO com.mmall.concurrency.example.immutable.immutableExample1 - <span class="number">3</span></span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu265.png" width="80%">
+<img src="http://photo.wushaopei.com/qiniu265png.png" width="40%">
 
 <p><strong>分析：</strong>由图中可知，被final修饰的变量无法被重新赋值，被final修饰的map引用类型变量也不能指向新的内存引用。 </p>
 <p>又由代码执行结果可知，被final修饰的引用数据类型如map的值是可以改变的。 </p>
-<h3 id="常见不可变对象"><a href="#常见不可变对象" class="headerlink" title="常见不可变对象"></a>常见不可变对象</h3><pre><code>&gt;      **Collections.unmodifiableXXX : Collection 、List、Set、Map ..,**
-&gt;
-&gt;       **Guava : ImmutableXXX : Collection 、List、Set、Map....**</code></pre><p><strong>注意：</strong> </p>
+<h3 id="常见不可变对象"><a href="#常见不可变对象" class="headerlink" title="常见不可变对象"></a>常见不可变对象</h3><blockquote>
+<p><strong>Collections.unmodifiableXXX : Collection 、List、Set、Map ..,</strong></p>
+<p> <strong>Guava : ImmutableXXX : Collection 、List、Set、Map….</strong></p>
+</blockquote>
+<p><strong>注意：</strong> </p>
 <blockquote>
 <p>使用Collections的unmodifiableXXX生成的引用变量就不能再被修改了；</p>
 <p>使用Guava的ImmutableXXX生成的引用变量就不能再被修改了；</p>
@@ -714,7 +716,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -725,7 +727,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

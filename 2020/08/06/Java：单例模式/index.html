@@ -91,17 +91,22 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="导读：  单例模式涉及的知识点：与并发、类加载、序列化等的关系 单例模式有几种写法？ 哪种写法更好？为什么呢？  1. 什么是单例模式？如图：   单例模式指的是：保证一个类只有一个实例，并且提供一个全局可以访问的入口。 举个例子：  这就好比是分身术，但是每一个分身其实都对应同一个真身。  2. 那么为什么需要单例？原因之一： 是为了节省内存、节省计算。  说明：很多情况下，我们只需要一个实例就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：单例模式">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="导读：  单例模式涉及的知识点：与并发、类加载、序列化等的关系 单例模式有几种写法？ 哪种写法更好？为什么呢？  1. 什么是单例模式？如图：   单例模式指的是：保证一个类只有一个实例，并且提供一个全局可以访问的入口。 举个例子：  这就好比是分身术，但是每一个分身其实都对应同一个真身。  2. 那么为什么需要单例？原因之一： 是为了节省内存、节省计算。  说明：很多情况下，我们只需要一个实例就">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1021.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1022.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1023.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1024.png">
 <meta property="article:published_time" content="2020-08-06T15:04:50.000Z">
-<meta property="article:modified_time" content="2020-08-17T11:20:43.025Z">
+<meta property="article:modified_time" content="2020-08-29T09:21:27.650Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="单例模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1021.png">
 
 
 
@@ -476,7 +481,124 @@
       
 
       
-        
+        <p>导读：</p>
+<ol>
+<li>单例模式涉及的知识点：与并发、类加载、序列化等的关系</li>
+<li>单例模式有几种写法？</li>
+<li>哪种写法更好？为什么呢？</li>
+</ol>
+<h2 id="1-什么是单例模式？"><a href="#1-什么是单例模式？" class="headerlink" title="1. 什么是单例模式？"></a>1. 什么是单例模式？</h2><p><strong>如图：</strong></p>
+<img src="http://photo.wushaopei.com/qiniu1021.png" width="50%">
+
+<p>单例模式指的是：保证一个类只有一个实例，并且提供一个全局可以访问的入口。</p>
+<p><strong>举个例子：</strong></p>
+<blockquote>
+<p>这就好比是分身术，但是每一个分身其实都对应同一个真身。</p>
+</blockquote>
+<h2 id="2-那么为什么需要单例？"><a href="#2-那么为什么需要单例？" class="headerlink" title="2. 那么为什么需要单例？"></a>2. 那么为什么需要单例？</h2><p>原因之一： 是为了节省内存、节省计算。</p>
+<blockquote>
+<p><strong>说明：</strong>很多情况下，我们只需要一个实例就够了。如果出现了更多的实例，反而是一种浪费。</p>
+<p><strong>举例：</strong> </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExpensiveResource</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ExpensiveResource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        field1 = <span class="comment">// 查询数据库</span></span><br><span class="line">        field2 = <span class="comment">// 然后对查到的数据做大量计算</span></span><br><span class="line">        field3 = <span class="comment">// 加密、压缩等耗时操作</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    我们就拿一个初始化比较耗时的类来说，在这个类构造的时候，需要查询数据库，并对查到的数据做大量的计算。所以在第一次计算的时候，我们花了很多时间来初始化这个对象.</p>
+<p>​    但是，假设我们数据库里的数据是不变的，并且把这个对象保存在了内存中。那么以后就可以用同一个实例。这种场景下每次都新生成一个实例，很没有必要。</p>
+</blockquote>
+<p>原因之二：保证结果的正确性</p>
+<blockquote>
+<p>比如：</p>
+<p>​    我们需要一个全局的计数器用来统计人数，如果有多个实例反而会造成混乱。</p>
+<p>​    另外，就是为了方便管理，很多工具类只需要一个实例。这是我们只需要通过一个统一的入口，比如通过 getInstance 方法，就可以获取到这个单例，这是很方便的。</p>
+<p>​    过多的实例不但没有帮助，反而会让人眼花缭乱。</p>
+</blockquote>
+<h2 id="3-单例模式的应用场景"><a href="#3-单例模式的应用场景" class="headerlink" title="3. 单例模式的应用场景"></a>3. 单例模式的应用场景</h2><img src="http://photo.wushaopei.com/qiniu1022.png" width="50%">
+
+<h3 id="3-1-无状态的工具类"><a href="#3-1-无状态的工具类" class="headerlink" title="3.1 无状态的工具类"></a>3.1 无状态的工具类</h3><p>​    比如日志工具类、字符串工具类…等等。</p>
+<blockquote>
+<p>日志工具类： 我们需要的只是让它帮我们记录日志信息，除此之外，并不需要在它的实例对象上存储任何状态。这时候我们就只需要一个实例对象就可以了。</p>
+</blockquote>
+<h3 id="3-2-全局信息类"><a href="#3-2-全局信息类" class="headerlink" title="3.2 全局信息类"></a>3.2 全局信息类</h3><p>​    比如全局计数、环境变量…..等等。</p>
+<blockquote>
+<p>全局计数：比如我们在一个类上记录网站的访问次数，而且不希望有的访问被记录在对象A上，而有的却被记录在对象B上，这时我们就可以让这个类成为单例。在需要的时候拿出来用就可以了。</p>
+<p>​    对于全局的环境变量类也是如此。</p>
+</blockquote>
+<h2 id="4-常见的单例模式写法"><a href="#4-常见的单例模式写法" class="headerlink" title="4. 常见的单例模式写法"></a>4. 常见的单例模式写法</h2><p>共有以下五种写法：</p>
+<blockquote>
+<p>饿汉式、懒汉式、双重检查式、静态内部类式、枚举式</p>
+</blockquote>
+<p>以下根据写法的难以层次来逐层递进：</p>
+<h3 id="4-1-饿汉式"><a href="#4-1-饿汉式" class="headerlink" title="4.1 饿汉式"></a>4.1 饿汉式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> hugryTypeSingleton  饿汉式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/8/29 16:02</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HugrySingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> HugrySingleton singleton = <span class="keyword">new</span> HugrySingleton();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">HugrySingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HugrySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    用static 修饰我们的实例，并且把构造函数用 private 修饰，这种写法比较简单，在类装载的时候就实现了实例化，避免了线程同步的问题。</p>
+<p>​    <strong>缺点</strong>： 在类装载的时候就及逆行了实例化，没有达到懒加载的目的。</p>
+<p>​    <strong>问题</strong>：如果从始至终都没有使用过这个实例，就可能会造成内存的浪费。</p>
+<h3 id="单例模式变种：-静态代码块式"><a href="#单例模式变种：-静态代码块式" class="headerlink" title="单例模式变种： 静态代码块式"></a>单例模式变种： 静态代码块式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> StaticSingleton 静态代码块</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/8/29 16:07</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticSingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> StaticSingleton singleton;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        singleton = <span class="keyword">new</span> StaticSingleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticSingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> StaticSingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    同样的，静态内部类式也是在类装载的时候就执行了静态代码块中的代码。完成了实例的初始化。</p>
+<p>​    其优缺点与构造器式相同。</p>
+<h3 id="4-2-懒汉式"><a href="#4-2-懒汉式" class="headerlink" title="4.2 懒汉式"></a>4.2 懒汉式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> LazySingleton</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/8/29 16:12</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazySingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazySingleton singleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">LazySingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="keyword">null</span>)&#123;</span><br><span class="line">            singleton = <span class="keyword">new</span> LazySingleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这种方式只有在  <code>getInstance()</code> 方法被调用时才会去实例化我们的对象， 起到了懒加载的效果。</p>
+<p>​    但是，该方式只能在单线程的环境中使用，如果在多线程环境中使用，一个线程进入了 <code>if(Singleton == null)</code> 判断语句块还没来得及执行，另一个线程也通过了这个判断语句。这时，就会多次创建实例，所以这里需要注意：在多线程环境下，不能使用这种方式，这是错误的写法。</p>
+<p>​    为了避免发生线程安全问题，我们可以对前面的写法进行升级，那么线程安全的懒汉式的写法时怎么样的呢?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (singleton == <span class="keyword">null</span>)&#123;</span><br><span class="line">           singleton = <span class="keyword">new</span> LazySingleton();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> singleton;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    如上述代码，我们在 getInstance 方法上加了 synchronized 关键字，这样就能解决前面提到的线程安全问题，但是这样有一个缺点，那就是效率太低了。</p>
+<p>​    问题：每个线程在向获得类的实例的时候，执行 getInstance 方法都要进行同步，多个线程不能同时访问，而这在大多数情况下时没有必要的。</p>
+<h3 id="优化：缩小同步范围"><a href="#优化：缩小同步范围" class="headerlink" title="优化：缩小同步范围"></a>优化：缩小同步范围</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (singleton == <span class="keyword">null</span>)&#123;</span><br><span class="line">       	<span class="keyword">synchronized</span>(LazySingleton<span class="class">.<span class="keyword">class</span>)</span>&#123;</span><br><span class="line">               singleton = <span class="keyword">new</span> LazySingleton();</span><br><span class="line">       	&#125;            </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> singleton;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    为了提高效率，缩小同步的范围，可以将 synchronized 关键字从方法上移除了。然后再把关键字放到方法内部，采用代码块的形式来保护线程安全。<strong>但，这种方式也存在问题：</strong> </p>
+<p>​    <strong>问题：</strong> 假如一个线程进入了第一个 if (singleton == null) 判断语句块还没来的及往下执行，而另一个线程也通过了这个判断语句，此时就会产生多个实例。</p>
+<p>​    <strong>解决方案：</strong> 双重检查模式</p>
+<h3 id="4-3-双重检查式"><a href="#4-3-双重检查式" class="headerlink" title="4.3 双重检查式"></a>4.3 双重检查式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> LazySingleton singleton;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">LazySingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazySingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (singleton == <span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">synchronized</span>(LazySingleton<span class="class">.<span class="keyword">class</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (singleton == <span class="keyword">null</span>)&#123;</span><br><span class="line">                singleton = <span class="keyword">new</span> LazySingleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> singleton;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在双重检查式代码中，我们进行了两次 if (singleton == null) 的判断，就可以保证线程安全了，这样实例代码化代码只用<code>调用一次</code>，后面再次访问的时候，只会判断第一次的 if (singleton == null) 就可以了。然后会跳过整个 if 块儿 ， 直接 return  实例化对象。</p>
+<p>​    <strong>优点：</strong> 这种写法，不仅线程安全，而且延迟加载，效率也更高。</p>
+<h4 id="关于-double-check-去掉第二次的-check-行不行"><a href="#关于-double-check-去掉第二次的-check-行不行" class="headerlink" title="关于 double-check ? 去掉第二次的 check 行不行?"></a>关于 double-check ? 去掉第二次的 check 行不行?</h4><p>​    这时我们要考虑这样一种情况，有两个线程同时调用 <strong>getInstance</strong> 方法，并且由于 <strong>singleton</strong> 是空的，所以两个线程都可以通过第一层的 <strong>if</strong> 判断，然后由于锁机制的存在，会有一个线程线进入同步语句，并进入<strong>第二层</strong> 的 if 判断 ；而另一个线程就会在外面等待。    </p>
+<p>​    不过当第一个线程执行完 new LazySingleton() 语句后就会退出 <strong>synchronized</strong> 的保护区域。这时，如果没有<strong>第二重 singleton == null</strong> 的话，那么<strong>第二个线程</strong>也会创建一个实例，这就破环了单例。这是肯定不行的。</p>
+<p>​    而对于<strong>第一个 check</strong>  而言，如果去掉它，那么所有的线程都会串行执行，效率低下。</p>
+<h4 id="关于-volatile-关键字的使用？"><a href="#关于-volatile-关键字的使用？" class="headerlink" title="关于 volatile 关键字的使用？"></a>关于 volatile 关键字的使用？</h4><p>​    添加该关键字修饰的原因，主要就在于    <code>singleton = new LazySingleton();</code>  这句话，它并不是原子操作，事实上，在 JVM 中这句话至少做了 3 件事；</p>
+<blockquote>
+<ol>
+<li>给 singleton 分配内存空间</li>
+<li>调用 LazySingleton 的构造函数等来初始化 singleton</li>
+<li>将 singleton 对象指向分配的内存空间（执行完这步 singleton 就不是 null 了）</li>
+</ol>
+</blockquote>
+<p>​    以上的 3 步的执行顺序在 JVM 中是不能保证被正确执行的，也就是说最终的执行顺序可能是 ：1-2-3 ，也可能是 1-3-2 ，如果是 1-3-2 的话，那么在执行完第3步后 ,singleton 就不是 null 了，而此时第 2 步并没有被执行。</p>
+<p>​    假设此时线程 2 进入了 getInstance 方法，由于此时的 singleton 不是 null 了，所以它就会通过第一重的检查并且直接返回，而实际上这个时候的 singleton 并没有完全地完成初始化。所以使用这个实例的时候就会报错。</p>
+<p><strong>详细的流程如下：</strong> </p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu1023.png" width="50%"></p>
+<h3 id="4-4-静态内部类式"><a href="#4-4-静态内部类式" class="headerlink" title="4.4 静态内部类式"></a>4.4 静态内部类式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> StaticInnerClassSingleton</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/8/29 16:48</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticInnerClassSingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">StaticInnerClassSingleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonInstance</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> StaticInnerClassSingleton singleton = <span class="keyword">new</span> StaticInnerClassSingleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span>  StaticInnerClassSingleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonInstance.singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    它与饿汉式的方法类似，都采用了类装载的机制，来保证我们初始化实例时只有一个线程，所以 在这里 JVM 帮助我们保证了线程的安全性。</p>
+<p><strong>与饿汉式的区别：</strong></p>
+<p>​    饿汉式的特点是，只要 Singleton 这个类被加载了，就会实例化单例对象，而静态内部类方式在 Singleton 类被装载时，并不会立刻实例化。只有在需要实例时，也就是调用 getInstance 方法时才会去完成对 singleton 实例的实例化。</p>
+<p><strong>小总结：</strong></p>
+<p>​    静态内部类的写法与双重检查模式的优点是一样的，都是避免了线程不安全的问题。并且延迟加载、效率高。 </p>
+<p>​    静态内部类和双重检查式这两种方法是属于<strong>效率比较高的方法，但是它们不能防止被反序列化，</strong>生成多个实例。</p>
+<p>​    更高效且安全的方式： <strong>枚举式</strong></p>
+<h3 id="4-5-枚举式"><a href="#4-5-枚举式" class="headerlink" title="4.5 枚举式"></a>4.5 枚举式</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.company.singleton;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> EnumSingleton</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020/8/29 16:57</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span>  EnumSingleton &#123;</span><br><span class="line"></span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">whateverMethod</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    借助 JDK 1.5 中添加的枚举类来实现单例模式，这不仅能避免多线程同步的问题，而且还能防止反序列化和反射来创建新的对象来破坏单例的情况的出现。</p>
+<h2 id="5-如何选择最好的单例模式"><a href="#5-如何选择最好的单例模式" class="headerlink" title="5. 如何选择最好的单例模式"></a>5. 如何选择最好的单例模式</h2><p>在前面列出了 5 种实现单例模式的方法，那么我们在实际开发使用哪一种单例最好呢？<strong>建议：</strong> </p>
+<p>​     最好的单例实现是使用枚举式， Joshua Bloch 在 《Effective java》 一书种明确表达过一个观点.</p>
+<blockquote>
+<p> 使用枚举实现单例的方法，虽然还没有被广泛采用，但是单元素的枚举类型已经成为了实现 Singleton 的最佳方法。 </p>
+<p>​                    —— Joshua Bloch</p>
+</blockquote>
+<h3 id="为什么他会更加推崇枚举模式的单例呢"><a href="#为什么他会更加推崇枚举模式的单例呢" class="headerlink" title="为什么他会更加推崇枚举模式的单例呢?"></a>为什么他会更加推崇枚举模式的单例呢?</h3><p>​    <strong>从枚举写法的优点上看，</strong></p>
+<blockquote>
+<pre><code>首先就是写法简单，枚举的写法不需要我们去考虑懒加载，线程安全等问题。同时代码也比较短小精悍。比其他的写法都更简洁、更优雅。</code></pre><p>​    第二个优点就是线程安全有保障，通过反编译一个枚举类我们可以发现枚举中的各个枚举项是通过 static 代码块来定义和初始化的，它们会在类被加载时完成初始化。</p>
+<p>​    而 Java 类的加载由 JVM 保证线程安全。所以创建一个 Enum 类型的枚举时线程安全的。</p>
+<p>​    而前面的几种单例实现方式存在问题，那就是可能被反序列化破坏，反序列化生成的新的对象从而产生多个实例。</p>
+<p>​    第三个优点是 Enum 能有效防止反序列化（防止破坏单例）</p>
+<p>​    Java 专门对枚举的序列化做了规定，在序列化时，仅仅时将枚举对象的 name 属性输出到结果中，在反序列化时，就是通过 java.lang.Enum 的 valueOf 方法来根据名字查找对象，而不是新建一个新的对象。所以，这就防止了反序列化导致的单例破坏问题的出现。</p>
+</blockquote>
+<p>​    对于通过反射破坏单例而言，枚举类同样由防御措施，反射在通过 newInstance 创建对象时，会检查这个类是否是枚举类，如果时就抛出 IllegalArgumentException(“Cannot reflectively create enum objects” ) 这样的异常，反射创建对象失败。</p>
+<p>​    可以看出，枚举这种方式，可以<strong>防止序列化和反射破坏单例</strong>。在这一点上与其他的实现方式相比由很多大的优势。<strong>安全问题不容小视，一旦生成了多个实例，单例模式就彻底没用</strong>了。</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu1024.png" width="50%">    </p>
+
       
     </div>
     
@@ -632,8 +754,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -652,7 +783,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">246</span>
+                  <span class="site-state-item-count">248</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -663,7 +794,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -703,6 +834,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是单例模式？"><span class="nav-number">1.</span> <span class="nav-text">1. 什么是单例模式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-那么为什么需要单例？"><span class="nav-number">2.</span> <span class="nav-text">2. 那么为什么需要单例？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-单例模式的应用场景"><span class="nav-number">3.</span> <span class="nav-text">3. 单例模式的应用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-无状态的工具类"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 无状态的工具类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-全局信息类"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 全局信息类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-常见的单例模式写法"><span class="nav-number">4.</span> <span class="nav-text">4. 常见的单例模式写法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-饿汉式"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 饿汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式变种：-静态代码块式"><span class="nav-number">4.2.</span> <span class="nav-text">单例模式变种： 静态代码块式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-懒汉式"><span class="nav-number">4.3.</span> <span class="nav-text">4.2 懒汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化：缩小同步范围"><span class="nav-number">4.4.</span> <span class="nav-text">优化：缩小同步范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-双重检查式"><span class="nav-number">4.5.</span> <span class="nav-text">4.3 双重检查式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-double-check-去掉第二次的-check-行不行"><span class="nav-number">4.5.1.</span> <span class="nav-text">关于 double-check ? 去掉第二次的 check 行不行?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于-volatile-关键字的使用？"><span class="nav-number">4.5.2.</span> <span class="nav-text">关于 volatile 关键字的使用？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-静态内部类式"><span class="nav-number">4.6.</span> <span class="nav-text">4.4 静态内部类式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-5-枚举式"><span class="nav-number">4.7.</span> <span class="nav-text">4.5 枚举式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-如何选择最好的单例模式"><span class="nav-number">5.</span> <span class="nav-text">5. 如何选择最好的单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么他会更加推崇枚举模式的单例呢"><span class="nav-number">5.1.</span> <span class="nav-text">为什么他会更加推崇枚举模式的单例呢?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
