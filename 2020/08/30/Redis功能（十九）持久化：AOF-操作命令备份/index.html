@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Redis,Redis特性," />
+  <meta name="keywords" content="Redis,Redis功能,持久化,AOF," />
 
 
 
@@ -91,27 +91,30 @@
 
 
 
-<meta name="description" content="一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。那么时代为什么需要NoSQL数据库呢？我们来做个对比：      关系型数据库 NoSQL数据库    数据存储位置 硬盘 内存   数据结构 高度组织化结构化数据 没有预定">
+<meta name="description" content="AOF RDB现存问题 什么是 AOF AOF三种策略 AOF重写策略  1. RDB的问题 RDB存在耗时、耗性能的问题。     分析： 1)  O(n）数据：耗时 RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，然后形成一个rdb文件，首先，它是比较耗时的，我们需要把所有数据全部进行dump，并且它是一个IO的过程，本身的写操作会消耗不少CPU；   2)fork">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis入门(一) Redis概念与特性">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:title" content="Redis功能（十九）持久化：AOF - 操作命令备份">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。那么时代为什么需要NoSQL数据库呢？我们来做个对比：      关系型数据库 NoSQL数据库    数据存储位置 硬盘 内存   数据结构 高度组织化结构化数据 没有预定">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu956.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu957.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu958.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu959.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu960.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu961.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu962.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu963.png">
-<meta property="article:published_time" content="2020-07-20T14:30:01.000Z">
-<meta property="article:modified_time" content="2020-07-21T13:35:36.098Z">
+<meta property="og:description" content="AOF RDB现存问题 什么是 AOF AOF三种策略 AOF重写策略  1. RDB的问题 RDB存在耗时、耗性能的问题。     分析： 1)  O(n）数据：耗时 RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，然后形成一个rdb文件，首先，它是比较耗时的，我们需要把所有数据全部进行dump，并且它是一个IO的过程，本身的写操作会消耗不少CPU；   2)fork">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1149.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1150.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1151.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1152.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1153.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1154.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1155.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1156.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1157.png">
+<meta property="article:published_time" content="2020-08-30T14:59:01.000Z">
+<meta property="article:modified_time" content="2020-08-31T14:47:54.351Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
-<meta property="article:tag" content="Redis特性">
+<meta property="article:tag" content="Redis功能">
+<meta property="article:tag" content="持久化">
+<meta property="article:tag" content="AOF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu956.png">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1149.png">
 
 
 
@@ -141,13 +144,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/07/20/Redis入门-一-Redis概念与特性/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/30/Redis功能（十九）持久化：AOF-操作命令备份/"/>
 
 
 
 
 
-  <title>Redis入门(一) Redis概念与特性 | 鮀城小帅</title>
+  <title>Redis功能（十九）持久化：AOF - 操作命令备份 | 鮀城小帅</title>
   
 
 
@@ -360,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -377,7 +380,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis入门(一) Redis概念与特性</h1>
+          <h1 class="post-title" itemprop="name headline">Redis功能（十九）持久化：AOF - 操作命令备份</h1>
         
 
         <div class="post-meta">
@@ -389,8 +392,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T22:30:01+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -423,8 +426,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
+                  <a href="/categories/Redis/%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">持久化</span>
                   </a>
                 </span>
 
@@ -441,8 +444,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -450,7 +453,7 @@
 
           
           
-             <span id="/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" class="leancloud_visitors" data-flag-title="Redis入门(一) Redis概念与特性">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" class="leancloud_visitors" data-flag-title="Redis功能（十九）持久化：AOF - 操作命令备份">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -486,130 +489,220 @@
       
 
       
-        <h3 id="一、从NoSQL说起"><a href="#一、从NoSQL说起" class="headerlink" title="一、从NoSQL说起"></a>一、从NoSQL说起</h3><p>NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中<code>MemCache、Redis、MongoDB</code>被称为NoSQL三剑客。那么时代为什么需要NoSQL数据库呢？我们来做个对比： </p>
-<table>
+        <h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><ul>
+<li>RDB现存问题</li>
+<li>什么是 AOF</li>
+<li>AOF三种策略</li>
+<li>AOF重写策略</li>
+</ul>
+<h3 id="1-RDB的问题"><a href="#1-RDB的问题" class="headerlink" title="1. RDB的问题"></a>1. RDB的问题</h3><blockquote>
+<p>RDB存在耗时、耗性能的问题。 </p>
+</blockquote>
+<img src="http://photo.wushaopei.com/qiniu1149.png" width="60%">
+
+<p><strong>分析：</strong></p>
+<h4 id="1-O-n）数据：耗时"><a href="#1-O-n）数据：耗时" class="headerlink" title="1)  O(n）数据：耗时"></a><strong>1)  O(n）数据：耗时</strong></h4><blockquote>
+<p>RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，然后形成一个rdb文件，首先，它是比较耗时的，我们需要把所有数据全部进行dump，并且它是一个IO的过程，本身的写操作会消耗不少CPU； </p>
+</blockquote>
+<h4 id="2-fork-：-消耗内存，copy-on-write策略"><a href="#2-fork-：-消耗内存，copy-on-write策略" class="headerlink" title="2)fork() ： 消耗内存，copy-on-write策略"></a><strong>2)fork() ： 消耗内存，copy-on-write策略</strong></h4><blockquote>
+<p>其次，涉及到了性能上的消耗。Redis的RDB存在一个fork()的过程，即对主进程拆分出子进程的操作，虽然是使用的copy-on-write策略，并未对全部数据做操作，但依旧会产生内存的消耗。 </p>
+</blockquote>
+<h4 id="3-Disk-I-O-IO性能"><a href="#3-Disk-I-O-IO性能" class="headerlink" title="3) Disk I/O : IO性能"></a>3) <strong>Disk I/O : IO性能</strong></h4><blockquote>
+<p>由内存往硬盘中写文件是一个IO的过程，文件越大，对IO性能影响越大。 </p>
+</blockquote>
+<h4 id="4-不可控、丢失数据"><a href="#4-不可控、丢失数据" class="headerlink" title="4) 不可控、丢失数据"></a><strong>4) 不可控、丢失数据</strong></h4><table>
 <thead>
 <tr>
-<th></th>
-<th>关系型数据库</th>
-<th>NoSQL数据库</th>
+<th>时间戳</th>
+<th>save</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>数据存储位置</td>
-<td>硬盘</td>
-<td>内存</td>
+<td>T1</td>
+<td>执行多个写命令</td>
 </tr>
 <tr>
-<td>数据结构</td>
-<td>高度组织化结构化数据</td>
-<td>没有预定义的模式</td>
+<td>T2</td>
+<td>满足RDB自动创建的条件</td>
 </tr>
 <tr>
-<td>数据操作方式</td>
-<td>SQL</td>
-<td>所有数据都是键值对，没有声明性查询语言</td>
+<td>T3</td>
+<td>再次执行多个写命令</td>
 </tr>
 <tr>
-<td>事务控制</td>
-<td>严格的基础事务ACID原则</td>
-<td>CAP定理</td>
+<td>T4</td>
+<td>宕机</td>
 </tr>
 </tbody></table>
-<p>所以NoSQL数据库的最大优势体现为：高性能、高可用性和可伸缩性。 </p>
-<h3 id="二、Redis简介"><a href="#二、Redis简介" class="headerlink" title="二、Redis简介"></a>二、Redis简介</h3><p><strong>Redis英文官网介绍：</strong> </p>
+<p>​    使用RDB的缺陷在于，当T1执行多个命令后，在T2时间点满足了RDB自动创建条件后，进行了dump操作；当再次执行多个写命令后，由于系统或其他原因导致redis服务器宕机。</p>
+<p>​    此时，默认是会在服务器重新恢复后通过rdb文件将最后一次dump的数据恢复到redis中，那么这里就可能会存在最后一次dump后执行的写命令无法得到恢复的问题。即，数据存在丢失的问题。</p>
+<p>​    因此，这一RDB机制所能保障的数据安全是不可靠的。</p>
 <blockquote>
-<p>Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes with radius queries. Redis has built-in replication, Lua scripting, LRU eviction, transactions and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.</p>
+<p><strong>解决RDB数据不完整的方法：使用AOF持久化机制</strong> </p>
 </blockquote>
-<p><strong>Redis中文官网介绍：</strong>  </p>
-<blockquote>
-<p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了 复制（replication），LUA脚本（Lua scripting）， LRU驱动事件（LRU eviction），事务（transactions） 和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。</p>
-<p>————————————————</p>
-<p>同时，Redis也是一个开源的使用ANSIC语言编写、支持网络、单进程单线程、可基于内存亦可持久化的日志型、一个高性能的key-value数据库。 </p>
+<h3 id="2-什么是AOF"><a href="#2-什么是AOF" class="headerlink" title="2. 什么是AOF?"></a>2. 什么是AOF?</h3><blockquote>
+<p>AOF是AppendOnly File的缩写，是Redis系统提供了一种记录Redis操作的持久化方案，在AOF生成的文件中，将忠实记录发生在Redis的操作，从而达到在Redis服务器重启或者当机之后，继续恢复之前数据状态的机制。 </p>
 </blockquote>
-<h3 id="三、Redis的特性"><a href="#三、Redis的特性" class="headerlink" title="三、Redis的特性"></a>三、Redis的特性</h3><p>特性目录：</p>
-<blockquote>
-<p>速度快</p>
-<p>持久化</p>
-<p>多种数据结构</p>
-<p>支持多种编辑语言</p>
-<p>功能丰富</p>
-<p>简单： 代码短小精悍，使用简单</p>
-<p>主从赋值：实现高可用的基础</p>
-<p>高可用、分布式</p>
-</blockquote>
-<h4 id="1、特性-——-速度快"><a href="#1、特性-——-速度快" class="headerlink" title="1、特性 —— 速度快"></a>1、特性 —— 速度快</h4><p><strong>1） 速度快的体现：</strong> </p>
-<blockquote>
-<p>每秒的读取速度最高可达： 10w OPS </p>
-</blockquote>
-<img src="http://photo.wushaopei.com/qiniu956.png" width="60%">
+<h3 id="3-AOF运行原理——创建"><a href="#3-AOF运行原理——创建" class="headerlink" title="3. AOF运行原理——创建"></a>3. AOF运行原理——创建</h3><img src="http://photo.wushaopei.com/qiniu1150.png" width="60%">
 
+<p>​    当客户端向redis执行一条写命令时，redis会向AOF文件同步写入那条写操作的命令。该写入操作是实时的。 </p>
+<h3 id="4-AOF运行原理——恢复："><a href="#4-AOF运行原理——恢复：" class="headerlink" title="4. AOF运行原理——恢复："></a>4. AOF运行原理——恢复：</h3><img src="http://photo.wushaopei.com/qiniu1151.png" width="60%">
+
+<h3 id="5-AOF的三种策略："><a href="#5-AOF的三种策略：" class="headerlink" title="5. AOF的三种策略："></a>5. AOF的三种策略：</h3><blockquote>
+<p>   always      everysec      No </p>
+</blockquote>
+<h3 id="6-Redis的AOF写入方案："><a href="#6-Redis的AOF写入方案：" class="headerlink" title="6. Redis的AOF写入方案："></a>6. Redis的AOF写入方案：</h3><p>​    redis在执行AOF的写命令时，不是直接写入到硬盘当中，而是先将写命令的日志写入到硬盘的<strong>缓冲区</strong>当中，<strong>缓冲区</strong>会根据一些策略将数据<strong>刷新</strong>到硬盘对应的aof文件中，从而提高AOF文件写入的效率。 </p>
+<h4 id="1）策略1：-always"><a href="#1）策略1：-always" class="headerlink" title="1）策略1： always"></a>1）策略1： always</h4><img src="http://photo.wushaopei.com/qiniu1152.png" width="60%">
+
+<p>而always的意思代表用户在redis客户端每一条写入的命令都会进行同步写入到硬盘当中，这样数据就不会有丢失的危险。 </p>
+<h4 id="2）策略2：everysec"><a href="#2）策略2：everysec" class="headerlink" title="2）策略2：everysec"></a>2）策略2：everysec</h4><img src="http://photo.wushaopei.com/qiniu1153.png" width="60%">
+
+<p>Redis的命令写入到缓冲区中，缓冲区会在每一秒执行一次命令日志刷新到硬盘当中的操作。 </p>
+<p><strong>注意：</strong></p>
+<p>​        <strong>①这可能会在redis宕机后丢失一秒的数据</strong></p>
+<p>​        <strong>②这是redis的默认配置</strong></p>
+<h4 id="3）策略3：no"><a href="#3）策略3：no" class="headerlink" title="3）策略3：no"></a>3）策略3：no</h4><img src="http://photo.wushaopei.com/qiniu1154.png" width="60%">
+
+<p>​    操作日志刷新到硬盘的频率和时间有操作系统来决定，操作系统决定什么时候刷新，就什么时候刷新。 </p>
+<h3 id="7-AOF的问题："><a href="#7-AOF的问题：" class="headerlink" title="7. AOF的问题："></a>7. AOF的问题：</h3><p>​    由于时间的推移或写入命令的变多、并发量的增加，AOF文件会变得很大，从而导致很多问题发生。比如：使用AOF来进行恢复会非常慢，并且文件的无限制增大，对于硬盘的管理还是写入命令的速度都会有一定的影响。 </p>
+<p><strong>解决方案：</strong> AOF重写 </p>
+<h3 id="8-重写对比："><a href="#8-重写对比：" class="headerlink" title="8. 重写对比："></a>8. 重写对比：</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">原生 AOF				AOF 重写</span><br><span class="line">set hello world		set hello hehe</span><br><span class="line">set hello java 		set counter <span class="number">2</span>	</span><br><span class="line">set hello hehe		rpush mylist a b c</span><br><span class="line">incr counter	</span><br><span class="line">incr counter</span><br><span class="line">rpush mylist a </span><br><span class="line">rpush mylist b</span><br><span class="line">rpush mylist c</span><br><span class="line">过期数据</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>AOF重写原理：</strong>将一些过期的、重写的、一些可以优化的命令进行化简成一个很少的文件。 </p>
+</blockquote>
+<h3 id="9-AOF重写的作用"><a href="#9-AOF重写的作用" class="headerlink" title="9. AOF重写的作用"></a>9. AOF重写的作用</h3><blockquote>
 <ul>
-<li>Redis 的数据是保存在内存上的，所以读取快；</li>
-<li>同时底层由c语言编写，编译高效；</li>
-<li>又由于是单线程模型，具有线程安全的特性。</li>
+<li>减少硬盘占用量</li>
+<li>加速恢复速度</li>
 </ul>
-<p><strong>2) 计算机存储介质的速度排行:</strong></p>
-<img src="http://photo.wushaopei.com/qiniu957.png" width="60%">
+</blockquote>
+<h3 id="10-例子"><a href="#10-例子" class="headerlink" title="10. 例子"></a>10. 例子</h3><blockquote>
+<p>Incr key</p>
+<p>Incr key</p>
+<p>…….</p>
+<p>Incr key（一亿次）</p>
+</blockquote>
+<p>​    比如incr命令或incrby命令，做自增操作。此时有一个key，它自增到了一个亿，相对于AOF文件来说，它需要做一亿次incr操作，那么，可以想象到，它的文件会是非常大的，它会占用很多的空间。</p>
+<p><strong>优化:</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Incr key <span class="number">10000000000</span>（一亿）</span><br></pre></td></tr></table></figure>
 
-<p><strong>3) 内存的随机读写性能表：</strong> </p>
+<p>​    使用<strong>AOF重写进行优化后就只需要执行一次incr命令</strong>就可以了。</p>
+<p>​    同样的，在进行恢复的时候，<strong>执行一次incr命令远比执行一亿次incr</strong>要高效的多。</p>
+<h3 id="11-AOF重写实现两种方式："><a href="#11-AOF重写实现两种方式：" class="headerlink" title="11. AOF重写实现两种方式："></a>11. AOF重写实现两种方式：</h3><blockquote>
+<ul>
+<li>bgrewriteaof</li>
+<li>AOF重写配置</li>
+</ul>
+</blockquote>
+<h3 id="12-bgrewriteaof"><a href="#12-bgrewriteaof" class="headerlink" title="12. bgrewriteaof"></a>12. bgrewriteaof</h3><img src="http://photo.wushaopei.com/qiniu1155.png" width="60%">
+
+<p>​    客户端对redis服务端的主进程发送一条 bgrewriteaof命令，redis会去异步执行aof操作，并返回类似OK的结果给客户端。</p>
+<p>​    当redis得到 bgrewriteaof命令后，会fork（）出一个子进程，由子进程去执行 aof重写操作。</p>
+<p><strong>注意：</strong>AOF重写操作是对redis中的命令进行回溯，从而实现对命令的优化精简重写。</p>
+<h3 id="13-AOF重写配置："><a href="#13-AOF重写配置：" class="headerlink" title="13. AOF重写配置："></a>13. AOF重写配置：</h3><p><strong>配置：</strong> </p>
 <table>
 <thead>
 <tr>
-<th>类型</th>
-<th>每秒读写次数</th>
-<th>随机读写延迟</th>
-<th>访问带宽</th>
+<th>配置名</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>内存</td>
-<td>千万级</td>
-<td>80ns</td>
-<td>5GB</td>
+<td>auto-aof-rewrite-min-size</td>
+<td>AOF文件重写需要的尺寸</td>
 </tr>
 <tr>
-<td>SSD盘</td>
-<td>35000</td>
-<td>0.1- 0.2 ms</td>
-<td>100~300MB</td>
-</tr>
-<tr>
-<td>机械盘</td>
-<td>100左右</td>
-<td>10ms</td>
-<td>100MB左右</td>
+<td>auto-aof-rewrite-percentage</td>
+<td>AOF文件增长率</td>
 </tr>
 </tbody></table>
-<h4 id="2、特性——持久化"><a href="#2、特性——持久化" class="headerlink" title="2、特性——持久化"></a>2、特性——持久化</h4><p>持久化功能：</p>
-<p>​    Redis所有数据保持在内存中，对数据的更新将异步地保存到磁盘上。</p>
-<img src="http://photo.wushaopei.com/qiniu958.png" width="60%">
-
-<h4 id="3、特性——数据结构"><a href="#3、特性——数据结构" class="headerlink" title="3、特性——数据结构"></a>3、特性——数据结构</h4><img src="http://photo.wushaopei.com/qiniu959.png" width="80%">
-
-<p>Redis 具有 String 、Hash、List、Set、zSet 共五种数据结构。</p>
-<p><strong>后续衍生扩展的数据结构：</strong></p>
+<p><strong>例：</strong></p>
 <blockquote>
-<p><strong>BitMaps : 位图</strong></p>
-<pre><code>使用位图可以用很小的内存实现很高效的存储</code></pre><p><strong>HyperLogLog:超小内存唯一值技术</strong> </p>
-<pre><code>由jdk1.8.75开始提供。</code></pre><p><strong>GEO：地理信息定位</strong></p>
-<pre><code>提供对于地理位置的定位服务，比如：用于查找运算出离你最近的餐馆等</code></pre></blockquote>
-<h4 id="4、特性——多语言客户端"><a href="#4、特性——多语言客户端" class="headerlink" title="4、特性——多语言客户端"></a>4、特性——多语言客户端</h4><img src="http://photo.wushaopei.com/qiniu960.png" width="80%">
+<p>①AOF文件达到100MB执行重写</p>
+<p>②AOF文件的增长幅度达到原来80%进行重写</p>
+</blockquote>
+<p><strong>统计：</strong>  </p>
+<table>
+<thead>
+<tr>
+<th>统计名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>aof_current_size</td>
+<td>AOF当前尺寸（单位：字节）</td>
+</tr>
+<tr>
+<td>aof_base_size</td>
+<td>AOF上次启动和重写的尺寸（单位：字节）</td>
+</tr>
+</tbody></table>
+<h3 id="14-执行重写操作的基本条件，必须同时满足："><a href="#14-执行重写操作的基本条件，必须同时满足：" class="headerlink" title="14. 执行重写操作的基本条件，必须同时满足："></a>14. 执行重写操作的基本条件，必须同时满足：</h3><p><strong>自动触发机制：</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aof_current_size &gt; auto<span class="literal">-aof</span><span class="literal">-rewrite</span><span class="literal">-min</span><span class="literal">-size</span></span><br></pre></td></tr></table></figure>
 
-<p> 支持Redis的语言和应用非常多而且广泛。 </p>
-<h4 id="5、特性——功能丰富"><a href="#5、特性——功能丰富" class="headerlink" title="5、特性——功能丰富"></a>5、特性——功能丰富</h4><ul>
-<li>Redis 本身也支持发布订阅，基于消息发布的功能。</li>
-<li>Redis也支持Lua 脚本，以及简单的事务功能；并提供 pipeline 用于并发的控制</li>
-</ul>
-<h4 id="6、特性——简单"><a href="#6、特性——简单" class="headerlink" title="6、特性——简单"></a>6、特性——简单</h4><img src="http://photo.wushaopei.com/qiniu961.png" width="80%">
+<p><strong>当前文件必须达到最小尺寸</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aof_current_size<span class="literal">-aof_base_size</span>/aof_base_size &gt;auto<span class="literal">-aof</span><span class="literal">-rewrite</span><span class="literal">-percentage</span></span><br></pre></td></tr></table></figure>
 
-<p>Redis的代码实现只有23000行，由C语言编写。简单而健壮。 </p>
-<h4 id="7、特性——复制"><a href="#7、特性——复制" class="headerlink" title="7、特性——复制"></a>7、特性——复制</h4><img src="http://photo.wushaopei.com/qiniu962.png" width="80%">
+<p><strong>增长幅度满足增长率：</strong>当次文件的尺寸减去上次重写文件的尺寸的差除以上次重写文件的尺寸的比率。 </p>
+<h3 id="15-AOF重写流程："><a href="#15-AOF重写流程：" class="headerlink" title="15. AOF重写流程："></a>15. AOF重写流程：</h3><img src="http://photo.wushaopei.com/qiniu1156.png" width="60%">
 
-<p>Redis提供了主从复制的功能，主服务器上的功能可以同步到从服务器上。 </p>
-<h4 id="8、特性——高可用分布式"><a href="#8、特性——高可用分布式" class="headerlink" title="8、特性——高可用分布式"></a>8、特性——高可用分布式</h4><img src="http://photo.wushaopei.com/qiniu963.png" width="80%">
+<p><strong>解析：</strong> </p>
+<blockquote>
+<p>3-1进程是指子进程依旧会将写命令写入到aof_buf当中，然后去写到AOF文件当中。</p>
+<p> 除此之外，我们为了能让新的aof_buf文件能够将新的增量数据写到AOF文件当中，可以使用图中的3-2进程来完成。3-2进程会将增量数据写入到一个新的AOF文件当中，最终，会用新的AOF文件来替代老的AOF文件来完成这一重写的完整过程。</p>
+</blockquote>
+<h3 id="16-AOF功能的相关配置："><a href="#16-AOF功能的相关配置：" class="headerlink" title="16. AOF功能的相关配置："></a>16. AOF功能的相关配置：</h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly  yes</span><br></pre></td></tr></table></figure>
 
-<p>Redis提供了Redis-Sentinel，即哨兵实现高可用；以及Redis-Cluster支持分布式。 </p>
+<p>要使用AOF的所有功能，必须将该配置打开，置为 <strong>yes</strong>  </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendfilename <span class="string">"appendonly-<span class="variable">$</span>&#123;port&#125;.aof"</span></span><br></pre></td></tr></table></figure>
+
+<p>在默认文件名appendonly的基础上添加端口port已区分不同的AOF文件，避免覆盖 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendfsync everysec</span><br></pre></td></tr></table></figure>
+
+<p>使用每秒一次的刷新策略 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir /bigdiskpath</span><br></pre></td></tr></table></figure>
+
+<p>用于保存RDB、AOF的文件目录，一般选择比较大的目录存放，必要情况，可以进行分盘操作 </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">no<span class="literal">-appendfsync</span><span class="literal">-on</span><span class="literal">-rewrite</span> yes</span><br></pre></td></tr></table></figure>
+
+<p>在做AOF重写时要不要做append操作，这里的配置意思是我们不做append操作。因为AOF的重写是很消耗性能的，要将子进程的数据从缓存刷新到磁盘当中是有很大的消耗的。 </p>
+<h3 id="17-AOF实验"><a href="#17-AOF实验" class="headerlink" title="17. AOF实验"></a>17. AOF实验</h3><h4 id="1-AOF功能演示："><a href="#1-AOF功能演示：" class="headerlink" title="1) AOF功能演示："></a>1) AOF功能演示：</h4><p> 修改配置：</p>
+<p>   客户端查看配置：</p>
+<p><strong>动态设置appendonly：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; config get appendonly</span><br><span class="line"><span class="number">1</span>) <span class="string">"appendonly"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"no"</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; config set appendonly yes</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>配置启动重写： </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; config rewrite</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>测试： </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; set hello world</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; set hello java</span><br><span class="line">OK</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; set hello redis</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">redis</span>]<span class="comment"># more appendonly.aof</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; incr counter</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; incr counter</span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; rpush list a</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; rpush list b</span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; rpush list c</span><br><span class="line">(integer) <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>查看是否生成.aof文件：</strong> </p>
+<img src="http://photo.wushaopei.com/qiniu1157.png" width="60%">
+
+<p><strong>查看所有的写操作：</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">redis</span>]<span class="comment"># head appendonly.aof</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>写操作的命令会被进行append</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">*<span class="number">2</span></span><br><span class="line"><span class="variable">$6</span></span><br><span class="line">SELECT</span><br><span class="line"><span class="variable">$1</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line">*<span class="number">3</span></span><br><span class="line"><span class="variable">$3</span></span><br><span class="line">set</span><br><span class="line"><span class="variable">$5</span></span><br><span class="line">hello</span><br></pre></td></tr></table></figure>
+
+<p><strong>重写 aof 文件：</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-&gt; <span class="keyword">data</span> redis<span class="literal">-cli</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; bgrewriteaof</span><br><span class="line">Background append only file rewriting started</span><br></pre></td></tr></table></figure>
+
+<p><strong>重写后文件：</strong> </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">redis</span>]<span class="comment"># ll</span></span><br><span class="line">总用量 <span class="number">57924</span></span><br><span class="line"><span class="literal">-rw</span><span class="literal">-r</span>-<span class="literal">-r</span>--. <span class="number">1</span> root root      <span class="number">150</span> <span class="number">8</span>月  <span class="number">31</span> <span class="number">22</span>:<span class="number">44</span> appendonly.aof</span><br><span class="line">drwxr<span class="literal">-xr</span><span class="literal">-x</span>. <span class="number">2</span> root root     <span class="number">4096</span> <span class="number">6</span>月  <span class="number">23</span> <span class="number">12</span>:<span class="number">18</span> bin</span><br><span class="line"><span class="literal">-rw</span><span class="literal">-r</span>-<span class="literal">-r</span>--. <span class="number">1</span> root root      <span class="number">258</span> <span class="number">8</span>月  <span class="number">31</span> <span class="number">20</span>:<span class="number">24</span> dump.rdb</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看重写：</strong> </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@rich redis]# cat appendonly.aof </span><br><span class="line">*2</span><br><span class="line"><span class="meta">$</span><span class="bash">6</span></span><br><span class="line">SELECT</span><br><span class="line"><span class="meta">$</span><span class="bash">1</span></span><br><span class="line">0</span><br><span class="line">*6</span><br><span class="line"><span class="meta">$</span><span class="bash">4</span></span><br><span class="line">ZADD</span><br><span class="line"><span class="meta">$</span><span class="bash">11</span></span><br><span class="line">player:rank</span><br><span class="line"><span class="meta">$</span><span class="bash">3</span></span><br><span class="line">900</span><br><span class="line"><span class="meta">$</span><span class="bash">5</span></span><br><span class="line">messi</span><br><span class="line"><span class="meta">$</span><span class="bash">4</span></span><br><span class="line">1000</span><br><span class="line"><span class="meta">$</span><span class="bash">7</span></span><br><span class="line">ronaldo</span><br><span class="line">*3</span><br><span class="line"><span class="meta">$</span><span class="bash">3</span></span><br><span class="line">SET</span><br><span class="line"><span class="meta">$</span><span class="bash">23</span></span><br><span class="line">unique:users:2016-04-05</span><br><span class="line"><span class="meta">$</span><span class="bash">3</span></span><br></pre></td></tr></table></figure>
+
+
+
 
       
     </div>
@@ -630,7 +723,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" title="Redis入门(一) Redis概念与特性">http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8-%E4%B8%80-Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/</a>
+    <a href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" title="Redis功能（十九）持久化：AOF - 操作命令备份">http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -647,7 +740,11 @@
           
             <a href="/tags/Redis/" rel="tag"> <i class="fa fa-tag"></i> Redis</a>
           
-            <a href="/tags/Redis%E7%89%B9%E6%80%A7/" rel="tag"> <i class="fa fa-tag"></i> Redis特性</a>
+            <a href="/tags/Redis%E5%8A%9F%E8%83%BD/" rel="tag"> <i class="fa fa-tag"></i> Redis功能</a>
+          
+            <a href="/tags/%E6%8C%81%E4%B9%85%E5%8C%96/" rel="tag"> <i class="fa fa-tag"></i> 持久化</a>
+          
+            <a href="/tags/AOF/" rel="tag"> <i class="fa fa-tag"></i> AOF</a>
           
         </div>
       
@@ -660,8 +757,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" rel="next" title="Spring（十）IOC - 包扫描与Bean的自动装配(注入)">
-                <i class="fa fa-chevron-left"></i> Spring（十）IOC - 包扫描与Bean的自动装配(注入)
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" rel="next" title="Redis功能（十三）功能二：Pipeline高速读写">
+                <i class="fa fa-chevron-left"></i> Redis功能（十三）功能二：Pipeline高速读写
               </a>
             
           </div>
@@ -670,8 +767,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" rel="prev" title="深入理解-集合类（一）HashMap">
-                深入理解-集合类（一）HashMap <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" rel="prev" title="Redis功能（十五）功能四：bitmap(位图）">
+                Redis功能（十五）功能四：bitmap(位图） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -797,7 +894,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">248</span>
+                  <span class="site-state-item-count">277</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -808,7 +905,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -819,7 +916,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">190</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -858,7 +955,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、从NoSQL说起"><span class="nav-number">1.</span> <span class="nav-text">一、从NoSQL说起</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Redis简介"><span class="nav-number">2.</span> <span class="nav-text">二、Redis简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Redis的特性"><span class="nav-number">3.</span> <span class="nav-text">三、Redis的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、特性-——-速度快"><span class="nav-number">3.1.</span> <span class="nav-text">1、特性 —— 速度快</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、特性——持久化"><span class="nav-number">3.2.</span> <span class="nav-text">2、特性——持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、特性——数据结构"><span class="nav-number">3.3.</span> <span class="nav-text">3、特性——数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、特性——多语言客户端"><span class="nav-number">3.4.</span> <span class="nav-text">4、特性——多语言客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5、特性——功能丰富"><span class="nav-number">3.5.</span> <span class="nav-text">5、特性——功能丰富</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6、特性——简单"><span class="nav-number">3.6.</span> <span class="nav-text">6、特性——简单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7、特性——复制"><span class="nav-number">3.7.</span> <span class="nav-text">7、特性——复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8、特性——高可用分布式"><span class="nav-number">3.8.</span> <span class="nav-text">8、特性——高可用分布式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF"><span class="nav-number">1.</span> <span class="nav-text">AOF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-RDB的问题"><span class="nav-number">1.1.</span> <span class="nav-text">1. RDB的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-O-n）数据：耗时"><span class="nav-number">1.1.1.</span> <span class="nav-text">1)  O(n）数据：耗时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-fork-：-消耗内存，copy-on-write策略"><span class="nav-number">1.1.2.</span> <span class="nav-text">2)fork() ： 消耗内存，copy-on-write策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Disk-I-O-IO性能"><span class="nav-number">1.1.3.</span> <span class="nav-text">3) Disk I&#x2F;O : IO性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-不可控、丢失数据"><span class="nav-number">1.1.4.</span> <span class="nav-text">4) 不可控、丢失数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-什么是AOF"><span class="nav-number">1.2.</span> <span class="nav-text">2. 什么是AOF?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-AOF运行原理——创建"><span class="nav-number">1.3.</span> <span class="nav-text">3. AOF运行原理——创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-AOF运行原理——恢复："><span class="nav-number">1.4.</span> <span class="nav-text">4. AOF运行原理——恢复：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-AOF的三种策略："><span class="nav-number">1.5.</span> <span class="nav-text">5. AOF的三种策略：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Redis的AOF写入方案："><span class="nav-number">1.6.</span> <span class="nav-text">6. Redis的AOF写入方案：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1）策略1：-always"><span class="nav-number">1.6.1.</span> <span class="nav-text">1）策略1： always</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2）策略2：everysec"><span class="nav-number">1.6.2.</span> <span class="nav-text">2）策略2：everysec</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3）策略3：no"><span class="nav-number">1.6.3.</span> <span class="nav-text">3）策略3：no</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-AOF的问题："><span class="nav-number">1.7.</span> <span class="nav-text">7. AOF的问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-重写对比："><span class="nav-number">1.8.</span> <span class="nav-text">8. 重写对比：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-AOF重写的作用"><span class="nav-number">1.9.</span> <span class="nav-text">9. AOF重写的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-例子"><span class="nav-number">1.10.</span> <span class="nav-text">10. 例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-AOF重写实现两种方式："><span class="nav-number">1.11.</span> <span class="nav-text">11. AOF重写实现两种方式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-bgrewriteaof"><span class="nav-number">1.12.</span> <span class="nav-text">12. bgrewriteaof</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-AOF重写配置："><span class="nav-number">1.13.</span> <span class="nav-text">13. AOF重写配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-执行重写操作的基本条件，必须同时满足："><span class="nav-number">1.14.</span> <span class="nav-text">14. 执行重写操作的基本条件，必须同时满足：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-AOF重写流程："><span class="nav-number">1.15.</span> <span class="nav-text">15. AOF重写流程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-AOF功能的相关配置："><span class="nav-number">1.16.</span> <span class="nav-text">16. AOF功能的相关配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-AOF实验"><span class="nav-number">1.17.</span> <span class="nav-text">17. AOF实验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-AOF功能演示："><span class="nav-number">1.17.1.</span> <span class="nav-text">1) AOF功能演示：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="使用反射与泛型优化编程," />
 
 
 
@@ -91,16 +91,24 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="1. Java代码优化的起因​    程序员在日常工作中，根据业务需求开发各种业务系统，比如电商系统，秒杀系统，即时通信，视频直播等，如果我们 Java 开发人员只是把项目代码当作 CRUD ，不思考，去做大量重复性开发，时间长了会感到厌倦，与此同时，技术能力也得不到提升，同时还产生了很多不好维护和迭代的代码。 ​    Java 语言为我们提供了多种高级技巧。例如，反射和泛型的特性。如果善于使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java：利用反射和泛型编程让你的Java代码更优雅">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="1. Java代码优化的起因​    程序员在日常工作中，根据业务需求开发各种业务系统，比如电商系统，秒杀系统，即时通信，视频直播等，如果我们 Java 开发人员只是把项目代码当作 CRUD ，不思考，去做大量重复性开发，时间长了会感到厌倦，与此同时，技术能力也得不到提升，同时还产生了很多不好维护和迭代的代码。 ​    Java 语言为我们提供了多种高级技巧。例如，反射和泛型的特性。如果善于使用">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1027.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1028.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1029.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1031.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1030.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1032.png">
 <meta property="article:published_time" content="2020-08-29T09:23:36.000Z">
-<meta property="article:modified_time" content="2020-08-29T09:23:36.416Z">
+<meta property="article:modified_time" content="2020-08-30T03:45:28.518Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="使用反射与泛型优化编程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1027.png">
 
 
 
@@ -389,6 +397,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E4%BC%98%E5%8C%96%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">优化编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -442,7 +483,73 @@
       
 
       
-        
+        <h2 id="1-Java代码优化的起因"><a href="#1-Java代码优化的起因" class="headerlink" title="1. Java代码优化的起因"></a>1. Java代码优化的起因</h2><p>​    程序员在日常工作中，根据业务需求开发各种业务系统，比如电商系统，秒杀系统，即时通信，视频直播等，如果我们 Java 开发人员只是把项目代码当作 CRUD ，不思考，去做大量重复性开发，时间长了会感到厌倦，与此同时，技术能力也得不到提升，同时还产生了很多不好维护和迭代的代码。</p>
+<p>​    Java 语言为我们提供了多种高级技巧。例如，反射和泛型的特性。如果善于使用这些特性，既能提高 Java 开发人员的技术水平，也能开发出更好的项目。</p>
+<h2 id="2-反射与泛型的使用场景"><a href="#2-反射与泛型的使用场景" class="headerlink" title="2. 反射与泛型的使用场景"></a>2. 反射与泛型的使用场景</h2><p>​    这里就以电商系统为例，来讲解一下如何应用这两个特性。</p>
+<p>​    假设我们在做一个电商系统，里面有订单和商品的实体。我们只说其中一个过程，就是用户可以下单，订单创建后保存到 MongoDB 中，那么这个过程在电商项目的代码中该如何实现呢？</p>
+<img src="http://photo.wushaopei.com/qiniu1027.png" width="80%">
+
+<p>​    我们定义了上述图中的两个实体类。如果想把 Order 和 Product 存储到 MongoDB 中，那么你需要先把这些 POJO 转化成 MongoDB 的数据结构 Document.</p>
+<img src="http://photo.wushaopei.com/qiniu1028.png" width="60%">
+
+
+
+<p>​    这是一个无特定结构的数据类型，非常类似于 JSONObject ，生成 Document 以后，再开发出一个 Dao 层的代码。把Document 持久化到 MongoDB 中。</p>
+<img src="http://photo.wushaopei.com/qiniu1029.png" width="60%">
+
+
+
+<p>​    使用这样的方式来实现，功能逻辑是行得通的。然而我们遇到了两个问题，这里以 Order 订单类举例来说，</p>
+<p>​    <strong>第一个问题</strong>是，我们需要为每个 POJO 开发一个将它转换为 Document 的代码逻辑<strong>，即： order2Doc 方法。</strong> 如果以后 POJO 中的字段发生了修改。比如新增了一个字段，必须要去修改对应的 order2Doc 代码。如果忘记修改了怎么办呢？如果 POJO 比较多，如果修改错了呢？</p>
+<p>​    当 POJO 比较多时，人为的编码错误概率就会大大增加，最后你会发现，所有的 POJO 转换为 Document 的代码逻辑做的都是一件事，那就是把 POJO 里面的各个字段put 到 Document 里面。</p>
+<p>​    遇到的<strong>第二个问题</strong>是，Dao 实现的都是增删改查的逻辑，不同的 POJO， 对应的 Dao 有大量的重复的代码。 </p>
+<p>​    例如，我们需要开发一个 OrderDao，再开发一个 ProductDao ，可能还有其他的 Dao 。其实 它们的代码相似度非常高。<strong>那么我们有没有办法改进我们的项目代码呢？</strong></p>
+<p>​    答案是肯定的。</p>
+<p>​    其方式就是使用 Java 中的高级特性，反射和泛型。</p>
+<h3 id="反射优化第一个问题"><a href="#反射优化第一个问题" class="headerlink" title="反射优化第一个问题"></a>反射优化第一个问题</h3><p><strong>这里先简单说明一下什么是反射？</strong> </p>
+<p>​    Java 的反射机制提供了一套反射 API ，它非常强大和有用。使用它你可以做到程序运行期间在不知道有哪些类、接口、方法、成员变量的情况下查看或者修改这些类、接口、方法、成员变量的属性。你可以用反射 API 来实例化新的对象，调用特定方法或者设置和获取字段的值。</p>
+<p>​    例如，调用某个对象的 getClass() 方法，能够获得这个对象对应 Java 类的基本信息，比如有哪些方法，哪些字段等。</p>
+<p>​    这里仍然使用前面提到的订单类 Order 来举例，我们使用反射 API 来看一下 Order 这个类中都有哪些成员变量？</p>
+<p>​           <img src="http://photo.wushaopei.com/qiniu1031.png" width="80%"></p>
+<p>​    它调用反射中的 getDeclaredFields() 方法来获取到 order 对象所有成员变量的数据结构，是一个 Field 对象的列表。经过 getFieldNames() 方法处理后，获取到 order 对象的所有成员变量的名称。</p>
+<p>​    前面说的实现 POJO 转换成 Document 的逻辑，使用反射来做，我们只需要实现一个同一的 pojo2Doc 方法就可以了。这样一来，所有的 POJO 都可以使用它。</p>
+<p>​    以上部分是将 POJO 转为 Document 的代码，能够满足 POJO 序列化到 MongoDB 的需求。除此之外，还需要一个 doc2pojo 的方法，以此来满足 MongoDB 中的 Document 反序列化到 POJO 实体类的需求。</p>
+<p>​               <img src="http://photo.wushaopei.com/qiniu1030.png" width="80%"></p>
+<p>​    我们结合上图中的代码来看，这里要注意对比一下，现在的代码和之前的代码，相对要简单了许多，而且也不会那么容易错写或漏写代码了。</p>
+<h4 id="总结以上的方案的优势："><a href="#总结以上的方案的优势：" class="headerlink" title="总结以上的方案的优势："></a>总结以上的方案的优势：</h4><p>​    第一个好处就是 POJO 转换成 Document 的代码，不需要重复写很多遍了；</p>
+<p>​    第二个好处是可以避免开发中，手动实现不同 POJO 的 pojo2Doc 方法出错频率较高的情况。</p>
+<h4 id="Java-代码中的相关类："><a href="#Java-代码中的相关类：" class="headerlink" title="Java 代码中的相关类："></a>Java 代码中的相关类：</h4><p>​    在开发程序过程中常用到的 Java 中的 JSON  解析库 Jackson 以及单元测试工具 Junit 。其实它们的核心代码都是利用了 Java 的反射机制实现了它们的核心功能。</p>
+<h4 id="思考一下几个问题："><a href="#思考一下几个问题：" class="headerlink" title="思考一下几个问题："></a>思考一下几个问题：</h4><ol>
+<li>Jackson 是如何把一个 POJO 序列化成 Json 字符串的？</li>
+<li>JUnit 是如何找到那些加了 @Test 、@After、@Before 注解的方法，并自动编排这些方法，完成了整个单元测试流程的？</li>
+</ol>
+<h3 id="使用泛型优化第二个问题"><a href="#使用泛型优化第二个问题" class="headerlink" title="使用泛型优化第二个问题"></a>使用泛型优化第二个问题</h3><p>​    各种 Dao 实现都是增删改查的逻辑，不同的 POJO 对应的 Dao 有大量的重复代码，实现起来很麻烦。这里提供的解决方案就是使用 Java 的泛型。</p>
+<h4 id="简单介绍下-Java-中的泛型"><a href="#简单介绍下-Java-中的泛型" class="headerlink" title="简单介绍下 Java 中的泛型"></a>简单介绍下 Java 中的泛型</h4><p>​    泛型是 Java 中一个非常重要的知识点，在 Java 集合类的框架中，泛型被广泛地应用。比如： <code>List&lt;String&gt;、Map&lt;String,Object&gt;、Set&lt;String&gt;</code>等等。这些支持泛型的集合允许我们创建不同类型的集合容器来完成计算，是非常方便的。</p>
+<h4 id="那么我们如何创建属于我们的泛型工具呢？"><a href="#那么我们如何创建属于我们的泛型工具呢？" class="headerlink" title="那么我们如何创建属于我们的泛型工具呢？"></a>那么我们如何创建属于我们的泛型工具呢？</h4><p>这里我们通过一个简单的例子来举例说明并实现:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Box</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String object;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(String object)</span></span>&#123; <span class="keyword">this</span>.object = object;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">get</span><span class="params">()</span> </span>&#123;	<span class="keyword">return</span> object；&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这里我们首先定义一个简单的 Box 类，这是一个最常见的做法。这样的做法是有坏处的。这样创建的 Box 类，现在只能装入 String 类型的元素。如果我们需要装入 Integer 等其他类型的元素，必须要重新写另一个 Box 。</p>
+<p>​    使用泛型可以很好的解决这个问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Box</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T t;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(T t)</span></span>&#123; <span class="keyword">this</span>.t = t;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> t; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    在上述代码中，我重新定义了一个 Box 类。这样我们的 Box 类便可以得到复用。可以将泛型符号 T  替换成任何我们想要的类型。</p>
+<h4 id="版本差异"><a href="#版本差异" class="headerlink" title="版本差异"></a>版本差异</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Box&lt;Integer&gt; integerBox  = <span class="keyword">new</span> Box&lt;&gt;();</span><br><span class="line">Box&lt;Double&gt; doubleBox = <span class="keyword">new</span> Box&lt;&gt;();</span><br><span class="line">Box&lt;String&gt; doubleBox = <span class="keyword">new</span> Box&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>​    要注意， Java 1.7 以后，编译器利用 type inference 特性自动推测类型。所以在 new Box&lt;&gt;() 中就不需要指定类型了。</p>
+<h4 id="小结："><a href="#小结：" class="headerlink" title="小结："></a>小结：</h4><p>​    由前面的代码实例，我们可以得到结论，使用了泛型以后，代码的复用性得到了比较大的提升，再也不需要为了支持不同类型而把相同的逻辑实现很多次了。</p>
+<p>​                   <img src="http://photo.wushaopei.com/qiniu1032.png" width="80%"></p>
+<p>​    那么对于我们的 Dao 层持久化的需求，要想实现 Document 持久化到 MongoDB 的功能，而且还要支持泛型，这里定义一个这样的基础类。这个 BaseMongoDao 实现了 5 个 MongoDB 常见的基础方法： insertOne、insertMany、find 、findOne、updateByFilter 。这里需要注意一下这个类的定义方式。它是支持在 MongoDB 中存取任意 POJO 的，使用起来非常方便，我们不需要再像之前那样，为每一个 POJO 配备一个 POJO 与 Document 之间的转换方法，也不需要再重写一个 MongoDao， 更不需要在整个项目中维护大量类似的重复代码。</p>
+<p>​    由于 BaseMongoDao 是一个抽象类，不能直接实例化，因此使用时需要继承他，然后定义自己的持久化层 Dao 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderDao</span> <span class="keyword">extends</span> <span class="title">BaseMongoDao</span>&lt;<span class="title">Order</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">OrderDao</span><span class="params">(MongodbConnection mongodbConnection, String collection)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(mongodbConnection, collection, Order<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">    &#125;</span></span><br><span class="line"><span class="class">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>​    这里以实现 Order 订单类的 Dao 举例，其增删改查的代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Order orderInserted = ...;</span><br><span class="line"></span><br><span class="line">MongodbConnection conn = <span class="keyword">new</span> MongodbConnection(...);</span><br><span class="line"><span class="keyword">final</span> OrderDao orderDao = <span class="keyword">new</span> OrderDao(conn, <span class="string">"order_coll"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入 Order</span></span><br><span class="line">orderDao.insertOne(orderInserted);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询Order</span></span><br><span class="line">Bson query = eq(<span class="string">"uuid"</span>, order.getUuid());</span><br><span class="line"><span class="keyword">final</span> Order orderFound = orderDao.finadOne(query);</span><br><span class="line"></span><br><span class="line"><span class="comment">//由以上的代码逻辑可以知道， orderInserted 就是 orderFound</span></span><br></pre></td></tr></table></figure>
+
+<p>​    在这一步，我们结合前面的代码，可以看出，在使用了泛型后，重复的代码大大减少了。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>​    我们不需要再像之前那样为每个POJO配备一个POJO与Document 之间的转化方法，再重写一个 Mongo 的 Dao 层增删改查代码，也不需要在整个项目中维护大量的类似的重复代码。        </p>
+<p>​    BaseMongoDao 都帮我们完成了，我们唯一需要做的就是继承 BaseMongoDao ，实现一个OrderDao ，几乎不需要额外的代码。</p>
+<p>​    合理的使用泛型特性，我们可以大大提高项目的开发效率，降低代码的维护成本。这样做的第一个好处是，统一实现的泛型模板类，可以兼容多种类型的 POJO ；第二个好处是 代码逻辑得到了更好的抽象，重复代码减少，项目迭代速度加快；第三个好处，项目中的专家来实现泛型模板类，小白可以拿来即用，人为编码错误减少。</p>
+
       
     </div>
     
@@ -475,6 +582,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E4%BD%BF%E7%94%A8%E5%8F%8D%E5%B0%84%E4%B8%8E%E6%B3%9B%E5%9E%8B%E4%BC%98%E5%8C%96%E7%BC%96%E7%A8%8B/" rel="tag"> <i class="fa fa-tag"></i> 使用反射与泛型优化编程</a>
+          
+        </div>
+      
 
       
       
@@ -493,6 +606,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" rel="prev" title="Redis入门(二) Redis服务端与客户端的启动方式、配置">
+                Redis入门(二) Redis服务端与客户端的启动方式、配置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -588,8 +705,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -608,7 +734,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">248</span>
+                  <span class="site-state-item-count">277</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -619,7 +745,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -630,7 +756,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">190</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -659,6 +785,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Java代码优化的起因"><span class="nav-number">1.</span> <span class="nav-text">1. Java代码优化的起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-反射与泛型的使用场景"><span class="nav-number">2.</span> <span class="nav-text">2. 反射与泛型的使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反射优化第一个问题"><span class="nav-number">2.1.</span> <span class="nav-text">反射优化第一个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结以上的方案的优势："><span class="nav-number">2.1.1.</span> <span class="nav-text">总结以上的方案的优势：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-代码中的相关类："><span class="nav-number">2.1.2.</span> <span class="nav-text">Java 代码中的相关类：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思考一下几个问题："><span class="nav-number">2.1.3.</span> <span class="nav-text">思考一下几个问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用泛型优化第二个问题"><span class="nav-number">2.2.</span> <span class="nav-text">使用泛型优化第二个问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单介绍下-Java-中的泛型"><span class="nav-number">2.2.1.</span> <span class="nav-text">简单介绍下 Java 中的泛型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那么我们如何创建属于我们的泛型工具呢？"><span class="nav-number">2.2.2.</span> <span class="nav-text">那么我们如何创建属于我们的泛型工具呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#版本差异"><span class="nav-number">2.2.3.</span> <span class="nav-text">版本差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结："><span class="nav-number">2.2.4.</span> <span class="nav-text">小结：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">2.2.5.</span> <span class="nav-text">总结：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

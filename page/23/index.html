@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E5%9B%9B)ResultSet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="url">jdbc(四)ResultSet</a></h1>
+                <a class="post-title-link" href="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/" itemprop="url">JVM(三)堆参数微调优入门</a></h1>
         
 
         <div class="post-meta">
@@ -379,8 +379,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:03:14+08:00">
-                2020-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-22T12:24:59+08:00">
+                2020-03-22
               </time>
             
 
@@ -402,8 +402,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jdbc/" itemprop="url" rel="index">
-                    <span itemprop="name">jdbc</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/Heap%E5%A0%86/" itemprop="url" rel="index">
+                    <span itemprop="name">Heap堆</span>
                   </a>
                 </span>
 
@@ -420,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" itemprop="commentCount"></span>
+                <a href="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -429,7 +440,7 @@
 
           
           
-             <span id="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/" class="leancloud_visitors" data-flag-title="jdbc(四)ResultSet">
+             <span id="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/" class="leancloud_visitors" data-flag-title="JVM(三)堆参数微调优入门">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -462,14 +473,26 @@
       
         
           
-          ResultSetResultSet 的作用：
-通过调用 PreparedStatement 对象的 excuteQuery() 方法创建该对象
-ResultSet 对象以逻辑表格的形式封装了执行数据库操作的结果集，ResultSet 接口由数据库厂商实现
-ResultSet 对象维护了一个指向当前
+          调优的本质：​     其本质：是对JVM垃圾的收集(Java Garbage Collection ) 。
+这里均以JDK1.8+HotSpot为例 
+Java 7
+
+Java 8
+
+堆内存调优简介01
+
+
+-Xms
+设置初始分配大小，默认为物理内存的“1/64”
+
+
+
+-Xmx
+最大分配内存，默
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E5%9B%9B)ResultSet/#more" rel="contents">
+            <a class="btn" href="/2020/03/22/JVM%EF%BC%88%E4%B8%89%EF%BC%89%E5%A0%86%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83%E4%BC%98%E5%85%A5%E9%97%A8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -520,7 +543,7 @@ ResultSet 对象维护了一个指向当前
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -539,7 +562,7 @@ ResultSet 对象维护了一个指向当前
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/" itemprop="url">jdbc(一)概述</a></h1>
+                <a class="post-title-link" href="/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" itemprop="url">JVM(二)堆体系结构概述</a></h1>
         
 
         <div class="post-meta">
@@ -551,8 +574,8 @@ ResultSet 对象维护了一个指向当前
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T21:02:11+08:00">
-                2020-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-22T10:51:34+08:00">
+                2020-03-22
               </time>
             
 
@@ -574,8 +597,19 @@ ResultSet 对象维护了一个指向当前
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/jdbc/" itemprop="url" rel="index">
-                    <span itemprop="name">jdbc</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/GC/" itemprop="url" rel="index">
+                    <span itemprop="name">GC</span>
                   </a>
                 </span>
 
@@ -592,8 +626,8 @@ ResultSet 对象维护了一个指向当前
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+                <a href="/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -601,7 +635,7 @@ ResultSet 对象维护了一个指向当前
 
           
           
-             <span id="/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="jdbc(一)概述">
+             <span id="/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="JVM(二)堆体系结构概述">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -634,12 +668,19 @@ ResultSet 对象维护了一个指向当前
       
         
           
-          1、JDBC 的概述1.1 jdbc 是什么 
-JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、通用的SQL数据库存取和操作的公共接口（一组API），定义了用来访问数据库的标准Java类库，（java.sql,javax.sql）使用这个类库可以以一种
+          
+
+
+
+Heap堆(Java7之前)​    一个JVM实例只存在一个堆内存，堆内存的大小是可以调节的。类加载器读取了类文件后，需要把类、方法、常变量放到堆内存中，保存所有引用类型的真实信息，以方便执行器执行。              
+​    堆内存逻辑上分为三部分：新生+养老+永久 
+
+
+新
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/jdbc(%E4%B8%80)%E6%A6%82%E8%BF%B0/#more" rel="contents">
+            <a class="btn" href="/2020/03/22/JVM%EF%BC%88%E4%BA%8C%EF%BC%89%E5%A0%86%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -690,7 +731,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -709,7 +750,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/" itemprop="url">最新idea2020注册码永久激活(激活到2100年)</a></h1>
+                <a class="post-title-link" href="/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" itemprop="url">JVM（一）体系结构概述</a></h1>
         
 
         <div class="post-meta">
@@ -721,8 +762,8 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T15:11:42+08:00">
-                2020-03-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-21T20:00:12+08:00">
+                2020-03-21
               </time>
             
 
@@ -744,8 +785,19 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%BF%80%E6%B4%BB%E7%A0%81/" itemprop="url" rel="index">
-                    <span itemprop="name">激活码</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/GC/" itemprop="url" rel="index">
+                    <span itemprop="name">GC</span>
                   </a>
                 </span>
 
@@ -762,8 +814,8 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/" itemprop="commentCount"></span>
+                <a href="/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -771,7 +823,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
 
           
           
-             <span id="/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/" class="leancloud_visitors" data-flag-title="最新idea2020注册码永久激活(激活到2100年)">
+             <span id="/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="JVM（一）体系结构概述">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -804,13 +856,18 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
       
         
           
-          这篇文章主要介绍了idea2020注册码永久激活（激活到2100年）,文中给大家提到了2020年最新JetBrains授权服务器-IntelliJ IDEA激活，需要的朋友可以参考下 
-2020年最新JetBrains授权服务器-IntelliJ IDEA激活
-2020年最近可激活JetBrains
+          JVM 与系统、硬件
+
+JVM是运行在操作系统之上的，它与硬件没有直接的交互 
+JVM 体系结构概览
+
+
+
+类装载器ClassLoader 执行原理​    负责加载class文件，class文件在文件开头有特定的文件标示，并且ClassLoader只负责class文件的加载，至于它是否可以运行，则
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/%E6%9C%80%E6%96%B0idea2020%E6%B3%A8%E5%86%8C%E7%A0%81%E6%B0%B8%E4%B9%85%E6%BF%80%E6%B4%BB-%E6%BF%80%E6%B4%BB%E5%88%B02100%E5%B9%B4/#more" rel="contents">
+            <a class="btn" href="/2020/03/21/JVM%EF%BC%88%E4%B8%80%EF%BC%89%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E6%A6%82%E8%BF%B0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -861,7 +918,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -880,7 +937,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" itemprop="url">Java对象的值传递问题：传值还是传引用？</a></h1>
+                <a class="post-title-link" href="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/" itemprop="url">SpringBoot 2.0 新特性-浅析</a></h1>
         
 
         <div class="post-meta">
@@ -892,1043 +949,8 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-10T14:29:05+08:00">
-                2020-03-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/" class="leancloud_visitors" data-flag-title="Java对象的值传递问题：传值还是传引用？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言：​    在使用Java语言进行开发过程中，涉及到局部变量与方法内部作用域的数据交换与解析的过程，而这一过程，一般都是通过方法形参的方式进行java对象的传递。
-
- 这里引出一个问题，当对象作为参数传递时，究竟传的是对象的值，还是对象的引用呢？–_–
-
-这是一个保守争议的话题。
-​    假设
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" itemprop="url">计算机网络（二）当你在浏览器地址栏输入一个URL后回车，将会发生的事情？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T22:57:17+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/" class="leancloud_visitors" data-flag-title="计算机网络（二）当你在浏览器地址栏输入一个URL后回车，将会发生的事情？">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ​    当我们在浏览器的地址栏输入https://www.cnblogs.com/，然后回车，回车到看到页面到底发生了什么呢？
-​    域名解析 –&gt; 发起TCP的3次握手 –&gt; 建立TCP连接后发起http请求 –&gt;  服务器响应http请求，浏览器得到html代码 –&gt
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%EF%BC%89-%E5%BD%93%E4%BD%A0%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAURL%E5%90%8E%E5%9B%9E%E8%BD%A6%EF%BC%8C%E5%B0%86%E4%BC%9A%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%9F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="url">Activity（四）流程设计工具创建流程图</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T22:18:33+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="leancloud_visitors" data-flag-title="Activity（四）流程设计工具创建流程图">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、引言在前面我们知道了怎么创建流程控制引擎，而Activiti 的正常使用还需要进行部署流程，而这就有一个很重要的前提。那就是创建相应的流程图，并让其能被 service 所调用从而实现流程的执行。
-2、流程图创建工具2.1 简述第一种创建方式在这里说明一点，流程图的创建可以使用两种方式，第一种是
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/Activity-%EF%BC%88%E5%9B%9B%EF%BC%89%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%9B%BE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" itemprop="url">计算机网络（一）-深入理解NIO</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">计算机网络</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/" class="leancloud_visitors" data-flag-title="计算机网络（一）-深入理解NIO">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          目录概览：
-
-​    NIO 网络编程模型
-​    NIO 网络编程详解
-​    NIO 网络编程实战
-​    NIO 网络编程缺陷
-
-一、NIO网络编程模型1、编程模型定义NIO :  又叫Non-blocking I/O或New I/O;全新的输入输出标准库；
-​            
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89-%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3NIO/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="url">hexo搭建个人博客（一）博客框架搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-09T21:57:17+08:00">
-                2020-03-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="hexo搭建个人博客（一）博客框架搭建">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          前言：作为一个技术宅，怎么能够没有自己的个人Blog呢，自己搭建博客，一来可以用来作为学习的记录，二来将来面试的时候抛出自己满满的博客，那可是加分项呀，三来最次也可以用来装装X嘛
-12实验环境:win10前期准备：安装好git和node.js（自行百度下载git和nedo.js）
-
-
-好，话不多说，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/09/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%80%EF%BC%89%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/" itemprop="url">Activity-（三）创建流程引擎ProcessEngine</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T21:23:50+08:00">
-                2020-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activity/" itemprop="url" rel="index">
-                    <span itemprop="name">Activity</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/" class="leancloud_visitors" data-flag-title="Activity-（三）创建流程引擎ProcessEngine">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、创建并设置Maven 项目创建一个$quickStartJavaProjectName具有以下Maven依赖项的Java项目“ plush-activiti”（以后称为）： 
-文件：$ mvnProject / pom.xml 
-123456789101112131415161718192021
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/03/08/Activity-%EF%BC%88%E4%B8%89%EF%BC%89%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8EProcessEngine/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" itemprop="url">SpringBoot基础（五）项目打包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-08T14:33:59+08:00">
-                2020-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T15:20:47+08:00">
+                2020-03-20
               </time>
             
 
@@ -1961,8 +983,8 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/%E5%85%A5%E9%97%A8%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">入门篇</span>
+                  <a href="/categories/SpringBoot/%E5%8A%9F%E8%83%BD%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">功能篇</span>
                   </a>
                 </span>
 
@@ -1979,8 +1001,8 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                <a href="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1988,7 +1010,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
 
           
           
-             <span id="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/" class="leancloud_visitors" data-flag-title="SpringBoot基础（五）项目打包">
+             <span id="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/" class="leancloud_visitors" data-flag-title="SpringBoot 2.0 新特性-浅析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2021,18 +1043,1060 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
       
         
           
-          1、Spring Boot 项目打包打包方式： 
+          Spring Boot 概述Spring Boot 的角色
+底层：Spring Frameword是 JAVAEE 的框架
+中层：Spring Boot 是快速构建Spring框架的应用
+顶层：Spring Cloud 是JAVAEE 的分布式
 
-构建 JAR 包
-构建 WAR 包
-指定 Main-Class
-
-（1）右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入 
-  1mvn -Dmaven.test.skip -U clean pac
+Spring Boot 2.0新特性SpringBo
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+            <a class="btn" href="/2020/03/20/SpringBoot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7-%E6%B5%85%E6%9E%90/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/" itemprop="url">解析 XML文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-20T14:32:43+08:00">
+                2020-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="解析 XML文件">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+
+java解析和生成xml初次邂逅xml xml：可扩展标记语言，标准通用标记语言的子集，是一种用于标记电子文件使其具有结构性的标记语言。
+ 表现：以 .xml 为文件扩展名的文件
+ 存储：树形结构 
+XML是一种类似于HTML的标记语言，XML是用来描述数据的，XML的标记不是在XML中预定义的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/20/%E8%A7%A3%E6%9E%90-XML%E6%96%87%E4%BB%B6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" itemprop="url">计算机网络（三）TCP三次握手和四次挥手</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T22:48:09+08:00">
+                2020-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="leancloud_visitors" data-flag-title="计算机网络（三）TCP三次握手和四次挥手">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          TCP三次握手所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示： 
+
+
+
+第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，C
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/" itemprop="url">Activity-（十二）历史流程操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-19T21:45:08+08:00">
+                2020-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activity/" itemprop="url" rel="index">
+                    <span itemprop="name">Activity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/" class="leancloud_visitors" data-flag-title="Activity-（十二）历史流程操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          历史流程的操作，其本质上就是查询历史流程实例表act_hi_procinst:
+该表中的 ID_ 和流程实例Id始终是一样的。所以Activiti没有提供获取流程实例id的接口；
+ 因为直接getId()获取的值和流程实例Id是一样的；
+12345678910111213/**    * 查询历史流
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/19/Activity-%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8E%86%E5%8F%B2%E6%B5%81%E7%A8%8B%E6%93%8D%E4%BD%9C/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" itemprop="url">Activity-（十一）删除Key相同的流程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T12:43:26+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activity/" itemprop="url" rel="index">
+                    <span itemprop="name">Activity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Activity-（十一）删除Key相同的流程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+           一个流程定义不需要的，包括所有版本，这时候在用户界面上一个一个删除太麻烦；
+ 有时候有这样的需求，一下子把所有Key相同的流程定义批量删除；
+ 实现步骤是：
+ 1、根据Key查询所有的流程定义
+ 2、遍历集合，取得每个流程的部署ID
+ 3、根据流程部署ID即可删除所有的流程定义
+123456789
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%88%A0%E9%99%A4Key%E7%9B%B8%E5%90%8C%E7%9A%84%E6%B5%81%E7%A8%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" itemprop="url">Activity-（十）修改流程定义</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-18T11:47:19+08:00">
+                2020-03-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activity/" itemprop="url" rel="index">
+                    <span itemprop="name">Activity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/" class="leancloud_visitors" data-flag-title="Activity-（十）修改流程定义">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          流程定义按本质来说是不能修改的；假如一个流程定义的流程实例在活动运行中。
+假如可以修改，本来要流转到A这个节点，因为流程定义修改了，流转到B这个节点。
+就不符合当时这个流程实例的初衷了；
+所以在开发中，不能修改流程定义，而是通过增加版本号的方式。来实现“修改”的；
+什么是版本号呢?
+ 在设计流程图的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/18/Activity-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" itemprop="url">Activity-（九）查看流程图片</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-14T22:39:36+08:00">
+                2020-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Activity/" itemprop="url" rel="index">
+                    <span itemprop="name">Activity</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/" class="leancloud_visitors" data-flag-title="Activity-（九）查看流程图片">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          在开发中可能需要查看某个流程的流程图片。
+对应操作的数据库表是act_ge_bytearray的Bytes_字段：
+
+
+Activiti提供了操作接口，可以查询返回一个资源文件输入流，
+然后就可以得到这张流程图片保存到本地服务器，然后图片多在自己的服务器上，
+你想干什么多行。
+先在pom.xml中添
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/14/Activity-%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9F%A5%E7%9C%8B%E6%B5%81%E7%A8%8B%E5%9B%BE%E7%89%87/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2074,7 +2138,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2124,7 +2188,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">248</span>
+                  <span class="site-state-item-count">277</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2135,7 +2199,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">75</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2146,7 +2210,7 @@ JDBC(Java Database Connectivity)是一个独立于特定数据库管理系统、
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">190</span>
+                  <span class="site-state-item-count">221</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
