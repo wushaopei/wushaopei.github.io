@@ -348,6 +348,1737 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="url">Redis功能（十七）功能五：hyperloglog（统计基数）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十七）功能五：hyperloglog（统计基数）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          hyperloglog
+新的数据结构
+内存消耗
+三个命令
+使用场景
+
+1. 基于HyperLogLog算法：
+   绩效空间完成独立数量统计。 
+
+2. 本质还是字符串12127.0.0.1:6379&gt; type hyperloglog_keystring
+
+3. 三个API命令：1） pfa
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="url">Redis功能（十二）功能一：慢查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:51:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="Redis功能（十二）功能一：慢查询">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          目录：
+
+​          慢查询
+​          Pipeline
+​          发布订阅
+​          Bitmap（位图）
+​          HyperLogLog
+​          GEO
+
+一、慢查询1.慢查询
+
+生命周期
+三个命令
+两个配置
+运维经验
+
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门（十）ZSet键值结构的使用与实战案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:10:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门（十）ZSet键值结构的使用与实战案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          zset有序集合：
+
+特点
+重要API
+实战
+查漏补缺
+
+1. 有序集合的结构
+
+​    上图是有序集合的结构图，有序集合同样是有 key-value 键值结构的，但是它的value是由score和value构成的。它的有序是由score分值支持的，这与排序无关，所谓有序是指它的score是唯一的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(九) Set键值结构的使用与实战案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T20:50:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(九) Set键值结构的使用与实战案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          setset:
+
+集合结构
+特点
+集合内API和实战
+集合间API和实战
+
+1.特点
+
+无序
+无重复
+支持集合间操作
+
+
+2.增——sadd srem
+
+工具—— scard 、sismember、srandmember、smembers、 
+
+
+注意： smembers 是无序且单线程的。
+sra
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(八) List键值结构的使用与实战案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T19:50:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(八) List键值结构的使用与实战案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          list列表：
+
+特点
+重要API
+实战
+查漏补缺
+
+1.列表结构
+
+可以对列表做一些操作：如左边的添加、右边的添加、左边的弹出、右边的弹出 
+
+
+也可以获取列表的长度、删除指定元素、获取字列表、获取指定元素的索引值 
+2.特点
+
+有序
+可以重复
+左右两边插入弹出
+
+
+3.增——rpush
+
+例如：
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" itemprop="url">Redis入门(四) Redis为单线程却高效的解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T18:05:23+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" class="leancloud_visitors" data-flag-title="Redis入门(四) Redis为单线程却高效的解析">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本节主要阐述Redis是单线程操作却高效的原因。
+1、抽象理解 Redis 的单线程
+
+​    我们知道一个命令进入Redis执行的效率是很高的，在进入Redis之前可以认为它们在经过一条高速公路，如图中的黄色管道部分，而这条管道每一次都只能通过一个命令，多余的命令需要等待前面的命令执行完成后才能
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(七) Hash键值结构的使用与实战案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(七) Hash键值结构的使用与实战案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          hash哈希：
+
+特点
+重要 API
+hash vs string
+查漏补缺
+
+1. 哈希键值结构
+
+如图：哈希的结构也是主要由键值结构组成，即key - value；但是其value是由 field 和 value 组成。 
+
+
+​    由于field属性的存在，与value构成了类似双列集合的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" itemprop="url">Redis入门（十一）Redis客户端的使用：Jedis与Jedis连接池</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" class="leancloud_visitors" data-flag-title="Redis入门（十一）Redis客户端的使用：Jedis与Jedis连接池">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Java客服端：jedis
+获取Jedis
+Jedis基本使用
+Jedis连接池使用
+
+1. Jedis是什么？
+Jedis是官方提供的一个客户端，用于对redis进行操作。遵循redis提供的协议，各种语言都有对应的客户端。 
+
+2. Jedis的maven依赖：1234567    &lt;de
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(六) String键值结构的使用与实战案例</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(六) String键值结构的使用与实战案例">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          字符串字符串API导读：
+
+结构和命令
+快速实战
+内部编码
+查漏补缺
+
+1. 字符串键值结构​    对于Redis来说，所有的key都是字符串，而它的value则是前面说过的五种类型。这里主要对Redis的value进行解析。当前的value为字符串类型 .
+
+
+如上图，value是“world”
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -520,1488 +2251,11 @@ Redis中的数据，总体上是键值对，不同数据类型指的是键值对
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" itemprop="url">Redis入门(三) Redis的常用API与时间复杂度</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T15:30:01+08:00">
-                2020-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="leancloud_visitors" data-flag-title="Redis入门(三) Redis的常用API与时间复杂度">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          内容：Redis通用命令 
-常用的通用命令：
-keys      计算所有的键
-dbsize    获取redis的长度
-exists key     判断键的存在
-del key [key …] 删除指定键的值
-expire key seconds 对key做定时操作
-type key
-
-1、ke
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" itemprop="url">Redis入门(二) Redis服务端与客户端的启动方式、配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T12:30:01+08:00">
-                2020-08-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="Redis入门(二) Redis服务端与客户端的启动方式、配置">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Redis三种启动方式介绍1、Redis 安装在线下载redis安装包： 
-
-  wget http://download.redis.io/releases/redis-3.0.7.tar.gz 
-
-解压缩： 
-
-tar -xzf redis-3.0.7.tar.gz 
-
-建立一个软连接，便于后期
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" itemprop="url">Java：利用反射和泛型编程让你的Java代码更优雅</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-29T17:23:36+08:00">
-                2020-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E4%BC%98%E5%8C%96%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">优化编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" class="leancloud_visitors" data-flag-title="Java：利用反射和泛型编程让你的Java代码更优雅">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1. Java代码优化的起因​    程序员在日常工作中，根据业务需求开发各种业务系统，比如电商系统，秒杀系统，即时通信，视频直播等，如果我们 Java 开发人员只是把项目代码当作 CRUD ，不思考，去做大量重复性开发，时间长了会感到厌倦，与此同时，技术能力也得不到提升，同时还产生了很多不好维护和
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url">Java：多线程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-23T15:12:40+08:00">
-                2020-08-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Java：多线程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1. 程序、进程、线程的理解1.1 概念
-程序(program)是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象。
-进程(process)是程序的一次执行过程，或是正在运行的一个程序。动态过程：有它自身的产生、存在和消亡的过程。
-
-
-​    如：运行中的QQ，运行中的
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="url">JavaWeb：EL表达式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:32:07+08:00">
-                2020-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="leancloud_visitors" data-flag-title="JavaWeb：EL表达式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/JavaWeb%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AJSP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/17/JavaWeb%EF%BC%9AJSP/" itemprop="url">JavaWeb：JSP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:55+08:00">
-                2020-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9AJSP/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9AJSP/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/17/JavaWeb%EF%BC%9AJSP/" class="leancloud_visitors" data-flag-title="JavaWeb：JSP">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/JavaWeb%EF%BC%9AJSP/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/" itemprop="url">JavaWeb：Cookie和Session</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:48+08:00">
-                2020-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/" class="leancloud_visitors" data-flag-title="JavaWeb：Cookie和Session">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" itemprop="url">JavaWeb：Request和Response</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:35+08:00">
-                2020-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" class="leancloud_visitors" data-flag-title="JavaWeb：Request和Response">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/" itemprop="url">JavaWeb：ServletConfig与ServletContext</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:21+08:00">
-                2020-08-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/" class="leancloud_visitors" data-flag-title="JavaWeb：ServletConfig与ServletContext">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2051,7 +2305,7 @@ tar -xzf redis-3.0.7.tar.gz
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">282</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2073,7 +2327,7 @@ tar -xzf redis-3.0.7.tar.gz
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

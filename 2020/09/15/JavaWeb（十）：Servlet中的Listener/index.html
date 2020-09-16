@@ -91,16 +91,21 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="1.Servlet是如何被调用的​    用户从浏览器向服务器发起的一个请求通常会包含如下信息： http:&#x2F;&#x2F;hostname:port&#x2F;contextpath&#x2F;servletpath， hostname 和 port 用来与服务器简历 TCP 连接，后面的 URL 采用来选择在服务器中哪个子容器服务用户的请求。服务器是如何根据这个 URL 来达到正确的 Servlet 容器中的呢？ ​">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb：Request和Response">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/index.html">
+<meta property="og:title" content="JavaWeb（十）：Servlet中的Listener">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="article:published_time" content="2020-08-17T11:31:35.000Z">
-<meta property="article:modified_time" content="2020-08-17T11:31:36.001Z">
+<meta property="og:description" content="1.Servlet是如何被调用的​    用户从浏览器向服务器发起的一个请求通常会包含如下信息： http:&#x2F;&#x2F;hostname:port&#x2F;contextpath&#x2F;servletpath， hostname 和 port 用来与服务器简历 TCP 连接，后面的 URL 采用来选择在服务器中哪个子容器服务用户的请求。服务器是如何根据这个 URL 来达到正确的 Servlet 容器中的呢？ ​">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1243.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1244.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1245.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1246.png">
+<meta property="article:published_time" content="2020-09-15T14:04:41.000Z">
+<meta property="article:modified_time" content="2020-09-15T15:09:11.903Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1243.png">
 
 
 
@@ -130,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/17/JavaWeb：Request和Response/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/09/15/JavaWeb（十）：Servlet中的Listener/"/>
 
 
 
 
 
-  <title>JavaWeb：Request和Response | 鮀城小帅</title>
+  <title>JavaWeb（十）：Servlet中的Listener | 鮀城小帅</title>
   
 
 
@@ -349,7 +354,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -366,7 +371,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaWeb：Request和Response</h1>
+          <h1 class="post-title" itemprop="name headline">JavaWeb（十）：Servlet中的Listener</h1>
         
 
         <div class="post-meta">
@@ -378,8 +383,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:35+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T22:04:41+08:00">
+                2020-09-15
               </time>
             
 
@@ -397,8 +402,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" itemprop="commentCount"></span>
+                <a href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,7 +411,7 @@
 
           
           
-             <span id="/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" class="leancloud_visitors" data-flag-title="JavaWeb：Request和Response">
+             <span id="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" class="leancloud_visitors" data-flag-title="JavaWeb（十）：Servlet中的Listener">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,7 +447,38 @@
       
 
       
-        
+        <h2 id="1-Servlet是如何被调用的"><a href="#1-Servlet是如何被调用的" class="headerlink" title="1.Servlet是如何被调用的"></a>1.Servlet是如何被调用的</h2><p>​    用户从浏览器向服务器发起的一个请求通常会包含如下信息： <a href="http://hostname:port/contextpath/servletpath，">http://hostname:port/contextpath/servletpath，</a> hostname 和 port 用来与服务器简历 TCP 连接，后面的 URL 采用来选择在服务器中哪个子容器服务用户的请求。<strong>服务器是如何根据这个 URL 来达到正确的 Servlet 容器中的呢？</strong></p>
+<p>​    在 Tomcat 7 中这件事很容易解决，因为这种映射工作由专门一个的类来完成，这个类就是 org.apache.tomcat.util.http.mapper， 这个类保存了 Tomcat 的 Container 容器中的所有子容器的信息， org.apache.catalina.connector.Request 类在进入 Container 容器之前， Mapper 将会根据这次请求的 hostname 和 contextpath 将 host 和 context 容器设置到 Request 的 mappingData 属性中，如下图所示。</p>
+<img src="http://photo.wushaopei.com/qiniu1243.png" width="60%">
+
+<h2 id="2-Mapper中与容器的完整关系"><a href="#2-Mapper中与容器的完整关系" class="headerlink" title="2.Mapper中与容器的完整关系"></a>2.Mapper中与容器的完整关系</h2><p>​    MapperListener 类的初始化，其 init 方法代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">       findDefaultHost();</span><br><span class="line">       Engine engine = (Engine) connector.getService().getContainer();</span><br><span class="line">       engine.addContainerListener(<span class="keyword">this</span>);</span><br><span class="line">       Container[] conHosts = engine.findChildren();</span><br><span class="line">       <span class="keyword">for</span> (Container conHost : conHosts)&#123;</span><br><span class="line">           Host host = (Host) conHost;</span><br><span class="line">           <span class="keyword">if</span> (!LifecycleState.NEW.equals(host.getState()))&#123;</span><br><span class="line">               host.addLifecycleListener(<span class="keyword">this</span>);</span><br><span class="line">               registerHost(host);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    这段代码的作用就是将 MapperListener 类作为一个监听者添加到整个 Container 容器的每个子容器中，这样只要任何一个容器发生变化， MapperListener 都将会被通知到，相应的保存容器关系的 MapperListener 的 mapper 属性也会被修改。在 for 循环中就是将 host 及下面的子容器注册到 mapper 中。</p>
+<h2 id="3-Request请求是如何到达最终的-Wrapper-容器的"><a href="#3-Request请求是如何到达最终的-Wrapper-容器的" class="headerlink" title="3. Request请求是如何到达最终的 Wrapper 容器的"></a>3. Request请求是如何到达最终的 Wrapper 容器的</h2><p>​    在请求到达最终的 Servlet 前还要完成一些步骤，必须要执行 Filter 链，以及通知你在 web.xml 中定义的 listener。</p>
+<img src="http://photo.wushaopei.com/qiniu1244.png" width="60%">
+
+<p>​    接下来就要执行 Servlet 的service 方法了。通常情况下，我们自己定义的 servlet 并不直接去实现 javax.servlet.servlet 接口，而是去继承更简单的 HttpServlet 类或者 GenericServlet 类，我们可以有选择地覆盖相应的方法去实现要完成的工作。</p>
+<p>​    Servlet 的确已经能能够帮我们完成素有的工作了，但是现在的 Web 应用很少直接将交互的全部页面用 Servlet 来实现，而是采用更加高效的 MVC 框架来实现。这些 MVC 框架的基本原理是将所有的请求都映射到一个 Servlet ，然后去实现 service 方法，这个方法也就是 MVC 框架的入口。</p>
+<p>​    当 Servlet 从 Servlet 容器中移除时，也就表明该 Servlet 的生命周期结束了，这时 Servlet 的 destroy 方法将被调用，做一些扫尾工作。</p>
+<h2 id="4-什么是Listener监听器"><a href="#4-什么是Listener监听器" class="headerlink" title="4. 什么是Listener监听器"></a>4. 什么是Listener监听器</h2><p>​    <strong>Listener</strong> 是 JavaWeb 三大组件之一。（Servlet程序，Listener监听器，Filter过滤器）用于监听某个事物状态的变化，然后反馈给用户，在前面的问题描述中，MapperListener 同样具备着 Listener 监听变化并反馈实现逻辑修改的功能。</p>
+<p>​    在整个 Tomcat 服务器中， Listener 使用得非常广泛，它是基于观察者模式设计的 ， Listener 的设计为开发 Servlet 应用程序提供了一种快捷的手段，能够方便地从另一个纵向纬度控制程序和数据。目前在 Servlet 中提供了 6 种两类时间的观察者接口，它们分别是： EventListener 类型的 ServletContextAttributeListener、ServletRequestAttributeListener、ServletRequestListener、HttpSessionAttributeListener 和 LifecycleListeners 类型的 ServletContextListener、HttpSessionListener，</p>
+<img src="http://photo.wushaopei.com/qiniu1245.png" width="60%">
+
+<p>​    实际上，这 6 个 Listener 都继承了 EventListener 接口，每个 Listener 各自定义了需要实现的接口。</p>
+<img src="http://photo.wushaopei.com/qiniu1246.png" width="60%">
+
+<p>​    它们基本上涵盖了整个 Servlet 生命周期中你感兴趣的各种事件。这些 Listener 的实现类可以配置在<code>web.xml&lt;Listener&gt;</code> 标签中。当然也可以在应用程序中动态添加 Listener ，<strong>需要注意的是 ServletContextListener 在容器启动之后就不能再添加新的，</strong>因为它所监听的事件已经不会再出现了。</p>
+<h2 id="5-ServletContextListener监听器"><a href="#5-ServletContextListener监听器" class="headerlink" title="5. ServletContextListener监听器"></a>5. ServletContextListener监听器</h2><p><strong>ServletContextListener</strong>监听器，它主要是监听ServletContext对象的创建和销毁。</p>
+<p>1、编写一个类去实现ServletContextListener接口</p>
+<p>2、实现接口的两个方法</p>
+<p>3、到web.xml中去配置才能生效</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletContextListenerImpl</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 当ServletContext对象创建的时候调用</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"ServletContext对象被创建了………………"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 当ServletContext对象销毁的时候调用</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"ServletContext对象被销毁了………………"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>web.xml中的配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- listener标签配置监听器 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- listener-class配置监听器的全类名 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>com.atguigu.listener.ServletContextListenerImpl<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -462,7 +498,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/" title="JavaWeb：Request和Response">http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9ARequest%E5%92%8CResponse/</a>
+    <a href="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" title="JavaWeb（十）：Servlet中的Listener">http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -484,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/" rel="next" title="JavaWeb：ServletConfig与ServletContext">
-                <i class="fa fa-chevron-left"></i> JavaWeb：ServletConfig与ServletContext
+              <a href="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/" rel="next" title="JavaWeb（九）：JSP">
+                <i class="fa fa-chevron-left"></i> JavaWeb（九）：JSP
               </a>
             
           </div>
@@ -494,8 +530,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/17/JavaWeb%EF%BC%9ACookie%E5%92%8CSession/" rel="prev" title="JavaWeb：Cookie和Session">
-                JavaWeb：Cookie和Session <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/" rel="prev" title="JavaWeb（十一）：Servlet中的Filter">
+                JavaWeb（十一）：Servlet中的Filter <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,7 +657,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">282</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +679,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -663,6 +708,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Servlet是如何被调用的"><span class="nav-number">1.</span> <span class="nav-text">1.Servlet是如何被调用的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Mapper中与容器的完整关系"><span class="nav-number">2.</span> <span class="nav-text">2.Mapper中与容器的完整关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Request请求是如何到达最终的-Wrapper-容器的"><span class="nav-number">3.</span> <span class="nav-text">3. Request请求是如何到达最终的 Wrapper 容器的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-什么是Listener监听器"><span class="nav-number">4.</span> <span class="nav-text">4. 什么是Listener监听器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-ServletContextListener监听器"><span class="nav-number">5.</span> <span class="nav-text">5. ServletContextListener监听器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

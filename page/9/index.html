@@ -348,6 +348,566 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" itemprop="url">Zookeeper（五）Java客户端访问ZK服务器与增删改查</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T19:06:47+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" class="leancloud_visitors" data-flag-title="Zookeeper（五）Java客户端访问ZK服务器与增删改查">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          导读：
+
+java客户端访问zk服务器
+java客户端修改zk节点值
+
+1、java客户端访问ZK服务器
+ 创建 maven 工程 zookeeper
+
+1.1 配置pom.xml依赖12345&lt;dependency&gt;	&lt;groupId&gt;com.github.sgroschu
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" itemprop="url">Zookeeper（四）ZK基本特性与Watcher监听的相关命令</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T18:46:27+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Zookeeper（四）ZK基本特性与Watcher监听的相关命令">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、zk 特性-Session的原理
+客户端与服务端之间的连接存在会话
+每个会话都可以设置一个超时时间
+心跳结束，session则过期
+Session过期，则临时节点 znode 会被抛弃
+心跳机制：客户端向服务端的ping包请求
+
+二、zk 特性-watcher机制
+针对每个节点的操作，都会有一个
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/" itemprop="url">Zookeeper（三）Zookeeper的作用体现有五种</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T18:16:47+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">基础篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/" class="leancloud_visitors" data-flag-title="Zookeeper（三）Zookeeper的作用体现有五种">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Zookeeper 的五种作用1、首脑模式
+master节点选举，主节点挂了以后，从节点就会接手工作，并且保证这个节点是唯一的，这也是所谓首脑模式，从而保证我们的集群是高可用的。
+
+2、数据分发与发布
+统一配置文件管理，即只需要部署一台服务器，则可以把相同的配置文件同步更新到其他所有服务器，此操作在
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%89%EF%BC%89Zookeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BD%93%E7%8E%B0%E6%9C%89%E4%BA%94%E7%A7%8D/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%8F%8A%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1638,588 +2198,11 @@ Bean 的作用域范围
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" itemprop="url">Spring（五）Bean的实例化方式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T22:26:01+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="Spring（五）Bean的实例化方式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-使用Spring实例化Bean的4种方式：
-
-通过构造方法实例化Bean
-通过静态方法实例化Bean
-通过实例方法实例化Bean
-Bean的别名
-
-Bean 的实例化1、通过构造方法实例化Bean【1】创建Bean1
-123456public class Bean1 &#123;     p
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" itemprop="url">Spring（四）使用Spring提供的IOC容器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T19:45:26+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/" class="leancloud_visitors" data-flag-title="Spring（四）使用Spring提供的IOC容器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-IOC容器设计的模块: Spring-core、Spring-context
-
-知识脑图
-
-
-
-
-1、创建Bean类12345678package com.webcode; public class Bean &#123;     public Bean()&#123;        Sy
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" itemprop="url">Spring（三）自定义IOC容器</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-20T19:45:12+08:00">
-                2020-06-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/" class="leancloud_visitors" data-flag-title="Spring（三）自定义IOC容器">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-实现一个自己的IOC
-
-知识脑图
-
-
-
-
-
-
-1、实现一个自己的IOC，场景设计
-
-2、简化IOC业务逻辑的三个约定
-所有Bean的生命周期交由IOC容器管理
-所有被依赖的Bean通过构造方法执行注入
-被依赖的Bean需要优先创建
-
-第一步：声明一个 Humen 人类接口 
-1234pub
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/20/Spring%EF%BC%88%E4%B8%89%EF%BC%89%E8%87%AA%E5%AE%9A%E4%B9%89IOC%E5%AE%B9%E5%99%A8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2269,7 +2252,7 @@ IOC容器设计的模块: Spring-core、Spring-context
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">282</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2291,7 +2274,7 @@ IOC容器设计的模块: Spring-core、Spring-context
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

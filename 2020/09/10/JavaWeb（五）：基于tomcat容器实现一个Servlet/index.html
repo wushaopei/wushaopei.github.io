@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javaWeb,HTTP协议," />
 
 
 
@@ -91,16 +91,25 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="导读：  如怎么开发一个Servlet？ 如何编译 Servlet？ 如何在 Web 容器中跑起来？   基于 tomcat 容器实现一个 Servlet主要的步骤有：  下载并安装 Tomcat。   编写一个继承 HttpServlet 的 Java 类。   将 Java 类文件编译成 Class 文件。   建立 Web 应用的目录结构，并配置 web.xml。   部署 Web 应用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaWeb：Servlet">
-<meta property="og:url" content="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AServlet/index.html">
+<meta property="og:title" content="JavaWeb（五）：基于tomcat容器实现一个Servlet">
+<meta property="og:url" content="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
-<meta property="article:published_time" content="2020-08-17T11:31:05.000Z">
-<meta property="article:modified_time" content="2020-08-17T11:31:05.251Z">
+<meta property="og:description" content="导读：  如怎么开发一个Servlet？ 如何编译 Servlet？ 如何在 Web 容器中跑起来？   基于 tomcat 容器实现一个 Servlet主要的步骤有：  下载并安装 Tomcat。   编写一个继承 HttpServlet 的 Java 类。   将 Java 类文件编译成 Class 文件。   建立 Web 应用的目录结构，并配置 web.xml。   部署 Web 应用。">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1206.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1207.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1208.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1209.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1210.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1211.png">
+<meta property="article:published_time" content="2020-09-10T06:20:00.000Z">
+<meta property="article:modified_time" content="2020-09-10T08:28:13.519Z">
 <meta property="article:author" content="吴少培">
+<meta property="article:tag" content="javaWeb">
+<meta property="article:tag" content="HTTP协议">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1206.png">
 
 
 
@@ -130,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.wushaopei.com/2020/08/17/JavaWeb：Servlet/"/>
+  <link rel="canonical" href="http://blog.wushaopei.com/2020/09/10/JavaWeb（五）：基于tomcat容器实现一个Servlet/"/>
 
 
 
 
 
-  <title>JavaWeb：Servlet | 鮀城小帅</title>
+  <title>JavaWeb（五）：基于tomcat容器实现一个Servlet | 鮀城小帅</title>
   
 
 
@@ -349,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AServlet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -366,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaWeb：Servlet</h1>
+          <h1 class="post-title" itemprop="name headline">JavaWeb（五）：基于tomcat容器实现一个Servlet</h1>
         
 
         <div class="post-meta">
@@ -378,8 +387,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T19:31:05+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T14:20:00+08:00">
+                2020-09-10
               </time>
             
 
@@ -389,6 +398,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -397,8 +428,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/JavaWeb%EF%BC%9AServlet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/JavaWeb%EF%BC%9AServlet/" itemprop="commentCount"></span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -406,7 +437,7 @@
 
           
           
-             <span id="/2020/08/17/JavaWeb%EF%BC%9AServlet/" class="leancloud_visitors" data-flag-title="JavaWeb：Servlet">
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" class="leancloud_visitors" data-flag-title="JavaWeb（五）：基于tomcat容器实现一个Servlet">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -442,7 +473,107 @@
       
 
       
-        
+        <p>导读：</p>
+<ul>
+<li>如怎么开发一个Servlet？</li>
+<li>如何编译 Servlet？</li>
+<li>如何在 Web 容器中跑起来？ </li>
+</ul>
+<h2 id="基于-tomcat-容器实现一个-Servlet"><a href="#基于-tomcat-容器实现一个-Servlet" class="headerlink" title="基于 tomcat 容器实现一个 Servlet"></a>基于 tomcat 容器实现一个 Servlet</h2><p>主要的步骤有：</p>
+<ol>
+<li><p>下载并安装 Tomcat。 </p>
+</li>
+<li><p>编写一个继承 HttpServlet 的 Java 类。 </p>
+</li>
+<li><p>将 Java 类文件编译成 Class 文件。 </p>
+</li>
+<li><p>建立 Web 应用的目录结构，并配置 web.xml。 </p>
+</li>
+<li><p>部署 Web 应用。 </p>
+</li>
+<li><p>启动 Tomcat。 </p>
+</li>
+<li><p>浏览器访问验证结果。 </p>
+</li>
+<li><p>查看 Tomcat 日志。 </p>
+</li>
+</ol>
+<h3 id="1-下载并安装-Tomcat"><a href="#1-下载并安装-Tomcat" class="headerlink" title="1.下载并安装 Tomcat"></a>1.下载并安装 Tomcat</h3><p>最新版本的 Tomcat 可以直接在官网上下载，根据你的操作系统下载相应的版本，这里我使用的是 windows系统，下载完成后直接解压，解压后的目录结构如下</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu1206.png" width="60%"></p>
+<p>下面简单介绍一下这些目录： </p>
+<blockquote>
+<p>/bin：存放 Windows 或 Linux 平台上启动和关闭 Tomcat 的脚本文件。 </p>
+<p>/conf：存放 Tomcat 的各种全局配置文件，其中最重要的是 server.xml。 </p>
+<p>/lib：存放 Tomcat 以及所有 Web 应用都可以访问的 JAR 文件。 </p>
+<p>/logs：存放 Tomcat 执行时产生的日志文件。 </p>
+<p>/work：存放 JSP 编译后产生的 Class 文件。 </p>
+<p>/webapps：Tomcat 的 Web 应用目录，默认情况下把 Web 应用放在这个目录下</p>
+</blockquote>
+<h3 id="2-编写一个继承-HttpServlet-的-Java-类"><a href="#2-编写一个继承-HttpServlet-的-Java-类" class="headerlink" title="2. 编写一个继承 HttpServlet 的 Java 类"></a>2. 编写一个继承 HttpServlet 的 Java 类</h3><p>javax.servlet 包提供了实现 Servlet 接口的 GenericServlet 抽象类。这是一个比较方便的类，可以通过扩展它来创建 Servlet。但是大多数的 Servlet 都在 HTTP 环境中处理请求，因此 Serve 规范还提供了 HttpServlet 来扩展 GenericServlet 并且加入了 HTTP 特性。我们通过继承 HttpServlet 类来实现自己的 Servlet 只需要重写两个方法：doGet 和 doPost。 </p>
+<p>因此今天我们创建一个 Java 类去继承 HttpServlet 类，并重写 doGet 和 doPost 方法。首先新建一个名为 MyServlet.java 的文件，敲入下面这些代码： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">super</span>.doGet(req, resp);</span><br><span class="line">		System.out.println(<span class="string">"MyServlet 在处理 get() 请求..."</span>);</span><br><span class="line">		PrintWriter out = resp.getWriter();</span><br><span class="line">		resp.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		out.println(<span class="string">"&lt;strong&gt;My Servlet!&lt;/strong&gt;&lt;br&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">		System.out.println(<span class="string">"MyServlet 在处理 post() 请求..."</span>);</span><br><span class="line">		PrintWriter out = resp.getWriter();</span><br><span class="line">		resp.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		out.println(<span class="string">"&lt;strong&gt;My Servlet!&lt;/strong&gt;&lt;br&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分别在 doGet 和 doPost 方法体里返回一段简单的HTML作为响应值。</p>
+<h3 id="3-将-Java-文件编译成-Class-文件"><a href="#3-将-Java-文件编译成-Class-文件" class="headerlink" title="3. 将 Java 文件编译成 Class 文件"></a>3. 将 Java 文件编译成 Class 文件</h3><p>下一步我们需要把 MyServlet.java 文件编译成 Class 文件。你需要先安装 JDK，这里我使用的是 JDK 10。接着你需要把 Tomcat lib 目录下的 servlet-api.jar 拷贝到当前目录下，这是因为 servlet-api.jar 中定义了 Servlet 接口，而我们的 Servlet 类实现了 Servlet 接口，因此编译 Servlet 类需要这个 JAR 包。接着我们执行编译命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -cp .&#x2F;servlet-api.jar MyServlet.java</span><br></pre></td></tr></table></figure>
+
+<p>编译成功后，你会在当前目录下找到一个叫 MyServlet.class 的文件。 </p>
+<h3 id="4-建立-Web-应用的目录结构"><a href="#4-建立-Web-应用的目录结构" class="headerlink" title="4. 建立 Web 应用的目录结构"></a>4. 建立 Web 应用的目录结构</h3><p>Servlet 是放到 Web 应用部署到 Tomcat 的，而 Web 应用具有一定的目录结构，所有我们按照要求建立 Web 应用文件夹，名字叫 MyWebApp，然后在这个目录下建立子文件夹，像下面这样:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span> <span class="attr">id</span>=<span class="string">"WebApp_ID"</span> <span class="attr">version</span>=<span class="string">"2.5"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">description</span>&gt;</span> Servlet Example. <span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">display-name</span>&gt;</span> MyServlet Example <span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">request-character-encoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">request-character-encoding</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>myServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>myServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/myservlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到在 web.xml 配置了 Servlet 的名字和具体的类，以及这个 Servlet 对应的 URL 路径。请你注意，servlet 和 servlet-mapping 这两个标签里的 servlet-name 要保持一致。 </p>
+<h3 id="5-部署-Web-应用"><a href="#5-部署-Web-应用" class="headerlink" title="5. 部署 Web 应用"></a>5. 部署 Web 应用</h3><p>Tomcat 应用的部署非常简单，将这个目录 MyWebApp 拷贝到 Tomcat 的安装目录下的 webapps 目录即可。 </p>
+<h3 id="6-启动-Tomcat"><a href="#6-启动-Tomcat" class="headerlink" title="6. 启动 Tomcat"></a>6. 启动 Tomcat</h3><p>找到 Tomcat 安装目录下的 bin 目录，根据操作系统的不同，执行相应的启动脚本。如果是 Windows 系统，执行startup.bat.；如果是 Linux 系统，则执行startup.sh。 </p>
+<h3 id="7-浏览访问验证结果"><a href="#7-浏览访问验证结果" class="headerlink" title="7. 浏览访问验证结果"></a>7. 浏览访问验证结果</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">My Servlet!</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意，访问 URL 路径中的 MyWebApp 是 Web 应用的名字，myservlet 是在 web.xml 里配置的 Servlet 的路径。</p>
+<h3 id="8-查看-Tomcat-日志"><a href="#8-查看-Tomcat-日志" class="headerlink" title="8.查看 Tomcat 日志"></a>8.查看 Tomcat 日志</h3><p>打开 Tomcat 的日志目录，也就是 Tomcat 安装目录下的 logs 目录。Tomcat 的日志信息分为两类 ：一是运行日志，它主要记录运行过程中的一些信息，尤其是一些异常错误日志信息 ；二是访问日志，它记录访问的时间、IP 地址、访问的路径等相关信息。 </p>
+<p>这里简要介绍各个文件的含义。 </p>
+<p>​    catalina.***.log </p>
+<p>主要是记录 Tomcat 启动过程的信息，在这个文件可以看到启动的 JVM 参数以及操作系统等日志信息。 </p>
+<p>​    catalina.out </p>
+<p>catalina.out 是 Tomcat 的标准输出（stdout）和标准错误（stderr），这是在 Tomcat 的启动脚本里指定的，如果没有修改的话 stdout 和 stderr 会重定向到这里。所以在这个文件里可以看到我们在 MyServlet.java 程序里打印出来的信息：</p>
+<blockquote>
+<p>MyServlet 在处理 get() 请求…</p>
+</blockquote>
+<p>​    <code>localhost.**.log</code></p>
+<p>主要记录 Web 应用在初始化过程中遇到的未处理的异常，会被 Tomcat 捕获而输出这个日 </p>
+<p>志文件。 </p>
+<p>​    <code>localhost_access_log.**.txt</code></p>
+<p>存放访问 Tomcat 的请求日志，包括 IP 地址以及请求的路径、时间、请求协议以及状态码等信息。 </p>
+<p>​    <code>manager.***.log/host-manager.***.log</code></p>
+<p>存放 Tomcat 自带的 manager 项目的日志信息。</p>
+<h3 id="用注解的方式部署-Servlet"><a href="#用注解的方式部署-Servlet" class="headerlink" title="用注解的方式部署 Servlet"></a>用注解的方式部署 Servlet</h3><p>为了演示用注解的方式来部署 Servlet，我们首先修改 Java 代码，给 Servlet 类加上 @WebServlet注解，修改后的代码如下。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/myAnnotationServlet"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"MyServlet 在处理 get() 请求..."</span>);</span><br><span class="line">		PrintWriter out = resp.getWriter();</span><br><span class="line">		resp.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		out.println(<span class="string">"&lt;text&gt;Annotation Servlet!&lt;/text&gt;&lt;br&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">super</span>.doPost(req, resp);</span><br><span class="line">		System.out.println(<span class="string">"MyServlet 在处理 post() 请求..."</span>);</span><br><span class="line">		PrintWriter out = resp.getWriter();</span><br><span class="line">		resp.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		out.println(<span class="string">"&lt;text&gt;Annotation Servlet!&lt;/text&gt;&lt;br&gt;"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这段代码里最关键的就是这个注解，它表明两层意思：第一层意思是 AnnotationServlet 这个 Java 类是一个 Servlet，第二层意思是这个 Servlet 对应的 URL 路径是 myAnnotationServlet。</p>
+<blockquote>
+<p> @WebServlet(“/myAnnotationServlet”) </p>
+</blockquote>
+<p>创建好 Java 类以后，同样经过编译，并放到 MyWebApp 的 class 目录下。这里要注意的是，你需要删除原来的 web.xml，因为我们不需要 web.xml 来配置 Servlet 了。然后重启 Tomcat，接下来我们验证一下这个新的 AnnotationServlet 有没有部署成功。在浏览器里 输入：<a href="http://localhost:8080/MyWebApp/myAnnotationServlet，得到结果：" target="_blank" rel="noopener">http://localhost:8080/MyWebApp/myAnnotationServlet，得到结果：</a></p>
+<blockquote>
+<p>Annotation Servlet! </p>
+</blockquote>
+<p>这说明我们的 AnnotationServlet 部署成功了。可以通过注解完成 web.xml 所有的配置功能，包括 Servlet 初始化参数以及配置 Filter 和 Listener 等。 </p>
+<h3 id="eclipse-配置-Tomcat-容器进行自动编译和加载启动："><a href="#eclipse-配置-Tomcat-容器进行自动编译和加载启动：" class="headerlink" title="eclipse 配置 Tomcat 容器进行自动编译和加载启动："></a>eclipse 配置 Tomcat 容器进行自动编译和加载启动：</h3><p>​    除了上述将 .java 文件单独进行编译并放置到 webapp 包下进行启动访问外，还可以通过给 eclipse 配置 Servers；</p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu1207.png" width="60%"></p>
+<p>​    <img src="http://photo.wushaopei.com/qiniu1208.png" width="60%"></p>
+<p>配置完成后，再根据 ip+port+web应用名+服务名 访问即可。</p>
+<h4 id="执行结果输出到cataline-log日志"><a href="#执行结果输出到cataline-log日志" class="headerlink" title="执行结果输出到cataline.log日志"></a>执行结果输出到cataline.log日志</h4><p>在选择使用 eclipse 配置 Servers 上的 Tomcat 容器来实现服务端部署的情况下，需要手动配置将tomcat从启动到运行的整个过程的日志信息打印到 cataline 日志中，具体步骤如下：</p>
+<p>1.双击eclipse中的tomcat进行配置     </p>
+<img src="http://photo.wushaopei.com/qiniu1209.png" width="60%">
+
+<p>2.选择Open launch configuration </p>
+<img src="http://photo.wushaopei.com/qiniu1210.png" width="60%">
+
+<p>3.选择Common选项, 然后勾选Output File, 输入日志文件的地址, 这里输出到了tomcat目录下的startLog.log文件中 </p>
+<img src="http://photo.wushaopei.com/qiniu1211.png" width="60%">
+
+<p>4.运行效果</p>
+<p>启动tomcat, 打印输出日志会记录到startLog.log文件中, 且每次启动, 之前的日志内容都会被替换</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>​    本文围绕 <strong>cmd 命令行编译、添加注解、eclipse 配置 tomcat 容器</strong>，讲述了如何通过扩展 HttpServlet 来实现自己的 Servlet， 如何编译 Servlet、如何通过 web.xml 来部署 Servlet，同时还练习了如何启动 Tomcat、如何查看 Tomcat 的各种日志，并且还掌握了如何通过注解的方式来部署 Servlet。</p>
+<p>​    </p>
+
       
     </div>
     
@@ -462,7 +593,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AServlet/" title="JavaWeb：Servlet">http://blog.wushaopei.com/2020/08/17/JavaWeb%EF%BC%9AServlet/</a>
+    <a href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" title="JavaWeb（五）：基于tomcat容器实现一个Servlet">http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -475,6 +606,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javaWeb/" rel="tag"> <i class="fa fa-tag"></i> javaWeb</a>
+          
+            <a href="/tags/HTTP%E5%8D%8F%E8%AE%AE/" rel="tag"> <i class="fa fa-tag"></i> HTTP协议</a>
+          
+        </div>
+      
 
       
       
@@ -484,8 +623,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/" rel="next" title="Java：简述try-catch-finally中return返回">
-                <i class="fa fa-chevron-left"></i> Java：简述try-catch-finally中return返回
+              <a href="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/" rel="next" title="JavaWeb（四）：Servlet规范和Servlet容器（转载）">
+                <i class="fa fa-chevron-left"></i> JavaWeb（四）：Servlet规范和Servlet容器（转载）
               </a>
             
           </div>
@@ -494,8 +633,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/17/JavaWeb%EF%BC%9AServletConfig%E4%B8%8EServletContext/" rel="prev" title="JavaWeb：ServletConfig与ServletContext">
-                JavaWeb：ServletConfig与ServletContext <i class="fa fa-chevron-right"></i>
+              <a href="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" rel="prev" title="JavaWeb（六）：Servlet执行过程与生命周期">
+                JavaWeb（六）：Servlet执行过程与生命周期 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,8 +731,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,7 +760,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">282</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -634,7 +782,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -663,6 +811,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-tomcat-容器实现一个-Servlet"><span class="nav-number">1.</span> <span class="nav-text">基于 tomcat 容器实现一个 Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-下载并安装-Tomcat"><span class="nav-number">1.1.</span> <span class="nav-text">1.下载并安装 Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-编写一个继承-HttpServlet-的-Java-类"><span class="nav-number">1.2.</span> <span class="nav-text">2. 编写一个继承 HttpServlet 的 Java 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-将-Java-文件编译成-Class-文件"><span class="nav-number">1.3.</span> <span class="nav-text">3. 将 Java 文件编译成 Class 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-建立-Web-应用的目录结构"><span class="nav-number">1.4.</span> <span class="nav-text">4. 建立 Web 应用的目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-部署-Web-应用"><span class="nav-number">1.5.</span> <span class="nav-text">5. 部署 Web 应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-启动-Tomcat"><span class="nav-number">1.6.</span> <span class="nav-text">6. 启动 Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-浏览访问验证结果"><span class="nav-number">1.7.</span> <span class="nav-text">7. 浏览访问验证结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-查看-Tomcat-日志"><span class="nav-number">1.8.</span> <span class="nav-text">8.查看 Tomcat 日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用注解的方式部署-Servlet"><span class="nav-number">1.9.</span> <span class="nav-text">用注解的方式部署 Servlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#eclipse-配置-Tomcat-容器进行自动编译和加载启动："><span class="nav-number">1.10.</span> <span class="nav-text">eclipse 配置 Tomcat 容器进行自动编译和加载启动：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行结果输出到cataline-log日志"><span class="nav-number">1.10.1.</span> <span class="nav-text">执行结果输出到cataline.log日志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结："><span class="nav-number">1.11.</span> <span class="nav-text">总结：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

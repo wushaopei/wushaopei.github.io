@@ -530,7 +530,7 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -549,7 +549,7 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/" itemprop="url">JavaWeb（二）：HTTP协议的本质与工作原理</a></h1>
+                <a class="post-title-link" href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/" itemprop="url">JavaWeb（十一）：Servlet中的Filter</a></h1>
         
 
         <div class="post-meta">
@@ -561,8 +561,747 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-09T23:31:36+08:00">
-                2020-09-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T22:05:57+08:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/" class="leancloud_visitors" data-flag-title="JavaWeb（十一）：Servlet中的Filter">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" itemprop="url">JavaWeb（十）：Servlet中的Listener</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-15T22:04:41+08:00">
+                2020-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/" class="leancloud_visitors" data-flag-title="JavaWeb（十）：Servlet中的Listener">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.Servlet是如何被调用的​    用户从浏览器向服务器发起的一个请求通常会包含如下信息： http://hostname:port/contextpath/servletpath， hostname 和 port 用来与服务器简历 TCP 连接，后面的 URL 采用来选择在服务器中哪个子容器
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Listener/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/" itemprop="url">JavaWeb（九）：JSP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-13T13:19:26+08:00">
+                2020-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/" class="leancloud_visitors" data-flag-title="JavaWeb（九）：JSP">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. JSP概述​    Jsp是Java Server Pages，就是java的服务器页面。
+1.1 JSP 结构网络服务器需要一个JSP引擎，也就是一个容器来处理JSP页面。容器负责截获对JSP页面的请求。内嵌JSP容器的Apache支持JSP开发。 JSP容器与Web服务器协同合作，为JSP
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/13/JavaWeb%EF%BC%88%E4%B9%9D%EF%BC%89%EF%BC%9AJSP/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/" itemprop="url">JavaWeb（八）：cookie 和 session</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-12T22:12:29+08:00">
+                2020-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/" class="leancloud_visitors" data-flag-title="JavaWeb（八）：cookie 和 session">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. 会话概述1.1 什么是会话？会话可简单理解为：用户开一个浏览器，点击多个超链接，访问服务器多个web资源，然后关闭浏览器，整个过程称之为一个会话其中不管浏览器发送多少请求，都视为一次会话，直到浏览器关闭，本次会话结束。 其中注意，一个浏览器就相当于一部电话，如果使用火狐浏览器，访问服务器，就是
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/12/JavaWeb%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9Acookie-%E5%92%8C-session/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/" itemprop="url">JavaWeb（七）：request 和 response</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T16:58:24+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/" class="leancloud_visitors" data-flag-title="JavaWeb（七）：request 和 response">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          前置： HTTP请求 与 HTTP响应HTTP请求​    浏览器向服务器请求某个Web资源时，称之为浏览器向服务器发送了一个 http 请求。一个完整http 请求应该包括三个部分。
+
+请求行【描述客户端的请求方式、请求的资源名称，以及使用的HTTP协议版本号】 
+请求报头【描述客户端请求哪台主机
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%83%EF%BC%89%EF%BC%9Arequest-%E5%92%8C-response/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="url">JavaWeb（六）：Servlet执行过程与生命周期</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T16:35:08+08:00">
+                2020-09-10
               </time>
             
 
@@ -602,8 +1341,8 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/" itemprop="commentCount"></span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -611,7 +1350,177 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
 
           
           
-             <span id="/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="JavaWeb（二）：HTTP协议的本质与工作原理">
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/" class="leancloud_visitors" data-flag-title="JavaWeb（六）：Servlet执行过程与生命周期">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          什么是 Servletservlet 通常通过 HTTP（超文本传输协议）接收和响应来自 Web 客户端的请求。这个Java类必须继承HttpServlet。每个Servlet可以响应客户端的请求，Servlet提供不同的方法用于响应客户端请求，例如doGet，doPost，doPut等。
+Tomc
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/10/JavaWeb%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9AServlet%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" itemprop="url">JavaWeb（五）：基于tomcat容器实现一个Servlet</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T14:20:00+08:00">
+                2020-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/" class="leancloud_visitors" data-flag-title="JavaWeb（五）：基于tomcat容器实现一个Servlet">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -646,17 +1555,21 @@ Web 容器是什么？从 Web 技术的发展历史来理解 Web 容器的由来
           
           导读：
 
-HTTP的本质
-HTTP的工作原理
-HTTP 请求响应实例
-Cookie 和 Session 
+如怎么开发一个Servlet？
+如何编译 Servlet？
+如何在 Web 容器中跑起来？ 
 
-HTTP 的本质​    HTTP 协议是浏览器与服务器之间的数据传送协议。作为应用层协议，HTTP 是基于 
-TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），HTTP 协
+基于 tomcat 容器实现一个 Servlet主要的步骤有：
+
+下载并安装 Tomcat。 
+
+编写一个继承 HttpServlet 的 Java 类。 
+
+将 Java 类文件编译成 Cla
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/#more" rel="contents">
+            <a class="btn" href="/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -707,7 +1620,7 @@ TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），HT
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -726,7 +1639,7 @@ TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），HT
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" itemprop="url">ThreadLocal-深入浅出</a></h1>
+                <a class="post-title-link" href="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/" itemprop="url">JavaWeb（四）：Servlet规范和Servlet容器（转载）</a></h1>
         
 
         <div class="post-meta">
@@ -738,176 +1651,8 @@ TCP/IP 协议来传递数据的（HTML 文件、图片、查询结果等），HT
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-07T22:08:27+08:00">
-                2020-09-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" class="leancloud_visitors" data-flag-title="ThreadLocal-深入浅出">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ThreadLocal 入门
-ThreadLocal 入门
-是什么
-定义
-线程模型
-场景介绍
-大概原理
-
-
-ThreadLocal的4种关键应用场景介绍
-线程资源持有
-线程资源一致性
-线程安全
-并发计算
-
-
-API解读（CODING)
-
-
-场景分析
-并发场景分析
-竞争条件和临界区——结合 Sprin
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" itemprop="url">Linux（二十）vsftpd - Java客户端实现 vsftpd 上传下载文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T16:10:38+08:00">
-                2020-09-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T13:58:49+08:00">
+                2020-09-10
               </time>
             
 
@@ -929,19 +1674,8 @@ API解读（CODING)
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">vsftpd 篇</span>
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
                   </a>
                 </span>
 
@@ -958,8 +1692,8 @@ API解读（CODING)
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -967,7 +1701,7 @@ API解读（CODING)
 
           
           
-             <span id="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="Linux（二十）vsftpd - Java客户端实现 vsftpd 上传下载文件">
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/" class="leancloud_visitors" data-flag-title="JavaWeb（四）：Servlet规范和Servlet容器（转载）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1000,11 +1734,12 @@ API解读（CODING)
       
         
           
-          Java 客户端上传文件到 vsftpd 服务器1.创建 SpringBoot 项目2.配置pom.xml依赖12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152
+          ​    浏览器发给服务端的是一个 HTTP 格式的请求，HTTP 服务器收到这个请求后，需要调用服务端程序来处理，所谓的服务端程序就是你写的 Java 类，一般来说不同的请求需要由不同的 Java 类来处理。
+​    那么问题来了，HTTP 服务器怎么知道要调用哪个 Java 类的哪个方法呢。最
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/#more" rel="contents">
+            <a class="btn" href="/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1055,7 +1790,7 @@ API解读（CODING)
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1074,7 +1809,7 @@ API解读（CODING)
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" itemprop="url">Nginx笔记（四）nginx虚拟域名配置及测试验证</a></h1>
+                <a class="post-title-link" href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/" itemprop="url">JavaWeb（三）：HTTP协议 请求头与响应头各参数具体含义</a></h1>
         
 
         <div class="post-meta">
@@ -1086,8 +1821,8 @@ API解读（CODING)
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T12:03:15+08:00">
-                2020-09-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-10T12:27:24+08:00">
+                2020-09-10
               </time>
             
 
@@ -1109,19 +1844,8 @@ API解读（CODING)
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Nginx/Nginx%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">Nginx基础篇</span>
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
                   </a>
                 </span>
 
@@ -1138,8 +1862,8 @@ API解读（CODING)
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" itemprop="commentCount"></span>
+                <a href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1147,7 +1871,7 @@ API解读（CODING)
 
           
           
-             <span id="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" class="leancloud_visitors" data-flag-title="Nginx笔记（四）nginx虚拟域名配置及测试验证">
+             <span id="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/" class="leancloud_visitors" data-flag-title="JavaWeb（三）：HTTP协议 请求头与响应头各参数具体含义">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1180,924 +1904,27 @@ API解读（CODING)
       
         
           
-          nginx虚拟域名配置及测试验证1.配置步骤1.1   编辑  sudo vim /usr/local/nginx/conf/nginx.conf
-(1) 增加 include  vhost/*.conf
-(2) 保存退出
-1.2 在 /usr/local/nginx/conf/ 目录新建 vhos
+          Request 部分 | Http Header
+
+
+Header
+解释
+示例
+
+
+
+Accept
+指定客户端能够接收的内容类型
+Accept: text/plain, text/html
+
+
+Accept-Charset
+浏览器可以接受的字符编码集。
+Accept-Charset: iso-885
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" itemprop="url">Linux（十九）vsftpd - Centos7--防火墙(Firewall)开启常见端口命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T20:28:21+08:00">
-                2020-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">vsftpd 篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Linux（十九）vsftpd - Centos7--防火墙(Firewall)开启常见端口命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Centos7默认安装了firewalld，如果没有安装的话，则需要YUM命令安装；firewalld真的用不习惯，与之前的iptable防火墙区别太大。
-安装Firewall命令：
-yum install firewalld firewalld-config
-Firewall开启常见端口命令：
-f
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" itemprop="url">Linux（十八）vsftpd - vsftpd 配置文件详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T19:45:22+08:00">
-                2020-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">vsftpd 篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="leancloud_visitors" data-flag-title="Linux（十八）vsftpd - vsftpd 配置文件详解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          vsftpd配置文件详解1.默认配置：1&gt; 允许匿名用户和本地用户登陆。
-​    anonymous_enable=YES
-​    local_enable=YES
-2&gt; 匿名用户使用的登陆名为ftp或anonymous，口令为空；匿名用户不能离开匿名用户家目录/var/ftp,且只
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" itemprop="url">Linux（十七）vsftpd - vsftpd文件服务器安装与配置讲解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T18:29:19+08:00">
-                2020-09-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">vsftpd 篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="Linux（十七）vsftpd - vsftpd文件服务器安装与配置讲解">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          vsftpd
-vsftpd 简介
-vsftpd 安装（linux）
-Linux ：安装、创建虚拟用户、配置、防火墙设置
-
-
-ftpserver 安装（windows)
-Windows(简单ftpserver绿色版)：下载、安装、配置
-
-
-vsftpd 验证
-vsftpd 常用命令
-
-1.vsftpd
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="url">Redis集群（二十四）Redis多主机哨兵集群搭建</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-04T10:07:11+08:00">
-                2020-09-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E9%9B%86%E7%BE%A4/" itemprop="url" rel="index">
-                    <span itemprop="name">集群</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Redis集群（二十四）Redis多主机哨兵集群搭建">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          多主机搭建哨兵集群 —— 高可用1. 搭建多主机 Redis 集群配置三台机器： 
-
-
-
-host
-port
-
-
-
-192.168.133.115
-6379
-
-
-192.168.133.117
-6379
-
-
-192.168.133.118
-6379
-
-
-1.1 Redis.conf 文件配置
-192
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" itemprop="url">【Linux/CentOS】—— issue： Boolean ftp_home_dir is not defined</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T13:35:03+08:00">
-                2020-09-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" class="leancloud_visitors" data-flag-title="【Linux/CentOS】—— issue： Boolean ftp_home_dir is not defined">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          【Linux/CentOS】Boolean ftp_home_dir is not defined安装完vsftpd软件后，因为CentOS系统的SELinux安全策略默认是没有开启FTP服务，直接访问会报错500 OOPS，所以需要修改为允许使用FTP服务。
-目标：希望ftp用户可以访问自己的家目
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/#more" rel="contents">
+            <a class="btn" href="/2020/09/10/JavaWeb%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE-%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4%E5%90%84%E5%8F%82%E6%95%B0%E5%85%B7%E4%BD%93%E5%90%AB%E4%B9%89/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2139,7 +1966,7 @@ port
 
   
  <nav class="pagination">
-   <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2189,7 +2016,7 @@ port
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">279</span>
+                  <span class="site-state-item-count">282</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2211,7 +2038,7 @@ port
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">225</span>
+                  <span class="site-state-item-count">229</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
