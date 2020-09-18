@@ -91,16 +91,21 @@
 
 
 
-<meta name="description" content="冗长的黑暗中,你是我唯一的光。">
+<meta name="description" content="1.Filter 是什么Filter 是 JavaWeb 三大组件之一。  作用：Filter 是干预过程的，它是过程的一部分，是基于过程行为的。 可以有效地拦截请求，并过滤响应。 典型的应用： 权限管理 2.Filter如何工作的​    Filter 也是在 web.xml 中另外一个常用的配置项，可以通过 &lt;filter&gt;  和 &lt;filter-mapping&gt; 组合">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb（十一）：Servlet中的Filter">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="冗长的黑暗中,你是我唯一的光。">
+<meta property="og:description" content="1.Filter 是什么Filter 是 JavaWeb 三大组件之一。  作用：Filter 是干预过程的，它是过程的一部分，是基于过程行为的。 可以有效地拦截请求，并过滤响应。 典型的应用： 权限管理 2.Filter如何工作的​    Filter 也是在 web.xml 中另外一个常用的配置项，可以通过 &lt;filter&gt;  和 &lt;filter-mapping&gt; 组合">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1247.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1248.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1250.png">
+<meta property="og:image" content="http://photo.wushaopei.com/qiniu1249.png">
 <meta property="article:published_time" content="2020-09-15T14:05:57.000Z">
-<meta property="article:modified_time" content="2020-09-08T05:05:18.053Z">
+<meta property="article:modified_time" content="2020-09-17T17:10:21.718Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1247.png">
 
 
 
@@ -442,7 +447,103 @@
       
 
       
-        
+        <h2 id="1-Filter-是什么"><a href="#1-Filter-是什么" class="headerlink" title="1.Filter 是什么"></a>1.Filter 是什么</h2><p><strong>Filter</strong> 是 JavaWeb 三大组件之一。 </p>
+<p>作用：<strong>Filter 是干预过程的</strong>，它是过程的一部分，是基于过程行为的。 可以有效地拦截请求，并过滤响应。</p>
+<p>典型的应用： <strong>权限管理</strong></p>
+<h2 id="2-Filter如何工作的"><a href="#2-Filter如何工作的" class="headerlink" title="2.Filter如何工作的"></a>2.Filter如何工作的</h2><p>​    Filter 也是在 web.xml 中另外一个常用的配置项，可以通过 <code>&lt;filter&gt;</code>  和 <code>&lt;filter-mapping&gt;</code> 组合来使用 Filter 。实际上 Filter 可以完成与 Servlet 同样的工作，甚至比 Servlet 使用起来更加灵活，因为它除了提供了 request 和 response 对象外，还提供了一个FilterChain 对象，这个对象可以让我们更加灵活地控制请求的流转。下面看一下与 Filter 相关的类结构图，如下头所示。</p>
+<img src="http://photo.wushaopei.com/qiniu1247.png" width="60%">
+
+<p>​    在 Tomcat 容器中，FilterConfit 和 FilterChain 的实现类分别是 ApplicationFilterConfig 和 ApplicationFilterChain，而 Filter 的实现类由用户自定义，只要实现 Filter 接口中定义的三个接口就行，这三个接口与在 Servlet 中的类似。只不过还有一个 ApplicationFilterChain类，这个类可以将多个 Filter 串联起来，组成一个链，这个链与 Jetty 中的 Handler链有异曲同工之妙。下面详细看一下 Filter 类中的三个接口方法。</p>
+<ul>
+<li><p>init(FilterConfig)：初始化接口，在用户自定义的 Filter 初始化时被调用，它与 Servlet 的 init 方法的作用是一样的，FilterConfig 与 ServletConfig 也类似，除了都能取到容器的环境类 ServletContext 对象之外，还能获取在 <code>&lt;filter&gt;</code> 下配置的 <code>&lt;init-param&gt;</code> 参数值。</p>
+</li>
+<li><p>doFilter(ServletRequest , ServletResponse , FilterChain): 在每个用户的请求进来时这个方法都会被调用，并在 Servelt 的 service 方法之前被调用。 而 FilterChain 就代表当前的整个请求链，所以通过调用 FilterChain.doFilter 可以将请求继续传递下去。如果想拦截这个请求，可以不调用 FilterChain.doFilter ， 那么这个请求就直接返回了。 所以 Filter 是一种责任链设计模式。</p>
+</li>
+<li><p>destroy： 当 Filter 对象被销毁时，这个方法被调用。注意，当 Web 容器调用这个方法之后，容器会再调用一次 doFilter 方法。</p>
+<p>Filter 类的核心还是传递的 FilterChain 对象，这个对象保存了到最终 Servlet 对象的所有 Filter 对象，这些对象都保存在 ApplicationFilterChain 对象的 filters 数组中。 在 FilterChain 链上每执行一个 Filter 对象，数组的当前计数都会加 1，直到计数等于数组的长度，当 FilterChain 上所有的  Filter 对象执行完成后，就会执行最终的 Servlet 。所以在 ApplicationFilterChain 对象中会持有 Servlet 对象的引用。下图为 Filter 对象的执行时序图。</p>
+<img src="http://photo.wushaopei.com/qiniu1248.png" width="60%">
+
+<p>Filter 存在的意义就好比是你要去北京，它是你的目的地，但是提供一个机制让你在去的途中可以做一些拦截工作，如可以将你的一些行李包存放在某个 “ 存放处 ” ，当你返回时你可以再从这个地方取回。总之它可以在你的途中增加一些东西，或者减少一些东西。</p>
+</li>
+</ul>
+<p><strong>引用自： 许令波—— 《深入分析 Java Web 技术内幕》</strong> </p>
+<h2 id="3-Filter的拦截路径"><a href="#3-Filter的拦截路径" class="headerlink" title="3.Filter的拦截路径"></a>3.Filter的拦截路径</h2><p><strong>–精确匹配</strong></p>
+<p>​    示例：<code>&lt;url-pattern&gt;/target.jsp&lt;/url-pattern&gt;</code></p>
+<p>​    <code>http://ip:port/工程名/target.jsp</code> </p>
+<p><strong>–目录匹配</strong></p>
+<p>​    示例：<code>&lt;url-pattern&gt;/admin/*&lt;/url-pattern&gt;</code></p>
+<p>​      <code>http://ip:port/工程名/admin/所有资源</code></p>
+<p><strong>–后缀名匹配（不能在斜杠打头）</strong></p>
+<p>​    示例：</p>
+<p>​        <code>&lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;</code></p>
+<p>​    表示请求地址，只要以jsp结尾就会拦截</p>
+<p>​        <code>&lt;url-pattern&gt;*.html&lt;/url-pattern&gt;</code></p>
+<p>​    表示请求地址，只要以html结尾就会拦截</p>
+<p>​        <code>&lt;url-pattern&gt;*.do&lt;/url-pattern&gt;</code></p>
+<p>​    表示请求地址，只要以do结尾就会拦截</p>
+<p>​        <code>&lt;url-pattern&gt;*.action&lt;/url-pattern&gt;</code></p>
+<p>​    表示请求地址，只要以action结尾就会拦截</p>
+<p>Filter的拦截地址，只关心地址是否匹配，不关心，请求的路径资源存在不存在</p>
+<h2 id="4-FilterChain-过滤器链"><a href="#4-FilterChain-过滤器链" class="headerlink" title="4.FilterChain 过滤器链"></a>4.<strong>FilterChain 过滤器链</strong></h2><p><strong>Filter是过滤器</strong>，</p>
+<p><code>Chain 链条</code></p>
+<p><strong>FilterChain</strong>，就是过滤器链（多个过滤器）</p>
+<img src="http://photo.wushaopei.com/qiniu1250.png" width="60%">
+
+
+
+<h2 id="5-Filter-案例演示"><a href="#5-Filter-案例演示" class="headerlink" title="5. Filter 案例演示"></a>5. Filter 案例演示</h2><p>在Web工程的WebContent目录下，有一个admin目录。这个目录下有html页面，jsp页面，jpg图片。</p>
+<p>要求这个目录下所有的资源都必须登录之后才能允许访问。</p>
+<p>当用户登录完成之后，我们要把用户的信息保存到Session域中。</p>
+<p><strong>如何检查用户是否登录?</strong></p>
+<ul>
+<li>只需要检查Session域中是否有用户登录的信 息。</li>
+<li>Session中有用户的信息，说明用户已登录成功</li>
+<li>Session中没有用户登录的信息，说明用户没有登录</li>
+</ul>
+<p><strong>如何创建一个Filter过滤器？</strong> </p>
+<ol>
+<li><p>编写一个类去实现Filter接口</p>
+</li>
+<li><p>实现doFilter过滤的方法（写你要检查的代码）</p>
+</li>
+<li><p>到web.xml中去配置具体的拦截路径</p>
+<img src="http://photo.wushaopei.com/qiniu1249.png" width="60%">
+
+
+
+</li>
+</ol>
+<p><strong>AdminFilter 过滤器</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AdminFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 *  每次拦截到资源之后，就会执行一次</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"doFilter 开始拦截"</span>);</span><br><span class="line">		HttpServletRequest httpServletRequest = (HttpServletRequest) request;</span><br><span class="line">		HttpServletResponse httpServletResponse = (HttpServletResponse) response;</span><br><span class="line">		</span><br><span class="line">		Object user = httpServletRequest.getSession().getAttribute(<span class="string">"user"</span>);</span><br><span class="line">		<span class="keyword">if</span> ( user == <span class="keyword">null</span>)&#123; <span class="comment">// 说明用户没有登录</span></span><br><span class="line">			System.out.println(<span class="string">"用户还没登录 == 需要重新登录，跳转登录页面"</span>);</span><br><span class="line">			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + <span class="string">"/login.jsp"</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 用户登录之后，要放行</span></span><br><span class="line">			System.out.println(<span class="string">"已经登录了"</span>);</span><br><span class="line">			chain.doFilter(request, httpServletResponse);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig arg0)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>chain.doFilter() 的理解：</strong></p>
+<p>过滤器的作用就是之一就是在用户的请求到达servlet之前，拦截下来做预处理，处理之后便执行<strong>chain.doFilter(request,  response)</strong> 这个方法，<strong>如果还有别的过滤器，那么将处理好的请求传给下个过滤器</strong>，依此类推，<strong>当所有的过滤器都把这个请求处理好了之后，再将处理完的请求发给servlet；如果就这一个过滤器，那么就将处理好的请求直接发给servlet</strong>。 </p>
+</blockquote>
+<p><strong>Filter在web.xml中的配置：</strong> </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.http.filter.AdminFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>表单：</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br><span class="line">&lt;!DOCTYPE html PUBLIC <span class="string">"-//W3C//DTD HTML 4.01 Transitional//EN"</span> <span class="string">"http://www.w3.org/TR/html4/loose.dtd"</span>&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=UTF-8"</span>&gt;</span><br><span class="line">		&lt;title&gt;Insert title here&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		登录页面</span><br><span class="line">		&lt;form action=<span class="string">"loginServlet"</span> method=<span class="string">"get"</span>&gt;</span><br><span class="line">			用户名：&lt;input type=<span class="string">"text"</span> name=<span class="string">"username"</span>/&gt;&lt;br/&gt;</span><br><span class="line">			密码：&lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span> /&gt;&lt;br/&gt;</span><br><span class="line">			&lt;input type=<span class="string">"submit"</span> /&gt;</span><br><span class="line">		&lt;/form&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>LoginServlet 程序</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@ClassName</span> LoginServlet.java</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> TODO</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Author</span> wushaopei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span> 2020年9月18日</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span> 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="comment">// 获取请求的参数</span></span><br><span class="line">		String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">		String password = req.getParameter(<span class="string">"password"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>( <span class="string">"admin"</span>.equals(username) &amp;&amp; <span class="string">"123455"</span>.equals(password))&#123;</span><br><span class="line">			<span class="comment">// 把用户信心保存到 Session 域中</span></span><br><span class="line">			req.getSession().setAttribute(<span class="string">"user"</span>, username);</span><br><span class="line">			System.out.println(<span class="string">"登录成功！"</span>);</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			System.out.println(<span class="string">"登录失败！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>FilterConfig 类</strong></p>
+<p>FilterConfig就可以得到Filter的一些配置信息</p>
+<ol>
+<li>得到Filter过滤器的名称</li>
+<li>得到Filter配置的初始化参数<strong>（重要）</strong></li>
+<li>得到ServletContext对象</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>com.http.filter.AdminFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line"> 		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>username<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line"> 		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>root<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line"> 		<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>url<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line"> 		<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>jdbc:mysql://localhost:3306/test<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>AdminFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>执行访问 <a href="http://localhost:8080/HTTP_Request/admin/a.jsp" target="_blank" rel="noopener">http://localhost:8080/HTTP_Request/admin/a.jsp</a></li>
+<li>会被 AdminFilter 中的 doFilter 方法拦截并执行逻辑校验，若未登录则进行跳转到 login.jsp 页面</li>
+<li>login.jsp 页面输入 username\password ，提交获取资源再次被 doFilter 拦截到重新校验用户是否登录，已登录并进行放行，执行下一次业务逻辑。</li>
+</ol>
+
       
     </div>
     
@@ -588,8 +689,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -659,6 +769,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Filter-是什么"><span class="nav-number">1.</span> <span class="nav-text">1.Filter 是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Filter如何工作的"><span class="nav-number">2.</span> <span class="nav-text">2.Filter如何工作的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Filter的拦截路径"><span class="nav-number">3.</span> <span class="nav-text">3.Filter的拦截路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-FilterChain-过滤器链"><span class="nav-number">4.</span> <span class="nav-text">4.FilterChain 过滤器链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Filter-案例演示"><span class="nav-number">5.</span> <span class="nav-text">5. Filter 案例演示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
