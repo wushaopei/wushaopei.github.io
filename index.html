@@ -1598,186 +1598,6 @@ MD5加密工具类、
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" itemprop="url">JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交.md</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T16:01:03+08:00">
-                2020-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaWeb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" class="leancloud_visitors" data-flag-title="JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交.md">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          登录、登出1. 登录——显示用户名修改UserServlet程序中的login方法
-
-
-修改login_success_menu.jsp菜单 ：
-
-
-修改client/index.jsp的菜单 ：
-
-
-2.登出——注销用户UserServlet程序中添加一个方法：
-1234567protected 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1908,6 +1728,186 @@ MD5加密工具类、
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81-md/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" itemprop="url">JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交.md</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-29T16:01:03+08:00">
+                2020-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" class="leancloud_visitors" data-flag-title="JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交.md">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          登录、登出1. 登录——显示用户名修改UserServlet程序中的login方法
+
+
+修改login_success_menu.jsp菜单 ：
+
+
+修改client/index.jsp的菜单 ：
+
+
+2.登出——注销用户UserServlet程序中添加一个方法：
+1234567protected 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
