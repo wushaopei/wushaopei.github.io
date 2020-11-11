@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" itemprop="url">Java：简述try-catch-finally异常捕获</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="url">Redis功能（十二）功能一：慢查询</a></h1>
         
 
         <div class="post-meta">
@@ -380,8 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:13:00+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:51:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -403,8 +403,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -414,8 +414,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">异常</span>
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
                   </a>
                 </span>
 
@@ -432,8 +432,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +441,7 @@
 
           
           
-             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" class="leancloud_visitors" data-flag-title="Java：简述try-catch-finally异常捕获">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="Redis功能（十二）功能一：慢查询">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -474,13 +474,27 @@
       
         
           
-          转载声明： 本文转载自 Java：简述try-catch-finally异常捕获
-一、try-catch语句在Java中，异常通过try-catch语句捕获。其一般语法形式为： 
-1234567try &#123;  	// 可能会发生异常的程序代码  &#125; catch (Type1 id1
+          目录：
+
+​          慢查询
+​          Pipeline
+​          发布订阅
+​          Bitmap（位图）
+​          HyperLogLog
+​          GEO
+
+一、慢查询1.慢查询
+
+生命周期
+三个命令
+两个配置
+运维经验
+
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -531,7 +545,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -550,7 +564,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" itemprop="url">Java：简述throw-throws异常抛出</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门（十）ZSet键值结构的使用与实战案例</a></h1>
         
 
         <div class="post-meta">
@@ -563,8 +577,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:49+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:10:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -586,8 +600,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -597,8 +611,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">异常</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -615,8 +629,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -624,7 +638,7 @@
 
           
           
-             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" class="leancloud_visitors" data-flag-title="Java：简述throw-throws异常抛出">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门（十）ZSet键值结构的使用与实战案例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -657,13 +671,20 @@
       
         
           
-          转载声明： 本文转载自 王晓  Java：简述throw-throws异常抛出
-​    
-​    任何Java代码都可以抛出异常，如：自己编写的代码、来自Java开发环境包中代码，或者Java运行时系统。无论是谁，都可以通过Java的throw语句抛出异常。从方法中抛出的任何异常都必须使用thr
+          zset有序集合：
+
+特点
+重要API
+实战
+查漏补缺
+
+1. 有序集合的结构
+
+​    上图是有序集合的结构图，有序集合同样是有 key-value 键值结构的，但是它的value是由score和value构成的。它的有序是由score分值支持的，这与排序无关，所谓有序是指它的score是唯一的
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -714,7 +735,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -733,7 +754,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" itemprop="url">Java：简述Java中的自定义异常</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(九) Set键值结构的使用与实战案例</a></h1>
         
 
         <div class="post-meta">
@@ -746,8 +767,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:40+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T20:50:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -769,8 +790,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -780,8 +801,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">异常</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -798,8 +819,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -807,7 +828,7 @@
 
           
           
-             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" class="leancloud_visitors" data-flag-title="Java：简述Java中的自定义异常">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(九) Set键值结构的使用与实战案例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -840,14 +861,31 @@
       
         
           
-          转载声明： 本文转载自 王晓 Java：简述Java中的自定义异常
-​    虽然Java系统已经预定义好了很多异常类，但是有时会遇到预定义的异常类不能描述出现的错误。在这种情况下，程序员可以通过扩展Exception类及其子类来定义自己的异常类。 
-1. 自定义异常，格式如下: 
-1234567c
+          setset:
+
+集合结构
+特点
+集合内API和实战
+集合间API和实战
+
+1.特点
+
+无序
+无重复
+支持集合间操作
+
+
+2.增——sadd srem
+
+工具—— scard 、sismember、srandmember、smembers、 
+
+
+注意： smembers 是无序且单线程的。
+sra
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -898,7 +936,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -917,7 +955,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" itemprop="url">Java：详解Java中的异常(Error与Exception)</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(八) List键值结构的使用与实战案例</a></h1>
         
 
         <div class="post-meta">
@@ -930,8 +968,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:21+08:00">
-                2020-08-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T19:50:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -953,8 +991,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -964,8 +1002,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
-                    <span itemprop="name">异常</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -982,8 +1020,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -991,7 +1029,7 @@
 
           
           
-             <span id="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" class="leancloud_visitors" data-flag-title="Java：详解Java中的异常(Error与Exception)">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(八) List键值结构的使用与实战案例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1024,13 +1062,33 @@
       
         
           
-          转载声明： 本文转载自 王晓 Java：详解Java中的异常(Error与Exception)
-一、 异常机制的概述​    异常机制是指当程序出现错误后，程序如何处理。具体来说，异常机制提供了程序退出的安全通道。当出现错误后，程序执行的流程发生改变，程序的控制权转移到异常处理器。 
-​    程序
+          list列表：
+
+特点
+重要API
+实战
+查漏补缺
+
+1.列表结构
+
+可以对列表做一些操作：如左边的添加、右边的添加、左边的弹出、右边的弹出 
+
+
+也可以获取列表的长度、删除指定元素、获取字列表、获取指定元素的索引值 
+2.特点
+
+有序
+可以重复
+左右两边插入弹出
+
+
+3.增——rpush
+
+例如：
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1081,7 +1139,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1100,7 +1158,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" itemprop="url">深入理解-集合类（七）ConcurrentHashMap</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" itemprop="url">Redis入门(四) Redis为单线程却高效的解析</a></h1>
         
 
         <div class="post-meta">
@@ -1113,8 +1171,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:36:52+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T18:05:23+08:00">
+                2020-08-30
               </time>
             
 
@@ -1136,8 +1194,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -1147,8 +1205,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -1165,8 +1223,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1174,7 +1232,7 @@
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（七）ConcurrentHashMap">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/" class="leancloud_visitors" data-flag-title="Redis入门(四) Redis为单线程却高效的解析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1207,26 +1265,14 @@
       
         
           
-          导读：
+          本节主要阐述Redis是单线程操作却高效的原因。
+1、抽象理解 Redis 的单线程
 
-ConcurrentHashMap概述
-ConcurrentHashMap 的底层实现
-JDK7版本
-分段锁机制
-内部结构
-ConcurrentHashMap的初始化
-定位 Segment 
-常用操作： get、put、size
-
-
-JDK8版本
-CAS 原理
-内部结构
-Concurren
+​    我们知道一个命令进入Redis执行的效率是很高的，在进入Redis之前可以认为它们在经过一条高速公路，如图中的黄色管道部分，而这条管道每一次都只能通过一个命令，多余的命令需要等待前面的命令执行完成后才能
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89Redis%E4%B8%BA%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%8D%B4%E9%AB%98%E6%95%88%E7%9A%84%E8%A7%A3%E6%9E%90/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1277,7 +1323,7 @@ Concurren
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1296,7 +1342,7 @@ Concurren
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" itemprop="url">深入理解-集合类（六）LinkedHashSet</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" itemprop="url">Redis入门（十一）Redis客户端的使用：Jedis与Jedis连接池</a></h1>
         
 
         <div class="post-meta">
@@ -1309,8 +1355,8 @@ Concurren
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:34:53+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1332,8 +1378,8 @@ Concurren
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -1343,8 +1389,8 @@ Concurren
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -1361,8 +1407,8 @@ Concurren
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1370,7 +1416,7 @@ Concurren
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" class="leancloud_visitors" data-flag-title="深入理解-集合类（六）LinkedHashSet">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/" class="leancloud_visitors" data-flag-title="Redis入门（十一）Redis客户端的使用：Jedis与Jedis连接池">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1403,18 +1449,19 @@ Concurren
       
         
           
-          引文：
+          Java客服端：jedis
+获取Jedis
+Jedis基本使用
+Jedis连接池使用
 
-LinkedHashSet 概述
-LinkedHashSet 的底层数据结构是什么？有什么优缺点
-LinkedHashSet 的扩容机制是什么？如何进行取值？
-LinkedHashSet 是线程安全的吗？为什么？
-不同 JDK 版本的 LinkedHashSet 有什么区别？
-Linked
+1. Jedis是什么？
+Jedis是官方提供的一个客户端，用于对redis进行操作。遵循redis提供的协议，各种语言都有对应的客户端。 
+
+2. Jedis的maven依赖：1234567    &lt;de
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89Redis%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9AJedis%E4%B8%8EJedis%E8%BF%9E%E6%8E%A5%E6%B1%A0/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1465,7 +1512,7 @@ Linked
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1484,7 +1531,7 @@ Linked
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/" itemprop="url">深入理解-集合类（五）LinkedHashMap</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(六) String键值结构的使用与实战案例</a></h1>
         
 
         <div class="post-meta">
@@ -1497,8 +1544,8 @@ Linked
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:34:33+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1520,8 +1567,8 @@ Linked
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -1531,8 +1578,8 @@ Linked
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -1549,8 +1596,8 @@ Linked
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1558,7 +1605,7 @@ Linked
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（五）LinkedHashMap">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(六) String键值结构的使用与实战案例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1591,19 +1638,21 @@ Linked
       
         
           
-          导读：
+          字符串字符串API导读：
 
-LinkedHashMap 概述
-LinkedHashMap 不同 JDK 版本的底层数据结构是及增删改查操作？
-LinkedHashMap 是线程安全的吗？为什么？
-LinkedHashMap 和 HashMap 有什么区别及应用场景？
-LinkedHashMap 和 LRU算法
+结构和命令
+快速实战
+内部编码
+查漏补缺
 
-1.
+1. 字符串键值结构​    对于Redis来说，所有的key都是字符串，而它的value则是前面说过的五种类型。这里主要对Redis的value进行解析。当前的value为字符串类型 .
+
+
+如上图，value是“world”
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%94%EF%BC%89LinkedHashMap/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89String%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1654,7 +1703,7 @@ LinkedHashMap 和 LRU算法
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1673,7 +1722,7 @@ LinkedHashMap 和 LRU算法
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/" itemprop="url">深入理解-集合类（四）ArrayList</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(七) Hash键值结构的使用与实战案例</a></h1>
         
 
         <div class="post-meta">
@@ -1686,8 +1735,8 @@ LinkedHashMap 和 LRU算法
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:34:18+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:50:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1709,8 +1758,8 @@ LinkedHashMap 和 LRU算法
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -1720,8 +1769,8 @@ LinkedHashMap 和 LRU算法
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -1738,8 +1787,8 @@ LinkedHashMap 和 LRU算法
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1747,7 +1796,7 @@ LinkedHashMap 和 LRU算法
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/" class="leancloud_visitors" data-flag-title="深入理解-集合类（四）ArrayList">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(七) Hash键值结构的使用与实战案例">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1780,19 +1829,23 @@ LinkedHashMap 和 LRU算法
       
         
           
-          导读： 
+          hash哈希：
 
-ArrayList 概述
-ArrayList 的底层数据结构是什么？以及相应的删改查操作实现？
-ArrayList如何进行扩容的？
-ArraList 如何顺利删除节点？
-关于 Fail-Fast 机制
-什么情境下你会使用 ArrayList？
-不同 JDK 版本 ArrayList 容量
+特点
+重要 API
+hash vs string
+查漏补缺
+
+1. 哈希键值结构
+
+如图：哈希的结构也是主要由键值结构组成，即key - value；但是其value是由 field 和 value 组成。 
+
+
+​    由于field属性的存在，与value构成了类似双列集合的
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%9B%9B%EF%BC%89ArrayList/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89Hash%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1843,7 +1896,7 @@ ArraList 如何顺利删除节点？
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1862,7 +1915,7 @@ ArraList 如何顺利删除节点？
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/" itemprop="url">深入理解-集合类（二）HashSet</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/" itemprop="url">Redis入门(五) Redis的五种数据结构与内部编码</a></h1>
         
 
         <div class="post-meta">
@@ -1875,8 +1928,8 @@ ArraList 如何顺利删除节点？
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:34:06+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T16:30:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1898,8 +1951,8 @@ ArraList 如何顺利删除节点？
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -1909,8 +1962,8 @@ ArraList 如何顺利删除节点？
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -1927,8 +1980,8 @@ ArraList 如何顺利删除节点？
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1936,7 +1989,7 @@ ArraList 如何顺利删除节点？
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/" class="leancloud_visitors" data-flag-title="深入理解-集合类（二）HashSet">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/" class="leancloud_visitors" data-flag-title="Redis入门(五) Redis的五种数据结构与内部编码">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1969,26 +2022,16 @@ ArraList 如何顺利删除节点？
       
         
           
-          引：
+          1、Redis 的主要数据结构：
 
-HashSet 概述
-
-HashSet的底层实现结构
-
-hashSet与HashMap的关系
-
-hashset如何保证值不会被重复的
-
-
-
-
-HashSet 概述其接口继承图如下：
-​    
-​    HashSet 实现 Set 接口，由哈希表（实际上是一个 HashMap 实例）支持。
+Redis的内部隐含结构体（对象）： redis Object 
+Redis中的数据，总体上是键值对，不同数据类型指的是键值对中值的类型。  
+1） String 类型
+​    Redis中最基本的类型，它是key对应的一个单一值。二进制安全，不必担心由于编码等
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%BA%8C%EF%BC%89HashSet/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89Redis%E7%9A%84%E4%BA%94%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E5%86%85%E9%83%A8%E7%BC%96%E7%A0%81/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2039,7 +2082,7 @@ HashSet 概述其接口继承图如下：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -2058,7 +2101,7 @@ HashSet 概述其接口继承图如下：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/" itemprop="url">深入理解-集合类（三）TreeMap</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" itemprop="url">Redis入门(三) Redis的常用API与时间复杂度</a></h1>
         
 
         <div class="post-meta">
@@ -2071,8 +2114,8 @@ HashSet 概述其接口继承图如下：
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:31:23+08:00">
-                2020-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T15:30:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -2094,8 +2137,8 @@ HashSet 概述其接口继承图如下：
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -2105,8 +2148,8 @@ HashSet 概述其接口继承图如下：
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
+                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">入门</span>
                   </a>
                 </span>
 
@@ -2123,8 +2166,8 @@ HashSet 概述其接口继承图如下：
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2132,7 +2175,7 @@ HashSet 概述其接口继承图如下：
 
           
           
-             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（三）TreeMap">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" class="leancloud_visitors" data-flag-title="Redis入门(三) Redis的常用API与时间复杂度">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2165,11 +2208,20 @@ HashSet 概述其接口继承图如下：
       
         
           
-          
-          
+          内容：Redis通用命令 
+常用的通用命令：
+keys      计算所有的键
+dbsize    获取redis的长度
+exists key     判断键的存在
+del key [key …] 删除指定键的值
+expire key seconds 对key做定时操作
+type key
+
+1、ke
+          ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%89%EF%BC%89TreeMap/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89Redis%E7%9A%84%E5%B8%B8%E7%94%A8API%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2211,7 +2263,7 @@ HashSet 概述其接口继承图如下：
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2261,7 +2313,7 @@ HashSet 概述其接口继承图如下：
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">287</span>
+                  <span class="site-state-item-count">301</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2272,7 +2324,7 @@ HashSet 概述其接口继承图如下：
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2283,7 +2335,7 @@ HashSet 概述其接口继承图如下：
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">241</span>
+                  <span class="site-state-item-count">250</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

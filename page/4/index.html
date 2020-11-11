@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" itemprop="url">Redis功能（十三）功能二：Pipeline高速读写</a></h1>
+                <a class="post-title-link" href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" itemprop="url">ThreadLocal-深入浅出</a></h1>
         
 
         <div class="post-meta">
@@ -380,8 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-07T22:08:27+08:00">
+                2020-09-07
               </time>
             
 
@@ -391,39 +391,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -432,8 +399,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" itemprop="commentCount"></span>
+                <a href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +408,7 @@
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" class="leancloud_visitors" data-flag-title="Redis功能（十三）功能二：Pipeline高速读写">
+             <span id="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/" class="leancloud_visitors" data-flag-title="ThreadLocal-深入浅出">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -474,23 +441,32 @@
       
         
           
-          pipeline
-什么是流水线？
-客户端实现
-与原生操作对比
-使用建议
+          ThreadLocal 入门
+ThreadLocal 入门
+是什么
+定义
+线程模型
+场景介绍
+大概原理
 
-1. 为什么有 pipeline ?1次网络命令通信模型
 
-如图，经历了   1次时间 = 1次网络时间 + 1次命令时间
-批量网络命令通信模型
+ThreadLocal的4种关键应用场景介绍
+线程资源持有
+线程资源一致性
+线程安全
+并发计算
 
-如图，经历了 n次时间 = n次网络时间 + n次命令时间 
-2. 什么是流水
+
+API解读（CODING)
+
+
+场景分析
+并发场景分析
+竞争条件和临界区——结合 Sprin
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/#more" rel="contents">
+            <a class="btn" href="/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -541,7 +517,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -560,7 +536,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" itemprop="url">Redis功能（十七）功能六：GEO（地理信息定位）</a></h1>
+                <a class="post-title-link" href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" itemprop="url">Linux（二十）vsftpd - Java客户端实现 vsftpd 上传下载文件</a></h1>
         
 
         <div class="post-meta">
@@ -573,8 +549,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T16:10:38+08:00">
+                2020-09-06
               </time>
             
 
@@ -596,8 +572,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -607,8 +583,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
+                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">vsftpd 篇</span>
                   </a>
                 </span>
 
@@ -625,8 +601,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" itemprop="commentCount"></span>
+                <a href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -634,7 +610,7 @@
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十七）功能六：GEO（地理信息定位）">
+             <span id="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="Linux（二十）vsftpd - Java客户端实现 vsftpd 上传下载文件">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -667,40 +643,11 @@
       
         
           
-          geo1. GEO是什么以计算5个城市经纬度为例： 
-
-
-**GEO(地理信息定位)：存储经纬度，计算两地距离，范围计算等
-
-
-
-城市
-经度
-纬度
-简称
-
-
-
-北京
-116.28
-39.55
-beijing
-
-
-天津
-117.12
-39.08
-tianjini
-
-
-石家庄
-114.29
-38.02
-
+          Java 客户端上传文件到 vsftpd 服务器1.创建 SpringBoot 项目2.配置pom.xml依赖12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/#more" rel="contents">
+            <a class="btn" href="/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -751,7 +698,7 @@ tianjini
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -770,7 +717,7 @@ tianjini
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" itemprop="url">Redis功能（十九）持久化：AOF - 操作命令备份</a></h1>
+                <a class="post-title-link" href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" itemprop="url">Nginx笔记（四）nginx虚拟域名配置及测试验证</a></h1>
         
 
         <div class="post-meta">
@@ -783,8 +730,8 @@ tianjini
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-06T12:03:15+08:00">
+                2020-09-06
               </time>
             
 
@@ -806,8 +753,8 @@ tianjini
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/Nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx</span>
                   </a>
                 </span>
 
@@ -817,8 +764,8 @@ tianjini
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" rel="index">
-                    <span itemprop="name">持久化</span>
+                  <a href="/categories/Nginx/Nginx%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">Nginx基础篇</span>
                   </a>
                 </span>
 
@@ -835,8 +782,8 @@ tianjini
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" itemprop="commentCount"></span>
+                <a href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -844,7 +791,7 @@ tianjini
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" class="leancloud_visitors" data-flag-title="Redis功能（十九）持久化：AOF - 操作命令备份">
+             <span id="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/" class="leancloud_visitors" data-flag-title="Nginx笔记（四）nginx虚拟域名配置及测试验证">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -877,24 +824,14 @@ tianjini
       
         
           
-          AOF
-RDB现存问题
-什么是 AOF
-AOF三种策略
-AOF重写策略
-
-1. RDB的问题
-RDB存在耗时、耗性能的问题。 
-
-
-
-分析：
-1)  O(n）数据：耗时
-RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，然后形成一个rdb文件，首先，它是比较耗时的，我们需要
+          nginx虚拟域名配置及测试验证1.配置步骤1.1   编辑  sudo vim /usr/local/nginx/conf/nginx.conf
+(1) 增加 include  vhost/*.conf
+(2) 保存退出
+1.2 在 /usr/local/nginx/conf/ 目录新建 vhos
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/#more" rel="contents">
+            <a class="btn" href="/2020/09/06/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89nginx%E8%99%9A%E6%8B%9F%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%B5%8B%E8%AF%95%E9%AA%8C%E8%AF%81/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -945,7 +882,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -964,7 +901,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="url">Redis功能（十七）功能五：hyperloglog（统计基数）</a></h1>
+                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" itemprop="url">Linux（十九）vsftpd - Centos7--防火墙(Firewall)开启常见端口命令</a></h1>
         
 
         <div class="post-meta">
@@ -977,8 +914,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T20:28:21+08:00">
+                2020-09-05
               </time>
             
 
@@ -1000,8 +937,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1011,8 +948,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
+                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">vsftpd 篇</span>
                   </a>
                 </span>
 
@@ -1029,8 +966,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="commentCount"></span>
+                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1038,7 +975,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十七）功能五：hyperloglog（统计基数）">
+             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Linux（十九）vsftpd - Centos7--防火墙(Firewall)开启常见端口命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1071,22 +1008,15 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
       
         
           
-          hyperloglog
-新的数据结构
-内存消耗
-三个命令
-使用场景
-
-1. 基于HyperLogLog算法：
-   绩效空间完成独立数量统计。 
-
-2. 本质还是字符串12127.0.0.1:6379&gt; type hyperloglog_keystring
-
-3. 三个API命令：1） pfa
+          Centos7默认安装了firewalld，如果没有安装的话，则需要YUM命令安装；firewalld真的用不习惯，与之前的iptable防火墙区别太大。
+安装Firewall命令：
+yum install firewalld firewalld-config
+Firewall开启常见端口命令：
+f
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#more" rel="contents">
+            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89vsftpd%20-%20Centos7-%E9%98%B2%E7%81%AB%E5%A2%99-Firewall-%E5%BC%80%E5%90%AF%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%91%BD%E4%BB%A4/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1137,7 +1067,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1156,7 +1086,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" itemprop="url">Redis功能（十四）功能三：发布订阅</a></h1>
+                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" itemprop="url">Linux（十八）vsftpd - vsftpd 配置文件详解</a></h1>
         
 
         <div class="post-meta">
@@ -1169,8 +1099,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T19:45:22+08:00">
+                2020-09-05
               </time>
             
 
@@ -1192,8 +1122,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1203,8 +1133,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
+                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">vsftpd 篇</span>
                   </a>
                 </span>
 
@@ -1221,8 +1151,8 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" itemprop="commentCount"></span>
+                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1230,7 +1160,7 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" class="leancloud_visitors" data-flag-title="Redis功能（十四）功能三：发布订阅">
+             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="leancloud_visitors" data-flag-title="Linux（十八）vsftpd - vsftpd 配置文件详解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1263,29 +1193,14 @@ RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，
       
         
           
-          发布订阅
-角色
-模型
-API
-发布订阅与消息队列
-
-1. 角色
-发布者
-频道
-订阅者
-
-2. 模型
-
-
-发布者发布一条消息，订阅者如果订阅了这个频道就可以收到这条消息。
-
-注意：所有的订阅者都能够收到消息。并且一个订阅者可以订阅不同的频道。
-
-订阅者无法获取到未订阅前已发布的消息，即无法对已发布消息
+          vsftpd配置文件详解1.默认配置：1&gt; 允许匿名用户和本地用户登陆。
+​    anonymous_enable=YES
+​    local_enable=YES
+2&gt; 匿名用户使用的登陆名为ftp或anonymous，口令为空；匿名用户不能离开匿名用户家目录/var/ftp,且只
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/#more" rel="contents">
+            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89vsftpd%20-%20%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1336,7 +1251,7 @@ API
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1355,7 +1270,7 @@ API
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" itemprop="url">Redis功能（十五）功能四：bitmap(位图）</a></h1>
+                <a class="post-title-link" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" itemprop="url">Linux（十七）vsftpd - vsftpd文件服务器安装与配置讲解</a></h1>
         
 
         <div class="post-meta">
@@ -1368,8 +1283,8 @@ API
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-05T18:29:19+08:00">
+                2020-09-05
               </time>
             
 
@@ -1391,8 +1306,8 @@ API
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1402,8 +1317,8 @@ API
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
+                  <a href="/categories/Linux/vsftpd-%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">vsftpd 篇</span>
                   </a>
                 </span>
 
@@ -1420,8 +1335,8 @@ API
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" itemprop="commentCount"></span>
+                <a href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1429,7 +1344,7 @@ API
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十五）功能四：bitmap(位图）">
+             <span id="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="Linux（十七）vsftpd - vsftpd文件服务器安装与配置讲解">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1462,23 +1377,24 @@ API
       
         
           
-          bitmap（位图）
-位图
-相关命令
-独立用户统计
-
-1. 什么是位图？
-
-​    字符串big 对应的二进制
-如上图，位图将字符串以对应二进制进行存储。
+          vsftpd
+vsftpd 简介
+vsftpd 安装（linux）
+Linux ：安装、创建虚拟用户、配置、防火墙设置
 
 
-位图的最大意义在于能够直接去操作redis中的value进行转换后的二进制码，即01100….等。 
-2. API ： 位图偏移设置—— 
+ftpserver 安装（windows)
+Windows(简单ftpserver绿色版)：下载、安装、配置
+
+
+vsftpd 验证
+vsftpd 常用命令
+
+1.vsftpd
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/#more" rel="contents">
+            <a class="btn" href="/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1529,7 +1445,7 @@ API
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1548,7 +1464,7 @@ API
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="url">Redis功能（十二）功能一：慢查询</a></h1>
+                <a class="post-title-link" href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="url">Redis集群（二十四）Redis多主机哨兵集群搭建</a></h1>
         
 
         <div class="post-meta">
@@ -1561,8 +1477,8 @@ API
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:51:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-04T10:07:11+08:00">
+                2020-09-04
               </time>
             
 
@@ -1595,8 +1511,8 @@ API
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
-                    <span itemprop="name">功能</span>
+                  <a href="/categories/Redis/%E9%9B%86%E7%BE%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
                   </a>
                 </span>
 
@@ -1613,8 +1529,8 @@ API
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
+                <a href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1622,7 +1538,7 @@ API
 
           
           
-             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="Redis功能（十二）功能一：慢查询">
+             <span id="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Redis集群（二十四）Redis多主机哨兵集群搭建">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1655,27 +1571,33 @@ API
       
         
           
-          目录：
-
-​          慢查询
-​          Pipeline
-​          发布订阅
-​          Bitmap（位图）
-​          HyperLogLog
-​          GEO
-
-一、慢查询1.慢查询
-
-生命周期
-三个命令
-两个配置
-运维经验
+          多主机搭建哨兵集群 —— 高可用1. 搭建多主机 Redis 集群配置三台机器： 
 
 
+
+host
+port
+
+
+
+192.168.133.115
+6379
+
+
+192.168.133.117
+6379
+
+
+192.168.133.118
+6379
+
+
+1.1 Redis.conf 文件配置
+192
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#more" rel="contents">
+            <a class="btn" href="/2020/09/04/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89Redis%E5%A4%9A%E4%B8%BB%E6%9C%BA%E5%93%A8%E5%85%B5%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1726,7 +1648,7 @@ API
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1745,7 +1667,7 @@ API
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门（十）ZSet键值结构的使用与实战案例</a></h1>
+                <a class="post-title-link" href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" itemprop="url">【Linux/CentOS】—— issue： Boolean ftp_home_dir is not defined</a></h1>
         
 
         <div class="post-meta">
@@ -1758,8 +1680,8 @@ API
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:10:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-03T13:35:03+08:00">
+                2020-09-03
               </time>
             
 
@@ -1769,39 +1691,6 @@ API
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/" itemprop="url" rel="index">
-                    <span itemprop="name">Redis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -1810,8 +1699,8 @@ API
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                <a href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1819,7 +1708,7 @@ API
 
           
           
-             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门（十）ZSet键值结构的使用与实战案例">
+             <span id="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/" class="leancloud_visitors" data-flag-title="【Linux/CentOS】—— issue： Boolean ftp_home_dir is not defined">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1852,20 +1741,12 @@ API
       
         
           
-          zset有序集合：
-
-特点
-重要API
-实战
-查漏补缺
-
-1. 有序集合的结构
-
-​    上图是有序集合的结构图，有序集合同样是有 key-value 键值结构的，但是它的value是由score和value构成的。它的有序是由score分值支持的，这与排序无关，所谓有序是指它的score是唯一的
+          【Linux/CentOS】Boolean ftp_home_dir is not defined安装完vsftpd软件后，因为CentOS系统的SELinux安全策略默认是没有开启FTP服务，直接访问会报错500 OOPS，所以需要修改为允许使用FTP服务。
+目标：希望ftp用户可以访问自己的家目
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+            <a class="btn" href="/2020/09/03/%E3%80%90Linux-CentOS%E3%80%91%E2%80%94%E2%80%94-issue%EF%BC%9A-Boolean-ftp-home-dir-is-not-defined/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1916,7 +1797,7 @@ API
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1935,7 +1816,7 @@ API
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(九) Set键值结构的使用与实战案例</a></h1>
+                <a class="post-title-link" href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/" itemprop="url">Redis功能（二十三）Redis Sentinel</a></h1>
         
 
         <div class="post-meta">
@@ -1948,8 +1829,8 @@ API
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T20:50:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T23:21:37+08:00">
+                2020-09-01
               </time>
             
 
@@ -1982,8 +1863,8 @@ API
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
+                  <a href="/categories/Redis/%E9%9B%86%E7%BE%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
                   </a>
                 </span>
 
@@ -2000,8 +1881,8 @@ API
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                <a href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2009,7 +1890,7 @@ API
 
           
           
-             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(九) Set键值结构的使用与实战案例">
+             <span id="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/" class="leancloud_visitors" data-flag-title="Redis功能（二十三）Redis Sentinel">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2042,31 +1923,24 @@ API
       
         
           
-          setset:
+          Redis Sentinel1. 主从复制高可用1.1 主从复制的作用
 
-集合结构
-特点
-集合内API和实战
-集合间API和实战
-
-1.特点
-
-无序
-无重复
-支持集合间操作
+为主提供一个备份，当主服务器挂掉后，可以为客户端提供主服务器中完整的数据；
+为主服务器进行分流，将读操作放到从节点上。
 
 
-2.增——sadd srem
+1.2 主从复制高可用存在的问题？
 
-工具—— scard 、sismember、srandmember、smembers、 
+手动故障转移
+写能力和存储能力受限
 
 
-注意： smembers 是无序且单线程的。
-sra
+1.3 手动故障转移：
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+            <a class="btn" href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2117,7 +1991,7 @@ sra
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -2136,7 +2010,7 @@ sra
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="url">Redis入门(八) List键值结构的使用与实战案例</a></h1>
+                <a class="post-title-link" href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/" itemprop="url">Redis集群（二十二）Redis复制的原理与优化、单机主从集群</a></h1>
         
 
         <div class="post-meta">
@@ -2149,8 +2023,8 @@ sra
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T19:50:01+08:00">
-                2020-08-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-01T22:05:09+08:00">
+                2020-09-01
               </time>
             
 
@@ -2183,8 +2057,8 @@ sra
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
+                  <a href="/categories/Redis/%E9%9B%86%E7%BE%A4/" itemprop="url" rel="index">
+                    <span itemprop="name">集群</span>
                   </a>
                 </span>
 
@@ -2201,8 +2075,8 @@ sra
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+                <a href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2210,7 +2084,7 @@ sra
 
           
           
-             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Redis入门(八) List键值结构的使用与实战案例">
+             <span id="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/" class="leancloud_visitors" data-flag-title="Redis集群（二十二）Redis复制的原理与优化、单机主从集群">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2243,33 +2117,22 @@ sra
       
         
           
-          list列表：
+          Redis复制的原理与优化
+什么是主从复制
+全量复制和增量复制
+复制的配置
+故障处理
+开发运维常见问题
 
-特点
-重要API
-实战
-查漏补缺
+1. 什么是主从复制1.1 单机有什么问题？
 
-1.列表结构
-
-可以对列表做一些操作：如左边的添加、右边的添加、左边的弹出、右边的弹出 
-
-
-也可以获取列表的长度、删除指定元素、获取字列表、获取指定元素的索引值 
-2.特点
-
-有序
-可以重复
-左右两边插入弹出
-
-
-3.增——rpush
-
-例如：
+单机如果机器故障，那么就无法及时提供服务；
+同时单机的内存等容量有限，无法支持耗能较大的应用；
+如果应用的访问并发过大，单机环境无法支持那么大的Q
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/#more" rel="contents">
+            <a class="btn" href="/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89Redis%E5%A4%8D%E5%88%B6%E7%9A%84%E5%8E%9F%E7%90%86%E4%BA%8E%E4%BC%98%E5%8C%96%E3%80%81%E5%8D%95%E6%9C%BA%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E9%9B%86%E7%BE%A4/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2311,7 +2174,7 @@ sra
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2361,7 +2224,7 @@ sra
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">287</span>
+                  <span class="site-state-item-count">301</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2372,7 +2235,7 @@ sra
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2383,7 +2246,7 @@ sra
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">241</span>
+                  <span class="site-state-item-count">250</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

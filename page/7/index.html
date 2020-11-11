@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/" itemprop="url">Java：java-lang包下的String类及其底层实现</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" itemprop="url">Redis入门(二) Redis服务端与客户端的启动方式、配置</a></h1>
         
 
         <div class="post-meta">
@@ -380,1533 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-11T21:41:27+08:00">
-                2020-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/String-%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">String 类</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="Java：java-lang包下的String类及其底层实现">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          主要内容：
-
-String类、StringBuilder、StringBuffer的关系
-为什么有了String，还要有StringBuilder、StringBuffer
-String、StringBuilder、StringBuffer的用法
-扩展：”字符串拼接”有几种方式？哪一种效率最高？
-
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/11/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84String%E7%B1%BB%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" itemprop="url">6、基本算法：二分查找、冒泡算法、快排、选择排序、插入排序</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:20:56+08:00">
-                2020-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="leancloud_visitors" data-flag-title="6、基本算法：二分查找、冒泡算法、快排、选择排序、插入排序">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、二分查找12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576p
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/06/Java%EF%BC%9A%E5%9F%BA%E6%9C%AC%E7%AE%97%E6%B3%95%EF%BC%9A%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E3%80%81%E5%86%92%E6%B3%A1%E7%AE%97%E6%B3%95%E3%80%81%E5%BF%AB%E6%8E%92%E3%80%81%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E3%80%81%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="url">Java：网络协议</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:18:19+08:00">
-                2020-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">网络协议</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/" class="leancloud_visitors" data-flag-title="Java：网络协议">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          七层网络协议及其作用
-TCP/IP协议
-
-TCP/IP 
-
-传输控制协议 TCP 简介
-TCP Flags
-
-
-三次握手
-
-为什么需要三次握手，而不是二次握手？
-首次握手的隐患 – SYN 超时
-针对 SYN Flood 的防护措施
-第三次握手失败后怎么处理？
-
-
-四次挥手
-
-TIME_WAIT
-C
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/06/Java%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/" itemprop="url">Java：java-lang包下的包装类及其自动拆装箱机制</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:10:58+08:00">
-                2020-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%8C%85%E8%A3%85%E7%B1%BB%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1/" itemprop="url" rel="index">
-                    <span itemprop="name">包装类自动拆装箱</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="Java：java-lang包下的包装类及其自动拆装箱机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Java.util.lang包下的常用类 - 包装类基本数据及其包装类
-
-类型关系表： 
-
-
-
-数据类型
-字节数
-长度
-默认值
-包装类
-
-
-
-byte
-1
--2^7~2^7-1
-0
-Byte
-
-
-short
-2
--2^15~2^15-1
-0
-Short
-
-
-int
-4
--2^31~ 2^31-1
-0
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/06/Java%EF%BC%9Ajava-lang%E5%8C%85%E4%B8%8B%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%8F%8A%E5%85%B6%E8%87%AA%E5%8A%A8%E6%8B%86%E8%A3%85%E7%AE%B1%E6%9C%BA%E5%88%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/" itemprop="url">Java：反射原理及机制</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:05:10+08:00">
-                2020-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index">
-                    <span itemprop="name">反射</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/" class="leancloud_visitors" data-flag-title="Java：反射原理及机制">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-什么是反射
-反射有什么用
-怎么使用反射
-反射与Class类的关系？Class类的原理与使用
-反射在项目中的使用与特定场景
-利用反射和泛型编程让你的Java代码更优雅
-
-1. 反射（Java Reflection)1.1 什么是反射（ Java Reflection)​    Reflect
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" itemprop="url">Java：单例模式</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-06T23:04:50+08:00">
-                2020-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
-                    <span itemprop="name">常用设计模式</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="leancloud_visitors" data-flag-title="Java：单例模式">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-单例模式涉及的知识点：与并发、类加载、序列化等的关系
-单例模式有几种写法？
-哪种写法更好？为什么呢？
-
-1. 什么是单例模式？如图：
-
-
-单例模式指的是：保证一个类只有一个实例，并且提供一个全局可以访问的入口。
-举个例子：
-
-这就好比是分身术，但是每一个分身其实都对应同一个真身。
-
-2. 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/08/06/Java%EF%BC%9A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" itemprop="url">数据结构和算法（五）链表和递归</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T23:14:18+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" class="leancloud_visitors" data-flag-title="数据结构和算法（五）链表和递归">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、Leetcode 中和链表相关的问题
-来源：力扣（LeetCode）
-移除链表元素删除链表中等于给定值 val 的所有节点。
-示例:
-输入: 1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6
-输出: 1-&gt;2-&gt;3-&gt;4-&gt;5
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" itemprop="url">深入理解-集合类（一）HashMap</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T15:08:36+08:00">
-                2020-07-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（一）HashMap">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-有没有用过HashMap
-HashMap 有什么特点
-它的底层实现结构是什么
-这样设计数据结构的优点是什么
-
-
-HashMap是如何扩容的
-HashMap 集合进行扩容的时机是？
-加载因子loadFactor是0.75
-HashMap中容量的最大值是什么？
-key 值不可重复与 value
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" itemprop="url">Redis入门(一) Redis概念与特性、使用场景</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T22:30:01+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T12:30:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1957,8 +432,8 @@ key 值不可重复与 value
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1966,7 +441,7 @@ key 值不可重复与 value
 
           
           
-             <span id="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" class="leancloud_visitors" data-flag-title="Redis入门(一) Redis概念与特性、使用场景">
+             <span id="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="Redis入门(二) Redis服务端与客户端的启动方式、配置">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1999,16 +474,19 @@ key 值不可重复与 value
       
         
           
-          一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。那么为什么需要NoSQL数据库呢？我们来做个对比： 
+          Redis三种启动方式介绍1、Redis 安装在线下载redis安装包： 
 
+  wget http://download.redis.io/releases/redis-3.0.7.tar.gz 
 
+解压缩： 
 
+tar -xzf redis-3.0.7.tar.gz 
 
-关系型数据库
+建立一个软连接，便于后期
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Redis%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E3%80%81%E9%85%8D%E7%BD%AE/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2059,7 +537,7 @@ key 值不可重复与 value
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -2078,7 +556,7 @@ key 值不可重复与 value
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" itemprop="url">Spring（十）IOC - 包扫描与Bean的自动装配(注入)</a></h1>
+                <a class="post-title-link" href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" itemprop="url">Java：利用反射和泛型编程让你的Java代码更优雅</a></h1>
         
 
         <div class="post-meta">
@@ -2091,8 +569,8 @@ key 值不可重复与 value
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T20:45:36+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-29T17:23:36+08:00">
+                2020-08-29
               </time>
             
 
@@ -2114,8 +592,8 @@ key 值不可重复与 value
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
                   </a>
                 </span>
 
@@ -2125,8 +603,8 @@ key 值不可重复与 value
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
+                  <a href="/categories/JavaSE/%E4%BC%98%E5%8C%96%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">优化编程</span>
                   </a>
                 </span>
 
@@ -2143,8 +621,8 @@ key 值不可重复与 value
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" itemprop="commentCount"></span>
+                <a href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2152,7 +630,1290 @@ key 值不可重复与 value
 
           
           
-             <span id="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" class="leancloud_visitors" data-flag-title="Spring（十）IOC - 包扫描与Bean的自动装配(注入)">
+             <span id="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/" class="leancloud_visitors" data-flag-title="Java：利用反射和泛型编程让你的Java代码更优雅">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. Java代码优化的起因​    程序员在日常工作中，根据业务需求开发各种业务系统，比如电商系统，秒杀系统，即时通信，视频直播等，如果我们 Java 开发人员只是把项目代码当作 CRUD ，不思考，去做大量重复性开发，时间长了会感到厌倦，与此同时，技术能力也得不到提升，同时还产生了很多不好维护和
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/29/Java%EF%BC%9A%E5%88%A9%E7%94%A8%E5%8F%8D%E5%B0%84%E5%92%8C%E6%B3%9B%E5%9E%8B%E7%BC%96%E7%A8%8B%E8%AE%A9%E4%BD%A0%E7%9A%84Java%E4%BB%A3%E7%A0%81%E6%9B%B4%E4%BC%98%E9%9B%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url">Java：多线程</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-23T15:12:40+08:00">
+                2020-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="leancloud_visitors" data-flag-title="Java：多线程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1. 程序、进程、线程的理解1.1 概念
+程序(program)是为完成特定任务、用某种语言编写的一组指令的集合。即指一段静态的代码，静态对象。
+进程(process)是程序的一次执行过程，或是正在运行的一个程序。动态过程：有它自身的产生、存在和消亡的过程。
+
+
+​    如：运行中的QQ，运行中的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/23/Java%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/" itemprop="url">Java：简述try-catch-finally中return返回</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:13:08+08:00">
+                2020-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/" class="leancloud_visitors" data-flag-title="Java：简述try-catch-finally中return返回">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          转载声明： 本文转载自 王晓  Java：简述try-catch-finally中return返回
+提示：阅读本文章之前可以先阅读《Java：简述try-catch-finally异常捕获》
+java中的 finally关键字通常与 try/catch块一起使用。用来在方法结束前或发生异常时做一些资
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E4%B8%ADreturn%E8%BF%94%E5%9B%9E/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" itemprop="url">Java：简述try-catch-finally异常捕获</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:13:00+08:00">
+                2020-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/" class="leancloud_visitors" data-flag-title="Java：简述try-catch-finally异常捕获">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          转载声明： 本文转载自 Java：简述try-catch-finally异常捕获
+一、try-catch语句在Java中，异常通过try-catch语句捕获。其一般语法形式为： 
+1234567try &#123;  	// 可能会发生异常的程序代码  &#125; catch (Type1 id1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0try-catch-finally%E5%BC%82%E5%B8%B8%E6%8D%95%E8%8E%B7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" itemprop="url">Java：简述throw-throws异常抛出</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:49+08:00">
+                2020-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/" class="leancloud_visitors" data-flag-title="Java：简述throw-throws异常抛出">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          转载声明： 本文转载自 王晓  Java：简述throw-throws异常抛出
+​    
+​    任何Java代码都可以抛出异常，如：自己编写的代码、来自Java开发环境包中代码，或者Java运行时系统。无论是谁，都可以通过Java的throw语句抛出异常。从方法中抛出的任何异常都必须使用thr
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0throw-throws%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" itemprop="url">Java：简述Java中的自定义异常</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:40+08:00">
+                2020-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/" class="leancloud_visitors" data-flag-title="Java：简述Java中的自定义异常">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          转载声明： 本文转载自 王晓 Java：简述Java中的自定义异常
+​    虽然Java系统已经预定义好了很多异常类，但是有时会遇到预定义的异常类不能描述出现的错误。在这种情况下，程序员可以通过扩展Exception类及其子类来定义自己的异常类。 
+1. 自定义异常，格式如下: 
+1234567c
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E7%AE%80%E8%BF%B0Java%E4%B8%AD%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" itemprop="url">Java：详解Java中的异常(Error与Exception)</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-17T15:12:21+08:00">
+                2020-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E5%BC%82%E5%B8%B8/" itemprop="url" rel="index">
+                    <span itemprop="name">异常</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/" class="leancloud_visitors" data-flag-title="Java：详解Java中的异常(Error与Exception)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          转载声明： 本文转载自 王晓 Java：详解Java中的异常(Error与Exception)
+一、 异常机制的概述​    异常机制是指当程序出现错误后，程序如何处理。具体来说，异常机制提供了程序退出的安全通道。当出现错误后，程序执行的流程发生改变，程序的控制权转移到异常处理器。 
+​    程序
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/17/Java%EF%BC%9A%E8%AF%A6%E8%A7%A3Java%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8-Error%E4%B8%8EException/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" itemprop="url">深入理解-集合类（七）ConcurrentHashMap</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:36:52+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解-集合类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（七）ConcurrentHashMap">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2187,15 +1948,212 @@ key 值不可重复与 value
           
           导读：
 
-Spring IOC相关常用注解
-注解对Bean的自动装配
-讲解： 通过注解对Bean的自动装配主要分为两个步骤：
-第一步： 根据不同的层级 package 使用对应的注解将类进行实例化Bean并注入到容器中
-第二步：使用@Autowired 进行装配，该步骤用于去容器中根据标记的类找到对
+ConcurrentHashMap概述
+ConcurrentHashMap 的底层实现
+JDK7版本
+分段锁机制
+内部结构
+ConcurrentHashMap的初始化
+定位 Segment 
+常用操作： get、put、size
+
+
+JDK8版本
+CAS 原理
+内部结构
+Concurren
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/#more" rel="contents">
+            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%83%EF%BC%89ConcurrentHashMap/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" itemprop="url">深入理解-集合类（六）LinkedHashSet</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-12T09:34:53+08:00">
+                2020-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解-集合类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/" class="leancloud_visitors" data-flag-title="深入理解-集合类（六）LinkedHashSet">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          引文：
+
+LinkedHashSet 概述
+LinkedHashSet 的底层数据结构是什么？有什么优缺点
+LinkedHashSet 的扩容机制是什么？如何进行取值？
+LinkedHashSet 是线程安全的吗？为什么？
+不同 JDK 版本的 LinkedHashSet 有什么区别？
+Linked
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E5%85%AD%EF%BC%89LinkedHashSet/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2237,7 +2195,7 @@ Spring IOC相关常用注解
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2287,7 +2245,7 @@ Spring IOC相关常用注解
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">287</span>
+                  <span class="site-state-item-count">301</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2298,7 +2256,7 @@ Spring IOC相关常用注解
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2309,7 +2267,7 @@ Spring IOC相关常用注解
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">241</span>
+                  <span class="site-state-item-count">250</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
