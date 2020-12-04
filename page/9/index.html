@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" itemprop="url">数据结构和算法（五）链表和递归</a></h1>
+                <a class="post-title-link" href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/" itemprop="url">Redis功能（二十）持久化：RDB和AOF抉择 </a></h1>
         
 
         <div class="post-meta">
@@ -380,377 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-28T23:14:18+08:00">
-                2020-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/" class="leancloud_visitors" data-flag-title="数据结构和算法（五）链表和递归">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          1、Leetcode 中和链表相关的问题
-来源：力扣（LeetCode）
-移除链表元素删除链表中等于给定值 val 的所有节点。
-示例:
-输入: 1-&gt;2-&gt;6-&gt;3-&gt;4-&gt;5-&gt;6, val = 6
-输出: 1-&gt;2-&gt;3-&gt;4-&gt;5
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%94%EF%BC%89%E9%93%BE%E8%A1%A8%E5%92%8C%E9%80%92%E5%BD%92/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" itemprop="url">深入理解-集合类（一）HashMap</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-22T15:08:36+08:00">
-                2020-07-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaSE</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaSE/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">深入理解-集合类</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/" class="leancloud_visitors" data-flag-title="深入理解-集合类（一）HashMap">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-有没有用过HashMap
-HashMap 有什么特点
-它的底层实现结构是什么
-这样设计数据结构的优点是什么
-
-
-HashMap是如何扩容的
-HashMap 集合进行扩容的时机是？
-加载因子loadFactor是0.75
-HashMap中容量的最大值是什么？
-key 值不可重复与 value
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3-%E9%9B%86%E5%90%88%E7%B1%BB%EF%BC%88%E4%B8%80%EF%BC%89HashMap/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" itemprop="url">Redis入门(一) Redis概念与特性、使用场景</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T22:30:01+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-31T12:59:01+08:00">
+                2020-08-31
               </time>
             
 
@@ -783,8 +414,8 @@ key 值不可重复与 value
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redis/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index">
-                    <span itemprop="name">入门</span>
+                  <a href="/categories/Redis/%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">持久化</span>
                   </a>
                 </span>
 
@@ -801,8 +432,8 @@ key 值不可重复与 value
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" itemprop="commentCount"></span>
+                <a href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -810,7 +441,7 @@ key 值不可重复与 value
 
           
           
-             <span id="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/" class="leancloud_visitors" data-flag-title="Redis入门(一) Redis概念与特性、使用场景">
+             <span id="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/" class="leancloud_visitors" data-flag-title="Redis功能（二十）持久化：RDB和AOF抉择 ">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -843,16 +474,51 @@ key 值不可重复与 value
       
         
           
-          一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。那么为什么需要NoSQL数据库呢？我们来做个对比： 
+          RDB和AOF抉择
+RDB 和 AOF 比较
+RDB最佳策略
+AOF最佳策略
+最佳策略
+
+1.RDB与AOF：
+
+
+命令
+RDB
+AOF
 
 
 
+启动优先级
+低
+高
 
-关系型数据库
+
+体积
+小
+大
+
+
+恢复速度
+快
+慢
+
+
+数据安全性
+丢数据
+根据策略决定
+
+
+轻重
+重
+轻
+
+
+问题:在工具目录下，既有RDB文件，
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/20/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89Redis%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E6%80%A7/#more" rel="contents">
+            <a class="btn" href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB%E5%92%8CAOF%E6%8A%89%E6%8B%A9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -903,7 +569,7 @@ key 值不可重复与 value
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -922,7 +588,7 @@ key 值不可重复与 value
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" itemprop="url">Spring（十）IOC - 包扫描与Bean的自动装配(注入)</a></h1>
+                <a class="post-title-link" href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/" itemprop="url">Redis功能（十八）持久化：RDB - 生成数据快照</a></h1>
         
 
         <div class="post-meta">
@@ -935,8 +601,8 @@ key 值不可重复与 value
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T20:45:36+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-31T12:59:01+08:00">
+                2020-08-31
               </time>
             
 
@@ -958,8 +624,8 @@ key 值不可重复与 value
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
                   </a>
                 </span>
 
@@ -969,8 +635,8 @@ key 值不可重复与 value
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
+                  <a href="/categories/Redis/%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">持久化</span>
                   </a>
                 </span>
 
@@ -987,8 +653,8 @@ key 值不可重复与 value
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" itemprop="commentCount"></span>
+                <a href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -996,7 +662,7 @@ key 值不可重复与 value
 
           
           
-             <span id="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/" class="leancloud_visitors" data-flag-title="Spring（十）IOC - 包扫描与Bean的自动装配(注入)">
+             <span id="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/" class="leancloud_visitors" data-flag-title="Redis功能（十八）持久化：RDB - 生成数据快照">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1029,17 +695,34 @@ key 值不可重复与 value
       
         
           
-          导读：
+          持久化
+持久化的作用
+RDB
+AOF
+RDB和AOF的选择
 
-Spring IOC相关常用注解
-注解对Bean的自动装配
-讲解： 通过注解对Bean的自动装配主要分为两个步骤：
-第一步： 根据不同的层级 package 使用对应的注解将类进行实例化Bean并注入到容器中
-第二步：使用@Autowired 进行装配，该步骤用于去容器中根据标记的类找到对
+持久化的作用
+什么是持久化
+持久化的实现方式
+
+1. 什么是持久化
+Redis 所有数据保存在内存中，对数据的更新将异步的保存到磁盘上。 
+
+如图： 
+
+
+2. 持久化方式快照:
+
+
+MySQL Dump
+Redis RDB
+
+
+ 写日志
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/20/Spring%EF%BC%88%E5%8D%81%EF%BC%89%E5%8C%85%E6%89%AB%E6%8F%8F%E4%B8%8EBean%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D(%E6%B3%A8%E5%85%A5)/#more" rel="contents">
+            <a class="btn" href="/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1090,7 +773,7 @@ Spring IOC相关常用注解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1109,7 +792,7 @@ Spring IOC相关常用注解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="url">数据结构和算法（三）队列的概念、应用与实现</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">Java：泛型及泛型的使用</a></h1>
         
 
         <div class="post-meta">
@@ -1122,8 +805,8 @@ Spring IOC相关常用注解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-12T22:33:08+08:00">
-                2020-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:10+08:00">
+                2020-08-30
               </time>
             
 
@@ -1145,192 +828,8 @@ Spring IOC相关常用注解
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="数据结构和算法（三）队列的概念、应用与实现">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          导读：
-
-队列是什么？
-队列有什么用？
-队列该怎么用？
-自定义一个队列的类
-
-队列 Queue1、队列（Queue)的概念
-队列也是一种线性结构
-相比数组，队列对应的操作是数组的子集
-
-2、入列与出列出入列的方式：  
-​    只能从一段（队尾）添加元素，只能从另一端（队首）取出元素。
-图示：
-​
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/12/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%89%EF%BC%89%E9%98%9F%E5%88%97%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="url">Spring（十一）IOC-为Bean赋值的几种方式</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-08T23:52:14+08:00">
-                2020-07-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index">
-                    <span itemprop="name">Spring</span>
+                  <a href="/categories/JavaSE/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaSE</span>
                   </a>
                 </span>
 
@@ -1340,8 +839,8 @@ Spring IOC相关常用注解
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
+                  <a href="/categories/JavaSE/%E6%B3%9B%E5%9E%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">泛型</span>
                   </a>
                 </span>
 
@@ -1358,8 +857,8 @@ Spring IOC相关常用注解
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1367,7 +866,7 @@ Spring IOC相关常用注解
 
           
           
-             <span id="/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="leancloud_visitors" data-flag-title="Spring（十一）IOC-为Bean赋值的几种方式">
+             <span id="/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/" class="leancloud_visitors" data-flag-title="Java：泛型及泛型的使用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1400,14 +899,20 @@ Spring IOC相关常用注解
       
         
           
-          导读： 
-1. **主题：**通过IOC容器创建对象，并为属性赋值
-   2. **赋值的几种方式**一、关于IOC与DI由于本节使用IOC容器创建对象，并为属性赋值，所以，这里再简单声明一下关于Spring的IOC和DI这两个特性。
-1、什么是IOCIOC 全称指的是 Inverse Of Con
+          flag：
+
+泛型是什么？
+使用泛型的好处是什么？
+java中的泛型是如何工作的？关于类型擦除的原理?
+泛型中的通配符有哪些？有什么区别和作用？
+自定义泛型类、泛型方法、泛型参数
+编写一段泛型程序来实现LRU缓存? 
+
+1. 什么是泛型​    泛型指的是可以将类型作为参数进行传递，其本质上就是类型
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/08/Spring%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89IOC-%E4%B8%BABean%E8%B5%8B%E5%80%BC%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Java%EF%BC%9A%E6%B3%9B%E5%9E%8B%E5%8F%8A%E6%B3%9B%E5%9E%8B%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1458,7 +963,7 @@ Spring IOC相关常用注解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1477,7 +982,7 @@ Spring IOC相关常用注解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="url">数据结构和算法（四）链表的概念、应用与实现</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" itemprop="url">Redis功能（十九）持久化：AOF - 操作命令备份</a></h1>
         
 
         <div class="post-meta">
@@ -1490,8 +995,8 @@ Spring IOC相关常用注解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T22:34:41+08:00">
-                2020-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1513,8 +1018,19 @@ Spring IOC相关常用注解
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E6%8C%81%E4%B9%85%E5%8C%96/" itemprop="url" rel="index">
+                    <span itemprop="name">持久化</span>
                   </a>
                 </span>
 
@@ -1531,8 +1047,8 @@ Spring IOC相关常用注解
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1540,7 +1056,7 @@ Spring IOC相关常用注解
 
           
           
-             <span id="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="数据结构和算法（四）链表的概念、应用与实现">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" class="leancloud_visitors" data-flag-title="Redis功能（十九）持久化：AOF - 操作命令备份">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1573,25 +1089,24 @@ Spring IOC相关常用注解
       
         
           
-          导读：
+          AOF
+RDB现存问题
+什么是 AOF
+AOF三种策略
+AOF重写策略
 
-什么是链表
-自定义链表：在链表中添加元素
-自定义链表：使用链表的虚拟头节点
-自定义链表：链表的遍历、查询和修改
-自定义链表：从链表中删除元素
-使用链表实现栈
-带有尾指针的链表：使用链表实现队列
+1. RDB的问题
+RDB存在耗时、耗性能的问题。 
 
-一、关于数据结构的区别数据结构有动态数据结构和静态数据结构两种.
 
-静态数据结构：
 
-静态数据
+分析：
+1)  O(n）数据：耗时
+RDB生成redis的数据就是将redis在内存中的数据dump到硬盘当中，然后形成一个rdb文件，首先，它是比较耗时的，我们需要
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E5%9B%9B%EF%BC%89%E9%93%BE%E8%A1%A8%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1642,7 +1157,7 @@ Spring IOC相关常用注解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1661,7 +1176,7 @@ Spring IOC相关常用注解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="url">数据结构和算法（二）栈的概念、应用与实现</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" itemprop="url">Redis功能（十五）功能四：bitmap(位图）</a></h1>
         
 
         <div class="post-meta">
@@ -1674,8 +1189,8 @@ Spring IOC相关常用注解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T22:32:54+08:00">
-                2020-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1697,8 +1212,19 @@ Spring IOC相关常用注解
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
                   </a>
                 </span>
 
@@ -1715,8 +1241,8 @@ Spring IOC相关常用注解
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1724,7 +1250,7 @@ Spring IOC相关常用注解
 
           
           
-             <span id="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="数据结构和算法（二）栈的概念、应用与实现">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十五）功能四：bitmap(位图）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1757,23 +1283,23 @@ Spring IOC相关常用注解
       
         
           
-          导读：
+          bitmap（位图）
+位图
+相关命令
+独立用户统计
 
-栈是什么？
-栈有什么用？
-栈该怎么用？
-自定义一个栈的类
+1. 什么是位图？
 
-栈 Stack1、栈（Stack)的概念
-栈也是一种线性结构
-相比数组，栈对应的操作是数组的子集
+​    字符串big 对应的二进制
+如上图，位图将字符串以对应二进制进行存储。
 
-注意： 栈只能从一端添加元素，也只能从一端取出元素。 用于存取的那一端称之为 栈顶。
-2、入栈与出栈​              
+
+位图的最大意义在于能够直接去操作redis中的value进行转换后的二进制码，即01100….等。 
+2. API ： 位图偏移设置—— 
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%BA%8C%EF%BC%89%E6%A0%88%E7%9A%84%E6%A6%82%E5%BF%B5%E3%80%81%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1824,7 +1350,7 @@ Spring IOC相关常用注解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1843,7 +1369,7 @@ Spring IOC相关常用注解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" itemprop="url">数据结构和算法（一）数组与时间复杂度分析</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="url">Redis功能（十七）功能五：hyperloglog（统计基数）</a></h1>
         
 
         <div class="post-meta">
@@ -1856,8 +1382,8 @@ Spring IOC相关常用注解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T22:31:04+08:00">
-                2020-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -1879,8 +1405,19 @@ Spring IOC相关常用注解
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
                   </a>
                 </span>
 
@@ -1897,8 +1434,8 @@ Spring IOC相关常用注解
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1906,7 +1443,7 @@ Spring IOC相关常用注解
 
           
           
-             <span id="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" class="leancloud_visitors" data-flag-title="数据结构和算法（一）数组与时间复杂度分析">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十七）功能五：hyperloglog（统计基数）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1939,17 +1476,22 @@ Spring IOC相关常用注解
       
         
           
-          一、java中数组的简单介绍​                  
+          hyperloglog
+新的数据结构
+内存消耗
+三个命令
+使用场景
 
-数组的数据是把数据码成一排进行存放的。
-在数组中，数据是使用索引进行排列标识所处的位置。
-索引的起始值是0，即当有8个值的时候，最后的那个值的索引必然为 7。
+1. 基于HyperLogLog算法：
+   绩效空间完成独立数量统计。 
 
-二、关于数组的简单使用123456789101112131415//
+2. 本质还是字符串12127.0.0.1:6379&gt; type hyperloglog_keystring
+
+3. 三个API命令：1） pfa
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B0%E7%BB%84%E4%B8%8E%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2000,7 +1542,7 @@ Spring IOC相关常用注解
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -2019,7 +1561,7 @@ Spring IOC相关常用注解
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/" itemprop="url">Activiti（十八）服务任务</a></h1>
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" itemprop="url">Redis功能（十三）功能二：Pipeline高速读写</a></h1>
         
 
         <div class="post-meta">
@@ -2032,8 +1574,8 @@ Spring IOC相关常用注解
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-05T22:22:38+08:00">
-                2020-07-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
               </time>
             
 
@@ -2055,8 +1597,19 @@ Spring IOC相关常用注解
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Activiti/" itemprop="url" rel="index">
-                    <span itemprop="name">Activiti</span>
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
                   </a>
                 </span>
 
@@ -2073,8 +1626,8 @@ Spring IOC相关常用注解
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/" itemprop="commentCount"></span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2082,7 +1635,7 @@ Spring IOC相关常用注解
 
           
           
-             <span id="/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/" class="leancloud_visitors" data-flag-title="Activiti（十八）服务任务">
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" class="leancloud_visitors" data-flag-title="Redis功能（十三）功能二：Pipeline高速读写">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -2115,14 +1668,629 @@ Spring IOC相关常用注解
       
         
           
-          Java Service Task一、Activiti服务任务（service Task)以下部分引用自 Activiti.org ，即 activiti 官网。
-1、描述：​    Java服务任务用于调用外部Java类。 
-图形符号：
-​    服务任务显示为圆角矩形，在左上角带有一个小齿轮图标
+          pipeline
+什么是流水线？
+客户端实现
+与原生操作对比
+使用建议
+
+1. 为什么有 pipeline ?1次网络命令通信模型
+
+如图，经历了   1次时间 = 1次网络时间 + 1次命令时间
+批量网络命令通信模型
+
+如图，经历了 n次时间 = n次网络时间 + n次命令时间 
+2. 什么是流水
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/07/05/Activiti%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%9C%8D%E5%8A%A1%E4%BB%BB%E5%8A%A1/#more" rel="contents">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" itemprop="url">Redis功能（十四）功能三：发布订阅</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" class="leancloud_visitors" data-flag-title="Redis功能（十四）功能三：发布订阅">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          发布订阅
+角色
+模型
+API
+发布订阅与消息队列
+
+1. 角色
+发布者
+频道
+订阅者
+
+2. 模型
+
+
+发布者发布一条消息，订阅者如果订阅了这个频道就可以收到这条消息。
+
+注意：所有的订阅者都能够收到消息。并且一个订阅者可以订阅不同的频道。
+
+订阅者无法获取到未订阅前已发布的消息，即无法对已发布消息
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" itemprop="url">Redis功能（十七）功能六：GEO（地理信息定位）</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:59:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" class="leancloud_visitors" data-flag-title="Redis功能（十七）功能六：GEO（地理信息定位）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          geo1. GEO是什么以计算5个城市经纬度为例： 
+
+
+**GEO(地理信息定位)：存储经纬度，计算两地距离，范围计算等
+
+
+
+城市
+经度
+纬度
+简称
+
+
+
+北京
+116.28
+39.55
+beijing
+
+
+天津
+117.12
+39.08
+tianjini
+
+
+石家庄
+114.29
+38.02
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="url">Redis功能（十二）功能一：慢查询</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-30T22:51:01+08:00">
+                2020-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/%E5%8A%9F%E8%83%BD/" itemprop="url" rel="index">
+                    <span itemprop="name">功能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/" class="leancloud_visitors" data-flag-title="Redis功能（十二）功能一：慢查询">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          目录：
+
+​          慢查询
+​          Pipeline
+​          发布订阅
+​          Bitmap（位图）
+​          HyperLogLog
+​          GEO
+
+一、慢查询1.慢查询
+
+生命周期
+三个命令
+两个配置
+运维经验
+
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2164,7 +2332,7 @@ Spring IOC相关常用注解
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2214,7 +2382,7 @@ Spring IOC相关常用注解
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">301</span>
+                  <span class="site-state-item-count">340</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

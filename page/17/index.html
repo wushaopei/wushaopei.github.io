@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/" itemprop="url">mybatis-原理篇（二）构建SqlSessionFactory过程</a></h1>
+                <a class="post-title-link" href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" itemprop="url">mybatis-设计模式篇（一）梗概</a></h1>
         
 
         <div class="post-meta">
@@ -380,8 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-30T13:23:48+08:00">
-                2020-04-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-11T12:38:38+08:00">
+                2020-06-11
               </time>
             
 
@@ -414,8 +414,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/mybatis%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis原理</span>
+                  <a href="/categories/mybatis/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%BA%94%E7%94%A8%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式应用篇</span>
                   </a>
                 </span>
 
@@ -432,8 +432,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/" itemprop="commentCount"></span>
+                <a href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +441,7 @@
 
           
           
-             <span id="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/" class="leancloud_visitors" data-flag-title="mybatis-原理篇（二）构建SqlSessionFactory过程">
+             <span id="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/" class="leancloud_visitors" data-flag-title="mybatis-设计模式篇（一）梗概">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -474,11 +474,20 @@
       
         
           
-          构建 SqlSessionFactory 过程SqlSessionFactory 是 MyBatis 的核心类之一，其最重要哦的功能就是提供创建 MyBatis 的核心接口 SqlSession, 所以我们需要先创建 SqlSessionFactory ，为此我们需要提供配置文件和相关的参数。而 M
+          Mybatis至少遇到了以下的设计模式的使用：
+
+Builder模式
+
+例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder；
+
+
+工厂模式
+
+例如SqlSessio
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/#more" rel="contents">
+            <a class="btn" href="/2020/06/11/mybatis-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E6%A2%97%E6%A6%82/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -529,7 +538,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -548,7 +557,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" itemprop="url">mybatis-原理篇（一）前置知识点： 反射与动态代理</a></h1>
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十五）服务器环境搭建-FastDFS简介与安装</a></h1>
         
 
         <div class="post-meta">
@@ -561,8 +570,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-30T13:23:16+08:00">
-                2020-04-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T21:28:41+08:00">
+                2020-06-10
               </time>
             
 
@@ -584,8 +593,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -595,8 +604,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/mybatis%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis原理</span>
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
                   </a>
                 </span>
 
@@ -613,8 +622,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" itemprop="commentCount"></span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -622,7 +631,7 @@
 
           
           
-             <span id="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" class="leancloud_visitors" data-flag-title="mybatis-原理篇（一）前置知识点： 反射与动态代理">
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十五）服务器环境搭建-FastDFS简介与安装">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -655,11 +664,20 @@
       
         
           
-          MyBatis 重要结构：​    MyBatis 的运行分为两大部分，第一部分是读取配置文件缓存到 Configuration 对象用以创建 SqlSessionFactory，第二部分是 SqlSession 的执行过程。相对而言， SqlSessionFactory 的创建比较容易理解，而 S
+          一、传统文件上传方式缺陷1.Web应用重新部署导致上传的文件丢失
+
+2.集群环境下没有文件同步机制
+
+3.扩容弹性差
+
+4.存在单点故障
+
+二、FastDFS功能1.独立于应用服务器文件本身不会在应用服务器上存储，不受应用服务器上Web应用重新部署影响。
+2.内部存储服务器有数据备份同一个文件存储在
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/#more" rel="contents">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -710,7 +728,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -729,7 +747,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/" itemprop="url">转载：别让自己“墙了自己”</a></h1>
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十四）服务器环境搭建-Nginx简介与安装</a></h1>
         
 
         <div class="post-meta">
@@ -742,8 +760,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-29T10:59:22+08:00">
-                2020-04-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T19:54:01+08:00">
+                2020-06-10
               </time>
             
 
@@ -765,8 +783,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8A%B1%E5%BF%97/" itemprop="url" rel="index">
-                    <span itemprop="name">励志</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -776,8 +794,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8A%B1%E5%BF%97/%E9%B8%A1%E6%B1%A4/" itemprop="url" rel="index">
-                    <span itemprop="name">鸡汤</span>
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
                   </a>
                 </span>
 
@@ -794,8 +812,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/" itemprop="commentCount"></span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -803,7 +821,7 @@
 
           
           
-             <span id="/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/" class="leancloud_visitors" data-flag-title="转载：别让自己“墙了自己”">
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十四）服务器环境搭建-Nginx简介与安装">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -836,14 +854,14 @@
       
         
           
-          乘着中午有闲暇，上 coolshell 看了一下耗子哥最近发表的文章，故事生动，也发人深省，故转载之。当然，转载的原因还是因为coolshell 不提供分享的功能，那就只能手动滑稽，百度一番，顺便给 hexo-next 添加分享功能，一举两得。
+          一、应用原理解析– 负载均衡
 
-
- 这一两周与几个朋友聊天，有年轻的90后，也有大叔
+当用户访问量非常大时，我们需要使用多台Tomcat来构成集群，由Nginx负责将负载分摊到每一台Tomcat服务器上。 
+二、协调 – Tomcat集群搭建搭建Tomcat集群的基本思路是把Tomcat解压目录复制多份，然后让每一份Tomcat分别使用不同端口号即可。
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/29/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E5%88%AB%E8%AE%A9%E8%87%AA%E5%B7%B1%E2%80%9C%E5%A2%99%E4%BA%86%E8%87%AA%E5%B7%B1%E2%80%9D/#more" rel="contents">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -894,7 +912,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -913,7 +931,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/" itemprop="url">mybatis-动态SQL</a></h1>
+                <a class="post-title-link" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十三）服务器环境搭建-Redis简介与安装</a></h1>
         
 
         <div class="post-meta">
@@ -926,8 +944,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T21:55:30+08:00">
-                2020-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-10T19:52:59+08:00">
+                2020-06-10
               </time>
             
 
@@ -949,8 +967,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -960,7 +978,784 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十三）服务器环境搭建-Redis简介与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、从NoSQL说起NoSQL是Not only SQL的缩写，大意为“不只是SQL”，说明这项技术是传统关系型数据库的补充而非替代。在整个NoSQL技术栈中MemCache、Redis、MongoDB被称为NoSQL三剑客。 
+那么时代为什么需要NoSQL数据库呢？我们来做个对比： 
+
+
+
+
+关系
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Redis%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" itemprop="url">Linux（十二）服务器环境搭建-安装JDK、Tomcat、MySQL及网络连通</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:54:48+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/" class="leancloud_visitors" data-flag-title="Linux（十二）服务器环境搭建-安装JDK、Tomcat、MySQL及网络连通">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一. 行为守则1. 拍摄快照Linux系统操作非常复杂，搭建开发环境时全部使用命令完成安装过程。而在Linux系统下没有像360安全卫士那样的工具，无法让我们在安装出错后卸载干净。所以建议大家在执行安装过程的每一步时都拍摄快照，保存系统当前状态，一旦安装失败就可以恢复到之前的某个快照重新开始。 
+2
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" itemprop="url">Linux（十一）CentOS虚拟机下载及搭建</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:52:29+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Linux（十一）CentOS虚拟机下载及搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          CentOS 虚拟机安装包下载 ： 
+链接：https://pan.baidu.com/s/1JDIASmm5nOmeYzDcJKJhWg 提取码：ystj
+CentOS7 安装配置流程 
+第一步：创建好虚拟机 
+
+
+第二步：装入镜像文件 
+
+
+第三步：开机 
+
+
+第四步：选择 
+
+
+第五步：选择语
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89CentOS%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E5%8F%8A%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url">Linux（十）VMWare虚拟机下载与安装</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:52:06+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">环境配置篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/" class="leancloud_visitors" data-flag-title="Linux（十）VMWare虚拟机下载与安装">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          VMWare 安装包 下载地址：
+链接：https://pan.baidu.com/s/1AzNLKw84Ji3_JqWzBhHMfw 提取码：nzoi
+双击开始安装
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%8D%81%EF%BC%89VMWare%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" itemprop="url">Linux（九）服务</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:29:55+08:00">
+                2020-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -978,8 +1773,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/" itemprop="commentCount"></span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -987,7 +1782,7 @@
 
           
           
-             <span id="/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/" class="leancloud_visitors" data-flag-title="mybatis-动态SQL">
+             <span id="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/" class="leancloud_visitors" data-flag-title="Linux（九）服务">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1020,12 +1815,13 @@
       
         
           
-          动态 SQL动态 SQL 是 MyBatis 的强大特性之一。如果你使用过 JDBC 或其它类似的框架，你应该能理解根据不同条件拼接 SQL  语句有多痛苦，例如拼接时要确保不能忘记添加必要的空格，还要注意去掉列表最后一个列名的逗号。利用动态 SQL，可以彻底摆脱这种痛苦。
-使用动态 SQL 并非一
+          1. 服务的概念​    操作系统中在后台持续运行的程序，本身并没有操作界面，需要通过端口号访问和操作。CentOS 6 和CentOS 7的服务管理有很大区别，我们分别来看。 
+2. CentOS6服务 2.1 service命令 
+12345service  服务名 startservice  
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/mybatis-%E5%8A%A8%E6%80%81SQL/#more" rel="contents">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%B9%9D%EF%BC%89%E6%9C%8D%E5%8A%A1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1076,7 +1872,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1095,7 +1891,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/" itemprop="url">mybatis 映射器（十三）缓存cache</a></h1>
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" itemprop="url">Linux（八）权限控制</a></h1>
         
 
         <div class="post-meta">
@@ -1108,8 +1904,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T11:42:21+08:00">
-                2020-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T23:29:37+08:00">
+                2020-06-09
               </time>
             
 
@@ -1131,8 +1927,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1142,7 +1938,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -1160,8 +1956,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/" itemprop="commentCount"></span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1169,7 +1965,7 @@
 
           
           
-             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/" class="leancloud_visitors" data-flag-title="mybatis 映射器（十三）缓存cache">
+             <span id="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" class="leancloud_visitors" data-flag-title="Linux（八）权限控制">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1202,12 +1998,19 @@
       
         
           
-          缓存 cache缓存：所谓是指把一些经常访问的数据保存到一个调整的缓冲区中。保存在高速缓冲区中的数据叫缓存。因此具备快速读取和使用的特点，如果缓存命中率高，那么就可以极大地提高系统的性能。如果缓存命中率很低，那么缓存就不存在使用的意义了，所以使用缓存的关键在于存储内容访问的命中率。
-系统缓存（一级缓
+          1. 概述​    Linux需要对登录用户读写执行文件、进入目录、查看增删目录内容等操作进行控制，不能任由用户随意执行所有操作。 
+我们从如下几个方面来认识Linux权限控制体系： 
+
+用户管理
+用户组管理
+文件权限信息
+chmod、chgrp、chown命令
+
+2. 用户和用户组​    所谓用
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E7%BC%93%E5%AD%98cache/#more" rel="contents">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%85%AB%EF%BC%89%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1258,7 +2061,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -1277,7 +2080,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/" itemprop="url">并发编程（二十七）JUC-多线程并发扩展</a></h1>
+                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="url">Linux（七）文件系统</a></h1>
         
 
         <div class="post-meta">
@@ -1290,8 +2093,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T10:50:18+08:00">
-                2020-04-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T20:47:43+08:00">
+                2020-06-09
               </time>
             
 
@@ -1313,179 +2116,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index">
-                    <span itemprop="name">Java并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/" class="leancloud_visitors" data-flag-title="并发编程（二十七）JUC-多线程并发扩展">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          死锁死锁的定义所谓的死锁是指两个或两个以上的线程在等待执行的过程中，因为竞争资源而造成的一种互相等待的现象。若不受外力作用，他们都将无法推进下去。此时，处于系统中所处的状态就是死锁。 
-发生死锁所必须具备的条件：互斥条件：它是指进程对所分配的资源进行排他性的使用，在一定时间内，某资源只由一个进程在用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%83%EF%BC%89JUC-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E6%89%A9%E5%B1%95/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" itemprop="url">mybatis-映射器（十二）resultMap结果映射集 - 级联</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:49:57+08:00">
-                2020-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -1495,7 +2127,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -1513,8 +2145,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" itemprop="commentCount"></span>
+                <a href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1522,7 +2154,7 @@
 
           
           
-             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/" class="leancloud_visitors" data-flag-title="mybatis-映射器（十二）resultMap结果映射集 - 级联">
+             <span id="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="leancloud_visitors" data-flag-title="Linux（七）文件系统">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1555,555 +2187,14 @@
       
         
           
-          案例表结构设计：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657SET FOREIGN_KEY_CHECKS&#x3D;0;-- ----
+          一、根目录内容1、概述​    Linux系统中只有一个文件系统，以“/”作为根目录，从根目录出发可以找到任何一个文件和目录。这样就有了一个访问目录、文件的统一规范。 
+​    在根目录下的诸多目录都有特定的作用，其中有些目录对我们日常操作来说非常的重要。 
+2、细节2.1 [bin] 
+​   
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" itemprop="url">mybatis 映射器（十一）resultMap结果映射集</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:48:43+08:00">
-                2020-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/" class="leancloud_visitors" data-flag-title="mybatis 映射器（十一）resultMap结果映射集">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          ​    resultMap 元素是 MyBatis 中最重要最强大的元素。 它可以让你从 90% 的 JDBC ResultSets 数据提取代码中解放出来，并在一些情形下允许你进行一些 JDBC 不支持的操作。实际上，在为一些比如连接的复杂语句编写映射代码的时候，一份 resultMap 能够代
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" itemprop="url">mybatis 映射器（十）sql元素</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-28T09:48:20+08:00">
-                2020-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（十）sql元素">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          sql 元素这个元素可以用来定义可重用的 SQL 代码片段，以便在其它语句中使用。 参数可以静态地（在加载的时候）确定下来，并且可以在不同的 include 元素中定义不同的参数值。​    例如，你有一条 SQL 需要 select 几十个字段映射到 JavaBean 中去，如果我们有第二条 SQ
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%EF%BC%89sql%E5%85%83%E7%B4%A0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" itemprop="url">mybatis 映射器（九）参数</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-23T17:17:19+08:00">
-                2020-04-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/" itemprop="url" rel="index">
-                    <span itemprop="name">mybatis</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mybatis/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/" class="leancloud_visitors" data-flag-title="mybatis 映射器（九）参数">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          参数配置之前见到的所有语句都使用了简单的参数形式。但实际上，参数是 MyBatis 非常强大的元素。对于大多数简单的使用场景，你都不需要使用复杂的参数，比如： 
-123&lt;select id="selectUserById" resultMap="userResultMap"&gt;   	se
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B9%9D%EF%BC%89%E5%8F%82%E6%95%B0/#more" rel="contents">
+            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2145,7 +2236,7 @@
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2195,7 +2286,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">301</span>
+                  <span class="site-state-item-count">340</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

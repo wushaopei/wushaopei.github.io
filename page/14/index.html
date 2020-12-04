@@ -348,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -367,7 +367,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="url">Linux（七）文件系统</a></h1>
+                <a class="post-title-link" href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" itemprop="url">分布式锁（一）概念与应用场景</a></h1>
         
 
         <div class="post-meta">
@@ -380,8 +380,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T20:47:43+08:00">
-                2020-06-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-29T22:48:30+08:00">
+                2020-06-29
               </time>
             
 
@@ -403,8 +403,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
                   </a>
                 </span>
 
@@ -414,7 +414,1289 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%AE%9E%E7%8E%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式锁实现</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/" class="leancloud_visitors" data-flag-title="分布式锁（一）概念与应用场景">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、什么是锁？
+在单进程的系统中，当存在多个线程可以同时改变某个变量（可变共享变量）时，就需要对变量或代码块做同步，使其在修改这种变量时能够线性执行消除并发修改变量。
+而同步的本质是通过锁来实现的。为了实现多个线程在一个时刻同一个代码块只能有一个线程可执行，那么需要在某个地方做个标记，这个标记必须每
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/" itemprop="url">面试导读-list</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-29T20:35:33+08:00">
+                2020-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%81%BF%E5%9D%91/" itemprop="url" rel="index">
+                    <span itemprop="name">面试避坑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/" class="leancloud_visitors" data-flag-title="面试导读-list">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+备份
+备份数据
+备份
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/29/%E9%9D%A2%E8%AF%95%E5%AF%BC%E8%AF%BB-%E6%B7%B1%E5%9C%B3%E4%BA%92%E8%81%94%E7%BD%91%E4%BC%81%E4%B8%9A%E5%90%8D%E5%8D%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" itemprop="url">Redis 单节点千万级别数据 写入,读取 性能测试.</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-23T20:42:42+08:00">
+                2020-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">每日一个小知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%9F%A5%E8%AF%86/Redis/" itemprop="url" rel="index">
+                    <span itemprop="name">Redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="leancloud_visitors" data-flag-title="Redis 单节点千万级别数据 写入,读取 性能测试.">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          本文是对 Reids 单节点，针对不同的数据类型，做插入行测试，数据总条数为： 一千万条
+环境说明： 
+​    Redis 为单节点（本地虚拟机，内存4G）
+​    数据量： 一千万条 （使用for循环一千万次插入，）
+​    数据大小： 2.34G
+一、传统方式插入，插入数据类型为 Stri
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/23/Redis-%E5%8D%95%E8%8A%82%E7%82%B9%E5%8D%83%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE-%E5%86%99%E5%85%A5-%E8%AF%BB%E5%8F%96-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="url">SQL中on条件与where条件的区别</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-23T00:05:57+08:00">
+                2020-06-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">每日一个小知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%AF%8F%E6%97%A5%E4%B8%80%E4%B8%AA%E5%B0%8F%E7%9F%A5%E8%AF%86/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="SQL中on条件与where条件的区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          问题： SQL 中 on 条件与 where 条件的区别
+前置说明：
+​    数据库在通过连接两张或多张表来返回记录时，都会生成一张中间的临时表，然后再将这张临时表返回给用户
+区别分析：
+
+on 条件是在生成临时表时使用的条件，它不管 on 中的条件是否为真，都会返回左边表中的记录
+where 条
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/23/SQL%E4%B8%ADon%E6%9D%A1%E4%BB%B6%E4%B8%8Ewhere%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="url">Zookeeper（九）zookeeper真实环境分布式集群搭建</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T22:58:20+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E9%9B%86%E7%BE%A4%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">集群篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Zookeeper（九）zookeeper真实环境分布式集群搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          以下为模拟真实环境搭建的 zk 集群（以单数的三台虚拟机构建）搭建流程：
+官网下载zookeeper http://zookeeper.apache.org/releases.html 
+
+配置好系统的Java环境，将压缩包zookeeper-3.4.12.tar.gz解压至Linux任意目录下， 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B9%9D%EF%BC%89zookeeper%E7%9C%9F%E5%AE%9E%E7%8E%AF%E5%A2%83%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="url">Zookeeper（八）zookeeper伪分布式集群搭建</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T21:57:12+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E9%9B%86%E7%BE%A4%E7%AF%87/" itemprop="url" rel="index">
+                    <span itemprop="name">集群篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="Zookeeper（八）zookeeper伪分布式集群搭建">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          Zookeeper 伪分布式集群1、介绍​    使用集群的方式避免单点故障是目前分布式应用实现高可用的重要手段，ZooKeeper同样可以搭建集群环境。
+2、说明 2.1 服务器名称与地址：
+​    集群信息（服务器编号，服务器地址，LF通信端口，选举端口）
+​    这个配置项的书写格式比较特
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AB%EF%BC%89zookeeper%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/" itemprop="url">Zookeeper（七）异步回调获实现监控ZK节点</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T19:09:23+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/" class="leancloud_visitors" data-flag-title="Zookeeper（七）异步回调获实现监控ZK节点">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E8%8E%B7%E5%AE%9E%E7%8E%B0%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="吴少培">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="鮀城小帅">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/" itemprop="url">Zookeeper（六）Java客户端异步监控ZK节点的值</a></h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T19:08:20+08:00">
+                2020-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -432,8 +1714,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="commentCount"></span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +1723,7 @@
 
           
           
-             <span id="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="leancloud_visitors" data-flag-title="Linux（七）文件系统">
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/" class="leancloud_visitors" data-flag-title="Zookeeper（六）Java客户端异步监控ZK节点的值">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -474,14 +1756,12 @@
       
         
           
-          一、根目录内容1、概述​    Linux系统中只有一个文件系统，以“/”作为根目录，从根目录出发可以找到任何一个文件和目录。这样就有了一个访问目录、文件的统一规范。 
-​    在根目录下的诸多目录都有特定的作用，其中有些目录对我们日常操作来说非常的重要。 
-2、细节2.1 [bin] 
-​   
+          1、异步通知机制介绍​        
+※ ： 当节点进行更新后，监管者会接收到它的值发生了改变，从而通过内部的机制读取到当前节点，对其版本进行响应的更新。当更新结束后，当前监管者资源就会释放掉，不会存在内存溢出现象。当下一次对节点再次进行更新时，又会再次触发监管者（这是新的监管者）的职能监查机制，
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%B8%83%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E5%85%AD%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%9B%91%E6%8E%A7ZK%E8%8A%82%E7%82%B9%E7%9A%84%E5%80%BC/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -532,7 +1812,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -551,7 +1831,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">Linux（六）Vim编辑器</a></h1>
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" itemprop="url">Zookeeper（五）Java客户端访问ZK服务器与增删改查</a></h1>
         
 
         <div class="post-meta">
@@ -564,8 +1844,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T20:31:32+08:00">
-                2020-06-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T19:06:47+08:00">
+                2020-06-21
               </time>
             
 
@@ -587,8 +1867,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
                   </a>
                 </span>
 
@@ -598,7 +1878,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -616,8 +1896,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="commentCount"></span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -625,7 +1905,7 @@
 
           
           
-             <span id="/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/" class="leancloud_visitors" data-flag-title="Linux（六）Vim编辑器">
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" class="leancloud_visitors" data-flag-title="Zookeeper（五）Java客户端访问ZK服务器与增删改查">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -658,20 +1938,19 @@
       
         
           
-          1、简介
+          导读：
 
-Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux环境下几乎所有的文本文件编辑工作都是靠它。
-可能你还听说过VI，嗯，VIM是VI的升级版。
-2、VIM编辑器的三种工作模式上下左右移动光标 
-1234h：左j：下k：上l：右
+java客户端访问zk服务器
+java客户端修改zk节点值
 
+1、java客户端访问ZK服务器
+ 创建 maven 工程 zookeeper
 
-立即移动到页头：gg
-移动到页尾：shif
+1.1 配置pom.xml依赖12345&lt;dependency&gt;	&lt;groupId&gt;com.github.sgroschu
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%85%AD%EF%BC%89Vim%E7%BC%96%E8%BE%91%E5%99%A8/#more" rel="contents">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E4%BA%94%EF%BC%89Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AEZK%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -722,7 +2001,7 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="吴少培">
@@ -741,7 +2020,7 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/" itemprop="url">Linux（五）tar、zip、history、help、pwd、man、info等命令</a></h1>
+                <a class="post-title-link" href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" itemprop="url">Zookeeper（四）ZK基本特性与Watcher监听的相关命令</a></h1>
         
 
         <div class="post-meta">
@@ -754,8 +2033,8 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T20:09:04+08:00">
-                2020-06-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-21T18:46:27+08:00">
+                2020-06-21
               </time>
             
 
@@ -777,8 +2056,8 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/Zookeeper/" itemprop="url" rel="index">
+                    <span itemprop="name">Zookeeper</span>
                   </a>
                 </span>
 
@@ -788,7 +2067,7 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
+                  <a href="/categories/Zookeeper/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
                     <span itemprop="name">基础篇</span>
                   </a>
                 </span>
@@ -806,8 +2085,8 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+                <a href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -815,7 +2094,7 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
 
           
           
-             <span id="/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Linux（五）tar、zip、history、help、pwd、man、info等命令">
+             <span id="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Zookeeper（四）ZK基本特性与Watcher监听的相关命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -848,1281 +2127,19 @@ Linux系统环境下的一款非常重要的文本编辑工具，我们在Linux�
       
         
           
-          一、压缩解压缩操作1、tar命令1.1 压缩
-1tar -zcvf [压缩包文件名] [要压缩的内容]
+          一、zk 特性-Session的原理
+客户端与服务端之间的连接存在会话
+每个会话都可以设置一个超时时间
+心跳结束，session则过期
+Session过期，则临时节点 znode 会被抛弃
+心跳机制：客户端向服务端的ping包请求
 
-1.1.1 查看压缩包内容
-1tar -tvf [压缩包文件名]
-
-1.1.2 解压缩：解压到当前目录下 
-1tar -zxvf [压缩包文件名]
-
-1.1.3 解压缩：解压到目标目录下
-1ta
+二、zk 特性-watcher机制
+针对每个节点的操作，都会有一个
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%BA%94%EF%BC%89tar%E3%80%81zip%E3%80%81history%E3%80%81help%E3%80%81pwd%E3%80%81man%E3%80%81info%E7%AD%89%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/" itemprop="url">Linux（四）内容与进程端口查看、查找与关机命令</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T19:50:39+08:00">
-                2020-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Linux（四）内容与进程端口查看、查找与关机命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、查看文件内容1、命令 cat​    对应单词：concatenate
-​    作用：查看文件内容
-
-常用参数：
-
-
-
-
-参数名
-作用
-
-
-
--b
-显示行号，仅针对非空白行做行号显示，空白行不标行号
-
-
--n
-显示行号，连同空白行也会有行号，与 -b 的选项不同
-
-
--E
-将结尾的断行字节 $
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%85%E5%AE%B9%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%AB%AF%E5%8F%A3%E6%9F%A5%E7%9C%8B%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%8E%E5%85%B3%E6%9C%BA%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" itemprop="url">Linux（三）路径与文件目录操作命令</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T19:36:45+08:00">
-                2020-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/" class="leancloud_visitors" data-flag-title="Linux（三）路径与文件目录操作命令">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          一、文件系统与路径1、Linux系统中一切皆文件​    在Linux系统中任何东西都是以文件形式来存储的。这其中不仅包括我们熟知的文本文件、可执行文件等等，还包括硬件设备、虚拟设备、网络连接等等，甚至连目录其实都是一种特殊的文件。 
-2、Linux文件系统​    Linux系统环境下的文件系统与
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux%EF%BC%88%E4%B8%89%EF%BC%89%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/" itemprop="url">Linux(二)远程访问</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T19:20:29+08:00">
-                2020-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/" class="leancloud_visitors" data-flag-title="Linux(二)远程访问">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Linux 系统远程访问1、Why? 为什么需要远程访问？
-​     人和人之间对话有两种方式，一种是面对面直接交谈，另一种是打电话。 
-我们操作 Linux 系统也有两种方式，一种是直接在 Linux 本机进行操作（类似人和人之间面对面交谈），另 一种是借助客户端**远程**操作（类似打电话）。
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux(%E4%BA%8C)%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/" itemprop="url">Linux(一)概述</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-09T18:59:54+08:00">
-                2020-06-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/%E5%9F%BA%E7%A1%80%E7%AF%87/" itemprop="url" rel="index">
-                    <span itemprop="name">基础篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/" class="leancloud_visitors" data-flag-title="Linux(一)概述">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Linux 概述一. 认识操作系统1、操作系统的作用把计算机系统中对硬件设备的操作封装起来，供应用软件调用。
-
-
-2、常见操作系统2.1 PC 端 OS
-
-
-2.2 移动端 OS 
-
-
-2.3 服务端 OS
-
-
-
-
-
-
-
-
-二、Linux 来历1、Unix的局限硬件绑定：早期的Unix系统都是针对专
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/09/Linux(%E4%B8%80)%E6%A6%82%E8%BF%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/" itemprop="url">面试题（四）mysql</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-28T14:01:59+08:00">
-                2020-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">面试题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/" class="leancloud_visitors" data-flag-title="面试题（四）mysql">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          SQL中on条件与where条件的区别
-数据库在通过连接两张或多张表来返回记录时，都会生成一张中间的临时表，然后再将这张临时表返回给用户。 
-在使用left jion时，on和where条件的区别如下： 
-
-on条件是在生成临时表时使用的条件，它不管on中的条件是否为真，都会返回左边表中的记录。
-w
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E5%9B%9B%EF%BC%89mysql/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/" itemprop="url">面试题（二）Web</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-28T13:46:07+08:00">
-                2020-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/" class="leancloud_visitors" data-flag-title="面试题（二）Web">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%BA%8C%EF%BC%89Web/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.wushaopei.com/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="吴少培">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="鮀城小帅">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/" itemprop="url">面试题（一）SE</a></h1>
-        
-
-        <div class="post-meta">
-		  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-28T09:16:19+08:00">
-                2020-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">面试题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/" class="leancloud_visitors" data-flag-title="面试题（一）SE">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          数组冒泡算法1234567891011   //冒泡排序：     for (int i = 0; i &lt; numbers.length - 1; i++) &#123; //循环几轮     for (int j = 0; j &lt; numbers.length - 1 - i; j++
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/05/28/%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89SE/#more" rel="contents">
+            <a class="btn" href="/2020/06/21/Zookeeper%EF%BC%88%E5%9B%9B%EF%BC%89ZK%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7%E4%B8%8EWatcher%E7%9B%91%E5%90%AC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -2164,7 +2181,7 @@ w
 
   
  <nav class="pagination">
-   <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
+   <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="accessibility.prev_page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="accessibility.next_page"></i></a>
  </nav>
 
 
@@ -2214,7 +2231,7 @@ w
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">301</span>
+                  <span class="site-state-item-count">340</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

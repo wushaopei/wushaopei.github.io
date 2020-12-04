@@ -91,18 +91,18 @@
 
 
 
-<meta name="description" content="一、有状态与无状态会话基本概念1. Session  2. 无 Session  3. Redis- session  好处：  用户信息存储到 redis缓存中，形成无状态会话 便于扩展，当单体应用该扩展成集群会相当方便 便于权限验证  二、安装单击环境的 redis1.简介Redis英文官网介绍： ​       Redis is an open source (BSD licensed),">
+<meta name="description" content="一、有状态与无状态会话基本概念1. Session  ​    有状态： 登录后 session 里是有内容的。 2. 无 Session  ​    无状态： 登录后 session  里没内容。 3. Redis- session​    redis - session  的好处可以使 app 用户访问 web 项目的会话状态从每次会话每次连接（无状态 session ） 变为一次访问用户信息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微享短视频项目开发：（八）引入Redis中间件及登录注册实现 session-Token功能">
 <meta property="og:url" content="http://blog.wushaopei.com/2020/11/09/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E5%85%AB%EF%BC%89%E5%BC%95%E5%85%A5Redis%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%8F%8A%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%AE%9E%E7%8E%B0-session-Token%E5%8A%9F%E8%83%BD/index.html">
 <meta property="og:site_name" content="鮀城小帅">
-<meta property="og:description" content="一、有状态与无状态会话基本概念1. Session  2. 无 Session  3. Redis- session  好处：  用户信息存储到 redis缓存中，形成无状态会话 便于扩展，当单体应用该扩展成集群会相当方便 便于权限验证  二、安装单击环境的 redis1.简介Redis英文官网介绍： ​       Redis is an open source (BSD licensed),">
+<meta property="og:description" content="一、有状态与无状态会话基本概念1. Session  ​    有状态： 登录后 session 里是有内容的。 2. 无 Session  ​    无状态： 登录后 session  里没内容。 3. Redis- session​    redis - session  的好处可以使 app 用户访问 web 项目的会话状态从每次会话每次连接（无状态 session ） 变为一次访问用户信息">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu1337.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu1338.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu1339.png">
 <meta property="og:image" content="http://photo.wushaopei.com/qiniu1340.png">
 <meta property="article:published_time" content="2020-11-09T05:06:52.000Z">
-<meta property="article:modified_time" content="2020-11-11T13:24:38.167Z">
+<meta property="article:modified_time" content="2020-11-21T14:52:25.767Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1337.png">
@@ -450,9 +450,12 @@
       
         <h3 id="一、有状态与无状态会话基本概念"><a href="#一、有状态与无状态会话基本概念" class="headerlink" title="一、有状态与无状态会话基本概念"></a>一、有状态与无状态会话基本概念</h3><h4 id="1-Session"><a href="#1-Session" class="headerlink" title="1. Session"></a>1. Session</h4><img src="http://photo.wushaopei.com/qiniu1337.png" width="60%">
 
+<p>​    有状态： 登录后 session 里是有内容的。</p>
 <h4 id="2-无-Session"><a href="#2-无-Session" class="headerlink" title="2. 无 Session"></a>2. 无 Session</h4><img src="http://photo.wushaopei.com/qiniu1338.png" width="60%">
 
-<h4 id="3-Redis-session"><a href="#3-Redis-session" class="headerlink" title="3. Redis- session"></a>3. Redis- session</h4><img src="http://photo.wushaopei.com/qiniu1339.png" width="60%">
+<p>​    无状态： 登录后 session  里没内容。</p>
+<h4 id="3-Redis-session"><a href="#3-Redis-session" class="headerlink" title="3. Redis- session"></a>3. Redis- session</h4><p>​    redis - session  的好处可以使 app 用户访问 web 项目的会话状态从每次会话每次连接（无状态 session ） 变为一次访问用户信息放入 session 之中存放在缓存中（有状态Session) </p>
+<img src="http://photo.wushaopei.com/qiniu1339.png" width="60%">
 
 <p><strong>好处：</strong></p>
 <ol>
@@ -502,7 +505,9 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">logs</span>]<span class="comment"># /usr/local/redis/bin/redis-cli </span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; ping</span><br><span class="line">PONG</span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; <span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="三、开发用户-redis-session"><a href="#三、开发用户-redis-session" class="headerlink" title="三、开发用户 redis-session"></a>三、开发用户 redis-session</h3><h4 id="1-添加-redis-依赖到-pom-xml"><a href="#1-添加-redis-依赖到-pom-xml" class="headerlink" title="1.添加 redis 依赖到 pom.xml"></a>1.添加 redis 依赖到 pom.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入 redis 依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="三、开发用户-redis-session"><a href="#三、开发用户-redis-session" class="headerlink" title="三、开发用户 redis-session"></a>三、开发用户 redis-session</h3><p><strong>技术点：</strong> </p>
+<p>​    小程序没有 cookie 说法，用分布式会话， token 让小程序记录即可。这里通过 redis 来实现。</p>
+<h4 id="1-添加-redis-依赖到-pom-xml"><a href="#1-添加-redis-依赖到-pom-xml" class="headerlink" title="1.添加 redis 依赖到 pom.xml"></a>1.添加 redis 依赖到 pom.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入 redis 依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.data<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="2-添加-redis-配置到-application-yml-文件"><a href="#2-添加-redis-配置到-application-yml-文件" class="headerlink" title="2.添加 redis 配置到 application.yml 文件"></a>2.添加 redis 配置到 application.yml 文件</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">############################################################</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># REDIS \u914d\u7f6e</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">############################################################</span></span><br><span class="line"><span class="comment"># Redis数据库索引（默认为0）</span></span><br><span class="line"><span class="string">spring.redis.database=1</span></span><br><span class="line"><span class="comment"># Redis 服务器地址</span></span><br><span class="line"><span class="comment">#spring.redis.host=192.168.1.209</span></span><br><span class="line"><span class="comment"># Redis 服务器连接端口</span></span><br><span class="line"><span class="string">spring.redis.port=6379</span></span><br><span class="line"><span class="comment"># Redis 服务器连接密码（默认为空）</span></span><br><span class="line"><span class="string">spring.redis.password=imooc</span></span><br><span class="line"><span class="comment"># 连接池最大连接数（使用负值表示没有限制）</span></span><br><span class="line"><span class="string">spring.redis.pool.max-active=1000</span></span><br><span class="line"><span class="comment"># 连接池最大阻塞等待时间（使用负值表示没有限制）</span></span><br><span class="line"><span class="string">spring.redis.pool.max-wait=-1</span></span><br><span class="line"><span class="comment"># 连接池中的最大空闲连接</span></span><br><span class="line"><span class="string">spring.redis.pool.max-idle=10</span></span><br><span class="line"><span class="comment"># 连接池中的最小空闲连接</span></span><br><span class="line"><span class="string">spring.redis.pool.min-idle=2</span></span><br><span class="line"><span class="comment"># 连接超时时间（毫秒）</span></span><br><span class="line"><span class="string">spring.redis.timeout=0</span></span><br></pre></td></tr></table></figure>
 
@@ -562,8 +567,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/11/09/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E9%A1%B5%E3%80%81%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/" rel="next" title="微享短视频项目开发：（八）开发用户登录的接口与小程序登录页、后端联调">
-                <i class="fa fa-chevron-left"></i> 微享短视频项目开发：（八）开发用户登录的接口与小程序登录页、后端联调
+              <a href="/2020/11/09/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E4%B8%83%EF%BC%89%E5%BC%80%E5%8F%91%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E9%A1%B5%E3%80%81%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83/" rel="next" title="微享短视频项目开发：（七）开发用户登录的接口与小程序登录页、后端联调">
+                <i class="fa fa-chevron-left"></i> 微享短视频项目开发：（七）开发用户登录的接口与小程序登录页、后端联调
               </a>
             
           </div>
@@ -571,6 +576,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/11/%E9%A3%8E%E8%A2%96-%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A1-%E9%A3%8E%E8%A2%96%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90%EF%BC%88%E8%84%91%E5%9B%BE%EF%BC%89/" rel="prev" title="风袖 第一阶段：1.风袖架构细节分析（脑图）">
+                风袖 第一阶段：1.风袖架构细节分析（脑图） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -695,7 +704,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">301</span>
+                  <span class="site-state-item-count">340</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
