@@ -97,14 +97,14 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/08/SpringBoot%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E3%80%81%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1、Spring Boot 项目打包打包方式：   构建 JAR 包 构建 WAR 包 指定 Main-Class  （1）右击工程名  “copy path” 获取工程路径，到 cmd.exe 命令行中进入该目录下，输入    1mvn -Dmaven.test.skip -U clean package  命令执行打包操作， 此时执行过程会发生报错，因为 在进行多模块拆分后，需要重新为工程指定">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu61.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu62.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu61.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu62.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-08T06:33:59.000Z">
-<meta property="article:modified_time" content="2020-06-08T03:38:07.101Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:49.344Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu61.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu61.png">
 
 
 
@@ -494,13 +494,13 @@
 <p>解决方法：</p>
 <p>将父工程的pom.xml 中的 <build></build>依赖驱动剪切到 web 子模块中 ，然后再到修改后的web子模块的 pom.xml 中的   <build></build> 中的<plugin></plugin>添加一个 <configuration/>,并为其配置一个<mainClass/>，将 springboot入口启动器的 Reference 路径复制并放入到 <mainClass>中，然后执行打包就可以了。</p>
 <p>注意： 不要把<build/>放在父工程的pom.xml 下进行打包，那样会有很多错误要进行修正，而且由于主启动器迁移到 了web 中，在父工程下 添加<build/>意义不大</p>
-<img src="http://photo.wushaopei.com/qiniu61.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu61.png" width="60%">
 
 <p><strong>（2）在 cmd 命令行中启动 jar 包 或者 war 包 的方式：</strong> </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java -jar web-<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT.jar</span><br><span class="line">或者</span><br><span class="line">java -jar web-<span class="number">0.0</span><span class="number">.1</span>-SNAPSHOT.war</span><br></pre></td></tr></table></figure>
 
 <p>注意： 要在 当前工程打成 war 包，需要在 web 的mian 目录下创建 “webapp” 和  “WEB-INF”两个目录，并在 “WEB-INF” 目录下创建 一个 web.xml 文件 </p>
-<img src="http://photo.wushaopei.com/qiniu62.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu62.png" width="60%">
 
 <h3 id="2、Spring-Boot-运行模式"><a href="#2、Spring-Boot-运行模式" class="headerlink" title="2、Spring Boot 运行模式"></a>2、Spring Boot 运行模式</h3><p><strong>Springboot</strong>项目的3种运行模式：</p>
 <p><strong>idea</strong>方式，<strong>jar</strong>/<strong>war</strong>方式，<strong>maven</strong>插件方式</p>
@@ -511,7 +511,7 @@
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn spring-boot:run</span><br></pre></td></tr></table></figure>
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%94%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%B8%B8%E7%94%A8API%E4%B8%8E%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%A1%86%E6%9E%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="线程池常用API提交任务的方法： execute () : 提交任务，交给线程池执行 submit () : 提交任务，能够返回执行结果 execute + Future  关闭线程池的方法： shutdown ( ) : 关闭线程池，等待任务都执行完 shutdownNow () ： 关闭线程池，不等待任务执行完  使用与监控的方法： getTaskCount ( ): 线程池已执行和未执行的任">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu462.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu463.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu462.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu463.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-22T13:40:27.000Z">
-<meta property="article:modified_time" content="2020-08-23T04:04:38.917Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.044Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="线程池常用API">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu462.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu462.png">
 
 
 
@@ -484,9 +484,9 @@
 <p>   getPoolSize ( ) : 线程池当前的线程数量</p>
 <p>   getActiveCount ( ) : 当前线程池中正在执行任务的线程数量</p>
 </blockquote>
-<h3 id="ThreadPoolExecutor常见方法-总览："><a href="#ThreadPoolExecutor常见方法-总览：" class="headerlink" title="ThreadPoolExecutor常见方法 总览："></a><strong>ThreadPoolExecutor常见方法 总览：</strong></h3><img src="http://photo.wushaopei.com/qiniu462.png" width="60%">
+<h3 id="ThreadPoolExecutor常见方法-总览："><a href="#ThreadPoolExecutor常见方法-总览：" class="headerlink" title="ThreadPoolExecutor常见方法 总览："></a><strong>ThreadPoolExecutor常见方法 总览：</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu462.png" width="60%">
 
-<h2 id="线程池的类图："><a href="#线程池的类图：" class="headerlink" title="线程池的类图："></a>线程池的类图：</h2><img src="http://photo.wushaopei.com/qiniu463.png" width="60%">
+<h2 id="线程池的类图："><a href="#线程池的类图：" class="headerlink" title="线程池的类图："></a>线程池的类图：</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu463.png" width="60%">
 
 <p>Executors是根据一组执行策略执行调度调用异步任务的框架，目的是将任务提交与任务运行分离开来处理。</p>
 <p>JUC里有<strong>三个Executor接口，</strong>分别是<code>Executor、ExecutorService、ScheduledExecutorService</code></p>
@@ -511,7 +511,7 @@ ScheduledExecutorService扩展了ExecutorService接口，支持Future和定期�
 <blockquote>
 <p>它是一个单线程化的线程池，它会用唯一的一个工作线程来执行任务，保证所有任务按照指定顺序去执行。该顺序可以按照指定先入先出、优先级等等来设定 </p>
 </blockquote>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

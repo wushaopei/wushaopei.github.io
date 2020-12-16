@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E7%82%B9%EF%BC%9A-%E5%8F%8D%E5%B0%84%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="MyBatis 重要结构：​    MyBatis 的运行分为两大部分，第一部分是读取配置文件缓存到 Configuration 对象用以创建 SqlSessionFactory，第二部分是 SqlSession 的执行过程。相对而言， SqlSessionFactory 的创建比较容易理解，而 SqlSession的执行过程就比较复杂了。 ​    无论是哪一部分，都或多或少的涉及到了 反射技术">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu561.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu562.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu561.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu562.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-30T05:23:16.000Z">
-<meta property="article:modified_time" content="2020-05-26T00:58:53.079Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:04.376Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="mybatis原理">
 <meta property="article:tag" content="反射">
 <meta property="article:tag" content="动态代理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu561.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu561.png">
 
 
 
@@ -493,7 +493,7 @@
 <p>​    反射调用的最大好处是配置性大大提高，就如同 SpringIOC容器一样，我们可以给很多配置设置参数，使得 Java 应用程序能够顺利运行起来，大大提高了 Java 灵活性和可配置性，降低模块之间的耦合。</p>
 <h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>​    在 MyBatis 中，映射器对应的接口 Mapper 接口，其本身不是一个包含具体业务逻辑的实体类。那么，在使用 Mapper 实现映射调用 映射器 .xml 文件关联 CRUD 时是不能由它自己去执行的。</p>
 <p>​    下面上一个截图：</p>
-<img src="http://photo.wushaopei.com/qiniu561.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu561.png" width="60%">
 
 <p>​    由上面的图中，可以看出， userMapper 在执行过程中存在 MapperProxy ；再结合前面 Mapper 接口不能自己实现具体功能的问题。可以假设， 该 Mapper 接口产生了代理类，而该代理类由 MyBatis 为我们创建出来，也就是说 该功能的实现是基于动态代理（在运行时创建代理类）模式的使用。</p>
 <h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p><strong>什么是代理模式？</strong></p>
@@ -505,7 +505,7 @@
 <blockquote>
 <p>通过代理，一方面可以控制如何访问真正的服务对象，提供额外服务。另一方面有机会通过重写一些类来满足特定的需要。比如客服代理工程师与客户进行业务交互，可以根据客服本身的职能将某些服务提供给客户，而这部分需求并不需要经过工程师的裁决或决定。</p>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu562.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu562.png" width="60%">
 
 <p>​    常见的动态代理有两种，一种是 JDK 反射机制提供的代理，另一种是 CGLIB 代理。<code>在 JDK 提供的代理，我们必须要提供接口；而 CGLIB 则不需要提供接口。</code></p>
 <h3 id="JDK-动态代理"><a href="#JDK-动态代理" class="headerlink" title="JDK 动态代理"></a>JDK 动态代理</h3><p>​    JDK 的动态代理，是由 JDK 的 java.lang.reflect.* 包提供支持的，我们需要完成这么几个步骤。</p>
@@ -554,7 +554,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">###   before invocation</span><br><span class="line">工程师正在吃饭</span><br><span class="line">###   end invocation</span><br></pre></td></tr></table></figure>
 
 <p>在 MyBatis 中通常在延迟加载的时候才会用到 CGLIB 的动态代理。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>·
       
     </div>
     

@@ -97,21 +97,21 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="bitmap（位图） 位图 相关命令 独立用户统计  1. 什么是位图？  ​    字符串big 对应的二进制 如上图，位图将字符串以对应二进制进行存储。   位图的最大意义在于能够直接去操作redis中的value进行转换后的二进制码，即01100….等。  2. API ： 位图偏移设置—— setbit  演示：  12345678910192.168.133.115:6379&gt; s">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1132.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1133.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1134.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1135.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1136.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1137.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1138.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1132.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1133.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1134.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1135.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1136.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1137.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1138.png">
 <meta property="article:published_time" content="2020-08-30T14:59:01.000Z">
-<meta property="article:modified_time" content="2020-08-31T12:29:56.143Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.757Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="bitmap位图">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1132.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1132.png">
 
 
 
@@ -492,34 +492,34 @@
 <li>相关命令</li>
 <li>独立用户统计</li>
 </ul>
-<h3 id="1-什么是位图？"><a href="#1-什么是位图？" class="headerlink" title="1. 什么是位图？"></a>1. 什么是位图？</h3><img src="http://photo.wushaopei.com/qiniu1132.png" width="60%">
+<h3 id="1-什么是位图？"><a href="#1-什么是位图？" class="headerlink" title="1. 什么是位图？"></a>1. 什么是位图？</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1132.png" width="60%">
 
 <p>​    <strong>字符串big 对应的二进制</strong></p>
 <p><strong>如上图，位图将字符串以对应二进制进行存储。</strong></p>
-<img src="http://photo.wushaopei.com/qiniu1133.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1133.png" width="60%">
 
 <p>位图的最大意义在于能够直接去操作redis中的value进行转换后的二进制码，即01100….等。 </p>
-<h3 id="2-API-：-位图偏移设置——-setbit"><a href="#2-API-：-位图偏移设置——-setbit" class="headerlink" title="2. API ： 位图偏移设置—— setbit"></a>2. API ： 位图偏移设置—— setbit</h3><img src="http://photo.wushaopei.com/qiniu1134.png" width="60%">
+<h3 id="2-API-：-位图偏移设置——-setbit"><a href="#2-API-：-位图偏移设置——-setbit" class="headerlink" title="2. API ： 位图偏移设置—— setbit"></a>2. API ： 位图偏移设置—— setbit</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1134.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; setbit unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">0</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; setbit unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; setbit unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">11</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; setbit unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">15</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; setbit unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">19</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>演示效果图：</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1135.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1135.png" width="60%">
 
 <p>​    以上设置一个以<strong>unique:users:2016-04-05为key</strong>的数据，这里由于没有对该 key 的 value 进行初始化设置，默认每一次的 setbit 操作会在对应的二进制中指定的索引位置插入1，而为声明部分默认为0；即索引为<strong>0、5、11、15、19</strong>的位置值为1，其他索引位置值为0. </p>
-<h3 id="3-API-位图偏移范围值获取——bitcount"><a href="#3-API-位图偏移范围值获取——bitcount" class="headerlink" title="3. API : 位图偏移范围值获取——bitcount"></a>3. API : 位图偏移范围值获取——bitcount</h3><img src="http://photo.wushaopei.com/qiniu1136.png" width="60%">
+<h3 id="3-API-位图偏移范围值获取——bitcount"><a href="#3-API-位图偏移范围值获取——bitcount" class="headerlink" title="3. API : 位图偏移范围值获取——bitcount"></a>3. API : 位图偏移范围值获取——bitcount</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1136.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; bitcount unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span></span><br><span class="line">(integer) <span class="number">5</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; bitcount unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> <span class="number">1</span> <span class="number">3</span></span><br><span class="line">(integer) <span class="number">3</span></span><br></pre></td></tr></table></figure>
 
 <p>上图中，key为unique:users:2016-04-05的位图长度为5，其中偏移量从1到3的值长度为3. </p>
-<h3 id="4-API-：-位图区间交互——bitop："><a href="#4-API-：-位图区间交互——bitop：" class="headerlink" title="4. API ： 位图区间交互——bitop："></a>4. API ： 位图区间交互——bitop：</h3><img src="http://photo.wushaopei.com/qiniu1137.png" width="60%">
+<h3 id="4-API-：-位图区间交互——bitop："><a href="#4-API-：-位图区间交互——bitop：" class="headerlink" title="4. API ： 位图区间交互——bitop："></a>4. API ： 位图区间交互——bitop：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1137.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; bitop and unique:users:and:<span class="number">2016</span>_04_04<span class="literal">-2016_04_05</span> unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-05</span> unique:users:<span class="number">2016</span><span class="literal">-04</span><span class="literal">-04</span></span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; bitcount unique:users:and:<span class="number">2016</span>_04_04<span class="literal">-2016_04_05</span></span><br><span class="line">(integer) <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-API-：-获取位图指定值的偏移坐标——bitpos"><a href="#5-API-：-获取位图指定值的偏移坐标——bitpos" class="headerlink" title="5. API ： 获取位图指定值的偏移坐标——bitpos"></a>5. API ： 获取位图指定值的偏移坐标——bitpos</h3><img src="http://photo.wushaopei.com/qiniu1138.png" width="60%">
+<h3 id="5-API-：-获取位图指定值的偏移坐标——bitpos"><a href="#5-API-：-获取位图指定值的偏移坐标——bitpos" class="headerlink" title="5. API ： 获取位图指定值的偏移坐标——bitpos"></a>5. API ： 获取位图指定值的偏移坐标——bitpos</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1138.png" width="60%">
 
 <p>注意，返回的位的位置始终是从0开始的，即使使用了start来指定了一个开始字节也是这样。</p>
 <p><strong>演示：</strong></p>
@@ -619,8 +619,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" rel="prev" title="Redis功能（十七）功能六：GEO（地理信息定位）">
-                Redis功能（十七）功能六：GEO（地理信息定位） <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%94%EF%BC%9Ahyperloglog%EF%BC%88%E7%BB%9F%E8%AE%A1%E5%9F%BA%E6%95%B0%EF%BC%89/" rel="prev" title="Redis功能（十七）功能五：hyperloglog（统计基数）">
+                Redis功能（十七）功能五：hyperloglog（统计基数） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

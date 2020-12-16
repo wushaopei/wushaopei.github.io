@@ -97,13 +97,13 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/13/Java%EF%BC%9AHashCode%E9%87%8D%E5%86%99%E4%B8%8Ehash%E6%89%A9%E5%AE%B9%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1、为什么要使用 hashcode​    HashCode 存在的第一重要的原因就是在 HashMap(HashSet  其实就是HashMap) 中使用（其实Object 类的 hashCode 方法注释已经说明了 ），要知道，HashMap  之所以速度快，因为他使用的是散列表，根据 key 的 hashcode  值生成数组下标（通过内存地址直接查找，没有任何判断），时间复杂度完美情况下可">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu985.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu985.png">
 <meta property="article:published_time" content="2020-03-13T06:57:23.000Z">
-<meta property="article:modified_time" content="2020-08-17T09:46:15.293Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:27.539Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="HashCode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu985.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu985.png">
 
 
 
@@ -512,7 +512,7 @@
 <p>31可以由31 * i ==  (i &lt;&lt; 5) -  i来表示，现在很多虚拟机里面都有做相关优化，使用31的原因可能是为了更好的分配hash地址，并且31只占用5bits！在java乘法中如果数字相乘过大会导致溢出的问题，从而导致数据的丢失，而31则是素数（质数）而且不是很长的数字，最终它被选择为相乘的系数的原因。</p>
 <p><strong>可以看到，使用 31 最主要的还是为了性能。</strong></p>
 <p>在《Effective Java》也说道：编写这种散列函数是个研究课题，最好留给数学家和理论方面的计算机科学家来完成。我们此次最重要的是知道了为什么使用31。</p>
-<p>​              <img src="http://photo.wushaopei.com/qiniu985.png" width="80%"></p>
+<p>​              <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu985.png" width="80%"></p>
 
       
     </div>

@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/08/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%B1%BB%E4%B8%8E%E5%86%99%E6%B3%95/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="线程不安全类线程不安全的类：如果一个类的对象同时可以被多个线程访问，如果你不做特殊的同步处理。那么，它就容易表现出线程不安全的现象。  如：抛出异常、逻辑处理错误等等。  这种类就成为线程不安全的类。 字符串拼接1StringBuilder - &gt; StringBuffer  StringBuilder 线程安全代码演示：12345678910111213141516171819202122">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu278.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu279.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu280.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu278.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu279.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu280.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-08T09:27:32.000Z">
-<meta property="article:modified_time" content="2020-04-08T11:38:55.597Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:08.730Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="线程不安全类">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu278.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu278.png">
 
 
 
@@ -493,10 +493,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">12</span>:<span class="number">51</span>:<span class="number">06.859</span> [main] INFO com.mmall.concurrency.example.commonUnsafe.StringExample2 - size:<span class="number">5000</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p>由打印结果可知，size的值<strong>等于5000</strong>，意味着<strong>StringBuffer</strong>是<strong>线程安全</strong>的类。 </p>
-<h3 id="StringBuffer和StringBuilder线程分析："><a href="#StringBuffer和StringBuilder线程分析：" class="headerlink" title="StringBuffer和StringBuilder线程分析："></a>StringBuffer和StringBuilder线程分析：</h3><img src="http://photo.wushaopei.com/qiniu278.png" width="60%">
+<h3 id="StringBuffer和StringBuilder线程分析："><a href="#StringBuffer和StringBuilder线程分析：" class="headerlink" title="StringBuffer和StringBuilder线程分析："></a>StringBuffer和StringBuilder线程分析：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu278.png" width="60%">
 
 <p>由截图可知，<strong>StringBuffer</strong>的底层实现方法都添加<strong>synchronized</strong>同步锁，是<strong>线程安全的</strong>。</p>
-<img src="http://photo.wushaopei.com/qiniu279.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu279.png" width="60%">
 
 <p>而<strong>StringBuilder</strong>底层的方法没有添加<strong>synchronized</strong>同步锁，<strong>存在线程安全</strong>的问题。 </p>
 <h3 id="为什么java要同时提供StringBuilder和StringBuffer两个类？"><a href="#为什么java要同时提供StringBuilder和StringBuffer两个类？" class="headerlink" title="为什么java要同时提供StringBuilder和StringBuffer两个类？"></a>为什么java要同时提供<strong>StringBuilder</strong>和<strong>StringBuffer</strong>两个类？</h3><p>之所以java同时提供StringBuilder和StringBuffer两个线程安全和不安全的类，是因为在StringBuffer中，使用synchronized锁机制会导致同时只有一个线程可以操作该对象，对性能和效率有损耗。StringBuffer只有在多线程并发且声明为成员变量时使用就可以保证线程的安全；而在业务层逻辑方法中声明StringBuilder局部变量时，由于存在堆栈封闭的关系，同一时间内只会有一个线程调用该类变量，所以不存在线程安全的问题。</p>
@@ -523,7 +523,7 @@
 <p><strong>代码段：</strong>  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明DateTimeFormatter实例</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(<span class="string">"yyyyMMdd"</span>);</span><br><span class="line"><span class="comment">//获取当前线程次序</span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> count = i;</span><br><span class="line"><span class="comment">//传递线程次序</span></span><br><span class="line">update(count);</span><br><span class="line"> </span><br><span class="line"><span class="comment">//update方法中日志输出线程执行结果</span></span><br><span class="line">log.info(<span class="string">"&#123;&#125;, &#123;&#125;"</span>,i,DateTime.parse(<span class="string">"20191101"</span>,dateTimeFormatter).toDate());</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu280.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu280.png" width="60%">
 
 <p><strong>由执行结果可知，</strong>虽然DateTimeFormatter 实例结果是乱序输出的，但是执行线程总数是完全符合要求的，所以DateTimeFormatter的线程是安全的。 </p>
 <h2 id="集合类"><a href="#集合类" class="headerlink" title="集合类"></a>集合类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList , HashSet , HashMap 等 Collections</span><br></pre></td></tr></table></figure>
@@ -557,7 +557,7 @@
 <h3 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h3><blockquote>
 <p>先检查再执行： if(condition(a)) { handle(a) ; } </p>
 </blockquote>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%80%EF%BC%9A%E6%85%A2%E6%9F%A5%E8%AF%A2/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="目录：  ​          慢查询 ​          Pipeline ​          发布订阅 ​          Bitmap（位图） ​          HyperLogLog ​          GEO  一、慢查询1.慢查询  生命周期 三个命令 两个配置 运维经验   定义： 我们配置一个时间,如果查询时间超过了我们设置的时间,我们就认为这是一个慢查询. 2.生命周">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1117.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1118.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1117.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1118.png">
 <meta property="article:published_time" content="2020-08-30T14:51:01.000Z">
-<meta property="article:modified_time" content="2020-08-30T15:04:41.797Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:52.098Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="慢查询">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1117.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1117.png">
 
 
 
@@ -500,7 +500,7 @@
 </ul>
 </blockquote>
 <p><strong>定义</strong>： <code>我们配置一个时间,如果查询时间超过了我们设置的时间,我们就认为这是一个慢查询.</code></p>
-<h3 id="2-生命周期图解："><a href="#2-生命周期图解：" class="headerlink" title="2.生命周期图解："></a>2.生命周期图解：</h3><img src="http://photo.wushaopei.com/qiniu1117.png" width="60%">
+<h3 id="2-生命周期图解："><a href="#2-生命周期图解：" class="headerlink" title="2.生命周期图解："></a>2.生命周期图解：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1117.png" width="60%">
 
 <p><strong>两点说明：</strong> </p>
 <ol>
@@ -513,7 +513,7 @@
 <li>队列是固定长度的</li>
 <li>Redis是保存在内存内</li>
 </ol>
-<img src="http://photo.wushaopei.com/qiniu1118.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1118.png" width="60%">
 
 <p><strong>slowlog list</strong> 是慢查询的集合；</p>
 <p><strong>slowlog-max-len</strong> 是慢查询的长度或者数量，如图，慢查询从<strong>slowlog100</strong>到<strong>slowlog1</strong>以队列形式排列入列；</p>

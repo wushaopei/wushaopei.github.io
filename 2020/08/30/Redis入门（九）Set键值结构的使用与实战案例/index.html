@@ -97,20 +97,20 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E4%B9%9D%EF%BC%89Set%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="setset:  集合结构 特点 集合内API和实战 集合间API和实战  1.特点  无序 无重复 支持集合间操作   2.增——sadd srem  工具—— scard 、sismember、srandmember、smembers、    注意： smembers 是无序且单线程的。 srandmember 和 spop：   spop 从集合弹出元素 srandmember不会破坏集合">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1085.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1086.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1087.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1088.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1089.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1090.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1085.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1086.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1087.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1088.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1089.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1090.png">
 <meta property="article:published_time" content="2020-08-30T12:50:01.000Z">
-<meta property="article:modified_time" content="2020-08-30T13:51:34.672Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.322Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis的常用API">
 <meta property="article:tag" content="Set">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1085.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1085.png">
 
 
 
@@ -500,10 +500,10 @@
 <li>支持集合间操作</li>
 </ul>
 </blockquote>
-<h3 id="2-增——sadd-srem"><a href="#2-增——sadd-srem" class="headerlink" title="2.增——sadd srem"></a>2.增——sadd srem</h3><img src="http://photo.wushaopei.com/qiniu1085.png" width="40%">
+<h3 id="2-增——sadd-srem"><a href="#2-增——sadd-srem" class="headerlink" title="2.增——sadd srem"></a>2.增——sadd srem</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1085.png" width="40%">
 
 <p>工具—— scard 、sismember、srandmember、smembers、 </p>
-<img src="http://photo.wushaopei.com/qiniu1086.png" width="40%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1086.png" width="40%">
 
 <p><strong>注意：</strong> smembers 是无序且单线程的。</p>
 <p><strong>srandmember 和 spop：</strong></p>
@@ -517,15 +517,15 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; sadd user:<span class="number">1</span>:follow it news his sports</span><br><span class="line">(integer) <span class="number">4</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; smembers user:<span class="number">1</span>:follow</span><br><span class="line"><span class="number">1</span>) <span class="string">"sports"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"news"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"his"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"it"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; spop user:<span class="number">1</span>:follow</span><br><span class="line"><span class="string">"it"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; smembers user:<span class="number">1</span>:follow</span><br><span class="line"><span class="number">1</span>) <span class="string">"sports"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"news"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"his"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; scard user:<span class="number">1</span>:follow</span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; sismember user:<span class="number">1</span>:follow entertainment</span><br><span class="line">(integer) <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="3-实战"><a href="#3-实战" class="headerlink" title="3.实战"></a>3.实战</h3><p>1）实战——抽奖系统</p>
-<img src="http://photo.wushaopei.com/qiniu1087.png" width="40%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1087.png" width="40%">
 
 <p>以微博的抽奖为例，只要用户的量不是太大，可以把用户信息放入到集合中去，可以使用<code>can be spop</code>进行弹出操作，在取出之后进行删除。 </p>
 <p>2）实战——标签（tag）</p>
-<img src="http://photo.wushaopei.com/qiniu1088.png" width="40%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1088.png" width="40%">
 
-<img src="http://photo.wushaopei.com/qiniu1089.png" width="40%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1089.png" width="40%">
 
-<h3 id="4-sdiff（差集）、sinter（交集）、sunion（并集）"><a href="#4-sdiff（差集）、sinter（交集）、sunion（并集）" class="headerlink" title="4.sdiff（差集）、sinter（交集）、sunion（并集）"></a>4.sdiff（差集）、sinter（交集）、sunion（并集）</h3><img src="http://photo.wushaopei.com/qiniu1090.png" width="40%">
+<h3 id="4-sdiff（差集）、sinter（交集）、sunion（并集）"><a href="#4-sdiff（差集）、sinter（交集）、sunion（并集）" class="headerlink" title="4.sdiff（差集）、sinter（交集）、sunion（并集）"></a>4.sdiff（差集）、sinter（交集）、sunion（并集）</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1090.png" width="40%">
 
 <h3 id="5-集合的使用场景"><a href="#5-集合的使用场景" class="headerlink" title="5.集合的使用场景"></a>5.集合的使用场景</h3><blockquote>
 <p><strong>1） SADD = Tagging</strong>                                                 做标签</p>

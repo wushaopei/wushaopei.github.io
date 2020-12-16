@@ -97,22 +97,22 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/08/%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%BC%80%E5%8F%91%EF%BC%88%E4%BA%94%EF%BC%89Specification-04-Data%20Communication/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="04. Data CommunicationPLC存储器的数据区域分为两个区域，即 Local Area  和 Master Area 。Local Area 用于从 Local  PLC  向 Master PLC 发送数据，而 Master Area 用于从  Master PLC 向 Local PLC 传输数据。每个区域的项目根据报告或命令的特征分为几个类型，每个项目类型如下所示。  Lo">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu277.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu292.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu293.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu294.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu295.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu296.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu297.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu298.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu299.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu621.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu277.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu292.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu293.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu294.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu295.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu296.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu297.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu298.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu299.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu621.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-08T07:49:27.000Z">
-<meta property="article:modified_time" content="2020-06-18T16:51:53.278Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.716Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu277.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu277.png">
 
 
 
@@ -500,7 +500,7 @@
 <li>当主PLC的响应是OK时，本地PLC关闭其Bit Area。 </li>
 <li>当本地PLC的Bit Area断开时，主PLC断开与本地PLC的Bit Area相对应的Bit Area </li>
 </ul>
-<h2 id="04-02-EQP-Event-Report-Timing-Chart"><a href="#04-02-EQP-Event-Report-Timing-Chart" class="headerlink" title="04.02. EQP Event Report Timing Chart"></a>04.02. EQP Event Report Timing Chart</h2><h3 id="04-02-01-Event-Report-Timing-Chart-Local-to-Master"><a href="#04-02-01-Event-Report-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.01. Event Report Timing Chart (Local to Master)"></a>04.02.01. Event Report Timing Chart (Local to Master)</h3><img src="http://photo.wushaopei.com/qiniu277.png" width="80%">
+<h2 id="04-02-EQP-Event-Report-Timing-Chart"><a href="#04-02-EQP-Event-Report-Timing-Chart" class="headerlink" title="04.02. EQP Event Report Timing Chart"></a>04.02. EQP Event Report Timing Chart</h2><h3 id="04-02-01-Event-Report-Timing-Chart-Local-to-Master"><a href="#04-02-01-Event-Report-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.01. Event Report Timing Chart (Local to Master)"></a>04.02.01. Event Report Timing Chart (Local to Master)</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu277.png" width="80%">
 
 <p>如图，是机台报到BC 的流程。</p>
 <p>第一步，Local 会先写Word Area ，然后Bit on  起来。</p>
@@ -512,7 +512,7 @@
 <p>如果CIM MODE是关掉的，就不会有Local On BIT 和  Master 检测 Bit 变化的那一步，机台的Report 会一直off ，但是数据还是要写入到 Word Area 的。</p>
 <p>为什么要这么做？</p>
 <p>在机台、机况等比较重要的状态，包括 port 信息等，如果该流程是在CIM MODE  off 的状态下执行的，它实时的更新到Word Area ，在它开启之后，或者BC 重启之后，会重新捞一遍数据。我们会给他更新到最新的状况，而不是说现场发生了什么我们还不知道。</p>
-<h3 id="04-02-02-Request-Timing-Chart-Local-to-Master"><a href="#04-02-02-Request-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.02. Request Timing Chart (Local to Master)"></a>04.02.02. Request Timing Chart (Local to Master)</h3><img src="http://photo.wushaopei.com/qiniu292.png" width="80%">
+<h3 id="04-02-02-Request-Timing-Chart-Local-to-Master"><a href="#04-02-02-Request-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.02. Request Timing Chart (Local to Master)"></a>04.02.02. Request Timing Chart (Local to Master)</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu292.png" width="80%">
 
 <p>① 将数据输入Word Area (W区)后，本地PLC打开Bit Area(B区)。 </p>
 <p>② Local PLC加载计时器检查超时。(T1:4秒)-本地PLC在此期间不报告任何使用此Bit Area的其他事件。 </p>
@@ -528,7 +528,7 @@
 <p>② BC 收到机台 on 起来的消息，会先去读 机台的 W区；并进行逻辑运算、数据处理，将处理结果写入BC的 W区（Return Code）,然后Bit 也 on 起来</p>
 <p>③ 机台收到BC on 起来的消息，就去读BC的 W Area ，读取完成后就将Bit  off</p>
 <p>④ BC 收到 机台 Bit Are off ,也进行 off。</p>
-<h3 id="04-02-03-Consecutive-Event-Report-Timing-Chart-Local-to-Master"><a href="#04-02-03-Consecutive-Event-Report-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.03. Consecutive Event Report Timing Chart (Local to Master)"></a>04.02.03. Consecutive Event Report Timing Chart (Local to Master)</h3><img src="http://photo.wushaopei.com/qiniu293.png" width="80%">
+<h3 id="04-02-03-Consecutive-Event-Report-Timing-Chart-Local-to-Master"><a href="#04-02-03-Consecutive-Event-Report-Timing-Chart-Local-to-Master" class="headerlink" title="04.02.03. Consecutive Event Report Timing Chart (Local to Master)"></a>04.02.03. Consecutive Event Report Timing Chart (Local to Master)</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu293.png" width="80%">
 
 <p>​    当本地PLC有多个连续数据要使用一个事件位(如Alarm或Job)报告给主PLC时，上述时序图指定了数据报告事件的过程。</p>
 <p>① 如果本地PLC有数据(命名数据A)要报告给主PLC，则在缓冲区中设置数据A </p>
@@ -539,7 +539,7 @@
 <li>EQ厂商提供T3定时器值设定功能。(默认值= 0.5秒) </li>
 </ul>
 <h2 id="04-03-BC-Command-Reply-Timing-Chart"><a href="#04-03-BC-Command-Reply-Timing-Chart" class="headerlink" title="04.03. BC Command Reply Timing Chart"></a>04.03. BC Command Reply Timing Chart</h2><h3 id="04-03-01-BC-Command-Timing-Chart-Master-to-Local"><a href="#04-03-01-BC-Command-Timing-Chart-Master-to-Local" class="headerlink" title="04.03.01. BC Command Timing Chart (Master to Local)"></a>04.03.01. BC Command Timing Chart (Master to Local)</h3><p>BC Notice Area is related to Equipment Command Reply Area （BC通知区与设备命令应答区相关）</p>
- <img src="http://photo.wushaopei.com/qiniu294.png" width="80%">
+ <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu294.png" width="80%">
 
 <p>①将数据设置到主PLC的Word Area 区域后，主PLC再打开Bit Area(命令) </p>
 <p>②主PLC加载定时器检查超时。(T1: 4秒) </p>
@@ -549,17 +549,17 @@
 <ul>
 <li>EQ厂商提供T2定时器数值设定功能。(默认值= 2秒) </li>
 </ul>
-<h2 id="04-04-Time-Out-Error"><a href="#04-04-Time-Out-Error" class="headerlink" title="04.04. Time Out Error"></a>04.04. Time Out Error</h2><h3 id="04-04-01-T1-Time-Out-Master-↔-Local"><a href="#04-04-01-T1-Time-Out-Master-↔-Local" class="headerlink" title="04.04.01. T1 Time Out (Master ↔ Local)"></a>04.04.01. T1 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu295.png" width="80%">
+<h2 id="04-04-Time-Out-Error"><a href="#04-04-Time-Out-Error" class="headerlink" title="04.04. Time Out Error"></a>04.04. Time Out Error</h2><h3 id="04-04-01-T1-Time-Out-Master-↔-Local"><a href="#04-04-01-T1-Time-Out-Master-↔-Local" class="headerlink" title="04.04.01. T1 Time Out (Master ↔ Local)"></a>04.04.01. T1 Time Out (Master ↔ Local)</h3> <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu295.png" width="80%">
 
 <p>① 将数据输入Word Area 后，本地或主PLC打开Bit Area(事件或命令位) </p>
 <p>② 本地或主PLC加载定时器检查超时。(T1:4秒)如果伙伴的响应不存在，则本地或主PLC超时。 </p>
 <p>③ 在定时器复位后，关闭连接继电器(事件或命令位)。 </p>
-<h3 id="04-04-02-T2-Time-Out-Master-↔-Local"><a href="#04-04-02-T2-Time-Out-Master-↔-Local" class="headerlink" title="04.04.02. T2 Time Out (Master ↔ Local)"></a>04.04.02. T2 Time Out (Master ↔ Local)</h3> <img src="http://photo.wushaopei.com/qiniu296.png" width="80%">
+<h3 id="04-04-02-T2-Time-Out-Master-↔-Local"><a href="#04-04-02-T2-Time-Out-Master-↔-Local" class="headerlink" title="04.04.02. T2 Time Out (Master ↔ Local)"></a>04.04.02. T2 Time Out (Master ↔ Local)</h3> <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu296.png" width="80%">
 
 <p>① 将数据读入链路字后（W区），打开链路中继(命令或事件应答Bit区)</p>
 <p>② 加载计时器来检查超时 。(T2:2分钟)。如果伙伴的响应不存在，则本地或主PLC进行超时。 </p>
 <p>③ 在定时器复位后，关闭连接继电器(事件或命令应答位) </p>
-<h3 id="04-04-03-T3-Delay-Time-Master-↔-Local"><a href="#04-04-03-T3-Delay-Time-Master-↔-Local" class="headerlink" title="04.04.03. T3 Delay Time (Master ↔ Local)"></a>04.04.03. T3 Delay Time (Master ↔ Local)</h3>  <img src="http://photo.wushaopei.com/qiniu297.png" width="80%">
+<h3 id="04-04-03-T3-Delay-Time-Master-↔-Local"><a href="#04-04-03-T3-Delay-Time-Master-↔-Local" class="headerlink" title="04.04.03. T3 Delay Time (Master ↔ Local)"></a>04.04.03. T3 Delay Time (Master ↔ Local)</h3>  <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu297.png" width="80%">
 
 <p>① 主PLC关闭Bit Area(事件应答)后，本地PLC等待0.5秒(T3:0.5秒)，然后本地PLC将数据B移动到链路字区，并报告给主PLC </p>
 <ul>
@@ -567,7 +567,7 @@
 </ul>
 <h3 id="04-04-04-Tn-Time"><a href="#04-04-04-Tn-Time" class="headerlink" title="04.04.04. Tn Time"></a>04.04.04. Tn Time</h3><ul>
 <li><p>Event Report Timing Chart (Local to Master) us Bar</p>
-<img src="http://photo.wushaopei.com/qiniu298.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu298.png" width="80%">
 
 </li>
 </ul>
@@ -580,7 +580,7 @@
 <li>词序:低词序→高词序 </li>
 <li>字符和数字数据格式:标准字符格式 </li>
 </ul>
-<img src="http://photo.wushaopei.com/qiniu299.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu299.png" width="80%">
 
 <p><strong>Example：</strong>   </p>
 <ul>
@@ -589,7 +589,7 @@
 <li>Character data：(Ex.) ‘123’ → H3231 2033 </li>
 <li>Character data：(Ex.) ‘2AA00101 ‘ → H4132 3041 3130 3130 2020 2020 </li>
 </ul>
-<h3 id="04-05-02-Numeric-Type"><a href="#04-05-02-Numeric-Type" class="headerlink" title="04.05.02. Numeric Type"></a>04.05.02. Numeric Type</h3><img src="http://photo.wushaopei.com/qiniu621.png" width="80%">
+<h3 id="04-05-02-Numeric-Type"><a href="#04-05-02-Numeric-Type" class="headerlink" title="04.05.02. Numeric Type"></a>04.05.02. Numeric Type</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu621.png" width="80%">
 
 <ul>
 <li>In case of signed format, negative value should be described with two’s complement. </li>
@@ -599,7 +599,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

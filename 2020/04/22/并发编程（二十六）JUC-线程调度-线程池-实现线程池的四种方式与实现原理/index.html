@@ -97,19 +97,19 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%85%AD%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E5%AE%9E%E7%8E%B0%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E5%BC%8F%E4%B8%8E%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="分析四种线程池的创建的底层实现：  由上图中可知，四种线程其实都是有Executors来调用相应构造器实现创建的    由上图可知，newCachedThreadPool()创建可缓存的线程池底层实际还是调用ThreadPoolExecutor类的构造器返回的实例对象实现的。    newFixedThreadPool（）创建定长线程池的底层也是由ThreadPoolExecutor类的构造器返回">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu464.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu465.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu466.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu467.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu468.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu469.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu464.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu465.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu466.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu467.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu468.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu469.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-22T13:41:15.000Z">
-<meta property="article:modified_time" content="2020-04-22T14:06:42.363Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.279Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="实现多线程的四种方式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu464.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu464.png">
 
 
 
@@ -474,20 +474,20 @@
       
 
       
-        <h3 id="分析四种线程池的创建的底层实现："><a href="#分析四种线程池的创建的底层实现：" class="headerlink" title="分析四种线程池的创建的底层实现："></a>分析四种线程池的创建的底层实现：</h3><img src="http://photo.wushaopei.com/qiniu464.png" width="60%">
+        <h3 id="分析四种线程池的创建的底层实现："><a href="#分析四种线程池的创建的底层实现：" class="headerlink" title="分析四种线程池的创建的底层实现："></a>分析四种线程池的创建的底层实现：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu464.png" width="60%">
 
 <p>由上图中可知，四种线程其实都是有Executors来调用相应构造器实现创建的 </p>
-<img src="http://photo.wushaopei.com/qiniu465.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu465.png" width="60%">
 
 <p>由上图可知，<strong>newCachedThreadPool()</strong>创建可缓存的线程池底层实际还是调用<strong>ThreadPoolExecutor</strong>类的构造器返回的实例对象实现的。 </p>
-<img src="http://photo.wushaopei.com/qiniu466.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu466.png" width="60%">
 
 <p><strong>newFixedThreadPool（）</strong>创建定长线程池的底层也是由<strong>ThreadPoolExecutor</strong>类的构造器返回的实例对象实现的。 </p>
-<img src="http://photo.wushaopei.com/qiniu467.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu467.png" width="60%">
 
-<img src="http://photo.wushaopei.com/qiniu468.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu468.png" width="60%">
 
-<p>由上述两个图可知，newScheduledThreadPool（）创建定长且可定时的线程池的底层是由ScheduledThreadPoolExecutor类的构造器创建实例实现的；而ScheduledThreadPoolExecutor又继承了ThreadPoolExecutor类<br><img src="http://photo.wushaopei.com/qiniu469.png" width="60%"></p>
+<p>由上述两个图可知，newScheduledThreadPool（）创建定长且可定时的线程池的底层是由ScheduledThreadPoolExecutor类的构造器创建实例实现的；而ScheduledThreadPoolExecutor又继承了ThreadPoolExecutor类<br><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu469.png" width="60%"></p>
 <p><strong>newSingleThreadExecutor</strong>（）创建单线程线程池的底层也是由ThreadPoolExecutor类的构造器返回的实例对象实现的。 </p>
 <h3 id="代码实例演示线程池的实现："><a href="#代码实例演示线程池的实现：" class="headerlink" title="代码实例演示线程池的实现："></a>代码实例演示线程池的实现：</h3><h4 id="newCachedThreadPool-实现可缓存线程池："><a href="#newCachedThreadPool-实现可缓存线程池：" class="headerlink" title="newCachedThreadPool()实现可缓存线程池："></a>newCachedThreadPool()实现可缓存线程池：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolExample1</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">        ExecutorService e = Executors.newCachedThreadPool();</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10</span> ; i++)&#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> index = i;</span><br><span class="line">            e.execute(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    log.info(<span class="string">"task:&#123;&#125;"</span> ,index);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        e.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -528,7 +528,7 @@
 <li>IO密集型任务，参考值可以设置为2*NCPU</li>
 </ul>
 </blockquote>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

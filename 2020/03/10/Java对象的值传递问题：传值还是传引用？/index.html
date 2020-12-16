@@ -97,20 +97,20 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/10/Java%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%80%BC%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%EF%BC%9A%E4%BC%A0%E5%80%BC%E8%BF%98%E6%98%AF%E4%BC%A0%E5%BC%95%E7%94%A8%EF%BC%9F/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="前言：​    在使用Java语言进行开发过程中，涉及到局部变量与方法内部作用域的数据交换与解析的过程，而这一过程，一般都是通过方法形参的方式进行java对象的传递。   这里引出一个问题，当对象作为参数传递时，究竟传的是对象的值，还是对象的引用呢？–_–  这是一个保守争议的话题。 ​    假设，传的是值，那么函数接收的只是一个副本，由于作用域的存在，函数对象形参的操作，并不会对实参产生影响；">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu83.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu84.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu85.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu86.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu87.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu83.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu84.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu85.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu86.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu87.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-10T06:29:05.000Z">
-<meta property="article:modified_time" content="2020-03-31T15:07:30.205Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.431Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="值传递">
 <meta property="article:tag" content="引用">
 <meta property="article:tag" content="值">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu83.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu83.png">
 
 
 
@@ -485,7 +485,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object obj = <span class="keyword">new</span> Object();</span><br></pre></td></tr></table></figure>
 
 <p>这句代码的意思是：创建一个Object对象，并在堆内存开辟一个空间（new），同时创建一个名为obj 的引用，让这个引用指向这个对象，如下图所示：</p>
-<img src="http://photo.wushaopei.com/qiniu83.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu83.png" width="60%">
 
 <p>在上面我们创建了一个对象以及其引用，下面我们通过例子来从代码层面进行分析。</p>
 <h3 id="基本数据类型作为参数传递："><a href="#基本数据类型作为参数传递：" class="headerlink" title="基本数据类型作为参数传递："></a>基本数据类型作为参数传递：</h3><p>例1:</p>
@@ -509,21 +509,21 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">before change, sb is Hello </span><br><span class="line">after change, sb is Hello</span><br></pre></td></tr></table></figure>
 
 <p>​    原对象的值并没有被改变，这与上面的推论相矛盾！为什么在Java中，当对象作为参数传递时，有的时候实参被改变了，而有的时候实参并未被改变呢？下面让我们来分析一下其中的原因：  　　从文章的开头我们知道，当执行<strong>StringBuffer sb = new StringBuffer(“Hello “)</strong>时，我们创建了一个指向新建对象“<strong>new StringBuffer(“Hello “)”</strong>的引用“<strong>sb</strong>”，如下图所示：  </p>
-<img src="http://photo.wushaopei.com/qiniu84.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu84.png" width="60%">
 
 <p>在例2中，当我们调用change函数后，实际上，形参stringBuffer也指向了实参sb所指向的对象，即： </p>
-<img src="http://photo.wushaopei.com/qiniu85.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu85.png" width="60%">
 
 <p>那么当我们执行<strong>stringBuffer.append(“world !”)</strong>后，便通过对象的引用“stringBuffer”修改了对象的值，使之变成了<strong>“Hello world ！”</strong>，即：  </p>
-<img src="http://photo.wushaopei.com/qiniu86.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu86.png" width="60%">
 
 <p>但是，在例3中的change函数中，我们又新建了一个对象<strong>“new StringBuffer(“Hi  “)”</strong>（这实际上在内存中开辟了一块在原对象地址之外的新区域），这让形参stringBuffer实际指向了这个新建的对象，并将新对象的值设置为<strong>“Hi world ！”</strong>，例三中stringBuffer的值已经被改变为了Hi  world，但是因为值没有被<strong>return</strong>返回赋值给sb对象，所以sb对象并没有被改变，所以输出的任然是hello，即： </p>
-<img src="http://photo.wushaopei.com/qiniu87.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu87.png" width="60%">
 
 <p>那么我们就不难理解，为何在执行完change函数之后，实参的值仍为“Hello”了。 </p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>　　<strong>综上所述，我们可以得出结论：在Java中，当对象作为参数传递时，实际上传递的是一份“引用的拷贝”。 （实际传递的是对象的引用）</strong></p>
 <p><strong>转载自：<a href="https://blog.csdn.net/xiangwanpeng/article/details/52454479" target="_blank" rel="noopener">https://blog.csdn.net/xiangwanpeng/article/details/52454479</a></strong></p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

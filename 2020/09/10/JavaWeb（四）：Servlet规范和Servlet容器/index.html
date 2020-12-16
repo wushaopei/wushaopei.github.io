@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9AServlet%E8%A7%84%E8%8C%83%E5%92%8CServlet%E5%AE%B9%E5%99%A8/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="​    浏览器发给服务端的是一个 HTTP 格式的请求，HTTP 服务器收到这个请求后，需要调用服务端程序来处理，所谓的服务端程序就是你写的 Java 类，一般来说不同的请求需要由不同的 Java 类来处理。 ​    那么问题来了，HTTP 服务器怎么知道要调用哪个 Java 类的哪个方法呢。最直接的做法是在 HTTP 服务器代码里写一大堆 if else 逻辑判断：如果是 A 请求就调 X">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1204.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1205.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1204.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1205.png">
 <meta property="article:published_time" content="2020-09-10T05:58:49.000Z">
-<meta property="article:modified_time" content="2020-09-10T06:13:45.517Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.783Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="Servlet规范">
 <meta property="article:tag" content="Servlet容器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1204.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1204.png">
 
 
 
@@ -476,7 +476,7 @@
 <p>​    那该怎么解决这个问题呢？我们知道，面向接口编程是解决耦合问题的法宝，于是有一伙人就定义了一个接口，各种业务类都必须实现这个接口，这个接口就叫 Servlet 接口，有时我们也把实现了 Servlet 接口的业务类叫作 Servlet。</p>
 <p>​    但是这里还有一个问题，对于特定的请求，HTTP 服务器如何知道由哪个 Servlet 来处理呢？Servlet 又是由谁来实例化呢？显然 HTTP 服务器不适合做这个工作，否则又和业务类耦合了。 </p>
 <p>​    于是，还是那伙人又发明了 Servlet 容器，Servlet 容器用来加载和管理业务类。HTTP 服务器不直接跟业务类打交道，而是把请求交给 Servlet 容器去处理，Servlet 容器会将请求转发到具体的 Servlet，如果这个 Servlet 还没创建，就加载并实例化这个 Servlet，然后调用这个 Servlet 的接口方法。因此 Servlet 接口其实是<strong>Servlet 容器跟具体业务类之间的接口</strong>。下面我们通过一张图来加深理解。</p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1204.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1204.png" width="60%"></p>
 <p>​    图的左边表示 HTTP 服务器直接调用具体业务类，它们是紧耦合的。再看图的右边，HTTP 服务器不直接调用业务类，而是把请求交给容器来处理，容器通过 Servlet 接口调用业务类。因此 <strong>Servlet 接口和 Servlet 容器的出现，达到了 HTTP 服务器与业务类解耦的目的。</strong> </p>
 <p>​    而 <strong>Servlet 接口和 Servlet 容器这一整套规范叫作 Servlet 规范</strong>。<strong>Tomcat 和 Jetty 都按照Servlet 规范的要求实现了 Servlet 容器，同时它们也具有 HTTP 服务器的功能</strong>。作为 Java 程序员，如果我们要实现新的业务功能，只需要实现一个 Servlet，并把它注册到 Tomcat（Servlet 容器）中，剩下的事情就由 Tomcat 帮我们处理了。 </p>
 <p>​    接下来我们来看看 <strong>Servlet 接口具体是怎么定义的，以及 Servlet 规范又有哪些要重点关注的地方呢？</strong></p>
@@ -491,7 +491,7 @@
 <h3 id="Servlet-容器"><a href="#Servlet-容器" class="headerlink" title="Servlet 容器"></a>Servlet 容器</h3><p>我在前面提到，为了解耦，HTTP 服务器不直接调用 Servlet，而是把请求交给 Servlet 容器来处理，那 Servlet 容器又是怎么工作的呢？接下来我会介绍 Servlet 容器大体的工作流程，一起来聊聊我们非常关心的两个话题：Web 应用的目录格式是什么样的，以及我该怎样扩展和定制化 Servlet 容器的功能。</p>
 <p><strong>工作流程</strong>  </p>
 <p>当客户请求某个资源时，HTTP 服务器会用一个 ServletRequest 对象把客户的请求信息封装起来，然后调用 Servlet 容器的 service 方法，Servlet 容器拿到请求后，根据请求的URL 和 Servlet 的映射关系，找到相应的 Servlet，如果 Servlet 还没有被加载，就用反射机制创建这个 Servlet，并调用 Servlet 的 init 方法来完成初始化，接着调用 Servlet 的 service 方法来处理请求，把 ServletResponse 对象返回给 HTTP 服务器，HTTP 服务器会把响应发送给客户端。同样我通过一张图来帮助你理解。 </p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1205.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1205.png" width="60%"></p>
 <h3 id="Web-应用"><a href="#Web-应用" class="headerlink" title="Web 应用"></a>Web 应用</h3><p>Servlet 容器会实例化和调用 Servlet，那 Servlet 是怎么注册到 Servlet 容器中的呢？一般来说，我们是以 Web 应用程序的方式来部署 Servlet 的，而根据 Servlet 规范，Web 应用程序有一定的目录结构，在这个目录下分别放置了 Servlet 的类文件、配置文件以及静态资源，Servlet 容器通过读取配置文件，就能找到并加载 Servlet。Web 应用的目录结构大概是下面这样的：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| - MyWebApp</span><br><span class="line"> | - WEB-INF/web.xml -- 配置文件，用来配置 Servlet 等 </span><br><span class="line"> | - WEB-INF/lib/ -- 存放 Web 应用所需各种 JAR 包 </span><br><span class="line"> | - WEB-INF/classes/ -- 存放你的应用类，比如 Servlet 类 </span><br><span class="line"> | - META-INF/ -- 目录存放工程的一些信息</span><br></pre></td></tr></table></figure>
 

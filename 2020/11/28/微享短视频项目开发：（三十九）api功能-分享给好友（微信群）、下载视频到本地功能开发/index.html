@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/11/28/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E4%B8%89%E5%8D%81%E4%B9%9D%EF%BC%89api%E5%8A%9F%E8%83%BD-%E5%88%86%E4%BA%AB%E7%BB%99%E5%A5%BD%E5%8F%8B%EF%BC%88%E5%BE%AE%E4%BF%A1%E7%BE%A4%EF%BC%89%E3%80%81%E4%B8%8B%E8%BD%BD%E8%A7%86%E9%A2%91%E5%88%B0%E6%9C%AC%E5%9C%B0%E5%8A%9F%E8%83%BD%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、分享给好友或微信群使用 videoUtil.js 提供的功能实现分享： 123456789onShareAppMessage: function(res)&amp;#123;   var me &#x3D; this;   var videoInfo &#x3D; me.data.videoInfo;   return &amp;#123;     title: &#39;短视频内容分析&#39;,     path: &quot;&#x2F;pages&#x2F;vide">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1374.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1375.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1376.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1377.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1378.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1374.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1375.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1376.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1377.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1378.png">
 <meta property="article:published_time" content="2020-11-28T08:56:12.000Z">
-<meta property="article:modified_time" content="2020-11-28T10:45:26.610Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:48.415Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1374.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1374.png">
 
 
 
@@ -452,21 +452,21 @@
         <h3 id="一、分享给好友或微信群"><a href="#一、分享给好友或微信群" class="headerlink" title="一、分享给好友或微信群"></a>一、分享给好友或微信群</h3><p>使用 videoUtil.js 提供的功能实现分享：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">onShareAppMessage: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line">   <span class="keyword">var</span> videoInfo = me.data.videoInfo;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> &#123;</span><br><span class="line">     title: <span class="string">'短视频内容分析'</span>,</span><br><span class="line">     path: <span class="string">"/pages/videoinfo/videoinfo?videoInfo="</span> + <span class="built_in">JSON</span>.stringify(videoInfo)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu1374.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1374.png" width="80%">
 
 <h3 id="二、下载视频到本地"><a href="#二、下载视频到本地" class="headerlink" title="二、下载视频到本地"></a>二、下载视频到本地</h3><p>需求： 可通过转发按钮中的下载视频功能将短视频下载到本地：</p>
-<img src="http://photo.wushaopei.com/qiniu1375.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1375.png" width="80%">
 
 <p>微信小程序官方 API</p>
-<img src="http://photo.wushaopei.com/qiniu1376.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1376.png" width="80%">
 
 <p>下载视频 videoinfo.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( res.tapIndex == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="comment">// 下载</span></span><br><span class="line">    wx.showLoading(&#123;</span><br><span class="line">      title: <span class="string">'下载中...'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    wx.downloadFile(&#123;</span><br><span class="line">      url: app.serverUrl + me.data.videoInfo.videoPath,</span><br><span class="line">      success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// 只要服务器有响应数据，就会把响应啥内容写入文件并进行 success 回调，业务需要自行判断是否下载到了想要的内容</span></span><br><span class="line">        <span class="keyword">if</span>( res.statusCode == <span class="number">200</span> )&#123;</span><br><span class="line">          <span class="built_in">console</span>.log( res.tempFilePath);</span><br><span class="line"></span><br><span class="line">          wx.saveVideoToPhotosAlbum(&#123;</span><br><span class="line">            filePath: res.tempFilePath,</span><br><span class="line">            success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">              <span class="built_in">console</span>.log(res.errMsg)</span><br><span class="line">              wx.hideLoading();</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)        </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
 <p>效果展示：</p>
-<img src="http://photo.wushaopei.com/qiniu1377.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1377.png" width="80%">
 
-<img src="http://photo.wushaopei.com/qiniu1378.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1378.png" width="80%">
       
     </div>
     

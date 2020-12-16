@@ -97,19 +97,19 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/06/Linux%EF%BC%88%E4%BA%8C%E5%8D%81%EF%BC%89vsftpd%20-%20Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%AE%9E%E7%8E%B0-vsftpd-%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="Java 客户端上传文件到 vsftpd 服务器1.创建 SpringBoot 项目2.配置pom.xml依赖1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1188.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1189.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1190.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1191.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1192.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1193.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1188.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1189.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1190.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1191.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1192.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1193.png">
 <meta property="article:published_time" content="2020-09-06T08:10:38.000Z">
-<meta property="article:modified_time" content="2020-09-06T08:42:51.868Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:25.895Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="vsftpd">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1188.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1188.png">
 
 
 
@@ -501,17 +501,17 @@
 
 <h3 id="6-Postman模拟接口调用实现-图片上传"><a href="#6-Postman模拟接口调用实现-图片上传" class="headerlink" title="6. Postman模拟接口调用实现 图片上传"></a>6. Postman模拟接口调用实现 图片上传</h3><h4 id="6-1-Postman-操作方法"><a href="#6-1-Postman-操作方法" class="headerlink" title="6.1 Postman 操作方法"></a>6.1 Postman 操作方法</h4><p>​    postman是一个很好的接口测试软件，有时候接口是Get请求方式的，肯定在浏览器都可以测了，不过对于比较规范的RestFul接口，限定了只能post请求的，那你只能通过工具来测了，浏览器只能支持get请求的接口，而且对于如果要将传参放在body里的，也肯定要通过工具，最近在测接口，要测试文件上传的，可以用postman来做</p>
 <p>​    首先对于上传接口，要先改为POST请求，然后不能用默认的Params</p>
-<img src="http://photo.wushaopei.com/qiniu1188.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1188.png" width="100%">
 
-<img src="http://photo.wushaopei.com/qiniu1189.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1189.png" width="100%">
 
 <p>​    上传文件，点击send按钮发送请求，就可以测试 </p>
-<img src="http://photo.wushaopei.com/qiniu1190.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1190.png" width="100%">
 
 <p>​    点击Save是将接口保存，不过要有注册一个账号，之后登陆就可以直接测试 </p>
-<img src="http://photo.wushaopei.com/qiniu1191.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1191.png" width="100%">
 
-<h4 id="6-2-Postman-实现图片上传"><a href="#6-2-Postman-实现图片上传" class="headerlink" title="6.2 Postman 实现图片上传"></a>6.2 Postman 实现图片上传</h4><img src="http://photo.wushaopei.com/qiniu1192.png" width="100%">
+<h4 id="6-2-Postman-实现图片上传"><a href="#6-2-Postman-实现图片上传" class="headerlink" title="6.2 Postman 实现图片上传"></a>6.2 Postman 实现图片上传</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1192.png" width="100%">
 
 <h4 id="6-3-点击-Send-上传文件发送接口请求"><a href="#6-3-点击-Send-上传文件发送接口请求" class="headerlink" title="6.3 点击 Send 上传文件发送接口请求"></a>6.3 点击 Send 上传文件发送接口请求</h4><p>(1) 控制台打印结果</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2020</span><span class="literal">-09</span><span class="literal">-06</span> <span class="number">15</span>:<span class="number">57</span>:<span class="number">54.670</span>  INFO <span class="number">22604</span> --- [<span class="type">p</span>-<span class="type">nio</span>-<span class="number">80</span>-<span class="type">exec</span>-<span class="number">2</span>] c.e.poiutis.service.FileServiceImpl      : 开始上传文件,上传文件的文件名:<span class="number">6</span>b4b169dgy1g47yn4pgwrj21o027ue81.jpg,上传的路径:C:\ftpfile\upload,新文件名:<span class="number">270</span>dd01e<span class="literal">-3cbe</span><span class="literal">-44c6</span><span class="literal">-8a79</span><span class="literal">-37dcdbc7c3f3</span>.jpg</span><br><span class="line"><span class="number">2020</span><span class="literal">-09</span><span class="literal">-06</span> <span class="number">15</span>:<span class="number">57</span>:<span class="number">56.358</span>  INFO <span class="number">22604</span> --- [<span class="type">p</span>-<span class="type">nio</span>-<span class="number">80</span>-<span class="type">exec</span>-<span class="number">2</span>] com.example.poiutis.utils.FTPUtil        : 开始连接ftp服务器</span><br><span class="line"><span class="number">2020</span><span class="literal">-09</span><span class="literal">-06</span> <span class="number">15</span>:<span class="number">58</span>:<span class="number">19.475</span>  INFO <span class="number">22604</span> --- [<span class="type">p</span>-<span class="type">nio</span>-<span class="number">80</span>-<span class="type">exec</span>-<span class="number">2</span>] com.example.poiutis.utils.FTPUtil        : 开始连接ftp服务器,结束上传,上传结果:&#123;&#125;</span><br></pre></td></tr></table></figure>
@@ -519,7 +519,7 @@
 <p>(2) ftp 服务器文件目录上传结果查看</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> ~]<span class="comment"># cd /ftpfile/</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">ftpfile</span>]<span class="comment"># ls</span></span><br><span class="line"><span class="number">270</span>dd01e<span class="literal">-3cbe</span><span class="literal">-44c6</span><span class="literal">-8a79</span><span class="literal">-37dcdbc7c3f3</span>.jpg  aa  b  index.html  picture  sa</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu1193.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1193.png" width="100%">
       
     </div>
     

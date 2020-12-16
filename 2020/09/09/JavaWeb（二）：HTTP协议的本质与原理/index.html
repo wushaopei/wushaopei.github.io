@@ -97,18 +97,18 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/09/JavaWeb%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9AHTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E6%9C%AC%E8%B4%A8%E4%B8%8E%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读：  HTTP的本质 HTTP的工作原理 HTTP 请求响应实例 Cookie 和 Session   HTTP 的本质​    HTTP 协议是浏览器与服务器之间的数据传送协议。作为应用层协议，HTTP 是基于  TCP&#x2F;IP 协议来传递数据的（HTML 文件、图片、查询结果等），HTTP 协议不涉及数据包  （Packet）传输，主要规定了客户端和服务器之间的通信格式。 通过案例去理解：">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1198.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1200.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1201.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1202.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1203.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1198.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1200.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1201.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1202.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1203.png">
 <meta property="article:published_time" content="2020-09-09T15:31:36.000Z">
-<meta property="article:modified_time" content="2020-09-10T04:42:31.075Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:27.063Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="HTTP协议">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1198.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1198.png">
 
 
 
@@ -497,7 +497,7 @@
 <p>​    也就是说，<strong>HTTP 协议的本质</strong>就是一种浏览器与服务器之间约定好的通信格式。</p>
 <p>​    </p>
 <h3 id="HTTP-工作原理"><a href="#HTTP-工作原理" class="headerlink" title="HTTP 工作原理"></a>HTTP 工作原理</h3><p>下图是 HTTP 的请求过程流程图：</p>
-<img src="http://photo.wushaopei.com/qiniu1198.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1198.png" width="60%">
 
 <p> <strong>从图上你可以看到，这个过程是：</strong> </p>
 <blockquote>
@@ -579,7 +579,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="attr">xmlns</span>=<span class="string">"http://java.sun.com/xml/ns/javaee"</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"</span> <span class="attr">id</span>=<span class="string">"WebApp_ID"</span> <span class="attr">version</span>=<span class="string">"2.5"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>HTTP_Request<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.http.servlet.HelloServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>HelloServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/helloServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  </span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>（3）添加到 Web 容器中，这里我使用 Tomcat 8.5 </p>
-<img src="http://photo.wushaopei.com/qiniu1200.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1200.png" width="60%">
 
 <p>（4）创建  index.xml 客户端页面，当点击按钮时发送 POST/GET请求。</p>
 <h4 id="HTTP协议-——-POST-请求"><a href="#HTTP协议-——-POST-请求" class="headerlink" title="HTTP协议 —— POST 请求"></a>HTTP协议 —— POST 请求</h4><p>index.xml</p>
@@ -587,15 +587,15 @@
 
 <p>访问：<a href="http://localhost:8080/HTTP_Request" target="_blank" rel="noopener">http://localhost:8080/HTTP_Request</a> 后填写 用户名到文本框中，点击 submit 提交。</p>
 <h4 id="分析HTTP请求："><a href="#分析HTTP请求：" class="headerlink" title="分析HTTP请求："></a>分析HTTP请求：</h4><p>我们看到，浏览器发出了这样的 HTTP 请求：</p>
-<img src="http://photo.wushaopei.com/qiniu1201.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1201.png" width="60%">
 
 <p>​    你可以看到，HTTP 请求数据由三部分组成，分别是请求行、请求报头、请求正文。当这个HTTP 请求数据到达 Tomcat 后，Tomcat 会把 HTTP 请求数据字节流解析成一个Request 对象，这个 Request 对象封装了 HTTP 所有的请求信息。接着 Tomcat 把这个Request 对象交给 Web 应用去处理，处理完后得到一个 Response 对象，Tomcat 会把这个 Response 对象转成 HTTP 格式的响应数据并发送给浏览器。</p>
 <p>​    我们再来看看 <strong>HTTP 响应的格式</strong>，HTTP 的响应也是由三部分组成，分别是状态行、响应报头、报文主体。同样，我还以极客时间登陆请求的响应为例。</p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1202.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1202.png" width="60%"></p>
 <h4 id="HTTP协议-——-GET-请求"><a href="#HTTP协议-——-GET-请求" class="headerlink" title="HTTP协议 —— GET 请求"></a>HTTP协议 —— GET 请求</h4><p>index.html</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://localhost:8080/HTTP_Request/helloServlet?username=wuxiansheng"</span> <span class="attr">method</span>=<span class="string">"get"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--&lt;form action="http://localhost:8080/HTTP_Request/helloServlet" method="post"&gt;</span></span><br><span class="line"><span class="comment">			 username:&lt;input type="text" name="username"/&gt; --&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>​    <img src="http://photo.wushaopei.com/qiniu1203.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1203.png" width="60%"></p>
 <ul>
 <li>GET请求的响应头和 POST 请求是相同的结构。</li>
 </ul>

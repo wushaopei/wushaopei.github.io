@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/07/ThreadLocal-%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="ThreadLocal 入门 ThreadLocal 入门 是什么 定义 线程模型 场景介绍 大概原理   ThreadLocal的4种关键应用场景介绍 线程资源持有 线程资源一致性 线程安全 并发计算   API解读（CODING)   场景分析 并发场景分析 竞争条件和临界区——结合 Spring 压测脚本 理解排队（Synchronize）的开销   利用 ThreadLocal API 解">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1194.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1195.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1196.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1197.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1194.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1195.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1196.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1197.png">
 <meta property="article:published_time" content="2020-09-07T14:08:27.000Z">
-<meta property="article:modified_time" content="2020-09-08T04:24:54.842Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:24.685Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1194.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1194.png">
 
 
 
@@ -511,13 +511,13 @@
 <p>​    Java 中用哈希表实现。</p>
 <p><strong>1.5 应用范围：</strong></p>
 <p>​    几乎所有提供多线程特征的语言。</p>
-<h3 id="2-ThreadLocal-模型"><a href="#2-ThreadLocal-模型" class="headerlink" title="2. ThreadLocal 模型"></a>2. ThreadLocal 模型</h3><img src="http://photo.wushaopei.com/qiniu1194.png" width="60%">
+<h3 id="2-ThreadLocal-模型"><a href="#2-ThreadLocal-模型" class="headerlink" title="2. ThreadLocal 模型"></a>2. ThreadLocal 模型</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1194.png" width="60%">
 
 <p>​    如图，黑色圆圈通常代表一个进程，进程圆圈中的红色波浪线则代表执行中的每一条线程；每一个进程本身是有一个线程表的，该进程中的线程就存在于线程表中。</p>
 <p>​    对于每一个线程都会有该线程自己的独占数据，这些独占数据是由进程来分配的。</p>
 <p>​    但，对 Java 来说，线程基本上都是存在于 Thread 类中的。</p>
 <p>​    每一个线程都会存在与一个 ThreadLocalMap 的对象，它本身是一个 hash 表，而每个线程则对应 ThreadLocalMap  中的自己的线程变量。而线程局部变量则存放在每一个 ThreadLocal 中。</p>
-<h3 id="3-场景介绍"><a href="#3-场景介绍" class="headerlink" title="3. 场景介绍"></a>3. 场景介绍</h3><img src="http://photo.wushaopei.com/qiniu1195.png" width="60%">
+<h3 id="3-场景介绍"><a href="#3-场景介绍" class="headerlink" title="3. 场景介绍"></a>3. 场景介绍</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1195.png" width="60%">
 
 <p><strong>资源持有</strong>：</p>
 <p>​    这种情况使用到 ThreadLocal 时，通常是发生在一个线程里，我们的一部分数据，或者说用户数据是由多个程序，可以列成多个类去访问的。类似于依赖注入，我们通过 ThreadLocal 相当于给他提供了一个全局访问的方式。</p>
@@ -538,12 +538,12 @@
 <p>​    当执行 main 方法时，一开始会执行 new Thread（），此时会执行  x.get()，由于 x 未初始化，所以，会执行 initialValue() 方法。打印结果 :<code>Initial Value run</code>、<code>12 --run</code>.</p>
 <p>​    接着执行 x.set(101l) ，后面继续执行 x.remove()；remove方法将 ThreadLocalMap的实例删除，导致后面再次 x.get() 时获取不到实例。</p>
 <p>​    因此，又再一次执行  initialValue() 方法进行初始化，再次打印    <code>Initial Value run</code> , 并根据 return 的 Thread的Id 使用 print 打印到控制台，其结果为 1 。</p>
-<h3 id="5-ThreadLocal-的4种关键场景"><a href="#5-ThreadLocal-的4种关键场景" class="headerlink" title="5. ThreadLocal 的4种关键场景"></a>5. ThreadLocal 的4种关键场景</h3><h4 id="5-1-场景1-线程资源持有"><a href="#5-1-场景1-线程资源持有" class="headerlink" title="5.1 场景1 线程资源持有"></a>5.1 场景1 线程资源持有</h4><img src="http://photo.wushaopei.com/qiniu1196.png" width="60%">
+<h3 id="5-ThreadLocal-的4种关键场景"><a href="#5-ThreadLocal-的4种关键场景" class="headerlink" title="5. ThreadLocal 的4种关键场景"></a>5. ThreadLocal 的4种关键场景</h3><h4 id="5-1-场景1-线程资源持有"><a href="#5-1-场景1-线程资源持有" class="headerlink" title="5.1 场景1 线程资源持有"></a>5.1 场景1 线程资源持有</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1196.png" width="60%">
 
 <p>​     编写一个程序的时候，多个 class 会依赖或使用同一份用户数据；这一份用户数据存在哪里比较好？</p>
 <p>​        在程序中，每一个线程都是一个session，是客户端与服务端进行交互的一个过程；在这种情景中，只要程序执行的线程相同的情况下，所操作的用户就是相同的。</p>
 <p>​        把用户数据在执行程序1时就创建一个 ThreadLocal的本地变量，放入到 ThreadLocalMap 的 x 变量中，在执行 程序2、程序3 时就可以拿到当前线程分配到的用户，而不会影响到其他线程的资源变量。</p>
-<h4 id="5-2-场景2-线程资源一致性（取自JDBC）："><a href="#5-2-场景2-线程资源一致性（取自JDBC）：" class="headerlink" title="5.2 场景2     线程资源一致性（取自JDBC）："></a>5.2 场景2     线程资源一致性（取自JDBC）：</h4><img src="http://photo.wushaopei.com/qiniu1197.png" width="60%">
+<h4 id="5-2-场景2-线程资源一致性（取自JDBC）："><a href="#5-2-场景2-线程资源一致性（取自JDBC）：" class="headerlink" title="5.2 场景2     线程资源一致性（取自JDBC）："></a>5.2 场景2     线程资源一致性（取自JDBC）：</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1197.png" width="60%">
 
 <p>​            如图所示，请求响应虚线框中Part1、 PartN代表你的一个会话中的N个程序都要去完成一些事情，他们整体串起来就是一个事务。</p>
 <p>​        Part1更新客户信息，Part2更新订单的信息，Part3更新订单对应外部的交易流水号，Part4 支付回来。</p>

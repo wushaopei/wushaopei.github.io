@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/14/dubbo%EF%BC%88%E4%B8%89%EF%BC%89dubbo-helloworld/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="dubbo - helloworld1、提出需求某个电商系统，订单服务需要调用用户服务获取某个用户的所有地址； 我们现在 需要创建两个服务模块进行测试     模块 功能    订单服务web模块 创建订单等   用户服务service模块 查询用户地址等   测试预期结果： ​    订单服务web模块在A服务器，用户服务模块在B服务器，A可以远程调用B的功能。 2、工程架构根据 dubbo《服">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu809.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu810.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu811.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu809.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu810.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu811.png">
 <meta property="article:published_time" content="2020-06-14T13:13:13.000Z">
-<meta property="article:modified_time" content="2020-06-14T14:15:08.279Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:28.035Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="服务注册">
 <meta property="article:tag" content="服务调用">
 <meta property="article:tag" content="服务注册与暴露的两种方式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu809.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu809.png">
 
 
 
@@ -509,7 +509,7 @@
 <h4 id="2-2-粒度"><a href="#2-2-粒度" class="headerlink" title="2.2 粒度"></a>2.2 粒度</h4><p>服务接口尽可能大粒度，每个服务方法应代表一个功能，而不是某功能的一个步骤，否则将面临分布式事务问题，Dubbo 暂未提供分布式事务支持。</p>
 <p>服务接口建议以业务场景为单位划分，并对相近业务做抽象，防止接口数量爆炸。</p>
 <p>不建议使用过于抽象的通用接口，如：Map query(Map)，这样的接口没有明确语义，会给后期维护带来不便。</p>
-<img src="http://photo.wushaopei.com/qiniu809.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu809.png" >
 
 <h3 id="3、创建模块"><a href="#3、创建模块" class="headerlink" title="3、创建模块"></a>3、创建模块</h3><h4 id="3-1-api-interface-公共接口层（-model-service-exception-…"><a href="#3-1-api-interface-公共接口层（-model-service-exception-…" class="headerlink" title="3.1 api-interface : 公共接口层（ model , service , exception …)"></a>3.1 api-interface : 公共接口层（ model , service , exception …)</h4><p><strong>(1) 作用：</strong>定义公共接口，也可以导入公共依赖</p>
 <p><strong>(2) UserAddress.java</strong> </p>
@@ -519,7 +519,7 @@
 <p>UserService.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">getUserAddressList</span><span class="params">(String userId)</span></span></span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu810.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu810.png" >
 
 <p>OrderService.java</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 初始化订单</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> userId</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;UserAddress&gt; <span class="title">initOrder</span><span class="params">(String userId)</span></span>;</span><br></pre></td></tr></table></figure>
@@ -552,7 +552,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.webcode.cn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainApplication</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		ClassPathXmlApplicationContext ioc = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"provider.xml"</span>);</span><br><span class="line">		ioc.start();</span><br><span class="line">		</span><br><span class="line">		System.in.read();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>(4)  dubbo-admin 查看服务注册情况</p>
-<img src="http://photo.wushaopei.com/qiniu811.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu811.png" >
 
 <h4 id="4-2-配置-order-service-consumer-java-为服务消费者"><a href="#4-2-配置-order-service-consumer-java-为服务消费者" class="headerlink" title="4.2 配置 order-service-consumer.java  为服务消费者"></a>4.2 配置 order-service-consumer.java  为服务消费者</h4><p>(1) 引入 Dubbo</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入dubbo --&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/dubbo --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>dubbo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- 注册中心使用的是zookeeper，引入操作zookeeper的客户端端 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.curator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>curator-framework<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.12.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.webcode.cn<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>api-interface<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>

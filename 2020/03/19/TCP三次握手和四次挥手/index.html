@@ -97,14 +97,14 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/19/TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="TCP三次握手所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示：     第一次握手：Client将标志位SYN置为1，随机产生一个值seq&#x3D;J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。 第二次握手：Server收到数据包后由标">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu136.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu137.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu136.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu137.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-19T14:48:09.000Z">
-<meta property="article:modified_time" content="2020-07-02T15:03:30.449Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:24.744Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu136.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu136.png">
 
 
 
@@ -470,7 +470,7 @@
 
       
         <h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p>所谓三次握手（Three-Way Handshake）即建立TCP连接，就是指建立一个TCP连接时，需要客户端和服务端总共发送3个包以确认连接的建立。整个流程如下图所示： </p>
-<img src="http://photo.wushaopei.com/qiniu136.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu136.png" width="100%">
 
 <ol>
 <li>第一次握手：Client将标志位SYN置为1，随机产生一个值seq=J，并将该数据包发送给Server，Client进入SYN_SENT状态，等待Server确认。</li>
@@ -484,7 +484,7 @@
 <p>如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</p>
 <h3 id="建立连接后，Client出现故障怎么办"><a href="#建立连接后，Client出现故障怎么办" class="headerlink" title="建立连接后，Client出现故障怎么办"></a>建立连接后，Client出现故障怎么办</h3><p>TCP设有保活机制，该机制会对Client的故障做出相应的处理。在保活时间段内，Server端会向对方发送保活探测报文，如果未收到响应则继续发送。直到发送探测报文尝试次数达到保活探测数仍未收到响应则中断连接。这时，对方主机会被确认为不可达，连接也会随之中断。</p>
 <h2 id="TCP四次挥手-Client或Server均可主动发起挥手动作"><a href="#TCP四次挥手-Client或Server均可主动发起挥手动作" class="headerlink" title="TCP四次挥手(Client或Server均可主动发起挥手动作)"></a>TCP四次挥手(Client或Server均可主动发起挥手动作)</h2><p>所谓四次挥手（Four-Way Wavehand）即终止TCP连接，就是指断开一个TCP连接时，需要客户端和服务端总共发送4个包以确认连接的断开。整个流程如下图所示： </p>
-<img src="http://photo.wushaopei.com/qiniu137.png" width="100%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu137.png" width="100%">
 
 <ol>
 <li>第一次挥手：Client发送一个FIN，用来关闭Client到Server的数据传送，Client进入FIN_WAIT_1状态。</li>
@@ -498,7 +498,7 @@
 <li>防止“已失效的连接请求报文段”出现在本连接中。在发送完最后一个ACK报文段后,再经过2MSL,就可以使本连接持续的时间内所产生的所有报文段,都从网络中消失。这样就可以使下一个新的连接中不会出现这种就得连接请求报文段。</li>
 </ol>
 <p><strong>声明：</strong>本文转载自： <a href="https://www.cnblogs.com/wupeixuan/p/8639469.html" target="_blank" rel="noopener">https://www.cnblogs.com/wupeixuan/p/8639469.html</a> </p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

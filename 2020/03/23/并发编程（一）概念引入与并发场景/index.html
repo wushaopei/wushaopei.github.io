@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/23/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%B8%80%EF%BC%89%E6%A6%82%E5%BF%B5%E5%BC%95%E5%85%A5%E4%B8%8E%E5%B9%B6%E5%8F%91%E5%9C%BA%E6%99%AF/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="涉及的基础知识与核心知识：    并发及并发的线程安全处理    并发编程的基本概念 并发： 同时拥有两个或者多个线程，如果程序在单核处理器上运行，多个线程将交替地换入或换出内存，这些线程是同时 “ 存在” 的 ，每个线程都处于执行过程中的某个状态，如果运行在多核处理器上，此时，程序中的每个线程都将分配到一个处理器核上，因此可以同时运行。 高并发： 并发（High Concurrency） 是互联">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu176.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu177.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu176.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu177.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-23T09:39:19.000Z">
-<meta property="article:modified_time" content="2020-04-17T06:49:46.501Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:08.252Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="并发编程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu176.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu176.png">
 
 
 
@@ -470,11 +470,11 @@
       
 
       
-        <h3 id="涉及的基础知识与核心知识："><a href="#涉及的基础知识与核心知识：" class="headerlink" title="涉及的基础知识与核心知识："></a>涉及的基础知识与核心知识：</h3><img src="http://photo.wushaopei.com/qiniu176.png" width="70%">
+        <h3 id="涉及的基础知识与核心知识："><a href="#涉及的基础知识与核心知识：" class="headerlink" title="涉及的基础知识与核心知识："></a>涉及的基础知识与核心知识：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu176.png" width="70%">
 
 
 
-<h3 id="并发及并发的线程安全处理"><a href="#并发及并发的线程安全处理" class="headerlink" title="并发及并发的线程安全处理"></a>并发及并发的线程安全处理</h3><img src="http://photo.wushaopei.com/qiniu177.png" width="80%">
+<h3 id="并发及并发的线程安全处理"><a href="#并发及并发的线程安全处理" class="headerlink" title="并发及并发的线程安全处理"></a>并发及并发的线程安全处理</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu177.png" width="80%">
 
 
 
@@ -495,7 +495,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>:<span class="number">02</span>:<span class="number">37.170</span> [main] INFO com.mmall.concurrency.example.count.CountExample1 - count:<span class="number">5000</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p><font color=red>注意：</font>这里可以引发出一个问题，当我们在编写程序时，在本地进行测试时，只有一个进程，并且基本处于单线程环境下，而当项目部署上线后，项目登录、使用的用户绝不止一个用户，此时，会存在并发的情况，即同一服务进程下，多个用户的客户端操作线程进行请求服务器，此时，就可能由于服务器的响应问题等导致对部分客户端的请求响应中断、丢包等问题。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

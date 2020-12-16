@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/28/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89resultMap%E7%BB%93%E6%9E%9C%E6%98%A0%E5%B0%84%E9%9B%86-%E7%BA%A7%E8%81%94/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="案例表结构设计：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657SET FOREIGN_KEY_CHECKS&#x3D;0;-- ------------------------------ Table structure for t_r">
-<meta property="og:image" content="http://photo.wushaopei.com/479.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu480.jpg">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/479.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu480.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-28T01:49:57.000Z">
-<meta property="article:modified_time" content="2020-06-11T04:43:14.964Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:04.960Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="映射器">
 <meta property="article:tag" content="resultMap结果映射集">
 <meta property="article:tag" content="级联">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/479.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/479.png">
 
 
 
@@ -499,7 +499,7 @@
 <li>collection : 代表一对多关系，比如班级和学生是一对多的关系，一个班级可以有多个学生；</li>
 <li>discriminator，是鉴别去，它可以根据选择采用哪个类作为实例，允许你根据特定的调价年轻关联不同的结果集。比如，人有男人和女人。你可以实例化一个人的对象，但是要根据情况用男人类或者用女人类去实例化。</li>
 </ul>
-<img src="http://photo.wushaopei.com/479.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/479.png" width="80%">
 
 <h3 id="association-一对一级联"><a href="#association-一对一级联" class="headerlink" title="association 一对一级联"></a>association 一对一级联</h3><p>​    银行保险柜的钥匙与锁，在不考虑备用钥匙的情况下，一把锁只能对应一把钥匙。我们这里使用锁与钥匙的关系来构建一对一级联的案例。</p>
 <p>​    这里需要先建立一个 锁Lock 表和 钥匙 key 表 ，以及对应的 POJO 对象。那么在 Key 的 POJO 我们应该又一个类型为 LockBean 的属性 Lock，这样便形成了级联。</p>
@@ -576,12 +576,12 @@
 <p>从执行结果打印的 SQL 语句可以看出，该查询一共执行了两次查询操作，先根据传入 id 查询到对应的 班级 Clazz 信息，再根据 班级 id 作为参数去查询对应的 Student 信息，Student 有个 clazz_id 与班级的 id 进行匹配。</p>
 <h3 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h3><p>延迟加载在一定程序上可以减少很多没有必要的查询。给数据库服务器提升性能上的优化。</p>
 <p>要启用延迟加载，需要在mybatis-config.xml配置文件中，添加如下两个全局的settings配置。</p>
-<img src="http://photo.wushaopei.com/qiniu480.jpg " width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu480.jpg " width="80%">
 
 <p><strong>配置：</strong> </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 自动开启驼峰命名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"mapUnderscoreToCamelCase"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 打开延迟加载的开关 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 将积极加载改为消极加载 按需加载 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>·
       
     </div>
     

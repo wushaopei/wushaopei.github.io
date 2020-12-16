@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/06/Java%EF%BC%9A%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86%E5%8F%8A%E6%9C%BA%E5%88%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读：  什么是反射 反射有什么用 怎么使用反射 反射与Class类的关系？Class类的原理与使用 反射在项目中的使用与特定场景 利用反射和泛型编程让你的Java代码更优雅  1. 反射（Java Reflection)1.1 什么是反射（ Java Reflection)​    Reflection（反射）是被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API 取">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1015.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1016.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1017.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1018.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1019.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1020.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1015.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1016.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1017.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1018.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1019.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1020.png">
 <meta property="article:published_time" content="2020-08-06T15:05:10.000Z">
-<meta property="article:modified_time" content="2020-08-29T15:24:29.621Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:27.351Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1015.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1015.png">
 
 
 
@@ -539,7 +539,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">pubilc  <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
 
 <p>​    以上的方法返回值的类型是一个Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来看也很好理解，即：<strong>可以通过对象反射求出类的名称</strong>。 </p>
-<img src="http://photo.wushaopei.com/qiniu1015.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1015.png" width="80%">
 
 <p>反射获取class区别于以往正常的new 创建对象来对类内部方法、属性进行操作。 </p>
 <h3 id="2-2-Class-类的存在与定义"><a href="#2-2-Class-类的存在与定义" class="headerlink" title="2.2 Class 类的存在与定义"></a>2.2 Class 类的存在与定义</h3><p>​    <strong>对象通过反射</strong>可以获取到的信息：<code>某个类的属性、方法和构造器、某个类到底实现了哪些接口。</code><strong>对于每个类而言，JRE 都为其保留一个不变的 Class 类型的对象。一个 Class 对象包含了特定某个类的有关信息。</strong> </p>
@@ -626,12 +626,12 @@
 
 <h2 id="4-ClassLoader"><a href="#4-ClassLoader" class="headerlink" title="4 ClassLoader"></a>4 ClassLoader</h2><p><strong>类的加载过程</strong></p>
 <p>​    当程序主动使用某个类时，如果该类还未被加载到内存中，则系统会通过如下三那个步骤来对该类进行初始化。</p>
-<img src="http://photo.wushaopei.com/qiniu1016.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1016.png" width="80%">
 
-<img src="http://photo.wushaopei.com/qiniu1017.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1017.png" width="80%">
 
 <p><strong>ClassLoader ：类加载机制加载流程</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1018.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1018.png" width="80%">
 
 <p><strong>案例：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 获取一个系统类加载器</span></span><br><span class="line">    ClassLoader classLoader = ClassLoader.getSystemClassLoader();</span><br><span class="line">    System.out.println(classLoader);</span><br><span class="line">    <span class="comment">// 2.获取系统类加载器的父类加载器，即扩展类加载器</span></span><br><span class="line">    classLoader = classLoader.getParent();</span><br><span class="line">    System.out.println(classLoader);</span><br><span class="line">    <span class="comment">// 3. 获取扩展类加载器的父类加载器，即引导类加载器</span></span><br><span class="line">    classLoader = classLoader.getParent();</span><br><span class="line">    System.out.println(classLoader);</span><br><span class="line">    <span class="comment">// 4. 测试当前类由哪个类加载器进行加载</span></span><br><span class="line">    classLoader = Class.forName(<span class="string">"com.company.reflect.testReflect2"</span>).getClassLoader();</span><br><span class="line">    System.out.println(classLoader);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 测试JDK提供的 Object 类由哪个类加载器加载</span></span><br><span class="line">    classLoader = Class.forName(<span class="string">"java.lang.Object"</span>).getClassLoader();</span><br><span class="line">    System.out.println(classLoader);</span><br></pre></td></tr></table></figure>
@@ -786,7 +786,7 @@
 <li>之后使用Object invoke(Object obj, Object[] args)进行调用，并向方法中传递要设置的obj对象的参数信息。</li>
 </ol>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu1019.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1019.png" width="80%">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Object <span class="title">invoke</span><span class="params">(Object obj, Object …  args)</span></span></span><br></pre></td></tr></table></figure>
 
@@ -840,7 +840,7 @@
 <h3 id="7-3-代理设计模式的原理"><a href="#7-3-代理设计模式的原理" class="headerlink" title="7.3 代理设计模式的原理:"></a><strong>7.3 代理设计模式的原理:</strong></h3><p>​    使用一个代理将对象包装起来, 然后用该代理对象取代原始对象. 任何对原始对象的调用都要通过代理. 代理对象决定是否以及何时将方法调用转到原始对象上. </p>
 <h3 id="7-4-代理类介绍Proxy"><a href="#7-4-代理类介绍Proxy" class="headerlink" title="7.4 代理类介绍Proxy"></a><strong>7.4 代理类介绍</strong>Proxy</h3><p><strong>Proxy ：</strong>专门完成代理的操作类，是所有动态代理类的父类。通过此类为一个或多个接口动态地生成实现类。 </p>
 <p>提供用于创建动态代理类和动态代理对象的静态方法 </p>
-<img src="http://photo.wushaopei.com/qiniu1020.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1020.png" width="80%">
 
 <h3 id="7-5-案例"><a href="#7-5-案例" class="headerlink" title="7.5 案例"></a><strong>7.5 案例</strong></h3><p>（1）创建一个实现接口InvocationHandler的类，它必须实现invoke方法，以完成代理的具体操作。 </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 用来创建代理对象的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XiaoMi</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 被代理对象</span></span><br><span class="line">	<span class="keyword">private</span> Object tartetObject;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">XiaoMi</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 获取代理对象 targetObject : 被代理对象 （根据被代理对象创建代理对象）</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getXiaoMi</span><span class="params">(Object targetObject)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.tartetObject = targetObject;</span><br><span class="line">		<span class="comment">//创建代理对象</span></span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * ClassLoader : 类加载器 （被代理对象的类加载器是什么就传什么）</span></span><br><span class="line"><span class="comment">		 * Class&lt;?&gt;[] interfaces : 被代理对象的所的接口（通过接口代理对象才能知道需要代理的方法）</span></span><br><span class="line"><span class="comment">		 * InvocationHandler : 是一个接口，传一个实现了该接口的实现类的对象</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		</span><br><span class="line">		Object object = Proxy.newProxyInstance(</span><br><span class="line">				targetObject.getClass().getClassLoader(), </span><br><span class="line">				targetObject.getClass().getInterfaces(),</span><br><span class="line">				<span class="keyword">this</span></span><br><span class="line">		);	</span><br><span class="line">		<span class="keyword">return</span> object;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * 用来完成代理的具体操作</span></span><br><span class="line"><span class="comment">	 * 作用 ： 用来调用被代理对象中的方法</span></span><br><span class="line"><span class="comment">	 * @Param proxy	 被代理的对象</span></span><br><span class="line"><span class="comment">	 * @Param method	要调用的方法</span></span><br><span class="line"><span class="comment">	 * @param args   方法调用时所需要的参数</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"---------代理开始了----------"</span>);</span><br><span class="line">	</span><br><span class="line">		<span class="comment">/*</span></span><br><span class="line"><span class="comment">		 * proxy : com.sun.proxy.$Proxy4</span></span><br><span class="line"><span class="comment">		 * 调用方法 ： 第一个参数是调用哪个对象的方法，第二个参数是调用方法传递的实参</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		Object obj = method.invoke(tartetObject, args);</span><br><span class="line">		System.out.println(<span class="string">"---------代理结束了----------"</span>);</span><br><span class="line">		<span class="keyword">return</span> obj;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

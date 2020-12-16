@@ -97,19 +97,19 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="geo1. GEO是什么以计算5个城市经纬度为例：    **GEO(地理信息定位)：存储经纬度，计算两地距离，范围计算等    城市 经度 纬度 简称    北京 116.28 39.55 beijing   天津 117.12 39.08 tianjini   石家庄 114.29 38.02 shijiazhuang   唐山 118.01 39.38 tangshan   保定 115.2">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1139.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1140.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1141.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1142.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1143.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1139.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1140.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1141.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1142.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1143.png">
 <meta property="article:published_time" content="2020-08-30T14:59:01.000Z">
-<meta property="article:modified_time" content="2020-08-31T12:50:41.573Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.962Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="GEO">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1139.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1139.png">
 
 
 
@@ -486,7 +486,7 @@
 
       
         <h2 id="geo"><a href="#geo" class="headerlink" title="geo"></a>geo</h2><h3 id="1-GEO是什么"><a href="#1-GEO是什么" class="headerlink" title="1. GEO是什么"></a>1. GEO是什么</h3><p>以计算5个城市经纬度为例： </p>
-<img src="http://photo.wushaopei.com/qiniu1139.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1139.png" width="60%">
 
 <p>**GEO(地理信息定位)：存储经纬度，计算两地距离，范围计算等</p>
 <table>
@@ -529,22 +529,22 @@
 <td>baoding</td>
 </tr>
 </tbody></table>
-<h3 id="2-API：-geoadd"><a href="#2-API：-geoadd" class="headerlink" title="2. API： geoadd"></a>2. API： geoadd</h3><img src="http://photo.wushaopei.com/qiniu1140.png" width="60%">
+<h3 id="2-API：-geoadd"><a href="#2-API：-geoadd" class="headerlink" title="2. API： geoadd"></a>2. API： geoadd</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1140.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; geoadd cities:locations <span class="number">116.28</span> <span class="number">39.55</span> beijing</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; geoadd cities:locations <span class="number">116.28</span> <span class="number">39.55</span> beijing</span><br><span class="line">(integer) <span class="number">0</span></span><br><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; geoadd cities:locations <span class="number">117.12</span> <span class="number">39.08</span> tianjin <span class="number">114.29</span> <span class="number">38.02</span> shijianzhuang <span class="number">118.01</span> <span class="number">39.38</span> tangshan <span class="number">115.29</span> <span class="number">38.51</span> baoding</span><br><span class="line">(integer) <span class="number">4</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="3-API——geopos"><a href="#3-API——geopos" class="headerlink" title="3. API——geopos:"></a>3. API——geopos:</h3><img src="http://photo.wushaopei.com/qiniu1141.png" width="60%">
+<h3 id="3-API——geopos"><a href="#3-API——geopos" class="headerlink" title="3. API——geopos:"></a>3. API——geopos:</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1141.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; geopos cities:locations tianjin</span><br><span class="line"><span class="number">1</span>) <span class="number">1</span>) <span class="string">"117.12000042200088501"</span></span><br><span class="line">   <span class="number">2</span>) <span class="string">"39.0800000535766543"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="4-API——geodist"><a href="#4-API——geodist" class="headerlink" title="4. API——geodist"></a>4. API——geodist</h3><img src="http://photo.wushaopei.com/qiniu1142.png" width="60%">
+<h3 id="4-API——geodist"><a href="#4-API——geodist" class="headerlink" title="4. API——geodist"></a>4. API——geodist</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1142.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; geodist cities:locations tianjin beijing km</span><br><span class="line"><span class="string">"87.3054"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="5-复杂API——georadius"><a href="#5-复杂API——georadius" class="headerlink" title="5. 复杂API——georadius"></a>5. 复杂API——georadius</h3><img src="http://photo.wushaopei.com/qiniu1143.png" width="60%">
+<h3 id="5-复杂API——georadius"><a href="#5-复杂API——georadius" class="headerlink" title="5. 复杂API——georadius"></a>5. 复杂API——georadius</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1143.png" width="60%">
 
 <p><strong>演示</strong>： </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">6379</span>&gt; georadiusbymember cities:locations beijing <span class="number">150</span> km</span><br><span class="line"><span class="number">1</span>) <span class="string">"beijing"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"tianjin"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"tangshan"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"baoding"</span></span><br></pre></td></tr></table></figure>
@@ -606,8 +606,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E5%8A%9F%E8%83%BD%E5%9B%9B%EF%BC%9Abitmap-%E4%BD%8D%E5%9B%BE%EF%BC%89/" rel="next" title="Redis功能（十五）功能四：bitmap(位图）">
-                <i class="fa fa-chevron-left"></i> Redis功能（十五）功能四：bitmap(位图）
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/" rel="next" title="Redis功能（十三）功能二：Pipeline高速读写">
+                <i class="fa fa-chevron-left"></i> Redis功能（十三）功能二：Pipeline高速读写
               </a>
             
           </div>
@@ -616,8 +616,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E5%8A%9F%E8%83%BD%E4%B8%89%EF%BC%9A%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85/" rel="prev" title="Redis功能（十四）功能三：发布订阅">
-                Redis功能（十四）功能三：发布订阅 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" rel="prev" title="Redis功能（十九）持久化：AOF - 操作命令备份">
+                Redis功能（十九）持久化：AOF - 操作命令备份 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

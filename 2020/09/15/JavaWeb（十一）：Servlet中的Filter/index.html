@@ -97,18 +97,18 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/15/JavaWeb%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%EF%BC%9AServlet%E4%B8%AD%E7%9A%84Filter/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1.Filter 是什么Filter 是 JavaWeb 三大组件之一。  作用：Filter 是干预过程的，它是过程的一部分，是基于过程行为的。 可以有效地拦截请求，并过滤响应。 典型的应用： 权限管理 2.Filter如何工作的​    Filter 也是在 web.xml 中另外一个常用的配置项，可以通过 &lt;filter&gt;  和 &lt;filter-mapping&gt; 组合">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1247.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1248.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1250.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1249.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1247.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1248.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1250.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1249.png">
 <meta property="article:published_time" content="2020-09-15T14:05:57.000Z">
-<meta property="article:modified_time" content="2020-09-19T01:05:35.013Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.845Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="Servlet">
 <meta property="article:tag" content="Filter">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1247.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1247.png">
 
 
 
@@ -477,7 +477,7 @@
 <p>作用：<strong>Filter 是干预过程的</strong>，它是过程的一部分，是基于过程行为的。 可以有效地拦截请求，并过滤响应。</p>
 <p>典型的应用： <strong>权限管理</strong></p>
 <h2 id="2-Filter如何工作的"><a href="#2-Filter如何工作的" class="headerlink" title="2.Filter如何工作的"></a>2.Filter如何工作的</h2><p>​    Filter 也是在 web.xml 中另外一个常用的配置项，可以通过 <code>&lt;filter&gt;</code>  和 <code>&lt;filter-mapping&gt;</code> 组合来使用 Filter 。实际上 Filter 可以完成与 Servlet 同样的工作，甚至比 Servlet 使用起来更加灵活，因为它除了提供了 request 和 response 对象外，还提供了一个FilterChain 对象，这个对象可以让我们更加灵活地控制请求的流转。下面看一下与 Filter 相关的类结构图，如下头所示。</p>
-<img src="http://photo.wushaopei.com/qiniu1247.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1247.png" width="60%">
 
 <p>​    在 Tomcat 容器中，FilterConfit 和 FilterChain 的实现类分别是 ApplicationFilterConfig 和 ApplicationFilterChain，而 Filter 的实现类由用户自定义，只要实现 Filter 接口中定义的三个接口就行，这三个接口与在 Servlet 中的类似。只不过还有一个 ApplicationFilterChain类，这个类可以将多个 Filter 串联起来，组成一个链，这个链与 Jetty 中的 Handler链有异曲同工之妙。下面详细看一下 Filter 类中的三个接口方法。</p>
 <ul>
@@ -487,7 +487,7 @@
 </li>
 <li><p>destroy： 当 Filter 对象被销毁时，这个方法被调用。注意，当 Web 容器调用这个方法之后，容器会再调用一次 doFilter 方法。</p>
 <p>Filter 类的核心还是传递的 FilterChain 对象，这个对象保存了到最终 Servlet 对象的所有 Filter 对象，这些对象都保存在 ApplicationFilterChain 对象的 filters 数组中。 在 FilterChain 链上每执行一个 Filter 对象，数组的当前计数都会加 1，直到计数等于数组的长度，当 FilterChain 上所有的  Filter 对象执行完成后，就会执行最终的 Servlet 。所以在 ApplicationFilterChain 对象中会持有 Servlet 对象的引用。下图为 Filter 对象的执行时序图。</p>
-<img src="http://photo.wushaopei.com/qiniu1248.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1248.png" width="60%">
 
 <p>Filter 存在的意义就好比是你要去北京，它是你的目的地，但是提供一个机制让你在去的途中可以做一些拦截工作，如可以将你的一些行李包存放在某个 “ 存放处 ” ，当你返回时你可以再从这个地方取回。总之它可以在你的途中增加一些东西，或者减少一些东西。</p>
 </li>
@@ -513,7 +513,7 @@
 <h2 id="4-FilterChain-过滤器链"><a href="#4-FilterChain-过滤器链" class="headerlink" title="4.FilterChain 过滤器链"></a>4.<strong>FilterChain 过滤器链</strong></h2><p><strong>Filter是过滤器</strong>，</p>
 <p><code>Chain 链条</code></p>
 <p><strong>FilterChain</strong>，就是过滤器链（多个过滤器）</p>
-<img src="http://photo.wushaopei.com/qiniu1250.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1250.png" width="60%">
 
 
 
@@ -533,7 +533,7 @@
 <li><p>实现doFilter过滤的方法（写你要检查的代码）</p>
 </li>
 <li><p>到web.xml中去配置具体的拦截路径</p>
-<img src="http://photo.wushaopei.com/qiniu1249.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1249.png" width="60%">
 
 
 

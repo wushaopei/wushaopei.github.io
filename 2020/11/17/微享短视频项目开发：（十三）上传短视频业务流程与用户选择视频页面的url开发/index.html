@@ -97,14 +97,14 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/11/17/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E4%B8%8A%E4%BC%A0%E7%9F%AD%E8%A7%86%E9%A2%91%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B%E4%B8%8E%E7%94%A8%E6%88%B7%E9%80%89%E6%8B%A9%E8%A7%86%E9%A2%91%E9%A1%B5%E9%9D%A2%E7%9A%84url%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、上传短视频业务流程讲解1.上传短视频业务流程图   流程：  用户选择上传的视频，通过弹出框选择本地路径点选，可在后端后前端对视频时长进行限制； 选中视频后，跳转到 bgm 选择页面，这里会加载 bgm 的列表 bgm 页面应具有播放、选择 bgm 的功能，并列表上有该 bgm 的名称，提供选择&#x2F;不选择 bgm 、输入视频的描述等功能 提交后，进入后台，会将视频上传到临时文件夹之下 然后拿到其">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1348.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1349.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1350.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1348.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1349.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1350.png">
 <meta property="article:published_time" content="2020-11-17T15:28:14.000Z">
-<meta property="article:modified_time" content="2020-11-21T15:11:54.741Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:47.661Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1348.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1348.png">
 
 
 
@@ -448,7 +448,7 @@
 
       
         <h3 id="一、上传短视频业务流程讲解"><a href="#一、上传短视频业务流程讲解" class="headerlink" title="一、上传短视频业务流程讲解"></a>一、上传短视频业务流程讲解</h3><p>1.上传短视频业务流程图</p>
-<img src="http://photo.wushaopei.com/qiniu1348.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1348.png" width="60%">
 
 <p>流程：</p>
 <ol>
@@ -465,10 +465,10 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"> uploadVideo: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line">  wx.chooseVideo(&#123;</span><br><span class="line">    sourceType: [<span class="string">'album'</span>],</span><br><span class="line">    maxDuration: <span class="number">60</span>,</span><br><span class="line">    camera: <span class="string">'back'</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(res);</span><br><span class="line">      <span class="keyword">var</span> duration =  res.duration;  <span class="comment">// 视频时长</span></span><br><span class="line">      <span class="keyword">var</span> height = res.height;		<span class="comment">//	视频屏高</span></span><br><span class="line">      <span class="keyword">var</span> width = res.width;			<span class="comment">//	视频屏宽</span></span><br><span class="line">      <span class="keyword">var</span> tempFilePath = res.tempFilePath;	<span class="comment">//	临时文件路径</span></span><br><span class="line">      <span class="keyword">var</span> thumbTempFilePath = res.thumbTempFilePath;		<span class="comment">//	</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(duration &gt; <span class="number">16</span>)&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">'视频长度不能超过15秒....'</span>,</span><br><span class="line">          icon: <span class="string">"none"</span>,</span><br><span class="line">          duration: <span class="number">2500</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(duration &lt; <span class="number">1</span>)&#123;</span><br><span class="line">        wx.showToast(&#123;</span><br><span class="line">          title: <span class="string">'视频长度太短，请上传超过1秒的视频....'</span>,</span><br><span class="line">          icon: <span class="string">"none"</span>,</span><br><span class="line">          duration: <span class="number">2500</span></span><br><span class="line">        &#125;)          </span><br><span class="line">      &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// TODO 打开选择BGM的页面</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>效果实现：</p>
-<img src="http://photo.wushaopei.com/qiniu1349.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1349.png" width="60%">
 
 <p>随后跳转到 bgm 选择页面：</p>
-<img src="http://photo.wushaopei.com/qiniu1350.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1350.png" width="60%">
 
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3>
       

@@ -97,22 +97,22 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%89%EF%BC%89%E5%8A%9F%E8%83%BD%E4%BA%8C%EF%BC%9APipeline%E9%AB%98%E9%80%9F%E8%AF%BB%E5%86%99/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="pipeline 什么是流水线？ 客户端实现 与原生操作对比 使用建议  1. 为什么有 pipeline ?1次网络命令通信模型  如图，经历了   1次时间 &#x3D; 1次网络时间 + 1次命令时间 批量网络命令通信模型  如图，经历了 n次时间 &#x3D; n次网络时间 + n次命令时间  2. 什么是流水线？  如图，经历了 1次pipeline(n条命令) &#x3D; 1次网络时间 + n次命令时间，这大大减">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1119.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1120.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1121.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1122.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1123.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1124.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1125.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1126.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1119.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1120.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1121.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1122.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1123.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1124.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1125.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1126.png">
 <meta property="article:published_time" content="2020-08-30T14:59:01.000Z">
-<meta property="article:modified_time" content="2020-08-31T12:03:54.394Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.895Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="pipeline">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1119.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1119.png">
 
 
 
@@ -494,13 +494,13 @@
 <li>与原生操作对比</li>
 <li>使用建议</li>
 </ul>
-<h3 id="1-为什么有-pipeline"><a href="#1-为什么有-pipeline" class="headerlink" title="1. 为什么有 pipeline ?"></a>1. 为什么有 pipeline ?</h3><h4 id="1次网络命令通信模型"><a href="#1次网络命令通信模型" class="headerlink" title="1次网络命令通信模型"></a>1次网络命令通信模型</h4><img src="http://photo.wushaopei.com/qiniu1119.png" width="60%">
+<h3 id="1-为什么有-pipeline"><a href="#1-为什么有-pipeline" class="headerlink" title="1. 为什么有 pipeline ?"></a>1. 为什么有 pipeline ?</h3><h4 id="1次网络命令通信模型"><a href="#1次网络命令通信模型" class="headerlink" title="1次网络命令通信模型"></a>1次网络命令通信模型</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1119.png" width="60%">
 
 <p>如图，经历了   1次时间 = 1次网络时间 + 1次命令时间</p>
-<h4 id="批量网络命令通信模型"><a href="#批量网络命令通信模型" class="headerlink" title="批量网络命令通信模型"></a><strong>批量网络命令通信模型</strong></h4><img src="http://photo.wushaopei.com/qiniu1120.png" width="60%">
+<h4 id="批量网络命令通信模型"><a href="#批量网络命令通信模型" class="headerlink" title="批量网络命令通信模型"></a><strong>批量网络命令通信模型</strong></h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1120.png" width="60%">
 
 <p>如图，经历了 n次时间 = n次网络时间 + n次命令时间 </p>
-<h3 id="2-什么是流水线？"><a href="#2-什么是流水线？" class="headerlink" title="2. 什么是流水线？"></a>2. 什么是流水线？</h3><img src="http://photo.wushaopei.com/qiniu1121.png" width="60%">
+<h3 id="2-什么是流水线？"><a href="#2-什么是流水线？" class="headerlink" title="2. 什么是流水线？"></a>2. 什么是流水线？</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1121.png" width="60%">
 
 <p>如图，经历了 1次pipeline(n条命令) = 1次网络时间 + n次命令时间，这大大减少了网络时间的开销，这就是流水线。 </p>
 <h3 id="3-流水线的作用"><a href="#3-流水线的作用" class="headerlink" title="3. 流水线的作用"></a>3. 流水线的作用</h3><table>
@@ -527,7 +527,7 @@
 <li>redis的命令时间是微秒级别</li>
 <li>pipeline每次条数要控制（网络）</li>
 </ol>
-<h3 id="4-案例展示——从北京到上海的一条命令的生命周期有多长？"><a href="#4-案例展示——从北京到上海的一条命令的生命周期有多长？" class="headerlink" title="4. 案例展示——从北京到上海的一条命令的生命周期有多长？"></a>4. 案例展示——从北京到上海的一条命令的生命周期有多长？</h3><img src="http://photo.wushaopei.com/qiniu1122.png" width="60%">
+<h3 id="4-案例展示——从北京到上海的一条命令的生命周期有多长？"><a href="#4-案例展示——从北京到上海的一条命令的生命周期有多长？" class="headerlink" title="4. 案例展示——从北京到上海的一条命令的生命周期有多长？"></a>4. 案例展示——从北京到上海的一条命令的生命周期有多长？</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1122.png" width="60%">
 
 <p>​    由图可知，执行一条命令在redis端可能需要几百微秒，而在网络光纤中传输只花费了13毫秒。假如在执行批量操作而没有使用pipeline功能，会将大量的时间耗费在每一次网络传输的过程上；而使用pipeline后，只需要经过一次网络传输，然后批量在redis端进行命令操作。这会大大提高了效率。 </p>
 <h3 id="5-pipeline-Jedis实现"><a href="#5-pipeline-Jedis实现" class="headerlink" title="5.pipeline-Jedis实现"></a>5.pipeline-Jedis实现</h3><p>首先，引入jedis依赖包： </p>
@@ -537,20 +537,20 @@
 <p>1) 没有pipeline的命令执行： </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis - <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">10000</span> ; i ++ )&#123;</span><br><span class="line">    jedis.hset(<span class="string">"hashkey:"</span> + i , <span class="string">"field"</span> + i , <span class="string">"value"</span> + i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu1123.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1123.png" width="60%">
 
 <p>​    假设，在不使用pipeline的情况下，使用for循环进行每次一条命令的执行操作，耗费的时间可能达到 1w 条插入命令的耗时为50s。 </p>
 <p>2） 使用pipeline: </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Jedis jedis = <span class="keyword">new</span> Jedis(<span class="string">"127.0.0.1"</span>,<span class="number">6379</span>);</span><br><span class="line"><span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span> ; i++) &#123;</span><br><span class="line">    Pipeline pipeline = jedis.ppipelined();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i * <span class="number">100</span> ; j &lt; (i + <span class="number">1</span>) * <span class="number">100</span> ; j++) &#123;</span><br><span class="line">        pipeline.hset(<span class="string">"hashkey:"</span> + j,<span class="string">"field"</span> + j, <span class="string">"value"</span> + j);</span><br><span class="line">    &#125;</span><br><span class="line">    pipeline.syncAndReturnAll();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu1124.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1124.png" width="60%">
 
 <p>假设使用了pipeline 进行批量操作，每次传输100条命令到redis端进行执行操作，大概 1w插入条命令需耗时 0.7s </p>
 <p>3)与原生M操作 </p>
-<img src="http://photo.wushaopei.com/qiniu1125.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1125.png" width="60%">
 
 <p>​    在原生的redis命令操作中，命令的执行是依次按入列的顺序一条一条执行，具有原子性。 </p>
-<img src="http://photo.wushaopei.com/qiniu1126.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1126.png" width="60%">
 
 <p>​    在使用pipeline进行批量操作后，会将大量命令用pipeline 包装起来，一次性发送到服务端，然后在服务端进行拆分成多个基本命令，此时命令的执行次序是不一定的，因此是非原子性的。 </p>
 <p>​    但，命令执行结果的返回是有序的。 </p>
@@ -619,8 +619,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B9%9D%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9AAOF-%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4%E5%A4%87%E4%BB%BD/" rel="prev" title="Redis功能（十九）持久化：AOF - 操作命令备份">
-                Redis功能（十九）持久化：AOF - 操作命令备份 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/08/30/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89%E5%8A%9F%E8%83%BD%E5%85%AD%EF%BC%9AGEO%EF%BC%88%E5%9C%B0%E7%90%86%E4%BF%A1%E6%81%AF%E5%AE%9A%E4%BD%8D%EF%BC%89/" rel="prev" title="Redis功能（十七）功能六：GEO（地理信息定位）">
+                Redis功能（十七）功能六：GEO（地理信息定位） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

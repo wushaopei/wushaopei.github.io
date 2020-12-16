@@ -97,18 +97,18 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/07/%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%BC%80%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89Specification-03-Terms-Definition/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="03.01 Common （所有）03.01.01 Job​    这项工作意味着对玻璃、切割和切屑等材料进行特定的加工。  理解：​    所有的玻璃就叫做Job，玻璃分很多种，有大版和切割后的glass、cut和chip等等。 在Array未切割前就是Glass；到了CF后会进行切割，切割后就是cut（一个glass切成四个中等的板），切割成更小的就是chip(一个glass切成8片或16片)">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu270.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu271.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu272.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu273.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu275.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu276.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu270.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu271.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu272.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu273.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu275.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu276.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-07T01:40:06.000Z">
-<meta property="article:modified_time" content="2020-06-18T16:52:09.559Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.794Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu270.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu270.png">
 
 
 
@@ -492,17 +492,17 @@
 <h2 id="03-02-Job"><a href="#03-02-Job" class="headerlink" title="03.02. Job"></a>03.02. Job</h2><h3 id="03-02-01-Substrate-Type"><a href="#03-02-01-Substrate-Type" class="headerlink" title="03.02.01. Substrate Type"></a>03.02.01. Substrate Type</h3><p>在从事底层的Job中，它包括4种类型:Glass，cut，chip和Casssette 。</p>
 <h3 id="03-02-02-Glass-ID"><a href="#03-02-02-Glass-ID" class="headerlink" title="03.02.02. Glass ID"></a>03.02.02. Glass ID</h3><p>每个Glass有一个Glass ID, Glass ID是唯一的，每一片玻璃只能有一个Glass ID, 全场唯一，以后也不会有重复的。</p>
 <p>Glass ID 如果切成小板，则会对每个小板标记为01、02这样的标记作为区分。</p>
-<img src="http://photo.wushaopei.com/qiniu270.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu270.png" width="80%">
 
 <p>如图所示，假设当前Glass ID 为 glass_A，那么对应的每一块小板为glass_A01、glass_A02、glass_A03这样依次序号进行递增。</p>
 <h3 id="03-02-03-Cut-ID"><a href="#03-02-03-Cut-ID" class="headerlink" title="03.02.03. Cut ID"></a>03.02.03. Cut ID</h3><p>​    经过第一次切割操作，玻璃变成了一个多芯片。 </p>
 <p>​    即，第一次切割操作的ID。</p>
-<img src="http://photo.wushaopei.com/qiniu271.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu271.png" width="80%">
 
 
 
 <h3 id="03-02-04-Chip-ID"><a href="#03-02-04-Chip-ID" class="headerlink" title="03.02.04. Chip ID"></a>03.02.04. Chip ID</h3><p>经过第二次切割操作后，glass 变成更小的一块，称为chip (它也被称为细胞或面板)。它的ID被称为Chip ID (TFT芯片ID最多由20个字符组成;CF芯片ID最多由20个字符组成)。示例请参考线路运行场景 </p>
-<img src="http://photo.wushaopei.com/qiniu272.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu272.png" width="80%">
 
 
 
@@ -510,17 +510,17 @@
 <p><strong>DB 数据：</strong>  在DB中进行数据存储时也是根据这两个参数进行存储的。</p>
 <h3 id="03-02-05-Cassette-Sequence-No"><a href="#03-02-05-Cassette-Sequence-No" class="headerlink" title="03.02.05. Cassette Sequence No"></a>03.02.05. Cassette Sequence No</h3><p>Cassette Sequence No  代表的是 Cassette 的ID 。每上一个新的 Cassette，就会把 Cassette Sequence 进行加一。最小的是0，当第一个 Cassette 上机后变成 1 ，后面的根据上机的Cassette一次增加 1 。Cassette Sequence No 最高会有一个限定的值，比如1000，当到达这个值时，会从0开始计数。</p>
 <h3 id="03-02-06-Job-Sequence-No"><a href="#03-02-06-Job-Sequence-No" class="headerlink" title="03.02.06. Job Sequence No"></a>03.02.06. Job Sequence No</h3><p> Job Sequence 的意思是Cassette 的层数，或者说当前是第几层。</p>
-<img src="http://photo.wushaopei.com/qiniu273.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu273.png" width="80%">
 
 <p>如上图所示，右边的就是Cassette ，该Cassette 分为两个Slot , 从 Slot1 到 Slot2 ,共有56层（插槽） Slot 1 中是 Job Sequence Number 1<del>28， Slot 2 是 Job Sequence Number 29</del>56。</p>
 <p><strong>重点：</strong> 根据 Cassette Sequence No 我们可以知道该片Glass 在哪个Cassette中，根据    Job Sequence Number 我们可以知道该片Glass 在 Cassette中的哪个位置。</p>
 <p><code>一个slot 层中只能有一片玻璃。</code></p>
 <h3 id="03-02-07-Chip-Position-芯片定位"><a href="#03-02-07-Chip-Position-芯片定位" class="headerlink" title="03.02.07. Chip Position(芯片定位)"></a>03.02.07. Chip Position(芯片定位)</h3><p>它主要是指切割前面板在玻璃中的具体位置。在第一次或第二次切割后，人们可以通过这个值知道每个芯片在玻璃中的起始位置 </p>
-<img src="http://photo.wushaopei.com/qiniu275.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu275.png" width="80%">
 
 <p>如图中所示，TFT 是Array切割的玻璃，而CF是CF切割的玻璃，最终这两块对应玻璃是会合到一起的。在合到一起后再进行切割。</p>
 <p>​    切割之前，需要在Cell厂进行画框，并使用框胶等进行固定。一般切割为16块芯片，这是根据Chip Position来确定切割的数量的。</p>
-<img src="http://photo.wushaopei.com/qiniu276.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu276.png" width="80%">
 
 
 
@@ -580,7 +580,7 @@
 <h3 id="03-04-06-Port-Grade"><a href="#03-04-06-Port-Grade" class="headerlink" title="03.04.06. Port Grade"></a>03.04.06. Port Grade</h3><p>Port 等级设置结果报告。检查后，出货标准为玻璃放Cassette</p>
 <h3 id="03-04-07-Cassette-Status"><a href="#03-04-07-Cassette-Status" class="headerlink" title="03.04.07. Cassette Status"></a>03.04.07. Cassette Status</h3><p>它指示端口上磁带的处理状态。 </p>
 <h3 id="03-04-08-Cassette-ID"><a href="#03-04-08-Cassette-ID" class="headerlink" title="03.04.08. Cassette ID"></a>03.04.08. Cassette ID</h3><p>特定的ID被分配给单独的磁带，称为盒式磁带ID。它可以被读取条形码阅读器(BCR)，可由触摸屏上的特殊操作员进行修改。(磁带ID最多包含10个字符，PP BOX ID最多包含10个字符，密盒ID最多包含10个字符。) </p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

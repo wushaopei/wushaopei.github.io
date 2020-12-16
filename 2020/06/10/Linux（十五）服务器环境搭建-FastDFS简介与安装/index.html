@@ -97,26 +97,26 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E4%BA%94%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-FastDFS%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、传统文件上传方式缺陷1.Web应用重新部署导致上传的文件丢失  2.集群环境下没有文件同步机制  3.扩容弹性差  4.存在单点故障  二、FastDFS功能1.独立于应用服务器文件本身不会在应用服务器上存储，不受应用服务器上Web应用重新部署影响。 2.内部存储服务器有数据备份同一个文件存储在多台不同服务器上。在FastDFS内部，同一个组内的服务器存储相同文件。同组服务器之间使用同步线程同">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu777.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu778.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu779.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu780.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu782.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu783.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu784.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu785.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu786.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu787.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu788.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu789.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu790.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu777.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu778.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu779.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu780.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu782.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu783.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu784.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu785.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu786.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu787.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu788.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu789.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu790.png">
 <meta property="article:published_time" content="2020-06-10T13:28:41.000Z">
-<meta property="article:modified_time" content="2020-06-10T13:34:45.781Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:25.489Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="FastDFS安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu777.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu777.png">
 
 
 
@@ -492,18 +492,18 @@
       
 
       
-        <h1 id="一、传统文件上传方式缺陷"><a href="#一、传统文件上传方式缺陷" class="headerlink" title="一、传统文件上传方式缺陷"></a>一、传统文件上传方式缺陷</h1><h2 id="1-Web应用重新部署导致上传的文件丢失"><a href="#1-Web应用重新部署导致上传的文件丢失" class="headerlink" title="1.Web应用重新部署导致上传的文件丢失"></a>1.Web应用重新部署导致上传的文件丢失</h2><img src="http://photo.wushaopei.com/qiniu777.png" >
+        <h1 id="一、传统文件上传方式缺陷"><a href="#一、传统文件上传方式缺陷" class="headerlink" title="一、传统文件上传方式缺陷"></a>一、传统文件上传方式缺陷</h1><h2 id="1-Web应用重新部署导致上传的文件丢失"><a href="#1-Web应用重新部署导致上传的文件丢失" class="headerlink" title="1.Web应用重新部署导致上传的文件丢失"></a>1.Web应用重新部署导致上传的文件丢失</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu777.png" >
 
-<h2 id="2-集群环境下没有文件同步机制"><a href="#2-集群环境下没有文件同步机制" class="headerlink" title="2.集群环境下没有文件同步机制"></a>2.集群环境下没有文件同步机制</h2><img src="http://photo.wushaopei.com/qiniu778.png" >
+<h2 id="2-集群环境下没有文件同步机制"><a href="#2-集群环境下没有文件同步机制" class="headerlink" title="2.集群环境下没有文件同步机制"></a>2.集群环境下没有文件同步机制</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu778.png" >
 
-<h2 id="3-扩容弹性差"><a href="#3-扩容弹性差" class="headerlink" title="3.扩容弹性差"></a>3.扩容弹性差</h2><img src="http://photo.wushaopei.com/qiniu779.png" >
+<h2 id="3-扩容弹性差"><a href="#3-扩容弹性差" class="headerlink" title="3.扩容弹性差"></a>3.扩容弹性差</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu779.png" >
 
-<h2 id="4-存在单点故障"><a href="#4-存在单点故障" class="headerlink" title="4.存在单点故障"></a>4.存在单点故障</h2><img src="http://photo.wushaopei.com/qiniu780.png" >
+<h2 id="4-存在单点故障"><a href="#4-存在单点故障" class="headerlink" title="4.存在单点故障"></a>4.存在单点故障</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu780.png" >
 
-<h1 id="二、FastDFS功能"><a href="#二、FastDFS功能" class="headerlink" title="二、FastDFS功能"></a>二、FastDFS功能</h1><h2 id="1-独立于应用服务器"><a href="#1-独立于应用服务器" class="headerlink" title="1.独立于应用服务器"></a>1.独立于应用服务器</h2><p>文件本身不会在应用服务器上存储，不受应用服务器上Web应用重新部署影响。<br><img src="http://photo.wushaopei.com/qiniu782.png" ></p>
+<h1 id="二、FastDFS功能"><a href="#二、FastDFS功能" class="headerlink" title="二、FastDFS功能"></a>二、FastDFS功能</h1><h2 id="1-独立于应用服务器"><a href="#1-独立于应用服务器" class="headerlink" title="1.独立于应用服务器"></a>1.独立于应用服务器</h2><p>文件本身不会在应用服务器上存储，不受应用服务器上Web应用重新部署影响。<br><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu782.png" ></p>
 <h2 id="2-内部存储服务器有数据备份"><a href="#2-内部存储服务器有数据备份" class="headerlink" title="2.内部存储服务器有数据备份"></a>2.内部存储服务器有数据备份</h2><p>同一个文件存储在多台不同服务器上。在FastDFS内部，同一个组内的服务器存储相同文件。同组服务器之间使用同步线程同步文件数据。<br>避免单点故障，对外能够提供统一的访问接口。</p>
 <h2 id="3-动态扩容"><a href="#3-动态扩容" class="headerlink" title="3.动态扩容"></a>3.动态扩容</h2><p>tracker服务器管理storage服务器。动态增加storage，外界感觉不到。</p>
-<h1 id="三、FastDFS内在工作机制"><a href="#三、FastDFS内在工作机制" class="headerlink" title="三、FastDFS内在工作机制"></a>三、FastDFS内在工作机制</h1><img src="http://photo.wushaopei.com/qiniu783.png" >
+<h1 id="三、FastDFS内在工作机制"><a href="#三、FastDFS内在工作机制" class="headerlink" title="三、FastDFS内在工作机制"></a>三、FastDFS内在工作机制</h1><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu783.png" >
 
 <br/>
 
@@ -567,13 +567,13 @@
 <p><strong>启动服务：</strong> systemctl enable nginx.service</p>
 <p><strong>建议：</strong> 可通过查看进程判定服务启动是否生效.</p>
 <p><strong>测试：</strong>上传一张图片，验证是否配置成功。在不手动启动nginx的情况下可以在浏览器进行url的跳转和显示，则说明配置成功了！</p>
-<h1 id="六、文件访问路径说明"><a href="#六、文件访问路径说明" class="headerlink" title="六、文件访问路径说明"></a>六、文件访问路径说明</h1><img src="http://photo.wushaopei.com/qiniu784.png" >
+<h1 id="六、文件访问路径说明"><a href="#六、文件访问路径说明" class="headerlink" title="六、文件访问路径说明"></a>六、文件访问路径说明</h1><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu784.png" >
 
-<h1 id="七、FastDFS的Java客户端使用"><a href="#七、FastDFS的Java客户端使用" class="headerlink" title="七、FastDFS的Java客户端使用"></a>七、FastDFS的Java客户端使用</h1><h2 id="1-获取jar包的常规方式"><a href="#1-获取jar包的常规方式" class="headerlink" title="1.获取jar包的常规方式"></a>1.获取jar包的常规方式</h2><img src="http://photo.wushaopei.com/qiniu785.png" >
+<h1 id="七、FastDFS的Java客户端使用"><a href="#七、FastDFS的Java客户端使用" class="headerlink" title="七、FastDFS的Java客户端使用"></a>七、FastDFS的Java客户端使用</h1><h2 id="1-获取jar包的常规方式"><a href="#1-获取jar包的常规方式" class="headerlink" title="1.获取jar包的常规方式"></a>1.获取jar包的常规方式</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu785.png" >
 
 <p><b><font color="blue">原生的获取jar包的方式</font></b>：</p>
 <p>① 从远程仓库获取jar包，解压保存到本地仓库，执行Maven工程时，通过<strong>依赖</strong> 去本地仓库获取<strong>jar</strong>包；② 本地仓库不存在所需要的<strong>jar包</strong>时，会通过依赖信息前往远程仓库下载到本地，解压后再被Maven工程所使用。</p>
-<h2 id="2-FastDFS的jar包需要手动安装到本地仓库"><a href="#2-FastDFS的jar包需要手动安装到本地仓库" class="headerlink" title="2.FastDFS的jar包需要手动安装到本地仓库"></a>2.FastDFS的jar包需要手动安装到本地仓库</h2><img src="http://photo.wushaopei.com/qiniu786.png" >
+<h2 id="2-FastDFS的jar包需要手动安装到本地仓库"><a href="#2-FastDFS的jar包需要手动安装到本地仓库" class="headerlink" title="2.FastDFS的jar包需要手动安装到本地仓库"></a>2.FastDFS的jar包需要手动安装到本地仓库</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu786.png" >
 
 <h2 id="3-FastDFS客户端源码下载地址"><a href="#3-FastDFS客户端源码下载地址" class="headerlink" title="3.FastDFS客户端源码下载地址"></a>3.FastDFS客户端源码下载地址</h2><p><a href="https://github.com/happyfish100/fastdfs-client-java/archive/master.zip" target="_blank" rel="noopener">https://github.com/happyfish100/fastdfs-client-java/archive/master.zip</a></p>
 <h1 id="第一种依赖和使用方法"><a href="#第一种依赖和使用方法" class="headerlink" title="第一种依赖和使用方法"></a>第一种依赖和使用方法</h1><h2 id="4-解压master-zip"><a href="#4-解压master-zip" class="headerlink" title="4.解压master.zip"></a>4.解压master.zip</h2><h2 id="5-在解压目录执行Maven的安装命令"><a href="#5-在解压目录执行Maven的安装命令" class="headerlink" title="5.在解压目录执行Maven的安装命令"></a>5.在解压目录执行Maven的安装命令</h2><ul>
@@ -588,14 +588,14 @@
 <h1 id="第二种依赖的操作方法"><a href="#第二种依赖的操作方法" class="headerlink" title="第二种依赖的操作方法"></a>第二种依赖的操作方法</h1><h2 id="8-创建-一个war工程和被依赖的jar工程"><a href="#8-创建-一个war工程和被依赖的jar工程" class="headerlink" title="8. 创建 一个war工程和被依赖的jar工程"></a>8. 创建 一个war工程和被依赖的jar工程</h2><p>创建一个Pro_FastDFS_Client  .jar 工程 </p>
 <p>创建一个Pro_FastDFS  .war 工程</p>
 <h2 id="9-为jar-工程添加-源码目录文件"><a href="#9-为jar-工程添加-源码目录文件" class="headerlink" title="9. 为jar 工程添加 源码目录文件"></a>9. 为jar 工程添加 源码目录文件</h2><p>将master.zip解压目录下的<strong>org</strong> 的包目录复制到Pro_FastDFS_Client工程上</p>
-<img src="http://photo.wushaopei.com/qiniu787.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu787.png" >
 
 <h2 id="10-添加Pro-FastDFS-对Pro-FastDFS-Client-的依赖"><a href="#10-添加Pro-FastDFS-对Pro-FastDFS-Client-的依赖" class="headerlink" title="10.添加Pro_FastDFS 对Pro_FastDFS_Client 的依赖"></a>10.添加Pro_FastDFS 对Pro_FastDFS_Client 的依赖</h2><p>方式： <strong>pom.xml</strong> 的<strong>Dependencies</strong>  中 的 <strong>add</strong>  查询添加依赖</p>
-<img src="http://photo.wushaopei.com/qiniu788.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu788.png" >
 
 <ul>
 <li><p>在Pro_FastDFS中的pom.xml中可以使用 Maven install 执行安装</p>
-<img src="http://photo.wushaopei.com/qiniu789.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu789.png" >
 
 </li>
 </ul>
@@ -609,7 +609,7 @@
 
 <p>协议：<b><font color="blue">//IP地址/组名/虚拟磁盘/文件目录/文件目录/文件名</font></b></p>
 <p><strong>效果</strong> ：</p>
-<img src="http://photo.wushaopei.com/qiniu790.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu790.png" >
       
     </div>
     

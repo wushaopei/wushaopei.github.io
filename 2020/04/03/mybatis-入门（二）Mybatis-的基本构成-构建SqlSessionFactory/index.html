@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/03/mybatis-%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89Mybatis-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%84%E6%88%90-%E6%9E%84%E5%BB%BASqlSessionFactory/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="MyBatis 的基本构成认识MyBatis，从它的表面想象，即基本构成进行了解。 关于MyBatis的核心组件：SqlSessionFactoryBuilder(构造器)： 它会根据配置信息或者代码来生成SqlSessionfactory（工厂接口）。 SqlSessionFactory： 依靠工厂来生成SqlSession(会话)。 SqlSession： 是一个既可以发送SQL去执行并返回结">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu265.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu266.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu267.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu265.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu266.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu267.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-03T06:56:21.000Z">
-<meta property="article:modified_time" content="2020-06-11T04:45:00.553Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:06.006Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="入门">
 <meta property="article:tag" content="hibernate">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu265.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu265.png">
 
 
 
@@ -488,11 +488,11 @@
 <p><strong>SqlSessionFactory：</strong> 依靠工厂来生成SqlSession(会话)。</p>
 <p><strong>SqlSession：</strong> 是一个既可以发送SQL去执行并返回结果，也可以获取Mapper的接口。</p>
 <p>*<em>SQL Mapper： *</em> 它是MyBatis新设计的组件，它是由一个Java接口和XML文件（或注解）构成的，需要给出对应的SQL和映射规则。它负责发送SQL去执行，并返回结果。</p>
-<img src="http://photo.wushaopei.com/qiniu265.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu265.png" width="80%">
 
 <p>上图是MyBatis核心构建之间的关联图。</p>
 <h2 id="构建SqlSessionFactory"><a href="#构建SqlSessionFactory" class="headerlink" title="构建SqlSessionFactory"></a>构建SqlSessionFactory</h2><h3 id="概述介绍"><a href="#概述介绍" class="headerlink" title="概述介绍"></a>概述介绍</h3><p>每个MyBatis 的应用都是以SqlSessionFactoy 的实例为中心的。通过SqlSessionFactoryBuilder可以获得SqlSessionFactory。</p>
-<img src="http://photo.wushaopei.com/qiniu266.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu266.png" width="80%">
 
 <p>必须注意的一点是，SqlSessionFactory是一个工厂接口二不是现实类，它的任务是创建SqlSession.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Creates an &#123;<span class="doctag">@link</span> SqlSession&#125; out of a connection or a DataSource *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Clinton Begin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlSessionFactory</span> </span>&#123;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(<span class="keyword">boolean</span> autoCommit)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(Connection connection)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(TransactionIsolationLevel level)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, <span class="keyword">boolean</span> autoCommit)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, TransactionIsolationLevel level)</span></span>;</span><br><span class="line">  <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType execType, Connection connection)</span></span>;</span><br><span class="line">  <span class="function">Configuration <span class="title">getConfiguration</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -509,7 +509,7 @@
 </ul>
 <h3 id="SqlSessionFactory的两个实现类"><a href="#SqlSessionFactory的两个实现类" class="headerlink" title="SqlSessionFactory的两个实现类"></a>SqlSessionFactory的两个实现类</h3><p>MyBatis中提供了两个SqlSessionFactory的实现类，DefaultSqlSession 和 SqlSessionManager。目前使用的是DefaultSqlSessionFactory.</p>
 <p><strong>主要关系图如下：</strong></p>
-<img src="http://photo.wushaopei.com/qiniu267.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu267.png" width="80%">
 
 
 
@@ -554,7 +554,7 @@
 </ul>
 <p>由以上分析可以看出，用代码方式实现和用XML方式只是换了个方法实现而已，其本质并无不同。其中采用代码方式一般是在需要加入自己特性的时候才会用到。</p>
 <p>这里唯一需要注意的一点是，通过XML配置实现和代码实现的映射器是不同的，前者使用的是JavaBean，而后者使用UserMapper.java 。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

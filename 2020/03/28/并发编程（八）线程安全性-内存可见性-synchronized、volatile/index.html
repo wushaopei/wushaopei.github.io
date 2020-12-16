@@ -97,23 +97,23 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/28/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%85%AB%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E6%80%A7-%E5%86%85%E5%AD%98%E5%8F%AF%E8%A7%81%E6%80%A7-synchronized%E3%80%81volatile/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="说明： 多线程的内存可见性涉及到多线程间的数据争用，也涉及到了多线程间的数据可见性  共享变量在线程间的可见性内存可见性介绍：可见性： 一个线程对共享变量值的修改，能够及时地被其他线程看到。 共享变量：如果一个变量在多个线程的工作内存中都存在副本，那么这个变量就是这几个线程的共享变量。 Java内存模型（JMM）Java内存模型（Java Memory Model）描述了Java程序中各种变量（线">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu244.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu245.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu246.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu247.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu248.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu249.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu250.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu251.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu252.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu244.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu245.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu246.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu247.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu248.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu249.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu250.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu251.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu252.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-28T03:46:18.000Z">
-<meta property="article:modified_time" content="2020-03-31T15:03:10.773Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.497Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="内存可见性">
 <meta property="article:tag" content="synchronized">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu244.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu244.png">
 
 
 
@@ -486,7 +486,7 @@
 <p>所有的变量都存储在主内存中；</p>
 <p>每个线程都有自己独立的工作内存，里面保存该线程使用到的变量的副本（主内存中该变量的一份拷贝）</p>
 </blockquote>
-<h4 id="内存模型图："><a href="#内存模型图：" class="headerlink" title="内存模型图："></a><strong>内存模型图：</strong></h4><img src="http://photo.wushaopei.com/qiniu244.png" width="80%">
+<h4 id="内存模型图："><a href="#内存模型图：" class="headerlink" title="内存模型图："></a><strong>内存模型图：</strong></h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu244.png" width="80%">
 
 <h4 id="JMM线程操作内存的两条基本的规定："><a href="#JMM线程操作内存的两条基本的规定：" class="headerlink" title="JMM线程操作内存的两条基本的规定："></a><strong>JMM线程操作内存的两条基本的规定：</strong></h4><blockquote>
 <p>第一条关于线程与主内存：线程对共享变量的所有操作都必须在自己的工作内存中进行，不能直接从主内存中读写</p>
@@ -497,7 +497,7 @@
 <li>把工作内存1中更新过的共享变量刷新到主内存中</li>
 <li>把住内存中最新的共享变量的值更新到工作内存2中</li>
 </ul>
-<h4 id="流程图："><a href="#流程图：" class="headerlink" title="流程图："></a><strong>流程图：</strong></h4><img src="http://photo.wushaopei.com/qiniu245.png" width="80%">
+<h4 id="流程图："><a href="#流程图：" class="headerlink" title="流程图："></a><strong>流程图：</strong></h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu245.png" width="80%">
 
 
 
@@ -549,7 +549,7 @@
 </ol>
 </blockquote>
 <p>示例：<strong>指令重排序 可能 造成的结果</strong></p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu246.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu246.png" width="80%"></p>
 <p>【6】   <strong>as-if-serial</strong> </p>
 <p><strong>as-if-serial：无论如何重排序，程序执行的结果应该与代码顺序执行的结果一致（Java编译器、运行时和处理器都会保证Java在单线程下遵循</strong>   <strong>as-if-serial 语义）</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num1 = <span class="number">1</span>;           <span class="comment">//第1行代码</span></span><br><span class="line"><span class="keyword">int</span> num2 = <span class="number">2</span>;           <span class="comment">//第2行代码</span></span><br><span class="line"><span class="keyword">int</span> sum = num1 + num2 ; <span class="comment">//第3行代码</span></span><br></pre></td></tr></table></figure>
@@ -561,10 +561,10 @@
 
 <h3 id="synchronized实现可见性分析："><a href="#synchronized实现可见性分析：" class="headerlink" title="synchronized实现可见性分析："></a>synchronized实现可见性分析：</h3><p>【1】<strong>没有进行重排序</strong> </p>
 <p>执行结果:result的值为3 </p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu247.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu247.png" width="80%"></p>
 <p>【2】<strong>进行重排序</strong></p>
 <p>​    执行结果:result的值为0</p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu248.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu248.png" width="80%"></p>
 <p>【3】<strong>分析：导致共享变量在线程间不可见的原因</strong></p>
 <blockquote>
 <ol>
@@ -574,7 +574,7 @@
 </ol>
 </blockquote>
 <p>【4】 安全代码： </p>
-<p>​         <img src="http://photo.wushaopei.com/qiniu249.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu249.png" width="80%"></p>
 <p>【5】synchronized 实现内存可见性的解决方案：</p>
 <blockquote>
 <ol>
@@ -582,14 +582,14 @@
 <li>synchronized  使得 同步的情况下，共享变量在被第二次调用前便被同步到了主内存，实现了共享变量的即时更新</li>
 </ol>
 </blockquote>
-<p>​         <img src="http://photo.wushaopei.com/qiniu250.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu250.png" width="80%"></p>
 <p><strong>重点：</strong> 为啥synchronized原子性可以避免线程交叉执行：因为synchronized加锁在对象上，执行read方法的线程1获得了对象锁，那线程2不能获得对象锁也就不能执行write方法，因为要执行write方法需要获得锁。但是线程1可以继续执行write方法，因为write方法和read方法可以使用同一把锁，synchronized锁可以重入</p>
 <h3 id="synchronized实现可见性结果分析："><a href="#synchronized实现可见性结果分析：" class="headerlink" title="synchronized实现可见性结果分析："></a>synchronized实现可见性结果分析：</h3><p>此处<strong>执行结果为6</strong>的情况进行分析：  </p>
 <ol>
 <li>synchronized完美保证共享变量的可见性  </li>
 <li>但是不加此关键字，并不意味着就不能实现可见性 </li>
 </ol>
-<p>​         <img src="http://photo.wushaopei.com/qiniu251.png" width="80%"></p>
+<p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu251.png" width="80%"></p>
 <p>【1】为何不加synchronized也会执行可见性，主内存及时更新被获取最新值”？</p>
 <p>原因有很多个</p>
 <p>①即使没有加synchronized，也可能是可见的，在大多数情况都是可见的，因为编译器优化了，会揣摩程序的意图，程序运行很多次，只会有很少的情况不可见。</p>
@@ -624,7 +624,7 @@
 <li>从工作内存中读取volatile变量的副本</li>
 </ol>
 </blockquote>
-<h4 id="volatile不能保证volatile变量复合操作的原子性："><a href="#volatile不能保证volatile变量复合操作的原子性：" class="headerlink" title="volatile不能保证volatile变量复合操作的原子性："></a><strong>volatile不能保证volatile变量复合操作的原子性：</strong></h4><p>​         <img src="http://photo.wushaopei.com/qiniu252.png" width="80%"></p>
+<h4 id="volatile不能保证volatile变量复合操作的原子性："><a href="#volatile不能保证volatile变量复合操作的原子性：" class="headerlink" title="volatile不能保证volatile变量复合操作的原子性："></a><strong>volatile不能保证volatile变量复合操作的原子性：</strong></h4><p>​         <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu252.png" width="80%"></p>
 <h4 id="代码案例："><a href="#代码案例：" class="headerlink" title="代码案例："></a>代码案例：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileDemo</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">private</span> Lock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> number = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.number;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">increase</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Thread.sleep(<span class="number">100</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		lock.lock();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">this</span>.number++;</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">			lock.unlock();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">final</span> VolatileDemo volDemo = <span class="keyword">new</span> VolatileDemo();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; <span class="number">500</span> ; i++)&#123;</span><br><span class="line">			<span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">				</span><br><span class="line">				<span class="meta">@Override</span></span><br><span class="line">				<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">					volDemo.increase();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;).start();</span><br><span class="line">		&#125;		</span><br><span class="line">		<span class="comment">//如果还有子线程在运行，主线程就让出CPU资源，</span></span><br><span class="line">		<span class="comment">//直到所有的子线程都运行完了，主线程再继续往下执行</span></span><br><span class="line">		<span class="keyword">while</span>(Thread.activeCount() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">			Thread.yield();</span><br><span class="line">		&#125;		</span><br><span class="line">		System.out.println(<span class="string">"number : "</span> + volDemo.getNumber());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：</strong> </p>
@@ -676,7 +676,7 @@
 <p>导致问题:有可能会出现读取到”半个变量”的情况<br>解决方法:加volatile关键字</p>
 <p>【2】问:即使没有保证可见性的措施,很多时候共享变量依然能够在主内存和工作内存见得到及时的更新?</p>
 <p>答:一般只有在短时间内高并发的情况下才会出现变量得不到及时更新的情况,因为CPU在执行时会很快的刷新缓存,所以一般情况下很难看到这种问题.</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

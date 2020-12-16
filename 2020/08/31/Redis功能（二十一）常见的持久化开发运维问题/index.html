@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89%E5%B8%B8%E8%A7%81%E7%9A%84%E6%8C%81%E4%B9%85%E5%8C%96%E5%BC%80%E5%8F%91%E8%BF%90%E7%BB%B4%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="常见的持久化开发运维问题 fork操作 进程外开销 AOF追加阻塞 单机多实例部署  1. fork1） Fork操作 同步操作：Fork操作只是做内存页的拷贝，而不是做整个内存的拷贝，所以说，大部分情况下速度是非常快的，但是如果本身的fork操作比较慢，或者是卡在了某个地方，那么它就会阻塞redis的主线程。 与内存量息息相关：内存越大，耗时越长（与机器类型有关） Info:latest_for">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1158.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1159.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1160.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1158.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1159.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1160.png">
 <meta property="article:published_time" content="2020-08-31T15:07:16.000Z">
-<meta property="article:modified_time" content="2020-08-31T15:16:23.307Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:52.222Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="开发运维问题">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1158.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1158.png">
 
 
 
@@ -527,7 +527,7 @@
 <p>   2） no-appendfsync-on-rewrite = yes</p>
 <p>   3) 根据写入量决定磁盘类型：例如ssd</p>
 <p>   4）单机多实例持久化文件目录可以考虑分盘</p>
-<h3 id="3-AOF阻塞"><a href="#3-AOF阻塞" class="headerlink" title="3. AOF阻塞"></a>3. AOF阻塞</h3><h4 id="3-1-AOF-追加阻塞"><a href="#3-1-AOF-追加阻塞" class="headerlink" title="3.1 AOF 追加阻塞"></a>3.1 AOF 追加阻塞</h4><img src="http://photo.wushaopei.com/qiniu1158.png" width="60%">
+<h3 id="3-AOF阻塞"><a href="#3-AOF阻塞" class="headerlink" title="3. AOF阻塞"></a>3. AOF阻塞</h3><h4 id="3-1-AOF-追加阻塞"><a href="#3-1-AOF-追加阻塞" class="headerlink" title="3.1 AOF 追加阻塞"></a>3.1 AOF 追加阻塞</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1158.png" width="60%">
 
 <p>如果我们使用AOF进行持久化，那么，一般会使用呢每秒刷盘的策略。 </p>
 <p><strong>分析：</strong> </p>
@@ -544,14 +544,14 @@
 </blockquote>
 <h4 id="3-2-AOF阻塞定位"><a href="#3-2-AOF阻塞定位" class="headerlink" title="3.2 AOF阻塞定位"></a>3.2 <strong>AOF阻塞定位</strong></h4><p><strong>1）定位方法1：</strong> </p>
 <p><strong>查看redis日志：</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1159.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1159.png" width="60%">
 
 <p>​    在redis日志中，有这么一段，它会告诉你，你的异步AOF同步可能花了太长时间了，你的磁盘是不是有问题，而且这个过程有可能拖慢你的redis。 </p>
 <p><strong>2）定位方法2：</strong> </p>
 <p>通过命令查看： </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info Persistence</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu1160.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1160.png" width="60%">
 
 
       

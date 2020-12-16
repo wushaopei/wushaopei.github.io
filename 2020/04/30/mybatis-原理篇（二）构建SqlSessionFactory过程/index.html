@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/30/mybatis-%E5%8E%9F%E7%90%86%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89%E6%9E%84%E5%BB%BASqlSessionFactory%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="构建 SqlSessionFactory 过程SqlSessionFactory 是 MyBatis 的核心类之一，其最重要哦的功能就是提供创建 MyBatis 的核心接口 SqlSession, 所以我们需要先创建 SqlSessionFactory ，为此我们需要提供配置文件和相关的参数。而 MyBatis 是一个复杂的系统，采用构造模式去 创建 SqlSessionFactory，我们可以通">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-30T05:23:48.000Z">
-<meta property="article:modified_time" content="2020-05-26T00:58:42.916Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:04.523Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="mybatis原理">
 <meta property="article:tag" content="Configuration">
 <meta property="article:tag" content="SqlSessionFactory">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 
 
 
@@ -585,7 +585,7 @@
 </ul>
 <h3 id="构建-SqlSessionFactory"><a href="#构建-SqlSessionFactory" class="headerlink" title="构建 SqlSessionFactory"></a>构建 SqlSessionFactory</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(inputstream)</span><br></pre></td></tr></table></figure>
 
-<pre><code>MyBatis 会根据 Configuration  的配置读取所配置的信息，构建 SqlSessionFactory 对象。</code></pre><h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>·
+<pre><code>MyBatis 会根据 Configuration  的配置读取所配置的信息，构建 SqlSessionFactory 对象。</code></pre><h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>·
       
     </div>
     

@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/14/Nginx%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89nginx%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1、nginx 常用的命令(1) 启动命令 1在&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin 目录下执行 .&#x2F;nginx  (2) 关闭命令 1在&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin 目录下执行 .&#x2F;nginx -s stop  (3) 重新加载命令 1在&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin 目录下执行 .&#x2F;nginx -s reload  2、 nginx.conf 配置文件nginx">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu827.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu828.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu829.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu827.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu828.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu829.png">
 <meta property="article:published_time" content="2020-06-14T15:15:49.000Z">
-<meta property="article:modified_time" content="2020-06-17T02:17:39.343Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:03.564Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="nginx常用命令">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu827.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu827.png">
 
 
 
@@ -491,11 +491,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在/usr/local/nginx/sbin 目录下执行 ./nginx -s reload</span><br></pre></td></tr></table></figure>
 
 <h3 id="2、-nginx-conf-配置文件"><a href="#2、-nginx-conf-配置文件" class="headerlink" title="2、 nginx.conf 配置文件"></a>2、 nginx.conf 配置文件</h3><p>nginx 安装目录下，其默认的配置文件都放在这个目录的 conf 目录下，而主配置文件nginx.conf 也在其中，后续对 nginx 的使用基本上都是对此配置文件进行相应的修改 </p>
-<img src="http://photo.wushaopei.com/qiniu827.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu827.png" width="60%">
 
 <p>配置文件中有很多#， 开头的表示注释内容，我们去掉所有以 # 开头的段落，精简之后的 </p>
 <p>内容如下：</p>
-<img src="http://photo.wushaopei.com/qiniu828.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu828.png" width="60%">
 
 <p> <strong>根据上述文件，我们可以很明显的将 nginx.conf 配置文件分为三部分：</strong> </p>
 <p><strong>第一部分：全局块</strong>  </p>
@@ -512,7 +512,7 @@
 <p>​    上述例子就表示每个 work process 支持的最大连接数为 1024.</p>
 <p>​    这部分的配置对 Nginx 的性能影响较大，在实际中应该灵活配置。</p>
 <p><strong>第三部分：http 块</strong>  </p>
-<img src="http://photo.wushaopei.com/qiniu829.png" width="70%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu829.png" width="70%">
 
 <p>​    这算是 Nginx 服务器配置中最频繁的部分，代理、缓存和日志定义等绝大多数功能和第三方模块的配置都在这里。  </p>
 <p>​    需要注意的是：http 块也可以包括 <strong>http 全局块</strong>、<strong>server 块</strong>。  </p>

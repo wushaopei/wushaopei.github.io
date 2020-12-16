@@ -97,42 +97,42 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AB%EF%BC%89List%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="list列表：  特点 重要API 实战 查漏补缺  1.列表结构  可以对列表做一些操作：如左边的添加、右边的添加、左边的弹出、右边的弹出    也可以获取列表的长度、删除指定元素、获取字列表、获取指定元素的索引值  2.特点  有序 可以重复 左右两边插入弹出   3.增——rpush  例如：使用rpush 向右边插入值 c b a   4.批量新增——lpush  例如：使用Ipush从右">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1057.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1058.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1059.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1060.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1061.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1062.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1063.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1064.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1065.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1066.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1067.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1068.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1069.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1070.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1071.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1072.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1073.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1074.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1075.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1076.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1077.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1078.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1079.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1080.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1081.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1082.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1083.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1084.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1057.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1058.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1059.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1060.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1061.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1062.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1063.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1064.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1065.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1066.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1067.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1068.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1069.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1070.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1071.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1072.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1073.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1074.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1075.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1076.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1077.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1078.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1079.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1080.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1081.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1082.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1083.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1084.png">
 <meta property="article:published_time" content="2020-08-30T11:50:01.000Z">
-<meta property="article:modified_time" content="2020-08-30T13:44:07.226Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.469Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis的常用API">
 <meta property="article:tag" content="List">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1057.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1057.png">
 
 
 
@@ -515,10 +515,10 @@
 <li>实战</li>
 <li>查漏补缺</li>
 </ul>
-<h3 id="1-列表结构"><a href="#1-列表结构" class="headerlink" title="1.列表结构"></a>1.列表结构</h3><img src="http://photo.wushaopei.com/qiniu1057.png" width="60%">
+<h3 id="1-列表结构"><a href="#1-列表结构" class="headerlink" title="1.列表结构"></a>1.列表结构</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1057.png" width="60%">
 
 <p>可以对列表做一些操作：如左边的添加、右边的添加、左边的弹出、右边的弹出 </p>
-<img src="http://photo.wushaopei.com/qiniu1058.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1058.png" width="60%">
 
 <p>也可以获取列表的长度、删除指定元素、获取字列表、获取指定元素的索引值 </p>
 <h3 id="2-特点"><a href="#2-特点" class="headerlink" title="2.特点"></a>2.特点</h3><blockquote>
@@ -528,84 +528,84 @@
 <li>左右两边插入弹出</li>
 </ul>
 </blockquote>
-<h3 id="3-增——rpush"><a href="#3-增——rpush" class="headerlink" title="3.增——rpush"></a>3.增——rpush</h3><img src="http://photo.wushaopei.com/qiniu1059.png" width="60%">
+<h3 id="3-增——rpush"><a href="#3-增——rpush" class="headerlink" title="3.增——rpush"></a>3.增——rpush</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1059.png" width="60%">
 
 <p><strong>例如：</strong>使用rpush 向<strong>右边插入</strong>值 c b a</p>
-<img src="http://photo.wushaopei.com/qiniu1060.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1060.png" width="60%">
 
-<h3 id="4-批量新增——lpush"><a href="#4-批量新增——lpush" class="headerlink" title="4.批量新增——lpush"></a>4.批量新增——lpush</h3><img src="http://photo.wushaopei.com/qiniu1061.png" width="60%">
+<h3 id="4-批量新增——lpush"><a href="#4-批量新增——lpush" class="headerlink" title="4.批量新增——lpush"></a>4.批量新增——lpush</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1061.png" width="60%">
 
 <p><strong>例如：</strong>使用<strong>Ipush</strong>从右向左依次插入<strong>c b a</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1062.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1062.png" width="60%">
 
-<h3 id="5-增——linsert"><a href="#5-增——linsert" class="headerlink" title="5.增——linsert"></a>5.增——linsert</h3><img src="http://photo.wushaopei.com/qiniu1063.png" width="60%">
+<h3 id="5-增——linsert"><a href="#5-增——linsert" class="headerlink" title="5.增——linsert"></a>5.增——linsert</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1063.png" width="60%">
 
 <p>例如：向值b的左边或右边插入值java或php </p>
-<img src="http://photo.wushaopei.com/qiniu1064.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1064.png" width="60%">
 
-<h3 id="6-删——lpop"><a href="#6-删——lpop" class="headerlink" title="6.删——lpop"></a>6.删——lpop</h3><img src="http://photo.wushaopei.com/qiniu1065.png" width="60%">
+<h3 id="6-删——lpop"><a href="#6-删——lpop" class="headerlink" title="6.删——lpop"></a>6.删——lpop</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1065.png" width="60%">
 
 <p>例如：从列表左侧弹出一个key ，弹出对象不需要指定，只需指定该列表listkey即可</p>
-<img src="http://photo.wushaopei.com/qiniu1066.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1066.png" width="60%">
 
-<h3 id="7-删——rpop"><a href="#7-删——rpop" class="headerlink" title="7.删——rpop"></a>7.删——rpop</h3><img src="http://photo.wushaopei.com/qiniu1067.png" width="60%">
+<h3 id="7-删——rpop"><a href="#7-删——rpop" class="headerlink" title="7.删——rpop"></a>7.删——rpop</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1067.png" width="60%">
 
 <p>例如：从列表右侧弹出一个key ，弹出对象不需要指定，只需指定该列表listkey即可 </p>
-<img src="http://photo.wushaopei.com/qiniu1068.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1068.png" width="60%">
 
-<h3 id="8-删除——lrem"><a href="#8-删除——lrem" class="headerlink" title="8.删除——lrem"></a>8.删除——lrem</h3><img src="http://photo.wushaopei.com/qiniu1069.png" width="60%">
+<h3 id="8-删除——lrem"><a href="#8-删除——lrem" class="headerlink" title="8.删除——lrem"></a>8.删除——lrem</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1069.png" width="60%">
 
 <p>例子:删除所有的a，从右到左删除1个c </p>
-<img src="http://photo.wushaopei.com/qiniu1070.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1070.png" width="60%">
 
-<h3 id="9-列表修剪——ltrim"><a href="#9-列表修剪——ltrim" class="headerlink" title="9.列表修剪——ltrim"></a>9.列表修剪——ltrim</h3><img src="http://photo.wushaopei.com/qiniu1071.png" width="60%">
+<h3 id="9-列表修剪——ltrim"><a href="#9-列表修剪——ltrim" class="headerlink" title="9.列表修剪——ltrim"></a>9.列表修剪——ltrim</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1071.png" width="60%">
 
 <blockquote>
 <p>例如：</p>
 <p>​    第一次修剪索引1-4的值为：b(0)、c(1)、d(2)、e（3）</p>
 <p>​        第二次修剪索引0-2的值为: b(0)、c(1)、d(2)、</p>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu1072.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1072.png" width="60%">
 
 <p><strong>Itrim</strong>在做一些大型列表的删除时是非常有用的，比如：一个列表有几百万，如果直接使用<strong>delkey</strong>的话会直接将redis阻塞掉，因为它的开销是非常大的。</p>
 <p>而通过使用<strong>Itrim</strong>就可以通过每一个保留百万条、十万条、万条等等这样的方式去逐步的进行裁剪，从而达到删除的效果。</p>
-<h3 id="10-查——lrange"><a href="#10-查——lrange" class="headerlink" title="10.查——lrange"></a>10.查——lrange</h3><img src="http://photo.wushaopei.com/qiniu1073.png" width="60%">
+<h3 id="10-查——lrange"><a href="#10-查——lrange" class="headerlink" title="10.查——lrange"></a>10.查——lrange</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1073.png" width="60%">
 
 <p>例如：根据索引从左向右（0<del>5）或从右向左（-1</del>6）的查询</p>
-<img src="http://photo.wushaopei.com/qiniu1074.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1074.png" width="60%">
 
 <blockquote>
 <p><strong>例如：</strong>保存0~2索引区间：a、bc、</p>
 <p>​            保存1~-1索引区间：b、c、d、e、f</p>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu1075.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1075.png" width="60%">
 
-<h3 id="11-查——lindex"><a href="#11-查——lindex" class="headerlink" title="11.查——lindex"></a>11.查——lindex</h3><img src="http://photo.wushaopei.com/qiniu1076.png" width="60%">
+<h3 id="11-查——lindex"><a href="#11-查——lindex" class="headerlink" title="11.查——lindex"></a>11.查——lindex</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1076.png" width="60%">
 
 <p>例如：获取索引为0的是a ；获取索引为-1的是f </p>
-<img src="http://photo.wushaopei.com/qiniu1077.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1077.png" width="60%">
 
-<h3 id="12-查——llen"><a href="#12-查——llen" class="headerlink" title="12.查——llen"></a>12.查——llen</h3><img src="http://photo.wushaopei.com/qiniu1078.png" width="60%">
+<h3 id="12-查——llen"><a href="#12-查——llen" class="headerlink" title="12.查——llen"></a>12.查——llen</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1078.png" width="60%">
 
 <p><strong>例如：</strong>当前的长度是6 </p>
-<img src="http://photo.wushaopei.com/qiniu1079.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1079.png" width="60%">
 
-<h3 id="13-改——lset"><a href="#13-改——lset" class="headerlink" title="13.改——lset"></a>13.改——lset</h3><img src="http://photo.wushaopei.com/qiniu1080.png" width="60%">
+<h3 id="13-改——lset"><a href="#13-改——lset" class="headerlink" title="13.改——lset"></a>13.改——lset</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1080.png" width="60%">
 
 <p>例如：将索引为2的值改为java，即java覆盖值c </p>
-<img src="http://photo.wushaopei.com/qiniu1081.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1081.png" width="60%">
 
 <p><strong>演示：</strong> </p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; rpush mylist a b c</span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; lrange listkey <span class="number">0</span> <span class="literal">-1</span></span><br><span class="line"><span class="number">1</span>)<span class="string">"a"</span></span><br><span class="line"><span class="number">2</span>)<span class="string">"b"</span></span><br><span class="line"><span class="number">3</span>)<span class="string">"c"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; lrange listkey <span class="number">0</span></span><br><span class="line">(integer)<span class="number">4</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; lrange listkey <span class="number">0</span> <span class="literal">-1</span></span><br><span class="line"><span class="number">1</span>)<span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>)<span class="string">"a"</span></span><br><span class="line"><span class="number">3</span>)<span class="string">"b"</span></span><br><span class="line"><span class="number">4</span>)<span class="string">"c"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; rpop listkey</span><br><span class="line"><span class="string">"c"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; lrange listkey <span class="number">0</span> <span class="literal">-1</span></span><br><span class="line"><span class="number">1</span>)<span class="string">"0"</span></span><br><span class="line"><span class="number">2</span>)<span class="string">"a"</span></span><br><span class="line"><span class="number">3</span>)<span class="string">"b"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="14-实战——TimeLine"><a href="#14-实战——TimeLine" class="headerlink" title="14.实战——TimeLine"></a>14.实战——TimeLine</h3><img src="http://photo.wushaopei.com/qiniu1082.png" width="60%">
+<h3 id="14-实战——TimeLine"><a href="#14-实战——TimeLine" class="headerlink" title="14.实战——TimeLine"></a>14.实战——TimeLine</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1082.png" width="60%">
 
 <p>​    图中展示了微博的时间轴功能—— <strong>TimeLine</strong> ，它会将微博按照从新到旧的功能进行排列，这和列表的功能是非常相似的。 </p>
-<img src="http://photo.wushaopei.com/qiniu1083.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1083.png" width="60%">
 
 <p>​    假设图中的   <code>Your TimeLine</code>  是你微博的时间轴，如果你关注的用户有了更新，俺么该更新信息就会加入到时间轴的左上角，进入队列中。</p>
 <p>​    在微博之中，包含了文字、图片、赞等等信息，可作为对象看待，存储的时候可以使用字符串或<strong>hash</strong>等等，而微博的id可以作为一个外联的<strong>key</strong>，这样就可以对微博的获取进行关联。</p>
-<h3 id="15-查漏补缺-——-blpop-brpop"><a href="#15-查漏补缺-——-blpop-brpop" class="headerlink" title="15.查漏补缺 —— blpop   brpop"></a>15.查漏补缺 —— blpop   brpop</h3><img src="http://photo.wushaopei.com/qiniu1084.png" width="60%">
+<h3 id="15-查漏补缺-——-blpop-brpop"><a href="#15-查漏补缺-——-blpop-brpop" class="headerlink" title="15.查漏补缺 —— blpop   brpop"></a>15.查漏补缺 —— blpop   brpop</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1084.png" width="60%">
 
 <h3 id="16-总结"><a href="#16-总结" class="headerlink" title="16.总结"></a>16.总结</h3><p>①如果要实现一个栈的功能</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LRUSH + LPOP = Stack</span><br></pre></td></tr></table></figure>

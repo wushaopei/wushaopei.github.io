@@ -97,21 +97,21 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/29/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%88%E4%BA%8C%EF%BC%89Zookeeper%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E6%9C%BA%E5%88%B6%E4%B8%8E%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="基于 Zookeeper 做分布式锁一、死锁与活锁的概念以订单服务、商品服务和库存的业务交互为例：   死锁： ​    在订单服务查询库存时，将库存进行上锁；此时商品服务就无法访问库存了。该操作使用死锁方式。 活锁： ​    在订单服务查询库存时，商品服务可以去查询库存。该操作使用活锁机制。ml&gt; 二、分布式锁的概念与数据最终不一致性  如上图：   ①用户下了一个订单 ②这时候需要去查">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu887.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu888.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu889.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu890.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu891.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu892.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu894.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu893.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu887.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu888.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu889.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu890.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu891.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu892.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu894.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu893.png">
 <meta property="article:published_time" content="2020-06-29T14:49:26.000Z">
-<meta property="article:modified_time" content="2020-07-09T09:09:48.164Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:08.206Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="分布式锁">
 <meta property="article:tag" content="zk实现分布式锁">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu887.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu887.png">
 
 
 
@@ -488,13 +488,13 @@
 
       
         <h2 id="基于-Zookeeper-做分布式锁"><a href="#基于-Zookeeper-做分布式锁" class="headerlink" title="基于 Zookeeper 做分布式锁"></a>基于 Zookeeper 做分布式锁</h2><h3 id="一、死锁与活锁的概念"><a href="#一、死锁与活锁的概念" class="headerlink" title="一、死锁与活锁的概念"></a>一、死锁与活锁的概念</h3><p>以订单服务、商品服务和库存的业务交互为例：</p>
-<img src="http://photo.wushaopei.com/qiniu887.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu887.png" width="60%">
 
 <p><strong>死锁：</strong></p>
 <p>​    在订单服务查询库存时，将库存进行上锁；此时商品服务就无法访问库存了。该操作使用死锁方式。</p>
 <p><strong>活锁：</strong></p>
 <p>​    在订单服务查询库存时，商品服务可以去查询库存。该操作使用活锁机制。ml&gt;</p>
-<h3 id="二、分布式锁的概念与数据最终不一致性"><a href="#二、分布式锁的概念与数据最终不一致性" class="headerlink" title="二、分布式锁的概念与数据最终不一致性"></a>二、分布式锁的概念与数据最终不一致性</h3><img src="http://photo.wushaopei.com/qiniu888.png" width="60%">
+<h3 id="二、分布式锁的概念与数据最终不一致性"><a href="#二、分布式锁的概念与数据最终不一致性" class="headerlink" title="二、分布式锁的概念与数据最终不一致性"></a>二、分布式锁的概念与数据最终不一致性</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu888.png" width="60%">
 
 <p><strong>如上图：</strong></p>
 <blockquote>
@@ -510,7 +510,7 @@
 <p>​    等到最终两个用户的订单都执行完成后，库存会出现负数，即为-2的情况。</p>
 <p><strong>解决方案</strong>： 使用分布式锁保证数据的最终一致性</p>
 <h3 id="三、Zookeeper-分布式锁"><a href="#三、Zookeeper-分布式锁" class="headerlink" title="三、Zookeeper 分布式锁"></a>三、Zookeeper 分布式锁</h3><p><strong>分布式锁实现的流程图</strong></p>
-<img src="http://photo.wushaopei.com/qiniu889.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu889.png" width="60%">
 
 <p>​    首先我们的请求进来，我们会先进行判断，我们会判断这把锁是不是已经被占用了，如果这把锁被占用了，我们就需要等待这把锁释放；那么此时我们就需要将当前进程进行挂起。</p>
 <p> <strong>将进程进行挂起的方法：</strong> </p>
@@ -588,21 +588,21 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/getOrder1"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getOrder1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> b = empService.displayBuy(<span class="string">"1"</span>);</span><br><span class="line">		<span class="keyword">if</span> (b)&#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"OK"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder1下单成功"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span>	json;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"ERROR"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder1下单失败"</span>);</span><br><span class="line">			<span class="keyword">return</span> json;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@ResponseBody</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/getOrder2"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">getOrder2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> b = empService.displayBuy(<span class="string">"1"</span>);</span><br><span class="line">		<span class="keyword">if</span> (b)&#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"OK"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder2下单成功"</span>);</span><br><span class="line"></span><br><span class="line">			<span class="keyword">return</span>	json;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			JSON json = <span class="keyword">new</span> JSON();</span><br><span class="line">			json.setStatus(<span class="string">"ERROR"</span>);</span><br><span class="line">			json.setObject(<span class="string">"getOrder2下单失败"</span>);</span><br><span class="line">			<span class="keyword">return</span> json;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="五、案例测试"><a href="#五、案例测试" class="headerlink" title="五、案例测试"></a>五、案例测试</h3><p><strong>订单表与库存表情况：</strong></p>
-<img src="http://photo.wushaopei.com/qiniu890.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu890.png" width="60%">
 
-<img src="http://photo.wushaopei.com/qiniu891.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu891.png" width="60%">
 
 <p><strong>发起请求：</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu892.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu892.png" width="60%">
 
 <p><strong>请求结果：</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/imooc<span class="literal">-locks</span>/distributed_lock</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">30.220</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 获得分布式锁成功...</span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">36.613</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.s.service.impl.OrdersServiceImpl     : 订单创建成功</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">36.618</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.springboot.config.distributedLock    : 获得分布式锁失败...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.614</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.s.service.impl.EmpServiceImpl        : 订单创建成功...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 分布式锁释放完毕</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">ChildrenCache</span>-<span class="number">7</span>] c.w.springboot.config.distributedLock    : 上一个会话已释放锁或该会话已断开，节点路径为： /imooc<span class="literal">-locks</span>/distributed_lock</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">42.622</span>  INFO <span class="number">27664</span> --- [<span class="type">ChildrenCache</span>-<span class="number">2</span>] c.w.springboot.config.distributedLock    : 释放计数器，让当前请求来获得分布式锁...</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">43.228</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.s.service.impl.EmpServiceImpl        : 库存剩余<span class="number">4</span>件，用户需求量<span class="number">6</span>件，库存不足，订单创建失败...</span><br><span class="line"><span class="number">2020</span><span class="literal">-07</span><span class="literal">-01</span> <span class="number">22</span>:<span class="number">31</span>:<span class="number">43.229</span>  INFO <span class="number">27664</span> --- [<span class="type">nio</span>-<span class="number">8081</span>-<span class="type">exec</span>-<span class="number">8</span>] c.w.springboot.config.distributedLock    : 分布式锁释放完毕</span><br></pre></td></tr></table></figure>
 
 <p>订单表：</p>
-<img src="http://photo.wushaopei.com/qiniu894.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu894.png" width="60%">
 
 <p>库存表：</p>
-<img src="http://photo.wushaopei.com/qiniu893.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu893.png" width="60%">
 
 <p>本小节到此结束！！！！</p>
 

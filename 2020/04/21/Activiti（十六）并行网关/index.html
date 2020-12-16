@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/21/Activiti%EF%BC%88%E5%8D%81%E5%85%AD%EF%BC%89%E5%B9%B6%E8%A1%8C%E7%BD%91%E5%85%B3/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="并行网关：官网解析 - 并行网关： 描述 网关还可以用于对流程中的并发进行建模。在流程模型中引入并发性的最直接的网关是Parallel Gateway，它可以派生到多个执行路径或加入多个执行路径。 并行网关的功能基于传入和传出序列流：  fork：并行执行所有传出序列流，为每个序列流创建一个并发执行。 join：所有到达并行网关的并发执行都在网关中等待，直到每个传入序列流的执行都已到达。然后，该过">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1008.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1009.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu411.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1008.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1009.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu411.png">
 <meta property="article:published_time" content="2020-04-21T06:41:29.000Z">
-<meta property="article:modified_time" content="2020-09-23T08:33:27.145Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:28.472Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="并行网关">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1008.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1008.png">
 
 
 
@@ -482,7 +482,7 @@
 <p><strong>与其他网关类型的重要区别是并行网关不评估条件。如果在与并行网关连接的顺序流上定义了条件，则将其简单地忽略。</strong></p>
 <hr>
 <p>并行网关被可视化为网关（菱形），其内部带有<em>加号</em>，表示<em>AND</em>语义。 </p>
-<img src="http://photo.wushaopei.com/qiniu1008.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1008.png" width="60%">
 
 <h5 id="XML表示"><a href="#XML表示" class="headerlink" title="XML表示"></a>XML表示</h5><p>定义并行网关需要一行XML：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parallelGateway</span> <span class="attr">id</span>=<span class="string">"myParallelGateway"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
@@ -496,7 +496,7 @@
 
 <p>完成这两个任务后，第二个并行网关将加入两个执行，并且由于只有一个传出序列流，因此不会创建并发执行路径，并且只有“ <em>归档顺序”</em>任务将处于活动状态。</p>
 <p>注意，并行网关不需要<em>平衡</em>（即，对应并行网关的匹配数量的传入/传出序列流）。并行网关将仅等待所有传入序列流，并为每个传出序列流创建并发执行路径，而不受流程模型中其他构造的影响。因此，以下过程在BPMN 2.0中是合法的：</p>
-<img src="http://photo.wushaopei.com/qiniu1009.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1009.png" width="60%">
 
 
 
@@ -505,7 +505,7 @@
 <h3 id="手动操作案例："><a href="#手动操作案例：" class="headerlink" title="手动操作案例："></a>手动操作案例：</h3><hr>
 <p>​     <strong>并行网关：</strong>是会有多条线路同时并行执行，当都执行完才继续执行后面的。</p>
 <p>重新画一个流程图取名 MyProcess5.bpmn：</p>
-<img src="http://photo.wushaopei.com/qiniu411.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu411.png" width="80%">
 
 <p><strong>XML 表示</strong>：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;process id=<span class="string">"parallel"</span> name=<span class="string">"parallel"</span> isExecutable=<span class="string">"true"</span>&gt;</span><br><span class="line">   &lt;startEvent id="startevent1" name="Start"&gt;&lt;/startEvent&gt;</span><br><span class="line">   &lt;userTask id="usertask1" name="员工提交请假申请" activiti:assignee="吴刚"&gt;&lt;/userTask&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;endEvent id="endevent1" name="End"&gt;&lt;/endEvent&gt;</span><br><span class="line">   &lt;userTask id="usertask2" name="总监审批" activiti:assignee="刘松"&gt;&lt;/userTask&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow16" sourceRef="usertask2" targetRef="endevent1"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;parallelGateway id="parallelgateway1" name="Parallel Gateway"&gt;&lt;/parallelGateway&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow17" sourceRef="usertask1" targetRef="parallelgateway1"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;userTask id="usertask3" name="部门审批"&gt;&lt;/userTask&gt;</span><br><span class="line">   &lt;userTask id="usertask4" name="经理审批"&gt;&lt;/userTask&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow18" sourceRef="parallelgateway1" targetRef="usertask3"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow19" sourceRef="parallelgateway1" targetRef="usertask4"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;parallelGateway id="parallelgateway2" name="Parallel Gateway"&gt;&lt;/parallelGateway&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow20" sourceRef="usertask3" targetRef="parallelgateway2"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow21" sourceRef="usertask4" targetRef="parallelgateway2"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line">   &lt;sequenceFlow id="flow22" sourceRef="parallelgateway2" targetRef="usertask2"&gt;&lt;/sequenceFlow&gt;</span><br><span class="line"> &lt;/process&gt;</span><br></pre></td></tr></table></figure>

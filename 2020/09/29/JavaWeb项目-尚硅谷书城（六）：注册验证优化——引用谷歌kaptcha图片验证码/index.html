@@ -97,19 +97,19 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="登录、登出1. 登录——显示用户名修改UserServlet程序中的login方法   修改login_success_menu.jsp菜单 ：   修改client&#x2F;index.jsp的菜单 ：   2.登出——注销用户UserServlet程序中添加一个方法： 1234567protected void logout(HttpServletRequest request,		HttpServl">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1294.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1295.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1296.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1297.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1294.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1295.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1296.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1297.png">
 <meta property="article:published_time" content="2020-09-29T08:01:03.000Z">
-<meta property="article:modified_time" content="2020-09-30T09:03:52.651Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.651Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="书城项目">
 <meta property="article:tag" content="登入登出优化">
 <meta property="article:tag" content="谷歌验证码">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1294.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1294.png">
 
 
 
@@ -475,13 +475,13 @@
 
       
         <h2 id="登录、登出"><a href="#登录、登出" class="headerlink" title="登录、登出"></a>登录、登出</h2><h3 id="1-登录——显示用户名"><a href="#1-登录——显示用户名" class="headerlink" title="1. 登录——显示用户名"></a>1. 登录——显示用户名</h3><p>修改UserServlet程序中的login方法</p>
-<img src="http://photo.wushaopei.com/qiniu1294.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1294.png" width="80%">
 
 <p>修改login_success_menu.jsp菜单 ：</p>
-<img src="http://photo.wushaopei.com/qiniu1295.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1295.png" width="80%">
 
 <p>修改client/index.jsp的菜单 ：</p>
-<img src="http://photo.wushaopei.com/qiniu1296.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1296.png" width="80%">
 
 <h3 id="2-登出——注销用户"><a href="#2-登出——注销用户" class="headerlink" title="2.登出——注销用户"></a>2.登出——注销用户</h3><p>UserServlet程序中添加一个方法：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">logout</span><span class="params">(HttpServletRequest request,</span></span></span><br><span class="line"><span class="function"><span class="params">		HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">	<span class="comment">// 销毁Session</span></span><br><span class="line">	request.getSession().invalidate();</span><br><span class="line">	<span class="comment">// 重定向到首页，或登录页面。</span></span><br><span class="line">	response.sendRedirect(request.getContextPath());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -502,7 +502,7 @@
 <p>验证码的原理:</p>
 </li>
 </ol>
-<img src="http://photo.wushaopei.com/qiniu1297.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1297.png" width="80%">
 
 <h3 id="2-谷歌-kaptcha-图片验证码的使用"><a href="#2-谷歌-kaptcha-图片验证码的使用" class="headerlink" title="2.谷歌 kaptcha 图片验证码的使用"></a>2.谷歌 kaptcha 图片验证码的使用</h3><p>谷歌验证码的使用步骤：</p>
 <ol>
@@ -576,8 +576,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AB%EF%BC%89%EF%BC%9A%E8%AE%A2%E5%8D%95%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" rel="next" title="JavaWeb项目-尚硅谷书城（八）：订单模块开发">
-                <i class="fa fa-chevron-left"></i> JavaWeb项目-尚硅谷书城（八）：订单模块开发
+              <a href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81-md/" rel="next" title="JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交">
+                <i class="fa fa-chevron-left"></i> JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交
               </a>
             
           </div>
@@ -586,8 +586,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/09/29/JavaWeb%E9%A1%B9%E7%9B%AE-%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B9%A6%E5%9F%8E%EF%BC%88%E5%85%AD%EF%BC%89%EF%BC%9A%E6%B3%A8%E5%86%8C%E9%AA%8C%E8%AF%81%E4%BC%98%E5%8C%96%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E8%B0%B7%E6%AD%8Ckaptcha%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81-md/" rel="prev" title="JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交">
-                JavaWeb项目-尚硅谷书城（六）：登入登出Session应用、谷歌验证码解决表单重复提交 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/11/07/%E5%BE%AE%E4%BA%AB%E7%9F%AD%E8%A7%86%E9%A2%91%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%EF%BC%9A%EF%BC%88%E4%B8%80%EF%BC%89%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF%E4%B8%8E%E7%B3%BB%E7%BB%9F%E6%80%BB%E4%BD%93%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/" rel="prev" title="微享短视频项目开发：（一）项目背景与系统总体方案设计">
+                微享短视频项目开发：（一）项目背景与系统总体方案设计 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

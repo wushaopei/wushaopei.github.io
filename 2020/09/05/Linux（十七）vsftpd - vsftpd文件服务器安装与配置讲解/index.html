@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/05/Linux%EF%BC%88%E5%8D%81%E4%B8%83%EF%BC%89vsftpd%20-%20vsftpd%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%E8%AE%B2%E8%A7%A3/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="vsftpd vsftpd 简介 vsftpd 安装（linux） Linux ：安装、创建虚拟用户、配置、防火墙设置   ftpserver 安装（windows) Windows(简单ftpserver绿色版)：下载、安装、配置   vsftpd 验证 vsftpd 常用命令  1.vsftpd 简介简介    vsftpd 是 “very secure FTP daemon” 的缩写，是一个">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1185.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1184.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1186.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1187.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1185.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1184.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1186.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1187.png">
 <meta property="article:published_time" content="2020-09-05T10:29:19.000Z">
-<meta property="article:modified_time" content="2020-09-06T08:16:39.163Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:25.598Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="vsftpd">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1185.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1185.png">
 
 
 
@@ -602,10 +602,10 @@
 
 <h4 id="3-2-执行-ifconfig-查看运行-vsftpd-服务器的-ip-地址"><a href="#3-2-执行-ifconfig-查看运行-vsftpd-服务器的-ip-地址" class="headerlink" title="3.2 执行 ifconfig 查看运行 vsftpd 服务器的 ip 地址"></a>3.2 执行 ifconfig 查看运行 vsftpd 服务器的 ip 地址</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">rich</span> <span class="type">home</span>]<span class="comment"># ifconfig</span></span><br><span class="line">ens33: flags=<span class="number">4163</span>&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class="number">1500</span></span><br><span class="line">        inet <span class="number">192.168</span>.<span class="number">133.116</span>  netmask <span class="number">255.255</span>.<span class="number">255.0</span>  broadcast <span class="number">192.168</span>.<span class="number">133.255</span></span><br><span class="line">        inet6 fe80::dbef:d3f2:a929:c42c  prefixlen <span class="number">64</span>  scopeid <span class="number">0</span>x20&lt;link&gt;</span><br><span class="line">        ether <span class="number">00</span>:<span class="number">0</span>c:<span class="number">29</span>:b6:a9:<span class="number">53</span>  txqueuelen <span class="number">1000</span>  (Ethernet)</span><br><span class="line">        RX packets <span class="number">187985</span>  bytes <span class="number">272607186</span> (<span class="number">259.9</span> MiB)</span><br><span class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></span><br><span class="line">        TX packets <span class="number">26653</span>  bytes <span class="number">1749573</span> (<span class="number">1.6</span> MiB)</span><br><span class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-3-打开浏览器访问：-ftp-192-168-133-116"><a href="#3-3-打开浏览器访问：-ftp-192-168-133-116" class="headerlink" title="3.3 打开浏览器访问： ftp://192.168.133.116"></a>3.3 打开浏览器访问： <a href="ftp://192.168.133.116">ftp://192.168.133.116</a></h4><img src="http://photo.wushaopei.com/qiniu1185.png" width="90%">
+<h4 id="3-3-打开浏览器访问：-ftp-192-168-133-116"><a href="#3-3-打开浏览器访问：-ftp-192-168-133-116" class="headerlink" title="3.3 打开浏览器访问： ftp://192.168.133.116"></a>3.3 打开浏览器访问： <a href="ftp://192.168.133.116">ftp://192.168.133.116</a></h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1185.png" width="90%">
 
 <h4 id="3-4-输入之前创建的-ftp-匿名用户账号和密码"><a href="#3-4-输入之前创建的-ftp-匿名用户账号和密码" class="headerlink" title="3.4 输入之前创建的 ftp 匿名用户账号和密码"></a>3.4 输入之前创建的 ftp 匿名用户账号和密码</h4><p>例如： 用户名： <code>ftpuser</code> , 密码：<code>Wusp159897</code></p>
-<h4 id="3-5-看到如图界面代表访问成功"><a href="#3-5-看到如图界面代表访问成功" class="headerlink" title="3.5 看到如图界面代表访问成功"></a>3.5 看到如图界面代表访问成功</h4><img src="http://photo.wushaopei.com/qiniu1184.png" width="90%">
+<h4 id="3-5-看到如图界面代表访问成功"><a href="#3-5-看到如图界面代表访问成功" class="headerlink" title="3.5 看到如图界面代表访问成功"></a>3.5 看到如图界面代表访问成功</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1184.png" width="90%">
 
 <blockquote>
 <p>注意： 当 <code>anonymous_enable=NO</code> 即关闭匿名访问才会验证账号、密码 .</p>
@@ -635,13 +635,13 @@
 <p><a href="http://download.happymmall.com/FTPServer.rar" target="_blank" rel="noopener">http://download.happymmall.com/FTPServer.rar</a></p>
 <p>(2)解压缩（绿色版）</p>
 <p>(3) 配置并点击启动运行</p>
-<img src="http://photo.wushaopei.com/qiniu1186.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1186.png" width="60%">
 
 <p>(4)执行 ipconfig 命令查询本机 ip 进行测试访问</p>
 <p>(5)打开浏览器输入 <a href="ftp://10.211.55.3">ftp://10.211.55.3</a> 访问</p>
 <p>(6)输入配置好的用户名和密码</p>
 <p>例如： 用户名： geely ,   密码： geely </p>
-<img src="http://photo.wushaopei.com/qiniu1187.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1187.png" width="60%">
 
 <p>(7) 通过 ftp 客户端软件</p>
 <p>例如： cuteftp、filezilla、viperftp、flashftp、leapftp等进行连接 ftp 服务器，进行文件上传、下载验证</p>

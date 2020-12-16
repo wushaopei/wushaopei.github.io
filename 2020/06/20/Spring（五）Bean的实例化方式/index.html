@@ -97,14 +97,14 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%BA%94%EF%BC%89Bean%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读： 使用Spring实例化Bean的4种方式：  通过构造方法实例化Bean 通过静态方法实例化Bean 通过实例方法实例化Bean Bean的别名  Bean 的实例化1、通过构造方法实例化Bean【1】创建Bean1 123456public class Bean1 &amp;#123;     public Bean1()&amp;#123;        System.out.println(&quot;Bea">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu857.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu857.png">
 <meta property="article:published_time" content="2020-06-20T14:26:01.000Z">
-<meta property="article:modified_time" content="2020-06-20T15:18:03.176Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:49.977Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="Bean的实例化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu857.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu857.png">
 
 
 
@@ -534,7 +534,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Bean1 bean1_1 = context.getBean(<span class="string">"bean1_1"</span>,Bean1<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(bean1_1);</span><br><span class="line">Bean1 bean1_2 = context.getBean(<span class="string">"bean1_2"</span>,Bean1<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(bean1_2);</span><br><span class="line">Bean1 bean1_3 = context.getBean(<span class="string">"bean1_3"</span>,Bean1<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(bean1_3);</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu857.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu857.png" width="60%">
 
 <p>由测试结果可知，使用别名创建 Bean 实例的时候，其实创建的是同一个实例对象的Bean  ，指向同一个地址值</p>
 

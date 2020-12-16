@@ -97,20 +97,20 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/01/Redis%E9%9B%86%E7%BE%A4%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%89%EF%BC%89Redis-Sentinel/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="Redis Sentinel1. 主从复制高可用1.1 主从复制的作用  为主提供一个备份，当主服务器挂掉后，可以为客户端提供主服务器中完整的数据； 为主服务器进行分流，将读操作放到从节点上。   1.2 主从复制高可用存在的问题？  手动故障转移 写能力和存储能力受限   1.3 手动故障转移：  ​    如图，假如这时候master挂掉了， master向slave的复制也被断掉了，这对于我">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1170.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1171.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1172.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1173.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1174.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1175.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1176.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1177.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1178.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1179.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1180.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1181.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1170.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1171.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1172.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1173.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1174.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1175.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1176.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1177.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1178.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1179.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1180.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1181.png">
 <meta property="article:published_time" content="2020-09-01T15:21:37.000Z">
-<meta property="article:modified_time" content="2020-09-04T02:36:18.912Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.618Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
@@ -118,7 +118,7 @@
 <meta property="article:tag" content="哨兵主从集群">
 <meta property="article:tag" content="sentinel">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1170.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1170.png">
 
 
 
@@ -506,20 +506,20 @@
 <li>写能力和存储能力受限</li>
 </ul>
 </blockquote>
-<h3 id="1-3-手动故障转移："><a href="#1-3-手动故障转移：" class="headerlink" title="1.3 手动故障转移："></a>1.3 手动故障转移：</h3><img src="http://photo.wushaopei.com/qiniu1170.png" width="60%">
+<h3 id="1-3-手动故障转移："><a href="#1-3-手动故障转移：" class="headerlink" title="1.3 手动故障转移："></a>1.3 手动故障转移：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1170.png" width="60%">
 
 <p>​    <strong>如图</strong>，假如这时候master挂掉了， master向slave的复制也被断掉了，这对于我们连接master的客户端肯定会连接或者读写失败的。这对于连接或读写分离的策略，这里的读是正常的，但是数据的更新却是无法保证的。 </p>
 <p><strong>解决方案：</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1171.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1171.png" width="60%">
 
 <p>​    发生以上问题后，要进行故障转移。首先，要选中一个客户端slave，让它执行slaveof  no one，让它成为master；然后对于其余的slave让它们执行slaveof new master  从而向新的master进行数据同步，这样就完成了生成一个新的master和向它复制的过程。</p>
 <p>​    同时，我们的客户端slave也会去读取新的master。</p>
-<h3 id="2-redis-sentinel"><a href="#2-redis-sentinel" class="headerlink" title="2. redis sentinel"></a>2. redis sentinel</h3><h4 id="2-1-Redis-Sentinel架构："><a href="#2-1-Redis-Sentinel架构：" class="headerlink" title="2.1 Redis Sentinel架构："></a>2.1 Redis Sentinel架构：</h4><img src="http://photo.wushaopei.com/qiniu1172.png" width="60%">
+<h3 id="2-redis-sentinel"><a href="#2-redis-sentinel" class="headerlink" title="2. redis sentinel"></a>2. redis sentinel</h3><h4 id="2-1-Redis-Sentinel架构："><a href="#2-1-Redis-Sentinel架构：" class="headerlink" title="2.1 Redis Sentinel架构："></a>2.1 Redis Sentinel架构：</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1172.png" width="60%">
 
 <p>​    首先，<strong>Redis Sentinel包含多个redis节点</strong>，其中包括<strong>一主一从或者一主多从</strong>等多个节点；同样包含有<strong>多个sentinel节点</strong>。</p>
 <p>​    <strong>sentinel</strong>节点主要用于对redis节点的状态进行故障判断，对redis进行故障转移的处理以及对客户端进行通知的处理。</p>
 <p>​    对于一个节点的失败是可以达到公平性，还可以保证高可用，因为当前某个sentinel节点挂了，还可以保证整个Senetinel结构是完美的。</p>
-<h4 id="2-2-Redis-Sentinel故障转移："><a href="#2-2-Redis-Sentinel故障转移：" class="headerlink" title="2.2 Redis Sentinel故障转移："></a>2.2 Redis Sentinel故障转移：</h4><img src="http://photo.wushaopei.com/qiniu1173.png" width="60%">
+<h4 id="2-2-Redis-Sentinel故障转移："><a href="#2-2-Redis-Sentinel故障转移：" class="headerlink" title="2.2 Redis Sentinel故障转移："></a>2.2 Redis Sentinel故障转移：</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1173.png" width="60%">
 
 <blockquote>
 <ol>
@@ -532,7 +532,7 @@
 </ol>
 </blockquote>
 <p>​    <strong>整个过程</strong>其实就是从手动故障配置转移改成由sentinel进行<code>故障发现、故障处理转移、故障通知</code>的机制。 </p>
-<img src="http://photo.wushaopei.com/qiniu1174.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1174.png" width="60%">
 
 <p>​    <strong>Redis Sentinel</strong>可以进行多套master<del>slave的机制的监控；每套master</del>slave会使用一个master-name进行标识。 </p>
 <h3 id="3-redis-sentinel-安装"><a href="#3-redis-sentinel-安装" class="headerlink" title="3. redis sentinel 安装"></a>3. redis sentinel 安装</h3><h4 id="3-1-安装与配置"><a href="#3-1-安装与配置" class="headerlink" title="3.1 安装与配置"></a>3.1 安装与配置</h4><blockquote>
@@ -541,7 +541,7 @@
 <p>3）实际应该多机器</p>
 <p>4）详细配置节点</p>
 </blockquote>
-<h4 id="3-2-案例"><a href="#3-2-案例" class="headerlink" title="3.2 案例"></a>3.2 案例</h4><img src="http://photo.wushaopei.com/qiniu1175.png" width="60%">
+<h4 id="3-2-案例"><a href="#3-2-案例" class="headerlink" title="3.2 案例"></a>3.2 案例</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1175.png" width="60%">
 
 <p><strong>有个master:master-7000,两个slave: slave-7001,slave-7002:</strong> </p>
 <p><strong>1）Redis主节点：</strong> </p>
@@ -579,7 +579,7 @@
 
 <h4 id="4-2-启动主、从节点："><a href="#4-2-启动主、从节点：" class="headerlink" title="4.2 启动主、从节点："></a>4.2 启动主、从节点：</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-server redis-7000.conf</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-cli -p 7000 ping</span></span><br><span class="line">PONG</span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-server redis-7001.conf</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-cli -p 7001 ping</span></span><br><span class="line">PONG</span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-server redis-7002.conf</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_14_centos</span> <span class="type">conf</span>]<span class="comment"># redis-cli -p 7002 ping</span></span><br><span class="line">PONG</span><br></pre></td></tr></table></figure>
 
-<h4 id="4-3-查看主从节点端口及相关配置信息："><a href="#4-3-查看主从节点端口及相关配置信息：" class="headerlink" title="4.3 查看主从节点端口及相关配置信息："></a>4.3 查看主从节点端口及相关配置信息：</h4><img src="http://photo.wushaopei.com/qiniu1176.png" width="60%">
+<h4 id="4-3-查看主从节点端口及相关配置信息："><a href="#4-3-查看主从节点端口及相关配置信息：" class="headerlink" title="4.3 查看主从节点端口及相关配置信息："></a>4.3 查看主从节点端口及相关配置信息：</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1176.png" width="60%">
 
 <h3 id="5-redis-sentinel-安装2"><a href="#5-redis-sentinel-安装2" class="headerlink" title="5. redis sentinel 安装2"></a>5. redis sentinel 安装2</h3><h4 id="安装配置redis-sentinel："><a href="#安装配置redis-sentinel：" class="headerlink" title="安装配置redis-sentinel："></a>安装配置redis-sentinel：</h4><h4 id="5-1-创建sentinel-conf文件："><a href="#5-1-创建sentinel-conf文件：" class="headerlink" title="5.1 创建sentinel.conf文件："></a>5.1 创建sentinel.conf文件：</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">port <span class="number">26379</span></span><br><span class="line">dir /tmp</span><br><span class="line">sentinel monitor mymaster <span class="number">192.168</span>.<span class="number">1.108</span> <span class="number">6379</span> <span class="number">2</span></span><br><span class="line">sentinel auth<span class="literal">-pass</span> mymaster MySUPER-<span class="literal">-secret</span><span class="literal">-0123passw0rd</span></span><br><span class="line">sentinel down<span class="literal">-after</span><span class="literal">-milliseconds</span> mymaster <span class="number">30000</span></span><br><span class="line">sentinel parallel<span class="literal">-syncs</span> mymaster <span class="number">1</span></span><br><span class="line">sentinel failover<span class="literal">-timeout</span> mymaster <span class="number">180000</span></span><br></pre></td></tr></table></figure>
 
@@ -641,21 +641,21 @@
 <li>Redis-py</li>
 <li>直连</li>
 </ul>
-<h4 id="6-1-客户端实现基本原理-step1"><a href="#6-1-客户端实现基本原理-step1" class="headerlink" title="6.1 客户端实现基本原理-step1"></a>6.1 客户端实现基本原理-step1</h4><img src="http://photo.wushaopei.com/qiniu1177.png" width="60%">
+<h4 id="6-1-客户端实现基本原理-step1"><a href="#6-1-客户端实现基本原理-step1" class="headerlink" title="6.1 客户端实现基本原理-step1"></a>6.1 客户端实现基本原理-step1</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1177.png" width="60%">
 
 <p>​    首先，我们要获取所有的sentinel节点，因为我们不知道哪个sentinel节点是活的，哪个sentnel节点已经宕机，所以我们要获取所有的sentinel节点的集合。同时，我要获取所以的master，就需要获取所有的master-name。</p>
 <p>​    然后去遍历sentinel集合，找到可用的sentinel节点，也就是可以被ping通的节点。</p>
-<h4 id="6-2-客户端实现基本原理-step2"><a href="#6-2-客户端实现基本原理-step2" class="headerlink" title="6.2 客户端实现基本原理-step2"></a>6.2 客户端实现基本原理-step2</h4><img src="http://photo.wushaopei.com/qiniu1178.png" width="60%">
+<h4 id="6-2-客户端实现基本原理-step2"><a href="#6-2-客户端实现基本原理-step2" class="headerlink" title="6.2 客户端实现基本原理-step2"></a>6.2 客户端实现基本原理-step2</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1178.png" width="60%">
 
 <p>​    通过sentinel节点的集合和masterName去sentine-k中去查询并返回可用master节点的真正可用信息。 </p>
-<h4 id="6-3-客户端实现基本原理-step3"><a href="#6-3-客户端实现基本原理-step3" class="headerlink" title="6.3 客户端实现基本原理-step3"></a>6.3 客户端实现基本原理-step3</h4><img src="http://photo.wushaopei.com/qiniu1179.png" width="60%">
+<h4 id="6-3-客户端实现基本原理-step3"><a href="#6-3-客户端实现基本原理-step3" class="headerlink" title="6.3 客户端实现基本原理-step3"></a>6.3 客户端实现基本原理-step3</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1179.png" width="60%">
 
 <p>​    当我们的客户端获取到master节点的时候，它会执行一次role或rol replication进行一次验证，从而验证该节点是否是真的master节点 </p>
-<img src="http://photo.wushaopei.com/qiniu1180.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1180.png" width="60%">
 
 <p>​    如果master节点发生了变化，那么，sentinel是感知的。因为谁是真正的master，是由他来决定的。</p>
 <p>​    Sentinel和客户端进行通知的机制：它们内部采用的是发布订阅的方式实现的。</p>
-<img src="http://photo.wushaopei.com/qiniu1181.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1181.png" width="60%">
 
 <h4 id="6-4-客户端接入流程"><a href="#6-4-客户端接入流程" class="headerlink" title="6.4 客户端接入流程"></a>6.4 客户端接入流程</h4><blockquote>
 <p>  1） Sentinel 地址集合</p>

@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/19/JavaWeb%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%EF%BC%9AEL%E8%A1%A8%E8%BE%BE%E5%BC%8F/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="1.什么是 EL 表达式？及其作用？EL表达式 的全称是Expression Language。它就是表达式语言。 EL表达式 可以很好的替代表达式脚本在jsp页面上进行输出。 EL表达式的格式是：${ key }  EL表达式在输出null值的时候。输出的是空串.  示例代码： 1234567&lt;body&gt;	&lt;%		request.setAttribute(&quot;abc&quot;, &quot;val">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1251.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1252.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1253.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1254.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1251.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1252.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1253.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1254.png">
 <meta property="article:published_time" content="2020-09-19T01:03:37.000Z">
-<meta property="article:modified_time" content="2020-09-19T02:02:50.357Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.886Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="EL表达式">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1251.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1251.png">
 
 
 
@@ -497,10 +497,10 @@
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.HashMap"</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.Map"</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.ArrayList"</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"java.util.List"</span>%&gt;</span><br><span class="line">&lt;%<span class="meta">@page</span> <span class="keyword">import</span>=<span class="string">"com.http.pojo.Person"</span>%&gt;</span><br><span class="line">&lt;%@ page language=<span class="string">"java"</span> contentType=<span class="string">"text/html; charset=UTF-8"</span></span><br><span class="line">    pageEncoding=<span class="string">"UTF-8"</span>%&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>注：${ p.age }</strong>    <strong>p 表示一个Person对象.那么p.age 中的age表示找person对象的getAge方法（也就是读方法）</strong></p>
-<img src="http://photo.wushaopei.com/qiniu1251.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1251.png" width="60%">
 
 <p>去掉Eclipse自动的一些较验。</p>
-<img src="http://photo.wushaopei.com/qiniu1252.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1252.png" width="60%">
 
 <h2 id="4-EL-表达式-——-运算"><a href="#4-EL-表达式-——-运算" class="headerlink" title="4. EL 表达式 —— 运算"></a>4. EL 表达式 —— 运算</h2><p>语法：${ 运算表达式 } ， EL 表达式支持如下运算符：</p>
 <h3 id="4-1关系运算"><a href="#4-1关系运算" class="headerlink" title="4.1关系运算"></a>4.1<strong>关系运算</strong></h3><table>
@@ -704,7 +704,7 @@
 <h3 id="5-2-pageContext-对象的使用"><a href="#5-2-pageContext-对象的使用" class="headerlink" title="5.2 pageContext 对象的使用"></a>5.2 pageContext 对象的使用</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;%</span><br><span class="line">		pageContext.setAttribute(<span class="string">"req"</span>, request);</span><br><span class="line">	%&gt;</span><br><span class="line">	&lt;!-- getScheme方法获取请求的协议 --&gt;</span><br><span class="line">	&lt;!-- getServerName方法获取服务器的IP --&gt;</span><br><span class="line">	&lt;!-- getServerPort方法获取服务器的端口号 --&gt;</span><br><span class="line">	&lt;!-- getContextPath方法获取工程路径 --&gt;</span><br><span class="line">	&lt;!-- getRemoteHost方法获取客户端的IP --&gt;</span><br><span class="line">	&lt;!-- getSession方法获取当前会话对象 --&gt;</span><br><span class="line">	&lt;!-- getSession().getId()方法获取当前会话的id --&gt;</span><br><span class="line">	&lt;%=request.getSession().getId() %&gt;&lt;br/&gt;</span><br><span class="line">	<span class="number">1</span>.协议：		$&#123; req.scheme &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">2</span>.服务器ip：	$&#123; pageContext.request.serverName &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">3</span>.服务器端口：	$&#123; pageContext.request.serverPort &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">4</span>.获取工程路径：	$&#123; pageContext.request.contextPath &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">5</span>.获取请求方法：	$&#123; pageContext.request.method &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">6</span>.获取客户端ip地址：	$&#123; pageContext.request.remoteHost &#125;&lt;br/&gt;</span><br><span class="line">	<span class="number">7</span>.获取会话的id编号：	$&#123; pageContext.request.session.id &#125;&lt;br/&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
 
 <h3 id="5-3-EL表达式其他隐含对象的使用"><a href="#5-3-EL表达式其他隐含对象的使用" class="headerlink" title="5.3 EL表达式其他隐含对象的使用"></a>5.3 EL表达式其他隐含对象的使用</h3><p><strong>param和paramValues    获取请求参数值</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1253.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1253.png" width="60%">
 
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取请求参数username的值：$&#123; param.username &#125;&lt;br/&gt;</span></span><br><span class="line"><span class="comment">//获取请求参数password的值：$&#123; param.password &#125;&lt;br/&gt;</span></span><br><span class="line">&lt;hr/&gt;</span><br><span class="line">$&#123; param.hobby &#125;&lt;br/&gt;</span><br><span class="line">$&#123; paramValues.hobby[<span class="number">0</span>] &#125;--$&#123; paramValues.hobby[<span class="number">1</span>] &#125;</span><br></pre></td></tr></table></figure>
 
@@ -712,7 +712,7 @@
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$&#123; header[<span class="string">'User-Agent'</span>] &#125;&lt;br/&gt;</span><br><span class="line">$&#123; headerValues[<span class="string">'User-Agent'</span>][<span class="number">0</span>] &#125;&lt;br/&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>initParam</strong></p>
-<img src="http://photo.wushaopei.com/qiniu1254.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1254.png" width="60%">
 
 <p>代码：<code>${ initParam.username }</code></p>
 <p><strong>cookie 的演示</strong>           <code>${ cookie.JSESSIONID.value }</code></p>

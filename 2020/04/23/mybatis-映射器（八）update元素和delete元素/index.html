@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E5%85%AB%EF%BC%89update%E5%85%83%E7%B4%A0%E5%92%8Cdelete%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="数据变更语句 insert，update 和 delete 的实现非常接近，这里我们将三者的属性配置放到一起比较一下： 1234567891011121314151617181920212223&lt;insert    id&#x3D;&quot;insertAuthor&quot;  parameterType&#x3D;&quot;domain.blog.Author&quot;  flushCache&#x3D;&quot;true&quot;  statementType&#x3D;&quot;">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-23T09:17:11.000Z">
-<meta property="article:modified_time" content="2020-04-23T15:04:58.409Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:05.471Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="映射器">
 <meta property="article:tag" content="update元素">
 <meta property="article:tag" content="delete元素">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 
 
 
@@ -478,7 +478,7 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--   根据id删除一个用户 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"deleteUserById"</span> <span class="attr">parameterType</span>=<span class="string">"int"</span>&gt;</span></span><br><span class="line">		delete from t_user where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"updateUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.webcode.cn.entity.User"</span>&gt;</span></span><br><span class="line">		update t_user set last_name = #&#123;lastName&#125;,sex = #&#123;sex&#125; where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>大部分情况下，开发过程中锁面对的场景都和这相似，需要通过一个 JavaBean 插入一张表的记录或者根据主键删除记录，对于参数传递可以参考 select 元素传递参数的例子。插入和删除执行完成 MyBatis 会返回一个整数显示更新或删除了几条记录。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

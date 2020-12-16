@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%B8%80%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-FutureTask/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="J.U.C-FutureTask概念：FutureTask组件，该组件是JUC中的。但该组件不是 AQS 的子类。 创建一个线程通常有两种方式，一种是直接继承Thread类，另一红就是实现Runnable接口，这俩种方式有一个共同的缺陷，那就是在完成任务之后无法获取执行结果。从Java1.5开始提供了Callable和FutureTask，可以在任务完成之后得到任务执行的结果。 Callable">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu390.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu391.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu390.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu391.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-17T01:51:18.000Z">
-<meta property="article:modified_time" content="2020-08-23T03:29:16.072Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:22.990Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="FutureTask">
 <meta property="article:tag" content="组件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu390.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu390.png">
 
 
 
@@ -512,14 +512,14 @@
 <p>再由call()线程返回值的打印时间可知，它是在线程初始化以及main初始化5秒后才打印结果result，可以说明futureTask 一直被阻塞，直到call()方法中的业务执行完成并返回结果后才接着继续执行get()方法。</p>
 </blockquote>
 <h3 id="对比Future和FutureTask执行声明与执行结果："><a href="#对比Future和FutureTask执行声明与执行结果：" class="headerlink" title="对比Future和FutureTask执行声明与执行结果："></a><strong>对比Future和FutureTask执行声明与执行结果：</strong></h3><p>可以知道，FutureTask使用起来要更加方便，定义好任务之后，直接启动任务，什么时候想用，什么时候就可以用它。 </p>
-<h3 id="部分源码分析："><a href="#部分源码分析：" class="headerlink" title="部分源码分析："></a>部分源码分析：</h3><img src="http://photo.wushaopei.com/qiniu390.png" width="90%">
+<h3 id="部分源码分析："><a href="#部分源码分析：" class="headerlink" title="部分源码分析："></a>部分源码分析：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu390.png" width="90%">
 
 <p>由FutureTask的构造方法可以知道，它支持多种类型的构造函数的。 </p>
-<img src="http://photo.wushaopei.com/qiniu391.png" width="90%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu391.png" width="90%">
 
 
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

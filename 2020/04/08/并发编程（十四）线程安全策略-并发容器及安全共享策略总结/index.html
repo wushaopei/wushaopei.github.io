@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/08/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%8F%8A%E5%AE%89%E5%85%A8%E5%85%B1%E4%BA%AB%E7%AD%96%E7%95%A5%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="并发容器及安全共享策略总结 ArrayList  - &gt;  CopyOnWriteArrayList HashSet 、TreeSet - &gt; CopyOnWriteArraySet ConcurrentSkipListSet HashMap 、 TreeMap - &gt; ConcurrentHashMap ConcurrentSkipListMap  用CopyOnWriteAr">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu291.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu291.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-08T14:52:54.000Z">
-<meta property="article:modified_time" content="2020-04-08T15:05:22.681Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:08.474Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="并发容器">
 <meta property="article:tag" content="安全共享策略">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu291.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu291.png">
 
 
 
@@ -515,7 +515,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">17</span>:<span class="number">06</span>:<span class="number">13.842</span> [main] INFO com.mmall.concurrency.example.concurrent.ConcurrentSkipListMapExample - size:<span class="number">5000</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p>由结果可知：size的长度为<strong>5000</strong>，说明了<strong>ConcurrentSkipListMap</strong>的<strong>add操作</strong>在多线程并发环境下是<strong>线程安全的</strong>。 </p>
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><img src="http://photo.wushaopei.com/qiniu291.png" width="60%">
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu291.png" width="60%">
 
 <h3 id="安全共享对象策略-总结："><a href="#安全共享对象策略-总结：" class="headerlink" title="安全共享对象策略 - 总结："></a>安全共享对象策略 - 总结：</h3><ul>
 <li><strong>线程限制：</strong> 一个被线程限制的对象，由线程独占，并且只能被占有它的线程修改</li>
@@ -523,7 +523,7 @@
 <li><strong>线程安全对象：</strong> 一个线程安全的对象或者容器，在内部通过同步机制来保证线程安全，所以其他线程无需额外的同步就可以通过公共接口随意访问它</li>
 <li><strong>被守护对象：</strong> 被守护对象只能通过获取特定的锁来访问</li>
 </ul>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -583,8 +583,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/04/13/%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%BC%80%E5%8F%91%EF%BC%88%E5%85%AD%EF%BC%89Specification-06-Common-Function/" rel="prev" title="半导体（六）Specification-06-Common Function">
-                半导体（六）Specification-06-Common Function <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/13/%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%83%EF%BC%89Specification-07-Port%20Management/" rel="prev" title="半导体（七）Specification-07-Port Management">
+                半导体（七）Specification-07-Port Management <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

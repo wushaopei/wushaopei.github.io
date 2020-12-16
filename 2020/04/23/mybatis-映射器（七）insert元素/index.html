@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/23/mybatis-%E6%98%A0%E5%B0%84%E5%99%A8%EF%BC%88%E4%B8%83%EF%BC%89insert%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="概述insert 元素，相对于 select 元素而言要简单许多。MyBatis 会在执行插入之后哦返回一个整数，以表示你进行操作后插入的记录数。 insert 元素配置详解如下： 123456789&lt;insert  id&#x3D;&quot;insertAuthor&quot;  parameterType&#x3D;&quot;domain.blog.Author&quot;  flushCache&#x3D;&quot;true&quot;  statementType&#x3D;">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu477.jpg">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu478.jpg">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu477.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu478.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-23T09:15:58.000Z">
-<meta property="article:modified_time" content="2020-06-11T04:46:02.460Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:05.196Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="映射器">
 <meta property="article:tag" content="insert元素">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu477.jpg">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu477.jpg">
 
 
 
@@ -546,14 +546,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span>  <span class="title">main</span> <span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">		SqlSession sqlSession = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			sqlSession = SqlSessionFactoryUtil.openSqlSession();</span><br><span class="line">			UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">			User user = <span class="keyword">new</span> User();</span><br><span class="line">			user.setLastName(<span class="string">"tom"</span>);</span><br><span class="line">			user.setSex(<span class="number">1</span>);</span><br><span class="line">			userMapper.saveUser(user);</span><br><span class="line">			System.out.println(user.getId());</span><br><span class="line">			sqlSession.commit();			</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">			System.err.println(ex.getMessage());</span><br><span class="line">			sqlSession.rollback();</span><br><span class="line">		&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">			<span class="keyword">if</span>(sqlSession != <span class="keyword">null</span>)&#123;</span><br><span class="line">				sqlSession.close();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里使用DEBUG进行调试，查看返回的 id 值；</p>
-<img src="http://photo.wushaopei.com/qiniu477.jpg " width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu477.jpg " width="80%">
 
 <h3 id="selectKey"><a href="#selectKey" class="headerlink" title="selectKey"></a>selectKey</h3><p>实际工作往往不是我们想象的那么简单，需要根据一些特殊的关系设置主键 id 的值。假设我们取消表 t_user 的 id  自增的规则，我们的要求是： 如果表 t_user 没有记录，则我们需要设置 id=1 , 否则我们就取最大 id 加 2，来设置新的主键，对于一些特殊要求， MyBatis 也提供了应对方法。</p>
 <p>​    这个时候我们可以使用 selectKey 元素进行处理，操作方法如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--   parameterType 参数类型（可选） --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"saveUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.webcode.cn.entity.User"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">      	<span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">  			selectKey标签可以定义一些查询语句，这些语句可以选择性地在大标签的sql语句之前或之后执行</span></span><br><span class="line"><span class="comment">  			我们希望，通过执行一个查询，把最后一次生成的id返回。</span></span><br><span class="line"><span class="comment">  				order属性配置执行的顺序</span></span><br><span class="line"><span class="comment">  					BEFORE		之前</span></span><br><span class="line"><span class="comment">  					AFTER		之后</span></span><br><span class="line"><span class="comment">  				keyProperty="id"	把数据库返回的主键值注入到bean对象的id属性中</span></span><br><span class="line"><span class="comment">  				resultType="int"	设置selectKey查询之后返回的类型是什么 int 表示Integer类型</span></span><br><span class="line"><span class="comment">  		 --&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">selectKey</span>   <span class="attr">keyProperty</span>=<span class="string">"id"</span>   <span class="attr">resultType</span>=<span class="string">"int"</span>   <span class="attr">order</span>=<span class="string">"BEFORE"</span>   <span class="attr">statementType</span>=<span class="string">"PREPARED"</span>&gt;</span></span><br><span class="line">  			 select if(max(id) is null, 1, max(id) + 2) as newId from t_user</span><br><span class="line">  		<span class="tag">&lt;/<span class="name">selectKey</span>&gt;</span>	</span><br><span class="line">  		insert into t_user(id,`last_name`,`sex`) values(#&#123;id&#125;,#&#123;lastName&#125;,#&#123;sex&#125;)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>去除主键自增后的执行结果：</p>
-<img src="http://photo.wushaopei.com/qiniu478.jpg " width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu478.jpg " width="80%">
 
 <p>这样我们就能定义自己的规则来生成主键了，MyBatis 的灵活性也得以体现。</p>
 <h3 id="selectKey-元素的属性"><a href="#selectKey-元素的属性" class="headerlink" title="selectKey 元素的属性"></a>selectKey 元素的属性</h3><table>
@@ -584,7 +584,7 @@
 <td>和前面一样，MyBatis 支持 <code>STATEMENT</code>，<code>PREPARED</code> 和 <code>CALLABLE</code>  类型的映射语句，分别代表 <code>Statement</code>, <code>PreparedStatement</code> 和                 <code>CallableStatement</code> 类型。</td>
 </tr>
 </tbody></table>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

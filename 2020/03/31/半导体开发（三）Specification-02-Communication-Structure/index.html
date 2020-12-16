@@ -97,13 +97,13 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/31/%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%BC%80%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89Specification-02-Communication-Structure/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="Communication Structure - 通讯结构T6BC架构概述Data Communication设备通过CC-Link IE的链路信号与上下游设备进行连接 链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连接，发送&#x2F;接收CIM数据 BC与设备通信的基础是三菱PLC。   ​">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu259.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu260.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu259.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu260.png">
 <meta property="article:published_time" content="2020-03-31T14:46:36.000Z">
-<meta property="article:modified_time" content="2020-06-18T16:52:21.765Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.871Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu259.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu259.png">
 
 
 
@@ -471,7 +471,7 @@
         <h2 id="Communication-Structure-通讯结构"><a href="#Communication-Structure-通讯结构" class="headerlink" title="Communication Structure - 通讯结构"></a>Communication Structure - 通讯结构</h2><h3 id="T6BC架构概述"><a href="#T6BC架构概述" class="headerlink" title="T6BC架构概述"></a>T6BC架构概述</h3><h3 id="Data-Communication"><a href="#Data-Communication" class="headerlink" title="Data Communication"></a>Data Communication</h3><p>设备通过CC-Link IE的链路信号与上下游设备进行连接</p>
 <p>链接区域。链路信号仅用于控制作业转移。工作数据通过CCLink IE传输。设备通过三菱公司的CC-Link IE网络与BC公司连接，发送/接收CIM数据</p>
 <p><code>BC与设备通信的基础是三菱PLC。</code></p>
-<img src="http://photo.wushaopei.com/qiniu259.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu259.png" width="80%">
 
 <p>​                            图02内联通信结构 </p>
 <p>​    如图所示，<strong>最上层</strong> 是MES，在该架构中所有的数据都需要回复到MES那边的。MES 与 BC 之间是通过Tib/RV 去实现数据传输的。</p>
@@ -482,7 +482,7 @@
 <p>​    对应PLC（L2）的机台是loader(装载板卡) ，而对应最右边的PLC(Ln)则是unLoader。</p>
 <h4 id="Loader与unLoader"><a href="#Loader与unLoader" class="headerlink" title="Loader与unLoader"></a>Loader与unLoader</h4><p>Loader与unLoader一般通过连接Stock或者其他搬运的设备（robot等）来将Cassette或者Glass搬上或搬下机台。</p>
 <h4 id="机台间的通讯"><a href="#机台间的通讯" class="headerlink" title="机台间的通讯"></a>机台间的通讯</h4><p>每一台机台之间通过光纤进行连接和数据交互，数据使用cclink IE导入到BC。</p>
-<h3 id="Inline-CC-Link-IE-Concept"><a href="#Inline-CC-Link-IE-Concept" class="headerlink" title="Inline CC-Link IE Concept"></a>Inline CC-Link IE Concept</h3><h4 id="主机台与子机台"><a href="#主机台与子机台" class="headerlink" title="主机台与子机台"></a>主机台与子机台</h4><img src="http://photo.wushaopei.com/qiniu260.png" width="80%">
+<h3 id="Inline-CC-Link-IE-Concept"><a href="#Inline-CC-Link-IE-Concept" class="headerlink" title="Inline CC-Link IE Concept"></a>Inline CC-Link IE Concept</h3><h4 id="主机台与子机台"><a href="#主机台与子机台" class="headerlink" title="主机台与子机台"></a>主机台与子机台</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu260.png" width="80%">
 
 <p>每个机台都会划分出一个或一个以上的unit，每个unit可以理解为是子机台。每个子机台与PLC网络不会产生直接关系，每个子机台只对自己的主机台负责，这从另一个层面上可以理解为每个主机台与子机台之间构成了以主机台为主导的子机台网络。</p>
 <p>每个unit子机台都会把所处理的数据提交给主机台，并由主机台直接或经过处理后再与PLC网络、BC进行交互。</p>

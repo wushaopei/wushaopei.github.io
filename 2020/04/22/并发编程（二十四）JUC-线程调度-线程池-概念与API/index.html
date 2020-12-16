@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/22/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E5%9B%9B%EF%BC%89JUC-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6-%E7%BA%BF%E7%A8%8B%E6%B1%A0-%E6%A6%82%E5%BF%B5%E4%B8%8EAPI/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="线程池-概念与API引子：实际上，在开发中并不会普遍的使用Thread，因为它具有一些弊端，对并发性能的影响比较大，如下：   new Thread 弊端： ​         每次 new Thread 新建对象，性能差； ​         线程缺乏统一管理，可能无限制的新建线程，相互竞争，有可能占用过多系统资源导致死机或OOM； ​         缺少更多功能，如更多执行、定期执行、线程中">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu459.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu460.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu461.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu459.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu460.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu461.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-22T09:15:47.000Z">
-<meta property="article:modified_time" content="2020-08-23T04:00:49.039Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.104Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="线程池">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu459.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu459.png">
 
 
 
@@ -538,13 +538,13 @@
 <h4 id="线程池实例的创建分析："><a href="#线程池实例的创建分析：" class="headerlink" title="线程池实例的创建分析："></a><strong>线程池实例的创建分析：</strong></h4><p><strong>常用的线程池创建如下：</strong> </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecutorService exec = Executors.newCachedThreadPool();</span><br></pre></td></tr></table></figure>
 
-<h4 id="该实例的底层实现是："><a href="#该实例的底层实现是：" class="headerlink" title="该实例的底层实现是："></a><strong>该实例的底层实现是：</strong></h4><img src="http://photo.wushaopei.com/qiniu459.png" width="90%">
+<h4 id="该实例的底层实现是："><a href="#该实例的底层实现是：" class="headerlink" title="该实例的底层实现是："></a><strong>该实例的底层实现是：</strong></h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu459.png" width="90%">
 
 <p>由源码可知，Executors创建线程池的底层实际是由 ThreadPoolExecutor的实例初始化返回的，再进入ThreadPoolExecutor底层看一看： </p>
-<img src="http://photo.wushaopei.com/qiniu460.png" width="90%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu460.png" width="90%">
 
 <p>ThreadPoolExecutor的实例化包括但不限于上图中的构造方法的实现，当前图中的参数包含了所有可能需要用到的参数，这里对线程工厂和策略都做了参数传入。具体需要根据业务需求进行选择相应的构造器。 </p>
-<img src="http://photo.wushaopei.com/qiniu461.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu461.png" width="60%">
 
 <p>当我们初试化了一个线程池之后，它通常有RUNNING、SHUTDOWN、STOP、TIDYING、TERMINATED集中状态。</p>
 <table>
@@ -571,7 +571,7 @@
 <td><strong>在TIDYING状态时调用terminated()方法就会进入到TERMINATED状态，默认的terminated()方法什么都不会做。只是会在调用terminated()方法让线程池进入到TERMINATED状态。</strong></td>
 </tr>
 </tbody></table>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/03/18/Activiti-%EF%BC%88%E5%8D%81%EF%BC%89%E4%BF%AE%E6%94%B9%E6%B5%81%E7%A8%8B%E5%AE%9A%E4%B9%89/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="流程定义按本质来说是不能修改的；假如一个流程定义的流程实例在活动运行中。 假如可以修改，本来要流转到A这个节点，因为流程定义修改了，流转到B这个节点。 就不符合当时这个流程实例的初衷了； 所以在开发中，不能修改流程定义，而是通过增加版本号的方式。来实现“修改”的； 什么是版本号呢?  在设计流程图的时候，这里的Id 对应到数据库里的就是那个Key值  只要Id相同。就算是同一个流程定义；  比如这">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu132.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu133.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu135.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu134.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu132.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu133.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu135.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu134.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-03-18T03:47:19.000Z">
-<meta property="article:modified_time" content="2020-09-23T08:30:24.941Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:28.581Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu132.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu132.png">
 
 
 
@@ -475,21 +475,21 @@
 <p>假如可以修改，本来要流转到A这个节点，因为流程定义修改了，流转到B这个节点。</p>
 <p>就不符合当时这个流程实例的初衷了；</p>
 <p>所以在开发中，不能修改流程定义，而是通过增加版本号的方式。来实现“修改”的；</p>
-<p>什么是版本号呢?<br><img src="http://photo.wushaopei.com/qiniu132.png" width="60%"></p>
+<p>什么是版本号呢?<br><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu132.png" width="60%"></p>
 <p> 在设计流程图的时候，这里的Id 对应到数据库里的就是那个Key值  只要Id相同。就算是同一个流程定义；</p>
 <p> 比如这个流程发布多次，Id一样，到数据库表那边 Key作为版本属性 值会增加；</p>
-<img src="http://photo.wushaopei.com/qiniu133.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu133.png" width="60%">
 
 <p> 启动流程实例的时候，是用Key来启动。这样启动的时候就是用的最新版本的流程定义来启动流程实例。</p>
-<img src="http://photo.wushaopei.com/qiniu135.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu135.png" width="60%">
 
 <p> 接着说说这个流程ID是怎样组成的：</p>
-<img src="http://photo.wushaopei.com/qiniu134.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu134.png" width="60%">
 
 <p> 这个Id值组成的话是  key值:版本号:流程部署ID。</p>
 <p> 最后传说中的修改就是在发布一次流程定义，因为它在数据库中就原本就存在该流程，</p>
 <p> 所以在发布一次它就会在版本号这个字段增加。在到做流程操作的时候之须取最新的版本号即可。</p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

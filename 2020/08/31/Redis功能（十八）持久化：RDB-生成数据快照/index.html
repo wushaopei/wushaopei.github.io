@@ -97,20 +97,20 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/31/Redis%E5%8A%9F%E8%83%BD%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E6%8C%81%E4%B9%85%E5%8C%96%EF%BC%9ARDB-%E7%94%9F%E6%88%90%E6%95%B0%E6%8D%AE%E5%BF%AB%E7%85%A7/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="持久化 持久化的作用 RDB AOF RDB和AOF的选择  持久化的作用 什么是持久化 持久化的实现方式  1. 什么是持久化 Redis 所有数据保存在内存中，对数据的更新将异步的保存到磁盘上。   如图：    2. 持久化方式快照:   MySQL Dump Redis RDB    写日志：    MySQL Binlog Hbase HLog Redis AOF   RDB 什么是RD">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1144.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1145.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1146.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1147.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1148.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1144.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1145.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1146.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1147.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1148.png">
 <meta property="article:published_time" content="2020-08-31T04:59:01.000Z">
-<meta property="article:modified_time" content="2020-08-31T14:13:13.960Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:52.164Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis功能">
 <meta property="article:tag" content="持久化">
 <meta property="article:tag" content="RDB">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1144.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1144.png">
 
 
 
@@ -500,7 +500,7 @@
 <p>Redis 所有数据保存在内存中，对数据的更新将异步的保存到磁盘上。 </p>
 </blockquote>
 <p><strong>如图：</strong> </p>
-<img src="http://photo.wushaopei.com/qiniu1144.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1144.png" width="60%">
 
 <h3 id="2-持久化方式"><a href="#2-持久化方式" class="headerlink" title="2. 持久化方式"></a>2. 持久化方式</h3><p><strong>快照:</strong></p>
 <blockquote>
@@ -523,18 +523,18 @@
 <li>触发机制 - 不容忽略方式</li>
 <li>实验</li>
 </ul>
-<h3 id="1-什么是-RDB"><a href="#1-什么是-RDB" class="headerlink" title="1. 什么是 RDB"></a>1. 什么是 RDB</h3><img src="http://photo.wushaopei.com/qiniu1145.png" width="60%">
+<h3 id="1-什么是-RDB"><a href="#1-什么是-RDB" class="headerlink" title="1. 什么是 RDB"></a>1. 什么是 RDB</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1145.png" width="60%">
 
 <p>​    Redis是在内存中保存数据的，redis通过一条命令将redis的数据完整的生成一个快照，然后保存到硬盘当中，也就是RDB文件。该文件是二进制的编码保存的。</p>
 <p>​    当我们需要对redis做一个恢复，比如对redis做一个重启，那我们就可以去加载RDB某时某刻的一个二进制备份文件恢复到redis当中。</p>
-<img src="http://photo.wushaopei.com/qiniu1146.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1146.png" width="60%">
 
 <h3 id="2-触发机制-主要三种方式"><a href="#2-触发机制-主要三种方式" class="headerlink" title="2. 触发机制 - 主要三种方式"></a>2. 触发机制 - 主要三种方式</h3><ul>
 <li>save（同步）</li>
 <li>bgsave (异步)</li>
 <li>自动</li>
 </ul>
-<h3 id="3-save命令："><a href="#3-save命令：" class="headerlink" title="3. save命令："></a>3. save命令：</h3><img src="http://photo.wushaopei.com/qiniu1147.png" width="60%">
+<h3 id="3-save命令："><a href="#3-save命令：" class="headerlink" title="3. save命令："></a>3. save命令：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1147.png" width="60%">
 
 <blockquote>
 <p>客户端对redis发送一条save命令，redis就会创建一个RDB文件 </p>
@@ -546,7 +546,7 @@
 <p>文件策略： 如存在老的RDB文件，新替换老</p>
 <p>复杂度：   O（N）</p>
 </blockquote>
-<h3 id="4-API——bgsave命令"><a href="#4-API——bgsave命令" class="headerlink" title="4. API——bgsave命令"></a>4. API——bgsave命令</h3><img src="http://photo.wushaopei.com/qiniu1148.png" width="60%">
+<h3 id="4-API——bgsave命令"><a href="#4-API——bgsave命令" class="headerlink" title="4. API——bgsave命令"></a>4. API——bgsave命令</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1148.png" width="60%">
 
 <p>​    客户端去执行bgsave，它不会同步的去执行命令，而是<strong>使用linux的一个函数 fork()，生成主进程的子进程</strong>，也就是redis的子进程，让子进程去执行createRDB生成RDB文件。</p>
 <p>​       某些情况下，在<strong>fork()</strong>阶段可能因为bgsave操作太多而造成阻塞。（概率极低）</p>

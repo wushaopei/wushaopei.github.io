@@ -97,22 +97,22 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/14/dubbo%EF%BC%88%E4%BA%8C%EF%BC%89dubbo%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、dubbo核心概念1、简介Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。 官网： http:&#x2F;&#x2F;dubbo.apache.org&#x2F; 2、基本概念  ​    服务提供者（Provider）：暴露服务的服务提供方，服务提供者在启动时，向">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu799.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu801.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu802.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu803.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu808.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu801.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu802.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu803.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu799.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu801.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu802.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu803.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu808.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu801.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu802.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu803.png">
 <meta property="article:published_time" content="2020-06-14T10:36:19.000Z">
-<meta property="article:modified_time" content="2020-06-21T09:26:38.026Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:28.087Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="dubbo">
 <meta property="article:tag" content="dubbo基础环境">
 <meta property="article:tag" content="Zookeeper环境搭建">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu799.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu799.png">
 
 
 
@@ -491,7 +491,7 @@
         <h3 id="一、dubbo核心概念"><a href="#一、dubbo核心概念" class="headerlink" title="一、dubbo核心概念"></a>一、dubbo核心概念</h3><h4 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h4><p>Apache <strong>Dubbo</strong> (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC框架，它提供了三大核心能力：<strong>面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现</strong>。</p>
 <p>官网：</p>
 <p><a href="http://dubbo.apache.org/" target="_blank" rel="noopener">http://dubbo.apache.org/</a></p>
-<h4 id="2、基本概念"><a href="#2、基本概念" class="headerlink" title="2、基本概念"></a>2、基本概念</h4><img src="http://photo.wushaopei.com/qiniu799.png" >
+<h4 id="2、基本概念"><a href="#2、基本概念" class="headerlink" title="2、基本概念"></a>2、基本概念</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu799.png" >
 
 <p>​    <strong>服务提供者（Provider）</strong>：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。</p>
 <p>​    <strong>服务消费者（Consumer）</strong>: 调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</p>
@@ -531,11 +531,11 @@
 <ol>
 <li><p>下载 dubbo-admin</p>
 <p><a href="https://github.com/apache/incubator-dubbo-ops" target="_blank" rel="noopener">https://github.com/apache/incubator-dubbo-ops</a> </p>
-<img src="http://photo.wushaopei.com/qiniu801.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu801.png" >
 </li>
 <li><p>进入目录，修改dubbo-admin 配置</p>
 <p>修改 src\main\resources\application.properties 指定zookeeper地址</p>
-<img src="http://photo.wushaopei.com/qiniu802.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu802.png" >
 </li>
 <li><p>打包 dubbo-admin</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
@@ -544,7 +544,7 @@
 <p>java -jar dubbo-admin-0.0.1-SNAPSHOT.jar</p>
 <p><strong>注意</strong>：【有可能控制台看着启动了，但是网页打不开，需要在控制台按下 ctrl+c 即可】</p>
 <p>默认使用root/root 登陆</p>
-<img src="http://photo.wushaopei.com/qiniu803.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu803.png" >
 
 </li>
 </ol>
@@ -598,17 +598,17 @@
 <p>(5)启动服务&amp;访问tomcat测试</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root init.d]# service tomcat8 start</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu808.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu808.png" >
 
 <h5 id="4-2-安装-dubbo-admin"><a href="#4-2-安装-dubbo-admin" class="headerlink" title="4.2 安装 dubbo-admin"></a>4.2 安装 dubbo-admin</h5><p>dubbo本身并不是一个服务软件。它其实就是一个jar包能够帮你的java程序连接到zookeeper，并利用zookeeper消费、提供服务。所以你不用在Linux上启动什么dubbo服务。</p>
 <p>但是为了让用户更好的管理监控众多的dubbo服务，官方提供了一个可视化的监控程序，不过这个监控即使不装也不影响使用。</p>
 <p>(1) 下载 dubbo-admin</p>
 <p><a href="https://github.com/apache/incubator-dubbo-ops" target="_blank" rel="noopener">https://github.com/apache/incubator-dubbo-ops</a>  </p>
-<img src="http://photo.wushaopei.com/qiniu801.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu801.png" >
 
 <p>(2) 进入目录，修改dubbo-admin配置</p>
 <p>修改 src\main\resources\application.properties 指定zookeeper地址</p>
-<img src="http://photo.wushaopei.com/qiniu802.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu802.png" >
 
 <p>(3) 打包 dubbo-admin</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
@@ -617,7 +617,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar dubbo-admin-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
 
 <p>默认使用root/root 登陆</p>
-<img src="http://photo.wushaopei.com/qiniu803.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu803.png" >
 
 
 

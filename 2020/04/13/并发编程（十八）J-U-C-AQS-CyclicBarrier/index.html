@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="AQS,并发容器,Semaphore," />
+  <meta name="keywords" content="并发容器,AQS,Semaphore," />
 
 
 
@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/13/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89J-U-C-AQS-CyclicBarrier/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="J.U.C之AQS-CyclicBarrier图解 CyclicBarrier  CyclicBarrier是一个同步辅助类，它允许一组线程同步等待，直到某一个公共的屏障点，通过它可以实现线程之间的相互等待，每个线程都各自就绪后，才能够继续执行后续的操作。 它和CountDownLatch一样都是通过计数器来实现的。CyclicBarrier可以用于多线程计算数据，最后合并计算结果的应用场景。 比">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu303.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu303.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-13T07:58:18.000Z">
-<meta property="article:modified_time" content="2020-04-13T08:16:30.559Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:08.775Z">
 <meta property="article:author" content="吴少培">
-<meta property="article:tag" content="AQS">
 <meta property="article:tag" content="并发容器">
+<meta property="article:tag" content="AQS">
 <meta property="article:tag" content="Semaphore">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu303.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu303.png">
 
 
 
@@ -471,7 +471,7 @@
       
 
       
-        <h2 id="J-U-C之AQS-CyclicBarrier"><a href="#J-U-C之AQS-CyclicBarrier" class="headerlink" title="J.U.C之AQS-CyclicBarrier"></a>J.U.C之AQS-CyclicBarrier</h2><h3 id="图解-CyclicBarrier"><a href="#图解-CyclicBarrier" class="headerlink" title="图解 CyclicBarrier"></a>图解 CyclicBarrier</h3><img src="http://photo.wushaopei.com/qiniu303.png" width="60%">
+        <h2 id="J-U-C之AQS-CyclicBarrier"><a href="#J-U-C之AQS-CyclicBarrier" class="headerlink" title="J.U.C之AQS-CyclicBarrier"></a>J.U.C之AQS-CyclicBarrier</h2><h3 id="图解-CyclicBarrier"><a href="#图解-CyclicBarrier" class="headerlink" title="图解 CyclicBarrier"></a>图解 CyclicBarrier</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu303.png" width="60%">
 
 <p>CyclicBarrier是一个同步辅助类，它允许一组线程同步等待，直到某一个公共的屏障点，通过它可以实现线程之间的相互等待，每个线程都各自就绪后，才能够继续执行后续的操作。</p>
 <p>它和CountDownLatch一样都是通过计数器来实现的。CyclicBarrier可以用于多线程计算数据，最后合并计算结果的应用场景。</p>
@@ -490,7 +490,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">24.350</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">0</span> is ready</span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">25.348</span> [pool-<span class="number">1</span>-thread-<span class="number">2</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">1</span> is ready</span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">26.349</span> [pool-<span class="number">1</span>-thread-<span class="number">3</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">2</span> is ready</span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">27.350</span> [pool-<span class="number">1</span>-thread-<span class="number">4</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">3</span> is ready</span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">28.350</span> [pool-<span class="number">1</span>-thread-<span class="number">5</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">4</span> is ready</span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">28.350</span> [pool-<span class="number">1</span>-thread-<span class="number">5</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - callback is running </span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">28.350</span> [pool-<span class="number">1</span>-thread-<span class="number">5</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 - <span class="number">4</span> <span class="keyword">continue</span></span><br><span class="line"><span class="number">00</span>:<span class="number">04</span>:<span class="number">28.351</span> [pool-<span class="number">1</span>-thread-<span class="number">1</span>] INFO com.mmall.concurrency.example.aqs.CyclicBarrierExample3 -</span><br></pre></td></tr></table></figure>
 
 <p>线程中的屏障是 <strong>4 is ready ，</strong>此时所有入队线程已准备就绪，即到达了屏障，在进入执行序列时，会优先执行 <strong>running</strong> ，即匿名指定的线程对象。 </p>
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     
@@ -525,9 +525,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/AQS/" rel="tag"> <i class="fa fa-tag"></i> AQS</a>
-          
             <a href="/tags/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/" rel="tag"> <i class="fa fa-tag"></i> 并发容器</a>
+          
+            <a href="/tags/AQS/" rel="tag"> <i class="fa fa-tag"></i> AQS</a>
           
             <a href="/tags/Semaphore/" rel="tag"> <i class="fa fa-tag"></i> Semaphore</a>
           

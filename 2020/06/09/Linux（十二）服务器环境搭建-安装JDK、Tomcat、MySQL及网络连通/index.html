@@ -97,23 +97,23 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/09/Linux%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-%E5%AE%89%E8%A3%85JDK%E3%80%81Tomcat%E3%80%81MySQL%E5%8F%8A%E7%BD%91%E7%BB%9C%E8%BF%9E%E9%80%9A/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一. 行为守则1. 拍摄快照Linux系统操作非常复杂，搭建开发环境时全部使用命令完成安装过程。而在Linux系统下没有像360安全卫士那样的工具，无法让我们在安装出错后卸载干净。所以建议大家在执行安装过程的每一步时都拍摄快照，保存系统当前状态，一旦安装失败就可以恢复到之前的某个快照重新开始。  2.  系统文件操作前先备份在服务器环境安装过程中经常需要修改配置文件。而Linux环境下配置文件动辄">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu759.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu760.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu761.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu762.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu763.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu764.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu765.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu766.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu767.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu768.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu759.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu760.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu761.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu762.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu763.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu764.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu765.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu766.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu767.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu768.png">
 <meta property="article:published_time" content="2020-06-09T15:54:48.000Z">
-<meta property="article:modified_time" content="2020-06-10T11:51:24.436Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:25.712Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="虚拟机安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu759.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu759.png">
 
 
 
@@ -526,7 +526,7 @@
 <td>rpm -ivh –nodeps</td>
 </tr>
 </tbody></table>
-<h3 id="3-上传MySQL的RPM包"><a href="#3-上传MySQL的RPM包" class="headerlink" title="3. 上传MySQL的RPM包"></a><strong>3. 上传MySQL的RPM包</strong></h3><img src="http://photo.wushaopei.com/qiniu759.png" width="40%">
+<h3 id="3-上传MySQL的RPM包"><a href="#3-上传MySQL的RPM包" class="headerlink" title="3. 上传MySQL的RPM包"></a><strong>3. 上传MySQL的RPM包</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu759.png" width="40%">
 
 <p>rpm文件上传时需要以“<strong>二进制</strong>”形式上传。</p>
 <p>如果使用文本形式上传，上传过程中会被重新编码，程序将不能正常工作。</p>
@@ -577,34 +577,34 @@
 <p><strong>第八步</strong>：重启MySQL服务 </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart;</span><br><span class="line">或</span><br><span class="line">systemctl restart mysql.service</span><br></pre></td></tr></table></figure>
 
-<h2 id="四-Linux网络连通状态确认"><a href="#四-Linux网络连通状态确认" class="headerlink" title="四. Linux网络连通状态确认"></a><strong>四. Linux网络连通状态确认</strong></h2><img src="http://photo.wushaopei.com/qiniu760.png" width="80%">
+<h2 id="四-Linux网络连通状态确认"><a href="#四-Linux网络连通状态确认" class="headerlink" title="四. Linux网络连通状态确认"></a><strong>四. Linux网络连通状态确认</strong></h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu760.png" width="80%">
 
-<h3 id="1-VMWare服务需要是运行状态"><a href="#1-VMWare服务需要是运行状态" class="headerlink" title="1. VMWare服务需要是运行状态"></a><strong>1. VMWare服务需要是运行状态</strong></h3><img src="http://photo.wushaopei.com/qiniu761.png" width="80%">
+<h3 id="1-VMWare服务需要是运行状态"><a href="#1-VMWare服务需要是运行状态" class="headerlink" title="1. VMWare服务需要是运行状态"></a><strong>1. VMWare服务需要是运行状态</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu761.png" width="80%">
 
-<h3 id="2-Windows系统中需要有VMWare的虚拟网卡"><a href="#2-Windows系统中需要有VMWare的虚拟网卡" class="headerlink" title="2. Windows系统中需要有VMWare的虚拟网卡"></a><strong>2. Windows系统中需要有VMWare的虚拟网卡</strong></h3><img src="http://photo.wushaopei.com/qiniu762.png" width="80%">
+<h3 id="2-Windows系统中需要有VMWare的虚拟网卡"><a href="#2-Windows系统中需要有VMWare的虚拟网卡" class="headerlink" title="2. Windows系统中需要有VMWare的虚拟网卡"></a><strong>2. Windows系统中需要有VMWare的虚拟网卡</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu762.png" width="80%">
 
 <p><strong>如果没有：</strong>则在VMWare软件的虚拟网络编辑器中点“恢复默认设置”。但是注意：恢复默认设置以后网段值会变化，Linux中的IP需要重新设置。 </p>
-<h3 id="3-Windows系统中有虚拟网卡对应的虚拟网络连接"><a href="#3-Windows系统中有虚拟网卡对应的虚拟网络连接" class="headerlink" title="3. Windows系统中有虚拟网卡对应的虚拟网络连接"></a><strong>3. Windows系统中有虚拟网卡对应的虚拟网络连接</strong></h3><img src="http://photo.wushaopei.com/qiniu763.png" width="80%">
+<h3 id="3-Windows系统中有虚拟网卡对应的虚拟网络连接"><a href="#3-Windows系统中有虚拟网卡对应的虚拟网络连接" class="headerlink" title="3. Windows系统中有虚拟网卡对应的虚拟网络连接"></a><strong>3. Windows系统中有虚拟网卡对应的虚拟网络连接</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu763.png" width="80%">
 
 <p><strong>如果没有</strong>：则在VMWare软件的虚拟网络编辑器中点“恢复默认设置”。但是注意：恢复默认设置以后网段值会变化，Linux中的IP需要重新设置。 </p>
 <h3 id="4、虚拟网络连接需要和Linux-IP地址在同一个网段"><a href="#4、虚拟网络连接需要和Linux-IP地址在同一个网段" class="headerlink" title="4、虚拟网络连接需要和Linux IP地址在同一个网段"></a><strong>4、虚拟网络连接需要和Linux IP地址在同一个网段</strong></h3><p>在Windows系统中打开cmd命令行，运行ipconfig命令 </p>
-<img src="http://photo.wushaopei.com/qiniu764.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu764.png" width="80%">
 
-<img src="http://photo.wushaopei.com/qiniu765.png" width="80%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu765.png" width="80%">
 
-<h3 id="5、确认当前Linux虚拟机的网卡是NAT模式"><a href="#5、确认当前Linux虚拟机的网卡是NAT模式" class="headerlink" title="5、确认当前Linux虚拟机的网卡是NAT模式"></a><strong>5、确认当前Linux虚拟机的网卡是NAT模式</strong></h3><img src="http://photo.wushaopei.com/qiniu766.png" width="80%">
+<h3 id="5、确认当前Linux虚拟机的网卡是NAT模式"><a href="#5、确认当前Linux虚拟机的网卡是NAT模式" class="headerlink" title="5、确认当前Linux虚拟机的网卡是NAT模式"></a><strong>5、确认当前Linux虚拟机的网卡是NAT模式</strong></h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu766.png" width="80%">
 
 <h3 id="6、Linux系统中配置IP地址的配置文件"><a href="#6、Linux系统中配置IP地址的配置文件" class="headerlink" title="6、Linux系统中配置IP地址的配置文件"></a><strong>6、Linux系统中配置IP地址的配置文件</strong></h3><p>所在目录：*<em>/etc/sysconfig/network-scripts/ *</em></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CentOS6文件名：ifcfg-eth0</span><br><span class="line"></span><br><span class="line">CentOS7文件名：ifcfg-ens33</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu767.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu767.png" width="60%">
 
 <blockquote>
 <p>IP地址有效范围：3~255</p>
 <p>IP地址建议使用范围：128~254</p>
 </blockquote>
 <p>查看网关地址方式： </p>
-<img src="http://photo.wushaopei.com/qiniu768.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu768.png" width="60%">
 
 <p><strong>DNS1也需要配置，可以使用和网关一样的值。</strong></p>
 <p> <strong>修改配置文件后要重启网络服务</strong> </p>

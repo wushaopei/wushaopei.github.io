@@ -97,21 +97,21 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/10/Linux%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-Nginx%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、应用原理解析– 负载均衡  当用户访问量非常大时，我们需要使用多台Tomcat来构成集群，由Nginx负责将负载分摊到每一台Tomcat服务器上。  二、协调 – Tomcat集群搭建搭建Tomcat集群的基本思路是把Tomcat解压目录复制多份，然后让每一份Tomcat分别使用不同端口号即可。启动时分别进入自己的bin目录执行startup.sh即可。需要修改端口号的文件是server.xm">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu769.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu770.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu771.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu772.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu773.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu774.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu775.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu776.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu769.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu770.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu771.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu772.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu773.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu774.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu775.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu776.png">
 <meta property="article:published_time" content="2020-06-10T11:54:01.000Z">
-<meta property="article:modified_time" content="2020-06-10T12:29:47.472Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:25.539Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Nginx安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu769.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu769.png">
 
 
 
@@ -487,7 +487,7 @@
       
 
       
-        <h2 id="一、应用原理解析–-负载均衡"><a href="#一、应用原理解析–-负载均衡" class="headerlink" title="一、应用原理解析– 负载均衡"></a>一、应用原理解析– 负载均衡</h2><img src="http://photo.wushaopei.com/qiniu769.png" width="40%">
+        <h2 id="一、应用原理解析–-负载均衡"><a href="#一、应用原理解析–-负载均衡" class="headerlink" title="一、应用原理解析– 负载均衡"></a>一、应用原理解析– 负载均衡</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu769.png" width="40%">
 
 <p>当用户访问量非常大时，我们需要使用多台Tomcat来构成集群，由Nginx负责将负载分摊到每一台Tomcat服务器上。 </p>
 <h2 id="二、协调-–-Tomcat集群搭建"><a href="#二、协调-–-Tomcat集群搭建" class="headerlink" title="二、协调 – Tomcat集群搭建"></a>二、协调 – Tomcat集群搭建</h2><p><strong>搭建Tomcat集群的基本思路是把Tomcat解压目录复制多份，然后让每一份Tomcat分别使用不同端口号即可。启动时分别进入自己的bin目录执行startup.sh即可。需要修改端口号的文件是server.xml，具体位置如下：</strong>  </p>
@@ -497,7 +497,7 @@
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">93     <span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8009"</span> <span class="attr">protocol</span>=<span class="string">"AJP/1.3"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="三、Nginx简介"><a href="#三、Nginx简介" class="headerlink" title="三、Nginx简介"></a>三、Nginx简介</h2><img src="http://photo.wushaopei.com/qiniu770.png" width="50%">
+<h2 id="三、Nginx简介"><a href="#三、Nginx简介" class="headerlink" title="三、Nginx简介"></a>三、Nginx简介</h2><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu770.png" width="50%">
 
 <table>
 <thead>
@@ -529,7 +529,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://nginx.org/download/nginx-1.13.1.tar.gz</span><br></pre></td></tr></table></figure>
 
 <p><strong>或者 本地上传</strong>  </p>
-<img src="http://photo.wushaopei.com/qiniu771.png">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu771.png">
 
 <h3 id="2、准备工作"><a href="#2、准备工作" class="headerlink" title="2、准备工作"></a>2、准备工作</h3><p>需要gcc-c++支持，如果未安装，则执行yum install -y gcc-c++ </p>
 <blockquote>
@@ -561,7 +561,7 @@
 
 <h3 id="4、启动"><a href="#4、启动" class="headerlink" title="4、启动"></a>4、启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
 
-<h3 id="5、效果"><a href="#5、效果" class="headerlink" title="5、效果"></a>5、效果</h3><img src="http://photo.wushaopei.com/qiniu772.png"  width="60%">
+<h3 id="5、效果"><a href="#5、效果" class="headerlink" title="5、效果"></a>5、效果</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu772.png"  width="60%">
 
 <h3 id="6、防火墙配置-—-安全策略"><a href="#6、防火墙配置-—-安全策略" class="headerlink" title="6、防火墙配置 — 安全策略"></a>6、防火墙配置 — 安全策略</h3><p>【1】启动防火墙 </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
@@ -570,7 +570,7 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=http</span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 
 <p>【3】在浏览器中输入服务器ip地址，看到类似 <code>Welcome to nginx</code> 字样，则表示安装成功 </p>
-<img src="http://photo.wushaopei.com/qiniu773.png">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu773.png">
 
 <h2 id="五、Nginx服务器基本操作"><a href="#五、Nginx服务器基本操作" class="headerlink" title="五、Nginx服务器基本操作"></a>五、Nginx服务器基本操作</h2><table>
 <thead>
@@ -608,7 +608,7 @@
 </tbody></table>
 <h2 id="六-反向代理"><a href="#六-反向代理" class="headerlink" title="六.反向代理"></a>六.反向代理</h2><p>①正向代理</p>
 <p>情景：在一个局域网中，只有一台计算机可以接入互联网。其他计算机通过这台计算机间接接入互联网。</p>
-<img src="http://photo.wushaopei.com/qiniu774.png"  width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu774.png"  width="60%">
 
 <p>②反向代理 </p>
 <table>
@@ -623,10 +623,10 @@
 <td>为服务器进行代理</td>
 </tr>
 </tbody></table>
-<img src="http://photo.wushaopei.com/qiniu775.png"  width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu775.png"  width="60%">
 
 <h2 id="七、负载均衡配置"><a href="#七、负载均衡配置" class="headerlink" title="七、负载均衡配置"></a>七、负载均衡配置</h2><h3 id="1、配置域名"><a href="#1、配置域名" class="headerlink" title="1、配置域名"></a>1、配置域名</h3><p>使用SwitchHosts工具设置<a href="https://blog.csdn.net/weixin_42405670/article/details/www.balance.com" target="_blank" rel="noopener">www.balance.com</a>域名到Linux主机地址的对应关系</p>
-<img src="http://photo.wushaopei.com/qiniu776.png"  width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu776.png"  width="60%">
 
 <h3 id="2、配置负载均衡"><a href="#2、配置负载均衡" class="headerlink" title="2、配置负载均衡"></a>2、配置负载均衡</h3><p>配置的路径 </p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@rich conf]# pwd</span><br><span class="line">  			     /usr/local/nginx/conf</span><br></pre></td></tr></table></figure>

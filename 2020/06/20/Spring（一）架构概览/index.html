@@ -97,16 +97,16 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E4%B8%80%EF%BC%89%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读：  Spring 简史 Spring 的设计初衷 Spring 的架构模块及各模块所扮演的角色  JavaWeb 发展史 第一阶段：JavaBean + Servlet +JSP逐步发展 第二阶段：面对EJB重量级框架带来的种种麻烦 第三阶段：SpringMVC&#x2F;Struts + Spring + Hibernate&#x2F;myBatis 第四阶段：享受SpringBoot “约定大于配置”的种种">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu850.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu851.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu852.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu850.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu851.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu852.png">
 <meta property="article:published_time" content="2020-06-20T08:53:16.000Z">
-<meta property="article:modified_time" content="2020-07-02T13:49:16.470Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:49.915Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="Spring 架构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu850.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu850.png">
 
 
 
@@ -504,7 +504,7 @@
 <blockquote>
 <p>他为了证明自己的想法是正确的，在2001年10月写了一本书《Expert One-on-One J2EE》，介绍了当时Java企业应用程序开发的情况，并指出了 Java EE 和 EJB 组件框架中存在的一些主要缺陷。在这本书中，他提出了一个基于普通 Java 类和依赖注入的更简单的解决方案。<strong>在书中，他展示了如何在不使用 EJB 的情况下构建高质量、可扩展的在线座位预留系统。</strong>为了构建应用程序，他编写了超过 30,000 行的基础结构代码，项目中的根包命名为 com.interface21，所以人们最初称这套开源框架为 interface21，这就是 Spring 的前身。</p>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu850.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu850.png" width="60%">
 
 <p>以上是创始人的资深大咖（要想技术好，头顶就要秃）靓图一张。</p>
 <h3 id="二、Spring-的设计初衷"><a href="#二、Spring-的设计初衷" class="headerlink" title="二、Spring 的设计初衷"></a>二、Spring 的设计初衷</h3><h4 id="1、Spring-的初始作用"><a href="#1、Spring-的初始作用" class="headerlink" title="1、Spring 的初始作用"></a>1、Spring 的初始作用</h4><blockquote>
@@ -519,8 +519,8 @@
 <h4 id="3、Spring-的野心"><a href="#3、Spring-的野心" class="headerlink" title="3、Spring 的野心"></a>3、Spring 的野心</h4><blockquote>
 <p> 为各大技术领域提供支持 : 微服务、社交API集成、云计算、移动开发、安全管理等.</p>
 </blockquote>
-<h3 id="三、Spring-的架构模块及各模块所扮演的角色"><a href="#三、Spring-的架构模块及各模块所扮演的角色" class="headerlink" title="三、Spring 的架构模块及各模块所扮演的角色"></a>三、Spring 的架构模块及各模块所扮演的角色</h3><h4 id="1、Spring-家族的骨架"><a href="#1、Spring-家族的骨架" class="headerlink" title="1、Spring 家族的骨架"></a>1、Spring 家族的骨架</h4><p>​                   <img src="http://photo.wushaopei.com/qiniu851.png" width="80%"> </p>
-<h4 id="2、Spring-家族的架构"><a href="#2、Spring-家族的架构" class="headerlink" title="2、Spring 家族的架构"></a>2、Spring 家族的架构</h4><img src="http://photo.wushaopei.com/qiniu852.png" width="60%">
+<h3 id="三、Spring-的架构模块及各模块所扮演的角色"><a href="#三、Spring-的架构模块及各模块所扮演的角色" class="headerlink" title="三、Spring 的架构模块及各模块所扮演的角色"></a>三、Spring 的架构模块及各模块所扮演的角色</h3><h4 id="1、Spring-家族的骨架"><a href="#1、Spring-家族的骨架" class="headerlink" title="1、Spring 家族的骨架"></a>1、Spring 家族的骨架</h4><p>​                   <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu851.png" width="80%"> </p>
+<h4 id="2、Spring-家族的架构"><a href="#2、Spring-家族的架构" class="headerlink" title="2、Spring 家族的架构"></a>2、Spring 家族的架构</h4><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu852.png" width="60%">
 
 <h5 id="2-1-Test-组件"><a href="#2-1-Test-组件" class="headerlink" title="2.1 Test 组件"></a>2.1 Test 组件</h5><p><strong>Test</strong></p>
 <blockquote>

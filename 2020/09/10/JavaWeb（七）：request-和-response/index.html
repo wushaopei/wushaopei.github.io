@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="前置： HTTP请求 与 HTTP响应HTTP请求​    浏览器向服务器请求某个Web资源时，称之为浏览器向服务器发送了一个 http 请求。一个完整http 请求应该包括三个部分。  请求行【描述客户端的请求方式、请求的资源名称，以及使用的HTTP协议版本号】  请求报头【描述客户端请求哪台主机，以及客户端的一些环境信息等】  一个空行  HTTP响应​    一个 HTTP 响应代表着服务器">
 <meta property="article:published_time" content="2020-09-10T08:58:24.000Z">
-<meta property="article:modified_time" content="2020-09-12T14:10:46.301Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.972Z">
 <meta property="article:author" content="吴少培">
 <meta name="twitter:card" content="summary">
 
@@ -697,7 +697,7 @@
 
 
 
-<h3 id="转发和重定向"><a href="#转发和重定向" class="headerlink" title="转发和重定向"></a>转发和重定向</h3><h4 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h4><pre><code>&lt;img src=&quot;http://photo.wushaopei.com/qiniu1214.png&quot; width=&quot;60%&quot;&gt;</code></pre><p>请求转发的特点：</p>
+<h3 id="转发和重定向"><a href="#转发和重定向" class="headerlink" title="转发和重定向"></a>转发和重定向</h3><h4 id="转发"><a href="#转发" class="headerlink" title="转发"></a>转发</h4><pre><code>&lt;img src=&quot;https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1214.png&quot; width=&quot;60%&quot;&gt;</code></pre><p>请求转发的特点：</p>
 <ol>
 <li>请求转发浏览器地址栏没有变化</li>
 <li>它是一次请求，servlet1 , servlet2 共用同一个 request 对象</li>
@@ -716,7 +716,7 @@
 <p><strong>注意一点：</strong>进行转发时， Servlet1中不能 super（req,resp）,即不能调用父类的 doGet 方法，否则父类的方法会覆盖重写的方法，导致转发失败。</p>
 <h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求重定向（推荐使用）</span></span><br><span class="line">response.sendRedirect(<span class="string">"http://localhost:8080/Http_Servlet/response2"</span>);</span><br></pre></td></tr></table></figure>
 
-<pre><code>&lt;img src=&quot;http://photo.wushaopei.com/qiniu1215.png&quot; width=&quot;60%&quot;&gt;</code></pre><p>特点：</p>
+<pre><code>&lt;img src=&quot;https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1215.png&quot; width=&quot;60%&quot;&gt;</code></pre><p>特点：</p>
 <ol>
 <li>浏览器地址栏有变化</li>
 <li>是两次请求</li>

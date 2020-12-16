@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/04/17/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%88%E4%BA%8C%E5%8D%81%E4%BA%8C%EF%BC%89J-U-C-%E7%BB%84%E4%BB%B6-ForkJoin/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="J.U.C-ForkJoin概念JUC 里面的 ForkJoin 框架是 JAVA7 提供的一个用于实现并行任务的框架，它是一个  把大任务分割成若干个小任务，最终汇总每个小任务结果后得到大任务的结果的框架。  它的思想和Mapreduce的思想比较类似。  从字面上看，Fork就是把一个大任务切割成若干个子任务来并行执行，Join就是合并这些子任务的执行结果，最后得到这个大任务的执行结果。它主要">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu392.png">
-<meta property="og:image" content="http://photo.wushaopei.com/weixinbanner.jpg">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu392.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg">
 <meta property="article:published_time" content="2020-04-17T01:51:49.000Z">
-<meta property="article:modified_time" content="2020-04-17T02:29:18.176Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:23.332Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="组件">
 <meta property="article:tag" content="ForkJoin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu392.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu392.png">
 
 
 
@@ -476,7 +476,7 @@
 </blockquote>
 <p>从字面上看，Fork就是把一个大任务切割成若干个子任务来并行执行，Join就是合并这些子任务的执行结果，最后得到这个大任务的执行结果。它主要采用的是工作窃取算法。</p>
 <p><strong>工作窃取算法的意思是指某个线程从其他队列里窃取任务来执行。</strong></p>
-<h3 id="工作窃取算法的工作流程图及原理："><a href="#工作窃取算法的工作流程图及原理：" class="headerlink" title="工作窃取算法的工作流程图及原理："></a>工作窃取算法的工作流程图及原理：</h3><img src="http://photo.wushaopei.com/qiniu392.png" width="60%">
+<h3 id="工作窃取算法的工作流程图及原理："><a href="#工作窃取算法的工作流程图及原理：" class="headerlink" title="工作窃取算法的工作流程图及原理："></a>工作窃取算法的工作流程图及原理：</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu392.png" width="60%">
 
 <p>从<strong>图中分析，</strong>该算法从线程1开始执行，然后到达任务4时，会在尾部进入到线程2去窃取属于线程2 的任务来执行。窃取线程的执行顺序自下而上，被窃取线程在执行时是自上而下。</p>
 <p><strong>这里为什么要使用工作窃取算法呢？</strong></p>
@@ -499,7 +499,7 @@
 <p><strong>代码执行结果</strong> </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">18</span>:<span class="number">26</span>:<span class="number">35.223</span> [main] INFO com.mmall.concurrency.example.aqs.ForkJoinTaskExample - result:<span class="number">5050</span></span><br><span class="line"> </span><br><span class="line">Process finished with exit code <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="http://photo.wushaopei.com/weixinbanner.jpg " alt="公共号"></p>
+<h4 id="关注橘长的微信公众号，获取有趣文章"><a href="#关注橘长的微信公众号，获取有趣文章" class="headerlink" title="关注橘长的微信公众号，获取有趣文章"></a>关注橘长的微信公众号，获取有趣文章</h4><p><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/weixinbanner.jpg " alt="公共号"></p>
       
     </div>
     

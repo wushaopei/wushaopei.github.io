@@ -97,38 +97,38 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/08/30/Redis%E5%85%A5%E9%97%A8%EF%BC%88%E5%8D%81%EF%BC%89ZSet%E9%94%AE%E5%80%BC%E7%BB%93%E6%9E%84%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="zset有序集合：  特点 重要API 实战 查漏补缺  1. 有序集合的结构  ​    上图是有序集合的结构图，有序集合同样是有 key-value 键值结构的，但是它的value是由score和value构成的。它的有序是由score分值支持的，这与排序无关，所谓有序是指它的score是唯一的，并且由数值构成，意味着score的值是有序的。  2.集合和有序集合的对比  3.列表和有序集合的">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1091.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1092.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1093.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1094.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1095.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1096.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1097.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1098.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1099.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1100.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1101.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1102.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1103.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1104.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1105.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1106.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1107.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1108.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1109.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1110.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1111.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1112.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1113.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1114.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1091.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1092.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1093.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1094.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1095.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1096.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1097.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1098.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1099.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1100.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1101.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1102.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1103.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1104.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1105.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1106.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1107.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1108.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1109.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1110.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1111.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1112.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1113.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1114.png">
 <meta property="article:published_time" content="2020-08-30T14:10:01.000Z">
-<meta property="article:modified_time" content="2020-08-30T14:17:58.716Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:51.096Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Redis">
 <meta property="article:tag" content="Redis的常用API">
 <meta property="article:tag" content="zSet">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1091.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1091.png">
 
 
 
@@ -511,70 +511,70 @@
 <li>实战</li>
 <li>查漏补缺</li>
 </ul>
-<h3 id="1-有序集合的结构"><a href="#1-有序集合的结构" class="headerlink" title="1. 有序集合的结构"></a>1. 有序集合的结构</h3><img src="http://photo.wushaopei.com/qiniu1091.png" width="60%">
+<h3 id="1-有序集合的结构"><a href="#1-有序集合的结构" class="headerlink" title="1. 有序集合的结构"></a>1. 有序集合的结构</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1091.png" width="60%">
 
 <p>​    上图是有序集合的结构图，有序集合同样是有 <strong>key-value</strong> 键值结构的，但是它的value是由score和value构成的。它的有序是由score分值支持的，这与排序无关，所谓有序是指它的score是唯一的，并且由数值构成，意味着score的值是有序的。 </p>
-<h3 id="2-集合和有序集合的对比"><a href="#2-集合和有序集合的对比" class="headerlink" title="2.集合和有序集合的对比"></a>2.集合和有序集合的对比</h3><img src="http://photo.wushaopei.com/qiniu1092.png" width="60%">
+<h3 id="2-集合和有序集合的对比"><a href="#2-集合和有序集合的对比" class="headerlink" title="2.集合和有序集合的对比"></a>2.集合和有序集合的对比</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1092.png" width="60%">
 
-<h3 id="3-列表和有序集合的对比"><a href="#3-列表和有序集合的对比" class="headerlink" title="3.列表和有序集合的对比"></a>3.列表和有序集合的对比</h3><img src="http://photo.wushaopei.com/qiniu1093.png" width="60%">
+<h3 id="3-列表和有序集合的对比"><a href="#3-列表和有序集合的对比" class="headerlink" title="3.列表和有序集合的对比"></a>3.列表和有序集合的对比</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1093.png" width="60%">
 
-<h3 id="4-增——zadd"><a href="#4-增——zadd" class="headerlink" title="4.增——zadd"></a>4.增——zadd</h3><img src="http://photo.wushaopei.com/qiniu1094.png" width="60%">
+<h3 id="4-增——zadd"><a href="#4-增——zadd" class="headerlink" title="4.增——zadd"></a>4.增——zadd</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1094.png" width="60%">
 
 <p>例如：为id 为 user:1:ranking的用户添加一个score为225的element为tom的value </p>
-<img src="http://photo.wushaopei.com/qiniu1095.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1095.png" width="60%">
 
-<h3 id="5-删——zrem"><a href="#5-删——zrem" class="headerlink" title="5.删——zrem"></a>5.删——zrem</h3><img src="http://photo.wushaopei.com/qiniu1096.png" width="60%">
+<h3 id="5-删——zrem"><a href="#5-删——zrem" class="headerlink" title="5.删——zrem"></a>5.删——zrem</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1096.png" width="60%">
 
 <p>例如：删除id为user:1:ranking 的用户的score为225且element为tom的value </p>
-<img src="http://photo.wushaopei.com/qiniu1097.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1097.png" width="60%">
 
-<h3 id="6-查——zscore"><a href="#6-查——zscore" class="headerlink" title="6.查——zscore"></a>6.查——zscore</h3><img src="http://photo.wushaopei.com/qiniu1098.png" width="60%">
+<h3 id="6-查——zscore"><a href="#6-查——zscore" class="headerlink" title="6.查——zscore"></a>6.查——zscore</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1098.png" width="60%">
 
 <p>例如：获取有序集合中元素为tom的分数score 225. </p>
-<img src="http://photo.wushaopei.com/qiniu1099.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1099.png" width="60%">
 
-<h3 id="7-自增或自减-——-zincrby"><a href="#7-自增或自减-——-zincrby" class="headerlink" title="7.自增或自减 —— zincrby"></a>7.自增或自减 —— zincrby</h3><img src="http://photo.wushaopei.com/qiniu1100.png" width="60%">
+<h3 id="7-自增或自减-——-zincrby"><a href="#7-自增或自减-——-zincrby" class="headerlink" title="7.自增或自减 —— zincrby"></a>7.自增或自减 —— zincrby</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1100.png" width="60%">
 
 <p>例如：将元素为mike的分数增加9，达到100. </p>
-<img src="http://photo.wushaopei.com/qiniu1101.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1101.png" width="60%">
 
-<h3 id="8-查个数——zcard"><a href="#8-查个数——zcard" class="headerlink" title="8.查个数——zcard"></a>8.查个数——zcard</h3><img src="http://photo.wushaopei.com/qiniu1102.png" width="60%">
+<h3 id="8-查个数——zcard"><a href="#8-查个数——zcard" class="headerlink" title="8.查个数——zcard"></a>8.查个数——zcard</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1102.png" width="60%">
 
 <p>例如：返回key为user:1:ranking 的元素的总个数 </p>
-<img src="http://photo.wushaopei.com/qiniu1103.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1103.png" width="60%">
 
 <p><strong>演示：</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zadd player:rank <span class="number">1000</span> ronaldo <span class="number">900</span> messi <span class="number">800</span> c<span class="literal">-ronaldo</span> <span class="number">600</span> kaka</span><br><span class="line">(integer) <span class="number">4</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zscore player:rank kaka</span><br><span class="line"><span class="string">"600"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zcard player:rank</span><br><span class="line">(integer) <span class="number">4</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrank player:rank ronaldo</span><br><span class="line">(integer) <span class="number">3</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrem player:rank messi</span><br><span class="line">(integer) <span class="number">1</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrange player:rank <span class="number">0</span> <span class="literal">-1</span> withscores</span><br><span class="line"><span class="number">1</span>) <span class="string">"kaka"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"600"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"c-ronaldo"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"800"</span></span><br><span class="line"><span class="number">5</span>) <span class="string">"ronaldo"</span></span><br><span class="line"><span class="number">6</span>) <span class="string">"1000"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="9-按照索引排名——zrange"><a href="#9-按照索引排名——zrange" class="headerlink" title="9.按照索引排名——zrange"></a>9.按照索引排名——zrange</h3><img src="http://photo.wushaopei.com/qiniu1104.png" width="60%">
+<h3 id="9-按照索引排名——zrange"><a href="#9-按照索引排名——zrange" class="headerlink" title="9.按照索引排名——zrange"></a>9.按照索引排名——zrange</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1104.png" width="60%">
 
 <p>例如：获取有序集合中索引为1到3的元素 mike 、frank、charis </p>
-<img src="http://photo.wushaopei.com/qiniu1105.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1105.png" width="60%">
 
-<h3 id="10-按照分数排名——zrangebyscore"><a href="#10-按照分数排名——zrangebyscore" class="headerlink" title="10.按照分数排名——zrangebyscore"></a>10.按照分数排名——zrangebyscore</h3><img src="http://photo.wushaopei.com/qiniu1106.png" width="60%">
+<h3 id="10-按照分数排名——zrangebyscore"><a href="#10-按照分数排名——zrangebyscore" class="headerlink" title="10.按照分数排名——zrangebyscore"></a>10.按照分数排名——zrangebyscore</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1106.png" width="60%">
 
 <p>例如：获取90分到123分的元素： mike 、frank </p>
-<img src="http://photo.wushaopei.com/qiniu1107.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1107.png" width="60%">
 
-<h3 id="11-获取指定分数范围的元素个数——zcount"><a href="#11-获取指定分数范围的元素个数——zcount" class="headerlink" title="11.获取指定分数范围的元素个数——zcount"></a>11.获取指定分数范围的元素个数——zcount</h3><img src="http://photo.wushaopei.com/qiniu1108.png" width="60%">
+<h3 id="11-获取指定分数范围的元素个数——zcount"><a href="#11-获取指定分数范围的元素个数——zcount" class="headerlink" title="11.获取指定分数范围的元素个数——zcount"></a>11.获取指定分数范围的元素个数——zcount</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1108.png" width="60%">
 
 <p>例如：获取200到210之间的个数： 2 </p>
-<img src="http://photo.wushaopei.com/qiniu1109.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1109.png" width="60%">
 
-<h3 id="12-按照排名范围进行元素的删除——zremrangebyrank"><a href="#12-按照排名范围进行元素的删除——zremrangebyrank" class="headerlink" title="12.按照排名范围进行元素的删除——zremrangebyrank"></a>12.按照排名范围进行元素的删除——zremrangebyrank</h3><img src="http://photo.wushaopei.com/qiniu1110.png" width="60%">
+<h3 id="12-按照排名范围进行元素的删除——zremrangebyrank"><a href="#12-按照排名范围进行元素的删除——zremrangebyrank" class="headerlink" title="12.按照排名范围进行元素的删除——zremrangebyrank"></a>12.按照排名范围进行元素的删除——zremrangebyrank</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1110.png" width="60%">
 
 <p>例如：删除集合中索引为1和2的元素 </p>
-<img src="http://photo.wushaopei.com/qiniu1111.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1111.png" width="60%">
 
-<h3 id="13、按照分值范围进行元素的删除-——-zremrangebyscore"><a href="#13、按照分值范围进行元素的删除-——-zremrangebyscore" class="headerlink" title="13、按照分值范围进行元素的删除 —— zremrangebyscore :"></a>13、按照分值范围进行元素的删除 —— zremrangebyscore :</h3><img src="http://photo.wushaopei.com/qiniu1112.png" width="60%">
+<h3 id="13、按照分值范围进行元素的删除-——-zremrangebyscore"><a href="#13、按照分值范围进行元素的删除-——-zremrangebyscore" class="headerlink" title="13、按照分值范围进行元素的删除 —— zremrangebyscore :"></a>13、按照分值范围进行元素的删除 —— zremrangebyscore :</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1112.png" width="60%">
 
 <p>例如：将90到210间分数的元素删除 </p>
-<img src="http://photo.wushaopei.com/qiniu1113.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1113.png" width="60%">
 
 <p><strong>演示：</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zadd player:rank <span class="number">1000</span> ronaldo <span class="number">900</span> messi <span class="number">800</span> c<span class="literal">-ronaldo</span> <span class="number">600</span> kaka</span><br><span class="line">(integer) <span class="number">4</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrange player:rank <span class="number">0</span> <span class="literal">-1</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"kaka"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"c-ronaldo"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"messi"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"ronaldo"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zcount player:rank <span class="number">700</span> <span class="number">901</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrangebyscore player:rank <span class="number">700</span> <span class="number">901</span></span><br><span class="line"><span class="number">1</span>) <span class="string">"c-ronaldo"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"messi"</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zremrangebyrank player:rank <span class="number">0</span> <span class="number">1</span></span><br><span class="line">(integer) <span class="number">2</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">133.115</span>:<span class="number">6379</span>&gt; zrange player:rank <span class="number">0</span> <span class="literal">-1</span> withscores</span><br><span class="line"><span class="number">1</span>) <span class="string">"messi"</span></span><br><span class="line"><span class="number">2</span>) <span class="string">"900"</span></span><br><span class="line"><span class="number">3</span>) <span class="string">"ronaldo"</span></span><br><span class="line"><span class="number">4</span>) <span class="string">"1000"</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="14-实战——排行榜"><a href="#14-实战——排行榜" class="headerlink" title="14.实战——排行榜"></a>14.实战——排行榜</h3><img src="http://photo.wushaopei.com/qiniu1114.png" width="60%">
+<h3 id="14-实战——排行榜"><a href="#14-实战——排行榜" class="headerlink" title="14.实战——排行榜"></a>14.实战——排行榜</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1114.png" width="60%">
 
 <p>使用有序集合对新书榜单进行分数、销量、评价等进行排序。 </p>
 <h3 id="15-有序集合总结"><a href="#15-有序集合总结" class="headerlink" title="15.有序集合总结"></a>15.有序集合总结</h3><table>

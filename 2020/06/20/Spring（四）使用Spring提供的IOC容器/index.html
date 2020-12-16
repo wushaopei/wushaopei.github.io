@@ -97,15 +97,15 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/20/Spring%EF%BC%88%E5%9B%9B%EF%BC%89%E4%BD%BF%E7%94%A8Spring%E6%8F%90%E4%BE%9B%E7%9A%84IOC%E5%AE%B9%E5%99%A8/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读：  IOC容器设计的模块: Spring-core、Spring-context  知识脑图     1、创建Bean类12345678package com.webcode; public class Bean &amp;#123;     public Bean()&amp;#123;        System.out.println(&quot;Bean.Bean&quot;);    &amp;#125;&amp;#125;  2、">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu862.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu856.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu862.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu856.png">
 <meta property="article:published_time" content="2020-06-20T11:45:26.000Z">
-<meta property="article:modified_time" content="2020-07-09T15:05:59.998Z">
+<meta property="article:modified_time" content="2020-12-16T06:38:50.041Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Spring">
 <meta property="article:tag" content="Spring提供的IOC容器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu862.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu862.png">
 
 
 
@@ -486,7 +486,7 @@
 <li><p>IOC容器设计的模块: Spring-core、Spring-context</p>
 </li>
 <li><p>知识脑图</p>
-<img src="http://photo.wushaopei.com/qiniu862.png" width="90%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu862.png" width="90%">
 
 </li>
 </ol>
@@ -498,7 +498,7 @@
 
 <h3 id="4、创建test测试类，通过读取配置文件，从服务上下午获取-bean-对象"><a href="#4、创建test测试类，通过读取配置文件，从服务上下午获取-bean-对象" class="headerlink" title="4、创建test测试类，通过读取配置文件，从服务上下午获取 bean 对象"></a>4、创建test测试类，通过读取配置文件，从服务上下午获取 bean 对象</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"spring.xml"</span>);</span><br><span class="line">Bean1 bean = context.getBean(<span class="string">"bean"</span>,Bean<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">System.out.println(<span class="string">"bean"</span> + bean);</span><br></pre></td></tr></table></figure>
 
-<img src="http://photo.wushaopei.com/qiniu856.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu856.png" width="60%">
 
 <p>总结：</p>
 <p><strong>Spring IOC容器的使用需要遵循以下几个步骤：</strong></p>

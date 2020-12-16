@@ -97,17 +97,17 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/06/21/Zookeeper%EF%BC%88%E4%B8%80%EF%BC%89Zookeeper%E7%AE%80%E4%BB%8B%E5%8F%8A%E5%85%B6%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="一、Zookeeper 简介1、Zookeeper 是什么①中间件，提供协调服务 ②作用于分布式系统，发挥其优势，可以为大数据服务 ③支持java,提供java和c语言的客户端api  ZooKeeper可以作为Dubbo的注册中心。  2、zookeeper 注册中心zookeeer 是 Apacahe Hadoop 的子项目，是一个树形的目录服务，支持变更推送，适合作为 Dubbo 服务的">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu873.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu872.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu874.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu875.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu873.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu872.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu874.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu875.png">
 <meta property="article:published_time" content="2020-06-21T09:25:31.000Z">
-<meta property="article:modified_time" content="2020-07-02T13:29:16.809Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:24.243Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="redis安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu873.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu873.png">
 
 
 
@@ -483,7 +483,7 @@
       
 
       
-        <img src="http://photo.wushaopei.com/qiniu873.png" width="60%">
+        <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu873.png" width="60%">
 
 <h3 id="一、Zookeeper-简介"><a href="#一、Zookeeper-简介" class="headerlink" title="一、Zookeeper 简介"></a>一、Zookeeper 简介</h3><h3 id="1、Zookeeper-是什么"><a href="#1、Zookeeper-是什么" class="headerlink" title="1、Zookeeper 是什么"></a>1、Zookeeper 是什么</h3><p>①中间件，提供协调服务</p>
 <p>②作用于分布式系统，发挥其优势，可以为大数据服务</p>
@@ -492,12 +492,12 @@
 <p>ZooKeeper可以作为Dubbo的注册中心。</p>
 </blockquote>
 <h3 id="2、zookeeper-注册中心"><a href="#2、zookeeper-注册中心" class="headerlink" title="2、zookeeper 注册中心"></a>2、zookeeper 注册中心</h3><p>zookeeer 是 Apacahe Hadoop 的子项目，是一个树形的目录服务，支持变更推送，适合作为 Dubbo 服务的注册中心，工业强度较高，可用于生产环境，并推荐使用。</p>
-<img src="http://photo.wushaopei.com/qiniu872.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu872.png" >
 
 <h3 id="3、Dubbo-ZooKeeper的HelloWorld"><a href="#3、Dubbo-ZooKeeper的HelloWorld" class="headerlink" title="3、Dubbo+ZooKeeper的HelloWorld"></a>3、<strong>Dubbo+ZooKeeper的HelloWorld</strong></h3><h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a><strong>目的</strong></h4><blockquote>
 <p>基于Dubbo+Zookeeper实现分布式项目架构，像调用本地方法一样调用远程服务。</p>
 </blockquote>
-<img src="http://photo.wushaopei.com/qiniu874.png" >
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu874.png" >
 
 <h3 id="4、Zookeeper-的特性"><a href="#4、Zookeeper-的特性" class="headerlink" title="4、Zookeeper 的特性"></a>4、Zookeeper 的特性</h3><ul>
 <li>一致性： 数据一致性，数据按照顺序分批入库</li>
@@ -506,7 +506,7 @@
 <li>可靠性： 每次对 zk 的操作状态都会保存在服务端</li>
 <li>实时性： 客户端可以读取到zk服务端的最新数据</li>
 </ul>
-<h3 id="5、目前分布式架构的解决方案"><a href="#5、目前分布式架构的解决方案" class="headerlink" title="5、目前分布式架构的解决方案"></a>5、目前分布式架构的解决方案</h3><img src="http://photo.wushaopei.com/qiniu875.png" >
+<h3 id="5、目前分布式架构的解决方案"><a href="#5、目前分布式架构的解决方案" class="headerlink" title="5、目前分布式架构的解决方案"></a>5、目前分布式架构的解决方案</h3><img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu875.png" >
 
 <p>Zookeeper负责服务的注册</p>
 <p>Dubbo负责服务的治理</p>

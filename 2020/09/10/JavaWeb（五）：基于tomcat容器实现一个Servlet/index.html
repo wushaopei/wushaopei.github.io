@@ -97,19 +97,19 @@
 <meta property="og:url" content="http://blog.wushaopei.com/2020/09/10/JavaWeb%EF%BC%88%E4%BA%94%EF%BC%89%EF%BC%9A%E5%9F%BA%E4%BA%8Etomcat%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAServlet/index.html">
 <meta property="og:site_name" content="鮀城小帅">
 <meta property="og:description" content="导读：  如怎么开发一个Servlet？ 如何编译 Servlet？ 如何在 Web 容器中跑起来？   基于 tomcat 容器实现一个 Servlet主要的步骤有：  下载并安装 Tomcat。   编写一个继承 HttpServlet 的 Java 类。   将 Java 类文件编译成 Class 文件。   建立 Web 应用的目录结构，并配置 web.xml。   部署 Web 应用。">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1206.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1207.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1208.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1209.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1210.png">
-<meta property="og:image" content="http://photo.wushaopei.com/qiniu1211.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1206.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1207.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1208.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1209.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1210.png">
+<meta property="og:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1211.png">
 <meta property="article:published_time" content="2020-09-10T06:20:00.000Z">
-<meta property="article:modified_time" content="2020-09-10T08:28:13.519Z">
+<meta property="article:modified_time" content="2020-12-16T06:39:26.739Z">
 <meta property="article:author" content="吴少培">
 <meta property="article:tag" content="javaWeb">
 <meta property="article:tag" content="HTTP协议">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://photo.wushaopei.com/qiniu1206.png">
+<meta name="twitter:image" content="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1206.png">
 
 
 
@@ -500,7 +500,7 @@
 </li>
 </ol>
 <h3 id="1-下载并安装-Tomcat"><a href="#1-下载并安装-Tomcat" class="headerlink" title="1.下载并安装 Tomcat"></a>1.下载并安装 Tomcat</h3><p>最新版本的 Tomcat 可以直接在官网上下载，根据你的操作系统下载相应的版本，这里我使用的是 windows系统，下载完成后直接解压，解压后的目录结构如下</p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1206.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1206.png" width="60%"></p>
 <p>下面简单介绍一下这些目录： </p>
 <blockquote>
 <p>/bin：存放 Windows 或 Linux 平台上启动和关闭 Tomcat 的脚本文件。 </p>
@@ -557,18 +557,18 @@
 </blockquote>
 <p>这说明我们的 AnnotationServlet 部署成功了。可以通过注解完成 web.xml 所有的配置功能，包括 Servlet 初始化参数以及配置 Filter 和 Listener 等。 </p>
 <h3 id="eclipse-配置-Tomcat-容器进行自动编译和加载启动："><a href="#eclipse-配置-Tomcat-容器进行自动编译和加载启动：" class="headerlink" title="eclipse 配置 Tomcat 容器进行自动编译和加载启动："></a>eclipse 配置 Tomcat 容器进行自动编译和加载启动：</h3><p>​    除了上述将 .java 文件单独进行编译并放置到 webapp 包下进行启动访问外，还可以通过给 eclipse 配置 Servers；</p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1207.png" width="60%"></p>
-<p>​    <img src="http://photo.wushaopei.com/qiniu1208.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1207.png" width="60%"></p>
+<p>​    <img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1208.png" width="60%"></p>
 <p>配置完成后，再根据 ip+port+web应用名+服务名 访问即可。</p>
 <h4 id="执行结果输出到cataline-log日志"><a href="#执行结果输出到cataline-log日志" class="headerlink" title="执行结果输出到cataline.log日志"></a>执行结果输出到cataline.log日志</h4><p>在选择使用 eclipse 配置 Servers 上的 Tomcat 容器来实现服务端部署的情况下，需要手动配置将tomcat从启动到运行的整个过程的日志信息打印到 cataline 日志中，具体步骤如下：</p>
 <p>1.双击eclipse中的tomcat进行配置     </p>
-<img src="http://photo.wushaopei.com/qiniu1209.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1209.png" width="60%">
 
 <p>2.选择Open launch configuration </p>
-<img src="http://photo.wushaopei.com/qiniu1210.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1210.png" width="60%">
 
 <p>3.选择Common选项, 然后勾选Output File, 输入日志文件的地址, 这里输出到了tomcat目录下的startLog.log文件中 </p>
-<img src="http://photo.wushaopei.com/qiniu1211.png" width="60%">
+<img src="https://typora-1304191864.cos.ap-shanghai.myqcloud.com/typora/qiniu1211.png" width="60%">
 
 <p>4.运行效果</p>
 <p>启动tomcat, 打印输出日志会记录到startLog.log文件中, 且每次启动, 之前的日志内容都会被替换</p>
